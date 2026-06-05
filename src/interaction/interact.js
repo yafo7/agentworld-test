@@ -178,37 +178,14 @@ function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, complete
   // Show loading
   pet._bubble.show('……');
 
-  // Generate dialogue + environment in parallel via AI
-  Promise.all([
-    generatePlayerDialogue(pet),
-    generateMilestoneEnv(pet),
-  ])
-    .then(([lines, envCfg]) => {
-      // Show first line in bubble
+  // Generate dialogue via AI (environment already spawned at milestone)
+  generatePlayerDialogue(pet)
+    .then((lines) => {
       if (lines.length > 0) {
         pet._bubble.show(lines[0].text);
       }
-
-      // Log all dialogue
       console.log(`[Player↔Pet] ${pet.name}:`);
       lines.forEach((l) => console.log(`  ${l.text}`));
-
-      // Spawn new environment
-      const newEnv = new Environment({
-        name: envCfg.name,
-        color: envCfg.color,
-        size: [1.5, 0.6, 1.5],
-        position: [
-          player.mesh.position.x + (Math.random() - 0.5) * 3,
-          0.3,
-          player.mesh.position.z + (Math.random() - 0.5) * 3,
-        ],
-        coreTags: envCfg.tags,
-        moreTags: [],
-      });
-      addToScene(newEnv.mesh);
-      environments.push(newEnv);
-      console.log(`[Environment] ${envCfg.name} spawned! Tags: ${envCfg.tags.join(', ')}`);
 
       // Hide bubble after a few seconds
       setTimeout(() => pet._bubble.hide(), 4000);
