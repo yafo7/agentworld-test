@@ -1,16 +1,17 @@
-import { getGreeting, getResponse, GOODBYES } from '../game/gameData.js';
+import { generatePetDialogue } from '../ai/dialogueGen.js';
 
-const PET_CHAT_RANGE = 3.5;   // pets must be this close to start talking
-const CHAT_CHECK_INTERVAL = 2; // seconds between checks
-const SEEK_CHECK_INTERVAL = 5; // seconds between seek-player checks
-const SEEK_CHANCE = 0.5;
+const PET_CHAT_RANGE = 3.5;
+const CHAT_CHECK_INTERVAL = 2;
+const SEEK_CHECK_INTERVAL = 5;
+const SEEK_CHANCE = 0.1; // 10% per check (was 50%)
+
+let dialogueGenerating = false;
 
 /**
- * Periodic pet-to-pet dialogue and seek-player system.
- * Call update(dt) every frame.
+ * Periodic pet-to-pet dialogue (AI-generated) and seek-player system.
  *
  * @param {import('../entities/Pet.js').Pet[]} pets
- * @param {THREE.Vector3} playerPos — current player position
+ * @param {THREE.Vector3} playerPos
  */
 export function setupPetDialogue(pets, playerPos) {
   let chatCheckTimer = 0;
@@ -31,11 +32,9 @@ export function setupPetDialogue(pets, playerPos) {
         _checkSeekPlayer(pets);
       }
 
-      // Check if any dialogue has finished
+      // Clean up finished dialogues
       for (const pet of pets) {
-        if (pet.isChatFinished) {
-          pet.endChat();
-        }
+        if (pet.isChatFinished) pet.endChat();
       }
     },
   };
@@ -46,6 +45,8 @@ export function setupPetDialogue(pets, playerPos) {
 // ===================================================================
 
 function _checkPetChats(pets) {
+  if (dialogueGenerating) return;
+
   for (let i = 0; i < pets.length; i++) {
     for (let j = i + 1; j < pets.length; j++) {
       const a = pets[i];
@@ -57,42 +58,49 @@ function _checkPetChats(pets) {
       const dist = a.mesh.position.distanceTo(b.mesh.position);
       if (dist < PET_CHAT_RANGE && Math.random() < 0.5) {
         _startChat(a, b);
-        return; // only one chat at a time for now
+        return;
       }
     }
   }
 }
 
-function _startChat(a, b) {
-  console.log(`[Chat] ${a.name} and ${b.name} start talking!`);
+async function _startChat(a, b) {
+  dialogueGenerating = true;
 
-  // Build 5-round dialogue
-  const lines = [
-    { speaker: a.name, text: getGreeting(a) },
-    { speaker: b.name, text: getResponse(b, a) },
-    { speaker: a.name, text: _commentOnTag(a, b) },
-    { speaker: b.name, text: _commentOnTag(b, a) },
-    {
-      speaker: `${a.name} & ${b.name}`,
-      text: GOODBYES[Math.floor(Math.random() * GOODBYES.length)],
-    },
-  ];
+  // Stop pets immediately
+  a.state = 'chatting';
+  b.state = 'chatting';
+  a._bubble.show('……');
+  b._bubble.show('……');
 
-  a.startChatWith(b, lines);
-  b.startChatWith(a, lines);
-}
-
-/** Generate a comment from petA about petB's tags. */
-function _commentOnTag(a, b) {
-  const bTag = b.tags[Math.floor(Math.random() * b.tags.length)] || '特别';
-  const templates = [
-    `你的「${bTag}」气质真特别呢。`,
-    `我好像能感受到你的「${bTag}」……`,
-    `「${bTag}」？和我听说的不太一样呢。`,
-    `你身上的「${bTag}」让我很好奇。`,
-    `原来「${bTag}」是这样的感觉。`,
-  ];
-  return templates[Math.floor(Math.random() * templates.length)];
+  try {
+    const lines = await generatePetDialogue(a, b);
+    // Build 5 rounds from AI response
+    const dialogueLines = [
+      ...lines.slice(0, 4),
+      {
+        speaker: `${a.name} & ${b.name}`,
+        text: '那就先这样啦，下次再聊～',
+      },
+    ];
+    a.startChatWith(b, dialogueLines);
+    b.startChatWith(a, dialogueLines);
+    console.log(`[Chat] ${a.name} ↔ ${b.name} — AI dialogue ready`);
+  } catch (err) {
+    console.error('[Chat] AI failed, using fallback:', err.message);
+    // Fallback: simple static dialogue
+    const fallback = [
+      { speaker: a.name, text: '你好呀。' },
+      { speaker: b.name, text: '嗯……你好。' },
+      { speaker: a.name, text: '今天天气不错呢。' },
+      { speaker: b.name, text: '是啊，很适合散步。' },
+      { speaker: `${a.name} & ${b.name}`, text: '回头见！' },
+    ];
+    a.startChatWith(b, fallback);
+    b.startChatWith(a, fallback);
+  } finally {
+    dialogueGenerating = false;
+  }
 }
 
 // ===================================================================

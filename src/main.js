@@ -7,7 +7,7 @@ import { createRenderer } from './core/renderer.js';
 import { createScene } from './core/scene.js';
 import { Environment } from './entities/Environment.js';
 import { Item } from './entities/Item.js';
-import { Pet, PET_CONFIGS } from './entities/Pet.js';
+import { Pet } from './entities/Pet.js';
 import { Player } from './entities/Player.js';
 import { FOREST_CONFIG, ITEM_CONFIGS } from './game/gameData.js';
 import { setupGeneration } from './interaction/generation.js';
@@ -27,7 +27,7 @@ createLights(scene);
 const terrain = createTerrain();
 scene.add(terrain);
 
-// ---- environments (forest + any spawned at runtime) ----
+// ---- environments ----
 const environments = [new Environment(FOREST_CONFIG)];
 environments.forEach((env) => scene.add(env.mesh));
 
@@ -39,22 +39,35 @@ scene.add(player.mesh);
 const items = ITEM_CONFIGS.map((cfg) => new Item(cfg));
 items.forEach((item) => scene.add(item.mesh));
 
-// ---- pets (hidden until spawned) ----
-const pets = PET_CONFIGS.map((cfg) => new Pet(cfg));
-pets.forEach((pet) => scene.add(pet.mesh));
+// ---- pets (AI-generated, initially empty) ----
+const pets = [];
+const dynamicTargets = [player, ...items, ...environments];
 
-// ---- dynamic target list (for raycast inspection) ----
-const dynamicTargets = [player, ...items, ...environments, ...pets];
-
-/** Add a runtime-spawned mesh to the scene + raycast tracking. */
+/** Add a runtime-spawned mesh to scene + raycast. */
 function addToScene(mesh) {
   scene.add(mesh);
   dynamicTargets.push({ mesh, name: mesh.name, getInfo: null });
 }
 
+// ---- AI pet generation callback ----
+function onPetGenerated(config) {
+  const pet = new Pet(config);
+  pet.spawnAt(
+    new THREE.Vector3(
+      player.mesh.position.x + (Math.random() - 0.5) * 3,
+      0.5,
+      player.mesh.position.z + (Math.random() - 0.5) * 3
+    )
+  );
+  pets.push(pet);
+  scene.add(pet.mesh);
+  dynamicTargets.push(pet);
+  console.log(`[Pet] AI-generated: ${pet.name}`, pet.getInfo());
+}
+
 // ---- interaction systems ----
 const interactSystem = setupInteract(player, items, environments, pets, addToScene);
-const generationSystem = setupGeneration(player, environments, pets);
+const generationSystem = setupGeneration(player, environments, items, onPetGenerated);
 const dialogueSystem = setupPetDialogue(pets, player.mesh.position);
 setupRaycast(camera, dynamicTargets);
 
@@ -87,5 +100,6 @@ window.addEventListener('resize', () => {
 console.log(
   '🌲 宠物庭院师\n' +
   '  WASD = 移动 | 鼠标拖拽 = 旋转 | 滚轮 = 缩放\n' +
-  '  E = 捡放物品/宠物互动 | F = 在环境旁生成宠物'
+  '  E = 捡放物品/宠物互动 | F = AI生成宠物\n' +
+  '  物品放环境旁 → F → AI创造独特宠物'
 );

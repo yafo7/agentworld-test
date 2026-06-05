@@ -1,21 +1,16 @@
 import { consumeKeyPress } from '../input/keyboard.js';
 import { Environment } from '../entities/Environment.js';
 import { Item } from '../entities/Item.js';
-import { INTIMACY_ITEM_CONFIGS, ENV_POND, ENV_GRASSLAND, getPlayerLine } from '../game/gameData.js';
+import { generateMilestoneItem, generateMilestoneEnv } from '../ai/milestoneGen.js';
+import { generatePlayerDialogue } from '../ai/dialogueGen.js';
 
 const PET_INTERACT_RANGE = 3.0;
 const ITEM_PICKUP_RANGE = 2.5;
-const ENV_RANGE = 3.5; // item must be this close to an environment for tag absorption
+const ENV_RANGE = 3.5;
 
 /**
  * Unified E-key interaction handler.
  * Priority: drop item > pet seeking player > pet interact > pickup item.
- *
- * @param {import('../entities/Player.js').Player} player
- * @param {import('../entities/Item.js').Item[]} items
- * @param {import('../entities/Environment.js').Environment[]} environments
- * @param {import('../entities/Pet.js').Pet[]} pets
- * @param {Function} addToScene — callback to add a new entity to the scene
  */
 export function setupInteract(player, items, environments, pets, addToScene) {
   const spawnedMilestoneItems = {};
@@ -48,7 +43,7 @@ export function setupInteract(player, items, environments, pets, addToScene) {
         const dist = player.mesh.position.distanceTo(pet.mesh.position);
         if (dist < PET_INTERACT_RANGE) {
           const result = pet.interactWithPlayer();
-          _handlePetInteractResult(result, pet, items, addToScene, spawnedMilestoneItems);
+          _handlePetInteractResult(result, pet, items, environments, addToScene, spawnedMilestoneItems);
           console.log(`[Pet] ${pet.name} affection: ${pet.affection}/10`);
           return;
         }
@@ -92,14 +87,6 @@ function _pickupNearest(player, items) {
   }
 }
 
-// ===================================================================
-// environment tag refresh (scan ALL environments)
-// ===================================================================
-
-/**
- * Rebuild each environment's moreTags by scanning nearby non-held items.
- * Each environment independently absorbs tags from items in range.
- */
 function _refreshAllEnvTags(environments, items) {
   for (const env of environments) {
     env.moreTags = [];
@@ -115,41 +102,70 @@ function _refreshAllEnvTags(environments, items) {
 }
 
 // ===================================================================
-// pet interaction
+// pet interaction milestones (AI-generated)
 // ===================================================================
 
-function _handlePetInteractResult(result, pet, items, addToScene, spawnedMilestoneItems) {
+function _handlePetInteractResult(result, pet, items, environments, addToScene, spawnedMilestoneItems) {
   if (result.type === 'already_max') return;
 
-  if (result.milestone) {
-    const petConfigs = INTIMACY_ITEM_CONFIGS[pet.name];
-    if (!petConfigs) return;
-
-    const itemCfg = result.milestone === 5 ? petConfigs.lv5 : petConfigs.lv10;
-    const key = `${pet.name}_lv${result.milestone}`;
+  if (result.milestone === 5) {
+    const key = `${pet.name}_lv5`;
     if (spawnedMilestoneItems[key]) return;
     spawnedMilestoneItems[key] = true;
 
-    const newItem = new Item({
-      id: itemCfg.id,
-      name: itemCfg.name,
-      color: itemCfg.color,
-      tags: itemCfg.tags,
-      correspondsTo: pet.name,
-      spawnPosition: [
-        pet.mesh.position.x + (Math.random() - 0.5) * 2,
-        0.75,
-        pet.mesh.position.z + (Math.random() - 0.5) * 2,
-      ],
-    });
-    items.push(newItem);
-    addToScene(newItem.mesh);
-    console.log(`[Milestone] ${pet.name} lv${result.milestone} → ${itemCfg.name}`);
+    // AI generates the item
+    generateMilestoneItem(pet)
+      .then((itemCfg) => {
+        const newItem = new Item({
+          id: itemCfg.name,
+          name: itemCfg.name,
+          color: itemCfg.color,
+          tags: itemCfg.tags,
+          correspondsTo: pet.name,
+          spawnPosition: [
+            pet.mesh.position.x + (Math.random() - 0.5) * 2,
+            0.75,
+            pet.mesh.position.z + (Math.random() - 0.5) * 2,
+          ],
+        });
+        items.push(newItem);
+        addToScene(newItem.mesh);
+        _refreshAllEnvTags(environments, items);
+        console.log(`[Milestone] ${pet.name} lv5 → AI item: ${itemCfg.name} [${itemCfg.tags.join(', ')}]`);
+      })
+      .catch((err) => console.error('[Milestone] AI item failed:', err));
+  }
+
+  if (result.milestone === 10) {
+    const key = `${pet.name}_lv10`;
+    if (spawnedMilestoneItems[key]) return;
+    spawnedMilestoneItems[key] = true;
+
+    // AI generates a new environment
+    generateMilestoneEnv(pet)
+      .then((envCfg) => {
+        const newEnv = new Environment({
+          name: envCfg.name,
+          color: envCfg.color,
+          size: [1.5, 0.6, 1.5],
+          position: [
+            pet.mesh.position.x + (Math.random() - 0.5) * 3,
+            0.3,
+            pet.mesh.position.z + (Math.random() - 0.5) * 3,
+          ],
+          coreTags: envCfg.tags,
+          moreTags: [],
+        });
+        addToScene(newEnv.mesh);
+        environments.push(newEnv);
+        console.log(`[Milestone] ${pet.name} lv10 → AI env: ${envCfg.name} [${envCfg.tags.join(', ')}]`);
+      })
+      .catch((err) => console.error('[Milestone] AI env failed:', err));
   }
 }
 
 // ===================================================================
-// player-pet max intimacy dialogue → spawn new environment
+// player-pet max intimacy dialogue (AI-generated)
 // ===================================================================
 
 function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, completedPlayerDialogues) {
@@ -159,27 +175,48 @@ function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, complete
   }
   completedPlayerDialogues[pet.name] = true;
 
-  console.log(`[Player↔Pet] ${pet.name}: "${getPlayerLine(pet)}"`);
+  // Show loading
+  pet._bubble.show('……');
 
-  // Spawn a new environment
-  const isPond = Math.random() < 0.5;
-  const envConfig = isPond ? ENV_POND : ENV_GRASSLAND;
-  const newEnv = new Environment({
-    name: envConfig.name,
-    color: envConfig.color,
-    size: envConfig.size,
-    position: [
-      player.mesh.position.x + (Math.random() - 0.5) * 3,
-      0.3,
-      player.mesh.position.z + (Math.random() - 0.5) * 3,
-    ],
-    coreTags: envConfig.coreTags,
-    moreTags: [],
-  });
+  // Generate dialogue + environment in parallel via AI
+  Promise.all([
+    generatePlayerDialogue(pet),
+    generateMilestoneEnv(pet),
+  ])
+    .then(([lines, envCfg]) => {
+      // Show first line in bubble
+      if (lines.length > 0) {
+        pet._bubble.show(lines[0].text);
+      }
 
-  addToScene(newEnv.mesh);
-  environments.push(newEnv); // register in the global list
-  console.log(`[Environment] ${envConfig.name} spawned! Tags: ${envConfig.coreTags.join(', ')}`);
+      // Log all dialogue
+      console.log(`[Player↔Pet] ${pet.name}:`);
+      lines.forEach((l) => console.log(`  ${l.text}`));
 
-  pet.finishPlayerDialogue();
+      // Spawn new environment
+      const newEnv = new Environment({
+        name: envCfg.name,
+        color: envCfg.color,
+        size: [1.5, 0.6, 1.5],
+        position: [
+          player.mesh.position.x + (Math.random() - 0.5) * 3,
+          0.3,
+          player.mesh.position.z + (Math.random() - 0.5) * 3,
+        ],
+        coreTags: envCfg.tags,
+        moreTags: [],
+      });
+      addToScene(newEnv.mesh);
+      environments.push(newEnv);
+      console.log(`[Environment] ${envCfg.name} spawned! Tags: ${envCfg.tags.join(', ')}`);
+
+      // Hide bubble after a few seconds
+      setTimeout(() => pet._bubble.hide(), 4000);
+      pet.finishPlayerDialogue();
+    })
+    .catch((err) => {
+      console.error('[Dialogue] AI failed:', err);
+      pet._bubble.hide();
+      pet.finishPlayerDialogue();
+    });
 }
