@@ -5,7 +5,7 @@ import { INTIMACY_ITEM_CONFIGS, ENV_POND, ENV_GRASSLAND, getPlayerLine } from '.
 
 const PET_INTERACT_RANGE = 3.0;
 const ITEM_PICKUP_RANGE = 2.5;
-const FOREST_RANGE = 3.5;
+const ENV_RANGE = 3.5; // item must be this close to an environment for tag absorption
 
 /**
  * Unified E-key interaction handler.
@@ -13,71 +13,64 @@ const FOREST_RANGE = 3.5;
  *
  * @param {import('../entities/Player.js').Player} player
  * @param {import('../entities/Item.js').Item[]} items
- * @param {import('../entities/Environment.js').Environment} forest
+ * @param {import('../entities/Environment.js').Environment[]} environments
  * @param {import('../entities/Pet.js').Pet[]} pets
  * @param {Function} addToScene — callback to add a new entity to the scene
  */
-export function setupInteract(player, items, forest, pets, addToScene) {
-  // Track which pet-milestone items have been spawned
-  const spawnedMilestoneItems = {};   // key: "petName_lv5", "petName_lv10"
-  const completedPlayerDialogues = {}; // key: petName, to avoid repeat dialogues
+export function setupInteract(player, items, environments, pets, addToScene) {
+  const spawnedMilestoneItems = {};
+  const completedPlayerDialogues = {};
 
   return {
     update() {
       if (!consumeKeyPress('e')) return;
 
-      // --- Priority 1: Drop held item ---
+      // Priority 1: Drop held item
       if (player.heldItem) {
-        _dropItem(player, forest);
-        _refreshForestTags(forest, items);
+        _dropItem(player);
+        _refreshAllEnvTags(environments, items);
         return;
       }
 
-      // --- Priority 2: Pet seeking player → player dialogue ---
+      // Priority 2: Pet seeking player → player dialogue
       for (const pet of pets) {
-        if (!pet.spawned) continue;
-        if (pet.state !== 'seeking_player') continue;
+        if (!pet.spawned || pet.state !== 'seeking_player') continue;
         const dist = player.mesh.position.distanceTo(pet.mesh.position);
         if (dist < PET_INTERACT_RANGE) {
-          _doPlayerPetMaxDialogue(player, pet, items, forest, addToScene, completedPlayerDialogues);
+          _doPlayerPetMaxDialogue(player, pet, environments, addToScene, completedPlayerDialogues);
           return;
         }
       }
 
-      // --- Priority 3: Pet nearby → affection interaction ---
+      // Priority 3: Pet nearby → affection interaction
       for (const pet of pets) {
-        if (!pet.spawned) continue;
-        if (pet.state === 'chatting' || pet.state === 'seeking_player') continue;
+        if (!pet.spawned || pet.state === 'chatting' || pet.state === 'seeking_player') continue;
         const dist = player.mesh.position.distanceTo(pet.mesh.position);
         if (dist < PET_INTERACT_RANGE) {
           const result = pet.interactWithPlayer();
-          _handlePetInteractResult(result, pet, player, items, addToScene, spawnedMilestoneItems);
-          console.log(`[Pet] ${pet.name} affection: ${pet.affection}/10, result:`, result);
+          _handlePetInteractResult(result, pet, items, addToScene, spawnedMilestoneItems);
+          console.log(`[Pet] ${pet.name} affection: ${pet.affection}/10`);
           return;
         }
       }
 
-      // --- Priority 4: Pickup item ---
+      // Priority 4: Pickup item
       _pickupNearest(player, items);
-      _refreshForestTags(forest, items);
+      _refreshAllEnvTags(environments, items);
     },
   };
 }
 
 // ===================================================================
-// internal helpers
+// item pickup / drop
 // ===================================================================
 
-function _dropItem(player, forest) {
+function _dropItem(player) {
   const item = player.heldItem;
   player.heldItem = null;
   const dropPos = player.mesh.position.clone();
   dropPos.y = 0.6;
   item.onDrop(dropPos);
-  const dist = dropPos.distanceTo(forest.mesh.position);
-  if (dist < FOREST_RANGE) {
-    console.log(`[Place] ${item.name} placed near forest → tags added`);
-  }
   console.log(`[Drop] Dropped ${item.name}`);
 }
 
@@ -99,31 +92,42 @@ function _pickupNearest(player, items) {
   }
 }
 
-function _refreshForestTags(forest, items) {
-  forest.moreTags = [];
-  for (const item of items) {
-    if (item.isHeld) continue;
-    const dist = item.mesh.position.distanceTo(forest.mesh.position);
-    if (dist < FOREST_RANGE) {
-      forest.addTags(item.tags);
+// ===================================================================
+// environment tag refresh (scan ALL environments)
+// ===================================================================
+
+/**
+ * Rebuild each environment's moreTags by scanning nearby non-held items.
+ * Each environment independently absorbs tags from items in range.
+ */
+function _refreshAllEnvTags(environments, items) {
+  for (const env of environments) {
+    env.moreTags = [];
+    for (const item of items) {
+      if (item.isHeld) continue;
+      const dist = item.mesh.position.distanceTo(env.mesh.position);
+      if (dist < ENV_RANGE) {
+        env.addTags(item.tags);
+      }
     }
+    env._syncLabel();
   }
-  forest._syncLabel();
 }
 
-// --- pet interaction handlers ---
+// ===================================================================
+// pet interaction
+// ===================================================================
 
-function _handlePetInteractResult(result, pet, player, items, addToScene, spawnedMilestoneItems) {
+function _handlePetInteractResult(result, pet, items, addToScene, spawnedMilestoneItems) {
   if (result.type === 'already_max') return;
 
   if (result.milestone) {
-    // Spawn new item near the pet
     const petConfigs = INTIMACY_ITEM_CONFIGS[pet.name];
     if (!petConfigs) return;
 
     const itemCfg = result.milestone === 5 ? petConfigs.lv5 : petConfigs.lv10;
     const key = `${pet.name}_lv${result.milestone}`;
-    if (spawnedMilestoneItems[key]) return; // already spawned
+    if (spawnedMilestoneItems[key]) return;
     spawnedMilestoneItems[key] = true;
 
     const newItem = new Item({
@@ -140,22 +144,24 @@ function _handlePetInteractResult(result, pet, player, items, addToScene, spawne
     });
     items.push(newItem);
     addToScene(newItem.mesh);
-    console.log(`[Milestone] ${pet.name} reached lv${result.milestone} → spawned ${itemCfg.name}`);
+    console.log(`[Milestone] ${pet.name} lv${result.milestone} → ${itemCfg.name}`);
   }
 }
 
-function _doPlayerPetMaxDialogue(player, pet, items, forest, addToScene, completedPlayerDialogues) {
+// ===================================================================
+// player-pet max intimacy dialogue → spawn new environment
+// ===================================================================
+
+function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, completedPlayerDialogues) {
   if (completedPlayerDialogues[pet.name]) {
-    console.log(`[Dialogue] Already talked to ${pet.name} at max intimacy.`);
     pet.finishPlayerDialogue();
     return;
   }
   completedPlayerDialogues[pet.name] = true;
 
-  // Show dialogue in console for now
   console.log(`[Player↔Pet] ${pet.name}: "${getPlayerLine(pet)}"`);
 
-  // Spawn a new environment at player position
+  // Spawn a new environment
   const isPond = Math.random() < 0.5;
   const envConfig = isPond ? ENV_POND : ENV_GRASSLAND;
   const newEnv = new Environment({
@@ -170,8 +176,9 @@ function _doPlayerPetMaxDialogue(player, pet, items, forest, addToScene, complet
     coreTags: envConfig.coreTags,
     moreTags: [],
   });
+
   addToScene(newEnv.mesh);
-  forest.addTags(envConfig.coreTags); // new env tags also affect the main forest
+  environments.push(newEnv); // register in the global list
   console.log(`[Environment] ${envConfig.name} spawned! Tags: ${envConfig.coreTags.join(', ')}`);
 
   pet.finishPlayerDialogue();

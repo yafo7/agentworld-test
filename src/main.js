@@ -27,34 +27,34 @@ createLights(scene);
 const terrain = createTerrain();
 scene.add(terrain);
 
-// ---- forest ----
-const forest = new Environment(FOREST_CONFIG);
-scene.add(forest.mesh);
+// ---- environments (forest + any spawned at runtime) ----
+const environments = [new Environment(FOREST_CONFIG)];
+environments.forEach((env) => scene.add(env.mesh));
 
 // ---- player ----
 const player = new Player();
 scene.add(player.mesh);
 
-// ---- items (3 tetrahedrons) ----
+// ---- items ----
 const items = ITEM_CONFIGS.map((cfg) => new Item(cfg));
 items.forEach((item) => scene.add(item.mesh));
 
-// ---- pets (3 hidden cubes, spawned via F key) ----
+// ---- pets (hidden until spawned) ----
 const pets = PET_CONFIGS.map((cfg) => new Pet(cfg));
 pets.forEach((pet) => scene.add(pet.mesh));
 
-// ---- dynamic entity list (for raycast inspection) ----
-const dynamicTargets = [player, ...items, forest, ...pets];
+// ---- dynamic target list (for raycast inspection) ----
+const dynamicTargets = [player, ...items, ...environments, ...pets];
 
-/** Add a runtime-spawned entity to the scene + raycast tracking. */
+/** Add a runtime-spawned mesh to the scene + raycast tracking. */
 function addToScene(mesh) {
   scene.add(mesh);
   dynamicTargets.push({ mesh, name: mesh.name, getInfo: null });
 }
 
 // ---- interaction systems ----
-const interactSystem = setupInteract(player, items, forest, pets, addToScene);
-const generationSystem = setupGeneration(player, forest, pets);
+const interactSystem = setupInteract(player, items, environments, pets, addToScene);
+const generationSystem = setupGeneration(player, environments, pets);
 const dialogueSystem = setupPetDialogue(pets, player.mesh.position);
 setupRaycast(camera, dynamicTargets);
 
@@ -84,11 +84,8 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// ---- quick-start hint ----
 console.log(
-  '🌲 宠物庭院师 — Phase 1 Demo\n' +
-  '  WASD = 移动 | 鼠标拖拽 = 旋转视角 | 滚轮 = 缩放\n' +
-  '  E = 捡起/放下物品 | E靠近宠物 = 互动增加亲密度\n' +
-  '  F = 在森林附近生成宠物\n' +
-  '  点击任意物体查看 tag 数据'
+  '🌲 宠物庭院师\n' +
+  '  WASD = 移动 | 鼠标拖拽 = 旋转 | 滚轮 = 缩放\n' +
+  '  E = 捡放物品/宠物互动 | F = 在环境旁生成宠物'
 );
