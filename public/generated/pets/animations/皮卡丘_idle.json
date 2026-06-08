@@ -1,52 +1,64 @@
 {
   "_duration": 2,
   "_loop": true,
-  "body": {
+  "chest": {
     "breathe": {
-      "amplitude": 0.015,
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
       "frequency": 0.3
     }
   },
-  "chest": {
-    "breathe": {
-      "amplitude": 0.02,
-      "frequency": 0.3
-    },
-    "_attach": "body"
-  },
   "abdomen": {
     "breathe": {
-      "amplitude": 0.01,
-      "frequency": 0.3
-    },
-    "_attach": "body"
-  },
-  "pelvis": {
-    "_attach": "body"
-  },
-  "head": {
-    "swing": {
-      "axis": "z",
-      "amplitude": 0.05,
+      "amplitude": 0.02,
       "frequency": 0.4
     },
-    "_attach": "body"
+    "_attach": "chest"
+  },
+  "pelvis": {
+    "_attach": "chest"
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.3,
+      "phase": 0.1
+    },
+    "bounce": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "_attach": "chest"
+  },
+  "leftEye": {
+    "_attach": "head"
+  },
+  "rightEye": {
+    "_attach": "head"
+  },
+  "face": {
+    "_attach": "head"
   },
   "leftEar": {
     "swing": {
       "axis": "z",
-      "amplitude": 0.08,
+      "amplitude": 0.1,
       "frequency": 0.5,
-      "phase": 0.1
+      "phase": 0
     },
     "_attach": "head"
   },
-  "right Ear": {
+  "rightEar": {
     "swing": {
       "axis": "z",
-      "amplitude": 0.08,
+      "amplitude": 0.1,
       "frequency": 0.5,
-      "phase": 0.6
+      "phase": 0.5
     },
     "_attach": "head"
   },
@@ -56,11 +68,11 @@
       "angle": 10
     },
     "swing": {
-      "axis": "x",
-      "amplitude": 0.04,
+      "axis": "z",
+      "amplitude": 0.05,
       "frequency": 0.3
     },
-    "_attach": "body"
+    "_attach": "chest"
   },
   "rightArm": {
     "tilt": {
@@ -68,32 +80,38 @@
       "angle": -10
     },
     "swing": {
-      "axis": "x",
-      "amplitude": 0.04,
-      "frequency": 0.3
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.3,
+      "phase": 0.5
     },
-    "_attach": "body"
+    "_attach": "chest"
   },
   "leftLeg": {
     "tilt": {
       "axis": "x",
-      "angle": -5
+      "angle": 5
     },
-    "_attach": "body"
+    "_attach": "pelvis"
   },
   "rightLeg": {
     "tilt": {
       "axis": "x",
-      "angle": -5
+      "angle": 5
     },
-    "_attach": "body"
+    "_attach": "pelvis"
   },
   "tail": {
-    "swing": {
-      "axis": "z",
+    "wave": {
       "amplitude": 0.1,
-      "frequency": 0.5
+      "frequency": 0.4,
+      "delay": 0.15
     },
-    "_attach": "body"
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.1,
+      "frequency": 0.3
+    },
+    "_attach": "chest"
   }
 }
