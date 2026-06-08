@@ -3,7 +3,7 @@
   "_loop": true,
   "body": {
     "bounce": {
-      "amplitude": 0.08,
+      "amplitude": 0.15,
       "frequency": 1
     },
     "sway": {
@@ -12,10 +12,24 @@
       "frequency": 0.5
     }
   },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.03,
+      "frequency": 1
+    },
+    "_attach": "body"
+  },
+  "abdomen": {
+    "_attach": "body"
+  },
+  "pelvis": {
+    "_attach": "body"
+  },
   "head": {
     "bounce": {
-      "amplitude": 0.1,
-      "frequency": 1
+      "amplitude": 0.08,
+      "frequency": 1,
+      "phase": 0.1
     },
     "swing": {
       "axis": "z",
@@ -24,22 +38,32 @@
     },
     "_attach": "body"
   },
-  "tail": {
-    "wave": {
+  "leftEar": {
+    "swing": {
+      "axis": "z",
       "amplitude": 0.2,
-      "frequency": 0.5,
-      "delay": 0.15
+      "frequency": 1,
+      "phase": 0.2
     },
-    "_attach": "body"
+    "_attach": "head"
+  },
+  "right Ear": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.2,
+      "frequency": 1,
+      "phase": 0.8
+    },
+    "_attach": "head"
   },
   "leftArm": {
     "tilt": {
-      "axis": "x",
-      "angle": 15
+      "axis": "z",
+      "angle": 25
     },
     "swing": {
       "axis": "x",
-      "amplitude": 0.3,
+      "amplitude": 0.4,
       "frequency": 0.5,
       "phase": 0
     },
@@ -47,12 +71,12 @@
   },
   "rightArm": {
     "tilt": {
-      "axis": "x",
-      "angle": 15
+      "axis": "z",
+      "angle": -25
     },
     "swing": {
       "axis": "x",
-      "amplitude": 0.3,
+      "amplitude": 0.4,
       "frequency": 0.5,
       "phase": 0.5
     },
@@ -61,11 +85,11 @@
   "leftLeg": {
     "tilt": {
       "axis": "x",
-      "angle": -20
+      "angle": -15
     },
     "swing": {
       "axis": "x",
-      "amplitude": 0.35,
+      "amplitude": 0.5,
       "frequency": 0.5,
       "phase": 0.5
     },
@@ -74,13 +98,22 @@
   "rightLeg": {
     "tilt": {
       "axis": "x",
-      "angle": -20
+      "angle": -15
     },
     "swing": {
       "axis": "x",
-      "amplitude": 0.35,
+      "amplitude": 0.5,
       "frequency": 0.5,
       "phase": 0
+    },
+    "_attach": "body"
+  },
+  "tail": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.3,
+      "frequency": 0.5,
+      "phase": 0.25
     },
     "_attach": "body"
   }
