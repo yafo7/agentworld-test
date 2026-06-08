@@ -1,6 +1,7 @@
 // Voxel Studio Backend — API client for 3D model + animation generation.
 
-const API_BASE = 'https://voxel-studio-backend.zeabur.app';
+// Proxied through Vite dev server to avoid CORS issues
+const API_BASE = '/api/voxel';
 const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
 
 /**

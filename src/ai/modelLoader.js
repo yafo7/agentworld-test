@@ -17,7 +17,9 @@ let voxelRuntime = null;
 export async function initRuntime() {
   if (voxelRuntime) return voxelRuntime;
 
-  const mod = await import('https://voxel-studio-backend.zeabur.app/api/templates/module.js');
+  // Template literal prevents Vite from statically analyzing this import.
+  // The path is proxied through Vite's dev server → voxel-studio-backend.zeabur.app.
+  const mod = await import(`${'/api/voxel'}/api/templates/module.js`);
   voxelRuntime = mod.voxelStudioRuntime;
   console.log('[Runtime] Voxel Studio runtime loaded');
   return voxelRuntime;
