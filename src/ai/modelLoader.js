@@ -9,20 +9,29 @@ import * as THREE from 'three';
 /** @type {object|null} — Voxel runtime, set by initRuntime() */
 let voxelRuntime = null;
 
+/** @type {Promise<object>|null} — pending runtime init promise */
+let runtimePromise = null;
+
 /**
  * Initialize the Voxel Studio runtime module.
- * Must be called once before any model loading.
+ * Returns a Promise that resolves when runtime is ready.
+ * Safe to call multiple times — returns the same promise.
  * Requires window.THREE to be set.
  */
-export async function initRuntime() {
-  if (voxelRuntime) return voxelRuntime;
+export function initRuntime() {
+  if (voxelRuntime) return Promise.resolve(voxelRuntime);
+  if (runtimePromise) return runtimePromise;
 
   // Template literal prevents Vite from statically analyzing this import.
   // The path is proxied through Vite's dev server → voxel-studio-backend.zeabur.app.
-  const mod = await import(`${'/api/voxel'}/api/templates/module.js`);
-  voxelRuntime = mod.voxelStudioRuntime;
-  console.log('[Runtime] Voxel Studio runtime loaded');
-  return voxelRuntime;
+  runtimePromise = (async () => {
+    const mod = await import(`${'/api/voxel'}/api/templates/module.js`);
+    voxelRuntime = mod.voxelStudioRuntime;
+    console.log('[Runtime] Voxel Studio runtime loaded');
+    return voxelRuntime;
+  })();
+
+  return runtimePromise;
 }
 
 /**
@@ -45,9 +54,14 @@ export function getRuntime() {
  * @returns {Promise<THREE.Group|THREE.Mesh>}
  */
 export async function loadModel(modelPath, fallbackMesh = null) {
+  // Wait for runtime if it's still loading
   if (!voxelRuntime) {
-    console.warn('[ModelLoader] Runtime not initialized, using fallback');
-    return fallbackMesh;
+    try {
+      await initRuntime();
+    } catch (err) {
+      console.warn('[ModelLoader] Runtime failed to load, using fallback:', err.message);
+      return fallbackMesh;
+    }
   }
 
   try {
@@ -154,7 +168,7 @@ export async function loadAnimationPlan(animPath) {
  * @param {Map<string, THREE.Object3D>} [partMap] — optional name→object cache
  */
 export function applyAnimation(plan, duration, model, t, partMap = null) {
-  if (!voxelRuntime || !plan) return;
+  if (!voxelRuntime || !plan) return; // runtime not ready yet or no plan
 
   const pose = voxelRuntime.evaluateMotion(plan, duration, model, t);
 
