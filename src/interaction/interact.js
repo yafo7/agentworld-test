@@ -64,7 +64,7 @@ function _dropItem(player) {
   const item = player.heldItem;
   player.heldItem = null;
   const dropPos = player.mesh.position.clone();
-  dropPos.y = 0.6;
+  dropPos.y = 0; // model bottom sits on ground at y=0
   item.onDrop(dropPos);
   console.log(`[Drop] Dropped ${item.name}`);
 }
@@ -124,7 +124,7 @@ function _handlePetInteractResult(result, pet, items, environments, addToScene, 
           correspondsTo: pet.name,
           spawnPosition: [
             pet.mesh.position.x + (Math.random() - 0.5) * 2,
-            0.75,
+            0,
             pet.mesh.position.z + (Math.random() - 0.5) * 2,
           ],
         });

@@ -1,0 +1,81 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.4
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "_attach": "body"
+  },
+  "abdomen": {
+    "_attach": "body"
+  },
+  "pelvis": {
+    "_attach": "body"
+  },
+  "backpack": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.4,
+      "phase": 0.1
+    },
+    "_attach": "body"
+  },
+  "head": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.02,
+      "frequency": 0.3
+    },
+    "_attach": "body"
+  },
+  "cap": {
+    "_attach": "head"
+  },
+  "leftArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": 5
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "_attach": "body"
+  },
+  "rightArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": -5
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "_attach": "body"
+  },
+  "leftLeg": {
+    "tilt": {
+      "axis": "z",
+      "angle": 2
+    },
+    "_attach": "body"
+  },
+  "rightLeg": {
+    "tilt": {
+      "axis": "z",
+      "angle": -2
+    },
+    "_attach": "body"
+  }
+}

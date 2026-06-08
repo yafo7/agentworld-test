@@ -1,0 +1,1035 @@
+{
+  "name": "Chibi Pokemon Trainer",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "body",
+      "name": "躯干",
+      "group": true
+    },
+    {
+      "id": "chest",
+      "name": "胸",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 2.1,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "box",
+      "geometry": {
+        "width": 1.8,
+        "height": 1.2,
+        "depth": 1.2
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m1",
+      "type": "box",
+      "geometry": {
+        "width": 1.6,
+        "height": 0.3,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 0,
+        "y": 0.44999999999999973,
+        "z": 0.65
+      },
+      "color": 15790320
+    },
+    {
+      "id": "abdomen",
+      "name": "腹",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 1.2,
+        "z": 0
+      }
+    },
+    {
+      "id": "m2",
+      "type": "box",
+      "geometry": {
+        "width": 1.6,
+        "height": 0.6,
+        "depth": 1.1
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "pelvis",
+      "name": "胯",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 0.65,
+        "z": 0
+      }
+    },
+    {
+      "id": "m3",
+      "type": "box",
+      "geometry": {
+        "width": 1.7,
+        "height": 0.5,
+        "depth": 1.2
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "backpack",
+      "name": "背包",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 2.2,
+        "z": -0.9
+      }
+    },
+    {
+      "id": "m4",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 1,
+        "depth": 0.6
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m5",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.15,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": -0.35
+      },
+      "color": 15790320
+    },
+    {
+      "id": "head",
+      "name": "头",
+      "group": true
+    },
+    {
+      "id": "m6",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 4.5,
+        "z": 0
+      },
+      "color": 16767673
+    },
+    {
+      "id": "m7",
+      "type": "box",
+      "geometry": {
+        "width": 1.4,
+        "height": 0.6,
+        "depth": 0.8
+      },
+      "position": {
+        "x": 0,
+        "y": 3.7,
+        "z": 0.5
+      },
+      "color": 16767673
+    },
+    {
+      "id": "cap",
+      "name": "鸭舌帽",
+      "group": true,
+      "parent": "head",
+      "position": {
+        "x": 0,
+        "y": 4.15,
+        "z": 0
+      }
+    },
+    {
+      "id": "m8",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.55,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5499999999999998,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m9",
+      "type": "box",
+      "geometry": {
+        "width": 3.2,
+        "height": 0.12,
+        "depth": 1
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0.8
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m10",
+      "type": "box",
+      "geometry": {
+        "width": 0.4,
+        "height": 0.4,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5499999999999998,
+        "z": 1.55
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m11",
+      "type": "box",
+      "geometry": {
+        "width": 1.8,
+        "height": 0.4,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 0,
+        "y": 4.05,
+        "z": 1.45
+      },
+      "color": 9127187,
+      "parent": "head"
+    },
+    {
+      "id": "m12",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.1
+      },
+      "position": {
+        "x": -0.65,
+        "y": 3.85,
+        "z": 1.45
+      },
+      "color": 9127187,
+      "parent": "head"
+    },
+    {
+      "id": "m13",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 0.65,
+        "y": 3.85,
+        "z": 1.45
+      },
+      "color": 9127187,
+      "parent": "head"
+    },
+    {
+      "id": "m14",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.25,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.45,
+        "y": 4.1,
+        "z": 1.5
+      },
+      "color": 15790320,
+      "parent": "head"
+    },
+    {
+      "id": "m15",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.45,
+        "y": 4.1,
+        "z": 1.55
+      },
+      "color": 1118481,
+      "parent": "head"
+    },
+    {
+      "id": "m16",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.25,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.45,
+        "y": 4.1,
+        "z": 1.5
+      },
+      "color": 15790320,
+      "parent": "head"
+    },
+    {
+      "id": "m17",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.45,
+        "y": 4.1,
+        "z": 1.55
+      },
+      "color": 1118481,
+      "parent": "head"
+    },
+    {
+      "id": "m18",
+      "type": "box",
+      "geometry": {
+        "width": 0.3,
+        "height": 0.1,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0,
+        "y": 3.65,
+        "z": 1.5
+      },
+      "color": 10031377,
+      "parent": "head"
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "group": true,
+      "position": {
+        "x": -1.2,
+        "y": 2.4,
+        "z": 0
+      }
+    },
+    {
+      "id": "leftArm_upperArm",
+      "name": "wp0",
+      "group": true,
+      "parent": "leftArm"
+    },
+    {
+      "id": "m19",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m20",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 0.77,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": -0.45,
+        "z": 0.1
+      },
+      "color": 13378082,
+      "quaternion": {
+        "x": 0.54,
+        "y": 0,
+        "z": 0.82,
+        "w": 0.19
+      },
+      "boneFrom": "leftArm_upperArm",
+      "boneTo": "leftArm_forearm",
+      "boneRestLen": 0.77
+    },
+    {
+      "id": "leftArm_forearm",
+      "name": "wp1",
+      "group": true,
+      "parent": "leftArm",
+      "position": {
+        "x": -0.30000000000000004,
+        "y": -0.8999999999999999,
+        "z": 0.2
+      }
+    },
+    {
+      "id": "m21",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.27,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m22",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 0.53,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.1,
+        "y": -0.34,
+        "z": 0.05
+      },
+      "color": 13378082,
+      "quaternion": {
+        "x": 0.44,
+        "y": 0,
+        "z": -0.88,
+        "w": 0.15
+      },
+      "boneFrom": "leftArm_forearm",
+      "boneTo": "leftArm_hand",
+      "boneRestLen": 0.53
+    },
+    {
+      "id": "leftArm_hand",
+      "name": "wp2",
+      "group": true,
+      "parent": "leftArm",
+      "position": {
+        "x": -0.10000000000000009,
+        "y": -1.5999999999999999,
+        "z": 0.3
+      }
+    },
+    {
+      "id": "m23",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m24",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.10000000000000009,
+        "y": -1.5999999999999999,
+        "z": 0.3
+      },
+      "color": 16767673,
+      "parent": "leftArm"
+    },
+    {
+      "id": "leftLeg",
+      "name": "左腿",
+      "group": true,
+      "position": {
+        "x": -0.45,
+        "y": 0.4,
+        "z": 0
+      }
+    },
+    {
+      "id": "leftLeg_thigh",
+      "name": "wp0",
+      "group": true,
+      "parent": "leftLeg"
+    },
+    {
+      "id": "m25",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m26",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.35,
+        "radiusBottom": 0.35,
+        "height": 0.97,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.03,
+        "y": -0.61,
+        "z": 0
+      },
+      "color": 3355443,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 0.02
+      },
+      "boneFrom": "leftLeg_thigh",
+      "boneTo": "leftLeg_shin",
+      "boneRestLen": 0.97
+    },
+    {
+      "id": "leftLeg_shin",
+      "name": "wp1",
+      "group": true,
+      "parent": "leftLeg",
+      "position": {
+        "x": -0.04999999999999999,
+        "y": -1.2000000000000002,
+        "z": 0
+      }
+    },
+    {
+      "id": "m27",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.32,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m28",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.35,
+        "radiusBottom": 0.35,
+        "height": 0.79,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.49,
+        "z": 0.1
+      },
+      "color": 3355443,
+      "quaternion": {
+        "x": 1,
+        "y": 0,
+        "z": 0,
+        "w": 0.1
+      },
+      "boneFrom": "leftLeg_shin",
+      "boneTo": "leftLeg_foot",
+      "boneRestLen": 0.79
+    },
+    {
+      "id": "leftLeg_foot",
+      "name": "wp2",
+      "group": true,
+      "parent": "leftLeg",
+      "position": {
+        "x": -0.04999999999999999,
+        "y": -2.2,
+        "z": 0.2
+      }
+    },
+    {
+      "id": "m29",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m30",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.3,
+        "depth": 0.8
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": -2.4,
+        "z": 0.3
+      },
+      "color": 13378082,
+      "parent": "leftLeg"
+    },
+    {
+      "id": "m31",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.1,
+        "depth": 0.85
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": -2.6,
+        "z": 0.3
+      },
+      "color": 15790320,
+      "parent": "leftLeg"
+    },
+    {
+      "id": "rightArm",
+      "name": "右臂",
+      "group": true,
+      "position": {
+        "x": 1.2,
+        "y": 2.4,
+        "z": 0
+      }
+    },
+    {
+      "id": "rightArm_upperArm",
+      "name": "rightArm_upperArm",
+      "group": true,
+      "parent": "rightArm"
+    },
+    {
+      "id": "m32",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m33",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 0.77,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.15,
+        "y": -0.45,
+        "z": 0.1
+      },
+      "color": 13378082,
+      "quaternion": {
+        "x": 0.54,
+        "y": 0,
+        "z": -0.82,
+        "w": 0.19
+      },
+      "boneFrom": "rightArm_upperArm",
+      "boneTo": "rightArm_forearm",
+      "boneRestLen": 0.77
+    },
+    {
+      "id": "rightArm_forearm",
+      "name": "rightArm_forearm",
+      "group": true,
+      "parent": "rightArm",
+      "position": {
+        "x": 0.30000000000000004,
+        "y": -0.8999999999999999,
+        "z": 0.2
+      }
+    },
+    {
+      "id": "m34",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.27,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m35",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 0.53,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.1,
+        "y": -0.34,
+        "z": 0.05
+      },
+      "color": 13378082,
+      "quaternion": {
+        "x": 0.44,
+        "y": 0,
+        "z": 0.88,
+        "w": 0.15
+      },
+      "boneFrom": "rightArm_forearm",
+      "boneTo": "rightArm_hand",
+      "boneRestLen": 0.53
+    },
+    {
+      "id": "rightArm_hand",
+      "name": "rightArm_hand",
+      "group": true,
+      "parent": "rightArm",
+      "position": {
+        "x": 0.10000000000000009,
+        "y": -1.5999999999999999,
+        "z": 0.3
+      }
+    },
+    {
+      "id": "m36",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 13378082
+    },
+    {
+      "id": "m37",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.10000000000000009,
+        "y": -1.5999999999999999,
+        "z": 0.3
+      },
+      "color": 16767673,
+      "parent": "rightArm"
+    },
+    {
+      "id": "rightLeg",
+      "name": "右腿",
+      "group": true,
+      "position": {
+        "x": 0.45,
+        "y": 0.4,
+        "z": 0
+      }
+    },
+    {
+      "id": "rightLeg_thigh",
+      "name": "rightLeg_thigh",
+      "group": true,
+      "parent": "rightLeg"
+    },
+    {
+      "id": "m38",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m39",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.35,
+        "radiusBottom": 0.35,
+        "height": 0.97,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.03,
+        "y": -0.61,
+        "z": 0
+      },
+      "color": 3355443,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -1,
+        "w": 0.02
+      },
+      "boneFrom": "rightLeg_thigh",
+      "boneTo": "rightLeg_shin",
+      "boneRestLen": 0.97
+    },
+    {
+      "id": "rightLeg_shin",
+      "name": "rightLeg_shin",
+      "group": true,
+      "parent": "rightLeg",
+      "position": {
+        "x": 0.04999999999999999,
+        "y": -1.2000000000000002,
+        "z": 0
+      }
+    },
+    {
+      "id": "m40",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.32,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m41",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.35,
+        "radiusBottom": 0.35,
+        "height": 0.79,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.49,
+        "z": 0.1
+      },
+      "color": 3355443,
+      "quaternion": {
+        "x": 1,
+        "y": 0,
+        "z": 0,
+        "w": 0.1
+      },
+      "boneFrom": "rightLeg_shin",
+      "boneTo": "rightLeg_foot",
+      "boneRestLen": 0.79
+    },
+    {
+      "id": "rightLeg_foot",
+      "name": "rightLeg_foot",
+      "group": true,
+      "parent": "rightLeg",
+      "position": {
+        "x": 0.04999999999999999,
+        "y": -2.2,
+        "z": 0.2
+      }
+    },
+    {
+      "id": "m42",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m43",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.3,
+        "depth": 0.8
+      },
+      "position": {
+        "x": 0.04999999999999999,
+        "y": -2.4,
+        "z": 0.3
+      },
+      "color": 13378082,
+      "parent": "rightLeg"
+    },
+    {
+      "id": "m44",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.1,
+        "depth": 0.85
+      },
+      "position": {
+        "x": 0.04999999999999999,
+        "y": -2.6,
+        "z": 0.3
+      },
+      "color": 15790320,
+      "parent": "rightLeg"
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"Q版二头身比例，头占身高1/2，躯干短小，四肢粗短圆润，整体可爱圆润\",\n  \"regions\": [\n    {\"name\": \"head\", \"desc\": \"超大圆头、鸭舌帽-红[cc2222]帽顶与帽檐、帽前小徽章-白[f0f0f0]、刘海-棕[8b4513]从帽檐露出、脸-肤色[ffdab9]大眼小嘴\"},\n    {\"name\": \"body\", \"desc\": \"短小紧凑的躯干、肩宽腰窄不明显、夹克-红、内衬衣-白、背后小背包-深灰[333333]\"},\n    {\"name\": \"leftArm\", \"desc\": \"短粗手臂、上臂夹克袖-红、手-肤色\"},\n    {\"name\": \"rightArm\", \"desc\": \"短粗手臂、上臂夹克袖-红、手-肤色\"},\n    {\"name\": \"leftLeg\", \"desc\": \"短粗腿、长裤-深灰、运动鞋-红、鞋底-白\"},\n    {\"name\": \"rightLeg\", \"desc\": \"短粗腿、长裤-深灰、运动鞋-红、鞋底-白\"}\n  ],\n  \"methodologies\": [\"humanoid_body\", \"head:flatface\"]\n}\n```",
+  "_routerThinking": "1.  **Step 1: Concretize**\n    - User description: \"a lowpoly cute chibi pokemon trainer character, small stylized humanoid with a cap, simple cartoon proportions, standing pose\"\n    - This is a concrete noun/concept (humanoid character). Skip Step 1.\n\n2.  **Step 2: Structural Division**\n    - Independent moving parts: Head, Body (torso), Left Arm, Right Arm, Left Leg, Right Leg.\n    - Attached items: Cap -> head. Backpack -> body (or just mention in body desc). Clothes -> respective body parts.\n    - Proportions: Chibi/cute proportions: big head (1/3 to 1/2 of total height), small stubby body, short limbs.\n    - Groups: head, body, leftArm, rightArm, leftLeg, rightLeg.\n\n3.  **Step 3: Write desc**\n    - *Proportions*: Chibi proportions, large head taking up 1/3 of height, short stubby limbs, small torso.\n    - *Head*: Round/oversized head, cap (visor, dome), big eyes, simple mouth. Colors: Cap - Red [cc2222], Hair - Brown [8b4513], Skin - Peach [ffdab9].\n    - *Body*: Small, slightly wider chest/shoulders tapering slightly to waist, jacket/vest - Blue [2244cc], shirt underneath - White [f0f0f0].\n    - *Arms*: Short, thick arms tapering slightly to hands. Skin - Peach, Jacket sleeves - Blue.\n    - *Legs*: Short, thick legs, pants - Dark Grey [333333], shoes - Red [cc2222].\n    - Color distribution:\n        - Main (60%): Blue (jacket) / Dark Grey (pants) - wait, let's make it classic Red/White trainer. Cap Red, Jacket Red, Shoes Red. Main color: Red [cc2222] (cap, jacket, shoes).\n        - Secondary (30%): Dark Grey/Black [222222] (pants, cap brim).\n        - Accent (10%): White [f0f0f0] (shirt, cap badge), Peach [ffdab9] (skin), Brown [8b4513] (hair).\n    - Let's refine desc:\n        - head: Oversized round head, cap-红[cc2222] with white brim and front badge-白[f0f0f0], spiky hair-棕[8b4513] peeking out, face-肤色[ffdab9] with large eyes\n        - body: Small compact torso, vest/jacket-红, shirt underneath-白, small backpack-深灰[333333] on back\n        - leftArm: Short stubby arm, sleeve-红, hand-肤色\n        - rightArm: Short stubby arm, sleeve-红, hand-肤色\n        - leftLeg: Short thick leg, pants-深灰, shoe-红\n        - rightLeg: Short thick leg, pants-深灰, shoe-红\n    - Wait, the prompt says \"cute chibi... standing pose\". Keep it simple.\n\n4.  **Step 4: Methodology**\n    - humanoid_body: Yes, upright humanoid.\n    - head:flatface: Yes, cartoon human face.\n    - mechanical: No.\n    - wings: No.\n\n5.  **Format Output**\n    - Construct JSON strictly as requested. No extra text.",
+  "_modelReasoning": "",
+  "_aiCode": "function build(api) {\n  api.name('Chibi Pokemon Trainer');\n  const C_RED=0xcc2222, C_WHITE=0xf0f0f0, C_HAIR=0x8b4513, C_SKIN=0xffdab9, C_DGRAY=0x333333, C_BLACK=0x111111, C_DRED=0x991111;\n\n  api.group('body','躯干');\n    api.group('chest','胸');\n      api.box({w:1.8,h:1.2,d:1.2,pos:[0,2.1,0],color:C_RED});\n      api.box({w:1.6,h:0.3,d:0.1,pos:[0,2.55,0.65],color:C_WHITE});\n    api.endGroup();\n    api.group('abdomen','腹');\n      api.box({w:1.6,h:0.6,d:1.1,pos:[0,1.2,0],color:C_DGRAY});\n    api.endGroup();\n    api.group('pelvis','胯');\n      api.box({w:1.7,h:0.5,d:1.2,pos:[0,0.65,0],color:C_DGRAY});\n    api.endGroup();\n    api.group('backpack','背包');\n      api.box({w:1.2,h:1.0,d:0.6,pos:[0,2.2,-0.9],color:C_DGRAY});\n      api.box({w:0.8,h:0.15,d:0.15,pos:[0,2.7,-1.25],color:C_WHITE});\n    api.endGroup();\n  api.endGroup();\n\n  api.group('head','头');\n    api.sphere({r:1.5,pos:[0,4.5,0],color:C_SKIN});\n    api.box({w:1.4,h:0.6,d:0.8,pos:[0,3.7,0.5],color:C_SKIN});\n    api.group('cap','鸭舌帽');\n      api.sphere({r:1.55,pos:[0,4.7,0],color:C_RED});\n      api.box({w:3.2,h:0.12,d:1.0,pos:[0,4.15,0.8],color:C_RED});\n      api.box({w:0.4,h:0.4,d:0.05,pos:[0,4.7,1.55],color:C_WHITE});\n    api.endGroup();\n    api.box({w:1.8,h:0.4,d:0.1,pos:[0,4.05,1.45],color:C_HAIR});\n    api.box({w:0.5,h:0.5,d:0.1,pos:[-0.65,3.85,1.45],color:C_HAIR});\n    api.box({w:0.5,h:0.5,d:0.1,pos:[0.65,3.85,1.45],color:C_HAIR});\n    api.poly({r:0.25,pos:[-0.45,4.1,1.5],color:C_WHITE});\n    api.poly({r:0.15,pos:[-0.45,4.1,1.55],color:C_BLACK});\n    api.poly({r:0.25,pos:[0.45,4.1,1.5],color:C_WHITE});\n    api.poly({r:0.15,pos:[0.45,4.1,1.55],color:C_BLACK});\n    api.box({w:0.3,h:0.1,d:0.05,pos:[0,3.65,1.5],color:C_DRED});\n  api.endGroup();\n\n  api.mirror('x');\n  api.group('leftArm','左臂');\n    api.chain({waypoints:[[-1.2,2.4,0],[-1.5,1.5,0.2],[-1.3,0.8,0.3]],jointIds:['upperArm','forearm','hand'],r:0.3,color:C_RED});\n    api.sphere({r:0.3,pos:[-1.3,0.8,0.3],color:C_SKIN});\n  api.endGroup();\n  api.group('leftLeg','左腿');\n    api.chain({waypoints:[[-0.45,0.4,0],[-0.5,-0.8,0],[-0.5,-1.8,0.2]],jointIds:['thigh','shin','foot'],r:0.35,color:C_DGRAY});\n    api.box({w:0.5,h:0.3,d:0.8,pos:[-0.5,-2.0,0.3],color:C_RED});\n    api.box({w:0.5,h:0.1,d:0.85,pos:[-0.5,-2.2,0.3],color:C_WHITE});\n  api.endGroup();\n  api.endMirror();\n}",
+  "_description": "a lowpoly cute chibi pokemon trainer character, small stylized humanoid with a cap, simple cartoon proportions, standing pose",
+  "_formulaResult": {
+    "methodologies": [
+      "humanoid_body",
+      "head:flatface"
+    ],
+    "regions": [
+      {
+        "name": "head",
+        "desc": "超大圆头、鸭舌帽-红[cc2222]帽顶与帽檐、帽前小徽章-白[f0f0f0]、刘海-棕[8b4513]从帽檐露出、脸-肤色[ffdab9]大眼小嘴"
+      },
+      {
+        "name": "body",
+        "desc": "短小紧凑的躯干、肩宽腰窄不明显、夹克-红、内衬衣-白、背后小背包-深灰[333333]"
+      },
+      {
+        "name": "leftArm",
+        "desc": "短粗手臂、上臂夹克袖-红、手-肤色"
+      },
+      {
+        "name": "rightArm",
+        "desc": "短粗手臂、上臂夹克袖-红、手-肤色"
+      },
+      {
+        "name": "leftLeg",
+        "desc": "短粗腿、长裤-深灰、运动鞋-红、鞋底-白"
+      },
+      {
+        "name": "rightLeg",
+        "desc": "短粗腿、长裤-深灰、运动鞋-红、鞋底-白"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 块面构成原则\n你的基本视觉单元是体积块和色块面：\n- 体积块：有厚度的几何体(d≥0.15)，决定轮廓，用box/cyl/sphere/cone/chain。块间重叠0.2~0.5，不精确对接。\n- 色块面：附着在体积表面的薄层(d:0.05~0.12)，提供正面颜色区分，用tri/薄box。不改变轮廓但从最常见视角提供核心识别信号。\n- 颜色规则：每个几何体只有一种颜色（框架限制）。颜色变化→需要几何边界→需要两个片。需要多色或渐变效果→用多个相邻薄片拼出。\n- 每个几何块都应有明确视觉角色：建立轮廓（体积块）/ 区分结构区域（色块面）/ 提供识别锚点（小装饰）。\n- 辨识度两层：（1）块间空间关系决定\"这是什么类型\"（人形/四足/飞行器）；（2）关键小几何装饰决定\"这是哪一个\"（发簪/琴弦/天线）。\n\n## 硬约束（违反=错误）\n1. 方向用 along:'+Z' 等轴方向。\n2. Y+上，+Z前，地面y=0。chain waypoints从-Z(尾)到+Z(头)。\n\n## 三步建造法（每个group都按：轮廓→特征→细节）\n1. 轮廓块（1~4个大shape）：定silhouette，占70%体积\n2. 特征块（2~6个中shape）：建立识别特征\n3. 细节块（3~8个小shape）：点缀\n\n构建顺序：\n- 先搭大块（轮廓），再搭中块（特征），最后搭小块（细节）\n- 同一表面上从内到外：底层结构→表面色块面(d:0.05~0.08)→外部附着物(眼/装饰)\n- 色块面是皮肤(d:0.05~0.08)，不是砖块(d≥0.15)——薄才能贴面。太厚会陷进内部或遮住外部附着物\n- ⚠️ 全局顺序：任何group内，先搭完全部体积块（轮廓+特征），再放附着物（色块面+细节）。不要边搭大块边放附着物——之后加的大块会遮挡已放的附着物\n- ⚠️ 头部额外注意：吻部/喙/鼻尖是体积块，必须在放眼之前搭完。眼睛位置≥已搭好的最前凸结构——否则埋在吻部后面。如果头朝向不是正+Z（如颈部弯曲），眼睛跟随头的前方，不是全局+Z\n\nshape数量只是单个group内的参考，不是硬约束，实际数量根据需求调整。\n\n## 推理约束\n- 思考重点在于怎样通过shape的堆叠来更好的实现模型的外观外结构，类似搭积木，不可视的内部结构不用考虑。\n- 你可以在router草稿基础上自由增/删/改，添加你认为合适的配件和细节。\n- 坐标和尺寸精度到0.01即可。±0.05以内的偏差在lowpoly下肉眼不可见，无需纠结微调。重点是结构关系正确，不是数值精确。\n- 修改时只改动出错的部分，不要因为一个小问题就把所有代码重写一遍——这会造成大量浪费。第二轮及之后的修改应该是局部的、针对性的。\n- 构建完所有group后扫一眼：Router的每个group都建了？不用mirror的group里成对特征(眼耳手脚翅)左右都写了？附着物至少一半露在父级外？这是快速扫视不是检查清单。\n- 用cone时：along=尖端指向。衣服→尖端朝身体，粗口朝外。\n- 小结构尺寸占所在group主要尺寸的15~25%（头高1.0→眼睛r≈0.2~0.3；躯干高2.5→腰带tube≈0.38~0.63）。低于此在lowpoly下不具可读性。眼睛绝对最小半径r≥0.2。\n- 线性元素例外：琴弦/线缆/天线/细链/绳索/发簪/辐条/索具——语义本质是\"线\"的结构，r可低至0.01~0.05，不适用比例下限。铆钉/眼睛/纽扣/腰带不是线，不可套用此例外。\n\n## 坐标放置：两步附着法\n\n子级附着到父级时，分两步判断：\n\n**第一步：判断附着在父级的哪个面**\n- 子级在父级的前方(+Z) / 后方(-Z) / 上方(+Y) / 下方(-Y) / 侧面(±X)？\n- 想象子级的视觉位置，它自然属于哪个面就是哪个面\n- 疑难时参考：眼→前，翅膀→后，帽→上，裙→下，肩甲→侧\n\n**第二步：判断在该面上的具体位置**\n- 子级在面的中心还是偏上/偏下/偏左/偏右？\n- 偏移量 = 子级在该方向半尺寸 × (0.3~0.6)\n- 子级中心 = 父级表面 + 偏移（沿附着方向）\n\n高频反面案例：\n- 翅膀z≈0，身体中心 → 卡体内 → 从背面(-Z)附着：子级中心z = 父级后表面z - 子级半深\n- 光环y与头顶同 → 陷头里 → 从顶面(+Y)附着：子级中心y = 父级顶表面y + 子级半高\n- 发簪与发髻同pos → 被吞 → 从顶/侧面附着，中心在父级表面外\n\n穿入型（发簪穿过发髻）：\n- 从一面穿入另一面穿出。中心 ≈ 父级表面 - 微插入(子级半径×0.2~0.3)\n\n## 颜色层次\n- 整体：整个模型的颜色按60-30-10分配：主色系(60%，覆盖主体大部分)、辅色系(30%，次要区域/内层)、强调色(10%，小面积点缀)。例：鸟人→灰白主色系60%+深灰辅色系30%+金黄强调色10%。\n- 局部：每个大面积部件内部给2~3个同色系色按面积递减：主色(60%)→过渡色(30%)→强调色(10%)。同色系=色相相近，明度/饱和度递变。小面积部件只需1个色。\n\n## 边缘装饰法\n表面装饰（覆羽、鳞片、鬃毛、流苏等）不要完全贴合在主体表面——会穿模且不可见。\n正确做法：从主体边缘向外延伸，像瓦片/屋檐层层外挑。颜色与主体稍有区分（同色系更深/更浅），确保可见。\n- 覆羽/鳞片：沿肢体边缘，每隔0.3~0.5放一个tri，根部贴住边缘，末端向外翘0.1~0.2，逐层排列。颜色比主体略深。\n- 鬃毛/脊刺：沿脊柱排列cone，根部嵌入主体，尖端向外+Y。\n- 毛领/围脖：用torus围在颈部，tube:0.15~0.25，颜色与主体区分。\n- 流苏/挂饰：从边缘挂下短chain，r:0.05~0.08，末端可加poly做坠饰。\n- 护腕/脚环：用torus套在四肢上，tube:0.1~0.15。\n- 装饰铆钉/宝石：用poly沿边缘等距排列，r:0.08~0.12。\n\n## API 参考\n\n### 通用参数（所有形状共享）\n- pos:[x,y,z] — 形状的几何中心（不是底面/顶点/起点）。box半高=h/2，cyl/cone半高=h/2，sphere半径=r。Y+上，Z+前，X+右，地面Y=0\n- color:0xRRGGBB — 十六进制颜色\n- along:轴方向字符串 — 控制形状朝向，如'+Z'朝前、'-X'朝左、'+X+Y+Z'斜向。\n\n### 基础形状\nbox({w,h,d, along?, pos, color?})\n  w=宽, h=高, d=深\n  along=轴方向，让盒体沿该方向延伸。默认沿Y+(h朝上)。\n  用途：主体结构、薄板(d:0.1~0.3做纸片)、方块堆叠、倾斜板块。\n\nsphere({r, pos, color?})\n  r=半径\n  用途：球体、头部轮廓、关节球。无方向性。\n\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?})\n  r=统一半径(上下一样粗) | rTop=顶部半径 + rBot=底部半径(rTop≠rBot=锥台)\n  h=高度 | seg=径向分段(默认10, seg:4=方形截面)\n  along=轴方向，默认沿Y+。\n  用途：柱体、四肢、颈、锥台(rTop≠rBot做方形脸/锥形躯干)。\n\ncone({r, h, seg?, along?, pos, color?})\n  r=底面半径(粗端) | h=高度(底面到尖端) | seg=径向分段(默认10)\n  along=尖端指向，-along=底面方向。默认尖端朝Y+(上)。\n  用途：尖角、喙、角、末端收束、刺。衣服(裙/袖)→尖端朝身体，粗口朝外。\n\ntorus({r, tube, along?, pos, color?})\n  r=环半径(圆心到管中心) | tube=管粗细(管截面半径)\n  along=轴方向，环孔绕该轴。默认平放XZ面(环面朝上，像甜甜圈)。\n  套在圆柱上当箍：torus和cyl用**同一个along**。\n  用途：圆环、救生圈、箍、把手、护腕、脚环、围脖。\n\npoly({r, pos, color?})\n  r=半径\n  用途：眼睛(r:0.15~0.4)、宝石、铆钉、装饰球。二十面体，三角面切面质感，比sphere尖锐有棱角。\n  无方向性。\n\n### 自由面片 — 用3D顶点定义形状，朝向由顶点坐标直接决定\ntri({a:[x,y,z], b:[x,y,z], c:[x,y,z], d?, color?})\n  a/b/c=三角形三个顶点 | d=厚度(默认0.1)\n  朝向由顶点位置直接决定。想控制朝向→把顶点放在想要的方向上。\n  用途：三角面片、斜面、斧刃、屋顶、楔形、尾羽、花瓣。\n\npatch({points:[[x,y,z],...], d?, color?})\n  points=3D点数组(3个以上)，自动三角化填充 | d=厚度(默认0.1)\n  用途：翅膀膜、帆、鳍、披风。不规则多点面片。\n  ⚠️ 强制：points必须包含所有骨架/支撑点的坐标——chain的每个waypoint（不只是首尾！）、fork的每个end，全部都要放进points，否则膜面会穿过骨架球体出现缝隙。\n  代码：let w=chain.waypoints, f=fork.ends;\n  api.patch({points:[w[0].pos, ..., w[n].pos, f[0].pos, ..., f[m].pos], color})\n\n### 复合构造\nchain({waypoints, r|rStart+rEnd, jointIds?, color?})\n  waypoints=[[x,y,z],...] 绝对坐标路径点，依次串联\n  r=统一半径，从头到尾一样粗\n  rStart=起始半径 + rEnd=末端半径，从rStart线性渐变到rEnd\n  r=0.3 + rEnd=0.1 快捷写法，等价于 rStart:0.3, rEnd:0.1，仅传rEnd=错误\n  jointIds=['hip','knee','ankle'] 给每个路径点命名子group(动画骨骼)，不传=静态链\n  用途：沿线串联 — 四肢、蛇身、触手、尾巴、脊柱、钩子。\n\nradial({count, from, axis?, shape, color?})\n  count=副本数量 | from=[x,y,z] 中心点 | axis=旋转轴('y'默认)\n  shape={ type, ... } — shape内坐标(points/pos/a/b/c)是相对from的局部坐标，radial绕axis旋转每个副本。\n  axis='y'时：模板的X和Z被旋转（cos/sin互换），Y保持不变。模板朝Z→旋转后各方向均有Z分量；模板朝Y→所有副本朝Y不变。\n  用途(shape type)：柱廊/辐条(cyl)、箍圈(torus)、花瓣(patch)、章鱼触手(chain)、齿轮的齿(box)、其他(cone、poly、tri、torus)。\n\nfork({from:[x,y,z], to:[[x,y,z],...], r, color?}) → {ends:[{pos,r}]}\n  from=分叉起点(放一个关节球) | to=目标终点数组(到每个终点拉一根柱体)\n  r=柱体半径\n  用途：一点多向分叉 — 鹿角、珊瑚、树枝、血管。\n  返回ends数组，包含每个终点的位置和半径，可用于接续chain。\n\n### 层级与镜像\ngroup(id, name?, {pos?,noMirror?})\n  id=唯一标识(动画骨骼引用用这个) | name=显示名(省略则用id)\n  pos=组的中心点/锚点 | noMirror:true → 镜像时跳过此组及其子节点\n  用途：每个独立运动的部位必须包在group里，group=动画骨骼。\n\nendGroup() — 关闭当前group，后续几何体回到上级。\n\nmirror('x') / mirror('y') / mirror('z') → endMirror()\n  中间所有几何体自动生成沿指定轴的镜像副本。\n  group ID 自动重命名：left→right, _L→_R。\n  mirror('x')=左右对称(最常用)，mirror('y')=上下对称，mirror('z')=前后对称。\n  只在左右完全对称时用 mirror('x')。有独立配件（单手武器、单侧装饰）时禁止用mirror，手动分别建左右组。角色面向+Z，左手=-X，右手=+X。\n\n### 辅助函数api\nchainEnd()\n  返回上一次chain()末端的{pos,r,rot}。用于从上一条链的末端接续下一条链。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  api.mirror('x');\n  api.group('chimney','烟囱');\n  api.cyl({r:0.4,h:2,pos:[1.2,3.5,-1],color:C_RUST});\n  api.torus({r:0.45,tube:0.08,pos:[1.2,4.4,-1],color:C_GOLD}); // 箍在烟囱(along Y)上，默认即沿Y\n  api.endGroup();\n  api.endMirror();\n  api.group('propeller','螺旋桨');\n  api.radial({count:3,from:[0,1.5,-4.2],axis:'z',shape:{type:'box',w:0.1,h:0.8,d:0.05},color:C_METAL});\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('head','head') → 超大圆头、鸭舌帽-红[cc2222]帽顶与帽檐、帽前小徽章-白[f0f0f0]、刘海-棕[8b4513]从帽檐露出、脸-肤色[ffdab9]大眼小嘴 → api.endGroup()\napi.group('body','body') → 短小紧凑的躯干、肩宽腰窄不明显、夹克-红、内衬衣-白、背后小背包-深灰[333333] → api.endGroup()\napi.group('leftArm','leftArm') → 短粗手臂、上臂夹克袖-红、手-肤色 → api.endGroup()\napi.group('rightArm','rightArm') → 短粗手臂、上臂夹克袖-红、手-肤色 → api.endGroup()\napi.group('leftLeg','leftLeg') → 短粗腿、长裤-深灰、运动鞋-红、鞋底-白 → api.endGroup()\napi.group('rightLeg','rightLeg') → 短粗腿、长裤-深灰、运动鞋-红、鞋底-白 → api.endGroup()\n\n### 直立躯干 (humanoid_body)\n竖直方向生物躯体。\n\n## 躯干 = body 一级group内包 3 个二级 group（胸→腹→胯）\n- 构建顺序中写的是 body，实际建造时用 body 包裹 chest + abdomen + pelvis：\n  api.group('body','躯干');\n    api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n    api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n    api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n  api.endGroup();\n- 每个分段用 group 包裹，附着装饰放在对应分段内\n  api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n  api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n  api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n- 块间层叠微偏移，重叠≥0.2\n\n## 四肢 = chain({waypoints, jointIds})，末端收束\n- 不管是否用 mirror，四肢一律用 chain——不用 chain 就没有肘/膝关节球，四肢像橡胶管。\n- chain 每个 waypoint 自动生成关节球，靠这个球表达肘/膝的转折。\n- jointIds 命名：臂→['upperArm','forearm','hand']，腿→['thigh','shin','foot']\n- 手持物（武器/盾牌/道具）各自用 group 包裹为二级group，嵌套在对应手臂 group 内部，与 upperArm/forearm/hand 平级。不是放在手臂 group 外面的顶级group。例：api.group('sword','长剑') 或 api.group('shield','盾牌')\n- 代码：api.chain({waypoints:[[-2,6,0],[-2,3,0],[-2,0,0]], jointIds:['upperArm','forearm','hand'], r:0.5, color:0x3a5f8a});\n\n### 平面型头部 (head:flatface)\n人/精灵/矮人/兽人/机器人 — 面部与颅骨正面大致齐平，无突出吻部或喙。\n头部 = 颅骨体积(主) + 颌面体积(辅)。禁止单个几何块——单块从侧面看是纯弧线，零辨识度。\n体积块之间重叠0.2~0.5单位，不要精确对接留缝隙。\n\n颅骨体积：占头部60~70%。确立整体形态和气质——偏圆=柔和/可爱，偏方=刚硬/威严，偏长=智慧/沧桑。\n  颅骨是头部\"画布\"，后续一切附着其上，先定颅骨再建其余。\n颌面体积：占30~40%，贴在颅骨前下方。这是制造侧面起伏的关键——\n  颌面比颅骨正面略向前凸0.3~0.8单位，或颅骨下方追加下巴块。\n  侧视轮廓必须有≥2处凸起变化（颅顶弧+颌面前凸），不能是纯圆弧。\n  不需要大凸出，但必须有——这是\"头\"和\"球\"的区别。\n\n五官（附着在已有体积表面，不可浮空）：\n  眼睛：成对，放颅骨前表面偏上1/3处。z > 头中心z + 头深×0.3。\n    结构=轮廓几何体+更小瞳孔几何体。poly=棱角切面感，sphere=圆润感。\n    眼位偏移0.1~0.2即可改变神态：眼位高+外扩=天真/可爱；眼位低+内聚=阴沉/邪恶；眼距宽=憨厚；眼距窄=精明。\n  眉弓：可选，一条细长box或tri压在眼睛上方0.05~0.1处。内端低外端高=愤怒/严肃；平直=冷静；外端高内端低=悲伤/疲惫。颜色比肤色深一个色阶。\n  耳朵：人形→颅骨两侧；动物化→颅骨顶部偏两侧。\n  鼻：可选，颌面前表面微凸的小体积块。\n\n颈部：矮cyl连接躯干与颅骨底部。颈端插入颅骨底部0.2~0.3，下端插入躯干顶部0.2~0.3，重叠避免缝隙，不要精确对接。长颈用chain，关节球小而少。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly cute chibi pokemon trainer character, small stylized humanoid with a cap, simple cartoon proportions, standing pose\"\n\n草稿结构：\n  head: 超大圆头、鸭舌帽-红[cc2222]帽顶与帽檐、帽前小徽章-白[f0f0f0]、刘海-棕[8b4513]从帽檐露出、脸-肤色[ffdab9]大眼小嘴\n  body: 短小紧凑的躯干、肩宽腰窄不明显、夹克-红、内衬衣-白、背后小背包-深灰[333333]\n  leftArm: 短粗手臂、上臂夹克袖-红、手-肤色\n  rightArm: 短粗手臂、上臂夹克袖-红、手-肤色\n  leftLeg: 短粗腿、长裤-深灰、运动鞋-红、鞋底-白\n  rightLeg: 短粗腿、长裤-深灰、运动鞋-红、鞋底-白\n整体比例：Q版二头身比例，头占身高1/2，躯干短小，四肢粗短圆润，整体可爱圆润\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1780893637306,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

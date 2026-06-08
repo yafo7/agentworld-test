@@ -10,7 +10,7 @@ export const FOREST_CONFIG = {
   modelName: 'forest',
   color: 0x2d5a1e,
   size: [2, 1, 2],
-  position: [0, 0.5, 0],
+  position: [0, 0, 0],
   coreTags: ['森林', '潮湿', '温暖', '自然'],
   moreTags: [],
 };
@@ -43,7 +43,7 @@ export const ITEM_CONFIGS = [
     color: 0x44ddff,
     tags: ['微光', '温柔', '安全', '安静'],
     correspondsTo: '雨灯绒',
-    spawnPosition: [5, 0.75, 0],
+    spawnPosition: [5, 0, 0],
   },
   {
     id: 'sun_stone',
@@ -51,7 +51,7 @@ export const ITEM_CONFIGS = [
     color: 0xff8844,
     tags: ['阳光', '温暖', '坚固', '干燥'],
     correspondsTo: '小石芽',
-    spawnPosition: [-3, 0.75, 4],
+    spawnPosition: [-3, 0, 4],
   },
   {
     id: 'wind_chime',
@@ -59,7 +59,7 @@ export const ITEM_CONFIGS = [
     color: 0xaadd44,
     tags: ['微风', '花香', '轻盈', '热闹'],
     correspondsTo: '风铃草',
-    spawnPosition: [2, 0.75, -5],
+    spawnPosition: [2, 0, -5],
   },
 ];
 
