@@ -85,14 +85,18 @@ export async function loadModel(modelPath, fallbackMesh = null) {
 export function buildModelFromJson(modelJson) {
   if (!voxelRuntime) throw new Error('Runtime not initialized');
 
-  const meshes = {}; // id → THREE.Object3D
+  const meshes = {};     // id → THREE.Object3D
+  const worldPos = {};   // id → original world position (before hierarchy)
 
-  // First pass: create groups and meshes
+  // First pass: create groups and meshes at their world positions
   for (const m of modelJson.meshes) {
+    const pos = new THREE.Vector3(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
+    worldPos[m.id] = pos.clone();
+
     if (m.group) {
       const g = new THREE.Group();
-      g.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      g.name = m.id; // use ID (English) to match animation plan keys
+      g.position.copy(pos);
+      g.name = m.id;
       meshes[m.id] = g;
     } else {
       const geo = voxelRuntime.buildGeometry(m.type, m.geometry || {});
@@ -101,28 +105,26 @@ export function buildModelFromJson(modelJson) {
         flatShading: true,
       });
       const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      mesh.name = m.id; // use ID (English) to match animation plan keys
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
+      mesh.position.copy(pos);
+      mesh.name = m.id;
       meshes[m.id] = mesh;
     }
   }
 
-  // Second pass: build hierarchy
+  // Second pass: build hierarchy — convert world positions to parent-relative
   const root = new THREE.Group();
   root.name = modelJson.name || 'Model';
 
   for (const m of modelJson.meshes) {
+    const obj = meshes[m.id];
     if (!m.parent) {
-      root.add(meshes[m.id]);
+      root.add(obj);
     } else if (meshes[m.parent]) {
-      meshes[m.parent].add(meshes[m.id]);
+      // Subtract parent's ORIGINAL world position to get relative position
+      obj.position.sub(worldPos[m.parent]);
+      meshes[m.parent].add(obj);
     }
   }
-
-  // Note: positioning is handled by the entity after loading.
-  // Each entity computes its own bounding box to place the model on the ground.
 
   return root;
 }
