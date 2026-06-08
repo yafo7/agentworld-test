@@ -166,17 +166,17 @@ export function applyAnimation(plan, duration, model, t, partMap = null) {
 
   const pose = voxelRuntime.evaluateMotion(plan, duration, model, t);
 
-  // Build part map lazily
+  // Build part map lazily (case-insensitive key lookup)
   if (!partMap) {
     partMap = new Map();
     model.traverse((obj) => {
-      if (obj.name) partMap.set(obj.name, obj);
+      if (obj.name) partMap.set(obj.name.toLowerCase(), obj);
     });
   }
 
   for (const [partId, delta] of Object.entries(pose)) {
     if (partId.startsWith('_')) continue;
-    const obj = partMap.get(partId);
+    const obj = partMap.get(partId.toLowerCase());
     if (!obj) continue;
 
     if (delta.position) {
