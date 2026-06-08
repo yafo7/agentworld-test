@@ -39,6 +39,7 @@ export class Pet {
     this.mesh = new THREE.Group(); // root group — will hold model or fallback
     this.mesh.name = this.name;
     this.mesh.position.y = 0;
+    this.mesh.scale.set(0.5, 0.5, 0.5); // half size
     this.mesh.visible = false;
 
     // Fallback placeholder cube

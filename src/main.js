@@ -94,7 +94,7 @@ async function init() {
     items.forEach((item) => item.updateAnimation?.(dt));
 
     interactSystem.update();
-    generationSystem.update();
+    generationSystem.update(dt);
     dialogueSystem.update(dt);
     thirdPersonCamera.update(player.mesh.position);
 

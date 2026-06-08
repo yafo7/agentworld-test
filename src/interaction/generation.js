@@ -5,15 +5,31 @@ import { PET_CONFIGS } from '../game/gameData.js';
 
 const GENERATE_RANGE = 4;
 let generating = false;
+let generationTimer = 0;       // countdown for delayed spawn
+let pendingConfig = null;      // config to spawn when timer expires
+let pendingEnv = null;         // environment to show notification on
+const spawnedPresets = new Set(); // track which preset names already spawned
 
 /**
  * F-key pet generation near any environment.
- * Checks preset pets first (matching originSignature to environment tags).
- * Falls back to DeepSeek AI if no preset matches.
+ * Checks preset pets first, falls back to DeepSeek AI.
  */
 export function setupGeneration(player, environments, items, onGenerate) {
   return {
-    update() {
+    update(dt) {
+      // Handle pending spawn timer
+      if (generationTimer > 0) {
+        generationTimer -= dt;
+        if (generationTimer <= 0 && pendingConfig) {
+          onGenerate(pendingConfig);
+          _hideNotification(pendingEnv);
+          generating = false;
+          pendingConfig = null;
+          pendingEnv = null;
+        }
+        return;
+      }
+
       if (!consumeKeyPress('f') || generating) return;
 
       // Find nearest environment
@@ -33,10 +49,11 @@ export function setupGeneration(player, environments, items, onGenerate) {
 
       const envTags = nearestEnv.allTags;
 
-      // ---- Step 1: Check preset pets (find best match) ----
+      // ---- Step 1: Check preset pets (find best unspawned match) ----
       let bestPreset = null;
       let bestScore = 0;
       for (const preset of PET_CONFIGS) {
+        if (spawnedPresets.has(preset.name)) continue; // already spawned
         const score = preset.originSignature.filter((t) => envTags.includes(t)).length;
         if (score > bestScore) {
           bestScore = score;
@@ -46,12 +63,11 @@ export function setupGeneration(player, environments, items, onGenerate) {
 
       if (bestPreset && bestScore > 0) {
         _showNotification(nearestEnv, `「${bestPreset.name}」正在接近……`);
+        spawnedPresets.add(bestPreset.name);
         generating = true;
-        setTimeout(() => {
-          onGenerate(bestPreset);
-          _hideNotification(nearestEnv);
-          generating = false;
-        }, 1500);
+        generationTimer = 1.5;
+        pendingConfig = bestPreset;
+        pendingEnv = nearestEnv;
         return;
       }
 
@@ -65,13 +81,14 @@ export function setupGeneration(player, environments, items, onGenerate) {
 
       console.log('[Generate] No preset match — calling AI...');
       _showNotification(nearestEnv, '未知的宠物正在接近……');
-
       generating = true;
+
       generatePet(envTags, nearbyItemTags)
         .then((config) => {
-          _hideNotification(nearestEnv);
-          onGenerate(config);
-          generating = false;
+          // Use timer to spawn on next frame (safe from async context)
+          generationTimer = 0.1;
+          pendingConfig = config;
+          pendingEnv = nearestEnv;
         })
         .catch((err) => {
           _hideNotification(nearestEnv);
