@@ -6,6 +6,7 @@ export class Environment {
   constructor(config) {
     this.name = config.name;
     this._modelName = config.modelName || config.name.toLowerCase().replace(/\s+/g, '_');
+    this._yOffset = config.yOffset || 0;
     this.coreTags = [...config.coreTags];
     this.moreTags = [];
 
@@ -40,7 +41,7 @@ export class Environment {
     const model = await loadModel(`generated/models/${modelName}.json`, null);
     if (model && model !== this._fallback) {
       const box = new THREE.Box3().setFromObject(model);
-      model.position.y = -box.min.y;
+      model.position.y = -box.min.y + (this._yOffset || 0);
       this.mesh.remove(this._fallback);
       this.mesh.add(model);
       this._modelGroup = model;

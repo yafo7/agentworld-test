@@ -150,7 +150,7 @@ function _handlePetInteractResult(result, pet, items, environments, addToScene, 
           size: [1.5, 0.6, 1.5],
           position: [
             pet.mesh.position.x + (Math.random() - 0.5) * 3,
-            0.3,
+            0,
             pet.mesh.position.z + (Math.random() - 0.5) * 3,
           ],
           coreTags: envCfg.tags,
