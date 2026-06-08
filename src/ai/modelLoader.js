@@ -92,7 +92,7 @@ export function buildModelFromJson(modelJson) {
     if (m.group) {
       const g = new THREE.Group();
       g.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      g.name = m.name || m.id;
+      g.name = m.id; // use ID (English) to match animation plan keys
       meshes[m.id] = g;
     } else {
       const geo = voxelRuntime.buildGeometry(m.type, m.geometry || {});
@@ -102,7 +102,7 @@ export function buildModelFromJson(modelJson) {
       });
       const mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      mesh.name = m.name || m.id;
+      mesh.name = m.id; // use ID (English) to match animation plan keys
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       meshes[m.id] = mesh;
