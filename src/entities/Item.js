@@ -14,7 +14,7 @@ export class Item {
     // ---- mesh ----
     this.mesh = new THREE.Group();
     this.mesh.name = config.name;
-    this.mesh.scale.set(0.5, 0.5, 0.5); // half size
+    this.mesh.scale.set(0.8, 0.8, 0.8);
     this.mesh.position.set(...(config.spawnPosition || [0, 0.6, 0]));
 
     // Fallback tetrahedron

@@ -67,40 +67,38 @@ function _checkPetChats(pets) {
 async function _startChat(a, b) {
   dialogueGenerating = true;
 
-  // Stop pets immediately
-  a.state = 'chatting';
-  b.state = 'chatting';
+  // Show "..." but keep pets in wandering state until lines are ready
   a._bubble.show('……');
   b._bubble.show('……');
 
+  let lines;
   try {
-    const lines = await generatePetDialogue(a, b);
-    // Build 5 rounds from AI response
-    const dialogueLines = [
-      ...lines.slice(0, 4),
-      {
-        speaker: `${a.name} & ${b.name}`,
-        text: '那就先这样啦，下次再聊～',
-      },
-    ];
-    a.startChatWith(b, dialogueLines);
-    b.startChatWith(a, dialogueLines);
+    lines = await generatePetDialogue(a, b);
     console.log(`[Chat] ${a.name} ↔ ${b.name} — AI dialogue ready`);
   } catch (err) {
-    console.error('[Chat] AI failed, using fallback:', err.message);
-    // Fallback: simple static dialogue
-    const fallback = [
+    console.warn('[Chat] AI failed, using fallback:', err.message);
+    lines = [
       { speaker: a.name, text: '你好呀。' },
       { speaker: b.name, text: '嗯……你好。' },
       { speaker: a.name, text: '今天天气不错呢。' },
-      { speaker: b.name, text: '是啊，很适合散步。' },
-      { speaker: `${a.name} & ${b.name}`, text: '回头见！' },
+      { speaker: b.name, text: '是啊。' },
     ];
-    a.startChatWith(b, fallback);
-    b.startChatWith(a, fallback);
-  } finally {
-    dialogueGenerating = false;
   }
+
+  // Only enter chatting state once dialogue is ready
+  if (a.state === 'wandering' && b.state === 'wandering') {
+    const dialogueLines = [
+      ...lines.slice(0, 4),
+      { speaker: `${a.name} & ${b.name}`, text: '那就先这样啦，下次再聊～' },
+    ];
+    a.startChatWith(b, dialogueLines);
+    b.startChatWith(a, dialogueLines);
+  } else {
+    a._bubble.hide();
+    b._bubble.hide();
+  }
+
+  dialogueGenerating = false;
 }
 
 // ===================================================================

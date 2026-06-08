@@ -139,6 +139,7 @@ export class Pet {
     this._label.sprite.visible = true;
     this._behaviorTimer = BEHAVIOR_INTERVAL;
     this._isWalking = false;
+    this._pickRandomTarget(); // target relative to spawn position
   }
 
   // ===================================================================
@@ -253,11 +254,12 @@ export class Pet {
   }
 
   _updateDialogue() {
-    if (this._chatIndex >= this._chatLines.length) return;
+    if (!this._chatLines.length || this._chatIndex >= this._chatLines.length) return;
 
     this._chatTimer -= 0.016;
     if (this._chatTimer <= 0 && this._chatIndex < this._chatLines.length) {
       const line = this._chatLines[this._chatIndex];
+      if (!line) return;
       this._bubble.show(`${line.speaker}: ${line.text}`);
       if (this._chatPartner?._bubble) {
         this._chatPartner._bubble.show(`${line.speaker}: ${line.text}`);
