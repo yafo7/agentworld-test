@@ -1,0 +1,32 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.3
+    },
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.3
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.05,
+      "frequency": 0.3,
+      "phase": 0
+    },
+    "_attach": "body"
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.05,
+      "frequency": 0.3,
+      "phase": 0.5
+    },
+    "_attach": "body"
+  }
+}

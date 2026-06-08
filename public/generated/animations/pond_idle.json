@@ -1,0 +1,67 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "water_surface": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.3
+    }
+  },
+  "ground": {
+    "breathe": {
+      "amplitude": 0.005,
+      "frequency": 0.25
+    }
+  },
+  "rocks": {
+    "breathe": {
+      "amplitude": 0.008,
+      "frequency": 0.25
+    }
+  },
+  "grass1": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0
+    }
+  },
+  "grass2": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.3
+    }
+  },
+  "grass3": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.6
+    }
+  },
+  "lily1": {
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.3,
+      "phase": 0
+    }
+  },
+  "lily2": {
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.3,
+      "phase": 0.4
+    }
+  },
+  "lily3": {
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.3,
+      "phase": 0.7
+    }
+  }
+}

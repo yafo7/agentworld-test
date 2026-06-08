@@ -1,0 +1,30 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.3
+    },
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.3
+    }
+  },
+  "sprout": {
+    "breathe": {
+      "amplitude": 0.03,
+      "frequency": 0.3
+    },
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.3
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3
+    },
+    "_attach": "body"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.4
+    }
+  },
+  "glow": {
+    "breathe": {
+      "amplitude": 0.04,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.4
+    },
+    "_attach": "body"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "name": "Raindrop Lantern Creature",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "body",
+      "name": "body",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 1.2999999999999998,
+        "z": 0.575
+      }
+    },
+    {
+      "id": "m0",
+      "type": "cone",
+      "geometry": {
+        "radius": 1,
+        "height": 2.4,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.09999999999999987,
+        "z": -0.575
+      },
+      "color": 52945,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m1",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": -0.2999999999999998,
+        "z": -0.575
+      },
+      "color": 14745599
+    },
+    {
+      "id": "m2",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": -0.9999999999999998,
+        "z": -0.575
+      },
+      "color": 52945
+    },
+    {
+      "id": "m3",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.8,
+          -0.6,
+          0
+        ],
+        "b": [
+          0.8,
+          -0.6,
+          0
+        ],
+        "c": [
+          0,
+          1.2000000000000002,
+          0
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0,
+        "y": -0.2999999999999998,
+        "z": 0.575
+      },
+      "color": 14745599
+    },
+    {
+      "id": "m4",
+      "type": "torus",
+      "geometry": {
+        "radius": 0.2,
+        "tube": 0.06,
+        "radialSegments": 8,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": 1.25,
+        "z": -0.575
+      },
+      "color": 14329120,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m5",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -1.2499999999999998,
+        "z": -0.575
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m6",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.18,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.35,
+        "y": 0.10000000000000009,
+        "z": 0.4750000000000001
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m7",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.18,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.35,
+        "y": 0.10000000000000009,
+        "z": 0.4750000000000001
+      },
+      "color": 1710618
+    },
+    {
+      "id": "leftLeg",
+      "name": "leftLeg",
+      "group": true,
+      "position": {
+        "x": -0.4,
+        "y": 0.15,
+        "z": 0.25
+      }
+    },
+    {
+      "id": "m8",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 0.3,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.04999999999999999
+      },
+      "color": 35723,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m9",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": -0.09999999999999999,
+        "z": 0
+      },
+      "color": 52945
+    },
+    {
+      "id": "rightLeg",
+      "name": "rightLeg",
+      "group": true,
+      "position": {
+        "x": 0.4,
+        "y": 0.15,
+        "z": 0.25
+      }
+    },
+    {
+      "id": "m10",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 0.3,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.04999999999999999
+      },
+      "color": 35723,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m11",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": -0.09999999999999999,
+        "z": 0
+      },
+      "color": 52945
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"小巧圆润体型，雨滴灯笼状身体占绝大部分，微小短脚\",\n  \"regions\": [\n    {\n      \"name\": \"body\",\n      \"desc\": \"上窄下宽圆润的雨滴灯笼型躯干、主体-半透明青[00ced1]、内部发光核心-浅白[e0ffff]、顶部小提环-金[daa520]\"\n    },\n    {\n      \"name\": \"leftLeg\",\n      \"desc\": \"极短小的腿、脚-半透明青\"\n    },\n    {\n      \"name\": \"rightLeg\",\n      \"desc\": \"极短小的腿、脚-半透明青\"\n    }\n  ],\n  \"methodologies\": [\n    \"complex_stack\"\n  ]\n}\n```",
+  "_routerThinking": "1.  **具象化**: \"raindrop lantern hybrid\" 是一个实物名词组合（雨滴+灯笼），虽然带有\"magical\"修饰，但核心是具体的实物形态。直接进入步骤2。\n\n2.  **结构划分**:\n    *   标志性结构特征：雨滴/灯笼形状的身体（主体），微小的脚（可动但小），可能有的灯笼提手/顶部装饰。\n    *   独立运动体：body（雨滴灯笼主体），feet (left/right或作为一个group，因为很小，可以作为body的附属或单独group。为了低多边形的可爱感，小脚通常需要轻微摆动，单独分出leftLeg, rightLeg，或者合并为feet。根据规则\"独立运动体 = 单独group\"，小脚可以合并为一个group或分开。这里分开leftLeg/rightLeg更符合常规骨骼，但考虑到cute tiny feet，可能是一个整体底座。折中：leftLeg, rightLeg。顶部提手/触角算在body的desc里。\n    *   proportions: 整体圆润小巧，雨滴/灯笼型身体占绝大部分，脚极小。\n    *   group名单: body, leftLeg, rightLeg (或者feet，但为了统一用left/right)。\n\n3.  **写desc**:\n    *   proportions: \"小巧圆润体型，雨滴灯笼状身体占绝大部分，微小短脚\"\n    *   body: 雨滴灯笼型躯干，上窄下宽圆润，半透明青色[00ced1] (主色60%)，内部发光核心-浅白[fff0f5] (辅色30%)，顶部小提环-金[daa520] (强调色10%)。\n    *   leftLeg: 极短小的腿，脚-半透明青色。\n    *   rightLeg: 极短小的腿，脚-半透明青色。\n    *   颜色分配：\n        *   主色(60%): 半透明青色 [00ced1]\n        *   辅色(30%): 浅白/发光核心 [e0ffff]\n        *   强调色(10%): 金色提环 [daa520]\n\n4.  **方法论**:\n    *   不是人，不是四足，不是节肢，不是鱼，不是鸟。\n    *   可能是 `complex_stack` (雨滴形状) 或者直接用基础几何。\n    *   没有特别匹配的body方法论，但 `complex_stack` 适合这种非标准生物。\n    *   翅膀？没有。\n    *   头部？没有明显的头，头和身体一体（雨滴灯笼）。不需要单独head方法论。\n\n5.  **组装JSON**:\n    *   proportions: \"小巧圆润体型，雨滴灯笼状身体占绝大部分，微小短脚\"\n    *   regions:\n        *   body: \"上窄下宽圆润的雨滴灯笼型躯干、主体-半透明青[00ced1]、内部发光核心-浅白[e0ffff]、顶部小提环-金[daa520]\"\n        *   leftLeg: \"极短小的腿、脚-半透明青\"\n        *   rightLeg: \"极短小的腿、脚-半透明青\"\n    *   methodologies: [\"complex_stack\"] (雨滴灯笼形态堆叠)\n\n    *自我修正*：用户描述是 \"cute magical creature\"，可能需要体现 \"shy\" 的姿态，比如脚并拢。desc里可以加一句\"双脚并拢微微内八\"。\n    颜色再检查：半透明青色覆盖主体，浅白发光在内部，金色提环在顶部。符合60-30-10。\n\n    最终输出JSON。",
+  "_modelReasoning": "",
+  "_aiCode": "function build(api) {\n  api.name('Raindrop Lantern Creature');\n  const C_CYAN = 0x00ced1;\n  const C_CYAN_DARK = 0x008b8b;\n  const C_GLOW = 0xe0ffff;\n  const C_GOLD = 0xdaa520;\n\n  // Body\n  api.group('body', 'body');\n  // 轮廓块：上窄下宽的雨滴灯笼型躯干\n  api.cone({ rBot: 1.2, rTop: 0.3, h: 2.4, pos: [0, 1.2, 0], along: '+Y', color: C_CYAN });\n  // 特征块：内部发光核心\n  api.sphere({ r: 0.6, pos: [0, 1.0, 0], color: C_GLOW });\n  // 特征块：底部圆润收束\n  api.sphere({ r: 1.2, pos: [0, 0.3, 0], color: C_CYAN });\n  // 色块面：正面浅色光泽面\n  api.tri({ a: [-0.8, 0.4, 1.15], b: [0.8, 0.4, 1.15], c: [0, 2.2, 1.15], d: 0.06, color: C_GLOW });\n  // 细节块：顶部小提环\n  api.torus({ r: 0.2, tube: 0.06, pos: [0, 2.55, 0], along: '+Y', color: C_GOLD });\n  // 细节块：底部尖端装饰\n  api.poly({ r: 0.12, pos: [0, 0.05, 0], color: C_GOLD });\n  // 细节块：正面羞涩的小眼睛\n  api.poly({ r: 0.18, pos: [0.35, 1.4, 1.05], color: 0x1a1a1a });\n  api.poly({ r: 0.18, pos: [-0.35, 1.4, 1.05], color: 0x1a1a1a });\n  api.endGroup();\n\n  // Left Leg\n  api.group('leftLeg', 'leftLeg');\n  api.cyl({ r: 0.15, h: 0.3, pos: [-0.4, 0.15, 0.2], along: '+Y', color: C_CYAN_DARK });\n  api.sphere({ r: 0.2, pos: [-0.4, 0.05, 0.25], color: C_CYAN });\n  api.endGroup();\n\n  // Right Leg\n  api.group('rightLeg', 'rightLeg');\n  api.cyl({ r: 0.15, h: 0.3, pos: [0.4, 0.15, 0.2], along: '+Y', color: C_CYAN_DARK });\n  api.sphere({ r: 0.2, pos: [0.4, 0.05, 0.25], color: C_CYAN });\n  api.endGroup();\n}",
+  "_description": "a lowpoly cute magical creature like a raindrop lantern hybrid, semi-transparent cyan body, soft glowing, small round shape with tiny feet, delicate and shy",
+  "_formulaResult": {
+    "methodologies": [
+      "complex_stack"
+    ],
+    "regions": [
+      {
+        "name": "body",
+        "desc": "上窄下宽圆润的雨滴灯笼型躯干、主体-半透明青[00ced1]、内部发光核心-浅白[e0ffff]、顶部小提环-金[daa520]"
+      },
+      {
+        "name": "leftLeg",
+        "desc": "极短小的腿、脚-半透明青"
+      },
+      {
+        "name": "rightLeg",
+        "desc": "极短小的腿、脚-半透明青"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 块面构成原则\n你的基本视觉单元是体积块和色块面：\n- 体积块：有厚度的几何体(d≥0.15)，决定轮廓，用box/cyl/sphere/cone/chain。块间重叠0.2~0.5，不精确对接。\n- 色块面：附着在体积表面的薄层(d:0.05~0.12)，提供正面颜色区分，用tri/薄box。不改变轮廓但从最常见视角提供核心识别信号。\n- 颜色规则：每个几何体只有一种颜色（框架限制）。颜色变化→需要几何边界→需要两个片。需要多色或渐变效果→用多个相邻薄片拼出。\n- 每个几何块都应有明确视觉角色：建立轮廓（体积块）/ 区分结构区域（色块面）/ 提供识别锚点（小装饰）。\n- 辨识度两层：（1）块间空间关系决定\"这是什么类型\"（人形/四足/飞行器）；（2）关键小几何装饰决定\"这是哪一个\"（发簪/琴弦/天线）。\n\n## 硬约束（违反=错误）\n1. 方向用 along:'+Z' 等轴方向。\n2. Y+上，+Z前，地面y=0。chain waypoints从-Z(尾)到+Z(头)。\n\n## 三步建造法（每个group都按：轮廓→特征→细节）\n1. 轮廓块（1~4个大shape）：定silhouette，占70%体积\n2. 特征块（2~6个中shape）：建立识别特征\n3. 细节块（3~8个小shape）：点缀\n\n构建顺序：\n- 先搭大块（轮廓），再搭中块（特征），最后搭小块（细节）\n- 同一表面上从内到外：底层结构→表面色块面(d:0.05~0.08)→外部附着物(眼/装饰)\n- 色块面是皮肤(d:0.05~0.08)，不是砖块(d≥0.15)——薄才能贴面。太厚会陷进内部或遮住外部附着物\n- ⚠️ 全局顺序：任何group内，先搭完全部体积块（轮廓+特征），再放附着物（色块面+细节）。不要边搭大块边放附着物——之后加的大块会遮挡已放的附着物\n- ⚠️ 头部额外注意：吻部/喙/鼻尖是体积块，必须在放眼之前搭完。眼睛位置≥已搭好的最前凸结构——否则埋在吻部后面。如果头朝向不是正+Z（如颈部弯曲），眼睛跟随头的前方，不是全局+Z\n\nshape数量只是单个group内的参考，不是硬约束，实际数量根据需求调整。\n\n## 推理约束\n- 思考重点在于怎样通过shape的堆叠来更好的实现模型的外观外结构，类似搭积木，不可视的内部结构不用考虑。\n- 你可以在router草稿基础上自由增/删/改，添加你认为合适的配件和细节。\n- 坐标和尺寸精度到0.01即可。±0.05以内的偏差在lowpoly下肉眼不可见，无需纠结微调。重点是结构关系正确，不是数值精确。\n- 修改时只改动出错的部分，不要因为一个小问题就把所有代码重写一遍——这会造成大量浪费。第二轮及之后的修改应该是局部的、针对性的。\n- 构建完所有group后扫一眼：Router的每个group都建了？不用mirror的group里成对特征(眼耳手脚翅)左右都写了？附着物至少一半露在父级外？这是快速扫视不是检查清单。\n- 用cone时：along=尖端指向。衣服→尖端朝身体，粗口朝外。\n- 小结构尺寸占所在group主要尺寸的15~25%（头高1.0→眼睛r≈0.2~0.3；躯干高2.5→腰带tube≈0.38~0.63）。低于此在lowpoly下不具可读性。眼睛绝对最小半径r≥0.2。\n- 线性元素例外：琴弦/线缆/天线/细链/绳索/发簪/辐条/索具——语义本质是\"线\"的结构，r可低至0.01~0.05，不适用比例下限。铆钉/眼睛/纽扣/腰带不是线，不可套用此例外。\n\n## 坐标放置：两步附着法\n\n子级附着到父级时，分两步判断：\n\n**第一步：判断附着在父级的哪个面**\n- 子级在父级的前方(+Z) / 后方(-Z) / 上方(+Y) / 下方(-Y) / 侧面(±X)？\n- 想象子级的视觉位置，它自然属于哪个面就是哪个面\n- 疑难时参考：眼→前，翅膀→后，帽→上，裙→下，肩甲→侧\n\n**第二步：判断在该面上的具体位置**\n- 子级在面的中心还是偏上/偏下/偏左/偏右？\n- 偏移量 = 子级在该方向半尺寸 × (0.3~0.6)\n- 子级中心 = 父级表面 + 偏移（沿附着方向）\n\n高频反面案例：\n- 翅膀z≈0，身体中心 → 卡体内 → 从背面(-Z)附着：子级中心z = 父级后表面z - 子级半深\n- 光环y与头顶同 → 陷头里 → 从顶面(+Y)附着：子级中心y = 父级顶表面y + 子级半高\n- 发簪与发髻同pos → 被吞 → 从顶/侧面附着，中心在父级表面外\n\n穿入型（发簪穿过发髻）：\n- 从一面穿入另一面穿出。中心 ≈ 父级表面 - 微插入(子级半径×0.2~0.3)\n\n## 颜色层次\n- 整体：整个模型的颜色按60-30-10分配：主色系(60%，覆盖主体大部分)、辅色系(30%，次要区域/内层)、强调色(10%，小面积点缀)。例：鸟人→灰白主色系60%+深灰辅色系30%+金黄强调色10%。\n- 局部：每个大面积部件内部给2~3个同色系色按面积递减：主色(60%)→过渡色(30%)→强调色(10%)。同色系=色相相近，明度/饱和度递变。小面积部件只需1个色。\n\n## 边缘装饰法\n表面装饰（覆羽、鳞片、鬃毛、流苏等）不要完全贴合在主体表面——会穿模且不可见。\n正确做法：从主体边缘向外延伸，像瓦片/屋檐层层外挑。颜色与主体稍有区分（同色系更深/更浅），确保可见。\n- 覆羽/鳞片：沿肢体边缘，每隔0.3~0.5放一个tri，根部贴住边缘，末端向外翘0.1~0.2，逐层排列。颜色比主体略深。\n- 鬃毛/脊刺：沿脊柱排列cone，根部嵌入主体，尖端向外+Y。\n- 毛领/围脖：用torus围在颈部，tube:0.15~0.25，颜色与主体区分。\n- 流苏/挂饰：从边缘挂下短chain，r:0.05~0.08，末端可加poly做坠饰。\n- 护腕/脚环：用torus套在四肢上，tube:0.1~0.15。\n- 装饰铆钉/宝石：用poly沿边缘等距排列，r:0.08~0.12。\n\n## API 参考\n\n### 通用参数（所有形状共享）\n- pos:[x,y,z] — 形状的几何中心（不是底面/顶点/起点）。box半高=h/2，cyl/cone半高=h/2，sphere半径=r。Y+上，Z+前，X+右，地面Y=0\n- color:0xRRGGBB — 十六进制颜色\n- along:轴方向字符串 — 控制形状朝向，如'+Z'朝前、'-X'朝左、'+X+Y+Z'斜向。\n\n### 基础形状\nbox({w,h,d, along?, pos, color?})\n  w=宽, h=高, d=深\n  along=轴方向，让盒体沿该方向延伸。默认沿Y+(h朝上)。\n  用途：主体结构、薄板(d:0.1~0.3做纸片)、方块堆叠、倾斜板块。\n\nsphere({r, pos, color?})\n  r=半径\n  用途：球体、头部轮廓、关节球。无方向性。\n\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?})\n  r=统一半径(上下一样粗) | rTop=顶部半径 + rBot=底部半径(rTop≠rBot=锥台)\n  h=高度 | seg=径向分段(默认10, seg:4=方形截面)\n  along=轴方向，默认沿Y+。\n  用途：柱体、四肢、颈、锥台(rTop≠rBot做方形脸/锥形躯干)。\n\ncone({r, h, seg?, along?, pos, color?})\n  r=底面半径(粗端) | h=高度(底面到尖端) | seg=径向分段(默认10)\n  along=尖端指向，-along=底面方向。默认尖端朝Y+(上)。\n  用途：尖角、喙、角、末端收束、刺。衣服(裙/袖)→尖端朝身体，粗口朝外。\n\ntorus({r, tube, along?, pos, color?})\n  r=环半径(圆心到管中心) | tube=管粗细(管截面半径)\n  along=轴方向，环孔绕该轴。默认平放XZ面(环面朝上，像甜甜圈)。\n  套在圆柱上当箍：torus和cyl用**同一个along**。\n  用途：圆环、救生圈、箍、把手、护腕、脚环、围脖。\n\npoly({r, pos, color?})\n  r=半径\n  用途：眼睛(r:0.15~0.4)、宝石、铆钉、装饰球。二十面体，三角面切面质感，比sphere尖锐有棱角。\n  无方向性。\n\n### 自由面片 — 用3D顶点定义形状，朝向由顶点坐标直接决定\ntri({a:[x,y,z], b:[x,y,z], c:[x,y,z], d?, color?})\n  a/b/c=三角形三个顶点 | d=厚度(默认0.1)\n  朝向由顶点位置直接决定。想控制朝向→把顶点放在想要的方向上。\n  用途：三角面片、斜面、斧刃、屋顶、楔形、尾羽、花瓣。\n\npatch({points:[[x,y,z],...], d?, color?})\n  points=3D点数组(3个以上)，自动三角化填充 | d=厚度(默认0.1)\n  用途：翅膀膜、帆、鳍、披风。不规则多点面片。\n  ⚠️ 强制：points必须包含所有骨架/支撑点的坐标——chain的每个waypoint（不只是首尾！）、fork的每个end，全部都要放进points，否则膜面会穿过骨架球体出现缝隙。\n  代码：let w=chain.waypoints, f=fork.ends;\n  api.patch({points:[w[0].pos, ..., w[n].pos, f[0].pos, ..., f[m].pos], color})\n\n### 复合构造\nchain({waypoints, r|rStart+rEnd, jointIds?, color?})\n  waypoints=[[x,y,z],...] 绝对坐标路径点，依次串联\n  r=统一半径，从头到尾一样粗\n  rStart=起始半径 + rEnd=末端半径，从rStart线性渐变到rEnd\n  r=0.3 + rEnd=0.1 快捷写法，等价于 rStart:0.3, rEnd:0.1，仅传rEnd=错误\n  jointIds=['hip','knee','ankle'] 给每个路径点命名子group(动画骨骼)，不传=静态链\n  用途：沿线串联 — 四肢、蛇身、触手、尾巴、脊柱、钩子。\n\nradial({count, from, axis?, shape, color?})\n  count=副本数量 | from=[x,y,z] 中心点 | axis=旋转轴('y'默认)\n  shape={ type, ... } — shape内坐标(points/pos/a/b/c)是相对from的局部坐标，radial绕axis旋转每个副本。\n  axis='y'时：模板的X和Z被旋转（cos/sin互换），Y保持不变。模板朝Z→旋转后各方向均有Z分量；模板朝Y→所有副本朝Y不变。\n  用途(shape type)：柱廊/辐条(cyl)、箍圈(torus)、花瓣(patch)、章鱼触手(chain)、齿轮的齿(box)、其他(cone、poly、tri、torus)。\n\nfork({from:[x,y,z], to:[[x,y,z],...], r, color?}) → {ends:[{pos,r}]}\n  from=分叉起点(放一个关节球) | to=目标终点数组(到每个终点拉一根柱体)\n  r=柱体半径\n  用途：一点多向分叉 — 鹿角、珊瑚、树枝、血管。\n  返回ends数组，包含每个终点的位置和半径，可用于接续chain。\n\n### 层级与镜像\ngroup(id, name?, {pos?,noMirror?})\n  id=唯一标识(动画骨骼引用用这个) | name=显示名(省略则用id)\n  pos=组的中心点/锚点 | noMirror:true → 镜像时跳过此组及其子节点\n  用途：每个独立运动的部位必须包在group里，group=动画骨骼。\n\nendGroup() — 关闭当前group，后续几何体回到上级。\n\nmirror('x') / mirror('y') / mirror('z') → endMirror()\n  中间所有几何体自动生成沿指定轴的镜像副本。\n  group ID 自动重命名：left→right, _L→_R。\n  mirror('x')=左右对称(最常用)，mirror('y')=上下对称，mirror('z')=前后对称。\n  只在左右完全对称时用 mirror('x')。有独立配件（单手武器、单侧装饰）时禁止用mirror，手动分别建左右组。角色面向+Z，左手=-X，右手=+X。\n\n### 辅助函数api\nchainEnd()\n  返回上一次chain()末端的{pos,r,rot}。用于从上一条链的末端接续下一条链。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  api.mirror('x');\n  api.group('chimney','烟囱');\n  api.cyl({r:0.4,h:2,pos:[1.2,3.5,-1],color:C_RUST});\n  api.torus({r:0.45,tube:0.08,pos:[1.2,4.4,-1],color:C_GOLD}); // 箍在烟囱(along Y)上，默认即沿Y\n  api.endGroup();\n  api.endMirror();\n  api.group('propeller','螺旋桨');\n  api.radial({count:3,from:[0,1.5,-4.2],axis:'z',shape:{type:'box',w:0.1,h:0.8,d:0.05},color:C_METAL});\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('body','body') → 上窄下宽圆润的雨滴灯笼型躯干、主体-半透明青[00ced1]、内部发光核心-浅白[e0ffff]、顶部小提环-金[daa520] → api.endGroup()\napi.group('leftLeg','leftLeg') → 极短小的腿、脚-半透明青 → api.endGroup()\napi.group('rightLeg','rightLeg') → 极短小的腿、脚-半透明青 → api.endGroup()\n\n### 复杂堆叠 (complex_stack)\n非线性、无序堆叠（石头堆、烟雾、垃圾堆）。\n- 不是沿某条线的堆叠，而是相对无序的层次\n- 用多个小box/sphere随机偏移模拟无序感\n- 代码：api.box({w:0.8,h:0.6,d:0.7,pos:[0.1,0.3,0],color:0x808080}); api.box({w:0.6,h:0.5,d:0.8,pos:[-0.2,0.7,0.1],color:0x696969}); api.sphere({r:0.3,pos:[0.3,1.1,-0.1],color:0xA9A9A9});\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly cute magical creature like a raindrop lantern hybrid, semi-transparent cyan body, soft glowing, small round shape with tiny feet, delicate and shy\"\n\n草稿结构：\n  body: 上窄下宽圆润的雨滴灯笼型躯干、主体-半透明青[00ced1]、内部发光核心-浅白[e0ffff]、顶部小提环-金[daa520]\n  leftLeg: 极短小的腿、脚-半透明青\n  rightLeg: 极短小的腿、脚-半透明青\n整体比例：小巧圆润体型，雨滴灯笼状身体占绝大部分，微小短脚\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1780888799107,
+    "provider": "fireworks",
+    "data": "ACy6iO5MXjkjN0PLxjnePrhQXAfr0ZLR7LalX+OVZATiR3oB9ngx2vl0ifhqioSO+otTGpr1jjua+pgX6OdqRrwW7kyua4vq2P+xzrdfutCFmpav+LHkc2t4BnN77TU7wJvrWjy1XXaMNdUSqMZ79FeK9FpXiXuVaMNcdulJ0Tj04BuBfjwR4wpwRyEdokWJVoRJD5OB3lctCDHMTamLDMfpfVeMPa7LjVotoVKU6GQI9hHUtinhFJdu3sedKc5q2OqCoeLVAjBvWPwHTEEjrb5Rw7xeTmqGjWI0kV5Val3wCV+oP2IRhsm1dYJiAf8+i/weudSz1H8mhLVOmJ9cYyLwAsaI7LxR2iqxQyXjIYwO5JIofLKz8ktZNpJ4x0hU8kCofi2jgRildbZPALyR9ofon0DIdLY2EcWCIM/25rWuRqHSnPfa6aS/GBNhaJkwm99+IuypLzLEgb4vFGYVdQ+VkNl/mn22LwsBuheGlpd6+Jfg/ugezYSPHBseIDkj9E+/rApvSVbNQ4M9fGAmzZ4CVxo5xvwXaiAi3QBlvmkA7Ig5bj0qJDSiM8PrsFLs6cfp/J7828nKQYul30+DYMw7Vcyl4FiIRSWxq7fzuoQTAbyTQyEqoVymoOqVArDob4D7WAbEqkWRIN49WuCAbSX6tcEW08WUfWforlqhJrBi8z1QasbJGywAsU5hxh1shJL2ukWLnbumYeYhL0eHK4xOydNAA6DWuPr8xmwgUTY5YkZTY0Z2TLd+iIyk6FH6p8DNZOB3ADIZVvt+Mw2TnxBff1n6w9++/4Z2ixehefBEiKFQgRlTMSFmKq1Jyk01EAolaW9vK33mboEDJUWqT1GTR0ad9nxCP50eFJ11A3XngeGY6eQS2KadfNx255l71uhTl5okl4y1hwMcHNFBOcOBLYTisXSlk9O9QBOAnUcEX41vF1fR1jvmdZCPX7C2kVI4Bf9oUqhnUa1VKEKpCjMtK5W2kixO9dMT1NqCOqxpITB145Y47MNl3dKb0C6ZV3gC3n6ni290Mt6oB38qaAGhGcBObKa71lfEuSF50yNB2R+gWBAJZOUpaC4IlNUhTOWTqbLSa1xe/74fL6kAeGZVq4z9SYlMKmTT4v1gHSfP2rDPDMtHvNKjT6KgLTMbocApeFhFF2i5gb1LoGS1Ziz7qyq7KPefNTndHbZZnXTWElUUzfIez8KB+t8vjJQXb6dqZm6N72sZ40i8P856lF8LP7nId6Vpg9U3B+wvN7pGaVUNjunNe2uZeCf3K5DI7tEclXtrPBF4CuW83w6TTI6DzYgE/yzjjaywZ5QZN8pcvvfr58R06jU7XxSd4KoK6pJh48lBf7mMhp/RmsHdAW5/YmCcMjClArFB5sKn4Jh88+3lmiIf3jleXc+LNicufJIxCE3ic5Uf0jO+tb7D5k7uKz3hhZEazVB2DftPTNm59+DjuNAZcKyhLMS33zZIil1B9v8mREj/qqWtbr1oggdffmpDp6LKWDrE+wBBOgZzSloAc+TE5JjignRIIGYIK15S5qIi/U9rVmrpuWuCswusIZ6jJONhpzuoiUlQihJPNneb0AwqRdi2BPGb8c/jSFLBkza8nepolzh3KsbC/jD2BDS4/XsSJ8MFqeboickLE2w+7+EgA4Up0IEDP6hWNv9Fdqj23UM1gs+T06BFxXiEiLLOcVOp2/32a3ouIxQtRe6WJ59u3rrN9gDLzp3a4U3+FV+Db1nTtGT+wnhmqMebQ7qDfXokRLfpD9TarfV7E2LhYHKFDHSytRUOq/AicHHiPWCvVlKBgF1YkcgiaYhZnJa+Z285A/MhTSY72qW1PNV8r7WA5vSwobpaIg6TwG4xxK7Ojs+17E0rJJUbJVCHSNmk8usJNnkW28JeJ8tteMWrNIMW3M2Bm456dIQmZMf/1rPx1Gby2VCRIUb+BSHLOGZwhGwdd5ebYBInIPSfS0sq6ysBQ4pxuAA3ecEzorI1kMj32+SKuzObL2orkRAhT45XHPTVhPWo6CWOkyXJfAMLcavCp07Be4SfvtB0uozl9PgQHnc+Lh0oyCuHqi6Rl39dQ8zxJ3MhxvdEdhXWV8i03VziqsJrLIeX+9BudW/h5aqNp+JsOcvECnnNcfeWfS94s3dqU2mPIYrB+ioZxQYUIc5ouq2kLvinNa2i3Bb20pARUA2pAMxnCLEQpk2hZTenlTTfk/8tg2DEYxfwz1ifXox9tokikj4JsyA8vwm9C/GVcryzdBIjK/GD6P/oqh/YhtUdq8Oh4LReCig53IIetM36xvIYBBzSZFg8lL2PKjX6JmqU8USHw3xOC/9vWh+tAcH6g5oYfkONBX0B8knd4hIoHPuxLe9BWYtu43PapmC53Gse51qGGgHmb8SzDEkluT+lbd8cV9xUPahGRCmv9FTyu6slYNvdUP3GoIV6kH5YW4ACUjcPEepO/JrrWAy6ld+Wjx+sHLaYm233zhCfM1yT2h4Yppp2FMkRQ4mM1bP9tMlUJqLcbUSBbotFAkyRfkz3gRU05KHKDO+RQ8eWMb+enBv3Br20JH0RiKscnXe6G0EEJ9uMNnDSfcI8AN+Ap4Lr8pZ5vOr3eJ8Fxz5pTl6VwmuUy9r2h3h5u+aq6ACUMkMINy0JguVU9R9+WIjuscX4Z9pFqDgfb/RNoYqcvgBB/0KRnXVKg9y8NLNxYbt7y75zCsmGA85D1U6GD0mC25CoWqT8+aOXBL+r4vROxLWQqZE83DvB+BvO18cKEwnLBv2v0p4zuaGQ+4O6tirC4S3PBw2U5ik0825ZnRiGSjeYY9UIphBpEcC//lq7hdIvzE07mL/CyUgE+dt5Vs0CMATLsVjhj0LOyoAMQ53Qd1kNVqR7zH7V7fbifx7MVivEfKaHvL2HFo+yLxI2ZHQ78cqX",
+    "edits": ""
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "hook": {
+    "breathe": {
+      "amplitude": 0.01,
+      "frequency": 0.3
+    }
+  },
+  "stem": {
+    "sway": [
+      {
+        "axis": "z",
+        "amplitude": 0.05,
+        "frequency": 0.3
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.03,
+        "frequency": 0.25,
+        "phase": 0.3
+      }
+    ]
+  },
+  "main_body": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.3
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.3
+    },
+    "_attach": "stem"
+  },
+  "bells": {
+    "sway": [
+      {
+        "axis": "z",
+        "amplitude": 0.12,
+        "frequency": 0.3
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.08,
+        "frequency": 0.25,
+        "phase": 0.3
+      }
+    ],
+    "_attach": "main_body"
+  }
+}

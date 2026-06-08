@@ -2,26 +2,24 @@ import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
 import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { getPlayerLine } from '../game/gameData.js';
+import { loadModel, loadAnimationPlan, applyAnimation } from '../ai/modelLoader.js';
 
 export { PET_CONFIGS, INTIMACY_ITEM_CONFIGS, ENV_POND, ENV_GRASSLAND } from '../game/gameData.js';
 
-const PET_INTERACT_RANGE = 2.8;  // player-pet interaction distance
-const PET_SEEK_RANGE = 2.0;      // distance at which seeking pet stops near player
+const PET_INTERACT_RANGE = 2.8;
+const PET_SEEK_RANGE = 2.0;
 const WANDER_SPEED = 0.03;
 const SEEK_SPEED = 0.06;
+const BEHAVIOR_INTERVAL = 5; // seconds between walk/idle decision
 
-/** Lerp a hex color toward another. */
 function lerpColor(c1, c2, t) {
   const r1 = (c1 >> 16) & 0xff, g1 = (c1 >> 8) & 0xff, b1 = c1 & 0xff;
   const r2 = (c2 >> 16) & 0xff, g2 = (c2 >> 8) & 0xff, b2 = c2 & 0xff;
-  const r = Math.round(r1 + (r2 - r1) * t);
-  const g = Math.round(g1 + (g2 - g1) * t);
-  const b = Math.round(b1 + (b2 - b1) * t);
-  return (r << 16) | (g << 8) | b;
+  return (Math.round(r1 + (r2 - r1) * t) << 16) | (Math.round(g1 + (g2 - g1) * t) << 8) | Math.round(b1 + (b2 - b1) * t);
 }
 
 /**
- * Pet entity — a colored cube with identity, state machine, intimacy, and dialogue.
+ * Pet entity with state machine, intimacy, AI models, and animations.
  */
 export class Pet {
   constructor(config) {
@@ -34,42 +32,95 @@ export class Pet {
     this.habits = [...config.habits];
     this.originSignature = [...config.originSignature];
 
-    // ---- visual ----
+    // ---- visual (placeholder initially) ----
     this._originalColor = config.color;
     this._currentColor = config.color;
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshStandardMaterial({ color: config.color });
-    this.mesh = new THREE.Mesh(geometry, material);
-    this.mesh.position.y = 0.5;
+    this.mesh = new THREE.Group(); // root group — will hold model or fallback
     this.mesh.name = this.name;
+    this.mesh.position.y = 0;
     this.mesh.visible = false;
 
-    // Labels
+    // Fallback placeholder cube
+    const geo = new THREE.BoxGeometry(1, 1, 1);
+    const mat = new THREE.MeshStandardMaterial({ color: config.color });
+    this._fallback = new THREE.Mesh(geo, mat);
+    this._fallback.position.y = 0.5;
+    this.mesh.add(this._fallback);
+
+    // Model loading
+    this._modelLoaded = false;
+    this._modelGroup = null;
+    this._loadModel();
+
+    // Labels (parented to mesh)
     this._label = createTagLabel(this.mesh, []);
     this._syncLabel();
     this._bubble = createSpeechBubble(this.mesh);
 
     // ---- state machine ----
-    this.state = 'wandering';       // wandering | chatting | seeking_player
-    this.affection = 0;             // 0–10
+    this.state = 'wandering';
+    this.affection = 0;
     this.mood = 'neutral';
     this.trust = 0;
     this.memories = [];
     this.spawned = false;
 
-    // Intimacy milestones (track which have triggered)
-    this._milestones = {};          // { 5: true, 10: true }
+    // Milestones
+    this._milestones = {};
 
     // Dialogue
     this._chatPartner = null;
-    this._chatLines = [];           // array of { speaker, text }
+    this._chatLines = [];
     this._chatIndex = 0;
     this._chatTimer = 0;
 
-    // Wander
+    // Movement
     this._target = new THREE.Vector3();
     this._seekTarget = new THREE.Vector3();
+
+    // ---- 5-second behavior timer ----
+    this._behaviorTimer = BEHAVIOR_INTERVAL;
+    this._isWalking = false;
+
+    // ---- animation ----
+    this._animIdle = null;
+    this._animWalk = null;
+    this._animTime = 0;
+    this._animDuration = 2.5;
+    this._animPartMap = null;
+    this._loadAnimations();
+  }
+
+  // ===================================================================
+  // model & animation loading
+  // ===================================================================
+
+  async _loadModel() {
+    const model = await loadModel(
+      `generated/pets/models/${this.name}.json`,
+      null // no fallback — keep placeholder cube
+    );
+    if (model && model !== this._fallback) {
+      this.mesh.remove(this._fallback);
+      this.mesh.add(model);
+      this._modelGroup = model;
+      this._modelLoaded = true;
+      this._animPartMap = new Map();
+      model.traverse((o) => {
+        if (o.name) this._animPartMap.set(o.name, o);
+      });
+      console.log(`[Pet] ${this.name} model loaded`);
+    }
+  }
+
+  async _loadAnimations() {
+    this._animIdle = await loadAnimationPlan(`generated/pets/animations/${this.name}_idle.json`);
+    this._animWalk = await loadAnimationPlan(`generated/pets/animations/${this.name}_walk.json`);
+    if (this._animIdle) this._animDuration = this._animIdle._duration ?? 2.5;
+    if (this._animIdle || this._animWalk) {
+      console.log(`[Pet] ${this.name} animations loaded`);
+    }
   }
 
   // ===================================================================
@@ -81,37 +132,69 @@ export class Pet {
     this.mesh.visible = true;
     this.spawned = true;
     this._label.sprite.visible = true;
-    this._pickRandomTarget();
+    this._behaviorTimer = BEHAVIOR_INTERVAL;
+    this._isWalking = false;
   }
 
   // ===================================================================
   // movement (called every frame)
   // ===================================================================
 
-  /** @param {THREE.Vector3} playerPos — current player position */
-  move(playerPos) {
+  move(playerPos, dt = 0.016) {
     if (!this.spawned) return;
+
+    // Behavior timer
+    this._behaviorTimer -= dt;
+    if (this._behaviorTimer <= 0) {
+      this._behaviorTimer = BEHAVIOR_INTERVAL;
+      this._isWalking = Math.random() < 0.5;
+      if (this._isWalking) this._pickRandomTarget();
+    }
+
+    // Animation timer
+    this._animTime += dt;
+    const animDuration = this._animDuration || 2.5;
+    const t = this._animTime % animDuration;
 
     switch (this.state) {
       case 'wandering':
-        this._moveWander(playerPos);
+        if (this._isWalking) {
+          this._moveWander(playerPos);
+          // Play walk animation
+          if (this._animWalk && this._modelGroup) {
+            applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+          }
+        } else {
+          // Idle — play breathing
+          if (this._animIdle && this._modelGroup) {
+            applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+          }
+        }
         break;
+
       case 'chatting':
         this._updateDialogue();
+        // Play idle animation
+        if (this._animIdle && this._modelGroup) {
+          applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+        }
         break;
+
       case 'seeking_player':
         this._moveSeekPlayer(playerPos);
+        // Play walk animation
+        if (this._animWalk && this._modelGroup) {
+          applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+        }
         break;
     }
 
-    // Update chat timer even while wandering (for dialogue cooldown etc.)
     if (this.state === 'chatting') {
-      this._chatTimer -= 0.016; // ~60fps dt approximation
+      this._chatTimer -= dt;
     }
   }
 
   _moveWander(playerPos) {
-    // Stop if player is nearby (so they can interact)
     const distToPlayer = this.mesh.position.distanceTo(playerPos);
     if (distToPlayer < PET_INTERACT_RANGE) return; // paused
 
@@ -119,6 +202,9 @@ export class Pet {
     if (dir.length() < 0.15) {
       this._pickRandomTarget();
     } else {
+      // Face movement direction
+      const angle = Math.atan2(dir.x, dir.z);
+      this.mesh.rotation.y = angle;
       this.mesh.position.addScaledVector(dir.normalize(), WANDER_SPEED);
     }
   }
@@ -126,64 +212,60 @@ export class Pet {
   _moveSeekPlayer(playerPos) {
     const dist = this.mesh.position.distanceTo(playerPos);
     if (dist < PET_SEEK_RANGE) {
-      // Reached player — show dialogue bubble and wait
       if (!this._bubble.isVisible) {
         this._bubble.show(getPlayerLine(this));
       }
-      return; // stopped, waiting for player E-key
+      // Play idle while waiting
+      if (this._animIdle && this._modelGroup) {
+        const t = (this._animTime % (this._animDuration || 2.5));
+        applyAnimation(this._animIdle, this._animDuration || 2.5, this._modelGroup, t, this._animPartMap);
+      }
+      return;
     }
 
-    // Move toward player
     const dir = new THREE.Vector3().subVectors(playerPos, this.mesh.position);
     dir.y = 0;
+    const angle = Math.atan2(dir.x, dir.z);
+    this.mesh.rotation.y = angle;
     this.mesh.position.addScaledVector(dir.normalize(), SEEK_SPEED);
   }
 
   // ===================================================================
-  // dialogue (pet ↔ pet)
+  // dialogue
   // ===================================================================
 
-  /** Start a conversation with another pet. */
   startChatWith(otherPet, lines) {
     this.state = 'chatting';
     this._chatPartner = otherPet;
     this._chatLines = lines;
     this._chatIndex = 0;
-    this._chatTimer = 2.0; // seconds before first line
+    this._chatTimer = 2.0;
     this._bubble.hide();
   }
 
-  /** Called externally to check if dialogue is done. */
   get isChatFinished() {
     return this.state === 'chatting' && this._chatIndex >= this._chatLines.length && this._chatTimer <= 0;
   }
 
   _updateDialogue() {
-    if (this._chatIndex >= this._chatLines.length) {
-      // All lines shown — wait for timer to expire (handled externally)
-      return;
-    }
+    if (this._chatIndex >= this._chatLines.length) return;
 
     this._chatTimer -= 0.016;
     if (this._chatTimer <= 0 && this._chatIndex < this._chatLines.length) {
       const line = this._chatLines[this._chatIndex];
       this._bubble.show(`${line.speaker}: ${line.text}`);
-
-      // Also show on partner
-      if (this._chatPartner && this._chatPartner._bubble) {
+      if (this._chatPartner?._bubble) {
         this._chatPartner._bubble.show(`${line.speaker}: ${line.text}`);
       }
-
       this._chatIndex++;
-      this._chatTimer = 2.5; // next line in 2.5s
+      this._chatTimer = 2.5;
     }
   }
 
-  /** End current dialogue and return to wandering. */
   endChat() {
-    if (this.state !== 'chatting') return; // guard against double-call
+    if (this.state !== 'chatting') return;
     this._bubble.hide();
-    if (this._chatPartner && this._chatPartner._bubble) {
+    if (this._chatPartner?._bubble) {
       this._chatPartner._bubble.hide();
       this._chatPartner.state = 'wandering';
       this._chatPartner._chatPartner = null;
@@ -200,37 +282,28 @@ export class Pet {
   // player interaction
   // ===================================================================
 
-  /** Called when player presses E near this pet. Returns what happened. */
   interactWithPlayer() {
-    if (this.state === 'seeking_player') {
-      // Player-pet max intimacy dialogue
-      return { type: 'max_intimacy_dialogue' };
-    }
-
-    // Normal interaction: increase affection
+    if (this.state === 'seeking_player') return { type: 'max_intimacy_dialogue' };
     if (this.affection < 10) {
       this.affection++;
       this.trust = Math.min(100, this.trust + 10);
       this.mood = 'happy';
       this.memories.push(`玩家在第${this.affection}次互动时陪伴了它。`);
-
-      // Check milestones
       const milestone = this._checkMilestone();
       return { type: 'affection_up', affection: this.affection, milestone };
     }
-
     return { type: 'already_max' };
   }
 
   _checkMilestone() {
     if (this.affection >= 5 && !this._milestones[5]) {
       this._milestones[5] = true;
-      this._updateColor(0.3); // warm tint
+      this._updateColor(0.3);
       return 5;
     }
     if (this.affection >= 10 && !this._milestones[10]) {
       this._milestones[10] = true;
-      this._updateColor(0.6); // golden glow
+      this._updateColor(0.6);
       return 10;
     }
     return null;
@@ -238,36 +311,29 @@ export class Pet {
 
   _updateColor(t) {
     this._currentColor = lerpColor(this._originalColor, 0xffdd88, t);
-    this.mesh.material.color.set(this._currentColor);
+    if (this._fallback?.material?.color) {
+      this._fallback.material.color.set(this._currentColor);
+    }
     this._syncLabel();
   }
 
   // ===================================================================
-  // seek player (called periodically by dialogue system)
+  // seek player
   // ===================================================================
 
-  /** Returns true if this pet should seek the player now. */
   shouldSeekPlayer() {
-    return (
-      this.affection >= 10 &&
-      this.state === 'wandering' &&
-      this._milestones[10] === true
-    );
+    return this.affection >= 10 && this.state === 'wandering' && this._milestones[10] === true;
   }
 
-  /** Begin seeking the player. */
   startSeekingPlayer() {
     this.state = 'seeking_player';
     console.log(`[Pet] ${this.name} is seeking the player!`);
   }
 
-  /** Called after player-pet max-intimacy dialogue completes. */
   finishPlayerDialogue() {
     this._bubble.hide();
     this.state = 'wandering';
-    this._pickRandomTarget();
-    // Mark that this dialogue happened so it doesn't repeat
-    // (could add a cooldown, but for demo just let it happen again later)
+    this._behaviorTimer = BEHAVIOR_INTERVAL;
   }
 
   // ===================================================================
@@ -279,26 +345,18 @@ export class Pet {
     const cz = this.mesh.position.z;
     this._target.set(
       cx + (Math.random() - 0.5) * 6,
-      0.5,
+      0,
       cz + (Math.random() - 0.5) * 6
     );
   }
 
   getInfo() {
     return {
-      name: this.name,
-      tags: this.tags,
-      personality: this.personality,
-      likes: this.likes,
-      dislikes: this.dislikes,
-      habits: this.habits,
-      originSignature: this.originSignature,
-      state: this.state,
-      affection: this.affection,
-      mood: this.mood,
-      trust: this.trust,
-      memories: this.memories,
-      milestones: { ...this._milestones },
+      name: this.name, tags: this.tags, personality: this.personality,
+      likes: this.likes, dislikes: this.dislikes, habits: this.habits,
+      originSignature: this.originSignature, state: this.state,
+      affection: this.affection, mood: this.mood, trust: this.trust,
+      memories: this.memories, milestones: { ...this._milestones },
     };
   }
 

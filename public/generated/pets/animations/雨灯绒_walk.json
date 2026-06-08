@@ -1,0 +1,41 @@
+{
+  "_duration": 1.5,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 1
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 1
+    }
+  },
+  "leftLeg": {
+    "tilt": {
+      "axis": "x",
+      "angle": 12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 1,
+      "phase": 0
+    },
+    "_attach": "body"
+  },
+  "rightLeg": {
+    "tilt": {
+      "axis": "x",
+      "angle": 12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 1,
+      "phase": 0.5
+    },
+    "_attach": "body"
+  }
+}

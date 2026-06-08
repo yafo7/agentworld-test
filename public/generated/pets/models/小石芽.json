@@ -1,0 +1,263 @@
+{
+  "name": "Sprout Stone",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "body",
+      "name": "body",
+      "group": true,
+      "position": {
+        "x": 0.04999999999999999,
+        "y": 1.0250000000000001,
+        "z": 0.050000000000000044
+      }
+    },
+    {
+      "id": "m0",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": 0.17499999999999982,
+        "z": -0.050000000000000044
+      },
+      "color": 13007664
+    },
+    {
+      "id": "m1",
+      "type": "box",
+      "geometry": {
+        "width": 2.4,
+        "height": 0.4,
+        "depth": 2.4
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": -0.8250000000000002,
+        "z": -0.050000000000000044
+      },
+      "color": 6044974
+    },
+    {
+      "id": "m2",
+      "type": "box",
+      "geometry": {
+        "width": 1.8,
+        "height": 0.08,
+        "depth": 1.8
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": 0.825,
+        "z": -0.050000000000000044
+      },
+      "color": 6044974
+    },
+    {
+      "id": "m3",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.6499999999999999,
+        "y": -0.5750000000000002,
+        "z": 0.6499999999999999
+      },
+      "color": 6044974
+    },
+    {
+      "id": "m4",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.6499999999999999,
+        "y": -0.6250000000000001,
+        "z": 0.75
+      },
+      "color": 6044974
+    },
+    {
+      "id": "m5",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.45,
+        "y": -0.6750000000000002,
+        "z": -0.75
+      },
+      "color": 6044974
+    },
+    {
+      "id": "sprout",
+      "name": "sprout",
+      "group": true,
+      "position": {
+        "x": 0.04999999999999999,
+        "y": 2.45,
+        "z": 0.050000000000000044
+      }
+    },
+    {
+      "id": "m6",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.12,
+        "radiusBottom": 0.12,
+        "height": 1.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": 0.6999999999999997,
+        "z": -0.050000000000000044
+      },
+      "color": 8042056
+    },
+    {
+      "id": "m7",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.2,
+        "height": 0.3,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.04999999999999999,
+        "y": 0,
+        "z": -0.050000000000000044
+      },
+      "color": 8042056,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m8",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.2333333333333333,
+          0.3333333333333335,
+          -0.13333333333333333
+        ],
+        "b": [
+          0.3666666666666667,
+          -0.06666666666666643,
+          0.16666666666666666
+        ],
+        "c": [
+          -0.1333333333333333,
+          -0.2666666666666666,
+          -0.033333333333333326
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.18333333333333332,
+        "y": 1.1166666666666663,
+        "z": 0.08333333333333329
+      },
+      "color": 5938736
+    },
+    {
+      "id": "m9",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0.19999999999999998,
+          0.2666666666666666,
+          0.10000000000000002
+        ],
+        "b": [
+          -0.30000000000000004,
+          -0.033333333333333215,
+          -0.09999999999999999
+        ],
+        "c": [
+          0.09999999999999998,
+          -0.2333333333333334,
+          1.3877787807814457e-17
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": -0.24999999999999997,
+        "y": 1.1833333333333331,
+        "z": -0.15000000000000008
+      },
+      "color": 9423954
+    },
+    {
+      "id": "m10",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.11666666666666665,
+          0.30000000000000027,
+          0.16666666666666666
+        ],
+        "b": [
+          0.18333333333333335,
+          -0.10000000000000009,
+          -0.23333333333333336
+        ],
+        "c": [
+          -0.06666666666666665,
+          -0.19999999999999973,
+          0.06666666666666665
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.06666666666666667,
+        "y": 0.9499999999999997,
+        "z": -0.2166666666666667
+      },
+      "color": 5938736
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"矮胖圆润体型，整体类似扁球型的躯干，顶部有细长嫩芽突出\",\n  \"regions\": [\n    {\n      \"name\": \"body\",\n      \"desc\": \"矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e]\"\n    },\n    {\n      \"name\": \"sprout\",\n      \"desc\": \"从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿\"\n    }\n  ],\n  \"methodologies\": [\n    \"vegetation\"\n  ]\n}\n```",
+  "_routerThinking": "1.  **具象化**: \"a lowpoly cute creature like a small stone with a sprout growing from it\" - 这是一个实物/具体形象（长着嫩芽的小石头生物），跳过此步骤。\n\n2.  **结构划分**:\n    - 独立运动部分：嫩芽可能会随风摆动，算作独立group。石头身体本身算一个group。\n    - 附着物：嫩芽上的小叶子附着在嫩芽上，写在sprout的desc里。\n    - proportions: 圆润敦实的小石头体型，整体矮胖，嫩芽细长突出。\n    - groups: body, sprout\n\n3.  **写desc**:\n    - body: 坚固圆润的石头形状，暖橙棕色(主色60%)。宽和高等近，类似球体或扁球体。表面可能有泥土/岩石纹理色。\n    - sprout: 从身体顶部生长出的细长嫩芽，绿色(辅色30%)。顶部有几片小叶子(强调色10%)。\n    - 颜色分配：\n        - 主色(60%): 暖橙棕 WarmOrangeBrown [c67b30] (覆盖body主体)\n        - 辅色(30%): 嫩绿 SproutGreen [7ab648] (覆盖sprout茎和叶面)\n        - 强调色(10%): 深棕 DarkBrown [5c3d2e] (覆盖body底部阴影/纹理点缀)\n    - desc细节：\n        - body: 矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e]\n        - sprout: 从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿\n\n4.  **方法论**:\n    - vegetation (植物特征，嫩芽)\n    - complex_stack (石头质感可能用到，但更偏简单几何，不过vegetation更核心)\n    - 其实就是简单的几何堆叠，核心是石头+植物。选 vegetation 比较合适，因为嫩芽是关键特征。石头本身不需要quadruped等。没有四肢。\n    - 也可以什么都不选，但规则说\"有疑问时宁可多选\"。vegetation 肯定要用。\n\n5.  **组装JSON**:\n    - proportions: \"矮胖圆润体型，整体类似扁球型的躯干，顶部有细长嫩芽突出\"\n    - regions:\n        - body: \"矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e]\"\n        - sprout: \"从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿\"\n    - methodologies: [\"vegetation\"]",
+  "_modelReasoning": "",
+  "_aiCode": "function build(api) {\n  api.name('Sprout Stone');\n  const C_BODY = 0xc67b30;\n  const C_BODY_DARK = 0x5c3d2e;\n  const C_SPROUT = 0x7ab648;\n  const C_LEAF = 0x5a9e30;\n  const C_LEAF_LIGHT = 0x8fcc52;\n\n  api.group('body', 'body');\n    // 轮廓块\n    api.sphere({ r: 1.2, pos: [0, 1.2, 0], color: C_BODY });\n    // 特征块\n    api.box({ w: 2.4, h: 0.4, d: 2.4, pos: [0, 0.2, 0], color: C_BODY_DARK });\n    // 色块面\n    api.box({ w: 1.8, h: 0.08, d: 1.8, pos: [0, 1.85, 0], color: C_BODY_DARK });\n    // 细节块\n    api.poly({ r: 0.15, pos: [0.7, 0.45, 0.7], color: C_BODY_DARK });\n    api.poly({ r: 0.12, pos: [-0.6, 0.4, 0.8], color: C_BODY_DARK });\n    api.poly({ r: 0.1, pos: [0.5, 0.35, -0.7], color: C_BODY_DARK });\n  api.endGroup();\n\n  api.group('sprout', 'sprout');\n    // 轮廓块\n    api.cyl({ r: 0.12, h: 1.5, pos: [0, 3.15, 0], color: C_SPROUT });\n    // 特征块\n    api.cone({ r: 0.2, h: 0.3, pos: [0, 2.45, 0], along: '+Y', color: C_SPROUT });\n    // 细节块\n    api.tri({ a: [0, 3.9, 0], b: [0.6, 3.5, 0.3], c: [0.1, 3.3, 0.1], d: 0.06, color: C_LEAF });\n    api.tri({ a: [0, 3.9, 0], b: [-0.5, 3.6, -0.2], c: [-0.1, 3.4, -0.1], d: 0.06, color: C_LEAF_LIGHT });\n    api.tri({ a: [0, 3.7, 0], b: [0.3, 3.3, -0.4], c: [0.05, 3.2, -0.1], d: 0.06, color: C_LEAF });\n  api.endGroup();\n}",
+  "_description": "a lowpoly cute creature like a small stone with a sprout growing from it, warm orange-brown body, sturdy round shape, tiny leaves on top, friendly and reliable",
+  "_formulaResult": {
+    "methodologies": [
+      "vegetation"
+    ],
+    "regions": [
+      {
+        "name": "body",
+        "desc": "矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e]"
+      },
+      {
+        "name": "sprout",
+        "desc": "从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 块面构成原则\n你的基本视觉单元是体积块和色块面：\n- 体积块：有厚度的几何体(d≥0.15)，决定轮廓，用box/cyl/sphere/cone/chain。块间重叠0.2~0.5，不精确对接。\n- 色块面：附着在体积表面的薄层(d:0.05~0.12)，提供正面颜色区分，用tri/薄box。不改变轮廓但从最常见视角提供核心识别信号。\n- 颜色规则：每个几何体只有一种颜色（框架限制）。颜色变化→需要几何边界→需要两个片。需要多色或渐变效果→用多个相邻薄片拼出。\n- 每个几何块都应有明确视觉角色：建立轮廓（体积块）/ 区分结构区域（色块面）/ 提供识别锚点（小装饰）。\n- 辨识度两层：（1）块间空间关系决定\"这是什么类型\"（人形/四足/飞行器）；（2）关键小几何装饰决定\"这是哪一个\"（发簪/琴弦/天线）。\n\n## 硬约束（违反=错误）\n1. 方向用 along:'+Z' 等轴方向。\n2. Y+上，+Z前，地面y=0。chain waypoints从-Z(尾)到+Z(头)。\n\n## 三步建造法（每个group都按：轮廓→特征→细节）\n1. 轮廓块（1~4个大shape）：定silhouette，占70%体积\n2. 特征块（2~6个中shape）：建立识别特征\n3. 细节块（3~8个小shape）：点缀\n\n构建顺序：\n- 先搭大块（轮廓），再搭中块（特征），最后搭小块（细节）\n- 同一表面上从内到外：底层结构→表面色块面(d:0.05~0.08)→外部附着物(眼/装饰)\n- 色块面是皮肤(d:0.05~0.08)，不是砖块(d≥0.15)——薄才能贴面。太厚会陷进内部或遮住外部附着物\n- ⚠️ 全局顺序：任何group内，先搭完全部体积块（轮廓+特征），再放附着物（色块面+细节）。不要边搭大块边放附着物——之后加的大块会遮挡已放的附着物\n- ⚠️ 头部额外注意：吻部/喙/鼻尖是体积块，必须在放眼之前搭完。眼睛位置≥已搭好的最前凸结构——否则埋在吻部后面。如果头朝向不是正+Z（如颈部弯曲），眼睛跟随头的前方，不是全局+Z\n\nshape数量只是单个group内的参考，不是硬约束，实际数量根据需求调整。\n\n## 推理约束\n- 思考重点在于怎样通过shape的堆叠来更好的实现模型的外观外结构，类似搭积木，不可视的内部结构不用考虑。\n- 你可以在router草稿基础上自由增/删/改，添加你认为合适的配件和细节。\n- 坐标和尺寸精度到0.01即可。±0.05以内的偏差在lowpoly下肉眼不可见，无需纠结微调。重点是结构关系正确，不是数值精确。\n- 修改时只改动出错的部分，不要因为一个小问题就把所有代码重写一遍——这会造成大量浪费。第二轮及之后的修改应该是局部的、针对性的。\n- 构建完所有group后扫一眼：Router的每个group都建了？不用mirror的group里成对特征(眼耳手脚翅)左右都写了？附着物至少一半露在父级外？这是快速扫视不是检查清单。\n- 用cone时：along=尖端指向。衣服→尖端朝身体，粗口朝外。\n- 小结构尺寸占所在group主要尺寸的15~25%（头高1.0→眼睛r≈0.2~0.3；躯干高2.5→腰带tube≈0.38~0.63）。低于此在lowpoly下不具可读性。眼睛绝对最小半径r≥0.2。\n- 线性元素例外：琴弦/线缆/天线/细链/绳索/发簪/辐条/索具——语义本质是\"线\"的结构，r可低至0.01~0.05，不适用比例下限。铆钉/眼睛/纽扣/腰带不是线，不可套用此例外。\n\n## 坐标放置：两步附着法\n\n子级附着到父级时，分两步判断：\n\n**第一步：判断附着在父级的哪个面**\n- 子级在父级的前方(+Z) / 后方(-Z) / 上方(+Y) / 下方(-Y) / 侧面(±X)？\n- 想象子级的视觉位置，它自然属于哪个面就是哪个面\n- 疑难时参考：眼→前，翅膀→后，帽→上，裙→下，肩甲→侧\n\n**第二步：判断在该面上的具体位置**\n- 子级在面的中心还是偏上/偏下/偏左/偏右？\n- 偏移量 = 子级在该方向半尺寸 × (0.3~0.6)\n- 子级中心 = 父级表面 + 偏移（沿附着方向）\n\n高频反面案例：\n- 翅膀z≈0，身体中心 → 卡体内 → 从背面(-Z)附着：子级中心z = 父级后表面z - 子级半深\n- 光环y与头顶同 → 陷头里 → 从顶面(+Y)附着：子级中心y = 父级顶表面y + 子级半高\n- 发簪与发髻同pos → 被吞 → 从顶/侧面附着，中心在父级表面外\n\n穿入型（发簪穿过发髻）：\n- 从一面穿入另一面穿出。中心 ≈ 父级表面 - 微插入(子级半径×0.2~0.3)\n\n## 颜色层次\n- 整体：整个模型的颜色按60-30-10分配：主色系(60%，覆盖主体大部分)、辅色系(30%，次要区域/内层)、强调色(10%，小面积点缀)。例：鸟人→灰白主色系60%+深灰辅色系30%+金黄强调色10%。\n- 局部：每个大面积部件内部给2~3个同色系色按面积递减：主色(60%)→过渡色(30%)→强调色(10%)。同色系=色相相近，明度/饱和度递变。小面积部件只需1个色。\n\n## 边缘装饰法\n表面装饰（覆羽、鳞片、鬃毛、流苏等）不要完全贴合在主体表面——会穿模且不可见。\n正确做法：从主体边缘向外延伸，像瓦片/屋檐层层外挑。颜色与主体稍有区分（同色系更深/更浅），确保可见。\n- 覆羽/鳞片：沿肢体边缘，每隔0.3~0.5放一个tri，根部贴住边缘，末端向外翘0.1~0.2，逐层排列。颜色比主体略深。\n- 鬃毛/脊刺：沿脊柱排列cone，根部嵌入主体，尖端向外+Y。\n- 毛领/围脖：用torus围在颈部，tube:0.15~0.25，颜色与主体区分。\n- 流苏/挂饰：从边缘挂下短chain，r:0.05~0.08，末端可加poly做坠饰。\n- 护腕/脚环：用torus套在四肢上，tube:0.1~0.15。\n- 装饰铆钉/宝石：用poly沿边缘等距排列，r:0.08~0.12。\n\n## API 参考\n\n### 通用参数（所有形状共享）\n- pos:[x,y,z] — 形状的几何中心（不是底面/顶点/起点）。box半高=h/2，cyl/cone半高=h/2，sphere半径=r。Y+上，Z+前，X+右，地面Y=0\n- color:0xRRGGBB — 十六进制颜色\n- along:轴方向字符串 — 控制形状朝向，如'+Z'朝前、'-X'朝左、'+X+Y+Z'斜向。\n\n### 基础形状\nbox({w,h,d, along?, pos, color?})\n  w=宽, h=高, d=深\n  along=轴方向，让盒体沿该方向延伸。默认沿Y+(h朝上)。\n  用途：主体结构、薄板(d:0.1~0.3做纸片)、方块堆叠、倾斜板块。\n\nsphere({r, pos, color?})\n  r=半径\n  用途：球体、头部轮廓、关节球。无方向性。\n\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?})\n  r=统一半径(上下一样粗) | rTop=顶部半径 + rBot=底部半径(rTop≠rBot=锥台)\n  h=高度 | seg=径向分段(默认10, seg:4=方形截面)\n  along=轴方向，默认沿Y+。\n  用途：柱体、四肢、颈、锥台(rTop≠rBot做方形脸/锥形躯干)。\n\ncone({r, h, seg?, along?, pos, color?})\n  r=底面半径(粗端) | h=高度(底面到尖端) | seg=径向分段(默认10)\n  along=尖端指向，-along=底面方向。默认尖端朝Y+(上)。\n  用途：尖角、喙、角、末端收束、刺。衣服(裙/袖)→尖端朝身体，粗口朝外。\n\ntorus({r, tube, along?, pos, color?})\n  r=环半径(圆心到管中心) | tube=管粗细(管截面半径)\n  along=轴方向，环孔绕该轴。默认平放XZ面(环面朝上，像甜甜圈)。\n  套在圆柱上当箍：torus和cyl用**同一个along**。\n  用途：圆环、救生圈、箍、把手、护腕、脚环、围脖。\n\npoly({r, pos, color?})\n  r=半径\n  用途：眼睛(r:0.15~0.4)、宝石、铆钉、装饰球。二十面体，三角面切面质感，比sphere尖锐有棱角。\n  无方向性。\n\n### 自由面片 — 用3D顶点定义形状，朝向由顶点坐标直接决定\ntri({a:[x,y,z], b:[x,y,z], c:[x,y,z], d?, color?})\n  a/b/c=三角形三个顶点 | d=厚度(默认0.1)\n  朝向由顶点位置直接决定。想控制朝向→把顶点放在想要的方向上。\n  用途：三角面片、斜面、斧刃、屋顶、楔形、尾羽、花瓣。\n\npatch({points:[[x,y,z],...], d?, color?})\n  points=3D点数组(3个以上)，自动三角化填充 | d=厚度(默认0.1)\n  用途：翅膀膜、帆、鳍、披风。不规则多点面片。\n  ⚠️ 强制：points必须包含所有骨架/支撑点的坐标——chain的每个waypoint（不只是首尾！）、fork的每个end，全部都要放进points，否则膜面会穿过骨架球体出现缝隙。\n  代码：let w=chain.waypoints, f=fork.ends;\n  api.patch({points:[w[0].pos, ..., w[n].pos, f[0].pos, ..., f[m].pos], color})\n\n### 复合构造\nchain({waypoints, r|rStart+rEnd, jointIds?, color?})\n  waypoints=[[x,y,z],...] 绝对坐标路径点，依次串联\n  r=统一半径，从头到尾一样粗\n  rStart=起始半径 + rEnd=末端半径，从rStart线性渐变到rEnd\n  r=0.3 + rEnd=0.1 快捷写法，等价于 rStart:0.3, rEnd:0.1，仅传rEnd=错误\n  jointIds=['hip','knee','ankle'] 给每个路径点命名子group(动画骨骼)，不传=静态链\n  用途：沿线串联 — 四肢、蛇身、触手、尾巴、脊柱、钩子。\n\nradial({count, from, axis?, shape, color?})\n  count=副本数量 | from=[x,y,z] 中心点 | axis=旋转轴('y'默认)\n  shape={ type, ... } — shape内坐标(points/pos/a/b/c)是相对from的局部坐标，radial绕axis旋转每个副本。\n  axis='y'时：模板的X和Z被旋转（cos/sin互换），Y保持不变。模板朝Z→旋转后各方向均有Z分量；模板朝Y→所有副本朝Y不变。\n  用途(shape type)：柱廊/辐条(cyl)、箍圈(torus)、花瓣(patch)、章鱼触手(chain)、齿轮的齿(box)、其他(cone、poly、tri、torus)。\n\nfork({from:[x,y,z], to:[[x,y,z],...], r, color?}) → {ends:[{pos,r}]}\n  from=分叉起点(放一个关节球) | to=目标终点数组(到每个终点拉一根柱体)\n  r=柱体半径\n  用途：一点多向分叉 — 鹿角、珊瑚、树枝、血管。\n  返回ends数组，包含每个终点的位置和半径，可用于接续chain。\n\n### 层级与镜像\ngroup(id, name?, {pos?,noMirror?})\n  id=唯一标识(动画骨骼引用用这个) | name=显示名(省略则用id)\n  pos=组的中心点/锚点 | noMirror:true → 镜像时跳过此组及其子节点\n  用途：每个独立运动的部位必须包在group里，group=动画骨骼。\n\nendGroup() — 关闭当前group，后续几何体回到上级。\n\nmirror('x') / mirror('y') / mirror('z') → endMirror()\n  中间所有几何体自动生成沿指定轴的镜像副本。\n  group ID 自动重命名：left→right, _L→_R。\n  mirror('x')=左右对称(最常用)，mirror('y')=上下对称，mirror('z')=前后对称。\n  只在左右完全对称时用 mirror('x')。有独立配件（单手武器、单侧装饰）时禁止用mirror，手动分别建左右组。角色面向+Z，左手=-X，右手=+X。\n\n### 辅助函数api\nchainEnd()\n  返回上一次chain()末端的{pos,r,rot}。用于从上一条链的末端接续下一条链。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  api.mirror('x');\n  api.group('chimney','烟囱');\n  api.cyl({r:0.4,h:2,pos:[1.2,3.5,-1],color:C_RUST});\n  api.torus({r:0.45,tube:0.08,pos:[1.2,4.4,-1],color:C_GOLD}); // 箍在烟囱(along Y)上，默认即沿Y\n  api.endGroup();\n  api.endMirror();\n  api.group('propeller','螺旋桨');\n  api.radial({count:3,from:[0,1.5,-4.2],axis:'z',shape:{type:'box',w:0.1,h:0.8,d:0.05},color:C_METAL});\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('body','body') → 矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e] → api.endGroup()\napi.group('sprout','sprout') → 从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿 → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = radial({count,from:茎顶端,axis:'y',shape:tri/patch})，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    api.radial({count:5,from:[0,5.4,0],axis:'y',shape:{type:'tri',a:[0.15,0,0],b:[0.6,0.6,0.15],c:[0.1,0.6,0.2],d:0.06},color:0xFF6B81}); // 花瓣(z>0→外倾，非垂直)\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端radial叶簇(4~6 patch/tri)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly cute creature like a small stone with a sprout growing from it, warm orange-brown body, sturdy round shape, tiny leaves on top, friendly and reliable\"\n\n草稿结构：\n  body: 矮胖圆润，宽与高相近，类似扁球型的躯干，表面-暖橙棕[c67b30]，底部点缀-深棕[5c3d2e]\n  sprout: 从身体顶部中央长出，细长茎干-嫩绿[7ab648]，顶端附着两三片小叶-嫩绿\n整体比例：矮胖圆润体型，整体类似扁球型的躯干，顶部有细长嫩芽突出\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1780888826085,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

@@ -189,18 +189,132 @@ function trigger() {
 
 ---
 
+## Voxel Studio 后端 API（3D模型+动画生成）
+
+> **API Base:** `https://voxel-studio-backend.zeabur.app`
+> 实验室后端服务，文本→低多边形3D模型+动画。处理所有3D生成，前端只需发HTTP请求。
+
+### 端点总览
+
+| 端点 | 方法 | 用途 |
+|------|------|------|
+| `/health` | GET | 健康检查 `{"ok":true}` |
+| `/api/generate/model` | POST | 生成单个3D模型（**SSE流式**） |
+| `/api/generate/batch` | POST | 批量生成多个模型（JSON） |
+| `/api/generate/animation` | POST | 生成Motion Plan动画（JSON） |
+| `/api/chat` | POST | 简单LLM对话 |
+| `/api/templates/module.js` | GET | 获取Runtime ES Module（几何构建+动画播放核心） |
+
+### Provider（3D生成供应商）
+
+4个可用，推荐默认`fireworks`，被限速时切换：
+```
+fireworks → glm → gpt → deepseek
+```
+
+### 核心概念
+
+**1. 模型生成流程（SSE流式）**
+```
+POST /api/generate/model
+body: { description: "a lowpoly dragon", provider: "fireworks" }
+     ↓
+SSE事件流: blockout → code → result(含modelJson) | error
+```
+- 前端需解析SSE（逐行读`data:`前缀）
+- `modelJson`是Three.js兼容的扁平mesh数组，通过`group:true`/`parent`表达层级
+- 几何类型: box, sphere, cylinder, cone, torus, wedge, tri, patch, icosahedron, dodecahedron, octahedron
+
+**2. modelJson格式**
+```json
+{
+  "name": "Knight",
+  "type": "lowpoly",
+  "meshes": [
+    { "id":"body", "name":"Body", "group":true, "position":{"x":0,"y":2.5,"z":0} },
+    { "id":"m0", "type":"box", "geometry":{"width":2,"height":3,"depth":1.4},
+      "position":{"x":0,"y":2,"z":0}, "color":10066329, "parent":"body" }
+  ]
+}
+```
+- `meshes`是扁平数组，通过`parent`引用建立层级树
+- 每个mesh有`type`+`geometry`+`position`+`color`+可选`parent`
+
+**3. Runtime模块（前端核心引擎）**
+```js
+import * as THREE from 'three';
+window.THREE = THREE; // ★ Runtime需要全局THREE
+const mod = await import('https://voxel-studio-backend.zeabur.app/api/templates/module.js');
+const runtime = mod.voxelStudioRuntime;
+```
+
+Runtime API:
+- `runtime.buildGeometry(type, params)` → 构建THREE.Geometry（**不要硬编码参数名**）
+- `runtime.evaluateMotion(plan, duration, model, t)` → 每帧调用，返回各group的position/rotation/scale增量
+- `runtime.listAnimationTemplates()` → 列出所有动画模板
+- `runtime.listGeometryTypes()` → 列出所有几何类型
+
+**4. 动画生成**
+```
+POST /api/generate/animation
+body: { modelJson, description: "running", duration: 2.0, provider: "fireworks" }
+     ↓
+{ ok:true, plan: { _duration:2, _loop:true, body:{bounce:{...}}, leftArm:{swing:{...}} } }
+```
+- Motion Plan: groupId → 动画模板+参数
+- 播放时每帧调用`runtime.evaluateMotion(plan, duration, model, t)`
+
+**5. LLM对话（辅助用）**
+```
+POST /api/chat
+body: { messages:[...], temperature:0.7, maxTokens:1024, provider:"fireworks" }
+     ↓
+{ ok:true, content: "..." }
+```
+
+### 与我们现有系统的集成方案
+
+**现状：**
+- 宠物/物品/环境都是占位几何体（方块/锥体/三棱锥）
+- DeepSeek负责文本AI（宠物性格、对话、里程碑物品名/tag）
+- 标签和气泡是Canvas Sprite
+
+**集成分层（互补关系，非替代）：**
+
+| 层 | 当前 | 集成后 |
+|------|------|------|
+| **文本AI** | DeepSeek `src/ai/*` | **保持不变** — 宠物概念/对话/里程碑仍用DeepSeek |
+| **3D模型** | 方块/锥体占位 | 用Voxel API替换为实际lowpoly模型 |
+| **动画** | 无 | 用Voxel动画API+Runtime驱动宠物动作 |
+| **LLM对话** | DeepSeek直连 | 可选：部分对话换用`/api/chat`(fireworks) |
+
+**关键集成点：**
+1. **宠物生成时** → DeepSeek产出`{name, tags, personality...}` → 用`name + tags`拼description → 调用`/api/generate/model` → 得到modelJson → `runtime.buildGeometry`构建 → 替换方块
+2. **物品/环境** → 同理，用物品名+tag拼description → 生成3D模型
+3. **动画播放** → 加载runtime → 宠物生成后调用`/api/generate/animation` → 每帧`runtime.evaluateMotion`
+4. **运行时初始化** → main.js启动时`window.THREE = THREE` → 动态`import()` runtime模块
+
+**注意：**
+- 不硬编码动画模板名/几何类型名 — 从runtime动态获取
+- 不硬编码geometry参数名 — 用`runtime.buildGeometry(type, params)`传递
+- 模型生成是异步SSE流 — 需要"生成中"等待状态（可复用现有的预兆→剪影→登场游戏化等待概念）
+- CORS已配置 — 本地开发无需代理
+
+---
+
 ## Dependencies
 
 **当前：**
 - **three** (`^0.184.0`) — 3D 渲染
 - **vite** (`^8.0.12`) — 开发与构建
 
-**后续将用到（Three.js官方模块）：**
-- `GLTFLoader` / `DRACOLoader` — 模型加载
-- `AnimationMixer` — 动画播放
+**后续Three.js官方模块（无需额外安装）：**
+- `GLTFLoader` / `DRACOLoader` — 加载外部GLB模型（备用方案）
+- `AnimationMixer` — 传统动画播放（备用方案）
 
 **AI服务：**
-- DeepSeek API (`api.deepseek.com`) — 宠物生成/对话/里程碑
+- **DeepSeek API** (`api.deepseek.com`) — 文本侧AI：宠物概念/对话/里程碑物品/环境
+- **Voxel Studio API** (`voxel-studio-backend.zeabur.app`) — 3D侧AI：模型生成/动画生成/Runtime引擎
 
 ---
 

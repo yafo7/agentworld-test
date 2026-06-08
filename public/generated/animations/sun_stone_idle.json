@@ -1,0 +1,25 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "mainCrystal": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.4
+    }
+  },
+  "crystalCluster": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "_attach": "mainCrystal"
+  }
+}

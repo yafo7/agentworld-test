@@ -1,11 +1,7 @@
 import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
+import { loadModel, loadAnimationPlan, applyAnimation } from '../ai/modelLoader.js';
 
-/**
- * Item entity — a tetrahedron representing a placeable object.
- * Can be picked up by the player and dropped near the forest.
- * Each item type maps to one pet via originSignature.
- */
 export class Item {
   constructor(config) {
     this.id = config.id;
@@ -14,51 +10,72 @@ export class Item {
     this.correspondsTo = config.correspondsTo;
     this.isHeld = false;
 
-    // ---- mesh (tetrahedron / cone with 3 sides) ----
-    // TetrahedronGeometry(radius, detail) — a 4-sided pyramid
-    const geometry = new THREE.TetrahedronGeometry(0.6, 0);
-    const material = new THREE.MeshStandardMaterial({ color: config.color });
-    this.mesh = new THREE.Mesh(geometry, material);
-    this.mesh.position.set(...config.spawnPosition);
-    this.mesh.rotation.y = Math.random() * Math.PI; // random rotation for visual variety
+    // ---- mesh ----
+    this.mesh = new THREE.Group();
     this.mesh.name = config.name;
+    this.mesh.position.set(...(config.spawnPosition || [0, 0.6, 0]));
+
+    // Fallback tetrahedron
+    const geo = new THREE.TetrahedronGeometry(0.6, 0);
+    const mat = new THREE.MeshStandardMaterial({ color: config.color });
+    this._fallback = new THREE.Mesh(geo, mat);
+    this._fallback.position.y = 0.4;
+    this.mesh.add(this._fallback);
+
+    // Model loading
+    this._modelGroup = null;
+    this._animIdle = null;
+    this._animTime = 0;
+    this._animDuration = 2.5;
+    this._animPartMap = null;
+    this._loadModelAndAnim();
 
     // Tag label
     this._label = createTagLabel(this.mesh, []);
     this._syncLabel();
   }
 
-  // ---- helpers ----
+  async _loadModelAndAnim() {
+    const modelName = this.name.toLowerCase().replace(/\s+/g, '_');
+    const model = await loadModel(`generated/models/${modelName}.json`, null);
+    if (model && model !== this._fallback) {
+      this.mesh.remove(this._fallback);
+      this.mesh.add(model);
+      this._modelGroup = model;
+      this._animPartMap = new Map();
+      model.traverse((o) => { if (o.name) this._animPartMap.set(o.name, o); });
+    }
 
-  get position() {
-    return this.mesh.position;
+    this._animIdle = await loadAnimationPlan(`generated/animations/${modelName}_idle.json`);
+    if (this._animIdle) this._animDuration = this._animIdle._duration ?? 2.5;
   }
 
-  /** Pick up — hide world label, attach to player. */
+  // ---- pickup ----
+
+  get position() { return this.mesh.position; }
+
   onPickup() {
     this.isHeld = true;
     this._label.sprite.visible = false;
   }
 
-  /** Drop at given world position — show label again. */
   onDrop(worldPos) {
     this.isHeld = false;
-    // Un-parent from player and set world position
     this.mesh.position.copy(worldPos);
     this._label.sprite.visible = true;
   }
 
-  /** For raycast inspection. */
   getInfo() {
-    return {
-      name: this.name,
-      tags: this.tags,
-      correspondsTo: this.correspondsTo,
-      isHeld: this.isHeld,
-    };
+    return { name: this.name, tags: this.tags, correspondsTo: this.correspondsTo, isHeld: this.isHeld };
   }
 
-  _syncLabel() {
-    this._label.update(this.name, this.tags);
+  /** Call every frame to play idle animation. */
+  updateAnimation(dt = 0.016) {
+    if (!this._animIdle || !this._modelGroup) return;
+    this._animTime += dt;
+    const t = this._animTime % this._animDuration;
+    applyAnimation(this._animIdle, this._animDuration, this._modelGroup, t, this._animPartMap);
   }
+
+  _syncLabel() { this._label.update(this.name, this.tags); }
 }

@@ -1,0 +1,76 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "ground": {
+    "breathe": {
+      "amplitude": 0.008,
+      "frequency": 0.25
+    }
+  },
+  "trees": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.25
+    }
+  },
+  "tree1": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0
+    },
+    "_attach": "trees"
+  },
+  "tree2": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.2
+    },
+    "_attach": "trees"
+  },
+  "tree3": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.4
+    },
+    "_attach": "trees"
+  },
+  "tree4": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.6
+    },
+    "_attach": "trees"
+  },
+  "tree5": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.3,
+      "phase": 0.8
+    },
+    "_attach": "trees"
+  },
+  "rocks": {
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.25
+    }
+  },
+  "rock1": {
+    "_attach": "rocks"
+  },
+  "rock2": {
+    "_attach": "rocks"
+  },
+  "rock3": {
+    "_attach": "rocks"
+  }
+}
