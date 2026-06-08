@@ -64,7 +64,7 @@ export function buildModelFromJson(modelJson) {
     if (m.group) {
       const g = new THREE.Group();
       g.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      g.name = m.name || m.id;
+      g.name = m.id; // English ID matches animation plan keys
       meshes[m.id] = g;
     } else {
       const geo = voxelRuntime.buildGeometry(m.type, m.geometry || {});
@@ -74,7 +74,7 @@ export function buildModelFromJson(modelJson) {
       });
       const mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-      mesh.name = m.name || m.id;
+      mesh.name = m.id; // English ID matches animation plan keys
       meshes[m.id] = mesh;
     }
   }
@@ -88,7 +88,46 @@ export function buildModelFromJson(modelJson) {
     else if (meshes[m.parent]) meshes[m.parent].add(meshes[m.id]);
   }
 
+  // Attach model wrapper for evaluateMotion (needs getPart/getChildren)
+  root._voxelModel = _buildModelWrapper(modelJson, meshes);
+
   return root;
+}
+
+/**
+ * Build a model wrapper object that evaluateMotion expects.
+ * Provides getPart(id) and getChildren(id) with offset data.
+ */
+function _buildModelWrapper(modelJson, threeObjects) {
+  // Index by id
+  const byId = {};
+  for (const m of modelJson.meshes) {
+    const obj = threeObjects[m.id];
+    const pos = obj ? obj.position : new THREE.Vector3(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
+    byId[m.id] = {
+      id: m.id,
+      name: m.name || m.id,
+      isGroup: !!m.group,
+      offset: [pos.x, pos.y, pos.z],
+      parent: m.parent || null,
+      children: [],
+    };
+  }
+
+  // Build children lists
+  for (const m of modelJson.meshes) {
+    if (m.parent && byId[m.parent]) {
+      byId[m.parent].children.push(byId[m.id]);
+    }
+  }
+
+  return {
+    getPart(id) { return byId[id] || null; },
+    getChildren(id) {
+      const part = byId[id];
+      return part ? part.children : [];
+    },
+  };
 }
 
 // ===================================================================
@@ -113,7 +152,10 @@ export async function loadAnimationPlan(animPath) {
 export function applyAnimation(plan, duration, model, t, basePoseMap = null) {
   if (!voxelRuntime || !plan) return basePoseMap;
 
-  const pose = voxelRuntime.evaluateMotion(plan, duration, model, t);
+  // Pass model wrapper (with getPart/getChildren) to evaluateMotion,
+  // not the raw THREE.Group. Required for complex templates like tilt/wave/flow.
+  const modelArg = model._voxelModel || model;
+  const pose = voxelRuntime.evaluateMotion(plan, duration, modelArg, t);
 
   // Build base pose map lazily on first call
   if (!basePoseMap) {
