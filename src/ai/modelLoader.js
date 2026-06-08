@@ -98,7 +98,9 @@ export function buildModelFromJson(modelJson) {
       const geo = voxelRuntime.buildGeometry(m.type, m.geometry || {});
       const mat = new THREE.MeshStandardMaterial({
         color: m.color ?? 0x888888,
-        flatShading: true,
+        flatShading: false,
+        roughness: 0.4,
+        metalness: 0.0,
       });
       const mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
