@@ -11,7 +11,6 @@ export const FOREST_CONFIG = {
   color: 0x2d5a1e,
   size: [2, 1, 2],
   position: [0, 0, 0],
-  yOffset: -0.25, // forest model has thick ground, compensate
   coreTags: ['森林', '潮湿', '温暖', '自然'],
   moreTags: [],
 };
