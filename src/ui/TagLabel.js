@@ -1,19 +1,17 @@
 import * as THREE from 'three';
 
 /**
- * Creates a canvas-texture sprite that floats above a mesh,
- * displaying its current tags as readable text.
+ * Creates a canvas-texture sprite that floats above a mesh.
+ * Shows name (line1), residence info (line2, optional), tags (line3).
  *
  * Usage:
- *   const label = createTagLabel(mesh, tagsArray);
- *   label.update(newTagsArray);    // call whenever tags change
- *
- * The sprite is added as a child of the mesh, so it follows automatically.
+ *   const label = createTagLabel(mesh);
+ *   label.update(name, tags, residence);
  */
 export function createTagLabel(mesh, initialTags = []) {
   const canvas = document.createElement('canvas');
   canvas.width = 512;
-  canvas.height = 160;
+  canvas.height = 220;
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.minFilter = THREE.LinearFilter;
@@ -26,8 +24,8 @@ export function createTagLabel(mesh, initialTags = []) {
   });
   const sprite = new THREE.Sprite(spriteMat);
 
-  sprite.position.y = 2.0;
-  sprite.scale.set(3, 0.9375, 1); // keeps aspect: 512/160 * 0.9375 ≈ 3
+  sprite.position.y = 2.2;
+  sprite.scale.set(3.2, 1.375, 1); // 512/220 * 1.375 ≈ 3.2
 
   mesh.add(sprite);
 
@@ -37,23 +35,23 @@ export function createTagLabel(mesh, initialTags = []) {
     texture,
     _tags: [...initialTags],
     _name: mesh.name || '',
+    _residence: '',
 
-    /** Call when tags change to refresh the displayed text. */
-    update(name, tags) {
+    /** @param {string} [residence] — optional residence info, shown on its own line */
+    update(name, tags, residence) {
       this._name = name || this._name;
-      this._tags = [...tags];
-      _draw(this.canvas, this._name, this._tags);
+      this._tags = [...(tags || [])];
+      this._residence = residence || '';
+      _draw(this.canvas, this._name, this._tags, this._residence);
       this.texture.needsUpdate = true;
     },
 
-    /** Call every frame if label needs to face camera. (Not needed for sprites — they auto-billboard.) */
     dispose() {
       this.sprite.material.dispose();
       this.texture.dispose();
     },
   };
 
-  // Initial draw
   _draw(canvas, label._name, label._tags);
   texture.needsUpdate = true;
 
@@ -62,36 +60,41 @@ export function createTagLabel(mesh, initialTags = []) {
 
 // ---- internal ----
 
-const LINE1_FONT = 'bold 32px "Microsoft YaHei", "PingFang SC", Arial, sans-serif';
-const LINE2_FONT = '22px "Microsoft YaHei", "PingFang SC", Arial, sans-serif';
+const LINE1_FONT = 'bold 36px "Microsoft YaHei", "PingFang SC", Arial, sans-serif';
+const LINE2_FONT = '26px "Microsoft YaHei", "PingFang SC", Arial, sans-serif';
+const LINE3_FONT = '22px "Microsoft YaHei", "PingFang SC", Arial, sans-serif';
 
-function _draw(canvas, name, tags) {
+function _draw(canvas, name, tags, residence) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;
   const h = canvas.height;
 
   ctx.clearRect(0, 0, w, h);
 
-  // Measure text widths to size background
+  // Measure each line
   ctx.font = LINE1_FONT;
   const nameW = ctx.measureText(name).width;
 
-  const tagStr = tags.length > 0 ? tags.join(' · ') : '';
   ctx.font = LINE2_FONT;
+  const resW = residence ? ctx.measureText(residence).width : 0;
+
+  const tagStr = tags.length > 0 ? tags.join(' · ') : '';
+  ctx.font = LINE3_FONT;
   const tagW = tagStr ? ctx.measureText(tagStr).width : 0;
 
-  const maxTextW = Math.max(nameW, tagW);
+  const maxTextW = Math.max(nameW, resW, tagW);
   const padX = 24;
-  const padY = 14;
-  const line1H = 40;
-  const line2H = tagStr ? 30 : 0;
-  const gap = tagStr ? 4 : 0;
-  const totalTextH = line1H + gap + line2H;
+  const padY = 16;
+  const line1H = 44;
+  const line2H = residence ? 34 : 0;
+  const line3H = tagStr ? 30 : 0;
+  const gap = residence || tagStr ? 6 : 0;
+  const gap2 = residence && tagStr ? 4 : 0;
+  const totalTextH = line1H + (line2H ? gap + line2H : 0) + (line3H ? gap2 + line3H : 0);
 
   const bgW = maxTextW + padX * 2;
   const bgX = (w - bgW) / 2;
   const bgY = (h - totalTextH) / 2 - padY;
-
   const bgH = totalTextH + padY * 2;
 
   // Background
@@ -115,17 +118,28 @@ function _draw(canvas, name, tags) {
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  // Line 1 — name (bold, larger, centered)
+  let y = bgY + padY;
+
+  // Line 1 — name (bold, white)
   ctx.fillStyle = '#ffffff';
   ctx.font = LINE1_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText(name, w / 2, bgY + padY);
+  ctx.fillText(name, w / 2, y);
+  y += line1H + gap;
 
-  // Line 2 — tags (smaller, lighter)
+  // Line 2 — residence (gold, on its own line)
+  if (residence) {
+    ctx.fillStyle = '#ffcc66';
+    ctx.font = LINE2_FONT;
+    ctx.fillText(residence, w / 2, y);
+    y += line2H + gap2;
+  }
+
+  // Line 3 — tags (light gray)
   if (tagStr) {
     ctx.fillStyle = '#cccccc';
-    ctx.font = LINE2_FONT;
-    ctx.fillText(tagStr, w / 2, bgY + padY + line1H + gap);
+    ctx.font = LINE3_FONT;
+    ctx.fillText(tagStr, w / 2, y);
   }
 }

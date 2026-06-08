@@ -371,7 +371,7 @@ export class Pet {
   _syncLabel() {
     const tagList = [...this.tags];
     if (this.affection >= 5) tagList.push(`亲密度${this.affection}`);
-    if (this.homeEnv) tagList.push(`居住于:${this.homeEnv.name}`);
-    this._label.update(this.name, tagList);
+    const residence = this.homeEnv ? `居住于: ${this.homeEnv.name}` : '';
+    this._label.update(this.name, tagList, residence);
   }
 }

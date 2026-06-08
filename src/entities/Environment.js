@@ -80,11 +80,9 @@ export class Environment {
   _syncLabel() {
     const displayTags = [...this.allTags];
     const residentNames = (this._residents || []).map((p) => p.name);
-    if (residentNames.length > 0) {
-      displayTags.push(`居民:${residentNames.join('、')}`);
-    } else {
-      displayTags.push('暂无宠物居住');
-    }
-    this._label.update(this.name, displayTags);
+    const residence = residentNames.length > 0
+      ? `居民: ${residentNames.join('、')}`
+      : '暂无宠物居住';
+    this._label.update(this.name, displayTags, residence);
   }
 }
