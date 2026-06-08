@@ -3,7 +3,7 @@ import { isKeyDown } from '../input/keyboard.js';
 
 /**
  * Player entity — a cone representing the player character.
- * WASD movement relative to camera angle. Can hold one item at a time.
+ * WASD movement relative to player's facing direction.
  */
 export class Player {
   constructor() {
@@ -19,9 +19,9 @@ export class Player {
 
   /**
    * @param {number} dt - delta time in seconds
-   * @param {number} cameraAngle - horizontal orbit angle from ThirdPersonCamera
+   * @param {number} _cameraAngle - unused (movement is player-relative)
    */
-  update(dt, cameraAngle) {
+  update(dt, _cameraAngle) {
     const moveDir = new THREE.Vector3();
 
     if (isKeyDown('w')) moveDir.z -= 1;
@@ -31,8 +31,13 @@ export class Player {
 
     if (moveDir.length() > 0) {
       moveDir.normalize();
-      moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngle);
+      // Rotate movement by player's own facing direction
+      moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.mesh.rotation.y);
       this.mesh.position.addScaledVector(moveDir, this._speed * dt);
+
+      // Face movement direction
+      const targetAngle = Math.atan2(moveDir.x, moveDir.z);
+      this.mesh.rotation.y = targetAngle;
     }
 
     // Held item follows player
