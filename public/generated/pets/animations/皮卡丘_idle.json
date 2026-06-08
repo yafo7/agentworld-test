@@ -1,0 +1,68 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.4
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4,
+      "phase": 0.1
+    },
+    "_attach": "body"
+  },
+  "tail": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.4,
+      "phase": 0.2
+    },
+    "_attach": "body"
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.6
+    },
+    "_attach": "body"
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.4
+    },
+    "_attach": "body"
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.06,
+      "frequency": 0.4,
+      "phase": 0.4
+    },
+    "_attach": "body"
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.06,
+      "frequency": 0.4,
+      "phase": 0.6
+    },
+    "_attach": "body"
+  }
+}

@@ -81,6 +81,17 @@ export const INTIMACY_ITEM_CONFIGS = {
 
 // ---- Pets ----
 
+export const PIKACHU_CONFIG = {
+  name: '皮卡丘',
+  color: 0xffdd00,
+  tags: ['电系', '活泼', '可爱', '元气', '友好'],
+  personality: '充满活力的电气老鼠，喜欢和训练师玩耍',
+  likes: ['电气', '番茄酱', '森林'],
+  dislikes: ['寂寞', '冷水'],
+  habits: ['脸颊放电', '蹭训练师', '发出皮卡皮卡的叫声'],
+  originSignature: ['森林', '温暖', '阳光', '热闹', '自然'],
+};
+
 export const PET_CONFIGS = [
   {
     name: '雨灯绒',

@@ -13,7 +13,7 @@ import { Environment } from './entities/Environment.js';
 import { Item } from './entities/Item.js';
 import { Pet } from './entities/Pet.js';
 import { Player } from './entities/Player.js';
-import { FOREST_CONFIG, ITEM_CONFIGS } from './game/gameData.js';
+import { FOREST_CONFIG, ITEM_CONFIGS, PIKACHU_CONFIG } from './game/gameData.js';
 import { setupGeneration } from './interaction/generation.js';
 import { setupInteract } from './interaction/interact.js';
 import { setupPetDialogue } from './interaction/petDialogue.js';
@@ -50,6 +50,18 @@ async function init() {
 
   // ---- pets ----
   const pets = [];
+
+  // Pikachu — spawn directly in scene
+  const pikachu = new Pet(PIKACHU_CONFIG);
+  pikachu.spawnAt(new THREE.Vector3(2, 0, 2));
+  pikachu.homeEnv = environments[0]; // forest is home
+  if (!environments[0]._residents) environments[0]._residents = [];
+  environments[0]._residents.push(pikachu);
+  environments[0]._syncLabel();
+  pikachu._syncLabel();
+  pets.push(pikachu);
+  scene.add(pikachu.mesh);
+
   const dynamicTargets = [player, ...items, ...environments];
 
   function addToScene(mesh) {
