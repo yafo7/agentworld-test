@@ -1,110 +1,35 @@
 {
-  "_duration": 2.5,
+  "_duration": 2,
   "_loop": true,
   "body": {
-    "bounce": {
-      "axis": "y",
-      "amplitude": 0.04,
-      "frequency": 0.3
-    }
-  },
-  "chest": {
     "breathe": {
       "amplitude": 0.02,
       "frequency": 0.3
+    }
+  },
+  "leftArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": 5
     },
-    "_attach": "body"
-  },
-  "abdomen": {
-    "breathe": {
-      "amplitude": 0.015,
-      "frequency": 0.3
-    },
-    "_attach": "body"
-  },
-  "pelvis": {
-    "_attach": "body"
-  },
-  "head": {
     "swing": {
       "axis": "z",
       "amplitude": 0.05,
       "frequency": 0.3,
-      "phase": 0.1
-    },
-    "_attach": "body"
-  },
-  "head_wp0": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.1
-    }
-  },
-  "head_wp1": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.2
-    }
-  },
-  "head_wp2": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.3
-    }
-  },
-  "head_wp3": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.4
-    }
-  },
-  "head_wp0_1": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.15
-    }
-  },
-  "head_wp1_1": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.25
-    }
-  },
-  "head_wp2_1": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.35
-    }
-  },
-  "head_wp3_1": {
-    "wave": {
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "delay": 0.45
-    }
-  },
-  "leftArm": {
-    "swing": {
-      "axis": "x",
-      "amplitude": 0.04,
-      "frequency": 0.3,
-      "phase": 0.2
+      "phase": 0
     },
     "_attach": "body"
   },
   "rightArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": -5
+    },
     "swing": {
-      "axis": "x",
-      "amplitude": 0.04,
+      "axis": "z",
+      "amplitude": 0.05,
       "frequency": 0.3,
-      "phase": 0.2
+      "phase": 0
     },
     "_attach": "body"
   },
@@ -113,7 +38,7 @@
       "axis": "x",
       "amplitude": 0.03,
       "frequency": 0.3,
-      "phase": 0.1
+      "phase": 0
     },
     "_attach": "body"
   },
@@ -122,45 +47,8 @@
       "axis": "x",
       "amplitude": 0.03,
       "frequency": 0.3,
-      "phase": 0.1
-    },
-    "_attach": "body"
-  },
-  "tail": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.08,
-      "frequency": 0.3,
       "phase": 0.5
     },
     "_attach": "body"
-  },
-  "tail_wp0": {
-    "wave": {
-      "amplitude": 0.08,
-      "frequency": 0.3,
-      "delay": 0.1
-    }
-  },
-  "tail_wp1": {
-    "wave": {
-      "amplitude": 0.08,
-      "frequency": 0.3,
-      "delay": 0.2
-    }
-  },
-  "tail_wp2": {
-    "wave": {
-      "amplitude": 0.08,
-      "frequency": 0.3,
-      "delay": 0.3
-    }
-  },
-  "tail_wp3": {
-    "wave": {
-      "amplitude": 0.08,
-      "frequency": 0.3,
-      "delay": 0.4
-    }
   }
 }
