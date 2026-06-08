@@ -46,8 +46,7 @@ export class Item {
       this.mesh.remove(this._fallback);
       this.mesh.add(model);
       this._modelGroup = model;
-      this._animPartMap = new Map();
-      model.traverse((o) => { if (o.name) this._animPartMap.set(o.name, o); });
+      this._animPartMap = null; // built lazily by applyAnimation
     }
 
     this._animIdle = await loadAnimationPlan(`generated/animations/${modelName}_idle.json`);
@@ -78,7 +77,7 @@ export class Item {
     if (!this._animIdle || !this._modelGroup) return;
     this._animTime += dt;
     const t = this._animTime % this._animDuration;
-    applyAnimation(this._animIdle, this._animDuration, this._modelGroup, t, this._animPartMap);
+    this._animPartMap = applyAnimation(this._animIdle, this._animDuration, this._modelGroup, t, this._animPartMap);
   }
 
   _syncLabel() { this._label.update(this.name, this.tags); }

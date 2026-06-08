@@ -112,10 +112,8 @@ export class Pet {
       this.mesh.add(model);
       this._modelGroup = model;
       this._modelLoaded = true;
-      this._animPartMap = new Map();
-      model.traverse((o) => {
-        if (o.name) this._animPartMap.set(o.name, o);
-      });
+      // basePoseMap will be built lazily by applyAnimation on first frame
+      this._animPartMap = null;
       console.log(`[Pet] ${this.name} model loaded`);
     }
   }
@@ -167,23 +165,20 @@ export class Pet {
       case 'wandering':
         if (this._isWalking) {
           this._moveWander(playerPos);
-          // Play walk animation
           if (this._animWalk && this._modelGroup) {
-            applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+            this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
           }
         } else {
-          // Idle — play breathing
           if (this._animIdle && this._modelGroup) {
-            applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+            this._animPartMap = applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
           }
         }
         break;
 
       case 'chatting':
         this._updateDialogue();
-        // Play idle animation
         if (this._animIdle && this._modelGroup) {
-          applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+          this._animPartMap = applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
         }
         break;
 
@@ -191,7 +186,7 @@ export class Pet {
         this._moveSeekPlayer(playerPos);
         // Play walk animation
         if (this._animWalk && this._modelGroup) {
-          applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+          this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
         }
         break;
     }
@@ -225,7 +220,7 @@ export class Pet {
       // Play idle while waiting
       if (this._animIdle && this._modelGroup) {
         const t = (this._animTime % (this._animDuration || 2.5));
-        applyAnimation(this._animIdle, this._animDuration || 2.5, this._modelGroup, t, this._animPartMap);
+        this._animPartMap = applyAnimation(this._animIdle, this._animDuration || 2.5, this._modelGroup, t, this._animPartMap);
       }
       return;
     }
