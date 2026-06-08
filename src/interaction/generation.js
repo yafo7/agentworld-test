@@ -21,7 +21,7 @@ export function setupGeneration(player, environments, items, onGenerate) {
       if (generationTimer > 0) {
         generationTimer -= dt;
         if (generationTimer <= 0 && pendingConfig) {
-          onGenerate(pendingConfig);
+          onGenerate(pendingConfig, pendingEnv);
           _hideNotification(pendingEnv);
           generating = false;
           pendingConfig = null;

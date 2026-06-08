@@ -9,6 +9,7 @@ export class Environment {
     this._yOffset = config.yOffset || 0;
     this.coreTags = [...config.coreTags];
     this.moreTags = [];
+    this._residents = []; // pets that call this environment home
 
     // ---- mesh (placeholder initially) ----
     this.mesh = new THREE.Group();
@@ -66,7 +67,7 @@ export class Environment {
   }
 
   get position() { return this.mesh.position; }
-  getInfo() { return { name: this.name, coreTags: this.coreTags, moreTags: this.moreTags, allTags: this.allTags }; }
+  getInfo() { return { name: this.name, coreTags: this.coreTags, moreTags: this.moreTags, allTags: this.allTags, residents: (this._residents||[]).map(p=>p.name) }; }
 
   /** Call every frame to play idle animation. */
   updateAnimation(dt = 0.016) {
@@ -76,5 +77,14 @@ export class Environment {
     applyAnimation(this._animIdle, this._animDuration, this._modelGroup, t, this._animPartMap);
   }
 
-  _syncLabel() { this._label.update(this.name, this.allTags); }
+  _syncLabel() {
+    const displayTags = [...this.allTags];
+    const residentNames = (this._residents || []).map((p) => p.name);
+    if (residentNames.length > 0) {
+      displayTags.push(`居民:${residentNames.join('、')}`);
+    } else {
+      displayTags.push('暂无宠物居住');
+    }
+    this._label.update(this.name, displayTags);
+  }
 }

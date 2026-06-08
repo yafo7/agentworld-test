@@ -31,6 +31,7 @@ export class Pet {
     this.dislikes = [...config.dislikes];
     this.habits = [...config.habits];
     this.originSignature = [...config.originSignature];
+    this.homeEnv = null; // set by onPetGenerated after spawning
 
     // ---- visual (placeholder initially) ----
     this._originalColor = config.color;
@@ -361,16 +362,16 @@ export class Pet {
     return {
       name: this.name, tags: this.tags, personality: this.personality,
       likes: this.likes, dislikes: this.dislikes, habits: this.habits,
-      originSignature: this.originSignature, state: this.state,
-      affection: this.affection, mood: this.mood, trust: this.trust,
-      memories: this.memories, milestones: { ...this._milestones },
+      originSignature: this.originSignature, home: this.homeEnv?.name || '无',
+      state: this.state, affection: this.affection, mood: this.mood,
+      trust: this.trust, memories: this.memories, milestones: { ...this._milestones },
     };
   }
 
   _syncLabel() {
-    const allTags = this.affection >= 5
-      ? [...this.tags, `亲密度${this.affection}`]
-      : this.tags;
-    this._label.update(this.name, allTags);
+    const tagList = [...this.tags];
+    if (this.affection >= 5) tagList.push(`亲密度${this.affection}`);
+    if (this.homeEnv) tagList.push(`居住于:${this.homeEnv.name}`);
+    this._label.update(this.name, tagList);
   }
 }

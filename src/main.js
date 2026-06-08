@@ -57,8 +57,11 @@ async function init() {
     dynamicTargets.push({ mesh, name: mesh.name, getInfo: null });
   }
 
-  function onPetGenerated(config) {
+  function onPetGenerated(config, homeEnv) {
     const pet = new Pet(config);
+    pet.homeEnv = homeEnv; // remember birthplace
+    if (homeEnv && !homeEnv._residents) homeEnv._residents = [];
+    if (homeEnv) homeEnv._residents.push(pet);
     pet.spawnAt(
       new THREE.Vector3(
         player.mesh.position.x + (Math.random() - 0.5) * 3,
@@ -69,7 +72,11 @@ async function init() {
     pets.push(pet);
     scene.add(pet.mesh);
     dynamicTargets.push(pet);
-    console.log(`[Pet] AI-generated: ${pet.name}`, pet.getInfo());
+    if (homeEnv) {
+      homeEnv._syncLabel();
+      pet._syncLabel();
+    }
+    console.log(`[Pet] Generated: ${pet.name}, home: ${homeEnv?.name || 'unknown'}`, pet.getInfo());
   }
 
   // ---- interaction systems ----
