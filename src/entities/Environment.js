@@ -5,6 +5,7 @@ import { loadModel, loadAnimationPlan, applyAnimation } from '../ai/modelLoader.
 export class Environment {
   constructor(config) {
     this.name = config.name;
+    this._modelName = config.modelName || config.name.toLowerCase().replace(/\s+/g, '_');
     this.coreTags = [...config.coreTags];
     this.moreTags = [];
 
@@ -35,7 +36,7 @@ export class Environment {
   }
 
   async _loadModelAndAnim() {
-    const modelName = this.name.toLowerCase().replace(/\s+/g, '_');
+    const modelName = this._modelName;
     const model = await loadModel(`generated/models/${modelName}.json`, null);
     if (model && model !== this._fallback) {
       this.mesh.remove(this._fallback);

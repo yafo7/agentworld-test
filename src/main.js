@@ -22,8 +22,8 @@ import { createTerrain } from './world/terrain.js';
 
 // ---- bootstrap ----
 async function init() {
-  // Load Voxel runtime (needed for model geometry + animation)
-  await initRuntime();
+  // Load Voxel runtime in background (non-blocking — models fall back to placeholders)
+  initRuntime().then(() => console.log('[Init] Voxel runtime ready')).catch((e) => console.warn('[Init] Voxel runtime unavailable, using placeholders:', e.message));
 
   // ---- Three.js setup ----
   const scene = createScene();
@@ -116,4 +116,7 @@ async function init() {
   );
 }
 
-init();
+init().catch((err) => {
+  console.error('[Init] Fatal:', err);
+  document.body.innerHTML = '<div style="color:white;padding:20px;font-family:sans-serif">Failed to start:<br>' + err.message + '</div>';
+});

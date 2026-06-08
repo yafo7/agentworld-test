@@ -6,6 +6,7 @@ export class Item {
   constructor(config) {
     this.id = config.id;
     this.name = config.name;
+    this._modelName = config.id; // generated file uses item id
     this.tags = [...config.tags];
     this.correspondsTo = config.correspondsTo;
     this.isHeld = false;
@@ -36,7 +37,7 @@ export class Item {
   }
 
   async _loadModelAndAnim() {
-    const modelName = this.name.toLowerCase().replace(/\s+/g, '_');
+    const modelName = this._modelName;
     const model = await loadModel(`generated/models/${modelName}.json`, null);
     if (model && model !== this._fallback) {
       this.mesh.remove(this._fallback);

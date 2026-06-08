@@ -7,6 +7,7 @@
 
 export const FOREST_CONFIG = {
   name: '森林',
+  modelName: 'forest',
   color: 0x2d5a1e,
   size: [2, 1, 2],
   position: [0, 0.5, 0],
@@ -17,6 +18,7 @@ export const FOREST_CONFIG = {
 // New environments spawned after player-pet max-intimacy dialogue
 export const ENV_POND = {
   name: '池塘',
+  modelName: 'pond',
   color: 0x3388cc,
   size: [1.5, 0.6, 1.5],
   coreTags: ['水', '凉爽', '反射', '宁静'],
@@ -25,6 +27,7 @@ export const ENV_POND = {
 
 export const ENV_GRASSLAND = {
   name: '草原',
+  modelName: 'grassland',
   color: 0x66bb44,
   size: [1.5, 0.6, 1.5],
   coreTags: ['草原', '开阔', '温暖', '微风'],
