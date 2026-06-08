@@ -40,6 +40,8 @@ export class Item {
     const modelName = this._modelName;
     const model = await loadModel(`generated/models/${modelName}.json`, null);
     if (model && model !== this._fallback) {
+      const box = new THREE.Box3().setFromObject(model);
+      model.position.y = -box.min.y;
       this.mesh.remove(this._fallback);
       this.mesh.add(model);
       this._modelGroup = model;

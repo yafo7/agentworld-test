@@ -99,9 +99,13 @@ export class Pet {
   async _loadModel() {
     const model = await loadModel(
       `generated/pets/models/${this.name}.json`,
-      null // no fallback — keep placeholder cube
+      null
     );
     if (model && model !== this._fallback) {
+      // Place model on ground: shift up so bounding box bottom is at y=0
+      const box = new THREE.Box3().setFromObject(model);
+      model.position.y = -box.min.y;
+
       this.mesh.remove(this._fallback);
       this.mesh.add(model);
       this._modelGroup = model;

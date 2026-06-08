@@ -121,14 +121,8 @@ export function buildModelFromJson(modelJson) {
     }
   }
 
-  // Center the model
-  if (!modelJson._skipAutoCenter) {
-    const box = new THREE.Box3().setFromObject(root);
-    const center = new THREE.Vector3();
-    box.getCenter(center);
-    // Only center horizontally, keep feet on ground
-    root.position.set(-center.x, -box.min.y, -center.z);
-  }
+  // Note: positioning is handled by the entity after loading.
+  // Each entity computes its own bounding box to place the model on the ground.
 
   return root;
 }
