@@ -171,6 +171,8 @@ export function applyAnimation(plan, duration, model, t, basePoseMap = null) {
     });
   }
 
+  // Apply deltas: base + delta
+  const applied = new Map(); // partId → { position, rotation, scale } applied delta
   for (const [partId, delta] of Object.entries(pose)) {
     if (partId.startsWith('_')) continue;
 
@@ -180,25 +182,54 @@ export function applyAnimation(plan, duration, model, t, basePoseMap = null) {
     const base = basePoseMap.get(partId);
     if (!base) continue;
 
-    if (delta.position) {
-      obj.position.set(
-        base.position.x + delta.position[0],
-        base.position.y + delta.position[1],
-        base.position.z + delta.position[2]
-      );
+    const pos = delta.position || [0, 0, 0];
+    const rot = delta.rotation || [0, 0, 0];
+    const scl = delta.scale;
+
+    obj.position.set(
+      base.position.x + pos[0],
+      base.position.y + pos[1],
+      base.position.z + pos[2]
+    );
+    obj.rotation.set(
+      base.rotation.x + rot[0],
+      base.rotation.y + rot[1],
+      base.rotation.z + rot[2]
+    );
+    if (scl) {
+      obj.scale.set(base.scale.x * scl[0], base.scale.y * scl[1], base.scale.z * scl[2]);
     }
-    if (delta.rotation) {
-      obj.rotation.set(
-        base.rotation.x + delta.rotation[0],
-        base.rotation.y + delta.rotation[1],
-        base.rotation.z + delta.rotation[2]
+
+    applied.set(partId, { position: pos, rotation: rot, scale: scl });
+  }
+
+  // Propagate parent deltas to _attached children
+  const attachMap = pose._attachMap;
+  if (attachMap) {
+    for (const [childId, parentId] of Object.entries(attachMap)) {
+      const parentApplied = applied.get(parentId);
+      if (!parentApplied) continue;
+
+      const childObj = model.getObjectByName(childId);
+      if (!childObj) continue;
+
+      const childBase = basePoseMap.get(childId);
+      if (!childBase) continue;
+
+      // Child gets its own delta (if any) + parent's delta
+      const childApplied = applied.get(childId);
+      const ownPos = childApplied ? childApplied.position : [0, 0, 0];
+      const ownRot = childApplied ? childApplied.rotation : [0, 0, 0];
+
+      childObj.position.set(
+        childBase.position.x + ownPos[0] + parentApplied.position[0],
+        childBase.position.y + ownPos[1] + parentApplied.position[1],
+        childBase.position.z + ownPos[2] + parentApplied.position[2]
       );
-    }
-    if (delta.scale) {
-      obj.scale.set(
-        base.scale.x * delta.scale[0],
-        base.scale.y * delta.scale[1],
-        base.scale.z * delta.scale[2]
+      childObj.rotation.set(
+        childBase.rotation.x + ownRot[0] + parentApplied.rotation[0],
+        childBase.rotation.y + ownRot[1] + parentApplied.rotation[1],
+        childBase.rotation.z + ownRot[2] + parentApplied.rotation[2]
       );
     }
   }
