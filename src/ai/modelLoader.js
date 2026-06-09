@@ -79,47 +79,60 @@ export function buildModelFromJson(modelJson) {
     }
   }
 
-  // Second pass: build hierarchy (positions are parent-relative, no conversion)
+  // Second pass: build hierarchy with parent inference
+  // (matches VoxelData.js: meshes auto-parent to the last group seen)
   const root = new THREE.Group();
   root.name = modelJson.name || 'Model';
+  let currentGroupId = null;
 
   for (const m of modelJson.meshes) {
-    if (!m.parent) root.add(meshes[m.id]);
-    else if (meshes[m.parent]) meshes[m.parent].add(meshes[m.id]);
+    if (m.group) {
+      currentGroupId = m.id;
+      if (!m.parent) root.add(meshes[m.id]);
+      else if (meshes[m.parent]) meshes[m.parent].add(meshes[m.id]);
+    } else {
+      // Infer parent: explicit parent → current group → root
+      const parentId = m.parent || currentGroupId || null;
+      if (parentId && meshes[parentId]) {
+        meshes[parentId].add(meshes[m.id]);
+      } else {
+        root.add(meshes[m.id]);
+      }
+    }
   }
 
-  // Attach model wrapper for evaluateMotion (needs getPart/getChildren)
-  root._voxelModel = _buildModelWrapper(modelJson, meshes);
+  // Attach model wrapper for evaluateMotion (built from actual Three.js hierarchy)
+  root._voxelModel = _buildModelWrapper(root);
 
   return root;
 }
 
 /**
- * Build a model wrapper object that evaluateMotion expects.
- * Provides getPart(id) and getChildren(id) with offset data.
+ * Build model wrapper from the constructed Three.js hierarchy.
+ * Provides getPart(id)→{id,isGroup,offset} and getChildren(id)→[].
  */
-function _buildModelWrapper(modelJson, threeObjects) {
-  // Index by id
+function _buildModelWrapper(rootGroup) {
   const byId = {};
-  for (const m of modelJson.meshes) {
-    const obj = threeObjects[m.id];
-    const pos = obj ? obj.position : new THREE.Vector3(m.position?.x ?? 0, m.position?.y ?? 0, m.position?.z ?? 0);
-    byId[m.id] = {
-      id: m.id,
-      name: m.name || m.id,
-      isGroup: !!m.group,
-      offset: [pos.x, pos.y, pos.z],
-      parent: m.parent || null,
+
+  rootGroup.traverse((obj) => {
+    if (!obj.name) return;
+    byId[obj.name] = {
+      id: obj.name,
+      name: obj.name,
+      isGroup: obj.isGroup || (obj.children && obj.children.length > 0),
+      offset: [obj.position.x, obj.position.y, obj.position.z],
       children: [],
     };
-  }
+  });
 
-  // Build children lists
-  for (const m of modelJson.meshes) {
-    if (m.parent && byId[m.parent]) {
-      byId[m.parent].children.push(byId[m.id]);
+  // Build children lists from Three.js parent-child relationships
+  rootGroup.traverse((obj) => {
+    if (!obj.name || !obj.parent || obj.parent === rootGroup) return;
+    const parentId = obj.parent.name;
+    if (byId[parentId] && byId[obj.name]) {
+      byId[parentId].children.push(byId[obj.name]);
     }
-  }
+  });
 
   return {
     getPart(id) { return byId[id] || null; },
