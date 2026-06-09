@@ -272,6 +272,51 @@ body: { messages:[...], temperature:0.7, maxTokens:1024, provider:"fireworks" }
 { ok:true, content: "..." }
 ```
 
+### Runtime 源码分析（从 `/api/templates/module.js` 逆向）
+
+**已下载并完整分析 Runtime 源码。** 关键发现：
+
+**evaluateMotion 返回值：**
+```js
+{
+  groupId: { position:[dx,dy,dz], rotation:[rx,ry,rz], scale:null|[sx,sy,sz] },
+  _attachMap: { childId: parentId }  // ★ 附件关系：子部件跟随父部件
+}
+```
+- 返回的是**增量（delta）**，不是绝对坐标
+- 前端必须：`final = basePose + delta`
+- `_attachMap` **不会自动生效**——需要前端手动把 parent 的 delta 叠加到 child
+
+**model 参数必须是包装器：**
+```js
+model = {
+  getPart(id) → { id, isGroup, offset:[x,y,z] },
+  getChildren(id) → [{ id, isGroup, offset:[x,y,z] }, ...]
+}
+```
+- `evaluateMotion` 内部的复杂模板（tilt/wave/flow）通过 `model.getPart(id).offset` 取部件位置
+- **不能直接传 THREE.Group**——需要构建包装器 `model._voxelModel`
+
+**正确的模型构建 + 动画播放流程（已实现于 `src/ai/modelLoader.js`）：**
+```
+1. buildModelFromJson(modelJson):
+   - First pass: 每个mesh创建 THREE.Group 或 THREE.Mesh
+     - 命名用 m.id（英文ID，匹配动画plan key）
+     - 调用 runtime.buildGeometry(type, geometry) 构建几何体
+   - Second pass: 按 parent 字段建立层级（坐标已是相对坐标，无需转换）
+   - 构建 _voxelModel 包装器（getPart/getChildren）
+
+2. applyAnimation(plan, duration, model, t, basePoseMap):
+   - 第一次调用时构建 basePoseMap（记录所有部件的初始position/rotation/scale）
+   - 调用 evaluateMotion(plan, duration, model._voxelModel, t) 获取增量
+   - 对每个部件：obj.position = base + delta.position
+   - ★ 处理 _attachMap：将被附着部件的 delta 叠加到附着者
+```
+
+**已知问题：**
+- 模型部件过多（>100 mesh）时每个 mesh 独立 draw call，性能较差
+- 后端 demo 可能使用了 mesh 合并优化，待拿到源码后对齐
+
 ### 与我们现有系统的集成方案
 
 **现状：**
