@@ -152,198 +152,89 @@ function trigger() {
 
 ---
 
-## 操作说明
+## 当前问题（已知待解决）
 
-| 操作 | 按键 | 条件 |
-|------|------|------|
-| 移动 | WASD | 始终 |
-| 旋转视角 | 鼠标左键拖拽 | 始终 |
-| 缩放 | 滚轮 | 始终 |
-| 捡起/放下物品 | E | 不靠近宠物时 |
-| 与宠物互动(亲密度+1) | E | 靠近宠物(3m内) |
-| 与寻主宠物对话 | E | 宠物气泡可见时 |
-| AI生成宠物 | F | 靠近任何环境(4m内) |
-| 点击查看数据 | 鼠标点击 | 任意物体 |
+1. **模型渲染性能** — 每个mesh独立draw call，90+ mesh的模型（如皮卡丘）渲染压力大。需合并同材质mesh。
+2. **模型精度** — 父节点推断已修复（对齐VoxelData.js），但部分复杂动画模板（tilt/wave）仍可能有问题。
+3. **物品遮挡** — 森林地面厚度问题已通过删除模型内置地面解决，但新生成的环境可能需要同样处理。
+4. **WASD移动** — 基于摄像机方向，但部分用户反馈方向感觉不对（可能因为phi初始角度或摄像机旋转问题）。
+5. **亲密度重复触发** — milestone环境/物品生成有防重入，但寻主对话的防重入简单（completedPlayerDialogues map），刷新后重置。
 
 ---
 
-## 后续开发目标（预估）
+## 运行方式
 
-### 短期
-- **模型替换**: 玩家/宠物/物品用实际3D模型替换方块/锥体
-- **动画系统**: 宠物idle/walk/interact动画（需AnimationMixer）
-- **物品旋转/摆放优化**: 放置物品时预览位置，支持旋转
-- **音效**: 环境音、互动音效
+### 开发
+```bash
+cd agentworld-test
+npm install
+npm run dev -- --host    # 访问 http://localhost:5173
+```
 
-### 中期
-- **小窝签名系统**: 环境tag组合→小窝气质→提示"吸引什么类型的生命"
-- **宠物进化**: 长期环境tag累积→形态分支进化→调用AI生成进化体
-- **社交网络**: 宠物间关系图(喜欢/讨厌/守护)，影响对话和行为
-- **2D小剧场**: 对话不再只是气泡，增加立绘/表情
+### 部署（服务器）
+```bash
+nohup npx vite --host 0.0.0.0 > /tmp/vite.log 2>&1 &
+# 公网: http://111.230.91.60:5173/
+```
 
-### 长期
-- **3D模型生成管线**: 接入实验室文本→3D API
-- **多小窝系统**: 多个独立环境区域，各自吸引不同生态
-- **生态图鉴**: 记录发现过的宠物/物品/环境/进化路径
-- **持久化存档**: 保存/加载玩家庭院
+### 后端编辑器（独立项目）
+```bash
+cd ../3d-generate
+nohup python3 -m http.server 8000 --bind 0.0.0.0 &
+# 通过Vite proxy: http://111.230.91.60:5173/studio/
+```
+
+### 预设模型生成
+```bash
+node scripts/generate-presets.mjs   # 调用Voxel API生成所有预设模型+动画
+```
 
 ---
 
-## Voxel Studio 后端 API（3D模型+动画生成）
+## 重要文件
 
-> **API Base:** `https://voxel-studio-backend.zeabur.app`
-> 实验室后端服务，文本→低多边形3D模型+动画。处理所有3D生成，前端只需发HTTP请求。
+| 文件 | 重要性 | 原因 |
+|------|--------|------|
+| `src/ai/modelLoader.js` | ★★★ | 模型构建+动画播放核心。buildModelFromJson对齐后端VoxelData.js的父节点推断 |
+| `src/ai/voxelApi.js` | ★★ | Voxel API客户端（SSE解析+provider fallback） |
+| `src/entities/Pet.js` | ★★★ | 最复杂的实体：状态机、亲密度、对话、动画、变色|
+| `src/entities/Environment.js` | ★★ | tag系统核心，居民追踪 |
+| `src/interaction/interact.js` | ★★ | E键统一路由，优先级逻辑 |
+| `src/interaction/generation.js` | ★★ | 预设优先→AI fallback，通知文字 |
+| `src/interaction/petDialogue.js` | ★★ | 对话触发+寻主检测，异步AI调用 |
+| `src/ui/TagLabel.js` | ★ | 三行Canvas标签渲染 |
+| `src/ui/SpeechBubble.js` | ★ | 对话气泡渲染 |
+| `src/game/gameData.js` | ★ | 所有预设配置+PIKACHU_CONFIG |
+| `src/game/tagLibrary.js` | ★ | 30环境+100物品tag库 |
 
-### 端点总览
+### 后端源码（参考，不在本仓库）
+- `/home/ubuntu/gamedevelop/3d-generate/` — Voxel Studio前端+后端
+- `js/core/VoxelData.js` — **模型解析的真相**（父节点推断、auto-lock、坐标系统）
+- `js/core/VoxelRenderer.js` — 渲染器实现
 
-| 端点 | 方法 | 用途 |
-|------|------|------|
-| `/health` | GET | 健康检查 `{"ok":true}` |
-| `/api/generate/model` | POST | 生成单个3D模型（**SSE流式**） |
-| `/api/generate/batch` | POST | 批量生成多个模型（JSON） |
-| `/api/generate/animation` | POST | 生成Motion Plan动画（JSON） |
-| `/api/chat` | POST | 简单LLM对话 |
-| `/api/templates/module.js` | GET | 获取Runtime ES Module（几何构建+动画播放核心） |
+---
 
-### Provider（3D生成供应商）
+## 模型解析要点（从后端源码逆向）
 
-4个可用，推荐默认`fireworks`，被限速时切换：
 ```
-fireworks → glm → gpt → deepseek
-```
-
-### 核心概念
-
-**1. 模型生成流程（SSE流式）**
-```
-POST /api/generate/model
-body: { description: "a lowpoly dragon", provider: "fireworks" }
-     ↓
-SSE事件流: blockout → code → result(含modelJson) | error
-```
-- 前端需解析SSE（逐行读`data:`前缀）
-- `modelJson`是Three.js兼容的扁平mesh数组，通过`group:true`/`parent`表达层级
-- 几何类型: box, sphere, cylinder, cone, torus, wedge, tri, patch, icosahedron, dodecahedron, octahedron
-
-**2. modelJson格式**
-```json
-{
-  "name": "Knight",
-  "type": "lowpoly",
-  "meshes": [
-    { "id":"body", "name":"Body", "group":true, "position":{"x":0,"y":2.5,"z":0} },
-    { "id":"m0", "type":"box", "geometry":{"width":2,"height":3,"depth":1.4},
-      "position":{"x":0,"y":2,"z":0}, "color":10066329, "parent":"body" }
-  ]
-}
-```
-- `meshes`是扁平数组，通过`parent`引用建立层级树
-- 每个mesh有`type`+`geometry`+`position`+`color`+可选`parent`
-
-**3. Runtime模块（前端核心引擎）**
-```js
-import * as THREE from 'three';
-window.THREE = THREE; // ★ Runtime需要全局THREE
-const mod = await import('https://voxel-studio-backend.zeabur.app/api/templates/module.js');
-const runtime = mod.voxelStudioRuntime;
+VoxelData.js 关键逻辑（第135-183行）：
+1. currentGroupId 追踪 —— 遍历meshes时记录最后一个group
+2. 父节点推断 —— parentId = m.parent || currentGroupId || null
+3. 这意味着没有显式parent的mesh自动归属到上一个group
+4. auto-lock —— group的子节点默认locked（不可独立移动）
+5. pivot已在服务端处理 —— 前端不要修改模型位置
 ```
 
-Runtime API:
-- `runtime.buildGeometry(type, params)` → 构建THREE.Geometry（**不要硬编码参数名**）
-- `runtime.evaluateMotion(plan, duration, model, t)` → 每帧调用，返回各group的position/rotation/scale增量
-- `runtime.listAnimationTemplates()` → 列出所有动画模板
-- `runtime.listGeometryTypes()` → 列出所有几何类型
+---
 
-**4. 动画生成**
-```
-POST /api/generate/animation
-body: { modelJson, description: "running", duration: 2.0, provider: "fireworks" }
-     ↓
-{ ok:true, plan: { _duration:2, _loop:true, body:{bounce:{...}}, leftArm:{swing:{...}} } }
-```
-- Motion Plan: groupId → 动画模板+参数
-- 播放时每帧调用`runtime.evaluateMotion(plan, duration, model, t)`
+## 注意事项
 
-**5. LLM对话（辅助用）**
-```
-POST /api/chat
-body: { messages:[...], temperature:0.7, maxTokens:1024, provider:"fireworks" }
-     ↓
-{ ok:true, content: "..." }
-```
-
-### Runtime 源码分析（从 `/api/templates/module.js` 逆向）
-
-**已下载并完整分析 Runtime 源码。** 关键发现：
-
-**evaluateMotion 返回值：**
-```js
-{
-  groupId: { position:[dx,dy,dz], rotation:[rx,ry,rz], scale:null|[sx,sy,sz] },
-  _attachMap: { childId: parentId }  // ★ 附件关系：子部件跟随父部件
-}
-```
-- 返回的是**增量（delta）**，不是绝对坐标
-- 前端必须：`final = basePose + delta`
-- `_attachMap` **不会自动生效**——需要前端手动把 parent 的 delta 叠加到 child
-
-**model 参数必须是包装器：**
-```js
-model = {
-  getPart(id) → { id, isGroup, offset:[x,y,z] },
-  getChildren(id) → [{ id, isGroup, offset:[x,y,z] }, ...]
-}
-```
-- `evaluateMotion` 内部的复杂模板（tilt/wave/flow）通过 `model.getPart(id).offset` 取部件位置
-- **不能直接传 THREE.Group**——需要构建包装器 `model._voxelModel`
-
-**正确的模型构建 + 动画播放流程（已实现于 `src/ai/modelLoader.js`）：**
-```
-1. buildModelFromJson(modelJson):
-   - First pass: 每个mesh创建 THREE.Group 或 THREE.Mesh
-     - 命名用 m.id（英文ID，匹配动画plan key）
-     - 调用 runtime.buildGeometry(type, geometry) 构建几何体
-   - Second pass: 按 parent 字段建立层级（坐标已是相对坐标，无需转换）
-   - 构建 _voxelModel 包装器（getPart/getChildren）
-
-2. applyAnimation(plan, duration, model, t, basePoseMap):
-   - 第一次调用时构建 basePoseMap（记录所有部件的初始position/rotation/scale）
-   - 调用 evaluateMotion(plan, duration, model._voxelModel, t) 获取增量
-   - 对每个部件：obj.position = base + delta.position
-   - ★ 处理 _attachMap：将被附着部件的 delta 叠加到附着者
-```
-
-**已知问题：**
-- 模型部件过多（>100 mesh）时每个 mesh 独立 draw call，性能较差
-- 后端 demo 可能使用了 mesh 合并优化，待拿到源码后对齐
-
-### 与我们现有系统的集成方案
-
-**现状：**
-- 宠物/物品/环境都是占位几何体（方块/锥体/三棱锥）
-- DeepSeek负责文本AI（宠物性格、对话、里程碑物品名/tag）
-- 标签和气泡是Canvas Sprite
-
-**集成分层（互补关系，非替代）：**
-
-| 层 | 当前 | 集成后 |
-|------|------|------|
-| **文本AI** | DeepSeek `src/ai/*` | **保持不变** — 宠物概念/对话/里程碑仍用DeepSeek |
-| **3D模型** | 方块/锥体占位 | 用Voxel API替换为实际lowpoly模型 |
-| **动画** | 无 | 用Voxel动画API+Runtime驱动宠物动作 |
-| **LLM对话** | DeepSeek直连 | 可选：部分对话换用`/api/chat`(fireworks) |
-
-**关键集成点：**
-1. **宠物生成时** → DeepSeek产出`{name, tags, personality...}` → 用`name + tags`拼description → 调用`/api/generate/model` → 得到modelJson → `runtime.buildGeometry`构建 → 替换方块
-2. **物品/环境** → 同理，用物品名+tag拼description → 生成3D模型
-3. **动画播放** → 加载runtime → 宠物生成后调用`/api/generate/animation` → 每帧`runtime.evaluateMotion`
-4. **运行时初始化** → main.js启动时`window.THREE = THREE` → 动态`import()` runtime模块
-
-**注意：**
-- 不硬编码动画模板名/几何类型名 — 从runtime动态获取
-- 不硬编码geometry参数名 — 用`runtime.buildGeometry(type, params)`传递
-- 模型生成是异步SSE流 — 需要"生成中"等待状态（可复用现有的预兆→剪影→登场游戏化等待概念）
-- CORS已配置 — 本地开发无需代理
+- 云服务器仅开放端口 5173 和 8082，其他端口需通过Vite proxy
+- 本地开发 vs 服务器部署性能无差异（渲染在本地GPU）
+- `public/generated/` 下 27 个 JSON 文件（544KB）是预设模型，勿删
+- Voxel Runtime通过Vite proxy加载，路径 `/api/voxel/...`
+- 后端编辑器通过 `/studio/` proxy 访问
+- DeepSeek API key 在 `src/ai/api.js`
 
 ---
 
