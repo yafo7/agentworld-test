@@ -1,0 +1,3569 @@
+{
+  "name": "Witchy Magical Tree",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "group": true,
+      "position": {
+        "x": 0.5,
+        "y": 5.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "trunk_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "trunk",
+      "position": {
+        "x": -0.5,
+        "y": -5.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m1",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 1.11,
+        "radiusBottom": 1.11,
+        "height": 0.78,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.11,
+        "y": 0.8,
+        "z": 0.05
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.03,
+        "y": 0,
+        "z": -0.07,
+        "w": 1
+      },
+      "boneFrom": "trunk_wp0",
+      "boneTo": "trunk_wp1",
+      "boneRestLen": 0.78
+    },
+    {
+      "id": "trunk_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "trunk",
+      "position": {
+        "x": -0.3,
+        "y": -4,
+        "z": 0.1
+      },
+      "pivotTarget": "trunk_wp0"
+    },
+    {
+      "id": "m2",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.92,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m3",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.94,
+        "radiusBottom": 0.94,
+        "height": 0.94,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": 0.77,
+        "z": 0.05
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.03,
+        "y": 0,
+        "z": 0.1,
+        "w": 0.99
+      },
+      "boneFrom": "trunk_wp1",
+      "boneTo": "trunk_wp2",
+      "boneRestLen": 0.94
+    },
+    {
+      "id": "trunk_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "trunk",
+      "position": {
+        "x": -0.6,
+        "y": -2.5,
+        "z": 0.2
+      },
+      "pivotTarget": "trunk_wp1"
+    },
+    {
+      "id": "m4",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.77,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m5",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.77,
+        "radiusBottom": 0.77,
+        "height": 1.05,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.1,
+        "y": 0.78,
+        "z": -0.1
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.07,
+        "y": 0,
+        "z": -0.07,
+        "w": 1
+      },
+      "boneFrom": "trunk_wp2",
+      "boneTo": "trunk_wp3",
+      "boneRestLen": 1.05
+    },
+    {
+      "id": "trunk_wp3",
+      "name": "wp3",
+      "group": true,
+      "parent": "trunk",
+      "position": {
+        "x": -0.4,
+        "y": -1,
+        "z": 0
+      },
+      "pivotTarget": "trunk_wp2"
+    },
+    {
+      "id": "m6",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.61,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m7",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.59,
+        "radiusBottom": 0.59,
+        "height": 0.61,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.05,
+        "y": 0.52,
+        "z": 0
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.05,
+        "w": 1
+      },
+      "boneFrom": "trunk_wp3",
+      "boneTo": "trunk_wp4",
+      "boneRestLen": 0.61
+    },
+    {
+      "id": "trunk_wp4",
+      "name": "wp4",
+      "group": true,
+      "parent": "trunk",
+      "position": {
+        "x": -0.5,
+        "y": 0,
+        "z": 0
+      },
+      "pivotTarget": "trunk_wp3"
+    },
+    {
+      "id": "m8",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m9",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.33,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.5,
+        "y": -5,
+        "z": 0
+      },
+      "color": 2824983,
+      "parent": "trunk"
+    },
+    {
+      "id": "m10",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 2.96,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.75,
+        "y": -5.25,
+        "z": 0.75
+      },
+      "color": 2824983,
+      "parent": "trunk",
+      "quaternion": {
+        "x": 0.39,
+        "y": 0,
+        "z": -0.66,
+        "w": 0.64
+      }
+    },
+    {
+      "id": "m11",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 2.29,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -1.5,
+        "y": -5.25,
+        "z": 0.5
+      },
+      "color": 2824983,
+      "parent": "trunk",
+      "quaternion": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.7,
+        "w": 0.63
+      }
+    },
+    {
+      "id": "m12",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 2.55,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.25,
+        "y": -5.25,
+        "z": -1
+      },
+      "color": 2824983,
+      "parent": "trunk",
+      "quaternion": {
+        "x": -0.62,
+        "y": 0,
+        "z": -0.46,
+        "w": 0.63
+      }
+    },
+    {
+      "id": "m13",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 2.18,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -1.25,
+        "y": -5.25,
+        "z": -0.75
+      },
+      "color": 2824983,
+      "parent": "trunk",
+      "quaternion": {
+        "x": -0.55,
+        "y": 0,
+        "z": 0.55,
+        "w": 0.62
+      }
+    },
+    {
+      "id": "m14",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.8,
+        "y": -2.7,
+        "z": 0.9
+      },
+      "color": 9699539,
+      "parent": "trunk"
+    },
+    {
+      "id": "m15",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.2,
+        "y": -2.7,
+        "z": 0.9
+      },
+      "color": 9699539,
+      "parent": "trunk"
+    },
+    {
+      "id": "m16",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.15,
+        "height": 0.4,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.5,
+        "y": -3.1,
+        "z": 1
+      },
+      "color": 2824983,
+      "parent": "trunk",
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m17",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.1,
+        "depth": 0.15
+      },
+      "position": {
+        "x": -0.5,
+        "y": -3.5,
+        "z": 0.9
+      },
+      "color": 1707786,
+      "parent": "trunk"
+    },
+    {
+      "id": "m18",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.25,
+        "height": 1,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 1.5,
+        "y": -5,
+        "z": 1
+      },
+      "color": 9699539,
+      "parent": "trunk",
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m19",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.2,
+        "height": 0.8,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -2,
+        "y": -5.1,
+        "z": 0.8
+      },
+      "color": 9699539,
+      "parent": "trunk",
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m20",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.15,
+        "height": 0.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.5,
+        "y": -5.2,
+        "z": -1.5
+      },
+      "color": 9699539,
+      "parent": "trunk",
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "branches",
+      "name": "branches",
+      "group": true,
+      "position": {
+        "x": 0.5,
+        "y": 7,
+        "z": 0
+      }
+    },
+    {
+      "id": "branches_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -0.5,
+        "y": -1.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m21",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m22",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.27,
+        "radiusBottom": 0.27,
+        "height": 1.32,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.51,
+        "y": 0.51,
+        "z": 0.26
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.18,
+        "y": 0,
+        "z": -0.37,
+        "w": 0.91
+      },
+      "boneFrom": "branches_wp0",
+      "boneTo": "branches_wp1",
+      "boneRestLen": 1.32
+    },
+    {
+      "id": "branches_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 0.5,
+        "y": -0.5,
+        "z": 0.5
+      },
+      "pivotTarget": "branches_wp0"
+    },
+    {
+      "id": "m23",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.21,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m24",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 1.75,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.76,
+        "y": 0.51,
+        "z": 0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.15,
+        "y": 0,
+        "z": -0.46,
+        "w": 0.88
+      },
+      "boneFrom": "branches_wp1",
+      "boneTo": "branches_wp2",
+      "boneRestLen": 1.75
+    },
+    {
+      "id": "branches_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 2,
+        "y": 0.5,
+        "z": 1
+      },
+      "pivotTarget": "branches_wp1"
+    },
+    {
+      "id": "m25",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.15,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m26",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.14,
+        "radiusBottom": 0.14,
+        "height": 1.14,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.51,
+        "y": 0.25,
+        "z": -0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.24,
+        "y": 0,
+        "z": -0.49,
+        "w": 0.84
+      },
+      "boneFrom": "branches_wp2",
+      "boneTo": "branches_wp3",
+      "boneRestLen": 1.14
+    },
+    {
+      "id": "branches_wp3",
+      "name": "wp3",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 3,
+        "y": 1,
+        "z": 0.5
+      },
+      "pivotTarget": "branches_wp2"
+    },
+    {
+      "id": "m27",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.1,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "branches_wp0_1",
+      "name": "wp0",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -0.5,
+        "y": -1.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m28",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m29",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.27,
+        "radiusBottom": 0.27,
+        "height": 1.32,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.51,
+        "y": 0.51,
+        "z": -0.26
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.18,
+        "y": 0,
+        "z": 0.37,
+        "w": 0.91
+      },
+      "boneFrom": "branches_wp0_1",
+      "boneTo": "branches_wp1_1",
+      "boneRestLen": 1.32
+    },
+    {
+      "id": "branches_wp1_1",
+      "name": "wp1",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": -0.5
+      },
+      "pivotTarget": "branches_wp0_1"
+    },
+    {
+      "id": "m30",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.21,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m31",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 1.75,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.76,
+        "y": 0.51,
+        "z": -0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.15,
+        "y": 0,
+        "z": 0.46,
+        "w": 0.88
+      },
+      "boneFrom": "branches_wp1_1",
+      "boneTo": "branches_wp2_1",
+      "boneRestLen": 1.75
+    },
+    {
+      "id": "branches_wp2_1",
+      "name": "wp2",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -3,
+        "y": 0.5,
+        "z": -1
+      },
+      "pivotTarget": "branches_wp1_1"
+    },
+    {
+      "id": "m32",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.15,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m33",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.14,
+        "radiusBottom": 0.14,
+        "height": 1.14,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.25,
+        "y": 0.51,
+        "z": -0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.21,
+        "y": 0,
+        "z": -0.21,
+        "w": 0.95
+      },
+      "boneFrom": "branches_wp2_1",
+      "boneTo": "branches_wp3_1",
+      "boneRestLen": 1.14
+    },
+    {
+      "id": "branches_wp3_1",
+      "name": "wp3",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -2.5,
+        "y": 1.5,
+        "z": -1.5
+      },
+      "pivotTarget": "branches_wp2_1"
+    },
+    {
+      "id": "m34",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.1,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "branches_wp0_2",
+      "name": "wp0",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -0.5,
+        "y": -1.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m35",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.25,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m36",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.22,
+        "radiusBottom": 0.22,
+        "height": 1.35,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.26,
+        "y": 0.51,
+        "z": 0.51
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.37,
+        "y": 0,
+        "z": -0.18,
+        "w": 0.91
+      },
+      "boneFrom": "branches_wp0_2",
+      "boneTo": "branches_wp1_2",
+      "boneRestLen": 1.35
+    },
+    {
+      "id": "branches_wp1_2",
+      "name": "wp1",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 0,
+        "y": -0.5,
+        "z": 1
+      },
+      "pivotTarget": "branches_wp0_2"
+    },
+    {
+      "id": "m37",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.17,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m38",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.17,
+        "radiusBottom": 0.17,
+        "height": 1.39,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.25,
+        "y": 0.51,
+        "z": 0.51
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.37,
+        "y": 0,
+        "z": -0.18,
+        "w": 0.91
+      },
+      "boneFrom": "branches_wp1_2",
+      "boneTo": "branches_wp2_2",
+      "boneRestLen": 1.39
+    },
+    {
+      "id": "branches_wp2_2",
+      "name": "wp2",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 2
+      },
+      "pivotTarget": "branches_wp1_2"
+    },
+    {
+      "id": "m39",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.13,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m40",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.11,
+        "radiusBottom": 0.11,
+        "height": 1.14,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.51,
+        "z": 0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": 0.21,
+        "y": 0,
+        "z": 0.21,
+        "w": 0.95
+      },
+      "boneFrom": "branches_wp2_2",
+      "boneTo": "branches_wp3_2",
+      "boneRestLen": 1.14
+    },
+    {
+      "id": "branches_wp3_2",
+      "name": "wp3",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": 0,
+        "y": 1.5,
+        "z": 2.5
+      },
+      "pivotTarget": "branches_wp2_2"
+    },
+    {
+      "id": "m41",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "branches_wp0_3",
+      "name": "wp0",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -0.5,
+        "y": -1.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m42",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.25,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m43",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.22,
+        "radiusBottom": 0.22,
+        "height": 1.07,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.26,
+        "y": 0.26,
+        "z": -0.51
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.49,
+        "y": 0,
+        "z": 0.24,
+        "w": 0.84
+      },
+      "boneFrom": "branches_wp0_3",
+      "boneTo": "branches_wp1_3",
+      "boneRestLen": 1.07
+    },
+    {
+      "id": "branches_wp1_3",
+      "name": "wp1",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -1,
+        "y": -1,
+        "z": -1
+      },
+      "pivotTarget": "branches_wp0_3"
+    },
+    {
+      "id": "m44",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.17,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m45",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.17,
+        "radiusBottom": 0.17,
+        "height": 1.39,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.51,
+        "z": -0.51
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.37,
+        "y": 0,
+        "z": 0.18,
+        "w": 0.91
+      },
+      "boneFrom": "branches_wp1_3",
+      "boneTo": "branches_wp2_3",
+      "boneRestLen": 1.39
+    },
+    {
+      "id": "branches_wp2_3",
+      "name": "wp2",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -1.5,
+        "y": 0,
+        "z": -2
+      },
+      "pivotTarget": "branches_wp1_3"
+    },
+    {
+      "id": "m46",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.13,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "m47",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.11,
+        "radiusBottom": 0.11,
+        "height": 1.14,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.51,
+        "z": -0.25
+      },
+      "color": 2824983,
+      "quaternion": {
+        "x": -0.21,
+        "y": 0,
+        "z": 0.21,
+        "w": 0.95
+      },
+      "boneFrom": "branches_wp2_3",
+      "boneTo": "branches_wp3_3",
+      "boneRestLen": 1.14
+    },
+    {
+      "id": "branches_wp3_3",
+      "name": "wp3",
+      "group": true,
+      "parent": "branches",
+      "position": {
+        "x": -2,
+        "y": 1,
+        "z": -2.5
+      },
+      "pivotTarget": "branches_wp2_3"
+    },
+    {
+      "id": "m48",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2824983
+    },
+    {
+      "id": "leaves",
+      "name": "leaves",
+      "group": true,
+      "position": {
+        "x": 0.5,
+        "y": 9,
+        "z": 0
+      }
+    },
+    {
+      "id": "m49",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          1,
+          0.5,
+          1
+        ],
+        "c": [
+          -1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": 0.5
+      },
+      "color": 6950317
+    },
+    {
+      "id": "m50",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          -1,
+          0.5,
+          1
+        ],
+        "c": [
+          1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": 0.5
+      },
+      "color": 4915330
+    },
+    {
+      "id": "m51",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          -1,
+          0.5,
+          1
+        ],
+        "c": [
+          1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -2.5,
+        "y": 0.5,
+        "z": -1.5
+      },
+      "color": 6950317
+    },
+    {
+      "id": "m52",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          1,
+          0.5,
+          1
+        ],
+        "c": [
+          -1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -2.5,
+        "y": 0.5,
+        "z": -1.5
+      },
+      "color": 4915330
+    },
+    {
+      "id": "m53",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          1,
+          0.5,
+          1
+        ],
+        "c": [
+          -1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": 2.5
+      },
+      "color": 6950317
+    },
+    {
+      "id": "m54",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          -1,
+          0.5,
+          1
+        ],
+        "c": [
+          1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": 2.5
+      },
+      "color": 4915330
+    },
+    {
+      "id": "m55",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          -1,
+          0.5,
+          1
+        ],
+        "c": [
+          1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -2,
+        "y": 0,
+        "z": -2.5
+      },
+      "color": 6950317
+    },
+    {
+      "id": "m56",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -1,
+          0
+        ],
+        "b": [
+          1,
+          0.5,
+          1
+        ],
+        "c": [
+          -1,
+          0.5,
+          -1
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -2,
+        "y": 0,
+        "z": -2.5
+      },
+      "color": 4915330
+    },
+    {
+      "id": "aura",
+      "name": "aura",
+      "group": true,
+      "position": {
+        "x": 0.5,
+        "y": 7,
+        "z": 0
+      }
+    },
+    {
+      "id": "m57",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.2,
+        "detail": 0
+      },
+      "position": {
+        "x": 2,
+        "y": 1.5,
+        "z": 1
+      },
+      "color": 65535
+    },
+    {
+      "id": "m58",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -2,
+        "y": 2,
+        "z": -2
+      },
+      "color": 65535
+    },
+    {
+      "id": "m59",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.18,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.5,
+        "y": 0.5,
+        "z": 2
+      },
+      "color": 65535
+    },
+    {
+      "id": "m60",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": -3.5,
+        "y": 0.5,
+        "z": 0
+      },
+      "color": 65535
+    },
+    {
+      "id": "aura_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "aura",
+      "position": {
+        "x": 0.5,
+        "y": -0.5,
+        "z": 0.5
+      }
+    },
+    {
+      "id": "m61",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.03,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 1710638
+    },
+    {
+      "id": "m62",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.03,
+        "radiusBottom": 0.03,
+        "height": 1.04,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.1,
+        "y": -0.5,
+        "z": 0.15
+      },
+      "color": 1710638,
+      "quaternion": {
+        "x": 0.82,
+        "y": 0,
+        "z": -0.55,
+        "w": 0.17
+      },
+      "boneFrom": "aura_wp0",
+      "boneTo": "aura_wp1",
+      "boneRestLen": 1.04
+    },
+    {
+      "id": "aura_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "aura",
+      "position": {
+        "x": 0.7,
+        "y": -1.5,
+        "z": 0.8
+      },
+      "pivotTarget": "aura_wp0"
+    },
+    {
+      "id": "m63",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.03,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 1710638
+    },
+    {
+      "id": "m64",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.1,
+        "radiusBottom": 0.1,
+        "height": 0.3,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.7,
+        "y": -1.7000000000000002,
+        "z": 0.8
+      },
+      "color": 1710638,
+      "parent": "aura"
+    },
+    {
+      "id": "m65",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.08,
+        "height": 0.15,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.7,
+        "y": -1.9500000000000002,
+        "z": 0.8
+      },
+      "color": 1710638,
+      "parent": "aura",
+      "rotation": {
+        "x": 3.141592653589793,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "aura_wp0_1",
+      "name": "wp0",
+      "group": true,
+      "parent": "aura",
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": -0.5
+      }
+    },
+    {
+      "id": "m66",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.03,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 1710638
+    },
+    {
+      "id": "m67",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.03,
+        "radiusBottom": 0.03,
+        "height": 1.07,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": -0.5,
+        "z": -0.15
+      },
+      "color": 1710638,
+      "quaternion": {
+        "x": -0.69,
+        "y": 0,
+        "z": 0.69,
+        "w": 0.2
+      },
+      "boneFrom": "aura_wp0_1",
+      "boneTo": "aura_wp1_1",
+      "boneRestLen": 1.07
+    },
+    {
+      "id": "aura_wp1_1",
+      "name": "wp1",
+      "group": true,
+      "parent": "aura",
+      "position": {
+        "x": -1.8,
+        "y": -1.5,
+        "z": -0.8
+      },
+      "pivotTarget": "aura_wp0_1"
+    },
+    {
+      "id": "m68",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.03,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 1710638
+    },
+    {
+      "id": "m69",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.08,
+        "radiusBottom": 0.08,
+        "height": 0.25,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -1.8,
+        "y": -1.7000000000000002,
+        "z": -0.8
+      },
+      "color": 1710638,
+      "parent": "aura"
+    },
+    {
+      "id": "m70",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.06,
+        "height": 0.12,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -1.8,
+        "y": -1.9000000000000004,
+        "z": -0.8
+      },
+      "color": 1710638,
+      "parent": "aura",
+      "rotation": {
+        "x": 3.141592653589793,
+        "y": 0,
+        "z": 0
+      }
+    }
+  ],
+  "tree": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "offset": [
+        0.5,
+        5.5,
+        0
+      ],
+      "meshes": [],
+      "children": [
+        {
+          "id": "trunk_wp0",
+          "name": "wp0",
+          "offset": [
+            -0.5,
+            -5.5,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m0",
+              "type": "sphere",
+              "geometry": {
+                "radius": 1.2,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 2824983
+            },
+            {
+              "id": "m1",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 1.11,
+                "radiusBottom": 1.11,
+                "height": 0.78,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.11,
+                "y": 0.8,
+                "z": 0.05
+              },
+              "color": 2824983,
+              "quaternion": {
+                "x": 0.03,
+                "y": 0,
+                "z": -0.07,
+                "w": 1
+              },
+              "boneFrom": "trunk_wp0",
+              "boneTo": "trunk_wp1",
+              "boneRestLen": 0.78
+            }
+          ],
+          "children": [
+            {
+              "id": "trunk_wp1",
+              "name": "wp1",
+              "offset": [
+                0.2,
+                1.5,
+                0.1
+              ],
+              "meshes": [
+                {
+                  "id": "m2",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.92,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 2824983
+                },
+                {
+                  "id": "m3",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.94,
+                    "radiusBottom": 0.94,
+                    "height": 0.94,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.15,
+                    "y": 0.77,
+                    "z": 0.05
+                  },
+                  "color": 2824983,
+                  "quaternion": {
+                    "x": 0.03,
+                    "y": 0,
+                    "z": 0.1,
+                    "w": 0.99
+                  },
+                  "boneFrom": "trunk_wp1",
+                  "boneTo": "trunk_wp2",
+                  "boneRestLen": 0.94
+                }
+              ],
+              "children": [
+                {
+                  "id": "trunk_wp2",
+                  "name": "wp2",
+                  "offset": [
+                    -0.3,
+                    1.5,
+                    0.1
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m4",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.77,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 2824983
+                    },
+                    {
+                      "id": "m5",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.77,
+                        "radiusBottom": 0.77,
+                        "height": 1.05,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": 0.1,
+                        "y": 0.78,
+                        "z": -0.1
+                      },
+                      "color": 2824983,
+                      "quaternion": {
+                        "x": -0.07,
+                        "y": 0,
+                        "z": -0.07,
+                        "w": 1
+                      },
+                      "boneFrom": "trunk_wp2",
+                      "boneTo": "trunk_wp3",
+                      "boneRestLen": 1.05
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "trunk_wp3",
+                      "name": "wp3",
+                      "offset": [
+                        0.2,
+                        1.5,
+                        -0.2
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m6",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.61,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 2824983
+                        },
+                        {
+                          "id": "m7",
+                          "type": "cylinder",
+                          "geometry": {
+                            "radiusTop": 0.59,
+                            "radiusBottom": 0.59,
+                            "height": 0.61,
+                            "radialSegments": 10
+                          },
+                          "position": {
+                            "x": -0.05,
+                            "y": 0.52,
+                            "z": 0
+                          },
+                          "color": 2824983,
+                          "quaternion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0.05,
+                            "w": 1
+                          },
+                          "boneFrom": "trunk_wp3",
+                          "boneTo": "trunk_wp4",
+                          "boneRestLen": 0.61
+                        }
+                      ],
+                      "children": [
+                        {
+                          "id": "trunk_wp4",
+                          "name": "wp4",
+                          "offset": [
+                            -0.1,
+                            1,
+                            0
+                          ],
+                          "meshes": [
+                            {
+                              "id": "m8",
+                              "type": "sphere",
+                              "geometry": {
+                                "radius": 0.5,
+                                "widthSegments": 10,
+                                "heightSegments": 7
+                              },
+                              "position": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                              },
+                              "color": 2824983
+                            },
+                            {
+                              "id": "m9",
+                              "type": "sphere",
+                              "geometry": {
+                                "radius": 0.33,
+                                "widthSegments": 10,
+                                "heightSegments": 7
+                              },
+                              "position": {
+                                "x": -0.5,
+                                "y": -5,
+                                "z": 0
+                              },
+                              "color": 2824983
+                            },
+                            {
+                              "id": "m10",
+                              "type": "cylinder",
+                              "geometry": {
+                                "radiusTop": 0.3,
+                                "radiusBottom": 0.3,
+                                "height": 2.96,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": 0.75,
+                                "y": -5.25,
+                                "z": 0.75
+                              },
+                              "color": 2824983,
+                              "quaternion": {
+                                "x": 0.39,
+                                "y": 0,
+                                "z": -0.66,
+                                "w": 0.64
+                              }
+                            },
+                            {
+                              "id": "m11",
+                              "type": "cylinder",
+                              "geometry": {
+                                "radiusTop": 0.3,
+                                "radiusBottom": 0.3,
+                                "height": 2.29,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": -1.5,
+                                "y": -5.25,
+                                "z": 0.5
+                              },
+                              "color": 2824983,
+                              "quaternion": {
+                                "x": 0.35,
+                                "y": 0,
+                                "z": 0.7,
+                                "w": 0.63
+                              }
+                            },
+                            {
+                              "id": "m12",
+                              "type": "cylinder",
+                              "geometry": {
+                                "radiusTop": 0.3,
+                                "radiusBottom": 0.3,
+                                "height": 2.55,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": 0.25,
+                                "y": -5.25,
+                                "z": -1
+                              },
+                              "color": 2824983,
+                              "quaternion": {
+                                "x": -0.62,
+                                "y": 0,
+                                "z": -0.46,
+                                "w": 0.63
+                              }
+                            },
+                            {
+                              "id": "m13",
+                              "type": "cylinder",
+                              "geometry": {
+                                "radiusTop": 0.3,
+                                "radiusBottom": 0.3,
+                                "height": 2.18,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": -1.25,
+                                "y": -5.25,
+                                "z": -0.75
+                              },
+                              "color": 2824983,
+                              "quaternion": {
+                                "x": -0.55,
+                                "y": 0,
+                                "z": 0.55,
+                                "w": 0.62
+                              }
+                            },
+                            {
+                              "id": "m14",
+                              "type": "icosahedron",
+                              "geometry": {
+                                "radius": 0.15,
+                                "detail": 0
+                              },
+                              "position": {
+                                "x": -0.8,
+                                "y": -2.7,
+                                "z": 0.9
+                              },
+                              "color": 9699539
+                            },
+                            {
+                              "id": "m15",
+                              "type": "icosahedron",
+                              "geometry": {
+                                "radius": 0.15,
+                                "detail": 0
+                              },
+                              "position": {
+                                "x": -0.2,
+                                "y": -2.7,
+                                "z": 0.9
+                              },
+                              "color": 9699539
+                            },
+                            {
+                              "id": "m16",
+                              "type": "cone",
+                              "geometry": {
+                                "radius": 0.15,
+                                "height": 0.4,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": -0.5,
+                                "y": -3.1,
+                                "z": 1
+                              },
+                              "color": 2824983,
+                              "rotation": {
+                                "x": 1.5707963267948963,
+                                "y": 0,
+                                "z": 0
+                              }
+                            },
+                            {
+                              "id": "m17",
+                              "type": "box",
+                              "geometry": {
+                                "width": 0.5,
+                                "height": 0.1,
+                                "depth": 0.15
+                              },
+                              "position": {
+                                "x": -0.5,
+                                "y": -3.5,
+                                "z": 0.9
+                              },
+                              "color": 1707786
+                            },
+                            {
+                              "id": "m18",
+                              "type": "cone",
+                              "geometry": {
+                                "radius": 0.25,
+                                "height": 1,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": 1.5,
+                                "y": -5,
+                                "z": 1
+                              },
+                              "color": 9699539,
+                              "rotation": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                              }
+                            },
+                            {
+                              "id": "m19",
+                              "type": "cone",
+                              "geometry": {
+                                "radius": 0.2,
+                                "height": 0.8,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": -2,
+                                "y": -5.1,
+                                "z": 0.8
+                              },
+                              "color": 9699539,
+                              "rotation": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                              }
+                            },
+                            {
+                              "id": "m20",
+                              "type": "cone",
+                              "geometry": {
+                                "radius": 0.15,
+                                "height": 0.6,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": 0.5,
+                                "y": -5.2,
+                                "z": -1.5
+                              },
+                              "color": 9699539,
+                              "rotation": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "id": "branches",
+                              "name": "branches",
+                              "offset": [
+                                0.5,
+                                1.5,
+                                0
+                              ],
+                              "meshes": [],
+                              "children": [
+                                {
+                                  "id": "branches_wp0",
+                                  "name": "wp0",
+                                  "offset": [
+                                    -0.5,
+                                    -1.5,
+                                    0
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m21",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.3,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 2824983
+                                    },
+                                    {
+                                      "id": "m22",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.27,
+                                        "radiusBottom": 0.27,
+                                        "height": 1.32,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": 0.51,
+                                        "y": 0.51,
+                                        "z": 0.26
+                                      },
+                                      "color": 2824983,
+                                      "quaternion": {
+                                        "x": 0.18,
+                                        "y": 0,
+                                        "z": -0.37,
+                                        "w": 0.91
+                                      },
+                                      "boneFrom": "branches_wp0",
+                                      "boneTo": "branches_wp1",
+                                      "boneRestLen": 1.32
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "branches_wp1",
+                                      "name": "wp1",
+                                      "offset": [
+                                        1,
+                                        1,
+                                        0.5
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m23",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.21,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 2824983
+                                        },
+                                        {
+                                          "id": "m24",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.2,
+                                            "radiusBottom": 0.2,
+                                            "height": 1.75,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": 0.76,
+                                            "y": 0.51,
+                                            "z": 0.25
+                                          },
+                                          "color": 2824983,
+                                          "quaternion": {
+                                            "x": 0.15,
+                                            "y": 0,
+                                            "z": -0.46,
+                                            "w": 0.88
+                                          },
+                                          "boneFrom": "branches_wp1",
+                                          "boneTo": "branches_wp2",
+                                          "boneRestLen": 1.75
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "id": "branches_wp2",
+                                          "name": "wp2",
+                                          "offset": [
+                                            1.5,
+                                            1,
+                                            0.5
+                                          ],
+                                          "meshes": [
+                                            {
+                                              "id": "m25",
+                                              "type": "sphere",
+                                              "geometry": {
+                                                "radius": 0.15,
+                                                "widthSegments": 10,
+                                                "heightSegments": 7
+                                              },
+                                              "position": {
+                                                "x": 0,
+                                                "y": 0,
+                                                "z": 0
+                                              },
+                                              "color": 2824983
+                                            },
+                                            {
+                                              "id": "m26",
+                                              "type": "cylinder",
+                                              "geometry": {
+                                                "radiusTop": 0.14,
+                                                "radiusBottom": 0.14,
+                                                "height": 1.14,
+                                                "radialSegments": 10
+                                              },
+                                              "position": {
+                                                "x": 0.51,
+                                                "y": 0.25,
+                                                "z": -0.25
+                                              },
+                                              "color": 2824983,
+                                              "quaternion": {
+                                                "x": -0.24,
+                                                "y": 0,
+                                                "z": -0.49,
+                                                "w": 0.84
+                                              },
+                                              "boneFrom": "branches_wp2",
+                                              "boneTo": "branches_wp3",
+                                              "boneRestLen": 1.14
+                                            }
+                                          ],
+                                          "children": [
+                                            {
+                                              "id": "branches_wp3",
+                                              "name": "wp3",
+                                              "offset": [
+                                                1,
+                                                0.5,
+                                                -0.5
+                                              ],
+                                              "meshes": [
+                                                {
+                                                  "id": "m27",
+                                                  "type": "sphere",
+                                                  "geometry": {
+                                                    "radius": 0.1,
+                                                    "widthSegments": 10,
+                                                    "heightSegments": 7
+                                                  },
+                                                  "position": {
+                                                    "x": 0,
+                                                    "y": 0,
+                                                    "z": 0
+                                                  },
+                                                  "color": 2824983
+                                                }
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "branches_wp0_1",
+                                  "name": "wp0",
+                                  "offset": [
+                                    -0.5,
+                                    -1.5,
+                                    0
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m28",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.3,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 2824983
+                                    },
+                                    {
+                                      "id": "m29",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.27,
+                                        "radiusBottom": 0.27,
+                                        "height": 1.32,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": -0.51,
+                                        "y": 0.51,
+                                        "z": -0.26
+                                      },
+                                      "color": 2824983,
+                                      "quaternion": {
+                                        "x": -0.18,
+                                        "y": 0,
+                                        "z": 0.37,
+                                        "w": 0.91
+                                      },
+                                      "boneFrom": "branches_wp0_1",
+                                      "boneTo": "branches_wp1_1",
+                                      "boneRestLen": 1.32
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "branches_wp1_1",
+                                      "name": "wp1",
+                                      "offset": [
+                                        -1,
+                                        1,
+                                        -0.5
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m30",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.21,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 2824983
+                                        },
+                                        {
+                                          "id": "m31",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.2,
+                                            "radiusBottom": 0.2,
+                                            "height": 1.75,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": -0.76,
+                                            "y": 0.51,
+                                            "z": -0.25
+                                          },
+                                          "color": 2824983,
+                                          "quaternion": {
+                                            "x": -0.15,
+                                            "y": 0,
+                                            "z": 0.46,
+                                            "w": 0.88
+                                          },
+                                          "boneFrom": "branches_wp1_1",
+                                          "boneTo": "branches_wp2_1",
+                                          "boneRestLen": 1.75
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "id": "branches_wp2_1",
+                                          "name": "wp2",
+                                          "offset": [
+                                            -1.5,
+                                            1,
+                                            -0.5
+                                          ],
+                                          "meshes": [
+                                            {
+                                              "id": "m32",
+                                              "type": "sphere",
+                                              "geometry": {
+                                                "radius": 0.15,
+                                                "widthSegments": 10,
+                                                "heightSegments": 7
+                                              },
+                                              "position": {
+                                                "x": 0,
+                                                "y": 0,
+                                                "z": 0
+                                              },
+                                              "color": 2824983
+                                            },
+                                            {
+                                              "id": "m33",
+                                              "type": "cylinder",
+                                              "geometry": {
+                                                "radiusTop": 0.14,
+                                                "radiusBottom": 0.14,
+                                                "height": 1.14,
+                                                "radialSegments": 10
+                                              },
+                                              "position": {
+                                                "x": 0.25,
+                                                "y": 0.51,
+                                                "z": -0.25
+                                              },
+                                              "color": 2824983,
+                                              "quaternion": {
+                                                "x": -0.21,
+                                                "y": 0,
+                                                "z": -0.21,
+                                                "w": 0.95
+                                              },
+                                              "boneFrom": "branches_wp2_1",
+                                              "boneTo": "branches_wp3_1",
+                                              "boneRestLen": 1.14
+                                            }
+                                          ],
+                                          "children": [
+                                            {
+                                              "id": "branches_wp3_1",
+                                              "name": "wp3",
+                                              "offset": [
+                                                0.5,
+                                                1,
+                                                -0.5
+                                              ],
+                                              "meshes": [
+                                                {
+                                                  "id": "m34",
+                                                  "type": "sphere",
+                                                  "geometry": {
+                                                    "radius": 0.1,
+                                                    "widthSegments": 10,
+                                                    "heightSegments": 7
+                                                  },
+                                                  "position": {
+                                                    "x": 0,
+                                                    "y": 0,
+                                                    "z": 0
+                                                  },
+                                                  "color": 2824983
+                                                }
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "branches_wp0_2",
+                                  "name": "wp0",
+                                  "offset": [
+                                    -0.5,
+                                    -1.5,
+                                    0
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m35",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.25,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 2824983
+                                    },
+                                    {
+                                      "id": "m36",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.22,
+                                        "radiusBottom": 0.22,
+                                        "height": 1.35,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": 0.26,
+                                        "y": 0.51,
+                                        "z": 0.51
+                                      },
+                                      "color": 2824983,
+                                      "quaternion": {
+                                        "x": 0.37,
+                                        "y": 0,
+                                        "z": -0.18,
+                                        "w": 0.91
+                                      },
+                                      "boneFrom": "branches_wp0_2",
+                                      "boneTo": "branches_wp1_2",
+                                      "boneRestLen": 1.35
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "branches_wp1_2",
+                                      "name": "wp1",
+                                      "offset": [
+                                        0.5,
+                                        1,
+                                        1
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m37",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.17,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 2824983
+                                        },
+                                        {
+                                          "id": "m38",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.17,
+                                            "radiusBottom": 0.17,
+                                            "height": 1.39,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": 0.25,
+                                            "y": 0.51,
+                                            "z": 0.51
+                                          },
+                                          "color": 2824983,
+                                          "quaternion": {
+                                            "x": 0.37,
+                                            "y": 0,
+                                            "z": -0.18,
+                                            "w": 0.91
+                                          },
+                                          "boneFrom": "branches_wp1_2",
+                                          "boneTo": "branches_wp2_2",
+                                          "boneRestLen": 1.39
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "id": "branches_wp2_2",
+                                          "name": "wp2",
+                                          "offset": [
+                                            0.5,
+                                            1,
+                                            1
+                                          ],
+                                          "meshes": [
+                                            {
+                                              "id": "m39",
+                                              "type": "sphere",
+                                              "geometry": {
+                                                "radius": 0.13,
+                                                "widthSegments": 10,
+                                                "heightSegments": 7
+                                              },
+                                              "position": {
+                                                "x": 0,
+                                                "y": 0,
+                                                "z": 0
+                                              },
+                                              "color": 2824983
+                                            },
+                                            {
+                                              "id": "m40",
+                                              "type": "cylinder",
+                                              "geometry": {
+                                                "radiusTop": 0.11,
+                                                "radiusBottom": 0.11,
+                                                "height": 1.14,
+                                                "radialSegments": 10
+                                              },
+                                              "position": {
+                                                "x": -0.25,
+                                                "y": 0.51,
+                                                "z": 0.25
+                                              },
+                                              "color": 2824983,
+                                              "quaternion": {
+                                                "x": 0.21,
+                                                "y": 0,
+                                                "z": 0.21,
+                                                "w": 0.95
+                                              },
+                                              "boneFrom": "branches_wp2_2",
+                                              "boneTo": "branches_wp3_2",
+                                              "boneRestLen": 1.14
+                                            }
+                                          ],
+                                          "children": [
+                                            {
+                                              "id": "branches_wp3_2",
+                                              "name": "wp3",
+                                              "offset": [
+                                                -0.5,
+                                                1,
+                                                0.5
+                                              ],
+                                              "meshes": [
+                                                {
+                                                  "id": "m41",
+                                                  "type": "sphere",
+                                                  "geometry": {
+                                                    "radius": 0.08,
+                                                    "widthSegments": 10,
+                                                    "heightSegments": 7
+                                                  },
+                                                  "position": {
+                                                    "x": 0,
+                                                    "y": 0,
+                                                    "z": 0
+                                                  },
+                                                  "color": 2824983
+                                                }
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "branches_wp0_3",
+                                  "name": "wp0",
+                                  "offset": [
+                                    -0.5,
+                                    -1.5,
+                                    0
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m42",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.25,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 2824983
+                                    },
+                                    {
+                                      "id": "m43",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.22,
+                                        "radiusBottom": 0.22,
+                                        "height": 1.07,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": -0.26,
+                                        "y": 0.26,
+                                        "z": -0.51
+                                      },
+                                      "color": 2824983,
+                                      "quaternion": {
+                                        "x": -0.49,
+                                        "y": 0,
+                                        "z": 0.24,
+                                        "w": 0.84
+                                      },
+                                      "boneFrom": "branches_wp0_3",
+                                      "boneTo": "branches_wp1_3",
+                                      "boneRestLen": 1.07
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "branches_wp1_3",
+                                      "name": "wp1",
+                                      "offset": [
+                                        -0.5,
+                                        0.5,
+                                        -1
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m44",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.17,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 2824983
+                                        },
+                                        {
+                                          "id": "m45",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.17,
+                                            "radiusBottom": 0.17,
+                                            "height": 1.39,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": -0.25,
+                                            "y": 0.51,
+                                            "z": -0.51
+                                          },
+                                          "color": 2824983,
+                                          "quaternion": {
+                                            "x": -0.37,
+                                            "y": 0,
+                                            "z": 0.18,
+                                            "w": 0.91
+                                          },
+                                          "boneFrom": "branches_wp1_3",
+                                          "boneTo": "branches_wp2_3",
+                                          "boneRestLen": 1.39
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "id": "branches_wp2_3",
+                                          "name": "wp2",
+                                          "offset": [
+                                            -0.5,
+                                            1,
+                                            -1
+                                          ],
+                                          "meshes": [
+                                            {
+                                              "id": "m46",
+                                              "type": "sphere",
+                                              "geometry": {
+                                                "radius": 0.13,
+                                                "widthSegments": 10,
+                                                "heightSegments": 7
+                                              },
+                                              "position": {
+                                                "x": 0,
+                                                "y": 0,
+                                                "z": 0
+                                              },
+                                              "color": 2824983
+                                            },
+                                            {
+                                              "id": "m47",
+                                              "type": "cylinder",
+                                              "geometry": {
+                                                "radiusTop": 0.11,
+                                                "radiusBottom": 0.11,
+                                                "height": 1.14,
+                                                "radialSegments": 10
+                                              },
+                                              "position": {
+                                                "x": -0.25,
+                                                "y": 0.51,
+                                                "z": -0.25
+                                              },
+                                              "color": 2824983,
+                                              "quaternion": {
+                                                "x": -0.21,
+                                                "y": 0,
+                                                "z": 0.21,
+                                                "w": 0.95
+                                              },
+                                              "boneFrom": "branches_wp2_3",
+                                              "boneTo": "branches_wp3_3",
+                                              "boneRestLen": 1.14
+                                            }
+                                          ],
+                                          "children": [
+                                            {
+                                              "id": "branches_wp3_3",
+                                              "name": "wp3",
+                                              "offset": [
+                                                -0.5,
+                                                1,
+                                                -0.5
+                                              ],
+                                              "meshes": [
+                                                {
+                                                  "id": "m48",
+                                                  "type": "sphere",
+                                                  "geometry": {
+                                                    "radius": 0.08,
+                                                    "widthSegments": 10,
+                                                    "heightSegments": 7
+                                                  },
+                                                  "position": {
+                                                    "x": 0,
+                                                    "y": 0,
+                                                    "z": 0
+                                                  },
+                                                  "color": 2824983
+                                                }
+                                              ],
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "leaves",
+                              "name": "leaves",
+                              "offset": [
+                                0.5,
+                                3.5,
+                                0
+                              ],
+                              "meshes": [
+                                {
+                                  "id": "m49",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      -1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": 3,
+                                    "y": 0,
+                                    "z": 0.5
+                                  },
+                                  "color": 6950317
+                                },
+                                {
+                                  "id": "m50",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      -1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": 3,
+                                    "y": 0,
+                                    "z": 0.5
+                                  },
+                                  "color": 4915330
+                                },
+                                {
+                                  "id": "m51",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      -1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": -2.5,
+                                    "y": 0.5,
+                                    "z": -1.5
+                                  },
+                                  "color": 6950317
+                                },
+                                {
+                                  "id": "m52",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      -1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": -2.5,
+                                    "y": 0.5,
+                                    "z": -1.5
+                                  },
+                                  "color": 4915330
+                                },
+                                {
+                                  "id": "m53",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      -1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": 0,
+                                    "y": 0.5,
+                                    "z": 2.5
+                                  },
+                                  "color": 6950317
+                                },
+                                {
+                                  "id": "m54",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      -1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": 0,
+                                    "y": 0.5,
+                                    "z": 2.5
+                                  },
+                                  "color": 4915330
+                                },
+                                {
+                                  "id": "m55",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      -1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": -2,
+                                    "y": 0,
+                                    "z": -2.5
+                                  },
+                                  "color": 6950317
+                                },
+                                {
+                                  "id": "m56",
+                                  "type": "tri",
+                                  "geometry": {
+                                    "a": [
+                                      0,
+                                      -1,
+                                      0
+                                    ],
+                                    "b": [
+                                      1,
+                                      0.5,
+                                      1
+                                    ],
+                                    "c": [
+                                      -1,
+                                      0.5,
+                                      -1
+                                    ],
+                                    "d": 0.1
+                                  },
+                                  "position": {
+                                    "x": -2,
+                                    "y": 0,
+                                    "z": -2.5
+                                  },
+                                  "color": 4915330
+                                }
+                              ],
+                              "children": []
+                            },
+                            {
+                              "id": "aura",
+                              "name": "aura",
+                              "offset": [
+                                0.5,
+                                1.5,
+                                0
+                              ],
+                              "meshes": [
+                                {
+                                  "id": "m57",
+                                  "type": "icosahedron",
+                                  "geometry": {
+                                    "radius": 0.2,
+                                    "detail": 0
+                                  },
+                                  "position": {
+                                    "x": 2,
+                                    "y": 1.5,
+                                    "z": 1
+                                  },
+                                  "color": 65535
+                                },
+                                {
+                                  "id": "m58",
+                                  "type": "icosahedron",
+                                  "geometry": {
+                                    "radius": 0.15,
+                                    "detail": 0
+                                  },
+                                  "position": {
+                                    "x": -2,
+                                    "y": 2,
+                                    "z": -2
+                                  },
+                                  "color": 65535
+                                },
+                                {
+                                  "id": "m59",
+                                  "type": "icosahedron",
+                                  "geometry": {
+                                    "radius": 0.18,
+                                    "detail": 0
+                                  },
+                                  "position": {
+                                    "x": -0.5,
+                                    "y": 0.5,
+                                    "z": 2
+                                  },
+                                  "color": 65535
+                                },
+                                {
+                                  "id": "m60",
+                                  "type": "icosahedron",
+                                  "geometry": {
+                                    "radius": 0.12,
+                                    "detail": 0
+                                  },
+                                  "position": {
+                                    "x": -3.5,
+                                    "y": 0.5,
+                                    "z": 0
+                                  },
+                                  "color": 65535
+                                }
+                              ],
+                              "children": [
+                                {
+                                  "id": "aura_wp0",
+                                  "name": "wp0",
+                                  "offset": [
+                                    0.5,
+                                    -0.5,
+                                    0.5
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m61",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.03,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 1710638
+                                    },
+                                    {
+                                      "id": "m62",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.03,
+                                        "radiusBottom": 0.03,
+                                        "height": 1.04,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": 0.1,
+                                        "y": -0.5,
+                                        "z": 0.15
+                                      },
+                                      "color": 1710638,
+                                      "quaternion": {
+                                        "x": 0.82,
+                                        "y": 0,
+                                        "z": -0.55,
+                                        "w": 0.17
+                                      },
+                                      "boneFrom": "aura_wp0",
+                                      "boneTo": "aura_wp1",
+                                      "boneRestLen": 1.04
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "aura_wp1",
+                                      "name": "wp1",
+                                      "offset": [
+                                        0.2,
+                                        -1,
+                                        0.3
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m63",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.03,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 1710638
+                                        },
+                                        {
+                                          "id": "m64",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.1,
+                                            "radiusBottom": 0.1,
+                                            "height": 0.3,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": 0.7,
+                                            "y": -1.7000000000000002,
+                                            "z": 0.8
+                                          },
+                                          "color": 1710638
+                                        },
+                                        {
+                                          "id": "m65",
+                                          "type": "cone",
+                                          "geometry": {
+                                            "radius": 0.08,
+                                            "height": 0.15,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": 0.7,
+                                            "y": -1.9500000000000002,
+                                            "z": 0.8
+                                          },
+                                          "color": 1710638,
+                                          "rotation": {
+                                            "x": 3.141592653589793,
+                                            "y": 0,
+                                            "z": 0
+                                          }
+                                        }
+                                      ],
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "aura_wp0_1",
+                                  "name": "wp0",
+                                  "offset": [
+                                    -1.5,
+                                    -0.5,
+                                    -0.5
+                                  ],
+                                  "meshes": [
+                                    {
+                                      "id": "m66",
+                                      "type": "sphere",
+                                      "geometry": {
+                                        "radius": 0.03,
+                                        "widthSegments": 10,
+                                        "heightSegments": 7
+                                      },
+                                      "position": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 0
+                                      },
+                                      "color": 1710638
+                                    },
+                                    {
+                                      "id": "m67",
+                                      "type": "cylinder",
+                                      "geometry": {
+                                        "radiusTop": 0.03,
+                                        "radiusBottom": 0.03,
+                                        "height": 1.07,
+                                        "radialSegments": 10
+                                      },
+                                      "position": {
+                                        "x": -0.15,
+                                        "y": -0.5,
+                                        "z": -0.15
+                                      },
+                                      "color": 1710638,
+                                      "quaternion": {
+                                        "x": -0.69,
+                                        "y": 0,
+                                        "z": 0.69,
+                                        "w": 0.2
+                                      },
+                                      "boneFrom": "aura_wp0_1",
+                                      "boneTo": "aura_wp1_1",
+                                      "boneRestLen": 1.07
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "id": "aura_wp1_1",
+                                      "name": "wp1",
+                                      "offset": [
+                                        -0.3,
+                                        -1,
+                                        -0.3
+                                      ],
+                                      "meshes": [
+                                        {
+                                          "id": "m68",
+                                          "type": "sphere",
+                                          "geometry": {
+                                            "radius": 0.03,
+                                            "widthSegments": 10,
+                                            "heightSegments": 7
+                                          },
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                          },
+                                          "color": 1710638
+                                        },
+                                        {
+                                          "id": "m69",
+                                          "type": "cylinder",
+                                          "geometry": {
+                                            "radiusTop": 0.08,
+                                            "radiusBottom": 0.08,
+                                            "height": 0.25,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": -1.8,
+                                            "y": -1.7000000000000002,
+                                            "z": -0.8
+                                          },
+                                          "color": 1710638
+                                        },
+                                        {
+                                          "id": "m70",
+                                          "type": "cone",
+                                          "geometry": {
+                                            "radius": 0.06,
+                                            "height": 0.12,
+                                            "radialSegments": 10
+                                          },
+                                          "position": {
+                                            "x": -1.8,
+                                            "y": -1.9000000000000004,
+                                            "z": -0.8
+                                          },
+                                          "color": 1710638,
+                                          "rotation": {
+                                            "x": 3.141592653589793,
+                                            "y": 0,
+                                            "z": 0
+                                          }
+                                        }
+                                      ],
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"粗壮扭曲的不对称树形，底部宽大根系，中段急遽收窄，顶部如爪状散开，树冠宽大\",\n  \"regions\": [\n    {\"name\": \"trunk\", \"desc\": \"粗壮扭曲的主干、蔓延的板根、树皮瘤结如脸-深褐[2b1b17]、根部嵌发光水晶-紫[9400d3]\"},\n    {\"name\": \"branches\", \"desc\": \"如利爪般扭曲伸展的枝干、细长分叉-深褐\"},\n    {\"name\": \"leaves\", \"desc\": \"簇生在枝丫末端、紫罗兰色-紫罗兰[6a0dad]、深紫色-深紫[4b0082]\"},\n    {\"name\": \"aura\", \"desc\": \"环绕树冠漂浮的几何光球-青[00ffff]、枝头悬挂小药水瓶-暗蓝[1a1a2e]\"}\n  ],\n  \"methodologies\": [\"vegetation\"]\n}\n```",
+  "_routerThinking": "1.  **Analyze the Request:**\n    *   Subject: A lowpoly witchy magical tree with twisted spooky branches and purple violet leaves, enchanting aura.\n    *   Category: Vegetation (tree).\n    *   Key attributes: Witchy, magical, twisted/spooky branches, purple/violet leaves, enchanting aura.\n\n2.  **Step 1: Concretization:**\n    *   \"Witchy magical tree\" -> A tree with a face or witchy accessories (like a hat silhouette, hanging potions, broom, or just a twisted, gnarled spooky shape). Let's go with a twisted, gnarled trunk with a subtle face-like bark formation (spooky), hanging magical items (crystals, potion bottles), and glowing aura elements (floating orbs).\n    *   \"Enchanting aura\" -> Floating geometric orbs/sparkles around the tree.\n\n3.  **Step 2: Structure Division:**\n    *   It's a single entity (a tree), but with distinct parts.\n    *   Groups: trunk (twisted, spooky), branches (twisted, spreading), leaves (purple/violet clusters), aura (floating orbs/sparkles), accessories (hanging potions/crystals).\n    *   Proportions: Tall, twisted silhouette, wide canopy, thick gnarled base.\n\n4.  **Step 3: Desc + Accessories:**\n    *   *Trunk*: Thick, twisted, base roots spreading, bark face (knots as eyes/mouth). Color: Dark bark [2b1b17].\n    *   *Branches*: Twisted, reaching out like claws. Color: Dark bark.\n    *   *Leaves*: Clusters of purple-violet leaves [6a0dad], some darker violet [4b0082].\n    *   *Aura*: Floating orbs/sparkles around the canopy. Color: Glowing cyan/magenta [00ffff] / [ff00ff] (for magical feel).\n    *   *Accessories*: Hanging small potion bottles [1a1a2e], glowing crystals [9400d3] at roots.\n    *   Color distribution: 60% Dark bark/branches, 30% Purple/violet leaves, 10% Glowing aura/crystals.\n\n5.  **Step 4: Methodology Selection:**\n    *   Body: vegetation\n    *   Head: N/A (unless we count the face, but it's just bark knots, no specific head methodology needed, maybe skip or just use vegetation).\n\n6.  **Refining the JSON:**\n    *   Proportions: \"Gnarled asymmetrical tree, thick twisted base tapering into claw-like branches, wide canopy\"\n    *   Regions:\n        *   trunk: \"Thick twisted base, spreading roots, bark face knots-深褐[2b1b17], glowing root crystals-紫[9400d3]\"\n        *   branches: \"Twisted claw-like reaching branches, sparse-深褐\"\n        *   leaves: \"Dense clusters, purple violet-紫罗兰[6a0dad], dark violet-深紫[4b0082]\"\n        *   aura: \"Floating orbs around canopy, glowing-青[00ffff], small hanging potion bottles-暗蓝[1a1a2e]\"\n    *   Methodologies: [\"vegetation\"]\n\n7.  **Review against constraints:**\n    *   No textures (no \"bark texture\", just \"bark face knots\").\n    *   Colors inline with hex (no #).\n    *   Accessories are simple geometric blocks (orbs, bottles, crystals).\n    *   Speed priority, allow flaws.\n\n8.  **Final Output Generation:** (Drafting the JSON exactly as requested).",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly witchy magical tree.\n    *   **Key Features:** Twisted spooky branches, purple/violet leaves, enchanting aura, glowing crystals at roots, bark knots like a face, claw-like branches, hanging potion bottles.\n    *   **Colors:** Deep brown [2b1b17], Purple [9400d3], Violet [6a0dad], Deep Purple [4b0082], Cyan [00ffff], Dark Blue [1a1a2e].\n    *   **Proportions:** Thick twisted asymmetric trunk, wide base roots, narrow middle, claw-like spreading top, wide canopy.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Scale ~3 (typical trunk box/cyl ~2.5-3.0 height). Y+ is up, ground Y=0.\n\n2.  **Deconstruct into Groups & Geometry:**\n    *   **Trunk (`trunk`):**\n        *   Main body: Twisted trunk. Use a tapered cylinder or a couple of angled boxes/cyls. Let's use a thick `cyl` with `rTop` < `rBot` to get the tapered shape, maybe slightly angled or segmented.\n        *   Roots: Wide spreading roots at the base. Use `fork` or a few angled `box`/`cyl` spreading out.\n        *   Face knot: A couple of `sphere` or `poly` for eyes, maybe a `tri` or `box` for a mouth/nose knot on the trunk.\n        *   Crystals: `cyl` or `cone` at the base, glowing purple.\n    *   **Branches (`branches`):**\n        *   Claw-like twisted branches. Use `fork` from the top of the trunk, spreading out asymmetrically. Use `chain` for some drooping/twisting branches.\n    *   **Leaves (`leaves`):**\n        *   Clusters at the ends of branches. Use `patch` or `tri` in a fan/radial pattern. Violet and deep purple.\n    *   **Aura (`aura`):**\n        *   Floating geometric light orbs: `poly` or `sphere` with cyan color, floating around the canopy.\n        *   Hanging potion bottles: Small `cyl` + `cone` or `sphere` hanging from branches, dark blue.\n\n3.  **Drafting the Code (Mental or Scratchpad):**\n    *   *Scale:* Trunk height ~4-5. Total height ~7-8.\n    *   *Trunk:*\n        *   `api.group('trunk', 'trunk')`\n        *   Main trunk: `api.cyl({rBot: 1.2, rTop: 0.6, h: 5, pos: [0, 2.5, 0], seg: 8, color: 0x2b1b17})`\n        *   Roots: `api.fork({from: [0, 0.5, 0], to: [[2, 0, 1], [-1.5, 0, 1.5], [1, 0, -2], [-2, 0, -1]], r: 0.3, color: 0x2b1b17})`\n        *   Face: Eyes at ~Y=3. `api.poly({r:0.15, pos:[-0.3, 3.2, 0.9], color: 0x9400d3})`, `api.poly({r:0.15, pos:[0.3, 3.2, 0.9], color: 0x9400d3})`. Mouth: `api.box({w:0.4, h:0.1, d:0.1, pos:[0, 2.8, 1.0], color: 0x1a0f0a})`\n        *   Crystals: `api.cone({r:0.2, h:0.8, pos:[1.5, 0.4, 0.5], along: '+Y', color: 0x9400d3})`, `api.cone({r:0.15, h:0.6, pos:[-1.2, 0.3, 1.0], along: '+Y', color: 0x9400d3})`\n        *   `api.endGroup()`\n    *   *Branches:*\n        *   `api.group('branches', 'branches')`\n        *   Use `fork` for the main claw-like branches.\n        *   `api.fork({from: [0, 5, 0], to: [[2, 7, 1], [-1.5, 7.5, -1], [0.5, 8, -2], [-2, 6.5, 1.5]], r: 0.25, color: 0x2b1b17})`\n        *   Add secondary branches using `chain` or `fork` from those endpoints.\n        *   Wait, `fork` only connects `from` to `to` directly. To get twisted branches, I can use `chain` for the main branches.\n        *   Let's do a few `chain` branches:\n        *   Branch 1: `api.chain({waypoints: [[0,5,0], [1,6,0.5], [2.5,7.5,1], [3,8,0.5]], rStart: 0.3, rEnd: 0.1, color: 0x2b1b17})`\n        *   Branch 2: `api.chain({waypoints: [[0,5,0], [-1,6.5,-0.5], [-2,8,-1], [-1.5,9,-1.5]], rStart: 0.3, rEnd: 0.1, color: 0x2b1b17})`\n        *   Branch 3: `api.chain({waypoints: [[0,5,0], [0.5,6,-1], [1,7.5,-2], [0.5,8.5,-2.5]], rStart: 0.25, rEnd: 0.08, color: 0x2b1b17})`\n        *   Branch 4: `api.chain({waypoints: [[0,5,0], [-1.5,5.5,1], [-2.5,6.5,1.5], [-3,7,1]], rStart: 0.25, rEnd: 0.08, color: 0x2b1b17})`\n        *   `api.endGroup()`\n    *   *Leaves:*\n        *   `api.group('leaves', 'leaves')`\n        *   At the ends of branches (approx coordinates): [3,8,0.5], [-1.5,9,-1.5], [0.5,8.5,-2.5], [-3,7,1]\n        *   Create leaf clusters using `tri` or `patch`.\n        *   Cluster 1: `api.tri({a:[3,8,0.5], b:[4,9,1], c:[3.5,9.5,0], d:0.1, color:0x6a0dad})`\n        *   Cluster 2: `api.tri({a:[-1.5,9,-1.5], b:[-2,10,-1], c:[-1,10,-2], d:0.1, color:0x4b0082})`\n        *   Let's make them a bit more voluminous. Use `patch` or multiple `tri`.\n        *   For each branch end, place 3-4 `tri` fanning out.\n        *   End 1: [3,8,0.5]\n            *   `api.tri({a:[3,8,0.5], b:[4,9.5,1.5], c:[3.5,9.5,-0.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[3,8,0.5], b:[2,9.5,1.5], c:[4,9.5,0.5], d:0.1, color:0x4b0082})`\n        *   End 2: [-1.5,9,-1.5]\n            *   `api.tri({a:[-1.5,9,-1.5], b:[-2.5,10.5,-0.5], c:[-0.5,10.5,-2.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[-1.5,9,-1.5], b:[-2,10.5,-2.5], c:[-1,10.5,-0.5], d:0.1, color:0x4b0082})`\n        *   End 3: [0.5,8.5,-2.5]\n            *   `api.tri({a:[0.5,8.5,-2.5], b:[1.5,10,-2], c:[-0.5,10,-3.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[0.5,8.5,-2.5], b:[1.5,10,-3.5], c:[-0.5,10,-1.5], d:0.1, color:0x4b0082})`\n        *   End 4: [-3,7,1]\n            *   `api.tri({a:[-3,7,1], b:[-4,8.5,2], c:[-2,8.5,0], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[-3,7,1], b:[-2,8.5,2], c:[-4,8.5,0], d:0.1, color:0x4b0082})`\n        *   `api.endGroup()`\n    *   *Aura:*\n        *   `api.group('aura', 'aura')`\n        *   Floating orbs: `api.poly({r:0.2, pos:[2, 8.5, 1.5], color:0x00ffff})`, `api.poly({r:0.15, pos:[-2, 9.5, -1], color:0x00ffff})`, `api.poly({r:0.18, pos:[0, 7, -2], color:0x00ffff})`\n        *   Hanging bottles: `api.chain({waypoints: [[1,6,0.5], [1.2,5.5,0.8], [1.1,5,0.6]], r:0.03, color:0x1a1a2e})` -> bottle at end: `api.sphere({r:0.15, pos:[1.1,4.8,0.6], color:0x1a1a2e})`\n        *   Another bottle: `api.chain({waypoints: [[-1,6.5,-0.5], [-1.3,6,-0.8], [-1.1,5.5,-0.6]], r:0.03, color:0x1a1a2e})` -> `api.sphere({r:0.12, pos:[-1.1,5.3,-0.6], color:0x1a1a2e})`\n        *   `api.endGroup()`\n\n4.  **Refining and Polishing:**\n    *   Make the trunk more twisted. Use `chain` for the trunk instead of a simple `cyl`?\n    *   `api.chain({waypoints: [[0,0,0], [0.2,1.5,0.1], [-0.1,3,0.2], [0.1,4.5,0], [0,5.5,0]], rStart: 1.2, rEnd: 0.5, color: 0x2b1b17})` -> This gives a nice twisted, tapering trunk.\n    *   Roots: `api.fork({from: [0,0.5,0], to: [[2.5, 0, 1.5], [-2, 0, 1], [1.5, 0, -2], [-1.5, 0, -1.5]], r: 0.3, color: 0x2b1b17})`\n    *   Face on trunk: Y is around 2.5. Z offset needs to clear the trunk radius (~0.8 at Y=2.5).\n        *   Eyes: `api.poly({r:0.15, pos:[-0.3, 2.8, 0.9], color: 0x9400d3})`, `api.poly({r:0.15, pos:[0.3, 2.8, 0.9], color: 0x9400d3})`\n        *   Nose: `api.cone({r:0.15, h:0.4, pos:[0, 2.4, 1.0], along: '+Z', color: 0x2b1b17})`\n        *   Mouth: `api.box({w:0.5, h:0.1, d:0.15, pos:[0, 2.0, 0.9], color: 0x1a0f0a})`\n    *   Crystals at base: `api.cone({r:0.25, h:1, pos:[2, 0.5, 1], along: '+Y', color: 0x9400d3})`, `api.cone({r:0.2, h:0.8, pos:[-1.5, 0.4, 0.8], along: '+Y', color: 0x9400d3})`, `api.cone({r:0.15, h:0.6, pos:[1, 0.3, -1.5], along: '+Y', color: 0x9400d3})`\n    *   Branches: Make them more \"claw-like\".\n        *   Branch 1 (Right): `api.chain({waypoints:[[0,5.5,0], [1,6.5,0.5], [2.5,7.5,1], [3.5,8,0.5]], rStart:0.3, rEnd:0.1, color:0x2b1b17})`\n        *   Branch 2 (Left): `api.chain({waypoints:[[0,5.5,0], [-1,6.5,-0.5], [-2.5,7.5,-1], [-2,8.5,-1.5]], rStart:0.3, rEnd:0.1, color:0x2b1b17})`\n        *   Branch 3 (Front): `api.chain({waypoints:[[0,5.5,0], [0.5,6.5,1], [1,7.5,2], [0.5,8.5,2.5]], rStart:0.25, rEnd:0.08, color:0x2b1b17})`\n        *   Branch 4 (Back): `api.chain({waypoints:[[0,5.5,0], [-0.5,6,-1], [-1,7,-2], [-1.5,8,-2.5]], rStart:0.25, rEnd:0.08, color:0x2b1b17})`\n    *   Leaves: Fan out from branch tips.\n        *   Tip 1: [3.5,8,0.5]\n            *   `api.tri({a:[3.5,8,0.5], b:[4.5,9.5,1.5], c:[2.5,9.5,-0.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[3.5,8,0.5], b:[2.5,9.5,1.5], c:[4.5,9.5,-0.5], d:0.1, color:0x4b0082})`\n        *   Tip 2: [-2,8.5,-1.5]\n            *   `api.tri({a:[-2,8.5,-1.5], b:[-3,10,-0.5], c:[-1,10,-2.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[-2,8.5,-1.5], b:[-1,10,-0.5], c:[-3,10,-2.5], d:0.1, color:0x4b0082})`\n        *   Tip 3: [0.5,8.5,2.5]\n            *   `api.tri({a:[0.5,8.5,2.5], b:[1.5,10,3.5], c:[-0.5,10,1.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[0.5,8.5,2.5], b:[-0.5,10,3.5], c:[1.5,10,1.5], d:0.1, color:0x4b0082})`\n        *   Tip 4: [-1.5,8,-2.5]\n            *   `api.tri({a:[-1.5,8,-2.5], b:[-2.5,9.5,-1.5], c:[-0.5,9.5,-3.5], d:0.1, color:0x6a0dad})`\n            *   `api.tri({a:[-1.5,8,-2.5], b:[-0.5,9.5,-1.5], c:[-2.5,9.5,-3.5], d:0.1, color:0x4b0082})`\n    *   Aura:\n        *   Orbs: `api.poly({r:0.2, pos:[2.5, 8.5, 1], color:0x00ffff})`, `api.poly({r:0.15, pos:[-1.5, 9, -2], color:0x00ffff})`, `api.poly({r:0.18, pos:[0, 7.5, 2], color:0x00ffff})`, `api.poly({r:0.12, pos:[-3, 7.5, 0], color:0x00ffff})`\n        *   Bottles: Use `chain` + `sphere` or `cyl`+`cone`.\n            *   Bottle 1: `api.chain({waypoints:[[1,6.5,0.5], [1.2,5.5,0.8]], r:0.03, color:0x1a1a2e})`, `api.cyl({r:0.1, h:0.3, pos:[1.2,5.3,0.8], color:0x1a1a2e})`, `api.cone({r:0.08, h:0.15, pos:[1.2,5.05,0.8], along:'-Y', color:0x1a1a2e})`\n            *   Bottle 2: `api.chain({waypoints:[[-1,6.5,-0.5], [-1.3,5.5,-0.8]], r:0.03, color:0x1a1a2e})`, `api.cyl({r:0.08, h:0.25, pos:[-1.3,5.3,-0.8], color:0x1a1a2e})`, `api.cone({r:0.06, h:0.12, pos:[-1.3,5.1,-0.8], along:'-Y', color:0x1a1a2e})`\n\n5.  **Review against Constraints:**\n    *   Only `function build(api) { ... }`? Yes.\n    *   No markdown? Yes.\n    *   No explanation? Yes.\n    *   Scale appropriate? Trunk height ~5.5, total height ~10. Good for a tree.\n    *   Y+ up, ground Y=0? Yes.\n    *   Colors match? 0x2b1b17, 0x9400d3, 0x6a0dad, 0x4b0082, 0x00ffff, 0x1a1a2e. Yes.\n    *   Low poly aesthetic? Yes, using chain, tri, poly, cone.\n\n6.  **Final Code Assembly:** (Mental check of syntax and API usage)\n    *   `api.name('Witchy Magical Tree');`\n    *   `api.group('trunk','trunk');`\n    *   `api.chain({waypoints:[[0,0,0],[0.2,1.5,0.1],[-0.1,3,0.2],[0.1,4.5,0],[0,5.5,0]],rStart:1.2,rEnd:0.5,color:0x2b1b17});`\n    *   `api.fork({from:[0,0.5,0],to:[[2.5,0,1.5],[-2,0,1],[1.5,0,-2],[-1.5,0,-1.5]],r:0.3,color:0x2b1b17});`\n    *   `api.poly({r:0.15,pos:[-0.3,2.8,0.9],color:0x9400d3});`\n    *   `api.poly({r:0.15,pos:[0.3,2.8,0.9],color:0x9400d3});`\n    *   `api.cone({r:0.15,h:0.4,pos:[0,2.4,1.0],along:'+Z',color:0x2b1b17});`\n    *   `api.box({w:0.5,h:0.1,d:0.15,pos:[0,2.0,0.9],color:0x1a0f0a});`\n    *   `api.cone({r:0.25,h:1,pos:[2,0.5,1],along:'+Y',color:0x9400d3});`\n    *   `api.cone({r:0.2,h:0.8,pos:[-1.5,0.4,0.8],along:'+Y',color:0x9400d3});`\n    *   `api.cone({r:0.15,h:0.6,pos:[1,0.3,-1.5],along:'+Y',color:0x9400d3});`\n    *   `api.endGroup();`\n    *   `api.group('branches','branches');`\n    *   `api.chain({waypoints:[[0,5.5,0],[1,6.5,0.5],[2.5,7.5,1],[3.5,8,0.5]],rStart:0.3,rEnd:0.1,color:0x2b1b17});`\n    *   `api.chain({waypoints:[[0,5.5,0],[-1,6.5,-0.5],[-2.5,7.5,-1],[-2,8.5,-1.5]],rStart:0.3,rEnd:0.1,color:0x2b1b17});`\n    *   `api.chain({waypoints:[[0,5.5,0],[0.5,6.5,1],[1,7.5,2],[0.5,8.5,2.5]],rStart:0.25,rEnd:0.08,color:0x2b1b17});`\n    *   `api.chain({waypoints:[[0,5.5,0],[-0.5,6,-1],[-1,7,-2],[-1.5,8,-2.5]],rStart:0.25,rEnd:0.08,color:0x2b1b17});`\n    *   `api.endGroup();`\n    *   `api.group('leaves','leaves');`\n    *   `api.tri({a:[3.5,8,0.5],b:[4.5,9.5,1.5],c:[2.5,9.5,-0.5],d:0.1,color:0x6a0dad});`\n    *   `api.tri({a:[3.5,8,0.5],b:[2.5,9.5,1.5],c:[4.5,9.5,-0.5],d:0.1,color:0x4b0082});`\n    *   `api.tri({a:[-2,8.5,-1.5],b:[-3,10,-0.5],c:[-1,10,-2.5],d:0.1,color:0x6a0dad});`\n    *   `api.tri({a:[-2,8.5,-1.5],b:[-1,10,-0.5],c:[-3,10,-2.5],d:0.1,color:0x4b0082});`\n    *   `api.tri({a:[0.5,8.5,2.5],b:[1.5,10,3.5],c:[-0.5,10,1.5],d:0.1,color:0x6a0dad});`\n    *   `api.tri({a:[0.5,8.5,2.5],b:[-0.5,10,3.5],c:[1.5,10,1.5],d:0.1,color:0x4b0082});`\n    *   `api.tri({a:[-1.5,8,-2.5],b:[-2.5,9.5,-1.5],c:[-0.5,9.5,-3.5],d:0.1,color:0x6a0dad});`\n    *   `api.tri({a:[-1.5,8,-2.5],b:[-0.5,9.5,-1.5],c:[-2.5,9.5,-3.5],d:0.1,color:0x4b0082});`\n    *   `api.endGroup();`\n    *   `api.group('aura','aura');`\n    *   `api.poly({r:0.2,pos:[2.5,8.5,1],color:0x00ffff});`\n    *   `api.poly({r:0.15,pos:[-1.5,9,-2],color:0x00ffff});`\n    *   `api.poly({r:0.18,pos:[0,7.5,2],color:0x00ffff});`\n    *   `api.poly({r:0.12,pos:[-3,7.5,0],color:0x00ffff});`\n    *   `api.chain({waypoints:[[1,6.5,0.5],[1.2,5.5,0.8]],r:0.03,color:0x1a1a2e});`\n    *   `api.cyl({r:0.1,h:0.3,pos:[1.2,5.3,0.8],color:0x1a1a2e});`\n    *   `api.cone({r:0.08,h:0.15,pos:[1.2,5.05,0.8],along:'-Y',color:0x1a1a2e});`\n    *   `api.chain({waypoints:[[-1,6.5,-0.5],[-1.3,5.5,-0.8]],r:0.03,color:0x1a1a2e});`\n    *   `api.cyl({r:0.08,h:0.25,pos:[-1.3,5.3,-0.8],color:0x1a1a2e});`\n    *   `api.cone({r:0.06,h:0.12,pos:[-1.3,5.1,-0.8],along:'-Y',color:0x1a1a2e});`\n    *   `api.endGroup();`\n\n7.  **Format Check:** Ensure absolutely no markdown backticks, just the raw function text.",
+  "_aiCode": "function build(api) {\n  api.name('Witchy Magical Tree');\n  const C_BARK = 0x2b1b17, C_CRYSTAL = 0x9400d3, C_VIOLET = 0x6a0dad, C_DPURPLE = 0x4b0082, C_AURA = 0x00ffff, C_POTION = 0x1a1a2e, C_DARK = 0x1a0f0a;\n\n  api.group('trunk', 'trunk');\n  api.chain({waypoints: [[0,0,0], [0.2,1.5,0.1], [-0.1,3,0.2], [0.1,4.5,0], [0,5.5,0]], rStart: 1.2, rEnd: 0.5, color: C_BARK});\n  api.fork({from: [0,0.5,0], to: [[2.5,0,1.5], [-2,0,1], [1.5,0,-2], [-1.5,0,-1.5]], r: 0.3, color: C_BARK});\n  api.poly({r:0.15, pos:[-0.3,2.8,0.9], color: C_CRYSTAL});\n  api.poly({r:0.15, pos:[0.3,2.8,0.9], color: C_CRYSTAL});\n  api.cone({r:0.15, h:0.4, pos:[0,2.4,1.0], along: '+Z', color: C_BARK});\n  api.box({w:0.5, h:0.1, d:0.15, pos:[0,2.0,0.9], color: C_DARK});\n  api.cone({r:0.25, h:1, pos:[2,0.5,1], along: '+Y', color: C_CRYSTAL});\n  api.cone({r:0.2, h:0.8, pos:[-1.5,0.4,0.8], along: '+Y', color: C_CRYSTAL});\n  api.cone({r:0.15, h:0.6, pos:[1,0.3,-1.5], along: '+Y', color: C_CRYSTAL});\n  api.endGroup();\n\n  api.group('branches', 'branches');\n  api.chain({waypoints: [[0,5.5,0], [1,6.5,0.5], [2.5,7.5,1], [3.5,8,0.5]], rStart: 0.3, rEnd: 0.1, color: C_BARK});\n  api.chain({waypoints: [[0,5.5,0], [-1,6.5,-0.5], [-2.5,7.5,-1], [-2,8.5,-1.5]], rStart: 0.3, rEnd: 0.1, color: C_BARK});\n  api.chain({waypoints: [[0,5.5,0], [0.5,6.5,1], [1,7.5,2], [0.5,8.5,2.5]], rStart: 0.25, rEnd: 0.08, color: C_BARK});\n  api.chain({waypoints: [[0,5.5,0], [-0.5,6,-1], [-1,7,-2], [-1.5,8,-2.5]], rStart: 0.25, rEnd: 0.08, color: C_BARK});\n  api.endGroup();\n\n  api.group('leaves', 'leaves');\n  api.tri({a:[3.5,8,0.5], b:[4.5,9.5,1.5], c:[2.5,9.5,-0.5], d:0.1, color: C_VIOLET});\n  api.tri({a:[3.5,8,0.5], b:[2.5,9.5,1.5], c:[4.5,9.5,-0.5], d:0.1, color: C_DPURPLE});\n  api.tri({a:[-2,8.5,-1.5], b:[-3,10,-0.5], c:[-1,10,-2.5], d:0.1, color: C_VIOLET});\n  api.tri({a:[-2,8.5,-1.5], b:[-1,10,-0.5], c:[-3,10,-2.5], d:0.1, color: C_DPURPLE});\n  api.tri({a:[0.5,8.5,2.5], b:[1.5,10,3.5], c:[-0.5,10,1.5], d:0.1, color: C_VIOLET});\n  api.tri({a:[0.5,8.5,2.5], b:[-0.5,10,3.5], c:[1.5,10,1.5], d:0.1, color: C_DPURPLE});\n  api.tri({a:[-1.5,8,-2.5], b:[-2.5,9.5,-1.5], c:[-0.5,9.5,-3.5], d:0.1, color: C_VIOLET});\n  api.tri({a:[-1.5,8,-2.5], b:[-0.5,9.5,-1.5], c:[-2.5,9.5,-3.5], d:0.1, color: C_DPURPLE});\n  api.endGroup();\n\n  api.group('aura', 'aura');\n  api.poly({r:0.2, pos:[2.5,8.5,1], color: C_AURA});\n  api.poly({r:0.15, pos:[-1.5,9,-2], color: C_AURA});\n  api.poly({r:0.18, pos:[0,7.5,2], color: C_AURA});\n  api.poly({r:0.12, pos:[-3,7.5,0], color: C_AURA});\n  api.chain({waypoints: [[1,6.5,0.5], [1.2,5.5,0.8]], r:0.03, color: C_POTION});\n  api.cyl({r:0.1, h:0.3, pos:[1.2,5.3,0.8], color: C_POTION});\n  api.cone({r:0.08, h:0.15, pos:[1.2,5.05,0.8], along: '-Y', color: C_POTION});\n  api.chain({waypoints: [[-1,6.5,-0.5], [-1.3,5.5,-0.8]], r:0.03, color: C_POTION});\n  api.cyl({r:0.08, h:0.25, pos:[-1.3,5.3,-0.8], color: C_POTION});\n  api.cone({r:0.06, h:0.12, pos:[-1.3,5.1,-0.8], along: '-Y', color: C_POTION});\n  api.endGroup();\n}",
+  "_description": "a lowpoly witchy magical tree with twisted spooky branches and purple violet leaves, enchanting aura",
+  "_formulaResult": {
+    "methodologies": [
+      "vegetation"
+    ],
+    "regions": [
+      {
+        "name": "trunk",
+        "desc": "粗壮扭曲的主干、蔓延的板根、树皮瘤结如脸-深褐[2b1b17]、根部嵌发光水晶-紫[9400d3]"
+      },
+      {
+        "name": "branches",
+        "desc": "如利爪般扭曲伸展的枝干、细长分叉-深褐"
+      },
+      {
+        "name": "leaves",
+        "desc": "簇生在枝丫末端、紫罗兰色-紫罗兰[6a0dad]、深紫色-深紫[4b0082]"
+      },
+      {
+        "name": "aura",
+        "desc": "环绕树冠漂浮的几何光球-青[00ffff]、枝头悬挂小药水瓶-暗蓝[1a1a2e]"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('trunk','trunk') → 粗壮扭曲的主干、蔓延的板根、树皮瘤结如脸-深褐[2b1b17]、根部嵌发光水晶-紫[9400d3] → api.endGroup()\napi.group('branches','branches') → 如利爪般扭曲伸展的枝干、细长分叉-深褐 → api.endGroup()\napi.group('leaves','leaves') → 簇生在枝丫末端、紫罗兰色-紫罗兰[6a0dad]、深紫色-深紫[4b0082] → api.endGroup()\napi.group('aura','aura') → 环绕树冠漂浮的几何光球-青[00ffff]、枝头悬挂小药水瓶-暗蓝[1a1a2e] → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly witchy magical tree with twisted spooky branches and purple violet leaves, enchanting aura\"\n\n草稿结构：\n  trunk: 粗壮扭曲的主干、蔓延的板根、树皮瘤结如脸-深褐[2b1b17]、根部嵌发光水晶-紫[9400d3]\n  branches: 如利爪般扭曲伸展的枝干、细长分叉-深褐\n  leaves: 簇生在枝丫末端、紫罗兰色-紫罗兰[6a0dad]、深紫色-深紫[4b0082]\n  aura: 环绕树冠漂浮的几何光球-青[00ffff]、枝头悬挂小药水瓶-暗蓝[1a1a2e]\n整体比例：粗壮扭曲的不对称树形，底部宽大根系，中段急遽收窄，顶部如爪状散开，树冠宽大\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242340968,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

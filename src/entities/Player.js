@@ -3,7 +3,7 @@ import { isKeyDown } from '../input/keyboard.js';
 
 /**
  * Player entity — a cone representing the player character.
- * WASD movement is camera-relative: W always moves away from camera,
+ * WASD movement is camera-relative: W always moves in the camera's look direction,
  * A/D strafe left/right relative to camera view.
  */
 export class Player {
@@ -20,24 +20,30 @@ export class Player {
 
   /**
    * @param {number} dt - delta time in seconds
-   * @param {number} cameraAngle - horizontal orbit angle from ThirdPersonCamera
+   * @param {number} cameraAngle - horizontal angle from ThirdPersonCamera
    */
   update(dt, cameraAngle) {
     const moveDir = new THREE.Vector3();
 
-    if (isKeyDown('w')) moveDir.x += 1;  // forward = away from camera
-    if (isKeyDown('s')) moveDir.x -= 1;
-    if (isKeyDown('a')) moveDir.z -= 1;
-    if (isKeyDown('d')) moveDir.z += 1;
+    // Camera look direction
+    const forwardX = -Math.cos(cameraAngle);
+    const forwardZ = -Math.sin(cameraAngle);
+    // Right vector = forward × up (Y-up right-handed)
+    const rightX = Math.sin(cameraAngle);
+    const rightZ = -Math.cos(cameraAngle);
+
+    if (isKeyDown('w')) { moveDir.x += forwardX; moveDir.z += forwardZ; }
+    if (isKeyDown('s')) { moveDir.x -= forwardX; moveDir.z -= forwardZ; }
+    if (isKeyDown('a')) { moveDir.x -= rightX; moveDir.z -= rightZ; }
+    if (isKeyDown('d')) { moveDir.x += rightX; moveDir.z += rightZ; }
 
     if (moveDir.length() > 0) {
       moveDir.normalize();
-      // Rotate movement by camera horizontal angle
-      moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngle);
       this.mesh.position.addScaledVector(moveDir, this._speed * dt);
 
-      // Face away from camera
-      this.mesh.rotation.y = cameraAngle;
+      // Face movement direction
+      const angle = Math.atan2(moveDir.x, moveDir.z);
+      this.mesh.rotation.y = angle;
     }
 
     // Held item follows player

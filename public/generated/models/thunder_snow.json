@@ -1,0 +1,1416 @@
+{
+  "name": "雷电雪绒玩偶",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "head",
+      "name": "头部",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2.5,
+        "z": 0
+      },
+      "pivotTarget": "chest"
+    },
+    {
+      "id": "m0",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m1",
+      "type": "sphere",
+      "geometry": {
+        "radius": 1.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0.7999999999999998,
+        "z": 0.2
+      },
+      "color": 14737632
+    },
+    {
+      "id": "m2",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.22,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.5,
+        "y": 1.2000000000000002,
+        "z": 1.3
+      },
+      "color": 1118481
+    },
+    {
+      "id": "m3",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.22,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1.2000000000000002,
+        "z": 1.3
+      },
+      "color": 1118481
+    },
+    {
+      "id": "m4",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.07,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.4,
+        "y": 1.2999999999999998,
+        "z": 1.42
+      },
+      "color": 16777215
+    },
+    {
+      "id": "m5",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.07,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.6,
+        "y": 1.2999999999999998,
+        "z": 1.42
+      },
+      "color": 16777215
+    },
+    {
+      "id": "m6",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.7,
+        "y": 0.7999999999999998,
+        "z": 1.2
+      },
+      "color": 16755370
+    },
+    {
+      "id": "m7",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.7,
+        "y": 0.7999999999999998,
+        "z": 1.2
+      },
+      "color": 16755370
+    },
+    {
+      "id": "m8",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.06666666666666665,
+          0.2666666666666666,
+          0
+        ],
+        "b": [
+          0.2333333333333334,
+          -0.1333333333333333,
+          0
+        ],
+        "c": [
+          -0.16666666666666663,
+          -0.1333333333333333,
+          0
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.6666666666666666,
+        "y": 1.1333333333333333,
+        "z": 1.45
+      },
+      "color": 16768256
+    },
+    {
+      "id": "m9",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.19999999999999984,
+          0.1333333333333333,
+          0
+        ],
+        "b": [
+          0.20000000000000018,
+          0.1333333333333333,
+          0
+        ],
+        "c": [
+          1.1102230246251565e-16,
+          -0.2666666666666666,
+          0
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.6999999999999998,
+        "y": 0.8666666666666667,
+        "z": 1.45
+      },
+      "color": 16768256
+    },
+    {
+      "id": "body",
+      "name": "躯干",
+      "group": true
+    },
+    {
+      "id": "chest",
+      "name": "胸",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 1.8,
+        "z": 0
+      }
+    },
+    {
+      "id": "m10",
+      "type": "box",
+      "geometry": {
+        "width": 3.2,
+        "height": 1.5,
+        "depth": 2.8
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "abdomen",
+      "name": "腹",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 0.9,
+        "z": 0
+      }
+    },
+    {
+      "id": "m11",
+      "type": "box",
+      "geometry": {
+        "width": 3.4,
+        "height": 1.2,
+        "depth": 3
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14737632
+    },
+    {
+      "id": "m12",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.10000000000000002,
+          0.33333333333333326,
+          0
+        ],
+        "b": [
+          0.3,
+          -0.16666666666666674,
+          0
+        ],
+        "c": [
+          -0.2,
+          -0.16666666666666674,
+          0
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.10000000000000002,
+        "y": 0.5666666666666668,
+        "z": 1.51
+      },
+      "color": 16768256
+    },
+    {
+      "id": "m13",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.26666666666666666,
+          0.16666666666666652,
+          0
+        ],
+        "b": [
+          0.23333333333333336,
+          0.16666666666666652,
+          0
+        ],
+        "c": [
+          0.033333333333333354,
+          -0.3333333333333335,
+          0
+        ],
+        "d": 0.06
+      },
+      "position": {
+        "x": 0.16666666666666666,
+        "y": 0.2333333333333335,
+        "z": 1.51
+      },
+      "color": 16768256
+    },
+    {
+      "id": "pelvis",
+      "name": "胯",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0
+      }
+    },
+    {
+      "id": "m14",
+      "type": "box",
+      "geometry": {
+        "width": 3.2,
+        "height": 0.8,
+        "depth": 2.6
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "rightArm",
+      "name": "右臂",
+      "group": true,
+      "position": {
+        "x": 1.7,
+        "y": 1.8,
+        "z": 0
+      },
+      "pivotTarget": "chest"
+    },
+    {
+      "id": "rightArm_upperArm",
+      "name": "upperArm",
+      "group": true,
+      "parent": "rightArm"
+    },
+    {
+      "id": "m15",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m16",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.55,
+        "radiusBottom": 0.55,
+        "height": 0.67,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.16,
+        "y": -0.52,
+        "z": 0.1
+      },
+      "color": 15790320,
+      "quaternion": {
+        "x": 0.55,
+        "y": 0,
+        "z": -0.82,
+        "w": 0.17
+      },
+      "boneFrom": "rightArm_upperArm",
+      "boneTo": "rightArm_hand",
+      "boneRestLen": 0.67
+    },
+    {
+      "id": "rightArm_hand",
+      "name": "hand",
+      "group": true,
+      "parent": "rightArm",
+      "position": {
+        "x": 0.30000000000000004,
+        "y": -1,
+        "z": 0.2
+      },
+      "pivotTarget": "rightArm_upperArm"
+    },
+    {
+      "id": "m17",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "rightLeg",
+      "name": "右腿",
+      "group": true,
+      "position": {
+        "x": 0.9,
+        "y": 0,
+        "z": 0
+      },
+      "pivotTarget": "pelvis"
+    },
+    {
+      "id": "rightLeg_thigh",
+      "name": "thigh",
+      "group": true,
+      "parent": "rightLeg"
+    },
+    {
+      "id": "m18",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m19",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.6,
+        "radiusBottom": 0.6,
+        "height": 0.44,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.05,
+        "y": -0.4,
+        "z": 0.15
+      },
+      "color": 15790320,
+      "quaternion": {
+        "x": 0.93,
+        "y": 0,
+        "z": -0.31,
+        "w": 0.19
+      },
+      "boneFrom": "rightLeg_thigh",
+      "boneTo": "rightLeg_foot",
+      "boneRestLen": 0.44
+    },
+    {
+      "id": "rightLeg_foot",
+      "name": "foot",
+      "group": true,
+      "parent": "rightLeg",
+      "position": {
+        "x": 0.09999999999999998,
+        "y": -0.8,
+        "z": 0.3
+      },
+      "pivotTarget": "rightLeg_thigh"
+    },
+    {
+      "id": "m20",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "group": true,
+      "position": {
+        "x": -1.7,
+        "y": 1.8,
+        "z": 0
+      },
+      "pivotTarget": "chest"
+    },
+    {
+      "id": "leftArm_upperArm",
+      "name": "upperArm",
+      "group": true,
+      "parent": "leftArm"
+    },
+    {
+      "id": "m21",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m22",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.55,
+        "radiusBottom": 0.55,
+        "height": 0.67,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.16,
+        "y": -0.52,
+        "z": 0.1
+      },
+      "color": 15790320,
+      "quaternion": {
+        "x": 0.55,
+        "y": 0,
+        "z": 0.82,
+        "w": 0.17
+      },
+      "boneFrom": "leftArm_upperArm",
+      "boneTo": "leftArm_hand",
+      "boneRestLen": 0.67
+    },
+    {
+      "id": "leftArm_hand",
+      "name": "hand",
+      "group": true,
+      "parent": "leftArm",
+      "position": {
+        "x": -0.30000000000000004,
+        "y": -1,
+        "z": 0.2
+      },
+      "pivotTarget": "leftArm_upperArm"
+    },
+    {
+      "id": "m23",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "leftLeg",
+      "name": "左腿",
+      "group": true,
+      "position": {
+        "x": -0.9,
+        "y": 0,
+        "z": 0
+      },
+      "pivotTarget": "pelvis"
+    },
+    {
+      "id": "leftLeg_thigh",
+      "name": "thigh",
+      "group": true,
+      "parent": "leftLeg"
+    },
+    {
+      "id": "m24",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m25",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.6,
+        "radiusBottom": 0.6,
+        "height": 0.44,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.05,
+        "y": -0.4,
+        "z": 0.15
+      },
+      "color": 15790320,
+      "quaternion": {
+        "x": 0.93,
+        "y": 0,
+        "z": 0.31,
+        "w": 0.19
+      },
+      "boneFrom": "leftLeg_thigh",
+      "boneTo": "leftLeg_foot",
+      "boneRestLen": 0.44
+    },
+    {
+      "id": "leftLeg_foot",
+      "name": "foot",
+      "group": true,
+      "parent": "leftLeg",
+      "position": {
+        "x": -0.09999999999999998,
+        "y": -0.8,
+        "z": 0.3
+      },
+      "pivotTarget": "leftLeg_thigh"
+    },
+    {
+      "id": "m26",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 15790320
+    }
+  ],
+  "tree": [
+    {
+      "id": "body",
+      "name": "躯干",
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "meshes": [],
+      "children": [
+        {
+          "id": "chest",
+          "name": "胸",
+          "offset": [
+            0,
+            1.8,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m10",
+              "type": "box",
+              "geometry": {
+                "width": 3.2,
+                "height": 1.5,
+                "depth": 2.8
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 15790320
+            }
+          ],
+          "children": [
+            {
+              "id": "head",
+              "name": "头部",
+              "offset": [
+                0,
+                0.7,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m0",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 1.5,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 1,
+                    "z": 0
+                  },
+                  "color": 15790320
+                },
+                {
+                  "id": "m1",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 1.2,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0.7999999999999998,
+                    "z": 0.2
+                  },
+                  "color": 14737632
+                },
+                {
+                  "id": "m2",
+                  "type": "icosahedron",
+                  "geometry": {
+                    "radius": 0.22,
+                    "detail": 0
+                  },
+                  "position": {
+                    "x": -0.5,
+                    "y": 1.2000000000000002,
+                    "z": 1.3
+                  },
+                  "color": 1118481
+                },
+                {
+                  "id": "m3",
+                  "type": "icosahedron",
+                  "geometry": {
+                    "radius": 0.22,
+                    "detail": 0
+                  },
+                  "position": {
+                    "x": 0.5,
+                    "y": 1.2000000000000002,
+                    "z": 1.3
+                  },
+                  "color": 1118481
+                },
+                {
+                  "id": "m4",
+                  "type": "icosahedron",
+                  "geometry": {
+                    "radius": 0.07,
+                    "detail": 0
+                  },
+                  "position": {
+                    "x": -0.4,
+                    "y": 1.2999999999999998,
+                    "z": 1.42
+                  },
+                  "color": 16777215
+                },
+                {
+                  "id": "m5",
+                  "type": "icosahedron",
+                  "geometry": {
+                    "radius": 0.07,
+                    "detail": 0
+                  },
+                  "position": {
+                    "x": 0.6,
+                    "y": 1.2999999999999998,
+                    "z": 1.42
+                  },
+                  "color": 16777215
+                },
+                {
+                  "id": "m6",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.2,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": -0.7,
+                    "y": 0.7999999999999998,
+                    "z": 1.2
+                  },
+                  "color": 16755370
+                },
+                {
+                  "id": "m7",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.2,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0.7,
+                    "y": 0.7999999999999998,
+                    "z": 1.2
+                  },
+                  "color": 16755370
+                },
+                {
+                  "id": "m8",
+                  "type": "tri",
+                  "geometry": {
+                    "a": [
+                      -0.06666666666666665,
+                      0.2666666666666666,
+                      0
+                    ],
+                    "b": [
+                      0.2333333333333334,
+                      -0.1333333333333333,
+                      0
+                    ],
+                    "c": [
+                      -0.16666666666666663,
+                      -0.1333333333333333,
+                      0
+                    ],
+                    "d": 0.06
+                  },
+                  "position": {
+                    "x": 0.6666666666666666,
+                    "y": 1.1333333333333333,
+                    "z": 1.45
+                  },
+                  "color": 16768256
+                },
+                {
+                  "id": "m9",
+                  "type": "tri",
+                  "geometry": {
+                    "a": [
+                      -0.19999999999999984,
+                      0.1333333333333333,
+                      0
+                    ],
+                    "b": [
+                      0.20000000000000018,
+                      0.1333333333333333,
+                      0
+                    ],
+                    "c": [
+                      1.1102230246251565e-16,
+                      -0.2666666666666666,
+                      0
+                    ],
+                    "d": 0.06
+                  },
+                  "position": {
+                    "x": 0.6999999999999998,
+                    "y": 0.8666666666666667,
+                    "z": 1.45
+                  },
+                  "color": 16768256
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "rightArm",
+              "name": "右臂",
+              "offset": [
+                1.7,
+                0,
+                0
+              ],
+              "meshes": [],
+              "children": [
+                {
+                  "id": "rightArm_upperArm",
+                  "name": "upperArm",
+                  "offset": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m15",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.6,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m16",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.55,
+                        "radiusBottom": 0.55,
+                        "height": 0.67,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": 0.16,
+                        "y": -0.52,
+                        "z": 0.1
+                      },
+                      "color": 15790320,
+                      "quaternion": {
+                        "x": 0.55,
+                        "y": 0,
+                        "z": -0.82,
+                        "w": 0.17
+                      },
+                      "boneFrom": "rightArm_upperArm",
+                      "boneTo": "rightArm_hand",
+                      "boneRestLen": 0.67
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "rightArm_hand",
+                      "name": "hand",
+                      "offset": [
+                        0.3,
+                        -1,
+                        0.2
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m17",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.5,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 15790320
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "leftArm",
+              "name": "左臂",
+              "offset": [
+                -1.7,
+                0,
+                0
+              ],
+              "meshes": [],
+              "children": [
+                {
+                  "id": "leftArm_upperArm",
+                  "name": "upperArm",
+                  "offset": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m21",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.6,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m22",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.55,
+                        "radiusBottom": 0.55,
+                        "height": 0.67,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": -0.16,
+                        "y": -0.52,
+                        "z": 0.1
+                      },
+                      "color": 15790320,
+                      "quaternion": {
+                        "x": 0.55,
+                        "y": 0,
+                        "z": 0.82,
+                        "w": 0.17
+                      },
+                      "boneFrom": "leftArm_upperArm",
+                      "boneTo": "leftArm_hand",
+                      "boneRestLen": 0.67
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "leftArm_hand",
+                      "name": "hand",
+                      "offset": [
+                        -0.3,
+                        -1,
+                        0.2
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m23",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.5,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 15790320
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abdomen",
+          "name": "腹",
+          "offset": [
+            0,
+            0.9,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m11",
+              "type": "box",
+              "geometry": {
+                "width": 3.4,
+                "height": 1.2,
+                "depth": 3
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14737632
+            },
+            {
+              "id": "m12",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -0.10000000000000002,
+                  0.33333333333333326,
+                  0
+                ],
+                "b": [
+                  0.3,
+                  -0.16666666666666674,
+                  0
+                ],
+                "c": [
+                  -0.2,
+                  -0.16666666666666674,
+                  0
+                ],
+                "d": 0.06
+              },
+              "position": {
+                "x": 0.10000000000000002,
+                "y": 0.5666666666666668,
+                "z": 1.51
+              },
+              "color": 16768256
+            },
+            {
+              "id": "m13",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -0.26666666666666666,
+                  0.16666666666666652,
+                  0
+                ],
+                "b": [
+                  0.23333333333333336,
+                  0.16666666666666652,
+                  0
+                ],
+                "c": [
+                  0.033333333333333354,
+                  -0.3333333333333335,
+                  0
+                ],
+                "d": 0.06
+              },
+              "position": {
+                "x": 0.16666666666666666,
+                "y": 0.2333333333333335,
+                "z": 1.51
+              },
+              "color": 16768256
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pelvis",
+          "name": "胯",
+          "offset": [
+            0,
+            0.2,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m14",
+              "type": "box",
+              "geometry": {
+                "width": 3.2,
+                "height": 0.8,
+                "depth": 2.6
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 15790320
+            }
+          ],
+          "children": [
+            {
+              "id": "rightLeg",
+              "name": "右腿",
+              "offset": [
+                0.9,
+                -0.2,
+                0
+              ],
+              "meshes": [],
+              "children": [
+                {
+                  "id": "rightLeg_thigh",
+                  "name": "thigh",
+                  "offset": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m18",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.6,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m19",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.6,
+                        "radiusBottom": 0.6,
+                        "height": 0.44,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": 0.05,
+                        "y": -0.4,
+                        "z": 0.15
+                      },
+                      "color": 15790320,
+                      "quaternion": {
+                        "x": 0.93,
+                        "y": 0,
+                        "z": -0.31,
+                        "w": 0.19
+                      },
+                      "boneFrom": "rightLeg_thigh",
+                      "boneTo": "rightLeg_foot",
+                      "boneRestLen": 0.44
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "rightLeg_foot",
+                      "name": "foot",
+                      "offset": [
+                        0.1,
+                        -0.8,
+                        0.3
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m20",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.6,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 15790320
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "leftLeg",
+              "name": "左腿",
+              "offset": [
+                -0.9,
+                -0.2,
+                0
+              ],
+              "meshes": [],
+              "children": [
+                {
+                  "id": "leftLeg_thigh",
+                  "name": "thigh",
+                  "offset": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m24",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.6,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m25",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.6,
+                        "radiusBottom": 0.6,
+                        "height": 0.44,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": -0.05,
+                        "y": -0.4,
+                        "z": 0.15
+                      },
+                      "color": 15790320,
+                      "quaternion": {
+                        "x": 0.93,
+                        "y": 0,
+                        "z": 0.31,
+                        "w": 0.19
+                      },
+                      "boneFrom": "leftLeg_thigh",
+                      "boneTo": "leftLeg_foot",
+                      "boneRestLen": 0.44
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "leftLeg_foot",
+                      "name": "foot",
+                      "offset": [
+                        -0.1,
+                        -0.8,
+                        0.3
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m26",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.6,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 15790320
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"极度圆润胖矮的玩偶体型，头大身宽，四肢极短粗，整体呈团状\",\n  \"regions\": [\n    {\"name\": \"head\", \"desc\": \"占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\"},\n    {\"name\": \"body\", \"desc\": \"极宽胖、与头部等宽、雪白、闪电贴片-亮黄\"},\n    {\"name\": \"leftArm\", \"desc\": \"极短小、宽胖、雪白\"},\n    {\"name\": \"rightArm\", \"desc\": \"极短小、宽胖、雪白\"},\n    {\"name\": \"leftLeg\", \"desc\": \"极短小、宽胖、雪白\"},\n    {\"name\": \"rightLeg\", \"desc\": \"极短小、宽胖、雪白\"}\n  ],\n  \"methodologies\": [\"humanoid_body\", \"head:flatface\"]\n}\n```",
+  "_routerThinking": "1.  **Analyze the Request:**\n    *   **Subject:** A lowpoly cute round fluffy snow plushie toy with thunderbolt lightning patterns, soft and chubby.\n    *   **Keywords:** lowpoly, cute, round, fluffy (plushie), snow, thunderbolt lightning patterns, soft, chubby.\n    *   **Role:** Lowpoly structural drafter (building blocks, no textures, focus on structure, accessories, colors).\n\n2.  **Step 1: Concretization:**\n    *   \"Snow plushie toy\" is a concrete noun (a toy/creature made of snow/plush). No need for abstract conceptualization. It's essentially a round, chubby snowman-like or round blob creature plushie.\n\n3.  **Step 2: Structural Division:**\n    *   It's a single entity (a plushie toy).\n    *   Groups: body (main round chubby mass), head (could be merged with body if it's a blob, but usually a plushie has a distinct head or face area), limbs (tiny stubby arms/legs typical of cute plushies). Let's do: body (main round torso, maybe includes head if it's a round blob, but let's separate head for face placement), head, leftArm, rightArm, leftLeg, rightLeg. Or simpler: body (if it's a round blob with face on body), arms, legs. Let's go with a classic \"round plushie\" shape: head (round), body (chubby round, slightly wider), stubby arms, stubby legs.\n    *   Proportions: Extremely round and chubby, head and body almost equal width, limbs are tiny stubs. Head takes up almost 1/2 of the height.\n\n4.  **Step 3: Desc + Accessories:**\n    *   *Body/Head:* Round, chubby, soft. \"Snow\" implies white. \"Fluffy\" implies round/bulbous shapes (no sharp edges).\n    *   *Lightning patterns:* Since NO textures are allowed, lightning must be represented by attached flat patches (patch/tri) on the surface. \"Thunderbolt lightning patches-亮黄[ffdd00]\".\n    *   *Colors:* Snow = White [f0f0f0] (60%), Lightning = Bright Yellow [ffdd00] (30%), maybe tiny details like eyes = Black [111111] (10%).\n    *   *Accessories:* Plushie eyes (black dots), maybe a tiny scarf or hat to break up the snow? The prompt doesn't ask for it, but it adds character. Let's stick strictly to prompt: snow plushie, lightning patterns. So: eyes, lightning patches.\n    *   *Desc writing:*\n        *   head: 宽圆球、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\n        *   body: 极度圆润宽胖、雪白、闪电贴片-亮黄\n        *   leftArm: 极短粗圆筒、雪白\n        *   rightArm: 极短粗圆筒、雪白\n        *   leftLeg: 极短粗圆台、雪白\n        *   rightLeg: 极短粗圆台、雪白\n\n5.  **Step 4: Methodology Selection:**\n    *   Body structure: It's a toy/creature. `humanoid_body` (bipedal plushie) or `complex_stack` (if it's just a blob). Let's use `humanoid_body` since it has arms and legs, even if stubby.\n    *   Head: `head:flatface` (cute plushie face).\n    *   Wings: None.\n\n6.  **Refine JSON:**\n    *   proportions: 极度圆润胖矮的玩偶体型，头大身宽，四肢极短粗\n    *   regions:\n        *   head: 宽圆球、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\n        *   body: 极度圆润宽胖、雪白、闪电贴片-亮黄\n        *   leftArm: 极短粗圆筒、雪白\n        *   rightArm: 极短粗圆筒、雪白\n        *   leftLeg: 极短粗圆台、雪白\n        *   rightLeg: 极短粗圆台、雪白\n    *   methodologies: [\"humanoid_body\", \"head:flatface\"]\n\n7.  **Check Constraints:**\n    *   No textures? Checked (lightning is \"贴片\" - patches).\n    *   No shape descriptions in desc? Checked (used \"宽圆球\", \"极短粗圆筒\" - wait, rule says \"desc描述部位的比例关系和宽窄对比，不描述几何形状——留给Model AI\". Let me fix this.)\n    *   Fix desc: Remove geometric shape words (球, 圆筒, 圆台). Use proportion/width words.\n    *   head: 占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\n    *   body: 极宽胖、与头部等宽、雪白、闪电贴片-亮黄\n    *   leftArm: 极短小、宽胖、雪白\n    *   rightArm: 极短小、宽胖、雪白\n    *   leftLeg: 极短小、宽胖、雪白\n    *   rightLeg: 极短小、宽胖、雪白\n\n8.  **Final Polish:**\n    *   Make sure hex codes have no `#`.\n    *   Colors: Snow white [f0f0f0] (60%), Lightning yellow [ffdd00] (30%), Black eyes [111111] (10%).\n    *   \"Fluffy\" translates to wide, bulging proportions.\n    *   \"Thunderbolt lightning patterns\" -> \"闪电贴片\" (lightning patches attached to surface).\n\n    ```json\n    {\n      \"proportions\": \"极度圆润胖矮的玩偶体型，头大身宽，四肢极短粗，整体呈团状\",\n      \"regions\": [\n        {\"name\": \"head\", \"desc\": \"占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\"},\n        {\"name\": \"body\", \"desc\": \"极宽胖、与头部等宽、雪白、闪电贴片-亮黄\"},\n        {\"name\": \"leftArm\", \"desc\": \"极短小、宽胖、雪白\"},\n        {\"name\": \"rightArm\", \"desc\": \"极短小、宽胖、雪白\"},\n        {\"name\": \"leftLeg\", \"desc\": \"极短小、宽胖、雪白\"},\n        {\"name\": \"rightLeg\", \"desc\": \"极短小、宽胖、雪白\"}\n      ],\n      \"methodologies\": [\"humanoid_body\", \"head:flatface\"]\n    }\n    ```",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly cute round fluffy snow plushie toy with thunderbolt lightning patterns, soft and chubby.\n    *   **Draft Structure:**\n        *   head: ~half height, very wide/round, snow white (0xf0f0f0), small round black eyes (0x111111), lightning patch (0xffdd00).\n        *   body: very chubby, same width as head, snow white, lightning patch (0xffdd00).\n        *   leftArm, rightArm: very short, chubby, snow white.\n        *   leftLeg, rightLeg: very short, chubby, snow white.\n    *   **Overall Proportions:** Extremely round, chubby, short, toy-like. Head big, body wide, limbs very short and thick, overall blob-like.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Use low-poly block-stacking logic. Y+ up, Z+ front. Pivot logic for humanoid.\n\n2.  **Color Palette:**\n    *   Main (60%): Snow White `0xf0f0f0`\n    *   Accent (30%): Soft Grey/Shadow `0xdcdcdc` (for subtle volume variation)\n    *   Highlight (10%): Lightning Yellow `0xffdd00`\n    *   Eyes: Black `0x111111`\n\n3.  **Proportions & Scale:**\n    *   Total height ~ 4.5 - 5.0 units (chubby toy).\n    *   Head: Sphere r=1.5 or box w=3, h=2.5, d=2.8. Let's use a sphere for the head to make it \"round fluffy\", or a rounded box. The prompt says \"lowpoly\", so maybe a sphere with low segments or a box. Let's use `sphere({r:1.5})` for the head.\n    *   Body: Box w=3.2, h=2.2, d=2.5. Very chubby.\n    *   Arms: Short cylinders or boxes. w=0.8, h=1.0, d=0.8.\n    *   Legs: Short cylinders or boxes. w=0.9, h=0.8, d=0.9.\n\n4.  **Build Structure (Humanoid):**\n    *   `head`: Sphere r=1.5. Eyes (poly r=0.2). Lightning patch (tri or flat box).\n    *   `body`: Chest + Abdomen + Pelvis (or just one big block since it's a plushie). Let's do chest and pelvis for basic structure, or just a single big body block. The instructions say \"body 包裹 chest + abdomen + pelvis\". I'll follow the 3-part body rule but make them very overlapping and chubby.\n    *   `leftArm`, `rightArm`: Chain with 2 waypoints (upperArm, hand) or just a short chain. Since it's a plushie, maybe just a short chain `[[x, y, z], [x, y-1, z]]` with jointIds `['upperArm', 'hand']`.\n    *   `leftLeg`, `rightLeg`: Short chain `[[x, y, z], [x, y-1, z]]` with jointIds `['thigh', 'foot']`.\n\n5.  **Detailed Construction:**\n    *   **Head:**\n        *   Pivot at neck (0, 2.2, 0) target chest.\n        *   Sphere r=1.5, pos [0, 3.5, 0], color 0xf0f0f0.\n        *   Eyes: poly r=0.2, pos [-0.5, 3.7, 1.3] and [0.5, 3.7, 1.3], color 0x111111.\n        *   Lightning patch: tri or flat box on cheek/forehead. Let's put a lightning bolt on the right cheek. `tri({a:[0.5, 4.0, 1.4], b:[0.8, 3.5, 1.4], c:[0.6, 3.2, 1.4], d:0.05, color:0xffdd00})` - wait, lightning is zig-zag. A flat box or a couple of tris. Let's use a flat box for the lightning bolt on the head. Or `patch`? A simple `tri` overlapping can make a lightning shape. Let's do a simple flat box tilted, or two tris. Let's just use a flat box `w:0.2, h:0.8, d:0.05` rotated? API doesn't have rotate on box directly, must use group or just place it. Let's use `tri` for a lightning bolt shape: `a:[0.6, 4.2, 1.45], b:[0.8, 3.8, 1.45], c:[0.5, 3.8, 1.45]` and another `a:[0.5, 3.8, 1.45], b:[0.8, 3.8, 1.45], c:[0.6, 3.3, 1.45]`. This makes a zig-zag.\n    *   **Body:**\n        *   Group 'body'.\n        *   Chest: box w=3.2, h=1.5, d=2.5, pos [0, 1.8, 0], color 0xf0f0f0.\n        *   Abdomen: box w=3.4, h=1.0, d=2.6, pos [0, 1.0, 0], color 0xdcdcdc (slight color variation for fluffiness).\n        *   Pelvis: box w=3.0, h=0.8, d=2.4, pos [0, 0.4, 0], color 0xf0f0f0.\n        *   Lightning patch on belly: `tri` zig-zag on front. `a:[-0.2, 1.8, 1.3], b:[0.2, 1.3, 1.3], c:[-0.1, 1.3, 1.3]` and `a:[-0.1, 1.3, 1.3], b:[0.2, 1.3, 1.3], c:[0.1, 0.8, 1.3]`. Color 0xffdd00.\n    *   **Arms:**\n        *   Left Arm: pivot at [-1.7, 1.8, 0] target chest.\n        *   Chain: waypoints [[-1.7, 1.8, 0], [-2.2, 0.8, 0]], rStart:0.6, rEnd:0.5, jointIds:['upperArm','hand'], color 0xf0f0f0.\n        *   Right Arm: pivot at [1.7, 1.8, 0] target chest.\n        *   Chain: waypoints [[1.7, 1.8, 0], [2.2, 0.8, 0]], rStart:0.6, rEnd:0.5, jointIds:['upperArm','hand'], color 0xf0f0f0.\n    *   **Legs:**\n        *   Left Leg: pivot at [-0.8, 0.2, 0] target pelvis.\n        *   Chain: waypoints [[-0.8, 0.2, 0], [-0.8, -0.6, 0.2]], rStart:0.6, rEnd:0.6, jointIds:['thigh','foot'], color 0xf0f0f0.\n        *   Right Leg: pivot at [0.8, 0.2, 0] target pelvis.\n        *   Chain: waypoints [[0.8, 0.2, 0], [0.8, -0.6, 0.2]], rStart:0.6, rEnd:0.6, jointIds:['thigh','foot'], color 0xf0f0f0.\n\n6.  **Refining Details & Pivots:**\n    *   Head pivot: `api.pivot([0, 2.2, 0], \"chest\")`. Head sphere pos: [0, 3.5, 0]. Wait, if chest top is 1.8 + 1.5/2 = 2.55. Neck is around 2.5. Head sphere center at 3.5. Head bottom is 3.5 - 1.5 = 2.0. Overlaps with chest top (2.55). Good.\n    *   Body: Chest pos [0, 1.8, 0], h=1.5 -> top 2.55, bot 1.05. Abdomen pos [0, 1.0, 0], h=1.0 -> top 1.5, bot 0.5. Overlap 1.5-1.05 = 0.45. Pelvis pos [0, 0.4, 0], h=0.8 -> top 0.8, bot 0.0. Overlap 0.8-0.5 = 0.3. Good.\n    *   Arms: Pivot at shoulder. Shoulder x = chest w/2 + arm r = 1.6 + 0.6 = 2.2. Let's do pivot at [-1.8, 1.8, 0] and [1.8, 1.8, 0]. Waypoints: [[-1.8, 1.8, 0], [-2.2, 0.5, 0.2]].\n    *   Legs: Pivot at hip. Hip x = 0.8. Pelvis bot = 0.0. Pivot at [-0.8, 0.2, 0] and [0.8, 0.2, 0]. Waypoints: [[-0.8, 0.2, 0], [-0.9, -0.8, 0.3]].\n    *   Lightning patches: Make them prominent.\n        *   Head lightning: Right side of face. `tri({a:[0.5, 4.0, 1.4], b:[0.8, 3.6, 1.4], c:[0.4, 3.6, 1.4], d:0.06, color:0xffdd00})`, `tri({a:[0.4, 3.6, 1.4], b:[0.8, 3.6, 1.4], c:[0.6, 3.1, 1.4], d:0.06, color:0xffdd00})`.\n        *   Body lightning: Center belly. `tri({a:[0, 1.8, 1.31], b:[0.4, 1.3, 1.31], c:[-0.1, 1.3, 1.31], d:0.06, color:0xffdd00})`, `tri({a:[-0.1, 1.3, 1.31], b:[0.4, 1.3, 1.31], c:[0.2, 0.8, 1.31], d:0.06, color:0xffdd00})`.\n    *   Cheeks: Add cute pink cheeks? The prompt says \"snow plushie toy with thunderbolt lightning patterns\". Maybe just keep it white and yellow. Let's add small pink cheeks for cuteness. `sphere({r:0.2, pos:[-0.7, 3.3, 1.2], color:0xffaaaa})` and `[0.7, 3.3, 1.2]`.\n    *   Eyes: `poly({r:0.2, pos:[-0.5, 3.7, 1.3], color:0x111111})`, `poly({r:0.2, pos:[0.5, 3.7, 1.3], color:0x111111})`. Add tiny white highlight: `poly({r:0.06, pos:[-0.4, 3.8, 1.4], color:0xffffff})`, `[0.6, 3.8, 1.4]`.\n\n7.  **Review against Rules:**\n    *   No markdown, no explanation.\n    *   `function build(api) { ... }` format.\n    *   Y+ up, Z+ front.\n    *   Pivots for humanoid.\n    *   Chain for limbs.\n    *   Body = chest + abdomen + pelvis.\n    *   Overlap blocks.\n    *   Decorations on surfaces (z > center + depth * 0.3).\n\n8.  **Final Code Assembly:**\n    *   Colors: C_WHITE=0xf0f0f0, C_SHADOW=0xe0e0e0, C_YELLOW=0xffdd00, C_BLACK=0x111111, C_PINK=0xffaaaa, C_HIGHLIGHT=0xffffff.\n    *   Head group: pivot [0, 2.5, 0] target chest. Sphere r=1.5 pos [0, 3.5, 0]. Eyes, highlights, cheeks, lightning.\n    *   Body group: chest, abdomen, pelvis. Lightning on abdomen.\n    *   Arms: left/right, chain.\n    *   Legs: left/right, chain.\n\nLet's double check the lightning bolt shape. A simple zig-zag is two triangles.\nTop triangle: Top-center, Right-middle, Left-middle.\nBottom triangle: Left-middle, Right-middle, Bottom-center.\nWait, standard lightning bolt:\nTop: (0, 1), Right: (0.3, 0.3), Middle: (-0.1, 0.3), Bottom: (0.1, -0.5).\nTri 1: (0, 1), (0.3, 0.3), (-0.1, 0.3)\nTri 2: (-0.1, 0.3), (0.3, 0.3), (0.1, -0.5)\nThis creates a Z-shape. Perfect.\n\nHead lightning (scaled down, on right cheek):\nCenter at (0.6, 3.5, 1.45).\nTri 1: a:[0.6, 3.9, 1.45], b:[0.9, 3.5, 1.45], c:[0.5, 3.5, 1.45]\nTri 2: a:[0.5, 3.5, 1.45], b:[0.9, 3.5, 1.45], c:[0.7, 3.1, 1.45]\n\nBody lightning (scaled up, on belly):\nCenter at (0, 1.3, 1.31).\nTri 1: a:[0, 1.8, 1.31], b:[0.4, 1.3, 1.31], c:[-0.1, 1.3, 1.31]\nTri 2: a:[-0.1, 1.3, 1.31], b:[0.4, 1.3, 1.31], c:[0.2, 0.8, 1.31]\n\nLet's refine the body dimensions. \"极宽胖、与头部等宽\".\nHead is sphere r=1.5, so width = 3.0.\nChest: w=3.2, h=1.5, d=2.8. pos [0, 1.8, 0].\nAbdomen: w=3.4, h=1.2, d=3.0. pos [0, 0.9, 0].\nPelvis: w=3.2, h=0.8, d=2.6. pos [0, 0.2, 0].\nThis makes the body very round and chubby, wider than the head at the abdomen.\n\nArms: very short and chubby.\nLeft arm pivot: [-1.7, 1.8, 0] target chest.\nChain: [[-1.7, 1.8, 0], [-2.0, 0.8, 0.2]], rStart:0.6, rEnd:0.5, jointIds:['upperArm','hand'].\n\nLegs: very short and chubby.\nLeft leg pivot: [-0.9, 0.0, 0] target pelvis.\nChain: [[-0.9, 0.0, 0], [-1.0, -0.8, 0.3]], rStart:0.6, rEnd:0.6, jointIds:['thigh','foot'].\n\nWait, the prompt says \"雪白[f0f0f0]\". I will use 0xf0f0f0 for the main color.\nLet's adjust the head pivot. Chest top is 1.8 + 1.5/2 = 2.55. Pivot at [0, 2.5, 0].\nHead sphere pos [0, 3.5, 0]. Bottom of head is 3.5 - 1.5 = 2.0. Overlaps with chest top (2.55). Good.\n\nLet's write the code.",
+  "_aiCode": "function build(api) {\n  api.name('雷电雪绒玩偶');\n  const C_WHITE = 0xf0f0f0, C_SHADOW = 0xe0e0e0, C_YELLOW = 0xffdd00, C_BLACK = 0x111111, C_PINK = 0xffaaaa, C_HL = 0xffffff;\n\n  api.group('head','头部');\n    api.pivot([0, 2.5, 0], \"chest\");\n    api.sphere({r:1.5, pos:[0, 3.5, 0], color:C_WHITE});\n    api.sphere({r:1.2, pos:[0, 3.3, 0.2], color:C_SHADOW});\n    api.poly({r:0.22, pos:[-0.5, 3.7, 1.3], color:C_BLACK});\n    api.poly({r:0.22, pos:[0.5, 3.7, 1.3], color:C_BLACK});\n    api.poly({r:0.07, pos:[-0.4, 3.8, 1.42], color:C_HL});\n    api.poly({r:0.07, pos:[0.6, 3.8, 1.42], color:C_HL});\n    api.sphere({r:0.2, pos:[-0.7, 3.3, 1.2], color:C_PINK});\n    api.sphere({r:0.2, pos:[0.7, 3.3, 1.2], color:C_PINK});\n    api.tri({a:[0.6, 3.9, 1.45], b:[0.9, 3.5, 1.45], c:[0.5, 3.5, 1.45], d:0.06, color:C_YELLOW});\n    api.tri({a:[0.5, 3.5, 1.45], b:[0.9, 3.5, 1.45], c:[0.7, 3.1, 1.45], d:0.06, color:C_YELLOW});\n  api.endGroup();\n\n  api.group('body','躯干');\n    api.group('chest','胸');\n      api.box({w:3.2, h:1.5, d:2.8, pos:[0, 1.8, 0], color:C_WHITE});\n    api.endGroup();\n    api.group('abdomen','腹');\n      api.box({w:3.4, h:1.2, d:3.0, pos:[0, 0.9, 0], color:C_SHADOW});\n      api.tri({a:[0, 1.8, 1.51], b:[0.4, 1.3, 1.51], c:[-0.1, 1.3, 1.51], d:0.06, color:C_YELLOW});\n      api.tri({a:[-0.1, 1.3, 1.51], b:[0.4, 1.3, 1.51], c:[0.2, 0.8, 1.51], d:0.06, color:C_YELLOW});\n    api.endGroup();\n    api.group('pelvis','胯');\n      api.box({w:3.2, h:0.8, d:2.6, pos:[0, 0.2, 0], color:C_WHITE});\n    api.endGroup();\n  api.endGroup();\n\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'rightArm' : 'leftArm', side === 0 ? '右臂' : '左臂');\n      api.pivot([1.7*sx, 1.8, 0], \"chest\");\n      api.chain({waypoints:[[1.7*sx, 1.8, 0], [2.0*sx, 0.8, 0.2]], rStart:0.6, rEnd:0.5, jointIds:['upperArm','hand'], color:C_WHITE});\n    api.endGroup();\n\n    api.group(side === 0 ? 'rightLeg' : 'leftLeg', side === 0 ? '右腿' : '左腿');\n      api.pivot([0.9*sx, 0.0, 0], \"pelvis\");\n      api.chain({waypoints:[[0.9*sx, 0.0, 0], [1.0*sx, -0.8, 0.3]], rStart:0.6, rEnd:0.6, jointIds:['thigh','foot'], color:C_WHITE});\n    api.endGroup();\n  }\n}",
+  "_description": "a lowpoly cute round fluffy snow plushie toy with thunderbolt lightning patterns, soft and chubby",
+  "_formulaResult": {
+    "methodologies": [
+      "humanoid_body",
+      "head:flatface"
+    ],
+    "regions": [
+      {
+        "name": "head",
+        "desc": "占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]"
+      },
+      {
+        "name": "body",
+        "desc": "极宽胖、与头部等宽、雪白、闪电贴片-亮黄"
+      },
+      {
+        "name": "leftArm",
+        "desc": "极短小、宽胖、雪白"
+      },
+      {
+        "name": "rightArm",
+        "desc": "极短小、宽胖、雪白"
+      },
+      {
+        "name": "leftLeg",
+        "desc": "极短小、宽胖、雪白"
+      },
+      {
+        "name": "rightLeg",
+        "desc": "极短小、宽胖、雪白"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('head','head') → 占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00] → api.endGroup()\napi.group('body','body') → 极宽胖、与头部等宽、雪白、闪电贴片-亮黄 → api.endGroup()\napi.group('leftArm','leftArm') → 极短小、宽胖、雪白 → api.endGroup()\napi.group('rightArm','rightArm') → 极短小、宽胖、雪白 → api.endGroup()\napi.group('leftLeg','leftLeg') → 极短小、宽胖、雪白 → api.endGroup()\napi.group('rightLeg','rightLeg') → 极短小、宽胖、雪白 → api.endGroup()\n\n### 直立躯干 (humanoid_body)\n竖直方向生物躯体。\n\n## 躯干 = body 一级group内包 3 个二级 group（胸→腹→胯）\n- 构建顺序中写的是 body，实际建造时用 body 包裹 chest + abdomen + pelvis：\n  api.group('body','躯干');\n    api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n    api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n    api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n  api.endGroup();\n- 每个分段用 group 包裹，附着装饰放在对应分段内\n  api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n  api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n  api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n- 块间层叠微偏移，重叠≥0.2\n\n## 四肢 = chain({waypoints, jointIds})，末端收束\n- 四肢一律用 chain——不用 chain 就没有肘/膝关节球，四肢像橡胶管。\n- chain 每个 waypoint 自动生成关节球，靠这个球表达肘/膝的转折。\n- jointIds 命名：臂→['upperArm','forearm','hand']，腿→['thigh','shin','foot']\n- 手持物（武器/盾牌/道具）各自用 group 包裹为二级group，嵌套在对应手臂 group 内部，与 upperArm/forearm/hand 平级。不是放在手臂 group 外面的顶级group。例：api.group('sword','长剑') 或 api.group('shield','盾牌')\n- 代码：api.chain({waypoints:[[-2,6,0],[-2,3,0],[-2,0,0]], jointIds:['upperArm','forearm','hand'], r:0.5, color:0x3a5f8a});\n\n## 关节 pivot（连接推理）\nhumanoid 的每个非躯干 group 都与 body 相连：\n- 四肢 group → pivot at 肩/髋关节, target=body/chest/pelvis\n- 头部 group → pivot at 颈根, target=chest\n- 尾巴 group → pivot at 尾根, target=pelvis\n- 手持物(武器/盾牌) group → pivot at 掌心, target=对应手臂group\n\n### 平面型头部 (head:flatface)\n人/精灵/矮人/兽人/机器人 — 面部与颅骨正面大致齐平，无突出吻部或喙。\n头部 = 颅骨体积(主) + 颌面体积(辅)。禁止单个几何块——单块从侧面看是纯弧线，零辨识度。\n体积块之间重叠0.2~0.5单位，不要精确对接留缝隙。\n\n颅骨体积：占头部60~70%。确立整体形态和气质——偏圆=柔和/可爱，偏方=刚硬/威严，偏长=智慧/沧桑。\n  颅骨是头部\"画布\"，后续一切附着其上，先定颅骨再建其余。\n颌面体积：占30~40%，贴在颅骨前下方。这是制造侧面起伏的关键——\n  颌面比颅骨正面略向前凸0.3~0.8单位，或颅骨下方追加下巴块。\n  侧视轮廓必须有≥2处凸起变化（颅顶弧+颌面前凸），不能是纯圆弧。\n  不需要大凸出，但必须有——这是\"头\"和\"球\"的区别。\n\n五官（附着在已有体积表面，不可浮空）：\n  眼睛：成对，放颅骨前表面偏上1/3处。z > 头中心z + 头深×0.3。\n    结构=轮廓几何体+更小瞳孔几何体。poly=棱角切面感，sphere=圆润感。\n    眼位偏移0.1~0.2即可改变神态：眼位高+外扩=天真/可爱；眼位低+内聚=阴沉/邪恶；眼距宽=憨厚；眼距窄=精明。\n  眉弓：可选，一条细长box或tri压在眼睛上方0.05~0.1处。内端低外端高=愤怒/严肃；平直=冷静；外端高内端低=悲伤/疲惫。颜色比肤色深一个色阶。\n  耳朵：人形→颅骨两侧；动物化→颅骨顶部偏两侧。\n  鼻：可选，颌面前表面微凸的小体积块。\n\n颈部：矮cyl连接躯干与颅骨底部。颈端插入颅骨底部0.2~0.3，下端插入躯干顶部0.2~0.3，重叠避免缝隙，不要精确对接。长颈用chain，关节球小而少。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly cute round fluffy snow plushie toy with thunderbolt lightning patterns, soft and chubby\"\n\n草稿结构：\n  head: 占整体近半高、极宽圆、雪白[f0f0f0]、小圆眼-黑[111111]、闪电贴片-亮黄[ffdd00]\n  body: 极宽胖、与头部等宽、雪白、闪电贴片-亮黄\n  leftArm: 极短小、宽胖、雪白\n  rightArm: 极短小、宽胖、雪白\n  leftLeg: 极短小、宽胖、雪白\n  rightLeg: 极短小、宽胖、雪白\n整体比例：极度圆润胖矮的玩偶体型，头大身宽，四肢极短粗，整体呈团状\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242331910,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

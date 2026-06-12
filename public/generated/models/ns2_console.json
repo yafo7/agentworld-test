@@ -1,0 +1,902 @@
+{
+  "name": "Nintendo Switch 2",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "body",
+      "name": "主体",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2,
+        "z": 0.22
+      }
+    },
+    {
+      "id": "m0",
+      "type": "box",
+      "geometry": {
+        "width": 6,
+        "height": 3,
+        "depth": 0.4
+      },
+      "position": {
+        "x": 0,
+        "y": -0.5,
+        "z": -0.22
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m1",
+      "type": "box",
+      "geometry": {
+        "width": 5.2,
+        "height": 2.4,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0,
+        "y": -0.5,
+        "z": 0
+      },
+      "color": 2003199
+    },
+    {
+      "id": "stand",
+      "name": "支架",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 0,
+        "y": -1.5,
+        "z": -0.42000000000000004
+      },
+      "pivotTarget": "body"
+    },
+    {
+      "id": "m2",
+      "type": "box",
+      "geometry": {
+        "width": 2,
+        "height": 2,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": -0.04999999999999999
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m3",
+      "type": "box",
+      "geometry": {
+        "width": 1.5,
+        "height": 0.1,
+        "depth": 0.2
+      },
+      "position": {
+        "x": 0,
+        "y": 1.0499999999999998,
+        "z": -0.22
+      },
+      "color": 1710618,
+      "parent": "body"
+    },
+    {
+      "id": "m4",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.1,
+        "depth": 0.2
+      },
+      "position": {
+        "x": 0,
+        "y": -2.05,
+        "z": -0.22
+      },
+      "color": 12632256,
+      "parent": "body"
+    },
+    {
+      "id": "m5",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -1.5,
+        "z": 0
+      },
+      "color": 1710618,
+      "parent": "body"
+    },
+    {
+      "id": "leftController",
+      "name": "左手柄",
+      "group": true,
+      "position": {
+        "x": -3,
+        "y": 1.5,
+        "z": 0
+      },
+      "pivotTarget": "body"
+    },
+    {
+      "id": "m6",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 3,
+        "depth": 0.6
+      },
+      "position": {
+        "x": -0.5,
+        "y": 0,
+        "z": 0.1
+      },
+      "color": 33023
+    },
+    {
+      "id": "m7",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 2.8,
+        "depth": 0.5
+      },
+      "position": {
+        "x": 0.04999999999999982,
+        "y": 0,
+        "z": 0.1
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m8",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.25,
+        "radiusBottom": 0.25,
+        "height": 0.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.5,
+        "y": 1,
+        "z": 0.42
+      },
+      "color": 1710618,
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m9",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.5,
+        "y": 1,
+        "z": 0.57
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m10",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.2,
+        "depth": 0.1
+      },
+      "position": {
+        "x": -0.5,
+        "y": -0.30000000000000004,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m11",
+      "type": "box",
+      "geometry": {
+        "width": 0.2,
+        "height": 0.8,
+        "depth": 0.1
+      },
+      "position": {
+        "x": -0.5,
+        "y": -0.30000000000000004,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m12",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.3,
+        "depth": 0.2
+      },
+      "position": {
+        "x": -0.5,
+        "y": 1.6,
+        "z": -0.1
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m13",
+      "type": "box",
+      "geometry": {
+        "width": 0.3,
+        "height": 0.1,
+        "depth": 0.05
+      },
+      "position": {
+        "x": -0.20000000000000018,
+        "y": 0.5,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "rightController",
+      "name": "右手柄",
+      "group": true,
+      "position": {
+        "x": 3,
+        "y": 1.5,
+        "z": 0
+      },
+      "pivotTarget": "body"
+    },
+    {
+      "id": "m14",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 3,
+        "depth": 0.6
+      },
+      "position": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.1
+      },
+      "color": 16711680
+    },
+    {
+      "id": "m15",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 2.8,
+        "depth": 0.5
+      },
+      "position": {
+        "x": -0.04999999999999982,
+        "y": 0,
+        "z": 0.1
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m16",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.25,
+        "radiusBottom": 0.25,
+        "height": 0.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1,
+        "z": 0.42
+      },
+      "color": 1710618,
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m17",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.2,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1,
+        "z": 0.57
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m18",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m19",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": -0.6,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m20",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.20000000000000018,
+        "y": -0.30000000000000004,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m21",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.12,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.7999999999999998,
+        "y": -0.30000000000000004,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m22",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.3,
+        "depth": 0.2
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1.6,
+        "z": -0.1
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m23",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 0.3,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0.20000000000000018,
+        "y": 0.5,
+        "z": 0.42
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m24",
+      "type": "box",
+      "geometry": {
+        "width": 0.3,
+        "height": 0.1,
+        "depth": 0.05
+      },
+      "position": {
+        "x": 0.20000000000000018,
+        "y": 0.5,
+        "z": 0.42
+      },
+      "color": 1710618
+    }
+  ],
+  "tree": [
+    {
+      "id": "body",
+      "name": "主体",
+      "offset": [
+        0,
+        2,
+        0.22
+      ],
+      "meshes": [
+        {
+          "id": "m0",
+          "type": "box",
+          "geometry": {
+            "width": 6,
+            "height": 3,
+            "depth": 0.4
+          },
+          "position": {
+            "x": 0,
+            "y": -0.5,
+            "z": -0.22
+          },
+          "color": 1710618
+        },
+        {
+          "id": "m1",
+          "type": "box",
+          "geometry": {
+            "width": 5.2,
+            "height": 2.4,
+            "depth": 0.05
+          },
+          "position": {
+            "x": 0,
+            "y": -0.5,
+            "z": 0
+          },
+          "color": 2003199
+        }
+      ],
+      "children": [
+        {
+          "id": "stand",
+          "name": "支架",
+          "offset": [
+            0,
+            -1.5,
+            -0.42
+          ],
+          "meshes": [
+            {
+              "id": "m2",
+              "type": "box",
+              "geometry": {
+                "width": 2,
+                "height": 2,
+                "depth": 0.05
+              },
+              "position": {
+                "x": 0,
+                "y": 1,
+                "z": -0.04999999999999999
+              },
+              "color": 6908265
+            },
+            {
+              "id": "m3",
+              "type": "box",
+              "geometry": {
+                "width": 1.5,
+                "height": 0.1,
+                "depth": 0.2
+              },
+              "position": {
+                "x": 0,
+                "y": 1.0499999999999998,
+                "z": -0.22
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m4",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.1,
+                "depth": 0.2
+              },
+              "position": {
+                "x": 0,
+                "y": -2.05,
+                "z": -0.22
+              },
+              "color": 12632256
+            },
+            {
+              "id": "m5",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": 0,
+                "y": -1.5,
+                "z": 0
+              },
+              "color": 1710618
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "leftController",
+          "name": "左手柄",
+          "offset": [
+            -3,
+            -0.5,
+            -0.22
+          ],
+          "meshes": [
+            {
+              "id": "m6",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 3,
+                "depth": 0.6
+              },
+              "position": {
+                "x": -0.5,
+                "y": 0,
+                "z": 0.1
+              },
+              "color": 33023
+            },
+            {
+              "id": "m7",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 2.8,
+                "depth": 0.5
+              },
+              "position": {
+                "x": 0.04999999999999982,
+                "y": 0,
+                "z": 0.1
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m8",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.25,
+                "radiusBottom": 0.25,
+                "height": 0.2,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -0.5,
+                "y": 1,
+                "z": 0.42
+              },
+              "color": 1710618,
+              "rotation": {
+                "x": 1.5707963267948963,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m9",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.2,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": -0.5,
+                "y": 1,
+                "z": 0.57
+              },
+              "color": 3355443
+            },
+            {
+              "id": "m10",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.2,
+                "depth": 0.1
+              },
+              "position": {
+                "x": -0.5,
+                "y": -0.30000000000000004,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m11",
+              "type": "box",
+              "geometry": {
+                "width": 0.2,
+                "height": 0.8,
+                "depth": 0.1
+              },
+              "position": {
+                "x": -0.5,
+                "y": -0.30000000000000004,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m12",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.3,
+                "depth": 0.2
+              },
+              "position": {
+                "x": -0.5,
+                "y": 1.6,
+                "z": -0.1
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m13",
+              "type": "box",
+              "geometry": {
+                "width": 0.3,
+                "height": 0.1,
+                "depth": 0.05
+              },
+              "position": {
+                "x": -0.20000000000000018,
+                "y": 0.5,
+                "z": 0.42
+              },
+              "color": 1710618
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rightController",
+          "name": "右手柄",
+          "offset": [
+            3,
+            -0.5,
+            -0.22
+          ],
+          "meshes": [
+            {
+              "id": "m14",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 3,
+                "depth": 0.6
+              },
+              "position": {
+                "x": 0.5,
+                "y": 0,
+                "z": 0.1
+              },
+              "color": 16711680
+            },
+            {
+              "id": "m15",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 2.8,
+                "depth": 0.5
+              },
+              "position": {
+                "x": -0.04999999999999982,
+                "y": 0,
+                "z": 0.1
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m16",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.25,
+                "radiusBottom": 0.25,
+                "height": 0.2,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.5,
+                "y": 1,
+                "z": 0.42
+              },
+              "color": 1710618,
+              "rotation": {
+                "x": 1.5707963267948963,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m17",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.2,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0.5,
+                "y": 1,
+                "z": 0.57
+              },
+              "color": 3355443
+            },
+            {
+              "id": "m18",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.12,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.5,
+                "y": 0,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m19",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.12,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.5,
+                "y": -0.6,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m20",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.12,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.20000000000000018,
+                "y": -0.30000000000000004,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m21",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.12,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.7999999999999998,
+                "y": -0.30000000000000004,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m22",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.3,
+                "depth": 0.2
+              },
+              "position": {
+                "x": 0.5,
+                "y": 1.6,
+                "z": -0.1
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m23",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 0.3,
+                "depth": 0.05
+              },
+              "position": {
+                "x": 0.20000000000000018,
+                "y": 0.5,
+                "z": 0.42
+              },
+              "color": 1710618
+            },
+            {
+              "id": "m24",
+              "type": "box",
+              "geometry": {
+                "width": 0.3,
+                "height": 0.1,
+                "depth": 0.05
+              },
+              "position": {
+                "x": 0.20000000000000018,
+                "y": 0.5,
+                "z": 0.42
+              },
+              "color": 1710618
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"扁平长方体主体，两侧附着竖向短矩形控制器，整体横向宽，厚度薄\",\n  \"regions\": [\n    {\"name\": \"body\", \"desc\": \"扁平宽长主体、正面大屏-彩[1e90ff]、窄边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部接口-银[c0c0c0]\"},\n    {\"name\": \"leftController\", \"desc\": \"竖向短矩形、壳体-蓝[0080ff]、顶部摇杆-黑、十字键-黑、侧面滑轨-黑、肩键-黑\"},\n    {\"name\": \"rightController\", \"desc\": \"竖向短矩形、壳体-红[ff0000]、顶部摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键-黑\"}\n  ],\n  \"methodologies\": [\"mechanical\"]\n}\n```",
+  "_routerThinking": "1. **具象化**：\n   - 输入是 \"a lowpoly Nintendo Switch 2 handheld game console with attached controllers, colorful screen, portable\"。\n   - 这是一个实物名词（游戏机），跳过情境化，直接作为实物处理。\n\n2. **结构划分**：\n   - 单体模型（掌机本身是一个整体，控制器附着其上）。\n   - 部件：\n     - body (主机本体，包含屏幕)\n     - leftController (左侧Joy-Con)\n     - rightController (右侧Joy-Con)\n   - proportions: 横向长矩形主体，两侧附着竖向短矩形控制器，整体扁平便携。\n\n3. **写desc + 配件**：\n   - body: 扁平宽长方体、屏幕-彩[1e90ff]、边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部typec口-银[c0c0c0]、散热孔-黑\n   - leftController: 竖向短矩形、壳体-蓝[0080ff]、摇杆-黑、十字键-黑、侧面滑轨-黑、肩键L-黑、背面按钮-黑\n   - rightController: 竖向短矩形、壳体-红[ff0000]、摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键R-黑、背面按钮-黑\n   - 颜色分配：黑(60%) 蓝/红(30%) 彩屏/银(10%)\n\n4. **方法论选取**：\n   - 身体结构：mechanical (机械/载具)\n   - 头部/翅膀：无\n\n5. **组装JSON**：\n   - proportions: \"扁平长方体主体，两侧附着竖向短矩形控制器，整体横向宽，厚度薄\"\n   - regions:\n     - body: \"扁平宽长主体、正面大屏-彩[1e90ff]、窄边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部接口-银[c0c0c0]\"\n     - leftController: \"竖向短矩形、壳体-蓝[0080ff]、顶部摇杆-黑、十字键-黑、侧面滑轨-黑、肩键-黑\"\n     - rightController: \"竖向短矩形、壳体-红[ff0000]、顶部摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键-黑\"\n   - methodologies: [\"mechanical\"]",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly Nintendo Switch 2 handheld game console with attached controllers, colorful screen, portable.\n    *   **Draft Structure:**\n        *   `body`: Flat wide long main body, front large screen (color 1e90ff), narrow bezel (black 1a1a1a), back stand (dark gray 696969), top card slot (black), bottom port (silver c0c0c0).\n        *   `leftController`: Vertical short rectangle, shell (blue 0080ff), top joystick (black), d-pad (black), side rail (black), shoulder button (black).\n        *   `rightController`: Vertical short rectangle, shell (red ff0000), top joystick (black), ABXY buttons (black), side rail (black), shoulder button (black).\n    *   **Overall Proportions:** Flat long rectangular body, vertical short rectangular controllers attached on sides, overall wide horizontally, thin thickness.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Scale: 3 (typical torso size ~3.0, so the Switch body should be around w:6, h:3, d:0.5 or similar proportions).\n\n2.  **Determine Dimensions & Proportions:**\n    *   Switch is roughly 2:1 aspect ratio for the screen/body, plus controllers.\n    *   Let's set the main body (tablet part): `w:6.0, h:3.0, d:0.4`.\n    *   Controllers: `w:1.0, h:3.0, d:0.6` (slightly thicker than the body).\n    *   Screen: `w:5.0, h:2.5, d:0.05` (placed on the front face of the body).\n    *   Center of body: `[0, 1.5, 0]` (if bottom is Y=0). Let's put the center at `[0, 1.5, 0]` so bottom is at Y=0.\n    *   Left controller center: `[-3.5, 1.5, 0.1]` (slightly protruding forward for grip).\n    *   Right controller center: `[3.5, 1.5, 0.1]`.\n\n3.  **Build `body` Group:**\n    *   Main body box: `w:6, h:3, d:0.4, pos:[0, 1.5, 0], color:0x1a1a1a` (black bezel).\n    *   Screen: `w:5.2, h:2.4, d:0.05, pos:[0, 1.5, 0.22], color:0x1e90ff` (colorful screen).\n    *   Back stand: `box w:2.0, h:2.0, d:0.05, pos:[0, 1.5, -0.25], color:0x696969` (folded flat against back).\n    *   Top card slot: `box w:1.5, h:0.1, d:0.2, pos:[0, 3.05, 0], color:0x1a1a1a`.\n    *   Bottom port: `box w:0.8, h:0.1, d:0.2, pos:[0, -0.05, 0], color:0xc0c0c0`.\n    *   USB-C port detail: maybe just the silver box is enough.\n\n4.  **Build `leftController` Group:**\n    *   Main shell: `w:1.0, h:3.0, d:0.6, pos:[-3.5, 1.5, 0.1], color:0x0080ff`.\n    *   Side rail (attaches to body): `box w:0.1, h:2.8, d:0.5, pos:[-2.95, 1.5, 0.1], color:0x1a1a1a`.\n    *   Top joystick: `cyl r:0.25, h:0.2, along:'+Z', pos:[-3.5, 2.5, 0.45], color:0x1a1a1a`. Cap: `sphere r:0.2, pos:[-3.5, 2.5, 0.55], color:0x333333`.\n    *   D-pad: `box w:0.8, h:0.2, d:0.1, pos:[-3.5, 1.2, 0.4], color:0x1a1a1a`. Vertical bar: `box w:0.2, h:0.8, d:0.1, pos:[-3.5, 1.2, 0.4], color:0x1a1a1a`.\n    *   Shoulder button (L): `box w:0.8, h:0.3, d:0.2, pos:[-3.5, 3.1, -0.1], color:0x1a1a1a`.\n    *   Minus button: `box w:0.3, h:0.1, d:0.05, pos:[-3.2, 2.0, 0.4], color:0x1a1a1a`.\n\n5.  **Build `rightController` Group:**\n    *   Main shell: `w:1.0, h:3.0, d:0.6, pos:[3.5, 1.5, 0.1], color:0xff0000`.\n    *   Side rail: `box w:0.1, h:2.8, d:0.5, pos:[2.95, 1.5, 0.1], color:0x1a1a1a`.\n    *   Top joystick: `cyl r:0.25, h:0.2, along:'+Z', pos:[3.5, 2.5, 0.45], color:0x1a1a1a`. Cap: `sphere r:0.2, pos:[3.5, 2.5, 0.55], color:0x333333`.\n    *   ABXY buttons: 4 small spheres or polys arranged in a diamond.\n        *   Center: `[3.5, 1.2, 0.4]`\n        *   Top (X): `poly r:0.12, pos:[3.5, 1.5, 0.45], color:0x1a1a1a`\n        *   Bottom (B): `poly r:0.12, pos:[3.5, 0.9, 0.45], color:0x1a1a1a`\n        *   Left (Y): `poly r:0.12, pos:[3.2, 1.2, 0.45], color:0x1a1a1a`\n        *   Right (A): `poly r:0.12, pos:[3.8, 1.2, 0.45], color:0x1a1a1a`\n    *   Shoulder button (R): `box w:0.8, h:0.3, d:0.2, pos:[3.5, 3.1, -0.1], color:0xff0000` (maybe black is better, but let's stick to draft: black). `color:0x1a1a1a`.\n    *   Plus button: `box w:0.1, h:0.3, d:0.05, pos:[3.2, 2.0, 0.4], color:0x1a1a1a`. `box w:0.3, h:0.1, d:0.05, pos:[3.2, 2.0, 0.4], color:0x1a1a1a`.\n\n6.  **Pivots & Connections:**\n    *   Controllers slide onto the body. They can slide off or tilt.\n    *   `leftController` pivot: `[-3.0, 1.5, 0]` target `body`.\n    *   `rightController` pivot: `[3.0, 1.5, 0]` target `body`.\n    *   Back stand pivot: `[0, 0.5, -0.2]` target `body` (hinge at the bottom edge of the stand).\n\n7.  **Refine & Review:**\n    *   Colors: Body 1a1a1a, Screen 1e90ff, Stand 696969, Port c0c0c0. Left Joycon 0080ff, Right Joycon ff0000. Buttons 1a1a1a.\n    *   Proportions: Body w:6, h:3, d:0.4. Joycon w:1, h:3, d:0.6. Total width = 8. Total height = 3. This looks like a Switch.\n    *   Details: D-pad is two intersecting boxes. ABXY are 4 polys. Joysticks are cyl + sphere. Rails are thin boxes. Stand is a flat box.\n    *   Let's check the stand pivot. The stand folds out from the back. If it's flat against the back, its pivot should be at its bottom edge. Stand pos `[0, 1.5, -0.25]`, h:2.0. Bottom edge is at Y=0.5. Pivot: `[0, 0.5, -0.2]`.\n    *   Let's add a bit of depth to the screen. Screen `d:0.05` is fine.\n    *   Let's make sure the Joycon rails are visible. Left rail at `x: -2.95`, right rail at `x: 2.95`. Body edge is at `x: -3.0` and `x: 3.0`. So the rail is slightly inside the Joycon, which makes sense.\n    *   Let's adjust Joycon shoulder buttons. They wrap around the top back. `pos:[-3.5, 3.1, -0.1]` is good.\n    *   Let's add the home button on the right joycon or body. Small poly on body bottom edge: `poly r:0.1, pos:[0, 0.5, 0.22], color:0x1a1a1a`.\n\n8.  **Final Code Structure:**\n    ```javascript\n    function build(api) {\n      api.name('Nintendo Switch 2');\n      const C_BLACK = 0x1a1a1a, C_SCREEN = 0x1e90ff, C_GRAY = 0x696969, C_SILVER = 0xc0c0c0, C_BLUE = 0x0080ff, C_RED = 0xff0000;\n      \n      api.group('body', '主体');\n        api.pivot([0, 1.5, 0], 'scene'); // Not strictly needed but good for root\n        api.box({w:6, h:3, d:0.4, pos:[0, 1.5, 0], color:C_BLACK});\n        api.box({w:5.2, h:2.4, d:0.05, pos:[0, 1.5, 0.22], color:C_SCREEN});\n        api.group('stand', '支架');\n          api.pivot([0, 0.5, -0.2], 'body');\n          api.box({w:2.0, h:2.0, d:0.05, pos:[0, 1.5, -0.25], color:C_GRAY});\n        api.endGroup();\n        api.box({w:1.5, h:0.1, d:0.2, pos:[0, 3.05, 0], color:C_BLACK}); // top slot\n        api.box({w:0.8, h:0.1, d:0.2, pos:[0, -0.05, 0], color:C_SILVER}); // bottom port\n        api.poly({r:0.1, pos:[0, 0.5, 0.22], color:C_BLACK}); // home button\n      api.endGroup();\n      \n      api.group('leftController', '左手柄');\n        api.pivot([-3.0, 1.5, 0], 'body');\n        api.box({w:1.0, h:3.0, d:0.6, pos:[-3.5, 1.5, 0.1], color:C_BLUE});\n        api.box({w:0.1, h:2.8, d:0.5, pos:[-2.95, 1.5, 0.1], color:C_BLACK}); // rail\n        api.cyl({r:0.25, h:0.2, along:'+Z', pos:[-3.5, 2.5, 0.4], color:C_BLACK}); // joystick base\n        api.sphere({r:0.2, pos:[-3.5, 2.5, 0.55], color:0x333333}); // joystick cap\n        api.box({w:0.8, h:0.2, d:0.1, pos:[-3.5, 1.2, 0.35], color:C_BLACK}); // dpad h\n        api.box({w:0.2, h:0.8, d:0.1, pos:[-3.5, 1.2, 0.35], color:C_BLACK}); // dpad v\n        api.box({w:0.8, h:0.3, d:0.2, pos:[-3.5, 3.1, -0.1], color:C_BLACK}); // L shoulder\n        api.box({w:0.3, h:0.1, d:0.05, pos:[-3.2, 2.0, 0.35], color:C_BLACK}); // minus\n      api.endGroup();\n      \n      api.group('rightController', '右手柄');\n        api.pivot([3.0, 1.5, 0], 'body');\n        api.box({w:1.0, h:3.0, d:0.6, pos:[3.5, 1.5, 0.1], color:C_RED});\n        api.box({w:0.1, h:2.8, d:0.5, pos:[2.95, 1.5, 0.1], color:C_BLACK}); // rail\n        api.cyl({r:0.25, h:0.2, along:'+Z', pos:[3.5, 2.5, 0.4], color:C_BLACK}); // joystick base\n        api.sphere({r:0.2, pos:[3.5, 2.5, 0.55], color:0x333333}); // joystick cap\n        api.poly({r:0.12, pos:[3.5, 1.5, 0.4], color:C_BLACK}); // X\n        api.poly({r:0.12, pos:[3.5, 0.9, 0.4], color:C_BLACK}); // B\n        api.poly({r:0.12, pos:[3.2, 1.2, 0.4], color:C_BLACK}); // Y\n        api.poly({r:0.12, pos:[3.8, 1.2, 0.4], color:C_BLACK}); // A\n        api.box({w:0.8, h:0.3, d:0.2, pos:[3.5, 3.1, -0.1], color:C_BLACK}); // R shoulder\n        api.box({w:0.1, h:0.3, d:0.05, pos:[3.2, 2.0, 0.35], color:C_BLACK}); // plus v\n        api.box({w:0.3, h:0.1, d:0.05, pos:[3.2, 2.0, 0.35], color:C_BLACK}); // plus h\n      api.endGroup();\n    }\n    ```\n\n9.  **Refine Details:**\n    *   The joystick base `along:'+Z'` means the cylinder extends along Z. `pos:[-3.5, 2.5, 0.4]` with `h:0.2` means it goes from Z=0.3 to Z=0.5. The cap at Z=0.55 is good.\n    *   D-pad `d:0.1` at Z=0.35. The controller body is at Z=0.1 with `d:0.6`, so front face is at Z=0.4. The d-pad should be at Z=0.4 or slightly more. Let's set d-pad Z to 0.42.\n    *   ABXY buttons Z=0.42.\n    *   Minus/Plus buttons Z=0.42.\n    *   Joystick base Z=0.42, h=0.2, so it goes to Z=0.52. Cap at Z=0.57.\n    *   Shoulder buttons: Controller back face is at Z=-0.2. Shoulder button at Z=-0.1, d=0.2, so it goes from Z=-0.2 to Z=0.0. This wraps around the top edge nicely.\n    *   Stand: Body back face is at Z=-0.2. Stand at Z=-0.25, d=0.05, so it goes from Z=-0.225 to Z=-0.275. Good.\n    *   Screen: Body front face is at Z=0.2. Screen at Z=0.22, d=0.05, so it goes from Z=0.195 to Z=0.245. Good.\n    *   Let's check the pivot for the stand. The stand is a box `w:2, h:2, d:0.05, pos:[0, 1.5, -0.25]`. Its bottom edge is at Y=0.5. The pivot should be at `[0, 0.5, -0.2]` (the hinge line where it meets the body back).\n\n10. **Final Polish:** Ensure no markdown, just the function. Check variable names and API calls. Everything looks solid.",
+  "_aiCode": "function build(api) {\n  api.name('Nintendo Switch 2');\n  const C_BLACK = 0x1a1a1a, C_SCREEN = 0x1e90ff, C_GRAY = 0x696969, C_SILVER = 0xc0c0c0, C_BLUE = 0x0080ff, C_RED = 0xff0000, C_DKGRAY = 0x333333;\n\n  api.group('body', '主体');\n    api.box({w:6, h:3, d:0.4, pos:[0, 1.5, 0], color:C_BLACK});\n    api.box({w:5.2, h:2.4, d:0.05, pos:[0, 1.5, 0.22], color:C_SCREEN});\n    api.group('stand', '支架');\n      api.pivot([0, 0.5, -0.2], 'body');\n      api.box({w:2.0, h:2.0, d:0.05, pos:[0, 1.5, -0.25], color:C_GRAY});\n    api.endGroup();\n    api.box({w:1.5, h:0.1, d:0.2, pos:[0, 3.05, 0], color:C_BLACK});\n    api.box({w:0.8, h:0.1, d:0.2, pos:[0, -0.05, 0], color:C_SILVER});\n    api.poly({r:0.1, pos:[0, 0.5, 0.22], color:C_BLACK});\n  api.endGroup();\n\n  api.group('leftController', '左手柄');\n    api.pivot([-3.0, 1.5, 0], 'body');\n    api.box({w:1.0, h:3.0, d:0.6, pos:[-3.5, 1.5, 0.1], color:C_BLUE});\n    api.box({w:0.1, h:2.8, d:0.5, pos:[-2.95, 1.5, 0.1], color:C_BLACK});\n    api.cyl({r:0.25, h:0.2, along:'+Z', pos:[-3.5, 2.5, 0.42], color:C_BLACK});\n    api.sphere({r:0.2, pos:[-3.5, 2.5, 0.57], color:C_DKGRAY});\n    api.box({w:0.8, h:0.2, d:0.1, pos:[-3.5, 1.2, 0.42], color:C_BLACK});\n    api.box({w:0.2, h:0.8, d:0.1, pos:[-3.5, 1.2, 0.42], color:C_BLACK});\n    api.box({w:0.8, h:0.3, d:0.2, pos:[-3.5, 3.1, -0.1], color:C_BLACK});\n    api.box({w:0.3, h:0.1, d:0.05, pos:[-3.2, 2.0, 0.42], color:C_BLACK});\n  api.endGroup();\n\n  api.group('rightController', '右手柄');\n    api.pivot([3.0, 1.5, 0], 'body');\n    api.box({w:1.0, h:3.0, d:0.6, pos:[3.5, 1.5, 0.1], color:C_RED});\n    api.box({w:0.1, h:2.8, d:0.5, pos:[2.95, 1.5, 0.1], color:C_BLACK});\n    api.cyl({r:0.25, h:0.2, along:'+Z', pos:[3.5, 2.5, 0.42], color:C_BLACK});\n    api.sphere({r:0.2, pos:[3.5, 2.5, 0.57], color:C_DKGRAY});\n    api.poly({r:0.12, pos:[3.5, 1.5, 0.42], color:C_BLACK});\n    api.poly({r:0.12, pos:[3.5, 0.9, 0.42], color:C_BLACK});\n    api.poly({r:0.12, pos:[3.2, 1.2, 0.42], color:C_BLACK});\n    api.poly({r:0.12, pos:[3.8, 1.2, 0.42], color:C_BLACK});\n    api.box({w:0.8, h:0.3, d:0.2, pos:[3.5, 3.1, -0.1], color:C_BLACK});\n    api.box({w:0.1, h:0.3, d:0.05, pos:[3.2, 2.0, 0.42], color:C_BLACK});\n    api.box({w:0.3, h:0.1, d:0.05, pos:[3.2, 2.0, 0.42], color:C_BLACK});\n  api.endGroup();\n}",
+  "_description": "a lowpoly Nintendo Switch 2 handheld game console with attached controllers, colorful screen, portable",
+  "_formulaResult": {
+    "methodologies": [
+      "mechanical"
+    ],
+    "regions": [
+      {
+        "name": "body",
+        "desc": "扁平宽长主体、正面大屏-彩[1e90ff]、窄边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部接口-银[c0c0c0]"
+      },
+      {
+        "name": "leftController",
+        "desc": "竖向短矩形、壳体-蓝[0080ff]、顶部摇杆-黑、十字键-黑、侧面滑轨-黑、肩键-黑"
+      },
+      {
+        "name": "rightController",
+        "desc": "竖向短矩形、壳体-红[ff0000]、顶部摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键-黑"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('body','body') → 扁平宽长主体、正面大屏-彩[1e90ff]、窄边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部接口-银[c0c0c0] → api.endGroup()\napi.group('leftController','leftController') → 竖向短矩形、壳体-蓝[0080ff]、顶部摇杆-黑、十字键-黑、侧面滑轨-黑、肩键-黑 → api.endGroup()\napi.group('rightController','rightController') → 竖向短矩形、壳体-红[ff0000]、顶部摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键-黑 → api.endGroup()\n\n### 机械/载具 (mechanical)\n机械 + 载具融合为一个方法论。\n\n## 建造逻辑\n大结构（chassis/hull）+ 功能模块 + 细节。只考虑暴露在外的可视结构。\n\n## 连接推理（构建完 group 后必须检查！）\n机械/载具的 group 之间几乎都有可动连接。构建完所有 group 的几何体后，逐对检查：\n1. 哪些 group 之间有物理连接？（空间上相邻的 group 对）\n2. 连接点在哪？（两个 group 交界处的坐标）\n3. 能不能绕连接点运动？→ 能就加 api.pivot()\n\n常见机械连接（用上面的三步法都能推导出，这里列出供快速参考）：\n- 车轮/履带轮 ↔ 底盘 → 轮转型 → pivot at 轮心（自转）\n- 螺旋桨/风扇 ↔ 机身 → 轮转型 → pivot at 桨毂（自转）\n- 转台/旋转底座 ↔ 底盘 → 关节型 → pivot at 底座中心\n- 铰接臂/吊臂 ↔ 基座 → 关节型 → pivot at 臂根铰点\n- 门/盖/舱盖 ↔ 主体 → 铰接型 → pivot at 铰链轴\n- 吊钩/摆锤/悬挂物 ↔ 支撑点 → 悬挂型 → pivot at 悬挂点\n- 固定模块 ↔ 底盘 → 固定型 → 不加 pivot\n\n## 代码示例：吊车（5 种连接模式中出现 4 种）\napi.group('chassis', '底盘');\n  api.box({w:4, h:1.2, d:6, pos:[0, 0.6, 0], color:0x758090});\napi.endGroup();\n// 轮转型：轮子绕自身中心旋转\napi.mirror('x');\napi.group('wheel', '车轮');\n  api.pivot([2.3, 0.6, 0], 'chassis');  // 轮心=旋转轴，target=底盘\n  api.cyl({r:0.6, h:0.5, along:'+X', pos:[2.3, 0.6, 0], color:0x212121});\napi.endGroup();\napi.endMirror();\n// 关节型：platform 绕 chassis 旋转\napi.group('platform', '旋转底座');\n  api.pivot([0, 2.7, -0.5], 'chassis');\n  api.cyl({rTop:2.0, rBot:2.2, h:1.0, pos:[0, 2.7, -0.5], color:0x424242});\napi.endGroup();\n// 关节型：boom 绕 platform 俯仰\napi.group('boom', '主臂');\n  api.pivot([0, 3.5, 0], 'platform');\n  api.chain({waypoints:[[0,3.5,0],[0,9,1.5],[0,14.5,3]], r:0.8, rEnd:0.5, color:0xfdd835});\napi.endGroup();\n// 悬挂型：hook 从 boom 顶端悬挂\napi.group('hook', '吊钩');\n  api.pivot([0, 14.5, 3], 'boom');\n  api.chain({waypoints:[[0,14.5,3],[0,8,3],[0,4,3]], r:0.05, color:0x212121});\napi.endGroup();\n\n## 机械特征装饰\n关节、板块拼接、铆钉、管道、齿轮等细节在 pivot 设置完成后添加。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly Nintendo Switch 2 handheld game console with attached controllers, colorful screen, portable\"\n\n草稿结构：\n  body: 扁平宽长主体、正面大屏-彩[1e90ff]、窄边框-黑[1a1a1a]、背面支架-深灰[696969]、顶部卡槽-黑、底部接口-银[c0c0c0]\n  leftController: 竖向短矩形、壳体-蓝[0080ff]、顶部摇杆-黑、十字键-黑、侧面滑轨-黑、肩键-黑\n  rightController: 竖向短矩形、壳体-红[ff0000]、顶部摇杆-黑、ABXY按键-黑、侧面滑轨-黑、肩键-黑\n整体比例：扁平长方体主体，两侧附着竖向短矩形控制器，整体横向宽，厚度薄\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242304735,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

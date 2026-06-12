@@ -1,0 +1,63 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 1.2
+    }
+  },
+  "frontLeftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.6,
+      "phase": 0
+    }
+  },
+  "frontRightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.6,
+      "phase": 0.5
+    }
+  },
+  "backLeftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.6,
+      "phase": 0.25
+    }
+  },
+  "backRightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.6,
+      "phase": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.6
+    }
+  },
+  "mane": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.6
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.6
+    }
+  }
+}

@@ -6,13 +6,14 @@ import { generatePlayerDialogue } from '../ai/dialogueGen.js';
 
 const PET_INTERACT_RANGE = 3.0;
 const ITEM_PICKUP_RANGE = 2.5;
-const ENV_RANGE = 3.5;
+const STATIC_INTERACT_RANGE = 1.8;
+const HOUSE_SUMMON_RANGE = 3.0;
 
 /**
  * Unified E-key interaction handler.
- * Priority: drop item > pet seeking player > pet interact > pickup item.
+ * Priority: drop item > pet seeking player > pet interact > summon house pet > static entity interact > pickup item.
  */
-export function setupInteract(player, items, environments, pets, addToScene) {
+export function setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, allEntitiesForEnv) {
   const spawnedMilestoneItems = {};
   const completedPlayerDialogues = {};
 
@@ -23,7 +24,7 @@ export function setupInteract(player, items, environments, pets, addToScene) {
       // Priority 1: Drop held item
       if (player.heldItem) {
         _dropItem(player);
-        _refreshAllEnvTags(environments, items);
+        _refreshAllEnvTags(environments, allEntitiesForEnv);
         return;
       }
 
@@ -49,9 +50,53 @@ export function setupInteract(player, items, environments, pets, addToScene) {
         }
       }
 
-      // Priority 4: Pickup item
+      // Priority 4: Near house → summon or recall
+      if (housePetMap) {
+        for (const [houseName, data] of housePetMap.entries()) {
+          const dist = player.mesh.position.distanceTo(data.house.mesh.position);
+          if (dist < HOUSE_SUMMON_RANGE) {
+            if (!data.summoned) {
+              // Summon
+              const spawnPos = data.house.mesh.position.clone();
+              spawnPos.x += (Math.random() - 0.5) * 2;
+              spawnPos.z += (Math.random() - 0.5) * 2;
+              data.pet.spawnAt(spawnPos);
+              addToScene(data.pet.mesh);
+              pets.push(data.pet);
+              data.summoned = true;
+              console.log(`[Summon] ${data.pet.name} 从 ${houseName} 出现了！`);
+              return;
+            } else if (data.pet.spawned && data.pet.state !== 'returning_home' && data.pet.state !== 'recall_pause') {
+              // Recall
+              data.pet.startRecall(data.house.mesh.position, () => {
+                data.summoned = false;
+                console.log(`[Recall] ${data.pet.name} 已回到 ${houseName}`);
+              });
+              return;
+            }
+          }
+        }
+      }
+
+      // Priority 5: Static entity interaction (breathing animation)
+      let nearestStatic = null;
+      let nearestStaticDist = Infinity;
+      for (const entity of staticEntities) {
+        const dist = player.mesh.position.distanceTo(entity.mesh.position);
+        if (dist < STATIC_INTERACT_RANGE && dist < nearestStaticDist) {
+          nearestStatic = entity;
+          nearestStaticDist = dist;
+        }
+      }
+      if (nearestStatic) {
+        nearestStatic.playBreathing();
+        console.log(`[Interact] ${nearestStatic.name} 呼吸动画`);
+        return;
+      }
+
+      // Priority 6: Pickup item (wind chime only now)
       _pickupNearest(player, items);
-      _refreshAllEnvTags(environments, items);
+      _refreshAllEnvTags(environments, allEntitiesForEnv);
     },
   };
 }
@@ -64,7 +109,7 @@ function _dropItem(player) {
   const item = player.heldItem;
   player.heldItem = null;
   const dropPos = player.mesh.position.clone();
-  dropPos.y = 0; // model bottom sits on ground at y=0
+  dropPos.y = 0;
   item.onDrop(dropPos);
   console.log(`[Drop] Dropped ${item.name}`);
 }
@@ -87,17 +132,9 @@ function _pickupNearest(player, items) {
   }
 }
 
-function _refreshAllEnvTags(environments, items) {
+function _refreshAllEnvTags(environments, allEntities) {
   for (const env of environments) {
-    env.moreTags = [];
-    for (const item of items) {
-      if (item.isHeld) continue;
-      const dist = item.mesh.position.distanceTo(env.mesh.position);
-      if (dist < ENV_RANGE) {
-        env.addTags(item.tags);
-      }
-    }
-    env._syncLabel();
+    env.refreshTagsFromEntities(allEntities);
   }
 }
 
@@ -113,7 +150,6 @@ function _handlePetInteractResult(result, pet, items, environments, addToScene, 
     if (spawnedMilestoneItems[key]) return;
     spawnedMilestoneItems[key] = true;
 
-    // AI generates the item
     generateMilestoneItem(pet)
       .then((itemCfg) => {
         const newItem = new Item({
@@ -130,7 +166,6 @@ function _handlePetInteractResult(result, pet, items, environments, addToScene, 
         });
         items.push(newItem);
         addToScene(newItem.mesh);
-        _refreshAllEnvTags(environments, items);
         console.log(`[Milestone] ${pet.name} lv5 → AI item: ${itemCfg.name} [${itemCfg.tags.join(', ')}]`);
       })
       .catch((err) => console.error('[Milestone] AI item failed:', err));
@@ -141,7 +176,6 @@ function _handlePetInteractResult(result, pet, items, environments, addToScene, 
     if (spawnedMilestoneItems[key]) return;
     spawnedMilestoneItems[key] = true;
 
-    // AI generates a new environment
     generateMilestoneEnv(pet)
       .then((envCfg) => {
         const newEnv = new Environment({
@@ -175,10 +209,8 @@ function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, complete
   }
   completedPlayerDialogues[pet.name] = true;
 
-  // Show loading
   pet._bubble.show('……');
 
-  // Generate dialogue via AI (environment already spawned at milestone)
   generatePlayerDialogue(pet)
     .then((lines) => {
       if (lines.length > 0) {
@@ -187,7 +219,6 @@ function _doPlayerPetMaxDialogue(player, pet, environments, addToScene, complete
       console.log(`[Player↔Pet] ${pet.name}:`);
       lines.forEach((l) => console.log(`  ${l.text}`));
 
-      // Hide bubble after a few seconds
       setTimeout(() => pet._bubble.hide(), 4000);
       pet.finishPlayerDialogue();
     })

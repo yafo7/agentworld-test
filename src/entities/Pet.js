@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
 import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { getPlayerLine } from '../game/gameData.js';
-import { loadModel, loadAnimationPlan, applyAnimation } from '../ai/modelLoader.js';
+import { loadModel, loadAnimationPlan, applyAnimation, getRuntime } from '../ai/modelLoader.js';
 
 export { PET_CONFIGS, INTIMACY_ITEM_CONFIGS, ENV_POND, ENV_GRASSLAND } from '../game/gameData.js';
 
@@ -40,7 +40,7 @@ export class Pet {
     this.mesh = new THREE.Group(); // root group — will hold model or fallback
     this.mesh.name = this.name;
     this.mesh.position.y = 0;
-    this.mesh.scale.set(1, 1, 1);
+    this.mesh.scale.set(0.5, 0.5, 0.5);
     this.mesh.visible = false;
 
     // Fallback placeholder cube
@@ -80,6 +80,11 @@ export class Pet {
     // Movement
     this._target = new THREE.Vector3();
     this._seekTarget = new THREE.Vector3();
+
+    // Recall
+    this._recallTarget = new THREE.Vector3();
+    this._recallTimer = 0;
+    this._onRecallComplete = null;
 
     // ---- 5-second behavior timer ----
     this._behaviorTimer = BEHAVIOR_INTERVAL;
@@ -138,7 +143,23 @@ export class Pet {
     this._label.sprite.visible = true;
     this._behaviorTimer = BEHAVIOR_INTERVAL;
     this._isWalking = false;
+    this.state = 'wandering';
     this._pickRandomTarget(); // target relative to spawn position
+  }
+
+  despawn() {
+    this.mesh.visible = false;
+    this.spawned = false;
+    this.state = 'wandering';
+    this._bubble.hide();
+    this._label.sprite.visible = false;
+  }
+
+  startRecall(homePosition, onComplete) {
+    this.state = 'returning_home';
+    this._recallTarget.copy(homePosition);
+    this._onRecallComplete = onComplete;
+    console.log(`[Pet] ${this.name} is returning home...`);
   }
 
   // ===================================================================
@@ -189,10 +210,53 @@ export class Pet {
           this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
         }
         break;
+
+      case 'returning_home':
+        {
+          const arrived = this._moveToTarget(this._recallTarget, WANDER_SPEED);
+          if (arrived) {
+            this.state = 'recall_pause';
+            this._recallTimer = 2.0;
+          }
+          if (this._animWalk && this._modelGroup) {
+            this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+          }
+        }
+        break;
+
+      case 'recall_pause':
+        this._recallTimer -= dt;
+        if (this._recallTimer <= 0) {
+          this.despawn();
+          if (this._onRecallComplete) {
+            this._onRecallComplete();
+            this._onRecallComplete = null;
+          }
+        }
+        if (this._animIdle && this._modelGroup) {
+          this._animPartMap = applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+        }
+        break;
     }
 
     if (this.state === 'chatting') {
       this._chatTimer -= dt;
+    }
+
+    // Fallback client-side animation when Voxel Runtime is unavailable
+    if (!getRuntime() && this._modelGroup) {
+      const isMoving = this.state === 'wandering' && this._isWalking
+                    || this.state === 'seeking_player'
+                    || this.state === 'returning_home';
+      if (isMoving) {
+        // Simple walk bounce
+        this._modelGroup.position.y = Math.abs(Math.sin(this._animTime * 6)) * 0.05;
+      } else {
+        // Idle breathe
+        const s = 1 + Math.sin(this._animTime * 2) * 0.015;
+        this._modelGroup.scale.set(s, s, s);
+        this._modelGroup.position.y = 0;
+      }
     }
   }
 
@@ -230,6 +294,18 @@ export class Pet {
     const angle = Math.atan2(dir.x, dir.z);
     this.mesh.rotation.y = angle;
     this.mesh.position.addScaledVector(dir.normalize(), SEEK_SPEED);
+  }
+
+  _moveToTarget(targetPos, speed = WANDER_SPEED) {
+    const dir = new THREE.Vector3().subVectors(targetPos, this.mesh.position);
+    dir.y = 0;
+    if (dir.length() < 0.15) {
+      return true; // arrived
+    }
+    const angle = Math.atan2(dir.x, dir.z);
+    this.mesh.rotation.y = angle;
+    this.mesh.position.addScaledVector(dir.normalize(), speed);
+    return false;
   }
 
   // ===================================================================

@@ -33,7 +33,7 @@ export function getRuntime() { return voxelRuntime; }
 export async function loadModel(modelPath, fallbackMesh = null) {
   if (!voxelRuntime) {
     try { await initRuntime(); }
-    catch (err) { console.warn('[ModelLoader] Runtime failed:', err.message); return fallbackMesh; }
+    catch (err) { console.warn('[ModelLoader] Runtime failed, using fallback builder:', err.message); }
   }
 
   try {
@@ -51,12 +51,32 @@ export async function loadModel(modelPath, fallbackMesh = null) {
 }
 
 /**
+ * Fallback geometry builder when Voxel Runtime is unavailable.
+ * Supports the primitive types used by exported models.
+ */
+function fallbackBuildGeometry(type, params) {
+  switch (type) {
+    case 'box':
+      return new THREE.BoxGeometry(params.width || 1, params.height || 1, params.depth || 1);
+    case 'sphere':
+      return new THREE.SphereGeometry(params.radius || 0.5, params.widthSegments || 16, params.heightSegments || 12);
+    case 'cylinder':
+      return new THREE.CylinderGeometry(params.radiusTop || 0.5, params.radiusBottom || 0.5, params.height || 1, params.radialSegments || 16);
+    case 'cone':
+      return new THREE.ConeGeometry(params.radius || 0.5, params.height || 1, params.radialSegments || 16);
+    case 'icosahedron':
+      return new THREE.IcosahedronGeometry(params.radius || 0.5, params.detail || 0);
+    default:
+      console.warn(`[ModelLoader] Unknown geometry type "${type}", using box fallback`);
+      return new THREE.BoxGeometry(1, 1, 1);
+  }
+}
+
+/**
  * Build a Three.js Group from modelJson — follows API reference exactly.
  * modelJson positions are parent-relative; no coordinate conversion needed.
  */
 export function buildModelFromJson(modelJson) {
-  if (!voxelRuntime) throw new Error('Runtime not initialized');
-
   const meshes = {}; // id → THREE.Object3D
 
   // First pass: create all objects at their (already relative) positions
@@ -67,7 +87,9 @@ export function buildModelFromJson(modelJson) {
       g.name = m.id; // English ID matches animation plan keys
       meshes[m.id] = g;
     } else {
-      const geo = voxelRuntime.buildGeometry(m.type, m.geometry || {});
+      const geo = voxelRuntime
+        ? voxelRuntime.buildGeometry(m.type, m.geometry || {})
+        : fallbackBuildGeometry(m.type, m.geometry || {});
       const mat = new THREE.MeshStandardMaterial({
         color: m.color ?? 0x888888,
         flatShading: true,

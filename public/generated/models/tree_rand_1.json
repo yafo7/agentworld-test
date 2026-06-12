@@ -1,0 +1,826 @@
+{
+  "name": "星光松树",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 1.75,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 3.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 1706542
+    },
+    {
+      "id": "crown_base",
+      "name": "crown_base",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 3.5,
+        "z": 0
+      },
+      "pivotTarget": "trunk"
+    },
+    {
+      "id": "m1",
+      "type": "cone",
+      "geometry": {
+        "radius": 2.5,
+        "height": 3,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 1.5,
+        "z": 0
+      },
+      "color": 723771
+    },
+    {
+      "id": "crown_base_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "crown_base",
+      "position": {
+        "x": 1.8,
+        "y": 0.10000000000000009,
+        "z": 0
+      }
+    },
+    {
+      "id": "m2",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 12632256
+    },
+    {
+      "id": "m3",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.05,
+        "radiusBottom": 0.05,
+        "height": 0.68,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.2,
+        "y": -0.3,
+        "z": 0
+      },
+      "color": 12632256,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.96,
+        "w": 0.29
+      },
+      "boneFrom": "crown_base_wp0",
+      "boneTo": "crown_base_wp1",
+      "boneRestLen": 0.68
+    },
+    {
+      "id": "crown_base_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "crown_base",
+      "position": {
+        "x": 2.2,
+        "y": -0.5,
+        "z": 0
+      },
+      "pivotTarget": "crown_base_wp0"
+    },
+    {
+      "id": "m4",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 12632256
+    },
+    {
+      "id": "m5",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 2.2,
+        "y": -0.7000000000000002,
+        "z": 0
+      },
+      "color": 16775885,
+      "parent": "crown_base"
+    },
+    {
+      "id": "crown_mid",
+      "name": "crown_mid",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 5.5,
+        "z": 0
+      },
+      "pivotTarget": "trunk"
+    },
+    {
+      "id": "m6",
+      "type": "cone",
+      "geometry": {
+        "radius": 1.8,
+        "height": 2.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0
+      },
+      "color": 723771
+    },
+    {
+      "id": "m7",
+      "type": "torus",
+      "geometry": {
+        "radius": 0.4,
+        "tube": 0.1,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 1,
+        "y": 0.2999999999999998,
+        "z": 0.5
+      },
+      "color": 12632256,
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m8",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 1.15,
+        "y": 0.40000000000000036,
+        "z": 0.5
+      },
+      "color": 723771
+    },
+    {
+      "id": "crown_top",
+      "name": "crown_top",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 7,
+        "z": 0
+      },
+      "pivotTarget": "trunk"
+    },
+    {
+      "id": "m9",
+      "type": "cone",
+      "geometry": {
+        "radius": 1.2,
+        "height": 2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "color": 723771
+    },
+    {
+      "id": "m10",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.2,
+        "detail": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 1.8000000000000007,
+        "z": 0
+      },
+      "color": 16775885
+    },
+    {
+      "id": "top_star",
+      "name": "top_star",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 9,
+        "z": 0
+      },
+      "pivotTarget": "crown_top"
+    },
+    {
+      "id": "m11",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.4,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": 0
+      },
+      "color": 16775885
+    },
+    {
+      "id": "m12",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 1.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.6,
+        "y": 0.5,
+        "z": 0
+      },
+      "color": 16775885,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.71,
+        "w": 0.71
+      }
+    },
+    {
+      "id": "m13",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 1.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.19,
+        "y": 0.5,
+        "z": 0.57
+      },
+      "color": 16775885,
+      "quaternion": {
+        "x": 0.67,
+        "y": 0,
+        "z": -0.22,
+        "w": 0.71
+      }
+    },
+    {
+      "id": "m14",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 1.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.49,
+        "y": 0.5,
+        "z": 0.35
+      },
+      "color": 16775885,
+      "quaternion": {
+        "x": 0.42,
+        "y": 0,
+        "z": 0.57,
+        "w": 0.71
+      }
+    },
+    {
+      "id": "m15",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 1.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.49,
+        "y": 0.5,
+        "z": -0.35
+      },
+      "color": 16775885,
+      "quaternion": {
+        "x": -0.42,
+        "y": 0,
+        "z": 0.57,
+        "w": 0.71
+      }
+    },
+    {
+      "id": "m16",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.15,
+        "radiusBottom": 0.15,
+        "height": 1.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.19,
+        "y": 0.5,
+        "z": -0.57
+      },
+      "color": 16775885,
+      "quaternion": {
+        "x": -0.67,
+        "y": 0,
+        "z": -0.22,
+        "w": 0.71
+      }
+    }
+  ],
+  "tree": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "offset": [
+        0,
+        1.75,
+        0
+      ],
+      "meshes": [
+        {
+          "id": "m0",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.3,
+            "radiusBottom": 0.3,
+            "height": 3.5,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "color": 1706542
+        }
+      ],
+      "children": [
+        {
+          "id": "crown_base",
+          "name": "crown_base",
+          "offset": [
+            0,
+            1.75,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m1",
+              "type": "cone",
+              "geometry": {
+                "radius": 2.5,
+                "height": 3,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 1.5,
+                "z": 0
+              },
+              "color": 723771
+            }
+          ],
+          "children": [
+            {
+              "id": "crown_base_wp0",
+              "name": "wp0",
+              "offset": [
+                1.8,
+                0.1,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m2",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.05,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 12632256
+                },
+                {
+                  "id": "m3",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.05,
+                    "radiusBottom": 0.05,
+                    "height": 0.68,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.2,
+                    "y": -0.3,
+                    "z": 0
+                  },
+                  "color": 12632256,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.96,
+                    "w": 0.29
+                  },
+                  "boneFrom": "crown_base_wp0",
+                  "boneTo": "crown_base_wp1",
+                  "boneRestLen": 0.68
+                }
+              ],
+              "children": [
+                {
+                  "id": "crown_base_wp1",
+                  "name": "wp1",
+                  "offset": [
+                    0.4,
+                    -0.6,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m4",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.05,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 12632256
+                    },
+                    {
+                      "id": "m5",
+                      "type": "icosahedron",
+                      "geometry": {
+                        "radius": 0.15,
+                        "detail": 0
+                      },
+                      "position": {
+                        "x": 2.2,
+                        "y": -0.7000000000000002,
+                        "z": 0
+                      },
+                      "color": 16775885
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "crown_mid",
+          "name": "crown_mid",
+          "offset": [
+            0,
+            3.75,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m6",
+              "type": "cone",
+              "geometry": {
+                "radius": 1.8,
+                "height": 2.5,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 1.25,
+                "z": 0
+              },
+              "color": 723771
+            },
+            {
+              "id": "m7",
+              "type": "torus",
+              "geometry": {
+                "radius": 0.4,
+                "tube": 0.1,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 1,
+                "y": 0.2999999999999998,
+                "z": 0.5
+              },
+              "color": 12632256,
+              "rotation": {
+                "x": 1.5707963267948963,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m8",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.3,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 1.15,
+                "y": 0.40000000000000036,
+                "z": 0.5
+              },
+              "color": 723771
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "crown_top",
+          "name": "crown_top",
+          "offset": [
+            0,
+            5.25,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m9",
+              "type": "cone",
+              "geometry": {
+                "radius": 1.2,
+                "height": 2,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              },
+              "color": 723771
+            },
+            {
+              "id": "m10",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.2,
+                "detail": 0
+              },
+              "position": {
+                "x": 0,
+                "y": 1.8000000000000007,
+                "z": 0
+              },
+              "color": 16775885
+            }
+          ],
+          "children": [
+            {
+              "id": "top_star",
+              "name": "top_star",
+              "offset": [
+                0,
+                2,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m11",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.4,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0.5,
+                    "z": 0
+                  },
+                  "color": 16775885
+                },
+                {
+                  "id": "m12",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.15,
+                    "radiusBottom": 0.15,
+                    "height": 1.2,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.6,
+                    "y": 0.5,
+                    "z": 0
+                  },
+                  "color": 16775885,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.71,
+                    "w": 0.71
+                  }
+                },
+                {
+                  "id": "m13",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.15,
+                    "radiusBottom": 0.15,
+                    "height": 1.2,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.19,
+                    "y": 0.5,
+                    "z": 0.57
+                  },
+                  "color": 16775885,
+                  "quaternion": {
+                    "x": 0.67,
+                    "y": 0,
+                    "z": -0.22,
+                    "w": 0.71
+                  }
+                },
+                {
+                  "id": "m14",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.15,
+                    "radiusBottom": 0.15,
+                    "height": 1.2,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.49,
+                    "y": 0.5,
+                    "z": 0.35
+                  },
+                  "color": 16775885,
+                  "quaternion": {
+                    "x": 0.42,
+                    "y": 0,
+                    "z": 0.57,
+                    "w": 0.71
+                  }
+                },
+                {
+                  "id": "m15",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.15,
+                    "radiusBottom": 0.15,
+                    "height": 1.2,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.49,
+                    "y": 0.5,
+                    "z": -0.35
+                  },
+                  "color": 16775885,
+                  "quaternion": {
+                    "x": -0.42,
+                    "y": 0,
+                    "z": 0.57,
+                    "w": 0.71
+                  }
+                },
+                {
+                  "id": "m16",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.15,
+                    "radiusBottom": 0.15,
+                    "height": 1.2,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.19,
+                    "y": 0.5,
+                    "z": -0.57
+                  },
+                  "color": 16775885,
+                  "quaternion": {
+                    "x": -0.67,
+                    "y": 0,
+                    "z": -0.22,
+                    "w": 0.71
+                  }
+                }
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"高瘦圆锥轮廓，笔直细长树干占1/3高度，层叠针叶枝冠占2/3，枝冠由上至下逐渐变宽\",\n  \"regions\": [\n    {\"name\": \"trunk\", \"desc\": \"高且笔直、极窄圆柱、树皮-深紫棕[1a0a2e]\"},\n    {\"name\": \"crown_top\", \"desc\": \"最小圆锥层、针叶-深蓝[0b0b3b]、微微向外倾斜摇曳、顶部附着小星-明黄[fffacd]\"},\n    {\"name\": \"crown_mid\", \"desc\": \"中等圆锥层、针叶-深蓝、明显向外倾斜摇曳、侧挂弯月-银[c0c0c0]\"},\n    {\"name\": \"crown_base\", \"desc\": \"最宽圆锥层、针叶-深蓝、枝条下垂状摇曳、底部悬挂星形球-明黄\"},\n    {\"name\": \"top_star\", \"desc\": \"位于树冠最顶端、大五角星、发光-明黄\"}\n  ],\n  \"methodologies\": [\"vegetation\"]\n}\n```",
+  "_routerThinking": "1. **Analyze the Request:**\n   - Subject: Lowpoly pine tree with swaying needle branches and a tall straight trunk, starlight themed.\n   - Concept: Concrete object (pine tree), but with an abstract theme (starlight). I need to integrate the starlight theme into the physical structure/accessories, not as textures. \"Starlight\" can mean glowing parts, star-shaped accessories, or color palette (deep blue, silver, glowing yellow/white).\n\n2. **Step 1: Concretization:**\n   - Pine tree is concrete. \"Starlight themed\" needs to be concretized into physical attachments or color choices.\n   - Starlight attachments: Glowing star on top (classic), small glowing orbs/stars hanging from branches (like lanterns/fruit), crescent moon accessory.\n\n3. **Step 2: Structure Division:**\n   - Single instance model (one tree).\n   - Groups: trunk, branches (can be grouped as a single \"foliage\" or broken into tiers like \"top_branches\", \"mid_branches\", \"bottom_branches\" to show the pine shape and swaying), star_top (accessory).\n   - Proportions: Tall, straight, narrow, conical silhouette. Trunk is thin relative to height. Branches form distinct tiers.\n\n4. **Step 3: Desc + Accessories:**\n   - Colors: 60% Deep night blue (branches), 30% Dark brown/black (trunk), 10% Glowing silver/yellow (starlight accessories).\n   - Trunk: Tall, straight, thin, dark bark.\n   - Branches: Conical tiers, swaying (drooping or curved outward), needle-like (spiky silhouette). Deep blue.\n   - Accessories: Top star (glowing yellow/white), hanging star orbs (small glowing spheres/stars on branches), maybe a crescent moon resting on a branch.\n   - Let's refine the regions:\n     - `trunk`: Tall, straight, narrow, bark-深棕[2b1b0e]\n     - `foliage_top`: Top tier, small, spiky, swaying outward, needles-深蓝[0f0f3d], hanging star orb-银[c0c0c0]\n     - `foliage_mid`: Middle tier, wider, spiky, swaying, needles-深蓝, hanging star orb-银\n     - `foliage_bottom`: Bottom tier, widest, drooping, spiky, needles-深蓝, hanging star orb-银\n     - `top_star`: At the very top, large 5-pointed star, glowing-明黄[fffacd]\n   - Wait, the prompt says \"swaying needle branches\". I can just make one `foliage` group and describe the tiers in the desc, or break it down. Breaking it down is better for a pine tree's distinct tiers. Let's do `trunk`, `crown_top`, `crown_mid`, `crown_base`, `top_star`.\n   - Let's adjust colors: Trunk - dark purple/brown [1a0a2e]. Foliage - deep midnight blue [0b0b3b]. Accessories - glowing pale yellow [fffacd] and silver [c0c0c0].\n\n5. **Step 4: Methodology Selection:**\n   - Body: vegetation (it's a plant).\n   - Head: None.\n   - Wings: None.\n\n6. **Refining the Output:**\n   - Proportions: Tall narrow conical silhouette, straight thin trunk taking 1/3 height, layered needle branches taking 2/3.\n   - Regions:\n     - `trunk`: Tall, straight, narrow, bark-深紫棕[1a0a2e]\n     - `crown_top`: Small conical tier, spiky needles-深蓝[0b0b3b], slight outward sway, tiny star-明黄[fffacd]\n     - `crown_mid`: Medium conical tier, spiky needles-深蓝, wider sway, crescent moon-银[c0c0c0]\n     - `crown_base`: Wide conical tier, spiky needles-深蓝, drooping sway, hanging star orb-明黄\n     - `top_star`: At apex, large 5-pointed star, glowing-明黄\n   - Methodologies: [\"vegetation\"]\n\n7. **Final Polish (checking constraints):**\n   - No textures (no \"glowing texture\", just \"glowing\" as color descriptor or accessory).\n   - Accessories are simple geometry: star, moon, orb.\n   - Color inline with hex (no #).\n   - JSON format only.",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly pine tree, swaying needle branches, tall straight trunk, starlight themed.\n    *   **Draft Structure:**\n        *   `trunk`: Tall, straight, narrow cylinder, bark-deep purple-brown `0x1a0a2e`.\n        *   `crown_top`: Smallest cone layer, needles-deep blue `0x0b0b3b`, slightly outward swaying, small star attached at top-bright yellow `0xfffacd`.\n        *   `crown_mid`: Medium cone layer, needles-deep blue, noticeably outward swaying, hanging crescent moon-silver `0xc0c0c0`.\n        *   `crown_base`: Widest cone layer, needles-deep blue, drooping branches swaying, hanging star sphere-bright yellow at bottom.\n        *   `top_star`: At the very top of the crown, large 5-pointed star, glowing-bright yellow.\n    *   **Proportions:** Tall thin cone silhouette, straight slender trunk 1/3 height, layered needle crown 2/3 height, crown widens from top to bottom.\n    *   **Scale:** scale:3. Typical human height ~6-7. Tree should be taller, maybe ~9-10 units total. Trunk ~3.0, Crown ~6.0-7.0.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Use low-poly block-building intuition.\n\n2.  **Determine Dimensions & Colors:**\n    *   Total height: ~10 units.\n    *   Trunk: `h: 3.5`, `r: 0.3`. Color: `0x1a0a2e`.\n    *   Crown layers (cones):\n        *   `crown_base`: `r: 2.5`, `h: 3.0`, `pos: [0, 3.5, 0]` (bottom of crown). Color: `0x0b0b3b`.\n        *   `crown_mid`: `r: 1.8`, `h: 2.5`, `pos: [0, 5.5, 0]`. Color: `0x0b0b3b`.\n        *   `crown_top`: `r: 1.2`, `h: 2.0`, `pos: [0, 7.0, 0]`. Color: `0x0b0b3b`.\n    *   Decorations:\n        *   `top_star`: Large 5-pointed star at `y: 9.0`. Color: `0xfffacd`. (Can be made with intersecting boxes or a poly + flat boxes). Let's use a poly for the center and flat boxes for the spikes, or just a large poly and some flat tri/box. Actually, a simple star can be two intersecting flat boxes rotated 45 degrees, or a poly with flat tri spikes. Let's do a central `poly` and 5 `tri` spikes.\n        *   `crown_top` small star: `poly` at `y: 8.5`. Color: `0xfffacd`.\n        *   `crown_mid` crescent moon: Two overlapping spheres or a `torus` segment. A `torus` with `seg: 4` or just a `cyl` and a sphere cutout? Low poly crescent: A `torus` (half or just a small arc) or just a `cyl` with a sphere. Let's use a small `torus` tilted, or just a `cyl` and a sphere. Actually, a simple crescent can be a `cyl` (r:0.3, h:0.1) and a `sphere` (r:0.25) offset. Or just a `torus` with a small tube. Let's use a `torus` tilted sideways.\n        *   `crown_base` star sphere: `poly` hanging from the bottom edge. Color: `0xfffacd`.\n    *   Swaying effect: Use `api.pivot` for the crown layers so they can sway. Pivot at the base of each cone.\n\n3.  **Drafting the Code (Mental or Scratchpad):**\n    *   Colors:\n        *   `C_BARK = 0x1a0a2e`\n        *   `C_NEEDLE = 0x0b0b3b`\n        *   `C_STAR = 0xfffacd`\n        *   `C_MOON = 0xc0c0c0`\n    *   Trunk:\n        ```javascript\n        api.group('trunk', 'trunk');\n        api.cyl({r: 0.3, h: 3.5, pos: [0, 1.75, 0], color: C_BARK});\n        api.endGroup();\n        ```\n    *   Crown Base:\n        ```javascript\n        api.group('crown_base', 'crown_base');\n        api.pivot([0, 3.5, 0], 'trunk'); // Sway pivot\n        api.cone({r: 2.5, h: 3.0, pos: [0, 5.0, 0], color: C_NEEDLE}); // center of cone is at 3.5 + 1.5 = 5.0\n        // Hanging star sphere at bottom edge\n        api.chain({waypoints: [[1.8, 3.6, 0], [2.2, 3.0, 0]], r: 0.05, color: C_MOON});\n        api.poly({r: 0.15, pos: [2.2, 2.8, 0], color: C_STAR});\n        api.endGroup();\n        ```\n    *   Crown Mid:\n        ```javascript\n        api.group('crown_mid', 'crown_mid');\n        api.pivot([0, 5.5, 0], 'trunk'); // Sway pivot\n        api.cone({r: 1.8, h: 2.5, pos: [0, 6.75, 0], color: C_NEEDLE});\n        // Crescent moon on the side\n        api.torus({r: 0.4, tube: 0.1, pos: [1.2, 5.8, 0.5], along: '+Z', color: C_MOON});\n        api.sphere({r: 0.3, pos: [1.35, 5.9, 0.5], color: C_NEEDLE}); // bite out of the moon\n        api.endGroup();\n        ```\n    *   Crown Top:\n        ```javascript\n        api.group('crown_top', 'crown_top');\n        api.pivot([0, 7.0, 0], 'trunk'); // Sway pivot\n        api.cone({r: 1.2, h: 2.0, pos: [0, 8.0, 0], color: C_NEEDLE});\n        // Small star at top\n        api.poly({r: 0.2, pos: [0, 8.8, 0], color: C_STAR});\n        api.endGroup();\n        ```\n    *   Top Star:\n        ```javascript\n        api.group('top_star', 'top_star');\n        api.pivot([0, 9.0, 0], 'crown_top'); // Sway with top crown\n        // Make a 5-pointed star using flat boxes or tris\n        api.poly({r: 0.3, pos: [0, 9.5, 0], color: C_STAR});\n        for(let i=0; i<5; i++) {\n            let angle = i/5 * Math.PI * 2;\n            let px = Math.cos(angle) * 0.6;\n            let pz = Math.sin(angle) * 0.6;\n            api.cone({r: 0.15, h: 0.5, pos: [px, 9.5, pz], along: '+Y', color: C_STAR}); // wait, cones pointing outwards\n            // Better: flat tris or just a big glowing poly. Let's use a big poly and small cones pointing outward.\n            // Actually, a simple star: two intersecting flat boxes.\n            api.box({w: 1.5, h: 0.1, d: 0.4, pos: [0, 9.5, 0], color: C_STAR});\n            api.box({w: 0.4, h: 0.1, d: 1.5, pos: [0, 9.5, 0], color: C_STAR});\n            api.box({w: 1.1, h: 0.1, d: 1.1, pos: [0, 9.5, 0], color: C_STAR}); // rotated 45 deg? No rotate API for boxes directly, use rotatePoint for pos? No, just use a large poly and some spikes.\n        }\n        // Let's do a simpler star: a central poly and 5 small cones pointing outward from center\n        api.poly({r: 0.4, pos: [0, 9.5, 0], color: C_STAR});\n        for(let i=0; i<5; i++){\n            let a = i/5 * Math.PI * 2 - Math.PI/2;\n            let px = Math.cos(a) * 0.7;\n            let pz = Math.sin(a) * 0.7;\n            // Cone pointing outward: along needs to be horizontal. If along is default +Y, we can't easily rotate it to point outward without a sub-group.\n            // Let's just use small boxes as spikes.\n            api.box({w: 0.8, h: 0.1, d: 0.2, pos: [px, 9.5, pz], color: C_STAR}); // This won't point radially easily.\n        }\n        // Easiest low-poly star: two intersecting flat boxes (cross and X).\n        api.box({w: 1.8, h: 0.15, d: 0.5, pos: [0, 9.5, 0], color: C_STAR});\n        api.box({w: 0.5, h: 0.15, d: 1.8, pos: [0, 9.5, 0], color: C_STAR});\n        api.box({w: 1.3, h: 0.15, d: 1.3, pos: [0, 9.5, 0], color: C_STAR}); // Wait, can't rotate 45.\n        // Let's just use a large poly and a vertical cone.\n        api.cone({r: 0.5, h: 1.0, pos: [0, 9.0, 0], color: C_STAR}); // pointing up\n        api.poly({r: 0.5, pos: [0, 9.5, 0], color: C_STAR});\n        ```\n    *   Wait, the prompt says \"大五角星\" (large 5-pointed star). I can build it with 5 `tri` faces arranged in a circle, or just a large `poly` with 5 small `tri` spikes.\n        Let's use 5 `tri` arranged radially.\n        ```javascript\n        api.group('top_star', 'top_star');\n        api.pivot([0, 9.0, 0], 'crown_top');\n        for(let i=0; i<5; i++){\n            let a = i/5 * Math.PI * 2;\n            let a2 = (i+0.5)/5 * Math.PI * 2;\n            let inner = 0.3, outer = 1.0;\n            let p1 = api.rotatePoint([0, 9.5, inner], 'Y', a);\n            let p2 = api.rotatePoint([0, 9.5, outer], 'Y', a2);\n            let p3 = api.rotatePoint([0, 9.5, inner], 'Y', a2); // wait, tri needs 3 points.\n            // Star points:\n            let tip = api.rotatePoint([0, 9.5, outer], 'Y', a);\n            let left = api.rotatePoint([inner*Math.cos(a-0.3), 9.5, inner*Math.sin(a-0.3)], 'Y', 0); // too complex\n        }\n        ```\n        Actually, a 5-pointed star is best done with 5 intersecting flat boxes if we can't rotate easily, or just a big `poly` (which is an icosahedron, not a star shape).\n        Let's use 5 `tri` pointing outward from center `[0, 9.5, 0]`.\n        ```javascript\n        for(let i=0; i<5; i++){\n            let a1 = i/5 * Math.PI * 2;\n            let a2 = (i+2)/5 * Math.PI * 2; // skip one to make star points? No, a star has 5 points and 5 inner vertices.\n            // Let's just use 5 cones pointing outward from a central sphere.\n            for(let i=0; i<5; i++){\n                let a = i/5 * Math.PI * 2;\n                let px = Math.cos(a) * 0.8;\n                let pz = Math.sin(a) * 0.8;\n                // To point outward, we need a group with pivot, or just use a box and accept it's axis-aligned.\n                // Or use `connect`!\n                api.connect([0, 9.5, 0], [px*1.5, 9.5, pz*1.5], {r: 0.15, color: C_STAR});\n            }\n            api.sphere({r: 0.4, pos: [0, 9.5, 0], color: C_STAR});\n        ```\n        Yes! `connect` from center to 5 points around a circle! That makes a perfect 3D star.\n\n4.  **Refining the Structure & Pivots:**\n    *   Trunk: `pos: [0, 1.75, 0]`, `h: 3.5`, `r: 0.3`.\n    *   `crown_base`: Pivot at `[0, 3.5, 0]`, target `trunk`.\n        *   Cone: `rBot: 2.5`, `rTop: 0.2`, `h: 3.0`, `pos: [0, 5.0, 0]`.\n        *   Hanging star: `chain` from `[1.8, 3.6, 0]` to `[2.2, 3.0, 0]`, `poly` at end.\n    *   `crown_mid`: Pivot at `[0, 5.5, 0]`, target `trunk`.\n        *   Cone: `rBot: 1.8`, `rTop: 0.15`, `h: 2.5`, `pos: [0, 6.75, 0]`.\n        *   Crescent moon: `torus` at `[1.0, 5.8, 0.5]`, `r: 0.4`, `tube: 0.1`, `along: '+Z'`. `sphere` at `[1.15, 5.9, 0.5]`, `r: 0.3` (same color as needles to \"cut\" the torus).\n    *   `crown_top`: Pivot at `[0, 7.0, 0]`, target `trunk`.\n        *   Cone: `rBot: 1.2`, `rTop: 0.1`, `h: 2.0`, `pos: [0, 8.0, 0]`.\n        *   Small star: `poly` at `[0, 8.8, 0]`, `r: 0.2`.\n    *   `top_star`: Pivot at `[0, 9.0, 0]`, target `crown_top` (so it sways with the top).\n        *   Center sphere: `sphere` `r: 0.4`, `pos: [0, 9.5, 0]`.\n        *   5 spikes: `connect` from `[0, 9.5, 0]` to points on circle `r: 1.2` at `y: 9.5`.\n\n5.  **Let's check the math and positions:**\n    *   Trunk top is at `y = 3.5`.\n    *   `crown_base` cone: `h: 3.0`, `pos: [0, 5.0, 0]`. Bottom at `3.5`, top at `6.5`. `rBot: 2.5`.\n    *   `crown_mid` cone: `h: 2.5`, `pos: [0, 6.75, 0]`. Bottom at `5.5`, top at `8.0`. `rBot: 1.8`. Overlaps base cone nicely.\n    *   `crown_top` cone: `h: 2.0`, `pos: [0, 8.0, 0]`. Bottom at `7.0`, top at `9.0`. `rBot: 1.2`. Overlaps mid cone.\n    *   `top_star`: Pivot at `[0, 9.0, 0]`. Center at `[0, 9.5, 0]`. Spikes reach out to `r: 1.2` at `y: 9.5`.\n\n6.  **Code Construction:**\n    ```javascript\n    function build(api) {\n      api.name('星光松树');\n      const C_BARK = 0x1a0a2e;\n      const C_NEEDLE = 0x0b0b3b;\n      const C_STAR = 0xfffacd;\n      const C_MOON = 0xc0c0c0;\n\n      api.group('trunk', 'trunk');\n      api.cyl({r: 0.3, h: 3.5, pos: [0, 1.75, 0], color: C_BARK});\n      api.endGroup();\n\n      api.group('crown_base', 'crown_base');\n      api.pivot([0, 3.5, 0], 'trunk');\n      api.cone({r: 2.5, h: 3.0, pos: [0, 5.0, 0], color: C_NEEDLE});\n      api.chain({waypoints: [[1.8, 3.6, 0], [2.2, 3.0, 0]], r: 0.05, color: C_MOON});\n      api.poly({r: 0.15, pos: [2.2, 2.8, 0], color: C_STAR});\n      api.endGroup();\n\n      api.group('crown_mid', 'crown_mid');\n      api.pivot([0, 5.5, 0], 'trunk');\n      api.cone({r: 1.8, h: 2.5, pos: [0, 6.75, 0], color: C_NEEDLE});\n      api.torus({r: 0.4, tube: 0.1, pos: [1.0, 5.8, 0.5], along: '+Z', color: C_MOON});\n      api.sphere({r: 0.3, pos: [1.15, 5.9, 0.5], color: C_NEEDLE});\n      api.endGroup();\n\n      api.group('crown_top', 'crown_top');\n      api.pivot([0, 7.0, 0], 'trunk');\n      api.cone({r: 1.2, h: 2.0, pos: [0, 8.0, 0], color: C_NEEDLE});\n      api.poly({r: 0.2, pos: [0, 8.8, 0], color: C_STAR});\n      api.endGroup();\n\n      api.group('top_star', 'top_star');\n      api.pivot([0, 9.0, 0], 'crown_top');\n      api.sphere({r: 0.4, pos: [0, 9.5, 0], color: C_STAR});\n      for (let i = 0; i < 5; i++) {\n        let a = i / 5 * Math.PI * 2;\n        let px = Math.cos(a) * 1.2;\n        let pz = Math.sin(a) * 1.2;\n        api.connect([0, 9.5, 0], [px, 9.5, pz], {r: 0.15, color: C_STAR});\n      }\n      api.endGroup();\n    }\n    ```\n\n7.  **Review against constraints:**\n    *   Only output `function build(api) { ... }`. No markdown, no explanation.\n    *   Lowpoly pine tree, swaying needle branches, tall straight trunk, starlight themed.\n    *   Swaying: pivots are set on the crown groups, targeting the trunk (or parent crown for top_star). This allows them to sway independently or inherit sway.\n    *   Colors match the draft: `0x1a0a2e`, `0x0b0b3b`, `0xfffacd`, `0xc0c0c0`.\n    *   Proportions: Tall thin cone silhouette, straight slender trunk 1/3 height, layered needle crown 2/3 height, crown widens from top to bottom.\n    *   Details: Small star on top crown, crescent moon on mid crown, hanging star sphere on base crown, large 5-pointed star at the very top.\n    *   All API calls look correct. `chain`, `poly`, `torus`, `sphere`, `connect` are valid.\n\n8.  **Final Polish:**\n    *   Make sure the crescent moon looks like a crescent. A torus with a sphere of the background color overlapping it is a classic low-poly trick. The sphere `pos: [1.15, 5.9, 0.5]` is slightly offset from the torus `pos: [1.0, 5.8, 0.5]`. This should bite into the torus nicely.\n    *   The hanging star on `crown_base` uses a `chain` and a `poly`. Good.\n    *   The top star uses `connect` and a `sphere`. This will look like a 3D starfish/star shape. Perfect.\n    *   No markdown formatting around the output. Just the raw function string.\n\n9.  **Generate Output.**",
+  "_aiCode": "function build(api) {\n  api.name('星光松树');\n  const C_BARK = 0x1a0a2e;\n  const C_NEEDLE = 0x0b0b3b;\n  const C_STAR = 0xfffacd;\n  const C_MOON = 0xc0c0c0;\n\n  api.group('trunk', 'trunk');\n  api.cyl({r: 0.3, h: 3.5, pos: [0, 1.75, 0], color: C_BARK});\n  api.endGroup();\n\n  api.group('crown_base', 'crown_base');\n  api.pivot([0, 3.5, 0], 'trunk');\n  api.cone({r: 2.5, h: 3.0, pos: [0, 5.0, 0], color: C_NEEDLE});\n  api.chain({waypoints: [[1.8, 3.6, 0], [2.2, 3.0, 0]], r: 0.05, color: C_MOON});\n  api.poly({r: 0.15, pos: [2.2, 2.8, 0], color: C_STAR});\n  api.endGroup();\n\n  api.group('crown_mid', 'crown_mid');\n  api.pivot([0, 5.5, 0], 'trunk');\n  api.cone({r: 1.8, h: 2.5, pos: [0, 6.75, 0], color: C_NEEDLE});\n  api.torus({r: 0.4, tube: 0.1, pos: [1.0, 5.8, 0.5], along: '+Z', color: C_MOON});\n  api.sphere({r: 0.3, pos: [1.15, 5.9, 0.5], color: C_NEEDLE});\n  api.endGroup();\n\n  api.group('crown_top', 'crown_top');\n  api.pivot([0, 7.0, 0], 'trunk');\n  api.cone({r: 1.2, h: 2.0, pos: [0, 8.0, 0], color: C_NEEDLE});\n  api.poly({r: 0.2, pos: [0, 8.8, 0], color: C_STAR});\n  api.endGroup();\n\n  api.group('top_star', 'top_star');\n  api.pivot([0, 9.0, 0], 'crown_top');\n  api.sphere({r: 0.4, pos: [0, 9.5, 0], color: C_STAR});\n  for (let i = 0; i < 5; i++) {\n    let a = i / 5 * Math.PI * 2;\n    let px = Math.cos(a) * 1.2;\n    let pz = Math.sin(a) * 1.2;\n    api.connect([0, 9.5, 0], [px, 9.5, pz], {r: 0.15, color: C_STAR});\n  }\n  api.endGroup();\n}",
+  "_description": "a lowpoly pine tree with swaying needle branches and a tall straight trunk, starlight themed",
+  "_formulaResult": {
+    "methodologies": [
+      "vegetation"
+    ],
+    "regions": [
+      {
+        "name": "trunk",
+        "desc": "高且笔直、极窄圆柱、树皮-深紫棕[1a0a2e]"
+      },
+      {
+        "name": "crown_top",
+        "desc": "最小圆锥层、针叶-深蓝[0b0b3b]、微微向外倾斜摇曳、顶部附着小星-明黄[fffacd]"
+      },
+      {
+        "name": "crown_mid",
+        "desc": "中等圆锥层、针叶-深蓝、明显向外倾斜摇曳、侧挂弯月-银[c0c0c0]"
+      },
+      {
+        "name": "crown_base",
+        "desc": "最宽圆锥层、针叶-深蓝、枝条下垂状摇曳、底部悬挂星形球-明黄"
+      },
+      {
+        "name": "top_star",
+        "desc": "位于树冠最顶端、大五角星、发光-明黄"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('trunk','trunk') → 高且笔直、极窄圆柱、树皮-深紫棕[1a0a2e] → api.endGroup()\napi.group('crown_top','crown_top') → 最小圆锥层、针叶-深蓝[0b0b3b]、微微向外倾斜摇曳、顶部附着小星-明黄[fffacd] → api.endGroup()\napi.group('crown_mid','crown_mid') → 中等圆锥层、针叶-深蓝、明显向外倾斜摇曳、侧挂弯月-银[c0c0c0] → api.endGroup()\napi.group('crown_base','crown_base') → 最宽圆锥层、针叶-深蓝、枝条下垂状摇曳、底部悬挂星形球-明黄 → api.endGroup()\napi.group('top_star','top_star') → 位于树冠最顶端、大五角星、发光-明黄 → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly pine tree with swaying needle branches and a tall straight trunk, starlight themed\"\n\n草稿结构：\n  trunk: 高且笔直、极窄圆柱、树皮-深紫棕[1a0a2e]\n  crown_top: 最小圆锥层、针叶-深蓝[0b0b3b]、微微向外倾斜摇曳、顶部附着小星-明黄[fffacd]\n  crown_mid: 中等圆锥层、针叶-深蓝、明显向外倾斜摇曳、侧挂弯月-银[c0c0c0]\n  crown_base: 最宽圆锥层、针叶-深蓝、枝条下垂状摇曳、底部悬挂星形球-明黄\n  top_star: 位于树冠最顶端、大五角星、发光-明黄\n整体比例：高瘦圆锥轮廓，笔直细长树干占1/3高度，层叠针叶枝冠占2/3，枝冠由上至下逐渐变宽\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242323688,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

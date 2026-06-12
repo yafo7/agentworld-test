@@ -38,22 +38,6 @@ export const ENV_GRASSLAND = {
 
 export const ITEM_CONFIGS = [
   {
-    id: 'moss_lamp',
-    name: '苔藓灯',
-    color: 0x44ddff,
-    tags: ['微光', '温柔', '安全', '安静'],
-    correspondsTo: '雨灯绒',
-    spawnPosition: [5, 0, 0],
-  },
-  {
-    id: 'sun_stone',
-    name: '太阳石',
-    color: 0xff8844,
-    tags: ['阳光', '温暖', '坚固', '干燥'],
-    correspondsTo: '小石芽',
-    spawnPosition: [-3, 0, 4],
-  },
-  {
     id: 'wind_chime',
     name: '风铃',
     color: 0xaadd44,
@@ -90,6 +74,54 @@ export const PIKACHU_CONFIG = {
   dislikes: ['寂寞', '冷水'],
   habits: ['脸颊放电', '蹭训练师', '发出皮卡皮卡的叫声'],
   originSignature: ['森林', '温暖', '阳光', '热闹', '自然'],
+};
+
+export const HOUSE_PET_CONFIGS = {
+  '马扣': {
+    name: '马扣',
+    color: 0xcc8844,
+    tags: ['忠诚', '奔跑', '温暖', '守护'],
+    personality: '一匹热情的小马驹，喜欢在草地上奔跑，对主人绝对忠诚',
+    likes: ['胡萝卜', '草原', '阳光'],
+    dislikes: ['雷雨', '孤独'],
+    habits: ['刨蹄子', '围着主人转圈', '发出咴咴的叫声'],
+    originSignature: ['草原', '温暖', '奔跑', '忠诚', '阳光'],
+    dialogue: {
+      greetings: ['咴咴！你来啦！', '今天要去哪里奔跑？', '见到你我很开心！'],
+      responses: { gentle: '嗯，我会一直陪着你的。', bright: '太好了！一起去奔跑吧！', social: '和大家一起玩最开心了！' },
+      toPlayer: ['谢谢你给我这个家。', '有你在，我不怕雷雨了。', '我会一直守护你的。'],
+    },
+  },
+  '扶摇': {
+    name: '扶摇',
+    color: 0x88ccff,
+    tags: ['自由', '风', '高远', '灵动'],
+    personality: '一只喜欢乘风而起的小鸟，性格洒脱，向往远方',
+    likes: ['清风', '高处', '果实'],
+    dislikes: ['笼子', '闷热'],
+    habits: ['盘旋上升', '梳理羽毛', '站在最高点眺望'],
+    originSignature: ['天空', '自由', '风', '高远', '轻盈'],
+    dialogue: {
+      greetings: ['啾啾！风好大啊！', '要不要一起飞上去看看？', '今天的风很舒服呢。'],
+      responses: { gentle: '放心，风会指引我们的。', bright: '哇！那边好像很有趣！', social: '和大家一起在风中飞翔吧！' },
+      toPlayer: ['谢谢你给了我自由的天空。', '只要有你在，哪里都是远方。', '我会为你衔来最美的果实。'],
+    },
+  },
+  'momo': {
+    name: 'momo',
+    color: 0xffaabb,
+    tags: ['慵懒', '圆润', '可爱', '贪吃'],
+    personality: '一只圆滚滚的小团子，整天 sleepy，但一见到食物就精神百倍',
+    likes: ['甜点', '软垫', '午睡'],
+    dislikes: ['运动', '噪音'],
+    habits: ['打哈欠', '团成球睡觉', '慢吞吞地走路'],
+    originSignature: ['柔软', '温暖', '甜食', '安静', '圆润'],
+    dialogue: {
+      greetings: ['哈欠……你来啦。', '有吃的吗？', '好困啊……'],
+      responses: { gentle: '嗯……让我再睡一会儿。', bright: '哇！是甜点吗？', social: '大家在一起……好暖和。' },
+      toPlayer: ['谢谢你给我软软的家。', '只要和你在一起，我就不想动了。', '你会给我带甜点吗？'],
+    },
+  },
 };
 
 export const PET_CONFIGS = [
@@ -176,6 +208,13 @@ export const PET_CONFIGS = [
     },
   },
 ];
+
+// Merge house pets into PET_CONFIGS so dialogue helpers work for all pets
+for (const pet of Object.values(HOUSE_PET_CONFIGS)) {
+  if (!PET_CONFIGS.find((p) => p.name === pet.name)) {
+    PET_CONFIGS.push(pet);
+  }
+}
 
 // ---- Dialogue helpers ----
 

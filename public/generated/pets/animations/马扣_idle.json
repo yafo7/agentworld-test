@@ -1,0 +1,55 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.8
+    }
+  },
+  "head": {
+    "sway": [
+      {
+        "axis": "z",
+        "amplitude": 0.03,
+        "frequency": 0.5
+      },
+      {
+        "axis": "y",
+        "amplitude": 0.02,
+        "frequency": 0.3
+      }
+    ]
+  },
+  "mane": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.04,
+      "frequency": 0.5
+    },
+    "_attach": "head"
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.4
+    }
+  },
+  "tail_wp0": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4
+    },
+    "_attach": "tail"
+  },
+  "tail_wp1": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.4
+    },
+    "_attach": "tail_wp0"
+  }
+}

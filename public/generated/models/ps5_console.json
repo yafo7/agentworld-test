@@ -1,0 +1,539 @@
+{
+  "name": "PlayStation 5",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "base",
+      "name": "底座",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "box",
+      "geometry": {
+        "width": 2.8,
+        "height": 0.2,
+        "depth": 1.8
+      },
+      "position": {
+        "x": 0,
+        "y": -0.1,
+        "z": 0
+      },
+      "color": 3355443
+    },
+    {
+      "id": "m1",
+      "type": "torus",
+      "geometry": {
+        "radius": 1.2,
+        "tube": 0.06,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 2236962,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "core",
+      "name": "核心体",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2.15,
+        "z": 0.305
+      }
+    },
+    {
+      "id": "m2",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 4.8,
+        "depth": 1.2
+      },
+      "position": {
+        "x": 0,
+        "y": 0.4500000000000002,
+        "z": -0.305
+      },
+      "color": 1710618
+    },
+    {
+      "id": "m3",
+      "type": "box",
+      "geometry": {
+        "width": 0.12,
+        "height": 3.2,
+        "depth": 0.12
+      },
+      "position": {
+        "x": -0.52,
+        "y": 0.4500000000000002,
+        "z": -0.305
+      },
+      "color": 12543
+    },
+    {
+      "id": "m4",
+      "type": "box",
+      "geometry": {
+        "width": 0.12,
+        "height": 3.2,
+        "depth": 0.12
+      },
+      "position": {
+        "x": 0.52,
+        "y": 0.4500000000000002,
+        "z": -0.305
+      },
+      "color": 12543
+    },
+    {
+      "id": "m5",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.05,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 0.2,
+        "y": -0.6499999999999999,
+        "z": 0.305
+      },
+      "color": 328965
+    },
+    {
+      "id": "m6",
+      "type": "box",
+      "geometry": {
+        "width": 0.3,
+        "height": 0.3,
+        "depth": 0.12
+      },
+      "position": {
+        "x": 0,
+        "y": 0.6499999999999999,
+        "z": 0.305
+      },
+      "color": 12543
+    },
+    {
+      "id": "leftWing",
+      "name": "左侧面板",
+      "group": true,
+      "position": {
+        "x": -1.1,
+        "y": 2.5,
+        "z": 0
+      },
+      "pivotTarget": "core"
+    },
+    {
+      "id": "m7",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": -0.2999999999999998,
+        "y": -1.55,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m8",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": 0,
+        "y": -0.04999999999999982,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m9",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": -0.2999999999999998,
+        "y": 1.4500000000000002,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "rightWing",
+      "name": "右侧面板",
+      "group": true,
+      "position": {
+        "x": 1.1,
+        "y": 2.5,
+        "z": 0
+      },
+      "pivotTarget": "core"
+    },
+    {
+      "id": "m10",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": 0.2999999999999998,
+        "y": -1.55,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m11",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": 0,
+        "y": -0.04999999999999982,
+        "z": 0
+      },
+      "color": 15790320
+    },
+    {
+      "id": "m12",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 1.5,
+        "depth": 1.4
+      },
+      "position": {
+        "x": 0.2999999999999998,
+        "y": 1.4500000000000002,
+        "z": 0
+      },
+      "color": 15790320
+    }
+  ],
+  "tree": [
+    {
+      "id": "core",
+      "name": "核心体",
+      "offset": [
+        0,
+        2.15,
+        0.305
+      ],
+      "meshes": [
+        {
+          "id": "m2",
+          "type": "box",
+          "geometry": {
+            "width": 1,
+            "height": 4.8,
+            "depth": 1.2
+          },
+          "position": {
+            "x": 0,
+            "y": 0.4500000000000002,
+            "z": -0.305
+          },
+          "color": 1710618
+        },
+        {
+          "id": "m3",
+          "type": "box",
+          "geometry": {
+            "width": 0.12,
+            "height": 3.2,
+            "depth": 0.12
+          },
+          "position": {
+            "x": -0.52,
+            "y": 0.4500000000000002,
+            "z": -0.305
+          },
+          "color": 12543
+        },
+        {
+          "id": "m4",
+          "type": "box",
+          "geometry": {
+            "width": 0.12,
+            "height": 3.2,
+            "depth": 0.12
+          },
+          "position": {
+            "x": 0.52,
+            "y": 0.4500000000000002,
+            "z": -0.305
+          },
+          "color": 12543
+        },
+        {
+          "id": "m5",
+          "type": "box",
+          "geometry": {
+            "width": 0.8,
+            "height": 0.05,
+            "depth": 0.15
+          },
+          "position": {
+            "x": 0.2,
+            "y": -0.6499999999999999,
+            "z": 0.305
+          },
+          "color": 328965
+        },
+        {
+          "id": "m6",
+          "type": "box",
+          "geometry": {
+            "width": 0.3,
+            "height": 0.3,
+            "depth": 0.12
+          },
+          "position": {
+            "x": 0,
+            "y": 0.6499999999999999,
+            "z": 0.305
+          },
+          "color": 12543
+        }
+      ],
+      "children": [
+        {
+          "id": "base",
+          "name": "底座",
+          "offset": [
+            0,
+            -1.95,
+            -0.305
+          ],
+          "meshes": [
+            {
+              "id": "m0",
+              "type": "box",
+              "geometry": {
+                "width": 2.8,
+                "height": 0.2,
+                "depth": 1.8
+              },
+              "position": {
+                "x": 0,
+                "y": -0.1,
+                "z": 0
+              },
+              "color": 3355443
+            },
+            {
+              "id": "m1",
+              "type": "torus",
+              "geometry": {
+                "radius": 1.2,
+                "tube": 0.06,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 2236962,
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "leftWing",
+          "name": "左侧面板",
+          "offset": [
+            -1.1,
+            0.35,
+            -0.305
+          ],
+          "meshes": [
+            {
+              "id": "m7",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": -0.2999999999999998,
+                "y": -1.55,
+                "z": 0
+              },
+              "color": 15790320
+            },
+            {
+              "id": "m8",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": 0,
+                "y": -0.04999999999999982,
+                "z": 0
+              },
+              "color": 15790320
+            },
+            {
+              "id": "m9",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": -0.2999999999999998,
+                "y": 1.4500000000000002,
+                "z": 0
+              },
+              "color": 15790320
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rightWing",
+          "name": "右侧面板",
+          "offset": [
+            1.1,
+            0.35,
+            -0.305
+          ],
+          "meshes": [
+            {
+              "id": "m10",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": 0.2999999999999998,
+                "y": -1.55,
+                "z": 0
+              },
+              "color": 15790320
+            },
+            {
+              "id": "m11",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": 0,
+                "y": -0.04999999999999982,
+                "z": 0
+              },
+              "color": 15790320
+            },
+            {
+              "id": "m12",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 1.5,
+                "depth": 1.4
+              },
+              "position": {
+                "x": 0.2999999999999998,
+                "y": 1.4500000000000002,
+                "z": 0
+              },
+              "color": 15790320
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"高挑垂直立柱，黑色核心体略高于两侧白色外壳，流线型曲面轮廓\",\n  \"regions\": [\n    {\n      \"name\": \"leftWing\",\n      \"desc\": \"高大侧面板、内缘内凹、外缘外凸、白色[f0f0f0]\"\n    },\n    {\n      \"name\": \"rightWing\",\n      \"desc\": \"高大侧面板、内缘内凹、外缘外凸、白色\"\n    },\n    {\n      \"name\": \"core\",\n      \"desc\": \"夹在两侧面板间的核心体、黑色[1a1a1a]、竖向蓝色LED灯带-蓝[0030ff]、细长盘口缝隙、小方块PS标志-蓝\"\n    },\n    {\n      \"name\": \"base\",\n      \"desc\": \"扁平椭圆底座、深灰[333333]\"\n    }\n  ],\n  \"methodologies\": [\n    \"mechanical\"\n  ]\n}\n```",
+  "_routerThinking": "1.  **Analyze the Request:**\n    *   Object: PlayStation 5 game console.\n    *   Style: Lowpoly.\n    *   Characteristics: White and black sleek body, futuristic design, standing vertically.\n    *   Role: Structural Drafter for lowpoly models.\n\n2.  **Step 1: Concretization:**\n    *   \"PlayStation 5\" is a concrete physical object. No need to abstract or add human features. It's a mechanical/electronic object.\n\n3.  **Step 2: Structural Division:**\n    *   It's a single object (the console), but it has distinct physical sections (the two white wings/sides and the black central body).\n    *   Groups: `leftWing` (white outer shell left), `rightWing` (white outer shell right), `core` (black inner body/base).\n    *   Proportions: Tall, sleek, vertical monolith, curved/angled contrast between black core and white wings.\n\n4.  **Step 3: Write desc + Accessories:**\n    *   *Colors:* White and Black. Let's assign hexes. White: [f0f0f0], Black: [1a1a1a]. Blue accent (PS light): [0040ff].\n    *   *leftWing:* Tall, concave inner edge, convex outer edge, white [f0f0f0].\n    *   *rightWing:* Tall, concave inner edge, convex outer edge, white.\n    *   *core:* Taller than wings, visible between them, black [1a1a1a], blue accent light [0040ff], base stand- dark gray [333333].\n    *   *Accessories/Details:* Base stand, blue LED strip, disc drive slot (thin line on core), PS logo (small geometric block on core).\n\n5.  **Step 4: Methodology Selection:**\n    *   It's a mechanical/console object.\n    *   Methodologies: `mechanical`. (No head, no wings in the biological sense, no body).\n\n6.  **Refine JSON Output:**\n    *   `proportions`: \"Tall vertical monolith, black core slightly taller than white wings, sleek curved silhouette\"\n    *   `regions`:\n        *   `leftWing`: \"Tall curved side panel, concave inner edge, convex outer edge, white [f0f0f0]\"\n        *   `rightWing`: \"Tall curved side panel, concave inner edge, convex outer edge, white\"\n        *   `core`: \"Central body exposed between wings, black [1a1a1a], blue LED strip-蓝 [0030ff], thin disc slot line, small PS logo-蓝\"\n        *   `base`: \"Flat oval base stand, dark gray [333333]\"\n    *   `methodologies`: [\"mechanical\"]",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Low-poly PlayStation 5 console.\n    *   **Style:** Vertical standing, futuristic, sleek, white and black.\n    *   **Draft Structure:**\n        *   `leftWing`: Tall side panel, concave inner edge, convex outer edge, white [f0f0f0].\n        *   `rightWing`: Tall side panel, concave inner edge, convex outer edge, white [f0f0f0].\n        *   `core`: Black core [1a1a1a] sandwiched between wings, vertical blue LED strip [0030ff], thin disc slot, small blue PS logo.\n        *   `base`: Flat elliptical base, dark gray [333333].\n    *   **Proportions:** Tall vertical pillar, black core slightly taller than white shells, streamlined curved silhouette.\n    *   **Constraints:** Only output `function build(api) { ... }`. No markdown, no explanation. Scale ~3 (PS5 is about 39cm tall, so maybe ~4-5 units tall in this scale). Use low-poly block/chain/patch logic.\n\n2.  **Deconstruct Geometry & Proportions:**\n    *   Total height: ~4.5 units.\n    *   Base: Elliptical flat box, w:2.5, d:2.5, h:0.2.\n    *   Core (Black center): Tall box or slightly tapered box. w:1.2, h:4.5, d:1.2. Pos: [0, 2.25, 0].\n    *   Wings (White sides): The PS5 wings wrap around the black core. They are curved (convex out, concave in). In low-poly, we can represent this with a few `box`es or a `patch`/`tri` combination, or just angled `box`es. Let's use a combination of `box`es to create the stepped/swept look, or a `patch` for the smooth curve. Actually, `box`es with slight angles or a `chain`/`patch` might work. Let's use `patch` for the wings to get that smooth curve, or just stacked `box`es. Wait, the prompt says \"薄片是贴面的皮肤...曲面(chain/sphere)上只用小块\". For the main body, we can use `box`es. Let's make the wings using a slightly curved `patch` or just a large `box` with a rotated orientation.\n    *   Actually, PS5 wings are like two C-shapes wrapping around the center. Let's build them as thick `box`es or `cyl` segments. A `cyl` with `seg: 8` or `10` cut in half? No, `box` is safer and more low-poly.\n    *   Let's use `box` for the wings but make them slightly angled. Or use `patch` with thickness `d:0.3`? No, `d` is for thin sheets. Wings are thick (about 0.5-1 unit thick).\n    *   Let's use a `box` for the main wing volume, and add a `tri` or angled `box` for the curved edge.\n    *   Wait, PS5 wings are very sculptural. Let's use a `chain` or just a tall `box` with a `tri` to bevel the edge.\n    *   Let's simplify: Two tall white boxes, slightly tapered or offset, flanking a central black box.\n    *   Left wing: pos [-0.8, 2.2, 0], w:0.8, h:4.2, d:1.5.\n    *   Right wing: pos [0.8, 2.2, 0], w:0.8, h:4.2, d:1.5.\n    *   To get the \"concave inner, convex outer\" feel, we can angle them or add a `tri` on the outer edge.\n    *   Let's use `patch` for the outer shell? No, `patch` is thin. Let's use `box` and `tri`.\n    *   Actually, a `cyl` with `seg: 4` or `6` could give a faceted curved look. Let's stick to `box`es and `tri`angles for the low-poly aesthetic.\n    *   Core: `box({w:1.0, h:4.5, d:1.0, pos:[0, 2.25, 0], color:0x1a1a1a})`\n    *   Left Wing: `box({w:0.8, h:4.2, d:1.8, pos:[-0.9, 2.1, 0], color:0xf0f0f0})`. Add a `tri` on the outside to make it convex. Add a `tri` on the inside to make it concave? If it's a box, the inside is flat. To make it concave, we can just leave a gap or use a smaller box.\n    *   Let's rethink the PS5 shape. It's like a sandwich. Black center, white wings. The wings have a gap between them and the black center at the top and bottom, touching in the middle.\n    *   Let's use `chain` for the wings! `chain` can follow a curved path.\n        *   Left wing waypoints: `[-1.5, 0.5, 0], [-1.2, 2.2, 0], [-1.5, 4.0, 0]`. r: 0.8.\n        *   Right wing waypoints: `[1.5, 0.5, 0], [1.2, 2.2, 0], [1.5, 4.0, 0]`. r: 0.8.\n        *   This gives a beautiful curved low-poly wing!\n    *   Core: `box({w:1.0, h:4.5, d:1.2, pos:[0, 2.25, 0], color:0x1a1a1a})`\n    *   Base: `box({w:2.5, h:0.2, d:2.5, pos:[0, 0.1, 0], color:0x333333})` - wait, elliptical base. `cyl({r:1.5, h:0.2, seg:8, pos:[0,0.1,0], color:0x333333})` gives an octagonal base, very low-poly.\n\n3.  **Refining the Geometry:**\n    *   **Base:** `cyl({r:1.4, h:0.25, seg:8, pos:[0,0.125,0], color:0x333333})`\n    *   **Core:** `box({w:1.0, h:4.5, d:1.2, pos:[0, 2.5, 0], color:0x1a1a1a})`\n        *   LED strip: `box({w:0.1, h:3.5, d:0.15, pos:[0.51, 2.5, 0], color:0x0030ff})` (on the right side of the core, visible in the gap).\n        *   Disc slot: `box({w:0.8, h:0.05, d:0.15, pos:[0, 1.5, 0.61], color:0x000000})` (front face).\n        *   PS Logo: `box({w:0.2, h:0.2, d:0.15, pos:[0, 2.5, 0.61], color:0x0030ff})` (front face).\n    *   **Wings:**\n        *   Left Wing: `chain({waypoints:[[-1.4, 0.8, 0], [-1.1, 2.5, 0], [-1.4, 4.2, 0]], r:0.7, color:0xf0f0f0})`\n        *   Right Wing: `chain({waypoints:[[1.4, 0.8, 0], [1.1, 2.5, 0], [1.4, 4.2, 0]], r:0.7, color:0xf0f0f0})`\n        *   Wait, the PS5 wings wrap around the front and back too. The `chain` is just a tube. A `box` might be better for the wing's depth.\n        *   Let's use `box` for the wings but make them curved using multiple boxes or just a single tall box with a slight rotation.\n        *   Actually, a `box` with `w:0.8, h:4.2, d:1.4` is a bit boring.\n        *   How about a `cyl` with `seg:4` or `seg:6`? `cyl({r:1.2, h:4.2, seg:6, pos:[-1.2, 2.1, 0], along:'+Y', color:0xf0f0f0})` - this gives a faceted column. Cut in half? No API for CSG.\n        *   Let's use `patch` with `d:0.8`? No, `d` is thickness, but `patch` is a surface.\n        *   Let's build the wing out of 3 stacked `box`es, slightly offset to create a stepped curve.\n            *   Bottom: `box({w:0.8, h:1.4, d:1.4, pos:[-1.3, 1.0, 0]})`\n            *   Middle: `box({w:0.8, h:1.4, d:1.4, pos:[-1.1, 2.4, 0]})`\n            *   Top: `box({w:0.8, h:1.4, d:1.4, pos:[-1.3, 3.8, 0]})`\n        *   This gives a nice low-poly stepped curve! Very \"Minecraft\" style but fits the low-poly brief perfectly.\n        *   Let's refine the steps. PS5 wings curve inwards in the middle.\n        *   Left Wing:\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[-1.4, 0.95, 0], color:0xf0f0f0})`\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[-1.1, 2.45, 0], color:0xf0f0f0})`\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[-1.4, 3.95, 0], color:0xf0f0f0})`\n        *   Right Wing:\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[1.4, 0.95, 0], color:0xf0f0f0})`\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[1.1, 2.45, 0], color:0xf0f0f0})`\n            *   `box({w:0.8, h:1.5, d:1.4, pos:[1.4, 3.95, 0], color:0xf0f0f0})`\n        *   This creates the concave inner / convex outer silhouette perfectly!\n\n4.  **Details:**\n    *   **Core:**\n        *   Main body: `box({w:1.0, h:4.5, d:1.2, pos:[0, 2.5, 0], color:0x1a1a1a})`\n        *   Blue LED strip on the left side (between core and left wing): `box({w:0.12, h:3.0, d:0.12, pos:[-0.51, 2.5, 0], color:0x0040ff})`\n        *   Blue LED strip on the right side: `box({w:0.12, h:3.0, d:0.12, pos:[0.51, 2.5, 0], color:0x0040ff})`\n        *   Wait, PS5 only has the blue strip on one side (the side with the disc drive) or both? It has it on both sides of the black center part. Let's put it on both.\n        *   Disc slot: `box({w:0.8, h:0.05, d:0.15, pos:[0.2, 1.5, 0.61], color:0x050505})` (front, slightly right).\n        *   PS Logo: `poly({r:0.15, pos:[0, 2.8, 0.61], color:0x0030ff})` or a small `box`. Let's use `box({w:0.3, h:0.3, d:0.12, pos:[0, 2.8, 0.61], color:0x0030ff})`.\n    *   **Base:**\n        *   `cyl({r:1.4, h:0.25, seg:8, pos:[0,0.125,0], color:0x333333})`\n        *   Add a small torus or ring for detail: `torus({r:1.4, tube:0.08, pos:[0,0.25,0], color:0x222222})`\n\n5.  **Review against Constraints:**\n    *   `function build(api) { ... }` format.\n    *   No markdown, no explanation.\n    *   Y+ is up, ground Y=0.\n    *   Scale ~3 (height is ~4.5, which is good for a console).\n    *   Colors: White [f0f0f0], Black [1a1a1a], Blue [0030ff], Dark Gray [333333].\n    *   Groups: leftWing, rightWing, core, base.\n    *   Pivots: None needed for a static console, unless we want the wings to open up? The prompt doesn't specify moving parts, but PS5 panels can be removed. Let's add a pivot for the wings just in case, or leave them static. The prompt says \"机械/载具的 group 之间几乎都有可动连接... 逐对检查\". A console is not really a vehicle, but it has removable panels. I'll add pivots for the wings so they can slide off.\n        *   Left wing pivot: `api.pivot([-1.1, 2.5, 0], 'core')`\n        *   Right wing pivot: `api.pivot([1.1, 2.5, 0], 'core')`\n\n6.  **Refining the Code Structure:**\n    ```javascript\n    function build(api) {\n      api.name('PlayStation 5');\n      const C_WHITE = 0xf0f0f0;\n      const C_BLACK = 0x1a1a1a;\n      const C_BLUE = 0x0030ff;\n      const C_GRAY = 0x333333;\n\n      api.group('base', '底座');\n        api.cyl({r:1.4, h:0.25, seg:8, pos:[0,0.125,0], color:C_GRAY});\n        api.torus({r:1.4, tube:0.08, pos:[0,0.25,0], color:0x222222});\n      api.endGroup();\n\n      api.group('core', '核心体');\n        api.box({w:1.0, h:4.5, d:1.2, pos:[0,2.5,0], color:C_BLACK});\n        // LED strips\n        api.box({w:0.12, h:3.0, d:0.12, pos:[-0.51,2.5,0], color:C_BLUE});\n        api.box({w:0.12, h:3.0, d:0.12, pos:[0.51,2.5,0], color:C_BLUE});\n        // Disc slot\n        api.box({w:0.8, h:0.05, d:0.15, pos:[0.2,1.5,0.61], color:0x050505});\n        // PS Logo\n        api.box({w:0.3, h:0.3, d:0.12, pos:[0,2.8,0.61], color:C_BLUE});\n      api.endGroup();\n\n      api.group('leftWing', '左侧面板');\n        api.pivot([-1.1, 2.5, 0], 'core');\n        api.box({w:0.8, h:1.5, d:1.4, pos:[-1.4,0.95,0], color:C_WHITE});\n        api.box({w:0.8, h:1.5, d:1.4, pos:[-1.1,2.45,0], color:C_WHITE});\n        api.box({w:0.8, h:1.5, d:1.4, pos:[-1.4,3.95,0], color:C_WHITE});\n      api.endGroup();\n\n      api.group('rightWing', '右侧面板');\n        api.pivot([1.1, 2.5, 0], 'core');\n        api.box({w:0.8, h:1.5, d:1.4, pos:[1.4,0.95,0], color:C_WHITE});\n        api.box({w:0.8, h:1.5, d:1.4, pos:[1.1,2.45,0], color:C_WHITE});\n        api.box({w:0.8, h:1.5, d:1.4, pos:[1.4,3.95,0], color:C_WHITE});\n      api.endGroup();\n    }\n    ```\n\n7.  **Self-Correction/Polish:**\n    *   The stepped boxes for the wings are a great low-poly interpretation of the PS5's curved panels.\n    *   The core is slightly taller than the wings (4.5 vs 4.5 total, but wings are 3x1.5=4.5, wait. 0.95-0.75=0.2 to 0.95+0.75=1.7. 2.45-0.75=1.7 to 2.45+0.75=3.2. 3.95-0.75=3.2 to 3.95+0.75=4.7. So wings go from 0.2 to 4.7. Core goes from 0.25 to 4.75. Perfect, core is slightly taller).\n    *   Let's adjust the core height to be exactly 4.8, so it sticks out a bit more at top and bottom. `pos:[0, 2.65, 0], h:4.8`. Wings top at 4.7, bottom at 0.2. Core top at 5.05, bottom at 0.25. Good.\n    *   The LED strips should be visible. The gap between core (x=0.5) and wing (x=1.1 - 0.4 = 0.7). So the gap is from x=0.5 to x=0.7. The LED strip at x=0.51 is right on the edge of the core, perfectly visible in the gap.\n    *   Let's add some ventilation texture on the back of the core. Small boxes or just leave it sleek. Sleek is better for PS5.\n    *   The base `cyl` with `seg:8` is a nice octagon. Let's make it `seg:12` for a slightly rounder ellipse look, or keep it 8 for low-poly. 8 is good.\n    *   Wait, the prompt says \"扁平椭圆底座\". An octagon isn't an ellipse. To make an ellipse, I can use a `box` with `w` and `d` different, or a scaled `cyl`. API doesn't have scale for cyl. I'll use a `box` with `w:3.0, h:0.2, d:2.0` to get an elliptical footprint, or just a `box` with large `w` and `d`. Let's use `box({w:2.8, h:0.2, d:1.8, pos:[0,0.1,0], color:C_GRAY})`. This gives a rectangular base, but with low-poly it reads as a flat oval. Or I can use `patch`? No, `box` is fine.\n    *   Let's refine the base to be a stretched octagon using `patch`? Too complex. A `box` with `w:2.8, d:1.8` is fine. Or `cyl` with `seg:8` is fine, it implies roundness. Let's stick to `cyl({r:1.4, h:0.2, seg:8})` but it's a circle. Let's use `box({w:2.8, h:0.2, d:1.8})` for the elliptical shape.\n    *   Actually, PS5 base is more like a flat stand. Let's make it `box({w:2.5, h:0.2, d:1.8})`.\n\n8.  **Final Code Assembly:**\n    Ensure strict compliance with output format. No markdown, just the function.",
+  "_aiCode": "function build(api) {\n  api.name('PlayStation 5');\n  const C_WHITE = 0xf0f0f0;\n  const C_BLACK = 0x1a1a1a;\n  const C_BLUE = 0x0030ff;\n  const C_GRAY = 0x333333;\n\n  api.group('base', '底座');\n    api.box({w:2.8, h:0.2, d:1.8, pos:[0,0.1,0], color:C_GRAY});\n    api.torus({r:1.2, tube:0.06, along:'+Y', pos:[0,0.2,0], color:0x222222});\n  api.endGroup();\n\n  api.group('core', '核心体');\n    api.box({w:1.0, h:4.8, d:1.2, pos:[0,2.6,0], color:C_BLACK});\n    api.box({w:0.12, h:3.2, d:0.12, pos:[-0.52,2.6,0], color:C_BLUE});\n    api.box({w:0.12, h:3.2, d:0.12, pos:[0.52,2.6,0], color:C_BLUE});\n    api.box({w:0.8, h:0.05, d:0.15, pos:[0.2,1.5,0.61], color:0x050505});\n    api.box({w:0.3, h:0.3, d:0.12, pos:[0,2.8,0.61], color:C_BLUE});\n  api.endGroup();\n\n  api.group('leftWing', '左侧面板');\n    api.pivot([-1.1, 2.5, 0], 'core');\n    api.box({w:0.8, h:1.5, d:1.4, pos:[-1.4,0.95,0], color:C_WHITE});\n    api.box({w:0.8, h:1.5, d:1.4, pos:[-1.1,2.45,0], color:C_WHITE});\n    api.box({w:0.8, h:1.5, d:1.4, pos:[-1.4,3.95,0], color:C_WHITE});\n  api.endGroup();\n\n  api.group('rightWing', '右侧面板');\n    api.pivot([1.1, 2.5, 0], 'core');\n    api.box({w:0.8, h:1.5, d:1.4, pos:[1.4,0.95,0], color:C_WHITE});\n    api.box({w:0.8, h:1.5, d:1.4, pos:[1.1,2.45,0], color:C_WHITE});\n    api.box({w:0.8, h:1.5, d:1.4, pos:[1.4,3.95,0], color:C_WHITE});\n  api.endGroup();\n}",
+  "_description": "a lowpoly PlayStation 5 game console, white and black sleek body, futuristic design, standing vertically",
+  "_formulaResult": {
+    "methodologies": [
+      "mechanical"
+    ],
+    "regions": [
+      {
+        "name": "leftWing",
+        "desc": "高大侧面板、内缘内凹、外缘外凸、白色[f0f0f0]"
+      },
+      {
+        "name": "rightWing",
+        "desc": "高大侧面板、内缘内凹、外缘外凸、白色"
+      },
+      {
+        "name": "core",
+        "desc": "夹在两侧面板间的核心体、黑色[1a1a1a]、竖向蓝色LED灯带-蓝[0030ff]、细长盘口缝隙、小方块PS标志-蓝"
+      },
+      {
+        "name": "base",
+        "desc": "扁平椭圆底座、深灰[333333]"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('leftWing','leftWing') → 高大侧面板、内缘内凹、外缘外凸、白色[f0f0f0] → api.endGroup()\napi.group('rightWing','rightWing') → 高大侧面板、内缘内凹、外缘外凸、白色 → api.endGroup()\napi.group('core','core') → 夹在两侧面板间的核心体、黑色[1a1a1a]、竖向蓝色LED灯带-蓝[0030ff]、细长盘口缝隙、小方块PS标志-蓝 → api.endGroup()\napi.group('base','base') → 扁平椭圆底座、深灰[333333] → api.endGroup()\n\n### 机械/载具 (mechanical)\n机械 + 载具融合为一个方法论。\n\n## 建造逻辑\n大结构（chassis/hull）+ 功能模块 + 细节。只考虑暴露在外的可视结构。\n\n## 连接推理（构建完 group 后必须检查！）\n机械/载具的 group 之间几乎都有可动连接。构建完所有 group 的几何体后，逐对检查：\n1. 哪些 group 之间有物理连接？（空间上相邻的 group 对）\n2. 连接点在哪？（两个 group 交界处的坐标）\n3. 能不能绕连接点运动？→ 能就加 api.pivot()\n\n常见机械连接（用上面的三步法都能推导出，这里列出供快速参考）：\n- 车轮/履带轮 ↔ 底盘 → 轮转型 → pivot at 轮心（自转）\n- 螺旋桨/风扇 ↔ 机身 → 轮转型 → pivot at 桨毂（自转）\n- 转台/旋转底座 ↔ 底盘 → 关节型 → pivot at 底座中心\n- 铰接臂/吊臂 ↔ 基座 → 关节型 → pivot at 臂根铰点\n- 门/盖/舱盖 ↔ 主体 → 铰接型 → pivot at 铰链轴\n- 吊钩/摆锤/悬挂物 ↔ 支撑点 → 悬挂型 → pivot at 悬挂点\n- 固定模块 ↔ 底盘 → 固定型 → 不加 pivot\n\n## 代码示例：吊车（5 种连接模式中出现 4 种）\napi.group('chassis', '底盘');\n  api.box({w:4, h:1.2, d:6, pos:[0, 0.6, 0], color:0x758090});\napi.endGroup();\n// 轮转型：轮子绕自身中心旋转\napi.mirror('x');\napi.group('wheel', '车轮');\n  api.pivot([2.3, 0.6, 0], 'chassis');  // 轮心=旋转轴，target=底盘\n  api.cyl({r:0.6, h:0.5, along:'+X', pos:[2.3, 0.6, 0], color:0x212121});\napi.endGroup();\napi.endMirror();\n// 关节型：platform 绕 chassis 旋转\napi.group('platform', '旋转底座');\n  api.pivot([0, 2.7, -0.5], 'chassis');\n  api.cyl({rTop:2.0, rBot:2.2, h:1.0, pos:[0, 2.7, -0.5], color:0x424242});\napi.endGroup();\n// 关节型：boom 绕 platform 俯仰\napi.group('boom', '主臂');\n  api.pivot([0, 3.5, 0], 'platform');\n  api.chain({waypoints:[[0,3.5,0],[0,9,1.5],[0,14.5,3]], r:0.8, rEnd:0.5, color:0xfdd835});\napi.endGroup();\n// 悬挂型：hook 从 boom 顶端悬挂\napi.group('hook', '吊钩');\n  api.pivot([0, 14.5, 3], 'boom');\n  api.chain({waypoints:[[0,14.5,3],[0,8,3],[0,4,3]], r:0.05, color:0x212121});\napi.endGroup();\n\n## 机械特征装饰\n关节、板块拼接、铆钉、管道、齿轮等细节在 pivot 设置完成后添加。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly PlayStation 5 game console, white and black sleek body, futuristic design, standing vertically\"\n\n草稿结构：\n  leftWing: 高大侧面板、内缘内凹、外缘外凸、白色[f0f0f0]\n  rightWing: 高大侧面板、内缘内凹、外缘外凸、白色\n  core: 夹在两侧面板间的核心体、黑色[1a1a1a]、竖向蓝色LED灯带-蓝[0030ff]、细长盘口缝隙、小方块PS标志-蓝\n  base: 扁平椭圆底座、深灰[333333]\n整体比例：高挑垂直立柱，黑色核心体略高于两侧白色外壳，流线型曲面轮廓\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242315087,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

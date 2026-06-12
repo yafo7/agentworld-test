@@ -84,4 +84,23 @@ export class Environment {
       : '暂无宠物居住';
     this._label.update(this.name, displayTags, residence);
   }
+
+  /** Collect tags from all entities and pick the 5 most typical ones. */
+  refreshTagsFromEntities(entityList) {
+    const counts = {};
+    for (const entity of entityList) {
+      const tags = entity.tags || [];
+      for (const tag of tags) {
+        counts[tag] = (counts[tag] || 0) + 1;
+      }
+    }
+    const top5 = Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([tag]) => tag);
+    if (top5.length > 0) {
+      this.coreTags = top5;
+      this._syncLabel();
+    }
+  }
 }

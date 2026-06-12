@@ -76,7 +76,7 @@ export class ThirdPersonCamera {
     this.camera.lookAt(this._targetPos);
   }
 
-  /** Returns the horizontal orbit angle (radians) for player-relative movement. */
+  /** Returns the horizontal orbit angle (radians) aligned with camera look direction. */
   getHorizontalAngle() {
     return this.phi;
   }

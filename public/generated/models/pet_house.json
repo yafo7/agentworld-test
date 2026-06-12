@@ -1,0 +1,1966 @@
+{
+  "name": "Fairy-Tale Pet House",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "base_walls",
+      "name": "Base Walls",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 1.15,
+        "z": 0.025000000000000022
+      }
+    },
+    {
+      "id": "m0",
+      "type": "box",
+      "geometry": {
+        "width": 3.5,
+        "height": 2.5,
+        "depth": 3
+      },
+      "position": {
+        "x": 0,
+        "y": 0.10000000000000009,
+        "z": -0.025000000000000022
+      },
+      "color": 9127187
+    },
+    {
+      "id": "m1",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.7499999999999999,
+        "z": 1.4849999999999999
+      },
+      "color": 9127187,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m2",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.34999999999999987,
+        "z": 1.4849999999999999
+      },
+      "color": 8074000,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m3",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0.050000000000000266,
+        "z": 1.4849999999999999
+      },
+      "color": 9127187,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m4",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0.4500000000000002,
+        "z": 1.4849999999999999
+      },
+      "color": 8074000,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m5",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0.8500000000000001,
+        "z": 1.4849999999999999
+      },
+      "color": 9127187,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m6",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.45,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 1.75,
+        "y": -0.7499999999999999,
+        "z": 1.475
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m7",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.45,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -1.75,
+        "y": -0.7499999999999999,
+        "z": 1.475
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m8",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.45,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 1.75,
+        "y": -0.7499999999999999,
+        "z": -1.525
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m9",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.45,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -1.75,
+        "y": -0.7499999999999999,
+        "z": -1.525
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m10",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 1,
+        "y": -0.8499999999999999,
+        "z": 1.525
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m11",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.35,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -1,
+        "y": -0.8499999999999999,
+        "z": 1.525
+      },
+      "color": 8421504
+    },
+    {
+      "id": "roof",
+      "name": "Roof",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2.8,
+        "z": 0.025000000000000022
+      }
+    },
+    {
+      "id": "m12",
+      "type": "box",
+      "geometry": {
+        "width": 4.2,
+        "height": 1.5,
+        "depth": 3.2
+      },
+      "position": {
+        "x": 0,
+        "y": 0.7000000000000002,
+        "z": -0.025000000000000022
+      },
+      "color": 9127187
+    },
+    {
+      "id": "m13",
+      "type": "box",
+      "geometry": {
+        "width": 4.4,
+        "height": 0.2,
+        "depth": 3.4
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.025000000000000022
+      },
+      "color": 8074000
+    },
+    {
+      "id": "m14",
+      "type": "box",
+      "geometry": {
+        "width": 4.2,
+        "height": 0.4,
+        "depth": 0.4
+      },
+      "position": {
+        "x": 0,
+        "y": 1.6500000000000004,
+        "z": -0.025000000000000022
+      },
+      "color": 7025680
+    },
+    {
+      "id": "m15",
+      "type": "box",
+      "geometry": {
+        "width": 3,
+        "height": 0.4,
+        "depth": 2
+      },
+      "position": {
+        "x": 0,
+        "y": 1.5499999999999998,
+        "z": -0.025000000000000022
+      },
+      "color": 5025616
+    },
+    {
+      "id": "m16",
+      "type": "box",
+      "geometry": {
+        "width": 2,
+        "height": 0.3,
+        "depth": 1.5
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1.4000000000000004,
+        "z": -0.525
+      },
+      "color": 3706428
+    },
+    {
+      "id": "m17",
+      "type": "box",
+      "geometry": {
+        "width": 1.5,
+        "height": 0.3,
+        "depth": 1
+      },
+      "position": {
+        "x": -0.8,
+        "y": 1.4000000000000004,
+        "z": 0.575
+      },
+      "color": 3706428
+    },
+    {
+      "id": "m18",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.8,
+        "y": 1.7999999999999998,
+        "z": 0.475
+      },
+      "color": 16301008
+    },
+    {
+      "id": "m19",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": 1.7000000000000002,
+        "z": -0.325
+      },
+      "color": 16771899
+    },
+    {
+      "id": "m20",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 1,
+        "y": 1.6000000000000005,
+        "z": 0.175
+      },
+      "color": 16301008
+    },
+    {
+      "id": "m21",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.3,
+        "y": 1.75,
+        "z": -0.625
+      },
+      "color": 16771899
+    },
+    {
+      "id": "m22",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.2,
+        "y": 1.7999999999999998,
+        "z": 0.775
+      },
+      "color": 16301008
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 1.2,
+        "z": 1.55
+      },
+      "pivotTarget": "base_walls"
+    },
+    {
+      "id": "m23",
+      "type": "torus",
+      "geometry": {
+        "radius": 1,
+        "tube": 0.15,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.030000000000000027
+      },
+      "color": 7025680,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m24",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.9,
+        "radiusBottom": 0.9,
+        "height": 0.1,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0.010000000000000009
+      },
+      "color": 13789470,
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m25",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.25,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": -0.19999999999999996,
+        "z": 0.09999999999999987
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m26",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.12,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.15000000000000013,
+        "z": 0.09999999999999987
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m27",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.12,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.08,
+        "y": 0.25,
+        "z": 0.09999999999999987
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m28",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.12,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.08,
+        "y": 0.25,
+        "z": 0.09999999999999987
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m29",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.12,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.25,
+        "y": 0.15000000000000013,
+        "z": 0.09999999999999987
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m30",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.09999999999999987
+      },
+      "color": 14329120
+    },
+    {
+      "id": "chimney",
+      "name": "Chimney",
+      "group": true,
+      "position": {
+        "x": 1.5,
+        "y": 3,
+        "z": -0.8
+      }
+    },
+    {
+      "id": "m31",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 2,
+        "depth": 0.8
+      },
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m32",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 0.5,
+        "depth": 1
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m33",
+      "type": "box",
+      "geometry": {
+        "width": 0.9,
+        "height": 0.2,
+        "depth": 0.9
+      },
+      "position": {
+        "x": 0,
+        "y": 2.0999999999999996,
+        "z": 0
+      },
+      "color": 6908265
+    },
+    {
+      "id": "smoke",
+      "name": "Smoke",
+      "group": true,
+      "position": {
+        "x": 1.5,
+        "y": 5.3,
+        "z": -0.8
+      },
+      "pivotTarget": "chimney"
+    },
+    {
+      "id": "smoke_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "smoke"
+    },
+    {
+      "id": "m34",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 16119285
+    },
+    {
+      "id": "m35",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.28,
+        "radiusBottom": 0.28,
+        "height": 0.45,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.11,
+        "y": 0.32,
+        "z": 0.05
+      },
+      "color": 16119285,
+      "quaternion": {
+        "x": 0.08,
+        "y": 0,
+        "z": -0.16,
+        "w": 0.98
+      },
+      "boneFrom": "smoke_wp0",
+      "boneTo": "smoke_wp1",
+      "boneRestLen": 0.45
+    },
+    {
+      "id": "smoke_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "smoke",
+      "position": {
+        "x": 0.19999999999999996,
+        "y": 0.6000000000000005,
+        "z": 0.10000000000000009
+      },
+      "pivotTarget": "smoke_wp0"
+    },
+    {
+      "id": "m36",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.23,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 16119285
+    },
+    {
+      "id": "m37",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.23,
+        "radiusBottom": 0.23,
+        "height": 0.56,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": 0.31,
+        "z": -0.1
+      },
+      "color": 16119285,
+      "quaternion": {
+        "x": -0.15,
+        "y": 0,
+        "z": 0.22,
+        "w": 0.96
+      },
+      "boneFrom": "smoke_wp1",
+      "boneTo": "smoke_wp2",
+      "boneRestLen": 0.56
+    },
+    {
+      "id": "smoke_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "smoke",
+      "position": {
+        "x": -0.10000000000000009,
+        "y": 1.2000000000000002,
+        "z": -0.09999999999999998
+      },
+      "pivotTarget": "smoke_wp1"
+    },
+    {
+      "id": "m38",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.18,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 16119285
+    },
+    {
+      "id": "m39",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.18,
+        "radiusBottom": 0.18,
+        "height": 0.62,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.1,
+        "y": 0.35,
+        "z": 0.05
+      },
+      "color": 16119285,
+      "quaternion": {
+        "x": 0.07,
+        "y": 0,
+        "z": -0.14,
+        "w": 0.99
+      },
+      "boneFrom": "smoke_wp2",
+      "boneTo": "smoke_wp3",
+      "boneRestLen": 0.62
+    },
+    {
+      "id": "smoke_wp3",
+      "name": "wp3",
+      "group": true,
+      "parent": "smoke",
+      "position": {
+        "x": 0.10000000000000009,
+        "y": 1.9000000000000004,
+        "z": 0
+      },
+      "pivotTarget": "smoke_wp2"
+    },
+    {
+      "id": "m40",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.15,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 16119285
+    },
+    {
+      "id": "surroundings",
+      "name": "Surroundings",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 0.7,
+        "z": 0.025000000000000022
+      }
+    },
+    {
+      "id": "m41",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.6,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 2.2,
+        "y": -0.39999999999999997,
+        "z": 1.775
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m42",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.5,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -2,
+        "y": -0.49999999999999994,
+        "z": 1.475
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m43",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 0.5,
+        "depth": 0.8
+      },
+      "position": {
+        "x": -1.5,
+        "y": -0.44999999999999996,
+        "z": -1.8250000000000002
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m44",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.4,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 1.8,
+        "y": -0.49999999999999994,
+        "z": -1.525
+      },
+      "color": 6908265
+    },
+    {
+      "id": "m45",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.3,
+        "height": 0.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 2.5,
+        "y": -0.39999999999999997,
+        "z": -0.025000000000000022
+      },
+      "color": 5025616
+    },
+    {
+      "id": "m46",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.2,
+        "height": 0.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -2.5,
+        "y": -0.44999999999999996,
+        "z": -0.525
+      },
+      "color": 3706428
+    },
+    {
+      "id": "m47",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.25,
+        "height": 0.55,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.42999999999999994,
+        "z": -2.025
+      },
+      "color": 5025616
+    },
+    {
+      "id": "m48",
+      "type": "cone",
+      "geometry": {
+        "radius": 0.2,
+        "height": 0.4,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -1,
+        "y": -0.49999999999999994,
+        "z": 1.975
+      },
+      "color": 3706428
+    },
+    {
+      "id": "m49",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 2.5,
+        "y": 0,
+        "z": 0.175
+      },
+      "color": 16301008
+    },
+    {
+      "id": "m50",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": -2.5,
+        "y": -0.09999999999999998,
+        "z": -0.325
+      },
+      "color": 16771899
+    },
+    {
+      "id": "m51",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.04999999999999993,
+        "z": -2.025
+      },
+      "color": 16301008
+    }
+  ],
+  "tree": [
+    {
+      "id": "base_walls",
+      "name": "Base Walls",
+      "offset": [
+        0,
+        1.15,
+        0.025
+      ],
+      "meshes": [
+        {
+          "id": "m0",
+          "type": "box",
+          "geometry": {
+            "width": 3.5,
+            "height": 2.5,
+            "depth": 3
+          },
+          "position": {
+            "x": 0,
+            "y": 0.10000000000000009,
+            "z": -0.025000000000000022
+          },
+          "color": 9127187
+        },
+        {
+          "id": "m1",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.6,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": -0.7499999999999999,
+            "z": 1.4849999999999999
+          },
+          "color": 9127187,
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "m2",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.6,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": -0.34999999999999987,
+            "z": 1.4849999999999999
+          },
+          "color": 8074000,
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "m3",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.6,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": 0.050000000000000266,
+            "z": 1.4849999999999999
+          },
+          "color": 9127187,
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "m4",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.6,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": 0.4500000000000002,
+            "z": 1.4849999999999999
+          },
+          "color": 8074000,
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "m5",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.6,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": 0.8500000000000001,
+            "z": 1.4849999999999999
+          },
+          "color": 9127187,
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "m6",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.45,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": 1.75,
+            "y": -0.7499999999999999,
+            "z": 1.475
+          },
+          "color": 8421504
+        },
+        {
+          "id": "m7",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.45,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": -1.75,
+            "y": -0.7499999999999999,
+            "z": 1.475
+          },
+          "color": 8421504
+        },
+        {
+          "id": "m8",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.45,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": 1.75,
+            "y": -0.7499999999999999,
+            "z": -1.525
+          },
+          "color": 6908265
+        },
+        {
+          "id": "m9",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.45,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": -1.75,
+            "y": -0.7499999999999999,
+            "z": -1.525
+          },
+          "color": 6908265
+        },
+        {
+          "id": "m10",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.35,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": 1,
+            "y": -0.8499999999999999,
+            "z": 1.525
+          },
+          "color": 6908265
+        },
+        {
+          "id": "m11",
+          "type": "sphere",
+          "geometry": {
+            "radius": 0.35,
+            "widthSegments": 10,
+            "heightSegments": 7
+          },
+          "position": {
+            "x": -1,
+            "y": -0.8499999999999999,
+            "z": 1.525
+          },
+          "color": 8421504
+        }
+      ],
+      "children": [
+        {
+          "id": "roof",
+          "name": "Roof",
+          "offset": [
+            0,
+            1.65,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m12",
+              "type": "box",
+              "geometry": {
+                "width": 4.2,
+                "height": 1.5,
+                "depth": 3.2
+              },
+              "position": {
+                "x": 0,
+                "y": 0.7000000000000002,
+                "z": -0.025000000000000022
+              },
+              "color": 9127187
+            },
+            {
+              "id": "m13",
+              "type": "box",
+              "geometry": {
+                "width": 4.4,
+                "height": 0.2,
+                "depth": 3.4
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": -0.025000000000000022
+              },
+              "color": 8074000
+            },
+            {
+              "id": "m14",
+              "type": "box",
+              "geometry": {
+                "width": 4.2,
+                "height": 0.4,
+                "depth": 0.4
+              },
+              "position": {
+                "x": 0,
+                "y": 1.6500000000000004,
+                "z": -0.025000000000000022
+              },
+              "color": 7025680
+            },
+            {
+              "id": "m15",
+              "type": "box",
+              "geometry": {
+                "width": 3,
+                "height": 0.4,
+                "depth": 2
+              },
+              "position": {
+                "x": 0,
+                "y": 1.5499999999999998,
+                "z": -0.025000000000000022
+              },
+              "color": 5025616
+            },
+            {
+              "id": "m16",
+              "type": "box",
+              "geometry": {
+                "width": 2,
+                "height": 0.3,
+                "depth": 1.5
+              },
+              "position": {
+                "x": 0.5,
+                "y": 1.4000000000000004,
+                "z": -0.525
+              },
+              "color": 3706428
+            },
+            {
+              "id": "m17",
+              "type": "box",
+              "geometry": {
+                "width": 1.5,
+                "height": 0.3,
+                "depth": 1
+              },
+              "position": {
+                "x": -0.8,
+                "y": 1.4000000000000004,
+                "z": 0.575
+              },
+              "color": 3706428
+            },
+            {
+              "id": "m18",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": -0.8,
+                "y": 1.7999999999999998,
+                "z": 0.475
+              },
+              "color": 16301008
+            },
+            {
+              "id": "m19",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.5,
+                "y": 1.7000000000000002,
+                "z": -0.325
+              },
+              "color": 16771899
+            },
+            {
+              "id": "m20",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 1,
+                "y": 1.6000000000000005,
+                "z": 0.175
+              },
+              "color": 16301008
+            },
+            {
+              "id": "m21",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": -0.3,
+                "y": 1.75,
+                "z": -0.625
+              },
+              "color": 16771899
+            },
+            {
+              "id": "m22",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.2,
+                "y": 1.7999999999999998,
+                "z": 0.775
+              },
+              "color": 16301008
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "door",
+          "name": "Door",
+          "offset": [
+            0,
+            0.05,
+            1.525
+          ],
+          "meshes": [
+            {
+              "id": "m23",
+              "type": "torus",
+              "geometry": {
+                "radius": 1,
+                "tube": 0.15,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": -0.030000000000000027
+              },
+              "color": 7025680,
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m24",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.9,
+                "radiusBottom": 0.9,
+                "height": 0.1,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0.010000000000000009
+              },
+              "color": 13789470,
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m25",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.25,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": -0.19999999999999996,
+                "z": 0.09999999999999987
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m26",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.12,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": -0.25,
+                "y": 0.15000000000000013,
+                "z": 0.09999999999999987
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m27",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.12,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": -0.08,
+                "y": 0.25,
+                "z": 0.09999999999999987
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m28",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.12,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0.08,
+                "y": 0.25,
+                "z": 0.09999999999999987
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m29",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.12,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0.25,
+                "y": 0.15000000000000013,
+                "z": 0.09999999999999987
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m30",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.5,
+                "y": 0,
+                "z": 0.09999999999999987
+              },
+              "color": 14329120
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "chimney",
+          "name": "Chimney",
+          "offset": [
+            1.5,
+            1.85,
+            -0.825
+          ],
+          "meshes": [
+            {
+              "id": "m31",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 2,
+                "depth": 0.8
+              },
+              "position": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              },
+              "color": 8421504
+            },
+            {
+              "id": "m32",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 0.5,
+                "depth": 1
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6908265
+            },
+            {
+              "id": "m33",
+              "type": "box",
+              "geometry": {
+                "width": 0.9,
+                "height": 0.2,
+                "depth": 0.9
+              },
+              "position": {
+                "x": 0,
+                "y": 2.0999999999999996,
+                "z": 0
+              },
+              "color": 6908265
+            }
+          ],
+          "children": [
+            {
+              "id": "smoke",
+              "name": "Smoke",
+              "offset": [
+                0,
+                2.3,
+                0
+              ],
+              "meshes": [],
+              "children": [
+                {
+                  "id": "smoke_wp0",
+                  "name": "wp0",
+                  "offset": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m34",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.3,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 16119285
+                    },
+                    {
+                      "id": "m35",
+                      "type": "cylinder",
+                      "geometry": {
+                        "radiusTop": 0.28,
+                        "radiusBottom": 0.28,
+                        "height": 0.45,
+                        "radialSegments": 10
+                      },
+                      "position": {
+                        "x": 0.11,
+                        "y": 0.32,
+                        "z": 0.05
+                      },
+                      "color": 16119285,
+                      "quaternion": {
+                        "x": 0.08,
+                        "y": 0,
+                        "z": -0.16,
+                        "w": 0.98
+                      },
+                      "boneFrom": "smoke_wp0",
+                      "boneTo": "smoke_wp1",
+                      "boneRestLen": 0.45
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "smoke_wp1",
+                      "name": "wp1",
+                      "offset": [
+                        0.2,
+                        0.6,
+                        0.1
+                      ],
+                      "meshes": [
+                        {
+                          "id": "m36",
+                          "type": "sphere",
+                          "geometry": {
+                            "radius": 0.23,
+                            "widthSegments": 10,
+                            "heightSegments": 7
+                          },
+                          "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                          },
+                          "color": 16119285
+                        },
+                        {
+                          "id": "m37",
+                          "type": "cylinder",
+                          "geometry": {
+                            "radiusTop": 0.23,
+                            "radiusBottom": 0.23,
+                            "height": 0.56,
+                            "radialSegments": 10
+                          },
+                          "position": {
+                            "x": -0.15,
+                            "y": 0.31,
+                            "z": -0.1
+                          },
+                          "color": 16119285,
+                          "quaternion": {
+                            "x": -0.15,
+                            "y": 0,
+                            "z": 0.22,
+                            "w": 0.96
+                          },
+                          "boneFrom": "smoke_wp1",
+                          "boneTo": "smoke_wp2",
+                          "boneRestLen": 0.56
+                        }
+                      ],
+                      "children": [
+                        {
+                          "id": "smoke_wp2",
+                          "name": "wp2",
+                          "offset": [
+                            -0.3,
+                            0.6,
+                            -0.2
+                          ],
+                          "meshes": [
+                            {
+                              "id": "m38",
+                              "type": "sphere",
+                              "geometry": {
+                                "radius": 0.18,
+                                "widthSegments": 10,
+                                "heightSegments": 7
+                              },
+                              "position": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                              },
+                              "color": 16119285
+                            },
+                            {
+                              "id": "m39",
+                              "type": "cylinder",
+                              "geometry": {
+                                "radiusTop": 0.18,
+                                "radiusBottom": 0.18,
+                                "height": 0.62,
+                                "radialSegments": 10
+                              },
+                              "position": {
+                                "x": 0.1,
+                                "y": 0.35,
+                                "z": 0.05
+                              },
+                              "color": 16119285,
+                              "quaternion": {
+                                "x": 0.07,
+                                "y": 0,
+                                "z": -0.14,
+                                "w": 0.99
+                              },
+                              "boneFrom": "smoke_wp2",
+                              "boneTo": "smoke_wp3",
+                              "boneRestLen": 0.62
+                            }
+                          ],
+                          "children": [
+                            {
+                              "id": "smoke_wp3",
+                              "name": "wp3",
+                              "offset": [
+                                0.2,
+                                0.7,
+                                0.1
+                              ],
+                              "meshes": [
+                                {
+                                  "id": "m40",
+                                  "type": "sphere",
+                                  "geometry": {
+                                    "radius": 0.15,
+                                    "widthSegments": 10,
+                                    "heightSegments": 7
+                                  },
+                                  "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                  },
+                                  "color": 16119285
+                                }
+                              ],
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "surroundings",
+          "name": "Surroundings",
+          "offset": [
+            0,
+            -0.45,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m41",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.6,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 2.2,
+                "y": -0.39999999999999997,
+                "z": 1.775
+              },
+              "color": 8421504
+            },
+            {
+              "id": "m42",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.5,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": -2,
+                "y": -0.49999999999999994,
+                "z": 1.475
+              },
+              "color": 6908265
+            },
+            {
+              "id": "m43",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 0.5,
+                "depth": 0.8
+              },
+              "position": {
+                "x": -1.5,
+                "y": -0.44999999999999996,
+                "z": -1.8250000000000002
+              },
+              "color": 8421504
+            },
+            {
+              "id": "m44",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.4,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 1.8,
+                "y": -0.49999999999999994,
+                "z": -1.525
+              },
+              "color": 6908265
+            },
+            {
+              "id": "m45",
+              "type": "cone",
+              "geometry": {
+                "radius": 0.3,
+                "height": 0.6,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 2.5,
+                "y": -0.39999999999999997,
+                "z": -0.025000000000000022
+              },
+              "color": 5025616
+            },
+            {
+              "id": "m46",
+              "type": "cone",
+              "geometry": {
+                "radius": 0.2,
+                "height": 0.5,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -2.5,
+                "y": -0.44999999999999996,
+                "z": -0.525
+              },
+              "color": 3706428
+            },
+            {
+              "id": "m47",
+              "type": "cone",
+              "geometry": {
+                "radius": 0.25,
+                "height": 0.55,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.42999999999999994,
+                "z": -2.025
+              },
+              "color": 5025616
+            },
+            {
+              "id": "m48",
+              "type": "cone",
+              "geometry": {
+                "radius": 0.2,
+                "height": 0.4,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -1,
+                "y": -0.49999999999999994,
+                "z": 1.975
+              },
+              "color": 3706428
+            },
+            {
+              "id": "m49",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 2.5,
+                "y": 0,
+                "z": 0.175
+              },
+              "color": 16301008
+            },
+            {
+              "id": "m50",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": -2.5,
+                "y": -0.09999999999999998,
+                "z": -0.325
+              },
+              "color": 16771899
+            },
+            {
+              "id": "m51",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.04999999999999993,
+                "z": -2.025
+              },
+              "color": 16301008
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"紧凑矮胖的小屋，宽高比约1:1，大圆门占据大半前墙，厚实屋顶\",\n  \"regions\": [\n    {\"name\": \"base_walls\", \"desc\": \"粗壮墙体，混合圆木-暖棕[8B4513]与河石-灰[808080]堆叠\"},\n    {\"name\": \"roof\", \"desc\": \"宽大厚实屋顶，覆盖厚苔藓-绿[4CAF50]，点缀小野花-粉[F8BBD0]与黄[FFEB3B]\"},\n    {\"name\": \"door\", \"desc\": \"正中圆门-浅棕[D2691E]，门板中心爪印雕刻-深棕[3E2723]\"},\n    {\"name\": \"chimney\", \"desc\": \"侧面小烟囱-灰，顶部飘出卷曲烟雾-白[F5F5F5]\"},\n    {\"name\": \"surroundings\", \"desc\": \"小屋底部基座，散落大块河石-灰，簇生小草-绿\"}\n  ],\n  \"methodologies\": [\"complex_stack\", \"vegetation\"]\n}\n```",
+  "_routerThinking": "1.  **Analyze the Request:**\n    *   **Subject:** Exquisite lowpoly fairy-tale pet house nestled in nature.\n    *   **Materials/Features:** Warm timber logs, river stones, soft green moss, tiny wildflowers on roof, round wooden door with paw-print carving, small stone chimney with smoke, dappled sunlight, cozy magical woodland cottage aesthetic.\n    *   **Goal:** Output a structural draft in JSON format as a lowpoly structural drafter.\n\n2.  **Step 1: Concretization:**\n    *   \"Pet house nestled in nature\" -> It's a physical object, no abstract concept to convert. It's a small cottage/house with a base, walls, roof, chimney, door, and surrounding nature elements.\n\n3.  **Step 2: Structural Division:**\n    *   This is a single composite object (the house + immediate surroundings).\n    *   *Proportions:* Compact, stout cottage, roughly 1:1 width to height, large round door taking up most of the front wall, thick roof.\n    *   *Groups/Regions:*\n        *   `base_walls`: The main structure (logs and stones).\n        *   `roof`: The top covering (moss, wildflowers).\n        *   `door`: The round wooden door with paw print.\n        *   `chimney`: Stone chimney with smoke.\n        *   `surroundings`: The nature base (ground, plants, river stones).\n\n4.  **Step 3: Write desc + Accessories:**\n    *   *Color Palette (60-30-10):* 60% Warm Timber/Browns, 30% Greens (Moss/Nature), 10% Accent (Flowers/Smoke/Door detail).\n    *   `base_walls`: Stout cylindrical or boxy base. Mixed timber logs-木色[8B4513] and river stones-灰[808080].\n    *   `roof`: Conical or thick A-frame. Covered in soft green moss-绿[4CAF50], tiny wildflowers-粉[F8BBD0] and 黄[FFEB3B].\n    *   `door`: Round wooden door-浅棕[D2691E], paw-print carving-深棕[3E2723].\n    *   `chimney`: Small stacked stone chimney-灰, smoke-白[F5F5F5] curling up.\n    *   `surroundings`: Ground base, large river stones-灰, small plants-绿.\n    *   *Refining descriptions to avoid texture/geometry specifics:* Use outline words. \"Stout base\", \"thick roof\", \"round door\". No \"cylindrical\" or \"boxy\" - leave that to Model AI. No \"texture of wood grain\" or \"dapppled sunlight\" (lighting is ignored in structure).\n\n5.  **Step 4: Methodology Selection:**\n    *   It's a building/structure, not a character. The closest is `complex_stack` or `mechanical` (for built structures), but `vegetation` applies to the moss/flowers. Actually, looking at the options:\n        *   `complex_stack`: 无序堆叠 - fits the log/stone stacking and chimney.\n        *   `vegetation`: 植物 - fits the roof moss/flowers.\n    *   Let's use `complex_stack` for the house structure and `vegetation` for the nature elements. Wait, the prompt says \"按需选一\" for body structure. A house isn't a body. But I must select from the list. `complex_stack` is the most appropriate for a pile of logs and stones forming a house. Let's also add `vegetation` for the moss/flowers.\n\n6.  **Drafting the JSON:**\n    *   `proportions`: \"紧凑矮胖的小屋，宽高比约1:1，大圆门占据大半墙面，厚实屋顶\"\n    *   `regions`:\n        *   `base_walls`: \"粗壮墙体，混合圆木-暖棕[8B4513]与河石-灰[808080]堆叠\"\n        *   `roof`: \"宽大厚实屋顶，覆盖厚苔藓-绿[4CAF50]，点缀小野花-粉[F8BBD0]与黄[FFEB3B]\"\n        *   `door`: \"正中圆门-浅棕[D2691E]，门板中心爪印雕刻-深棕[3E2723]\"\n        *   `chimney`: \"侧面小烟囱-灰，顶部飘出烟雾-白[F5F5F5]\"\n        *   `surroundings`: \"小屋底部基座，散落大块河石-灰，簇生小草-绿\"\n    *   `methodologies`: [\"complex_stack\", \"vegetation\"]\n\n7.  **Review against constraints:**\n    *   No texture/normal map words? Yes (no \"grain\", \"rough stone texture\", just colors and materials).\n    *   Colors inline with hex? Yes.\n    *   No geometry specifics? Yes (no \"cylinder roof\", just \"thick roof\").\n    *   Accessories are simple? Yes (paw print carving, tiny wildflowers, smoke).\n    *   Speed priority? Yes.\n\n8.  **Final Polish:** Make sure the JSON is perfectly valid and matches the requested format exactly.",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly fairy-tale pet house nestled in nature.\n    *   **Style:** Cozy, magical woodland cottage, timber logs, river stones, moss, wildflowers, round door with paw print, smoking chimney.\n    *   **Scale:** Compact, chubby (width:height ~ 1:1), large round door, thick roof. Scale 3 reference: typical pet house might be ~3-4 units wide, ~3-4 units tall.\n    *   **Draft Structure:**\n        *   `base_walls`: Warm timber logs [8B4513] + river stones [808080].\n        *   `roof`: Thick, moss [4CAF50], wildflowers pink [F8BBD0] & yellow [FFEB3B].\n        *   `door`: Round, light brown [D2691E], paw print carving [3E2723].\n        *   `chimney`: Small stone chimney [808080], curling white smoke [F5F5F5].\n        *   `surroundings`: Base stones [808080], grass [4CAF50].\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Use low-poly block-stacking logic.\n\n2.  **Deconstruct & Design Geometry:**\n\n    *   **Overall Dimensions:** Let's make the base about 3.5 wide (X), 2.5 deep (Z), and 2.5 tall (Y) for the walls. Roof adds another 1.5-2.0 in height. Total height ~4.0.\n\n    *   **base_walls:**\n        *   Need a mix of logs (cylinders) and stones (spheres/boxes).\n        *   Base structure: A box for the main interior volume, then logs stacked on the outside, or just build the walls out of logs. Building out of logs is more \"lowpoly fairy tale\".\n        *   Let's use a core box for structural integrity, then stack horizontal logs (cylinders) on the front and back, and vertical or horizontal logs on the sides.\n        *   Actually, a simple box core `w:3.5, h:2.5, d:2.5` is good for collision/shadow, then overlay logs.\n        *   Logs: `cyl({r:0.25, h:3.6, along:'X', pos:[0, 0.5, 1.25], color:0x8B4513})` etc. Stack 4-5 logs.\n        *   River stones at the corners: `sphere({r:0.4, pos:[1.75, 0.4, 1.25], color:0x808080})`.\n\n    *   **roof:**\n        *   Thick, wide roof. A cone or a pitched roof. Pitched roof (using a box rotated or two boxes) is more cottage-like. Let's use a large box angled, or just a massive low-poly prism.\n        *   Wait, `tri` or `patch` can make a pitched roof, but a thick pitched roof is easier with a box rotated 45 deg? No, let's use a large box for the roof base, then a triangular prism on top? Or just a box `w:4.5, h:0.5, d:3.5` slightly tilted?\n        *   Better: A classic A-frame roof using two large flat boxes or a single large box with a ridge. Let's use a box `w:4.2, h:1.8, d:3.2` and then cut it? No, we can't cut.\n        *   Let's build the roof as a large triangular prism using `patch` for the sides and `box` for the roof planes.\n        *   Or simpler: A massive cone `cone({r:2.5, h:2.0, seg:6, pos:[0, 2.5, 0], color:0x8B4513})` - gives a hobbit-hole feel. But \"cottage\" implies pitched.\n        *   Let's do a pitched roof: Two flat boxes angled. Or a box `w:4.5, h:2.0, d:3.5` rotated? No, `tri` for the gable ends, and `patch` for the roof slopes.\n        *   Actually, a thick pitched roof can be made of two thick boxes intersecting at the ridge.\n        *   Box 1: `w:4.5, h:0.4, d:3.0`, rotated 30 degrees around Z, shifted up.\n        *   Box 2: mirrored.\n        *   Let's use a simpler approach: A large box `w:4.5, h:1.5, d:3.5, pos:[0, 3.5, 0]` for the main roof block, then add a ridge line. A blocky roof is very low-poly and cute.\n        *   Let's go with a chunky block roof: `box({w:4.5, h:1.5, d:3.5, pos:[0, 3.5, 0], color:0x8B4513})`. Then add moss and flowers on top.\n        *   Wait, a pitched roof is more cottage-like. Let's use two intersecting boxes for the roof slopes.\n        *   Slope 1: `box({w:4.5, h:0.3, d:3.2, pos:[0, 3.8, -0.5], along:'Z'})` wait, `along` controls the `h` axis. If `along:'Z'`, the box is 3.2 long in Z, 0.3 thick in Y, 4.5 wide in X. We want it tilted.\n        *   Let's just use a large box for the roof volume, slightly overhanging: `box({w:4.2, h:1.8, d:3.2, pos:[0, 3.9, 0], color:0x8B4513})`. Then add a ridge: `box({w:4.2, h:0.3, d:0.3, pos:[0, 4.8, 0], color:0x6B3410})`.\n        *   Actually, let's make the roof a distinct shape. A cone with `seg:4` makes a pyramid. `seg:6` makes a hexagonal roof. Let's do a 4-sided pyramid roof! `cone({r:2.5, h:2.0, seg:4, pos:[0, 2.5, 0], color:0x8B4513})`. Rotated 45 degrees so the flat side faces front. This is very low-poly and fairy-tale.\n        *   Wait, the door is on the front wall. A pyramid roof works perfectly.\n        *   Let's refine the base walls to match: `box({w:3.5, h:2.5, d:3.5, pos:[0, 1.25, 0], color:0x8B4513})` as the core.\n        *   Add logs on the front: horizontal cylinders.\n        *   Add corner stones.\n\n    *   **door:**\n        *   Round door. A cylinder `cyl({r:1.0, h:0.2, along:'Z', pos:[0, 1.2, 1.76], color:0xD2691E})`.\n        *   Paw print: A large pad `sphere({r:0.25, pos:[0, 1.2, 1.9], color:0x3E2723})` and 4 smaller toe pads `sphere({r:0.12, pos:[...], color:0x3E2723})`.\n\n    *   **chimney:**\n        *   Side of the roof. `box({w:0.8, h:2.0, d:0.8, pos:[1.2, 4.5, -0.5], color:0x808080})`.\n        *   Smoke: `chain` curling upwards. `waypoints: [[1.2, 5.5, -0.5], [1.4, 6.2, -0.4], [1.1, 6.8, -0.6], [1.3, 7.5, -0.3]]`, `r:0.2`, `color:0xF5F5F5`.\n\n    *   **roof details (moss & flowers):**\n        *   Moss: A slightly smaller cone/box on top of the roof, green. `cone({r:2.4, h:1.8, seg:4, pos:[0, 2.6, 0], color:0x4CAF50})` - wait, if it's the exact same shape, it just recolors the bottom part. Better to add patches of moss.\n        *   Let's use `sphere` and `box` chunks of moss on the roof slopes.\n        *   Flowers: Small spheres or polys on top of the moss.\n\n    *   **surroundings:**\n        *   Base stones: `sphere({r:0.6, pos:[2.0, 0.2, 1.5], color:0x808080})`.\n        *   Grass: Small cones or cylinders. `cone({r:0.2, h:0.5, pos:[-2.0, 0.25, 0], color:0x4CAF50})`.\n\n3.  **Refining the Geometry & Coordinates:**\n\n    *   *Base Walls:*\n        *   Core: `box({w:3.5, h:2.5, d:3.0, pos:[0, 1.25, 0], color:0x8B4513})`\n        *   Front logs:\n            *   `cyl({r:0.2, h:3.6, along:'X', pos:[0, 0.4, 1.5], color:0x8B4513})`\n            *   `cyl({r:0.2, h:3.6, along:'X', pos:[0, 0.8, 1.5], color:0x7B3310})`\n            *   `cyl({r:0.2, h:3.6, along:'X', pos:[0, 1.2, 1.5], color:0x8B4513})`\n            *   `cyl({r:0.2, h:3.6, along:'X', pos:[0, 1.6, 1.5], color:0x7B3310})`\n            *   `cyl({r:0.2, h:3.6, along:'X', pos:[0, 2.0, 1.5], color:0x8B4513})`\n        *   Corner stones:\n            *   `sphere({r:0.4, pos:[1.75, 0.4, 1.5], color:0x808080})`\n            *   `sphere({r:0.4, pos:[-1.75, 0.4, 1.5], color:0x808080})`\n            *   `sphere({r:0.4, pos:[1.75, 0.4, -1.5], color:0x808080})`\n            *   `sphere({r:0.4, pos:[-1.75, 0.4, -1.5], color:0x808080})`\n            *   Add a few more stones at the base: `sphere({r:0.5, pos:[1.0, 0.3, 1.5], color:0x696969})`\n\n    *   *Roof:*\n        *   Let's do a 4-segment cone (pyramid) roof. It's super low-poly and cute.\n        *   `cone({r:2.8, h:2.2, seg:4, pos:[0, 2.5, 0], color:0x8B4513})` - wait, `seg:4` aligns vertices with X/Z axes by default? A square pyramid. If `r:2.8`, the flat sides will be at 45 degrees. The front face of the house is +Z. We want the edge of the roof to be at the front, or the flat side?\n        *   If flat side is front, it looks like a standard house. If edge is front, it looks like a pyramid.\n        *   Let's rotate the cone so a flat face is at the front. `api.rotatePoint` isn't for placing the cone itself, but we can't rotate the cone directly in the API without a group pivot.\n        *   Actually, let's just use a standard pitched roof made of two boxes. It's easier to control and place the chimney.\n        *   Roof slope 1 (front): `box({w:4.2, h:0.3, d:3.2, pos:[0, 3.5, 0.6], color:0x8B4513})` - wait, how to angle it?\n        *   Let's use a group for the roof, set a pivot, and rotate.\n        *   Or, even simpler: A massive block roof. `box({w:4.2, h:1.5, d:3.2, pos:[0, 3.5, 0], color:0x8B4513})`. Then add a triangular gable on the front and back.\n        *   Gable front: `tri({a:[-2.1, 2.5, 1.6], b:[2.1, 2.5, 1.6], c:[0, 4.5, 1.6], d:0.2, color:0x8B4513})`\n        *   Gable back: `tri({a:[-2.1, 2.5, -1.6], b:[2.1, 2.5, -1.6], c:[0, 4.5, -1.6], d:0.2, color:0x8B4513})`\n        *   Roof ridge: `box({w:4.2, h:0.3, d:0.3, pos:[0, 4.5, 0], color:0x6B3410})`\n        *   Roof slopes: Two boxes. We can use `patch` for the roof slopes!\n        *   Front slope: `patch({points:[[-2.1, 2.5, 1.6], [2.1, 2.5, 1.6], [0, 4.5, 0], [-2.1, 2.5, 0]], d:0.3, color:0x8B4513})` - wait, patch is a flat membrane. We want a thick roof.\n        *   Let's stick to the blocky roof. It's very \"Minecraft/low-poly\" and structurally sound.\n        *   Block roof: `box({w:4.2, h:1.5, d:3.2, pos:[0, 3.5, 0], color:0x8B4513})`\n        *   Ridge: `box({w:4.2, h:0.4, d:0.4, pos:[0, 4.5, 0], color:0x6B3410})`\n        *   Eaves overhang: `box({w:4.4, h:0.2, d:3.4, pos:[0, 2.8, 0], color:0x7B3310})` - acts as the ceiling/soffit.\n        *   This gives a nice chunky layered look.\n\n    *   *Moss & Flowers on Roof:*\n        *   Moss patches on the top block: `box({w:3.0, h:0.4, d:2.0, pos:[0, 4.35, 0], color:0x4CAF50})`\n        *   More moss: `box({w:2.0, h:0.3, d:1.5, pos:[0.5, 4.2, -0.5], color:0x388E3C})`\n        *   Flowers: Small polys on the moss.\n        *   Pink: `poly({r:0.1, pos:[-0.8, 4.6, 0.5], color:0xF8BBD0})`\n        *   Yellow: `poly({r:0.1, pos:[0.5, 4.5, -0.3], color:0xFFEB3B})`\n        *   Add a few more: `poly({r:0.08, pos:[1.0, 4.4, 0.2], color:0xF8BBD0})`, `poly({r:0.08, pos:[-0.3, 4.55, -0.6], color:0xFFEB3B})`\n\n    *   *Door:*\n        *   Round door frame: `torus({r:1.0, tube:0.15, along:'Z', pos:[0, 1.2, 1.51], color:0x6B3410})`\n        *   Door panel: `cyl({r:0.9, h:0.1, along:'Z', pos:[0, 1.2, 1.55], color:0xD2691E})`\n        *   Paw print on door:\n            *   Main pad: `sphere({r:0.25, pos:[0, 1.0, 1.65], color:0x3E2723})`\n            *   Toes: 4 small spheres.\n            *   Toe 1: `sphere({r:0.12, pos:[-0.25, 1.35, 1.65], color:0x3E2723})`\n            *   Toe 2: `sphere({r:0.12, pos:[-0.08, 1.45, 1.65], color:0x3E2723})`\n            *   Toe 3: `sphere({r:0.12, pos:[0.08, 1.45, 1.65], color:0x3E2723})`\n            *   Toe 4: `sphere({r:0.12, pos:[0.25, 1.35, 1.65], color:0x3E2723})`\n        *   Door handle: `poly({r:0.08, pos:[0.5, 1.2, 1.65], color:0xDAA520})`\n\n    *   *Chimney:*\n        *   Stone chimney block: `box({w:0.8, h:2.0, d:0.8, pos:[1.5, 4.0, -0.8], color:0x808080})`\n        *   Chimney base (on roof slope): `box({w:1.0, h:0.5, d:1.0, pos:[1.5, 3.0, -0.8], color:0x696969})`\n        *   Chimney top rim: `box({w:0.9, h:0.2, d:0.9, pos:[1.5, 5.1, -0.8], color:0x696969})`\n        *   Smoke: `chain({waypoints:[[1.5, 5.3, -0.8], [1.7, 5.8, -0.7], [1.4, 6.3, -0.9], [1.6, 6.8, -0.8], [1.3, 7.3, -1.0]], r:0.25, color:0xF5F5F5})`\n        *   Wait, `chain` needs `rStart` and `rEnd` if varying. Let's make it taper: `rStart:0.3, rEnd:0.1`.\n        *   `chain({waypoints:[[1.5, 5.3, -0.8], [1.7, 5.9, -0.7], [1.4, 6.5, -0.9], [1.6, 7.2, -0.8]], rStart:0.3, rEnd:0.15, color:0xF5F5F5})`\n\n    *   *Surroundings:*\n        *   Base stones: `sphere({r:0.6, pos:[2.2, 0.3, 1.8], color:0x808080})`, `sphere({r:0.5, pos:[-2.0, 0.2, 1.5], color:0x696969})`, `box({w:1.0, h:0.5, d:0.8, pos:[-1.5, 0.25, -1.8], color:0x808080})`\n        *   Grass clumps: `cone({r:0.3, h:0.6, pos:[2.5, 0.3, 0], color:0x4CAF50})`, `cone({r:0.2, h:0.5, pos:[-2.5, 0.25, -0.5], color:0x388E3C})`, `cone({r:0.25, h:0.55, pos:[1.5, 0.27, -2.0], color:0x4CAF50})`\n        *   Small flowers around base: `poly({r:0.08, pos:[2.5, 0.7, 0.2], color:0xF8BBD0})`, `poly({r:0.08, pos:[-2.5, 0.6, -0.3], color:0xFFEB3B})`\n\n4.  **Review and Refine:**\n    *   *Proportions:* House base is 3.5w x 2.5h x 3.0d. Roof adds ~2.0h. Total height ~4.5. This is a nice, compact shape.\n    *   *Colors:* Warm timber [8B4513], darker timber [7B3310], [6B3410]. River stones [808080], [696969]. Moss/Moss [4CAF50], [388E3C]. Flowers [F8BBD0], [FFEB3B]. Door [D2691E], Paw [3E2723]. Smoke [F5F5F5]. Gold accent [DAA520].\n    *   *Details:* Paw print is a great touch. The round door with torus frame is very hobbit/fairy-tale. The chimney with chain smoke adds life. Moss and flowers on the roof make it \"nestled in nature\".\n    *   *Structure Check:*\n        *   `base_walls`: Core box + logs + corner stones.\n        *   `roof`: Block roof + ridge + eaves + moss + flowers.\n        *   `door`: Torus frame + cyl panel + paw print + handle.\n        *   `chimney`: Box stack + chain smoke.\n        *   `surroundings`: Stones + grass cones + flowers.\n    *   *Pivot Points:* The door could maybe swing? `api.pivot([0, 1.2, 1.55], \"base_walls\")` on the door group. The chimney smoke could drift: `api.pivot([1.5, 5.3, -0.8], \"chimney\")` on the smoke group? The prompt says \"each independently moving group set api.pivot\". Smoke moving would be cool. Door moving would be cool.\n\n5.  **Drafting the Code (Mental or Scratchpad):**\n    ```javascript\n    function build(api) {\n      api.name('Fairy-Tale Pet House');\n      const C_LOG1 = 0x8B4513, C_LOG2 = 0x7B3310, C_LOG3 = 0x6B3410;\n      const C_STONE1 = 0x808080, C_STONE2 = 0x696969;\n      const C_MOSS1 = 0x4CAF50, C_MOSS2 = 0x388E3C;\n      const C_FLOWER_P = 0xF8BBD0, C_FLOWER_Y = 0xFFEB3B;\n      const C_DOOR = 0xD2691E, C_PAW = 0x3E2723, C_GOLD = 0xDAA520;\n      const C_SMOKE = 0xF5F5F5;\n\n      api.group('base_walls', 'Base Walls');\n      api.box({w:3.5, h:2.5, d:3.0, pos:[0, 1.25, 0], color:C_LOG1});\n      // Front logs\n      for(let i=0; i<5; i++) {\n        api.cyl({r:0.2, h:3.6, along:'X', pos:[0, 0.4 + i*0.4, 1.51], color: i%2===0 ? C_LOG1 : C_LOG2});\n      }\n      // Corner stones\n      api.sphere({r:0.45, pos:[1.75, 0.4, 1.5], color:C_STONE1});\n      api.sphere({r:0.45, pos:[-1.75, 0.4, 1.5], color:C_STONE1});\n      api.sphere({r:0.45, pos:[1.75, 0.4, -1.5], color:C_STONE2});\n      api.sphere({r:0.45, pos:[-1.75, 0.4, -1.5], color:C_STONE2});\n      // Extra base stones\n      api.sphere({r:0.35, pos:[1.0, 0.3, 1.55], color:C_STONE2});\n      api.sphere({r:0.35, pos:[-1.0, 0.3, 1.55], color:C_STONE1});\n      api.endGroup();\n\n      api.group('roof', 'Roof');\n      api.box({w:4.2, h:1.5, d:3.2, pos:[0, 3.5, 0], color:C_LOG1});\n      api.box({w:4.4, h:0.2, d:3.4, pos:[0, 2.8, 0], color:C_LOG2}); // Eaves\n      api.box({w:4.2, h:0.4, d:0.4, pos:[0, 4.45, 0], color:C_LOG3}); // Ridge\n      // Moss\n      api.box({w:3.0, h:0.4, d:2.0, pos:[0, 4.35, 0], color:C_MOSS1});\n      api.box({w:2.0, h:0.3, d:1.5, pos:[0.5, 4.2, -0.5], color:C_MOSS2});\n      api.box({w:1.5, h:0.3, d:1.0, pos:[-0.8, 4.2, 0.6], color:C_MOSS2});\n      // Flowers\n      api.poly({r:0.1, pos:[-0.8, 4.6, 0.5], color:C_FLOWER_P});\n      api.poly({r:0.1, pos:[0.5, 4.5, -0.3], color:C_FLOWER_Y});\n      api.poly({r:0.08, pos:[1.0, 4.4, 0.2], color:C_FLOWER_P});\n      api.poly({r:0.08, pos:[-0.3, 4.55, -0.6], color:C_FLOWER_Y});\n      api.poly({r:0.08, pos:[0.2, 4.6, 0.8], color:C_FLOWER_P});\n      api.endGroup();\n\n      api.group('door', 'Door');\n      api.pivot([0, 1.2, 1.55], \"base_walls\");\n      api.torus({r:1.0, tube:0.15, along:'Z', pos:[0, 1.2, 1.52], color:C_LOG3});\n      api.cyl({r:0.9, h:0.1, along:'Z', pos:[0, 1.2, 1.56], color:C_DOOR});\n      // Paw print\n      api.sphere({r:0.25, pos:[0, 1.0, 1.65], color:C_PAW});\n      api.sphere({r:0.12, pos:[-0.25, 1.35, 1.65], color:C_PAW});\n      api.sphere({r:0.12, pos:[-0.08, 1.45, 1.65], color:C_PAW});\n      api.sphere({r:0.12, pos:[0.08, 1.45, 1.65], color:C_PAW});\n      api.sphere({r:0.12, pos:[0.25, 1.35, 1.65], color:C_PAW});\n      // Handle\n      api.poly({r:0.08, pos:[0.5, 1.2, 1.65], color:C_GOLD});\n      api.endGroup();\n\n      api.group('chimney', 'Chimney');\n      api.box({w:0.8, h:2.0, d:0.8, pos:[1.5, 4.0, -0.8], color:C_STONE1});\n      api.box({w:1.0, h:0.5, d:1.0, pos:[1.5, 3.0, -0.8], color:C_STONE2}); // Base\n      api.box({w:0.9, h:0.2, d:0.9, pos:[1.5, 5.1, -0.8], color:C_STONE2}); // Top rim\n      api.endGroup();\n\n      api.group('smoke', 'Smoke');\n      api.pivot([1.5, 5.3, -0.8], \"chimney\");\n      api.chain({waypoints:[[1.5, 5.3, -0.8], [1.7, 5.9, -0.7], [1.4, 6.5, -0.9], [1.6, 7.2, -0.8]], rStart:0.3, rEnd:0.15, color:C_SMOKE});\n      api.endGroup();\n\n      api.group('surroundings', 'Surroundings');\n      api.sphere({r:0.6, pos:[2.2, 0.3, 1.8], color:C_STONE1});\n      api.sphere({r:0.5, pos:[-2.0, 0.2, 1.5], color:C_STONE2});\n      api.box({w:1.0, h:0.5, d:0.8, pos:[-1.5, 0.25, -1.8], color:C_STONE1});\n      api.sphere({r:0.4, pos:[1.8, 0.2, -1.5], color:C_STONE2});\n      // Grass\n      api.cone({r:0.3, h:0.6, pos:[2.5, 0.3, 0], color:C_MOSS1});\n      api.cone({r:0.2, h:0.5, pos:[-2.5, 0.25, -0.5], color:C_MOSS2});\n      api.cone({r:0.25, h:0.55, pos:[1.5, 0.27, -2.0], color:C_MOSS1});\n      api.cone({r:0.2, h:0.4, pos:[-1.0, 0.2, 2.0], color:C_MOSS2});\n      // Flowers\n      api.poly({r:0.08, pos:[2.5, 0.7, 0.2], color:C_FLOWER_P});\n      api.poly({r:0.08, pos:[-2.5, 0.6, -0.3], color:C_FLOWER_Y});\n      api.poly({r:0.08, pos:[1.5, 0.65, -2.0], color:C_FLOWER_P});\n      api.endGroup();\n    }\n    ```\n\n6.  **Final Polish:**\n    *   Check coordinates. Door is at Z=1.55, base wall is at Z=1.5 (half of 3.0). Good.\n    *   Roof eaves at Y=2.8. Base wall top is at 1.25 + 1.25 = 2.5. Eaves overlap nicely.\n    *   Chimney base at Y=3.0, sits on the eaves/roof slope. Roof block is Y: 2.75 to 4.25. Chimney base at 3.0 is inside the roof block, which is perfect for stability.\n    *   Smoke starts at Y=5.3, chimney top is at 5.1 + 0.1 = 5.2. Good.\n    *   Paw print is slightly protruding from the door (Z=1.65 vs door at 1.56). Good.\n    *   Ensure no markdown formatting around the code block. Just the raw function.\n    *   Double check API: `chain` uses `rStart` and `rEnd`. `torus` uses `r` and `tube`. `cone` uses `r` and `h`. All good.\n    *   The prompt asks for \"only output function build(api) { ... }\". I will output exactly that.\n\n7.  **Final Code Structure Assembly:** (Proceeding to generate the raw string).",
+  "_aiCode": "function build(api) {\n  api.name('Fairy-Tale Pet House');\n  const C_LOG1 = 0x8B4513, C_LOG2 = 0x7B3310, C_LOG3 = 0x6B3410;\n  const C_STONE1 = 0x808080, C_STONE2 = 0x696969;\n  const C_MOSS1 = 0x4CAF50, C_MOSS2 = 0x388E3C;\n  const C_FLOWER_P = 0xF8BBD0, C_FLOWER_Y = 0xFFEB3B;\n  const C_DOOR = 0xD2691E, C_PAW = 0x3E2723, C_GOLD = 0xDAA520;\n  const C_SMOKE = 0xF5F5F5;\n\n  api.group('base_walls', 'Base Walls');\n  api.box({w:3.5, h:2.5, d:3.0, pos:[0, 1.25, 0], color:C_LOG1});\n  for(let i=0; i<5; i++) {\n    api.cyl({r:0.2, h:3.6, along:'X', pos:[0, 0.4 + i*0.4, 1.51], color: i%2===0 ? C_LOG1 : C_LOG2});\n  }\n  api.sphere({r:0.45, pos:[1.75, 0.4, 1.5], color:C_STONE1});\n  api.sphere({r:0.45, pos:[-1.75, 0.4, 1.5], color:C_STONE1});\n  api.sphere({r:0.45, pos:[1.75, 0.4, -1.5], color:C_STONE2});\n  api.sphere({r:0.45, pos:[-1.75, 0.4, -1.5], color:C_STONE2});\n  api.sphere({r:0.35, pos:[1.0, 0.3, 1.55], color:C_STONE2});\n  api.sphere({r:0.35, pos:[-1.0, 0.3, 1.55], color:C_STONE1});\n  api.endGroup();\n\n  api.group('roof', 'Roof');\n  api.box({w:4.2, h:1.5, d:3.2, pos:[0, 3.5, 0], color:C_LOG1});\n  api.box({w:4.4, h:0.2, d:3.4, pos:[0, 2.8, 0], color:C_LOG2});\n  api.box({w:4.2, h:0.4, d:0.4, pos:[0, 4.45, 0], color:C_LOG3});\n  api.box({w:3.0, h:0.4, d:2.0, pos:[0, 4.35, 0], color:C_MOSS1});\n  api.box({w:2.0, h:0.3, d:1.5, pos:[0.5, 4.2, -0.5], color:C_MOSS2});\n  api.box({w:1.5, h:0.3, d:1.0, pos:[-0.8, 4.2, 0.6], color:C_MOSS2});\n  api.poly({r:0.1, pos:[-0.8, 4.6, 0.5], color:C_FLOWER_P});\n  api.poly({r:0.1, pos:[0.5, 4.5, -0.3], color:C_FLOWER_Y});\n  api.poly({r:0.08, pos:[1.0, 4.4, 0.2], color:C_FLOWER_P});\n  api.poly({r:0.08, pos:[-0.3, 4.55, -0.6], color:C_FLOWER_Y});\n  api.poly({r:0.08, pos:[0.2, 4.6, 0.8], color:C_FLOWER_P});\n  api.endGroup();\n\n  api.group('door', 'Door');\n  api.pivot([0, 1.2, 1.55], \"base_walls\");\n  api.torus({r:1.0, tube:0.15, along:'Z', pos:[0, 1.2, 1.52], color:C_LOG3});\n  api.cyl({r:0.9, h:0.1, along:'Z', pos:[0, 1.2, 1.56], color:C_DOOR});\n  api.sphere({r:0.25, pos:[0, 1.0, 1.65], color:C_PAW});\n  api.sphere({r:0.12, pos:[-0.25, 1.35, 1.65], color:C_PAW});\n  api.sphere({r:0.12, pos:[-0.08, 1.45, 1.65], color:C_PAW});\n  api.sphere({r:0.12, pos:[0.08, 1.45, 1.65], color:C_PAW});\n  api.sphere({r:0.12, pos:[0.25, 1.35, 1.65], color:C_PAW});\n  api.poly({r:0.08, pos:[0.5, 1.2, 1.65], color:C_GOLD});\n  api.endGroup();\n\n  api.group('chimney', 'Chimney');\n  api.box({w:0.8, h:2.0, d:0.8, pos:[1.5, 4.0, -0.8], color:C_STONE1});\n  api.box({w:1.0, h:0.5, d:1.0, pos:[1.5, 3.0, -0.8], color:C_STONE2});\n  api.box({w:0.9, h:0.2, d:0.9, pos:[1.5, 5.1, -0.8], color:C_STONE2});\n  api.endGroup();\n\n  api.group('smoke', 'Smoke');\n  api.pivot([1.5, 5.3, -0.8], \"chimney\");\n  api.chain({waypoints:[[1.5, 5.3, -0.8], [1.7, 5.9, -0.7], [1.4, 6.5, -0.9], [1.6, 7.2, -0.8]], rStart:0.3, rEnd:0.15, color:C_SMOKE});\n  api.endGroup();\n\n  api.group('surroundings', 'Surroundings');\n  api.sphere({r:0.6, pos:[2.2, 0.3, 1.8], color:C_STONE1});\n  api.sphere({r:0.5, pos:[-2.0, 0.2, 1.5], color:C_STONE2});\n  api.box({w:1.0, h:0.5, d:0.8, pos:[-1.5, 0.25, -1.8], color:C_STONE1});\n  api.sphere({r:0.4, pos:[1.8, 0.2, -1.5], color:C_STONE2});\n  api.cone({r:0.3, h:0.6, pos:[2.5, 0.3, 0], color:C_MOSS1});\n  api.cone({r:0.2, h:0.5, pos:[-2.5, 0.25, -0.5], color:C_MOSS2});\n  api.cone({r:0.25, h:0.55, pos:[1.5, 0.27, -2.0], color:C_MOSS1});\n  api.cone({r:0.2, h:0.4, pos:[-1.0, 0.2, 2.0], color:C_MOSS2});\n  api.poly({r:0.08, pos:[2.5, 0.7, 0.2], color:C_FLOWER_P});\n  api.poly({r:0.08, pos:[-2.5, 0.6, -0.3], color:C_FLOWER_Y});\n  api.poly({r:0.08, pos:[1.5, 0.65, -2.0], color:C_FLOWER_P});\n  api.endGroup();\n}",
+  "_description": "an exquisite lowpoly fairy-tale pet house nestled in nature, built from warm timber logs and river stones, covered with soft green moss and tiny wildflowers on the roof, a round wooden door with a paw-print carving, smoke curling from a small stone chimney, dappled sunlight, cozy and magical woodland cottage aesthetic",
+  "_formulaResult": {
+    "methodologies": [
+      "complex_stack",
+      "vegetation"
+    ],
+    "regions": [
+      {
+        "name": "base_walls",
+        "desc": "粗壮墙体，混合圆木-暖棕[8B4513]与河石-灰[808080]堆叠"
+      },
+      {
+        "name": "roof",
+        "desc": "宽大厚实屋顶，覆盖厚苔藓-绿[4CAF50]，点缀小野花-粉[F8BBD0]与黄[FFEB3B]"
+      },
+      {
+        "name": "door",
+        "desc": "正中圆门-浅棕[D2691E]，门板中心爪印雕刻-深棕[3E2723]"
+      },
+      {
+        "name": "chimney",
+        "desc": "侧面小烟囱-灰，顶部飘出卷曲烟雾-白[F5F5F5]"
+      },
+      {
+        "name": "surroundings",
+        "desc": "小屋底部基座，散落大块河石-灰，簇生小草-绿"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n**所有 pos 都是世界坐标。** pos 是形状的几何中心（不是底面/顶点）。Y+上，Z+前，X+右，地面Y=0。\n系统自动将 group 内几何体偏移为相对于 pivot 的局部坐标，AI 不需要手动计算相对坐标。\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转，返回世界坐标。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点，返回世界坐标。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。pos是世界坐标，系统自动折算局部偏移。手持物target=所属肢体名。不使用pivot的group，系统自动用AABB中心作为轴心。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('base_walls','base_walls') → 粗壮墙体，混合圆木-暖棕[8B4513]与河石-灰[808080]堆叠 → api.endGroup()\napi.group('roof','roof') → 宽大厚实屋顶，覆盖厚苔藓-绿[4CAF50]，点缀小野花-粉[F8BBD0]与黄[FFEB3B] → api.endGroup()\napi.group('door','door') → 正中圆门-浅棕[D2691E]，门板中心爪印雕刻-深棕[3E2723] → api.endGroup()\napi.group('chimney','chimney') → 侧面小烟囱-灰，顶部飘出卷曲烟雾-白[F5F5F5] → api.endGroup()\napi.group('surroundings','surroundings') → 小屋底部基座，散落大块河石-灰，簇生小草-绿 → api.endGroup()\n\n### 复杂堆叠 (complex_stack)\n非线性、无序堆叠（石头堆、烟雾、垃圾堆）。\n- 不是沿某条线的堆叠，而是相对无序的层次\n- 用多个小box/sphere随机偏移模拟无序感\n- 代码：api.box({w:0.8,h:0.6,d:0.7,pos:[0.1,0.3,0],color:0x808080}); api.box({w:0.6,h:0.5,d:0.8,pos:[-0.2,0.7,0.1],color:0x696969}); api.sphere({r:0.3,pos:[0.3,1.1,-0.1],color:0xA9A9A9});\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"an exquisite lowpoly fairy-tale pet house nestled in nature, built from warm timber logs and river stones, covered with soft green moss and tiny wildflowers on the roof, a round wooden door with a paw-print carving, smoke curling from a small stone chimney, dappled sunlight, cozy and magical woodland cottage aesthetic\"\n\n草稿结构：\n  base_walls: 粗壮墙体，混合圆木-暖棕[8B4513]与河石-灰[808080]堆叠\n  roof: 宽大厚实屋顶，覆盖厚苔藓-绿[4CAF50]，点缀小野花-粉[F8BBD0]与黄[FFEB3B]\n  door: 正中圆门-浅棕[D2691E]，门板中心爪印雕刻-深棕[3E2723]\n  chimney: 侧面小烟囱-灰，顶部飘出卷曲烟雾-白[F5F5F5]\n  surroundings: 小屋底部基座，散落大块河石-灰，簇生小草-绿\n整体比例：紧凑矮胖的小屋，宽高比约1:1，大圆门占据大半前墙，厚实屋顶\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781245076002,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

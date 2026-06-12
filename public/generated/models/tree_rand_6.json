@@ -1,0 +1,2676 @@
+{
+  "name": "双季杨树",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 5.25,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.3,
+        "radiusBottom": 0.3,
+        "height": 3.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -3.5,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m1",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.2,
+        "radiusBottom": 0.2,
+        "height": 3.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_icy",
+      "name": "canopy_icy",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 6.233333333333334,
+        "z": 0
+      }
+    },
+    {
+      "id": "canopy_icy_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": 0,
+        "y": -2.033333333333334,
+        "z": 0.4
+      }
+    },
+    {
+      "id": "m2",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m3",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 1.36,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.66,
+        "z": 0.1
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0.07,
+        "y": 0,
+        "z": 0.18,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_icy_wp0",
+      "boneTo": "canopy_icy_wp1",
+      "boneRestLen": 1.36
+    },
+    {
+      "id": "canopy_icy_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.5,
+        "y": -0.7333333333333343,
+        "z": 0.6
+      },
+      "pivotTarget": "canopy_icy_wp0"
+    },
+    {
+      "id": "m4",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m5",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.05,
+        "radiusBottom": 0.05,
+        "height": 1.01,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": 0.51,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.15,
+        "w": 0.99
+      },
+      "boneFrom": "canopy_icy_wp1",
+      "boneTo": "canopy_icy_wp2",
+      "boneRestLen": 1.01
+    },
+    {
+      "id": "canopy_icy_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.8,
+        "y": 0.2666666666666657,
+        "z": 0.6
+      },
+      "pivotTarget": "canopy_icy_wp1"
+    },
+    {
+      "id": "m6",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.04,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_icy_wp0_1",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": 0,
+        "y": -1.033333333333334,
+        "z": -0.4
+      }
+    },
+    {
+      "id": "m7",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m8",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 1.32,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.2,
+        "y": 0.65,
+        "z": -0.1
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": -0.07,
+        "y": 0,
+        "z": 0.15,
+        "w": 0.99
+      },
+      "boneFrom": "canopy_icy_wp0_1",
+      "boneTo": "canopy_icy_wp1_1",
+      "boneRestLen": 1.32
+    },
+    {
+      "id": "canopy_icy_wp1_1",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.4,
+        "y": 0.2666666666666657,
+        "z": -0.6
+      },
+      "pivotTarget": "canopy_icy_wp0_1"
+    },
+    {
+      "id": "m9",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m10",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.05,
+        "radiusBottom": 0.05,
+        "height": 0.73,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": 0.36,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.2,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_icy_wp1_1",
+      "boneTo": "canopy_icy_wp2_1",
+      "boneRestLen": 0.73
+    },
+    {
+      "id": "canopy_icy_wp2_1",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.7,
+        "y": 0.9666666666666659,
+        "z": -0.6
+      },
+      "pivotTarget": "canopy_icy_wp1_1"
+    },
+    {
+      "id": "m11",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.04,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_icy_wp0_2",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": 0,
+        "y": -0.0333333333333341,
+        "z": 0
+      }
+    },
+    {
+      "id": "m12",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m13",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.06,
+        "radiusBottom": 0.06,
+        "height": 1.02,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.15,
+        "y": 0.5,
+        "z": 0.1
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0.1,
+        "y": 0,
+        "z": 0.14,
+        "w": 0.99
+      },
+      "boneFrom": "canopy_icy_wp0_2",
+      "boneTo": "canopy_icy_wp1_2",
+      "boneRestLen": 1.02
+    },
+    {
+      "id": "canopy_icy_wp1_2",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.3,
+        "y": 0.9666666666666659,
+        "z": 0.2
+      },
+      "pivotTarget": "canopy_icy_wp0_2"
+    },
+    {
+      "id": "m14",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m15",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.04,
+        "radiusBottom": 0.04,
+        "height": 0.6,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.1,
+        "y": 0.3,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.16,
+        "w": 0.99
+      },
+      "boneFrom": "canopy_icy_wp1_2",
+      "boneTo": "canopy_icy_wp2_2",
+      "boneRestLen": 0.6
+    },
+    {
+      "id": "canopy_icy_wp2_2",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_icy",
+      "position": {
+        "x": -0.5,
+        "y": 1.5666666666666655,
+        "z": 0.2
+      },
+      "pivotTarget": "canopy_icy_wp1_2"
+    },
+    {
+      "id": "m16",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.03,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m17",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -1.1102230246251565e-16,
+          -0.6000000000000005,
+          0
+        ],
+        "b": [
+          -0.5000000000000001,
+          0.2999999999999998,
+          0
+        ],
+        "c": [
+          0.49999999999999994,
+          0.2999999999999998,
+          0
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -0.7999999999999999,
+        "y": 0.8666666666666663,
+        "z": 0.6
+      },
+      "color": 11393254,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "m18",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          1.1102230246251565e-16,
+          -0.5333333333333332,
+          0
+        ],
+        "b": [
+          -0.4999999999999999,
+          0.2666666666666666,
+          0
+        ],
+        "c": [
+          0.5,
+          0.2666666666666666,
+          0
+        ],
+        "d": 0.1
+      },
+      "position": {
+        "x": -0.7000000000000001,
+        "y": 1.4999999999999991,
+        "z": -0.6
+      },
+      "color": 11393254,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "m19",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -0.40000000000000124,
+          -2.7755575615628914e-17
+        ],
+        "b": [
+          -0.5,
+          0.1999999999999993,
+          -2.7755575615628914e-17
+        ],
+        "c": [
+          0.5,
+          0.1999999999999993,
+          -2.7755575615628914e-17
+        ],
+        "d": 0.08
+      },
+      "position": {
+        "x": -0.5,
+        "y": 1.9666666666666668,
+        "z": 0.20000000000000004
+      },
+      "color": 11393254,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "m20",
+      "type": "box",
+      "geometry": {
+        "width": 0.7,
+        "height": 0.06,
+        "depth": 0.4
+      },
+      "position": {
+        "x": -0.8,
+        "y": 1.0666666666666655,
+        "z": 0.6
+      },
+      "color": 15790320,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "m21",
+      "type": "box",
+      "geometry": {
+        "width": 0.6,
+        "height": 0.06,
+        "depth": 0.3
+      },
+      "position": {
+        "x": -0.6,
+        "y": 1.666666666666666,
+        "z": -0.6
+      },
+      "color": 15790320,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "m22",
+      "type": "box",
+      "geometry": {
+        "width": 0.5,
+        "height": 0.06,
+        "depth": 0.3
+      },
+      "position": {
+        "x": -0.4,
+        "y": 2.0666666666666664,
+        "z": 0.2
+      },
+      "color": 15790320,
+      "parent": "canopy_icy"
+    },
+    {
+      "id": "canopy_fiery",
+      "name": "canopy_fiery",
+      "group": true,
+      "position": {
+        "x": 0.6,
+        "y": 6.233333333333334,
+        "z": 0
+      }
+    },
+    {
+      "id": "canopy_fiery_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.6,
+        "y": -2.033333333333334,
+        "z": 0.4
+      }
+    },
+    {
+      "id": "m23",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.1,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m24",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.09,
+        "radiusBottom": 0.09,
+        "height": 1.41,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.3,
+        "y": 0.66,
+        "z": 0.15
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0.11,
+        "y": 0,
+        "z": -0.21,
+        "w": 0.97
+      },
+      "boneFrom": "canopy_fiery_wp0",
+      "boneTo": "canopy_fiery_wp1",
+      "boneRestLen": 1.41
+    },
+    {
+      "id": "canopy_fiery_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0,
+        "y": -0.7333333333333343,
+        "z": 0.7
+      },
+      "pivotTarget": "canopy_fiery_wp0"
+    },
+    {
+      "id": "m25",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m26",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 1.04,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.2,
+        "y": 0.5,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.19,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_fiery_wp1",
+      "boneTo": "canopy_fiery_wp2",
+      "boneRestLen": 1.04
+    },
+    {
+      "id": "canopy_fiery_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0.4,
+        "y": 0.2666666666666657,
+        "z": 0.7
+      },
+      "pivotTarget": "canopy_fiery_wp1"
+    },
+    {
+      "id": "m27",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_fiery_wp0_1",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.6,
+        "y": -1.033333333333334,
+        "z": -0.4
+      }
+    },
+    {
+      "id": "m28",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.1,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m29",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.09,
+        "radiusBottom": 0.09,
+        "height": 1.37,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.25,
+        "y": 0.66,
+        "z": -0.15
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": -0.11,
+        "y": 0,
+        "z": -0.18,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_fiery_wp0_1",
+      "boneTo": "canopy_fiery_wp1_1",
+      "boneRestLen": 1.37
+    },
+    {
+      "id": "canopy_fiery_wp1_1",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.09999999999999998,
+        "y": 0.2666666666666657,
+        "z": -0.7
+      },
+      "pivotTarget": "canopy_fiery_wp0_1"
+    },
+    {
+      "id": "m30",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m31",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 0.77,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.2,
+        "y": 0.35,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.26,
+        "w": 0.97
+      },
+      "boneFrom": "canopy_fiery_wp1_1",
+      "boneTo": "canopy_fiery_wp2_1",
+      "boneRestLen": 0.77
+    },
+    {
+      "id": "canopy_fiery_wp2_1",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0.30000000000000004,
+        "y": 0.9666666666666659,
+        "z": -0.7
+      },
+      "pivotTarget": "canopy_fiery_wp1_1"
+    },
+    {
+      "id": "m32",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_fiery_wp0_2",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.6,
+        "y": -0.0333333333333341,
+        "z": 0
+      }
+    },
+    {
+      "id": "m33",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m34",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 1.05,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.2,
+        "y": 0.5,
+        "z": 0.1
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0.09,
+        "y": 0,
+        "z": -0.19,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_fiery_wp0_2",
+      "boneTo": "canopy_fiery_wp1_2",
+      "boneRestLen": 1.05
+    },
+    {
+      "id": "canopy_fiery_wp1_2",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.19999999999999996,
+        "y": 0.9666666666666659,
+        "z": 0.2
+      },
+      "pivotTarget": "canopy_fiery_wp0_2"
+    },
+    {
+      "id": "m35",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m36",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.05,
+        "radiusBottom": 0.05,
+        "height": 0.64,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.15,
+        "y": 0.3,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.23,
+        "w": 0.97
+      },
+      "boneFrom": "canopy_fiery_wp1_2",
+      "boneTo": "canopy_fiery_wp2_2",
+      "boneRestLen": 0.64
+    },
+    {
+      "id": "canopy_fiery_wp2_2",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0.09999999999999998,
+        "y": 1.5666666666666655,
+        "z": 0.2
+      },
+      "pivotTarget": "canopy_fiery_wp1_2"
+    },
+    {
+      "id": "m37",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.04,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "canopy_fiery_wp0_3",
+      "name": "wp0",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": -0.6,
+        "y": -1.533333333333334,
+        "z": 0
+      }
+    },
+    {
+      "id": "m38",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.1,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m39",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.09,
+        "radiusBottom": 0.09,
+        "height": 1.48,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.4,
+        "y": 0.66,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.27,
+        "w": 0.96
+      },
+      "boneFrom": "canopy_fiery_wp0_3",
+      "boneTo": "canopy_fiery_wp1_3",
+      "boneRestLen": 1.48
+    },
+    {
+      "id": "canopy_fiery_wp1_3",
+      "name": "wp1",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0.20000000000000007,
+        "y": -0.23333333333333428,
+        "z": 0
+      },
+      "pivotTarget": "canopy_fiery_wp0_3"
+    },
+    {
+      "id": "m40",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m41",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.07,
+        "radiusBottom": 0.07,
+        "height": 1.04,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.2,
+        "y": 0.5,
+        "z": 0
+      },
+      "color": 6111287,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.19,
+        "w": 0.98
+      },
+      "boneFrom": "canopy_fiery_wp1_3",
+      "boneTo": "canopy_fiery_wp2_3",
+      "boneRestLen": 1.04
+    },
+    {
+      "id": "canopy_fiery_wp2_3",
+      "name": "wp2",
+      "group": true,
+      "parent": "canopy_fiery",
+      "position": {
+        "x": 0.6,
+        "y": 0.7666666666666657,
+        "z": 0
+      },
+      "pivotTarget": "canopy_fiery_wp1_3"
+    },
+    {
+      "id": "m42",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.05,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 6111287
+    },
+    {
+      "id": "m43",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -0.7333333333333334,
+          1.1102230246251565e-16
+        ],
+        "b": [
+          0.6000000000000001,
+          0.36666666666666625,
+          1.1102230246251565e-16
+        ],
+        "c": [
+          -0.6,
+          0.36666666666666625,
+          1.1102230246251565e-16
+        ],
+        "d": 0.15
+      },
+      "position": {
+        "x": 0.4,
+        "y": 0.9999999999999991,
+        "z": 0.6999999999999998
+      },
+      "color": 16729344,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m44",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          1.1102230246251565e-16,
+          -0.6666666666666661,
+          -1.1102230246251565e-16
+        ],
+        "b": [
+          0.6000000000000001,
+          0.33333333333333304,
+          -1.1102230246251565e-16
+        ],
+        "c": [
+          -0.5999999999999999,
+          0.33333333333333304,
+          -1.1102230246251565e-16
+        ],
+        "d": 0.15
+      },
+      "position": {
+        "x": 0.29999999999999993,
+        "y": 1.633333333333332,
+        "z": -0.6999999999999998
+      },
+      "color": 16729344,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m45",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -1.1102230246251565e-16,
+          -0.4666666666666677,
+          -2.7755575615628914e-17
+        ],
+        "b": [
+          0.6,
+          0.2333333333333325,
+          -2.7755575615628914e-17
+        ],
+        "c": [
+          -0.6000000000000001,
+          0.2333333333333325,
+          -2.7755575615628914e-17
+        ],
+        "d": 0.12
+      },
+      "position": {
+        "x": 0.10000000000000009,
+        "y": 2.033333333333333,
+        "z": 0.20000000000000004
+      },
+      "color": 16729344,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m46",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -0.666666666666667,
+          0
+        ],
+        "b": [
+          0.6000000000000001,
+          0.33333333333333304,
+          0
+        ],
+        "c": [
+          -0.6,
+          0.33333333333333304,
+          0
+        ],
+        "d": 0.15
+      },
+      "position": {
+        "x": 0.6,
+        "y": 1.4333333333333327,
+        "z": 0
+      },
+      "color": 16729344,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m47",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.033333333333333326,
+          -0.6000000000000005,
+          0
+        ],
+        "b": [
+          0.4666666666666667,
+          0.2999999999999998,
+          0
+        ],
+        "c": [
+          -0.43333333333333335,
+          0.2999999999999998,
+          0
+        ],
+        "d": 0.12
+      },
+      "position": {
+        "x": 0.2333333333333334,
+        "y": 0.8666666666666663,
+        "z": 0.5
+      },
+      "color": 13383424,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m48",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.033333333333333326,
+          -0.5333333333333332,
+          0
+        ],
+        "b": [
+          0.4666666666666667,
+          0.2666666666666666,
+          0
+        ],
+        "c": [
+          -0.4333333333333333,
+          0.2666666666666666,
+          0
+        ],
+        "d": 0.12
+      },
+      "position": {
+        "x": 0.1333333333333333,
+        "y": 1.4999999999999991,
+        "z": -0.5
+      },
+      "color": 13383424,
+      "parent": "canopy_fiery"
+    },
+    {
+      "id": "m49",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0,
+          -0.5333333333333341,
+          0
+        ],
+        "b": [
+          0.5,
+          0.2666666666666657,
+          0
+        ],
+        "c": [
+          -0.5,
+          0.2666666666666657,
+          0
+        ],
+        "d": 0.12
+      },
+      "position": {
+        "x": 0.4,
+        "y": 1.2999999999999998,
+        "z": 0
+      },
+      "color": 13383424,
+      "parent": "canopy_fiery"
+    }
+  ],
+  "tree": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "offset": [
+        0,
+        5.25,
+        0
+      ],
+      "meshes": [
+        {
+          "id": "m0",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.3,
+            "radiusBottom": 0.3,
+            "height": 3.5,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": -3.5,
+            "z": 0
+          },
+          "color": 6111287
+        },
+        {
+          "id": "m1",
+          "type": "cylinder",
+          "geometry": {
+            "radiusTop": 0.2,
+            "radiusBottom": 0.2,
+            "height": 3.5,
+            "radialSegments": 10
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "color": 6111287
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "canopy_icy",
+      "name": "canopy_icy",
+      "offset": [
+        0,
+        6.2333,
+        0
+      ],
+      "meshes": [],
+      "children": [
+        {
+          "id": "canopy_icy_wp0",
+          "name": "wp0",
+          "offset": [
+            0,
+            -2.0333,
+            0.4
+          ],
+          "meshes": [
+            {
+              "id": "m2",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.08,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m3",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.07,
+                "radiusBottom": 0.07,
+                "height": 1.36,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -0.25,
+                "y": 0.66,
+                "z": 0.1
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": 0.07,
+                "y": 0,
+                "z": 0.18,
+                "w": 0.98
+              },
+              "boneFrom": "canopy_icy_wp0",
+              "boneTo": "canopy_icy_wp1",
+              "boneRestLen": 1.36
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_icy_wp1",
+              "name": "wp1",
+              "offset": [
+                -0.5,
+                1.3,
+                0.2
+              ],
+              "meshes": [
+                {
+                  "id": "m4",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.05,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m5",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.05,
+                    "radiusBottom": 0.05,
+                    "height": 1.01,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.15,
+                    "y": 0.51,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.15,
+                    "w": 0.99
+                  },
+                  "boneFrom": "canopy_icy_wp1",
+                  "boneTo": "canopy_icy_wp2",
+                  "boneRestLen": 1.01
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_icy_wp2",
+                  "name": "wp2",
+                  "offset": [
+                    -0.3,
+                    1,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m6",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.04,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canopy_icy_wp0_1",
+          "name": "wp0",
+          "offset": [
+            0,
+            -1.0333,
+            -0.4
+          ],
+          "meshes": [
+            {
+              "id": "m7",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.08,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m8",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.07,
+                "radiusBottom": 0.07,
+                "height": 1.32,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -0.2,
+                "y": 0.65,
+                "z": -0.1
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": -0.07,
+                "y": 0,
+                "z": 0.15,
+                "w": 0.99
+              },
+              "boneFrom": "canopy_icy_wp0_1",
+              "boneTo": "canopy_icy_wp1_1",
+              "boneRestLen": 1.32
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_icy_wp1_1",
+              "name": "wp1",
+              "offset": [
+                -0.4,
+                1.3,
+                -0.2
+              ],
+              "meshes": [
+                {
+                  "id": "m9",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.05,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m10",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.05,
+                    "radiusBottom": 0.05,
+                    "height": 0.73,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.15,
+                    "y": 0.36,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.2,
+                    "w": 0.98
+                  },
+                  "boneFrom": "canopy_icy_wp1_1",
+                  "boneTo": "canopy_icy_wp2_1",
+                  "boneRestLen": 0.73
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_icy_wp2_1",
+                  "name": "wp2",
+                  "offset": [
+                    -0.3,
+                    0.7,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m11",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.04,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canopy_icy_wp0_2",
+          "name": "wp0",
+          "offset": [
+            0,
+            -0.0333,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m12",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.07,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m13",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.06,
+                "radiusBottom": 0.06,
+                "height": 1.02,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": -0.15,
+                "y": 0.5,
+                "z": 0.1
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": 0.1,
+                "y": 0,
+                "z": 0.14,
+                "w": 0.99
+              },
+              "boneFrom": "canopy_icy_wp0_2",
+              "boneTo": "canopy_icy_wp1_2",
+              "boneRestLen": 1.02
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_icy_wp1_2",
+              "name": "wp1",
+              "offset": [
+                -0.3,
+                1,
+                0.2
+              ],
+              "meshes": [
+                {
+                  "id": "m14",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.05,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m15",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.04,
+                    "radiusBottom": 0.04,
+                    "height": 0.6,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.1,
+                    "y": 0.3,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.16,
+                    "w": 0.99
+                  },
+                  "boneFrom": "canopy_icy_wp1_2",
+                  "boneTo": "canopy_icy_wp2_2",
+                  "boneRestLen": 0.6
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_icy_wp2_2",
+                  "name": "wp2",
+                  "offset": [
+                    -0.2,
+                    0.6,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m16",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.03,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    },
+                    {
+                      "id": "m17",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          -1.1102230246251565e-16,
+                          -0.6000000000000005,
+                          0
+                        ],
+                        "b": [
+                          -0.5000000000000001,
+                          0.2999999999999998,
+                          0
+                        ],
+                        "c": [
+                          0.49999999999999994,
+                          0.2999999999999998,
+                          0
+                        ],
+                        "d": 0.1
+                      },
+                      "position": {
+                        "x": -0.7999999999999999,
+                        "y": 0.8666666666666663,
+                        "z": 0.6
+                      },
+                      "color": 11393254
+                    },
+                    {
+                      "id": "m18",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          1.1102230246251565e-16,
+                          -0.5333333333333332,
+                          0
+                        ],
+                        "b": [
+                          -0.4999999999999999,
+                          0.2666666666666666,
+                          0
+                        ],
+                        "c": [
+                          0.5,
+                          0.2666666666666666,
+                          0
+                        ],
+                        "d": 0.1
+                      },
+                      "position": {
+                        "x": -0.7000000000000001,
+                        "y": 1.4999999999999991,
+                        "z": -0.6
+                      },
+                      "color": 11393254
+                    },
+                    {
+                      "id": "m19",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          0,
+                          -0.40000000000000124,
+                          -2.7755575615628914e-17
+                        ],
+                        "b": [
+                          -0.5,
+                          0.1999999999999993,
+                          -2.7755575615628914e-17
+                        ],
+                        "c": [
+                          0.5,
+                          0.1999999999999993,
+                          -2.7755575615628914e-17
+                        ],
+                        "d": 0.08
+                      },
+                      "position": {
+                        "x": -0.5,
+                        "y": 1.9666666666666668,
+                        "z": 0.20000000000000004
+                      },
+                      "color": 11393254
+                    },
+                    {
+                      "id": "m20",
+                      "type": "box",
+                      "geometry": {
+                        "width": 0.7,
+                        "height": 0.06,
+                        "depth": 0.4
+                      },
+                      "position": {
+                        "x": -0.8,
+                        "y": 1.0666666666666655,
+                        "z": 0.6
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m21",
+                      "type": "box",
+                      "geometry": {
+                        "width": 0.6,
+                        "height": 0.06,
+                        "depth": 0.3
+                      },
+                      "position": {
+                        "x": -0.6,
+                        "y": 1.666666666666666,
+                        "z": -0.6
+                      },
+                      "color": 15790320
+                    },
+                    {
+                      "id": "m22",
+                      "type": "box",
+                      "geometry": {
+                        "width": 0.5,
+                        "height": 0.06,
+                        "depth": 0.3
+                      },
+                      "position": {
+                        "x": -0.4,
+                        "y": 2.0666666666666664,
+                        "z": 0.2
+                      },
+                      "color": 15790320
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canopy_fiery",
+      "name": "canopy_fiery",
+      "offset": [
+        0.6,
+        6.2333,
+        0
+      ],
+      "meshes": [],
+      "children": [
+        {
+          "id": "canopy_fiery_wp0",
+          "name": "wp0",
+          "offset": [
+            -0.6,
+            -2.0333,
+            0.4
+          ],
+          "meshes": [
+            {
+              "id": "m23",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.1,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m24",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.09,
+                "radiusBottom": 0.09,
+                "height": 1.41,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.3,
+                "y": 0.66,
+                "z": 0.15
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": 0.11,
+                "y": 0,
+                "z": -0.21,
+                "w": 0.97
+              },
+              "boneFrom": "canopy_fiery_wp0",
+              "boneTo": "canopy_fiery_wp1",
+              "boneRestLen": 1.41
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_fiery_wp1",
+              "name": "wp1",
+              "offset": [
+                0.6,
+                1.3,
+                0.3
+              ],
+              "meshes": [
+                {
+                  "id": "m25",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.07,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m26",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.07,
+                    "radiusBottom": 0.07,
+                    "height": 1.04,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.2,
+                    "y": 0.5,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.19,
+                    "w": 0.98
+                  },
+                  "boneFrom": "canopy_fiery_wp1",
+                  "boneTo": "canopy_fiery_wp2",
+                  "boneRestLen": 1.04
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_fiery_wp2",
+                  "name": "wp2",
+                  "offset": [
+                    0.4,
+                    1,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m27",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.05,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canopy_fiery_wp0_1",
+          "name": "wp0",
+          "offset": [
+            -0.6,
+            -1.0333,
+            -0.4
+          ],
+          "meshes": [
+            {
+              "id": "m28",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.1,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m29",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.09,
+                "radiusBottom": 0.09,
+                "height": 1.37,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.25,
+                "y": 0.66,
+                "z": -0.15
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": -0.11,
+                "y": 0,
+                "z": -0.18,
+                "w": 0.98
+              },
+              "boneFrom": "canopy_fiery_wp0_1",
+              "boneTo": "canopy_fiery_wp1_1",
+              "boneRestLen": 1.37
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_fiery_wp1_1",
+              "name": "wp1",
+              "offset": [
+                0.5,
+                1.3,
+                -0.3
+              ],
+              "meshes": [
+                {
+                  "id": "m30",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.07,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m31",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.07,
+                    "radiusBottom": 0.07,
+                    "height": 0.77,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.2,
+                    "y": 0.35,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.26,
+                    "w": 0.97
+                  },
+                  "boneFrom": "canopy_fiery_wp1_1",
+                  "boneTo": "canopy_fiery_wp2_1",
+                  "boneRestLen": 0.77
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_fiery_wp2_1",
+                  "name": "wp2",
+                  "offset": [
+                    0.4,
+                    0.7,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m32",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.05,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canopy_fiery_wp0_2",
+          "name": "wp0",
+          "offset": [
+            -0.6,
+            -0.0333,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m33",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.08,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m34",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.07,
+                "radiusBottom": 0.07,
+                "height": 1.05,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.2,
+                "y": 0.5,
+                "z": 0.1
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": 0.09,
+                "y": 0,
+                "z": -0.19,
+                "w": 0.98
+              },
+              "boneFrom": "canopy_fiery_wp0_2",
+              "boneTo": "canopy_fiery_wp1_2",
+              "boneRestLen": 1.05
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_fiery_wp1_2",
+              "name": "wp1",
+              "offset": [
+                0.4,
+                1,
+                0.2
+              ],
+              "meshes": [
+                {
+                  "id": "m35",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.05,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m36",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.05,
+                    "radiusBottom": 0.05,
+                    "height": 0.64,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.15,
+                    "y": 0.3,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.23,
+                    "w": 0.97
+                  },
+                  "boneFrom": "canopy_fiery_wp1_2",
+                  "boneTo": "canopy_fiery_wp2_2",
+                  "boneRestLen": 0.64
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_fiery_wp2_2",
+                  "name": "wp2",
+                  "offset": [
+                    0.3,
+                    0.6,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m37",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.04,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canopy_fiery_wp0_3",
+          "name": "wp0",
+          "offset": [
+            -0.6,
+            -1.5333,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m38",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.1,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 6111287
+            },
+            {
+              "id": "m39",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.09,
+                "radiusBottom": 0.09,
+                "height": 1.48,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0.4,
+                "y": 0.66,
+                "z": 0
+              },
+              "color": 6111287,
+              "quaternion": {
+                "x": 0,
+                "y": 0,
+                "z": -0.27,
+                "w": 0.96
+              },
+              "boneFrom": "canopy_fiery_wp0_3",
+              "boneTo": "canopy_fiery_wp1_3",
+              "boneRestLen": 1.48
+            }
+          ],
+          "children": [
+            {
+              "id": "canopy_fiery_wp1_3",
+              "name": "wp1",
+              "offset": [
+                0.8,
+                1.3,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m40",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.07,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 6111287
+                },
+                {
+                  "id": "m41",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.07,
+                    "radiusBottom": 0.07,
+                    "height": 1.04,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.2,
+                    "y": 0.5,
+                    "z": 0
+                  },
+                  "color": 6111287,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.19,
+                    "w": 0.98
+                  },
+                  "boneFrom": "canopy_fiery_wp1_3",
+                  "boneTo": "canopy_fiery_wp2_3",
+                  "boneRestLen": 1.04
+                }
+              ],
+              "children": [
+                {
+                  "id": "canopy_fiery_wp2_3",
+                  "name": "wp2",
+                  "offset": [
+                    0.4,
+                    1,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m42",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.05,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 6111287
+                    },
+                    {
+                      "id": "m43",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          0,
+                          -0.7333333333333334,
+                          1.1102230246251565e-16
+                        ],
+                        "b": [
+                          0.6000000000000001,
+                          0.36666666666666625,
+                          1.1102230246251565e-16
+                        ],
+                        "c": [
+                          -0.6,
+                          0.36666666666666625,
+                          1.1102230246251565e-16
+                        ],
+                        "d": 0.15
+                      },
+                      "position": {
+                        "x": 0.4,
+                        "y": 0.9999999999999991,
+                        "z": 0.6999999999999998
+                      },
+                      "color": 16729344
+                    },
+                    {
+                      "id": "m44",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          1.1102230246251565e-16,
+                          -0.6666666666666661,
+                          -1.1102230246251565e-16
+                        ],
+                        "b": [
+                          0.6000000000000001,
+                          0.33333333333333304,
+                          -1.1102230246251565e-16
+                        ],
+                        "c": [
+                          -0.5999999999999999,
+                          0.33333333333333304,
+                          -1.1102230246251565e-16
+                        ],
+                        "d": 0.15
+                      },
+                      "position": {
+                        "x": 0.29999999999999993,
+                        "y": 1.633333333333332,
+                        "z": -0.6999999999999998
+                      },
+                      "color": 16729344
+                    },
+                    {
+                      "id": "m45",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          -1.1102230246251565e-16,
+                          -0.4666666666666677,
+                          -2.7755575615628914e-17
+                        ],
+                        "b": [
+                          0.6,
+                          0.2333333333333325,
+                          -2.7755575615628914e-17
+                        ],
+                        "c": [
+                          -0.6000000000000001,
+                          0.2333333333333325,
+                          -2.7755575615628914e-17
+                        ],
+                        "d": 0.12
+                      },
+                      "position": {
+                        "x": 0.10000000000000009,
+                        "y": 2.033333333333333,
+                        "z": 0.20000000000000004
+                      },
+                      "color": 16729344
+                    },
+                    {
+                      "id": "m46",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          0,
+                          -0.666666666666667,
+                          0
+                        ],
+                        "b": [
+                          0.6000000000000001,
+                          0.33333333333333304,
+                          0
+                        ],
+                        "c": [
+                          -0.6,
+                          0.33333333333333304,
+                          0
+                        ],
+                        "d": 0.15
+                      },
+                      "position": {
+                        "x": 0.6,
+                        "y": 1.4333333333333327,
+                        "z": 0
+                      },
+                      "color": 16729344
+                    },
+                    {
+                      "id": "m47",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          -0.033333333333333326,
+                          -0.6000000000000005,
+                          0
+                        ],
+                        "b": [
+                          0.4666666666666667,
+                          0.2999999999999998,
+                          0
+                        ],
+                        "c": [
+                          -0.43333333333333335,
+                          0.2999999999999998,
+                          0
+                        ],
+                        "d": 0.12
+                      },
+                      "position": {
+                        "x": 0.2333333333333334,
+                        "y": 0.8666666666666663,
+                        "z": 0.5
+                      },
+                      "color": 13383424
+                    },
+                    {
+                      "id": "m48",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          -0.033333333333333326,
+                          -0.5333333333333332,
+                          0
+                        ],
+                        "b": [
+                          0.4666666666666667,
+                          0.2666666666666666,
+                          0
+                        ],
+                        "c": [
+                          -0.4333333333333333,
+                          0.2666666666666666,
+                          0
+                        ],
+                        "d": 0.12
+                      },
+                      "position": {
+                        "x": 0.1333333333333333,
+                        "y": 1.4999999999999991,
+                        "z": -0.5
+                      },
+                      "color": 13383424
+                    },
+                    {
+                      "id": "m49",
+                      "type": "tri",
+                      "geometry": {
+                        "a": [
+                          0,
+                          -0.5333333333333341,
+                          0
+                        ],
+                        "b": [
+                          0.5,
+                          0.2666666666666657,
+                          0
+                        ],
+                        "c": [
+                          -0.5,
+                          0.2666666666666657,
+                          0
+                        ],
+                        "d": 0.12
+                      },
+                      "position": {
+                        "x": 0.4,
+                        "y": 1.2999999999999998,
+                        "z": 0
+                      },
+                      "color": 13383424
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"修长挺拔的杨树，树干笔直细长，树冠呈圆柱状占整体高度1/2\",\n  \"regions\": [\n    {\"name\": \"trunk\", \"desc\": \"笔直修长，树皮-灰褐[5d4037]\"},\n    {\"name\": \"canopy_icy\", \"desc\": \"树冠左半侧，叶片稀疏收拢，冰蓝[add8e6]，枝头覆雪-白[f0f0f0]\"},\n    {\"name\": \"canopy_fiery\", \"desc\": \"树冠右半侧，叶片繁茂舒展，火红[ff4500]\"}\n  ],\n  \"methodologies\": [\"vegetation\"]\n}\n```",
+  "_routerThinking": "1. **具象化**:\n   - \"a lowpoly poplar tree with half icy blue and half fiery red leaves, contrasting seasons\" 是一个具体的实物（杨树），不需要情境化。跳过。\n\n2. **结构划分**:\n   - 单体模型（一棵树）。\n   - Group: trunk (树干), canopy (树冠，需要体现一半冰蓝一半火红的对比)。\n   - 或者将树冠分为两个部分：canopy_icy, canopy_fiery，以更好地体现对比。\n   - proportions: 细长挺拔的杨树，树冠占整体高度1/2，树干修长笔直。\n\n3. **写desc + 配件**:\n   - trunk: 修长笔直，树皮-灰褐[5d4037]\n   - canopy_icy: 树冠左半侧，叶片-冰蓝[add8e6]，稀疏/收拢轮廓（冬季感）\n   - canopy_fiery: 树冠右半侧，叶片-火红[ff4500]，繁茂/舒展轮廓（秋季感）\n   - 颜色分配：60% 灰褐/冰蓝/火红混合，30% 冰蓝，10% 火红（或者视觉上各占一半，这里直接写色块）。\n   - 不需要太多配件，树本身的结构为主。可以加一点地面附着物，比如根部的雪和火苗/落叶，但题目只要求树。保持简单。\n\n4. **方法论选取**:\n   - vegetation: 植物\n   - (不需要head, wings等)\n\n5. **组装JSON**:\n   - proportions: 修长挺拔的杨树，树干细长，树冠呈圆柱或尖塔状，占整体高度1/2\n   - regions:\n     - trunk: 笔直修长，树皮-灰褐[5d4037]\n     - canopy_icy: 树冠左半侧，叶片稀疏收拢，冰蓝[add8e6]，覆雪-白[f0f0f0]\n     - canopy_fiery: 树冠右半侧，叶片繁茂舒展，火红[ff4500]\n   - methodologies: [\"vegetation\"]",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly poplar tree.\n    *   **Key Feature:** Half icy blue leaves, half fiery red leaves (contrasting seasons).\n    *   **Draft Structure:**\n        *   `trunk`: Straight and slender, bark-gray-brown [5d4037].\n        *   `canopy_icy`: Left half of canopy, sparse/contracted leaves, icy blue [add8e6], snow on branches-white [f0f0f0].\n        *   `canopy_fiery`: Right half of canopy, lush/spreading leaves, fiery red [ff4500].\n    *   **Proportions:** Slender, straight trunk, cylindrical canopy taking up ~1/2 of total height.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Scale: 3. Typical tree height ~6-7 units.\n\n2.  **Determine Dimensions & Proportions:**\n    *   Total height: ~7 units.\n    *   Trunk height: ~3.5 units (half of total). Slender, so `r: 0.25` or `r: 0.3`.\n    *   Canopy height: ~3.5 units. Cylindrical shape (poplar characteristic), so `r: 1.2` to `1.5`.\n    *   Canopy center Y: 3.5 + 1.75 = 5.25.\n\n3.  **Drafting the Geometry:**\n    *   **Trunk:**\n        *   `cyl({r: 0.3, h: 3.5, pos: [0, 1.75, 0], color: 0x5d4037})`\n    *   **Canopy (Icy - Left):**\n        *   Needs to be on the -X side (left).\n        *   Poplar canopy is tall and narrow. I'll use a half-cylinder or overlapping `box`/`tri`/`patch` to form the left half.\n        *   Actually, a half-cylinder isn't directly supported, but I can use a `box` with `w: 2.4, h: 3.5, d: 2.4` and offset it, or use `patch`/`tri` for leaves.\n        *   Better approach for lowpoly tree canopy: Use a cluster of `tri` or `patch` or `sphere` cut in half? No, the prompt says \"no carving\". Use overlapping blocks or `chain`/`fork` branches with leaf clusters.\n        *   Let's use a main volume block for the canopy shape, then add leaf details.\n        *   Wait, poplar canopy is like a tall pillar. I can use a `box` or `cyl` for the main volume, but since it's split in half, I can use two half-width boxes or two offset cylinders.\n        *   Let's use `cyl` for the overall shape but shifted. Or better, build it from branches and leaf clusters (fan pattern).\n        *   Poplar branches point upwards.\n        *   Let's make a central trunk that extends into the canopy, then fork into left and right branches.\n        *   Trunk: `cyl({r: 0.3, h: 5, pos: [0, 2.5, 0]})` - wait, if canopy is 1/2 height, trunk is 3.5, canopy is 3.5.\n        *   Let's do trunk `h: 3.5`. Then a continuation of the trunk inside the canopy `h: 3.5`.\n        *   Canopy left (icy): A few branches forking to the -X side, with icy blue leaf clusters (tri/patch) and white snow patches.\n        *   Canopy right (fiery): Branches forking to the +X side, with fiery red leaf clusters, more lush (more leaves).\n\n4.  **Refining the Structure:**\n    *   `trunk`: `cyl({r:0.3, h:3.5, pos:[0,1.75,0], color:0x5d4037})`\n    *   `canopy_core`: `cyl({r:0.25, h:3.5, pos:[0,5.25,0], color:0x5d4037})` (inner trunk)\n    *   `canopy_icy` (Left, -X):\n        *   Sparse, contracted.\n        *   Branches: `fork` or `chain` pointing up and left.\n        *   Leaves: `tri` or `patch` in icy blue [add8e6].\n        *   Snow: `patch` or flat `box` in white [f0f0f0] on top of branches.\n    *   `canopy_fiery` (Right, +X):\n        *   Lush, spreading.\n        *   Branches: `fork` pointing up and right.\n        *   Leaves: `tri` or `patch` in fiery red [ff4500], more of them, slightly larger.\n\n5.  **Building the Canopy Details:**\n    *   Poplar leaves are usually represented by elongated `tri` or `patch` pointing upwards.\n    *   Let's create a few branch levels.\n    *   Level 1 (Y=4.5), Level 2 (Y=5.5), Level 3 (Y=6.5).\n    *   **Icy Side (-X):**\n        *   Branch 1: `chain` from [0, 4.5, 0] to [-1.2, 5.0, 0]. Leaves: small `tri` pointing up. Snow: flat `box` on top.\n        *   Branch 2: `chain` from [0, 5.5, 0] to [-1.0, 6.2, 0.5]. Leaves + Snow.\n        *   Branch 3: `chain` from [0, 6.5, 0] to [-0.8, 7.0, -0.5]. Leaves + Snow.\n        *   To make it \"sparse\", use fewer, smaller leaf patches.\n    *   **Fiery Side (+X):**\n        *   Branch 1: `chain` from [0, 4.5, 0] to [1.5, 5.2, 0]. Leaves: larger `tri`/`patch`.\n        *   Branch 2: `chain` from [0, 5.5, 0] to [1.4, 6.4, 0.5].\n        *   Branch 3: `chain` from [0, 6.5, 0] to [1.2, 7.2, -0.5].\n        *   To make it \"lush\", add more leaf patches, maybe a larger volume `box` or `cyl` as the base leaf mass, then add detail leaves on top.\n        *   Actually, using a main volume block for the canopy half is a great way to establish the \"poplar\" cylindrical shape.\n        *   Let's use a half-cylinder shape made of a `box` or `cyl`? A `cyl` offset won't look like a half cylinder.\n        *   How about a `box` with `w:1.2, h:3.5, d:2.4` for the left half, and same for the right half? Poplar canopy is round in cross-section, so `box` might look too square.\n        *   Let's use overlapping `tri` and `patch` to form the silhouette.\n        *   Or, use a `cyl` for the whole canopy, but color it? No, the prompt requires two distinct groups: `canopy_icy` and `canopy_fiery`.\n        *   Let's build the canopy volume using `patch` and `tri` arranged in a cylindrical pattern.\n        *   For Icy (-X): 3 or 4 `tri` arranged around the -X axis.\n        *   For Fiery (+X): 3 or 4 `tri` arranged around the +X axis, slightly larger/more numerous.\n\n6.  **Detailed Code Construction:**\n    *   Colors: Trunk=0x5d4037, Icy=0xadd8e6, Snow=0xf0f0f0, Fiery=0xff4500, DarkRed=0xcc3700.\n    *   Trunk:\n        `api.group('trunk','trunk');`\n        `api.cyl({r:0.3, h:3.5, pos:[0,1.75,0], color:0x5d4037});`\n        `api.cyl({r:0.2, h:3.5, pos:[0,5.25,0], color:0x5d4037});` // inner trunk\n        `api.endGroup();`\n    *   Canopy Icy:\n        `api.group('canopy_icy','canopy_icy');`\n        // Sparse branches\n        `api.chain({waypoints:[[0,4.5,0],[-0.8,5.2,0.3],[-1.2,5.8,0.3]], r:0.1, rEnd:0.05, color:0x5d4037});`\n        `api.chain({waypoints:[[0,5.5,0],[-0.6,6.2,-0.3],[-1.0,6.8,-0.3]], r:0.1, rEnd:0.05, color:0x5d4037});`\n        `api.chain({waypoints:[[0,6.5,0],[-0.4,7.0,0.2],[-0.7,7.4,0.2]], r:0.08, rEnd:0.04, color:0x5d4037});`\n        // Sparse leaves (tri pointing up and out)\n        `api.tri({a:[-1.2,5.8,0.3], b:[-1.8,6.5,0.3], c:[-0.6,6.5,0.3], d:0.15, color:0xadd8e6});`\n        `api.tri({a:[-1.0,6.8,-0.3], b:[-1.6,7.5,-0.3], c:[-0.4,7.5,-0.3], d:0.15, color:0xadd8e6});`\n        `api.tri({a:[-0.7,7.4,0.2], b:[-1.3,7.9,0.2], c:[-0.1,7.9,0.2], d:0.12, color:0xadd8e6});`\n        // Snow on top\n        `api.box({w:0.8, h:0.08, d:0.5, pos:[-1.0,6.5,0.3], color:0xf0f0f0});`\n        `api.box({w:0.6, h:0.08, d:0.4, pos:[-0.8,7.5,-0.3], color:0xf0f0f0});`\n        `api.endGroup();`\n    *   Canopy Fiery:\n        `api.group('canopy_fiery','canopy_fiery');`\n        // Lush branches\n        `api.chain({waypoints:[[0,4.5,0],[1.0,5.0,0.3],[1.5,5.6,0.3]], r:0.12, rEnd:0.06, color:0x5d4037});`\n        `api.chain({waypoints:[[0,5.5,0],[0.8,6.0,-0.3],[1.4,6.6,-0.3]], r:0.12, rEnd:0.06, color:0x5d4037});`\n        `api.chain({waypoints:[[0,6.5,0],[0.6,7.0,0.2],[1.1,7.5,0.2]], r:0.1, rEnd:0.05, color:0x5d4037});`\n        // Lush leaves (more tri, larger)\n        `api.tri({a:[1.5,5.6,0.3], b:[2.2,6.4,0.3], c:[0.8,6.4,0.3], d:0.2, color:0xff4500});`\n        `api.tri({a:[1.4,6.6,-0.3], b:[2.1,7.4,-0.3], c:[0.7,7.4,-0.3], d:0.2, color:0xff4500});`\n        `api.tri({a:[1.1,7.5,0.2], b:[1.8,8.0,0.2], c:[0.4,8.0,0.2], d:0.15, color:0xff4500});`\n        // Extra lushness (more leaves)\n        `api.tri({a:[1.5,5.6,-0.2], b:[2.2,6.4,-0.2], c:[0.8,6.4,-0.2], d:0.2, color:0xcc3700});`\n        `api.tri({a:[1.4,6.6,0.2], b:[2.1,7.4,0.2], c:[0.7,7.4,0.2], d:0.2, color:0xcc3700});`\n        `api.endGroup();`\n\n7.  **Refining for \"Poplar\" Shape:**\n    *   Poplars are very columnar. The current branches might look too much like a generic deciduous tree.\n    *   To make it columnar, the branches should point sharply upwards, close to the trunk.\n    *   Let's adjust the waypoints so they go more +Y than +X/-X.\n    *   Icy branches:\n        *   `[-0.5, 5.5, 0.2]`, `[-0.8, 6.5, 0.2]`\n        *   `[-0.4, 6.5, -0.2]`, `[-0.7, 7.5, -0.2]`\n    *   Fiery branches:\n        *   `[0.6, 5.5, 0.2]`, `[1.0, 6.5, 0.2]`\n        *   `[0.5, 6.5, -0.2]`, `[0.9, 7.5, -0.2]`\n    *   And add a main volume block to give it that solid cylindrical poplar feel.\n    *   Left half volume: `box({w:1.2, h:3.0, d:2.0, pos:[-0.6, 5.5, 0], color:0xadd8e6})` - wait, box is too blocky.\n    *   How about a `cyl` for the whole canopy, but split? I can't split a cyl.\n    *   I can use a `cyl` with `seg:6` or `seg:8` and just place the ones on the left and right.\n    *   Actually, a poplar canopy can be built with a central `cyl` of leaves, but since it's split, let's use two half-cylinders made of `patch` or just a cluster of `tri` that form a tight column.\n    *   Let's use a `box` with rounded edges? No, lowpoly.\n    *   Let's use a `cyl` for the left side and a `cyl` for the right side, slightly overlapping.\n    *   `api.cyl({r:1.0, h:3.5, seg:6, pos:[-0.3, 5.25, 0], color:0xadd8e6})` -> This will look like a full cylinder shifted left. Not quite half.\n    *   Better: Use `patch` to form the silhouette.\n    *   Or, just use a lot of upward-pointing `tri` and `patch` tightly packed.\n    *   Let's stick to the branch + leaf cluster method, but make the clusters more elongated and vertical.\n    *   Poplar leaf clusters are like vertical flames or teardrops.\n    *   Let's use `cyl` with `rTop:0.2, rBot:0.8` for the clusters? No, `tri` is better for lowpoly leaves.\n    *   Let's make the leaf clusters using `tri` with a high `b` point (pointing up).\n    *   Icy side: 3 main branches, leaves are tight to the trunk.\n    *   Fiery side: 3 main branches, leaves are slightly wider, more numerous.\n\n8.  **Re-evaluating the \"Half and Half\" visual:**\n    *   To make the half-and-half obvious, the canopy needs a clear central dividing line.\n    *   Using a central trunk that goes all the way up helps.\n    *   Let's add a few more branches to fill out the columnar shape.\n    *   Front and back also need leaves, but colored according to their X side.\n    *   Let's use a loop for the branches to ensure they wrap around their respective half.\n    *   For Icy (-X): Loop 3 times (front, side, back).\n    *   For Fiery (+X): Loop 3 times.\n\n9.  **Writing the Loop Logic:**\n    *   Icy:\n        ```javascript\n        for(let i=0; i<3; i++) {\n            let angle = Math.PI/2 + i * Math.PI/3; // -90, -30, +30 deg (left half)\n            let z = Math.sin(angle) * 0.5;\n            let x = Math.cos(angle) * 0.5 - 0.5; // keep it on the left\n            // branch and leaves\n        }\n        ```\n    *   Actually, simpler: just place them manually for better control over the \"sparse\" vs \"lush\" look.\n    *   Icy (Sparse):\n        *   Branch 1: `[0, 4.5, 0.5]` to `[-0.8, 6.0, 0.8]`\n        *   Branch 2: `[0, 5.5, -0.5]` to `[-0.7, 7.0, -0.8]`\n        *   Branch 3: `[0, 6.5, 0]` to `[-0.5, 7.5, 0]`\n    *   Fiery (Lush):\n        *   Branch 1: `[0, 4.5, 0.5]` to `[1.0, 6.0, 0.8]`\n        *   Branch 2: `[0, 5.5, -0.5]` to `[0.9, 7.0, -0.8]`\n        *   Branch 3: `[0, 6.5, 0]` to `[0.7, 7.5, 0]`\n        *   Branch 4: `[0, 5.0, 0]` to `[1.2, 6.5, 0]` (extra branch for lushness)\n\n10. **Refining Leaf Shapes (Poplar style):**\n    *   Poplar leaves flutter. `tri` is perfect.\n    *   Icy leaves: `tri({a:[-0.8,6.0,0.8], b:[-1.2,7.0,0.8], c:[-0.4,7.0,0.8], d:0.1, color:0xadd8e6})`\n    *   Add snow: `box({w:0.6, h:0.06, d:0.4, pos:[-0.8,6.9,0.8], color:0xf0f0f0})`\n    *   Fiery leaves: `tri({a:[1.0,6.0,0.8], b:[1.5,7.2,0.8], c:[0.5,7.2,0.8], d:0.15, color:0xff4500})`\n    *   Extra fiery leaves: `tri({a:[1.0,6.0,0.8], b:[1.5,7.2,0.8], c:[0.5,7.2,0.8], d:0.15, color:0xcc3700})` (offset slightly)\n\n11. **Final Polish of Coordinates:**\n    *   Trunk: `cyl({r:0.3, h:3.5, pos:[0,1.75,0]})`\n    *   Inner trunk: `cyl({r:0.2, h:3.5, pos:[0,5.25,0]})`\n    *   Let's make the inner trunk part of the `trunk` group.\n    *   Icy group:\n        *   Branches: `chain` with `r:0.08, rEnd:0.04`\n        *   Leaves: `tri` with `d:0.1`\n        *   Snow: flat `box` with `h:0.06`\n    *   Fiery group:\n        *   Branches: `chain` with `r:0.1, rEnd:0.05`\n        *   Leaves: `tri` with `d:0.15`\n    *   Ensure the poplar is tall and slender. Total height ~7.5. Canopy starts at Y=3.5, ends at Y=7.5. Width is narrow (~2.5 max).\n\n12. **Double Check Constraints:**\n    *   Only output `function build(api) { ... }`.\n    *   No markdown.\n    *   No explanation.\n    *   Scale 3.\n    *   Colors: 0x5d4037, 0xadd8e6, 0xf0f0f0, 0xff4500.\n    *   Groups: `trunk`, `canopy_icy`, `canopy_fiery`.\n\n13. **Generate Code:**\n    ```javascript\n    function build(api) {\n      api.name('双季杨树');\n      const C_BARK = 0x5d4037;\n      const C_ICY = 0xadd8e6;\n      const C_SNOW = 0xf0f0f0;\n      const C_FIRE = 0xff4500;\n      const C_FIRE_D = 0xcc3700;\n\n      api.group('trunk', 'trunk');\n      api.cyl({r:0.3, h:3.5, pos:[0,1.75,0], color:C_BARK});\n      api.cyl({r:0.2, h:3.5, pos:[0,5.25,0], color:C_BARK});\n      api.endGroup();\n\n      api.group('canopy_icy', 'canopy_icy');\n      // Sparse branches pointing up-left\n      api.chain({waypoints:[[0,4.2,0.4],[-0.5,5.5,0.6],[-0.8,6.5,0.6]], r:0.08, rEnd:0.04, color:C_BARK});\n      api.chain({waypoints:[[0,5.2,-0.4],[-0.4,6.5,-0.6],[-0.7,7.2,-0.6]], r:0.08, rEnd:0.04, color:C_BARK});\n      api.chain({waypoints:[[0,6.2,0],[-0.3,7.2,0.2],[-0.5,7.8,0.2]], r:0.07, rEnd:0.03, color:C_BARK});\n      // Sparse leaves\n      api.tri({a:[-0.8,6.5,0.6], b:[-1.3,7.4,0.6], c:[-0.3,7.4,0.6], d:0.1, color:C_ICY});\n      api.tri({a:[-0.7,7.2,-0.6], b:[-1.2,8.0,-0.6], c:[-0.2,8.0,-0.6], d:0.1, color:C_ICY});\n      api.tri({a:[-0.5,7.8,0.2], b:[-1.0,8.4,0.2], c:[0.0,8.4,0.2], d:0.08, color:C_ICY});\n      // Snow patches\n      api.box({w:0.7, h:0.06, d:0.4, pos:[-0.8,7.3,0.6], color:C_SNOW});\n      api.box({w:0.6, h:0.06, d:0.3, pos:[-0.6,7.9,-0.6], color:C_SNOW});\n      api.box({w:0.5, h:0.06, d:0.3, pos:[-0.4,8.3,0.2], color:C_SNOW});\n      api.endGroup();\n\n      api.group('canopy_fiery', 'canopy_fiery');\n      // Lush branches pointing up-right\n      api.chain({waypoints:[[0,4.2,0.4],[0.6,5.5,0.7],[1.0,6.5,0.7]], r:0.1, rEnd:0.05, color:C_BARK});\n      api.chain({waypoints:[[0,5.2,-0.4],[0.5,6.5,-0.7],[0.9,7.2,-0.7]], r:0.1, rEnd:0.05, color:C_BARK});\n      api.chain({waypoints:[[0,6.2,0],[0.4,7.2,0.2],[0.7,7.8,0.2]], r:0.08, rEnd:0.04, color:C_BARK});\n      api.chain({waypoints:[[0,4.7,0],[0.8,6.0,0],[1.2,7.0,0]], r:0.1, rEnd:0.05, color:C_BARK}); // Extra branch\n      // Lush leaves\n      api.tri({a:[1.0,6.5,0.7], b:[1.6,7.6,0.7], c:[0.4,7.6,0.7], d:0.15, color:C_FIRE});\n      api.tri({a:[0.9,7.2,-0.7], b:[1.5,8.2,-0.7], c:[0.3,8.2,-0.7], d:0.15, color:C_FIRE});\n      api.tri({a:[0.7,7.8,0.2], b:[1.3,8.5,0.2], c:[0.1,8.5,0.2], d:0.12, color:C_FIRE});\n      api.tri({a:[1.2,7.0,0], b:[1.8,8.0,0], c:[0.6,8.0,0], d:0.15, color:C_FIRE});\n      // Extra lushness (darker red inner leaves)\n      api.tri({a:[1.0,6.5,0.7], b:[1.6,7.6,0.7], c:[0.4,7.6,0.7], d:0.15, color:C_FIRE_D});\n      api.tri({a:[0.9,7.2,-0.7], b:[1.5,8.2,-0.7], c:[0.3,8.2,-0.7], d:0.15, color:C_FIRE_D});\n      api.tri({a:[1.2,7.0,0], b:[1.8,8.0,0], c:[0.6,8.0,0], d:0.15, color:C_FIRE_D});\n      api.endGroup();\n    }\n    ```\n    Wait, the overlapping `tri` with different colors at the exact same coordinates might cause z-fighting. I should offset the inner leaves slightly inwards (towards the trunk) or make them slightly smaller.\n    Let's make the inner leaves slightly smaller and offset towards the trunk.\n    Inner fiery leaves:\n    `api.tri({a:[0.8,6.5,0.5], b:[1.3,7.4,0.5], c:[0.4,7.4,0.5], d:0.12, color:C_FIRE_D});`\n    `api.tri({a:[0.7,7.2,-0.5], b:[1.2,8.0,-0.5], c:[0.3,8.0,-0.5], d:0.12, color:C_FIRE_D});`\n    `api.tri({a:[1.0,7.0,0], b:[1.5,7.8,0], c:[0.5,7.8,0], d:0.12, color:C_FIRE_D});`\n\n    This looks solid. The poplar shape is achieved by the branches pointing sharply upwards, and the leaf clusters being tall and narrow. The contrast between sparse/snowy and lush/fiery is clear.",
+  "_aiCode": "function build(api) {\n  api.name('双季杨树');\n  const C_BARK = 0x5d4037;\n  const C_ICY = 0xadd8e6;\n  const C_SNOW = 0xf0f0f0;\n  const C_FIRE = 0xff4500;\n  const C_FIRE_D = 0xcc3700;\n\n  api.group('trunk', 'trunk');\n  api.cyl({r:0.3, h:3.5, pos:[0,1.75,0], color:C_BARK});\n  api.cyl({r:0.2, h:3.5, pos:[0,5.25,0], color:C_BARK});\n  api.endGroup();\n\n  api.group('canopy_icy', 'canopy_icy');\n  api.chain({waypoints:[[0,4.2,0.4],[-0.5,5.5,0.6],[-0.8,6.5,0.6]], r:0.08, rEnd:0.04, color:C_BARK});\n  api.chain({waypoints:[[0,5.2,-0.4],[-0.4,6.5,-0.6],[-0.7,7.2,-0.6]], r:0.08, rEnd:0.04, color:C_BARK});\n  api.chain({waypoints:[[0,6.2,0],[-0.3,7.2,0.2],[-0.5,7.8,0.2]], r:0.07, rEnd:0.03, color:C_BARK});\n  api.tri({a:[-0.8,6.5,0.6], b:[-1.3,7.4,0.6], c:[-0.3,7.4,0.6], d:0.1, color:C_ICY});\n  api.tri({a:[-0.7,7.2,-0.6], b:[-1.2,8.0,-0.6], c:[-0.2,8.0,-0.6], d:0.1, color:C_ICY});\n  api.tri({a:[-0.5,7.8,0.2], b:[-1.0,8.4,0.2], c:[0.0,8.4,0.2], d:0.08, color:C_ICY});\n  api.box({w:0.7, h:0.06, d:0.4, pos:[-0.8,7.3,0.6], color:C_SNOW});\n  api.box({w:0.6, h:0.06, d:0.3, pos:[-0.6,7.9,-0.6], color:C_SNOW});\n  api.box({w:0.5, h:0.06, d:0.3, pos:[-0.4,8.3,0.2], color:C_SNOW});\n  api.endGroup();\n\n  api.group('canopy_fiery', 'canopy_fiery');\n  api.chain({waypoints:[[0,4.2,0.4],[0.6,5.5,0.7],[1.0,6.5,0.7]], r:0.1, rEnd:0.05, color:C_BARK});\n  api.chain({waypoints:[[0,5.2,-0.4],[0.5,6.5,-0.7],[0.9,7.2,-0.7]], r:0.1, rEnd:0.05, color:C_BARK});\n  api.chain({waypoints:[[0,6.2,0],[0.4,7.2,0.2],[0.7,7.8,0.2]], r:0.08, rEnd:0.04, color:C_BARK});\n  api.chain({waypoints:[[0,4.7,0],[0.8,6.0,0],[1.2,7.0,0]], r:0.1, rEnd:0.05, color:C_BARK});\n  api.tri({a:[1.0,6.5,0.7], b:[1.6,7.6,0.7], c:[0.4,7.6,0.7], d:0.15, color:C_FIRE});\n  api.tri({a:[0.9,7.2,-0.7], b:[1.5,8.2,-0.7], c:[0.3,8.2,-0.7], d:0.15, color:C_FIRE});\n  api.tri({a:[0.7,7.8,0.2], b:[1.3,8.5,0.2], c:[0.1,8.5,0.2], d:0.12, color:C_FIRE});\n  api.tri({a:[1.2,7.0,0], b:[1.8,8.0,0], c:[0.6,8.0,0], d:0.15, color:C_FIRE});\n  api.tri({a:[0.8,6.5,0.5], b:[1.3,7.4,0.5], c:[0.4,7.4,0.5], d:0.12, color:C_FIRE_D});\n  api.tri({a:[0.7,7.2,-0.5], b:[1.2,8.0,-0.5], c:[0.3,8.0,-0.5], d:0.12, color:C_FIRE_D});\n  api.tri({a:[1.0,7.0,0], b:[1.5,7.8,0], c:[0.5,7.8,0], d:0.12, color:C_FIRE_D});\n  api.endGroup();\n}",
+  "_description": "a lowpoly poplar tree with half icy blue and half fiery red leaves, contrasting seasons",
+  "_formulaResult": {
+    "methodologies": [
+      "vegetation"
+    ],
+    "regions": [
+      {
+        "name": "trunk",
+        "desc": "笔直修长，树皮-灰褐[5d4037]"
+      },
+      {
+        "name": "canopy_icy",
+        "desc": "树冠左半侧，叶片稀疏收拢，冰蓝[add8e6]，枝头覆雪-白[f0f0f0]"
+      },
+      {
+        "name": "canopy_fiery",
+        "desc": "树冠右半侧，叶片繁茂舒展，火红[ff4500]"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('trunk','trunk') → 笔直修长，树皮-灰褐[5d4037] → api.endGroup()\napi.group('canopy_icy','canopy_icy') → 树冠左半侧，叶片稀疏收拢，冰蓝[add8e6]，枝头覆雪-白[f0f0f0] → api.endGroup()\napi.group('canopy_fiery','canopy_fiery') → 树冠右半侧，叶片繁茂舒展，火红[ff4500] → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly poplar tree with half icy blue and half fiery red leaves, contrasting seasons\"\n\n草稿结构：\n  trunk: 笔直修长，树皮-灰褐[5d4037]\n  canopy_icy: 树冠左半侧，叶片稀疏收拢，冰蓝[add8e6]，枝头覆雪-白[f0f0f0]\n  canopy_fiery: 树冠右半侧，叶片繁茂舒展，火红[ff4500]\n整体比例：修长挺拔的杨树，树干笔直细长，树冠呈圆柱状占整体高度1/2\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242346020,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}
