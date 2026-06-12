@@ -187,10 +187,14 @@ export async function loadAnimationPlan(animPath) {
 export function applyAnimation(plan, duration, model, t, basePoseMap = null) {
   if (!voxelRuntime || !plan) return basePoseMap;
 
-  // Pass model wrapper (with getPart/getChildren) to evaluateMotion,
-  // not the raw THREE.Group. Required for complex templates like tilt/wave/flow.
-  const modelArg = model._voxelModel || model;
-  const pose = voxelRuntime.evaluateMotion(plan, duration, modelArg, t);
+  let pose;
+  try {
+    const modelArg = model._voxelModel || model;
+    pose = voxelRuntime.evaluateMotion(plan, duration, modelArg, t);
+  } catch (err) {
+    console.warn('[ModelLoader] evaluateMotion failed:', err.message);
+    return basePoseMap;
+  }
 
   // Build base pose map lazily on first call
   if (!basePoseMap) {

@@ -30,15 +30,15 @@ npm run preview  # Preview production build locally
 
 ---
 
-## 当前完成状态（2026-06-12）
+## 当前完成状态（2026-06-12，本轮后）
 
 ### 当前玩法循环
 
 ```
-玩家在 10×10 单位环境网格上漫游
+玩家在 3×3 世界网格（9个单位环境）上漫游
   |
-  ├─ E靠近宠物小屋 → 召唤宠物（马扣/扶摇/momo）
-  |       └─ E再次靠近小屋 → 宠物走回 → 停顿2s → 消失（可重新召唤）
+  ├─ E靠近宠物小屋 → 召唤宠物（马扣/扶摇/momo）在旁边一格生成
+  |       └─ E再次靠近小屋 → 宠物走回旁边一格 → 停顿 → 消失（可重新召唤）
   |
   ├─ 靠近宠物 → E抚摸 → 亲密度+1
   |       ├─ lv5: AI 生成新物品
@@ -48,25 +48,53 @@ npm run preview  # Preview production build locally
   |
   ├─ 靠近风铃 → E捡起 / 再次E放下
   |
+  ├─ 进入外围环境 → 右上角提示 "按P展示/隐藏该地形内容"
+  |       └─ 按O全局显示/隐藏所有外围环境（一键回到单中心场景）
+  |
   └─ 屏幕底部显示 "xxx 按E交互/唤起/召回/抚摸/捡起" 提示
 ```
+
+### 世界网格系统（3×3）
+
+以中心环境（玛扣大森林）为核心，周围布置 8 个差异化环境，间距 23。
+
+```
+待售空地    | 繁华城市    | 农村池塘
+------------|-------------|------------
+暗黑森林    | 玛扣大森林  | 田园牧场
+------------|-------------|------------
+危险区域    | 另一片森林  | 干旱沙地
+```
+
+每个环境内部：中心 `[5,5]` 放置主题 `Environment` 模型；3-4棵树（全尺寸）；1-3个宠物小屋（半尺寸）；2-4个装饰物（半尺寸）。地块染色逻辑保持一致（树=绿/装饰=黄/小屋=红）。
+
+**按需加载机制（性能优化）：**
+- 外围 8 个环境的物品默认隐藏（`mesh.visible = false`），只保留灰色地块 + 环境中心模型
+- `O` 键：全局切换所有外围环境的显隐（一键显示/一键回到中心）
+- `P` 键：在当前所在的外围环境内，单独切换该环境物品的显隐
+- 实际可见性公式：`visible = outerEnvGlobalVisible && envVisibleState[i]`
+- 物品按环境分组存储于 `envEntityGroups[9]`，状态记录在 `envVisibleState[9]`
+- 交互提示自动跳过 `visible=false` 的实体
 
 ### 已实现系统
 
 | 系统 | 说明 |
 |------|------|
-| 单位环境 | 10×10 离散地块网格，每个地块 2×2×0.1 灰色体块，之间留缝。通过 `paintUnitArea()` 按类型染色（树=绿/装饰=黄/建筑=红） |
-| 环境（玛扣大森林） | 使用 tree_marko 模型，收集全网格实体 tag，取频率前 5 为 coreTags。代替原来的"森林"环境 |
-| 玩家 | 蓝色圆锥，WASD 直接向量移动（forward = 摄像机观察方向），左键拖拽旋转视角，滚轮缩放 |
-| 装饰品 | ps5游戏机/ns2游戏机/雷霆大雪绒（StaticEntity），半尺寸，不可移动，按 E 播放呼吸动画 |
-| 树木 | 魔女/yafo/金鱼/星尘槐（StaticEntity），全尺寸，绿色单位面积，按 E 播放呼吸动画 |
-| 宠物小屋 | 马扣的家/扶摇的家/momo的家（StaticEntity），半尺寸，红色单位面积，映射专属宠物 |
-| 宠物召唤/召回 | E靠近小屋 → 召唤宠物出现并开始 wandering；再次E → 宠物 walk 回小屋旁 → 停顿 2s → 消失 |
-| 宠物 | 马扣（小马）/扶摇（小鸟）/momo（团子），模型+idle/walk动画，缩小至 50%，完整的亲密度/状态机/dialogue |
-| 宠物动画 | 优先使用 Voxel Runtime 播放（evaluateMotion）；Runtime 不可用时自动 fallback 为客户端 sine wave 弹跳/呼吸 |
-| 互动提示 UI | 屏幕底部 DOM overlay，检测 INTERACT_HINT_RANGE=1.8 内的所有可交互对象，垂直排列显示 |
-| 物品 | 仅保留风铃，E 捡起/放下（和之前逻辑完全一样） |
-| 模型加载 | 优先使用 Voxel Runtime buildGeometry；不可用时 fallbackBuildGeometry 支持 box/sphere/cylinder/cone/icosahedron |
+| 世界网格 | 3×3 单位环境矩阵，间距 23。每个环境 10×10 离散地块 |
+| 单位面积 | 2×2×0.1 灰色体块，顶部齐平 Y=0。通过 `paintUnitArea()` 按类型染色 |
+| 环境染色 | 树=浅绿 / 装饰=浅黄 / 宠物小屋=浅红 / 默认=灰色 |
+| 环境实体 | 9 个环境各有一个中心 `Environment` 模型（tree_marko/pond/grassland/forest/trainer/sun_stone 等） |
+| 玩家 | 蓝色圆锥，WASD 直接向量移动，左键拖拽旋转，滚轮缩放 |
+| 装饰品 | ps5/ns2/雷霆大雪绒/苔藓灯/风铃/太阳石/训练桩等（StaticEntity），半尺寸，不可移动，按 E 呼吸动画 |
+| 树木 | 魔女/yafo/金鱼/tree_rand_1~6 等（StaticEntity），全尺寸，绿色单位面积 |
+| 宠物小屋 | 马扣的家/扶摇的家/momo的家 + 各环境主题小屋（StaticEntity），半尺寸，红色单位面积 |
+| 宠物召唤/召回 | E靠近小屋 → 在旁边一格召唤；再次E → 走回旁边一格 → 停顿 2s → 消失 |
+| 宠物 | 马扣（小马行走）/扶摇（小鸟飞翔）/momo（团子行走），模型+idle/walk动画，50%缩放，完整亲密度/状态机/dialogue |
+| 宠物动画 | 优先 Voxel Runtime（evaluateMotion）；`tilt` 类型已禁用（会导致卡死）；不可用 fallback 客户端 sine wave |
+| 按需加载 | `O` 全局开关 + `P` 单环境开关；按环境分组 `envEntityGroups`；进入环境检测 `getCurrentEnvIndex` |
+| 互动提示 UI | 屏幕底部 DOM overlay；右上角 `globalHintEl`（O键）+ `toggleHintEl`（P键） |
+| 物品 | 仅保留风铃，E 捡起/放下 |
+| 模型加载 | 优先 Voxel Runtime buildGeometry；不可用时 fallbackBuildGeometry（box/sphere/cylinder/cone/icosahedron） |
 | Tag 标签 | 所有实体上方浮动 Canvas Sprite，显示名字 + tag + 居民信息 |
 | 点击检查 | 点击任意物体闪白 + console 输出完整数据，5px 拖拽阈值区分 click/drag |
 
@@ -182,6 +210,8 @@ function trigger() {
 3. **宠物动画 fallback** — 客户端 fallback 只能做简单的弹跳/呼吸，无法还原真正的 walk/idle 动画。
 4. **田园商店模型** — 后端多次生成失败（AI空返回/内部错误），`country_shop.json` 未生成，目前显示黄色方块 fallback。
 5. **生成脚本分散** — `scripts/` 下有多个生成脚本（generate-decor.mjs, generate-house-pets.mjs, generate-pet-house.mjs 等），缺少统一的批量生成入口。
+6. **环境内容同质化** — 8 个外围环境复用现有模型 JSON（tree_rand_1~6, pet_house 等），主题差异化主要靠标签和颜色。后续应为主题环境生成专属模型。
+7. **宠物召唤去重** — 已修复：`interact.js` 通过 `pets.includes(data.pet)` 防止重复 push。
 
 ---
 
@@ -221,6 +251,7 @@ Phase 3（中长期）：开拓与社交网络
 
 ### 现有系统迁移要点
 
+- **`main.js`**：已扩展为 3×3 世界网格 + 按需加载系统。新增环境只需在 `envGridConfigs` 和 `envLayouts` 中添加配置。
 - **`terrain.js`**：已实现 10×10 离散地块 + paintUnitArea()。需进一步支持地块锁定/解锁。
 - **`Environment.js`**：已改为 tag 频率收集（Top5）。需增加 `envType` 和 `explored` 状态。
 - **`Pet.js`**：已有状态机（wandering/seeking_player/chatting/returning_home/recall_pause）+ 召回系统。需增加 `working` 状态和 `ability` 字段。
@@ -247,6 +278,7 @@ Phase 3（中长期）：开拓与社交网络
 
 | 文件 | 重要性 | 原因 |
 |------|--------|------|
+| `src/main.js` | ★★★ | 世界网格初始化、环境分组、按需加载、动画循环主调度。当前最复杂的启动文件 |
 | `src/ai/modelLoader.js` | ★★★ | 模型构建+动画播放核心。buildModelFromJson + fallbackBuildGeometry |
 | `src/entities/Pet.js` | ★★★ | 最复杂的实体：状态机(6种状态)、亲密度、对话、动画、变色、召回 |
 | `src/entities/Environment.js` | ★★ | tag系统核心，tag频率收集(Top5)，居民追踪 |
@@ -286,6 +318,46 @@ Phase 3（中长期）：开拓与社交网络
 **AI服务：**
 - **DeepSeek API** (`api.deepseek.com`) — 文本侧AI：宠物概念/对话/里程碑物品/环境
 - **Voxel Studio API** (`voxel-studio-backend.zeabur.app`) — 3D侧AI：模型生成/动画生成/Runtime引擎
+
+---
+
+## 上下文管理（kimi 2.6 窗口限制）
+
+> **当前模型：** kimi 2.6（上下文窗口约 200k，但长对话下有效记忆会衰减）。
+> **目标：** 在窗口耗尽前主动建议新开窗口，避免关键信息丢失或幻觉。
+
+### 省上下文编码原则
+
+1. **避免回传全文** — 使用 `Read` 后，回复中只引用关键片段（`file:line`），不重复贴出整个文件内容。
+2. **精准读取** — 用 `offset` + `limit` 只读必要行数，禁止无差别 `cat` 大文件。
+3. **优先 Edit 而非 Write** — 部分修改用 `Edit` 工具，减少因重写整个文件而涌入上下文的 token。
+4. **克制长输出** — 运行命令时若预期输出很长，先重定向到文件再 `Read` 摘要；禁止把几百行日志贴进对话。
+5. **文件分批** — 涉及多个文件的复杂任务，按模块分批次处理，每批控制在 3 个文件以内。
+
+### 主动清理与总结
+
+- **每轮大改动后主动小结**：在回复末尾用 2-3 句话总结本轮已确认的关键结论（接口签名、状态变更、待办项）。
+- **已弃用/历史信息不重复**：引用 `CLAUDE.md` 或 `readme.md` 中的既有记录即可，不重新展开。
+- **多轮对话后聚焦**：超过 10 轮后，后续回复只保留与当前任务直接相关的上下文，旧结论视为已共识。
+
+### 提醒阈值与开新窗口
+
+| 条件 | 动作 |
+|------|------|
+| 对话轮数 > 15 | 在回复末尾提醒用户："建议新开窗口继续，当前窗口接近上限。" |
+| 已修改文件 > 8 个 | 同上 |
+| 单次涉及代码行数 > 500 行 | 拆分为多轮或建议开新窗口 |
+| 用户要求"继续"且窗口已长 | 先给出 3 行以内摘要，再执行 |
+
+**新开窗口快速恢复模板（供用户粘贴）：**
+
+```
+继续开发 agentworld-test。当前分支 main，最后进度：
+- 已完成：xxx
+- 正在做：xxx
+- 待解决：xxx
+- 相关文件：src/xxx.js, src/yyy.js
+```
 
 ---
 

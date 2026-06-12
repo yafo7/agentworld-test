@@ -56,19 +56,20 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
           const dist = player.mesh.position.distanceTo(data.house.mesh.position);
           if (dist < HOUSE_SUMMON_RANGE) {
             if (!data.summoned) {
-              // Summon
-              const spawnPos = data.house.mesh.position.clone();
-              spawnPos.x += (Math.random() - 0.5) * 2;
-              spawnPos.z += (Math.random() - 0.5) * 2;
+              // Summon at the grid next to the house
+              const spawnPos = { x: data.sidePos.x, y: 0, z: data.sidePos.z };
               data.pet.spawnAt(spawnPos);
-              addToScene(data.pet.mesh);
-              pets.push(data.pet);
+              if (!pets.includes(data.pet)) {
+                addToScene(data.pet.mesh);
+                pets.push(data.pet);
+              }
               data.summoned = true;
               console.log(`[Summon] ${data.pet.name} 从 ${houseName} 出现了！`);
               return;
             } else if (data.pet.spawned && data.pet.state !== 'returning_home' && data.pet.state !== 'recall_pause') {
-              // Recall
-              data.pet.startRecall(data.house.mesh.position, () => {
+              // Recall to the grid next to the house
+              const recallPos = { x: data.sidePos.x, y: 0, z: data.sidePos.z };
+              data.pet.startRecall(recallPos, () => {
                 data.summoned = false;
                 console.log(`[Recall] ${data.pet.name} 已回到 ${houseName}`);
               });

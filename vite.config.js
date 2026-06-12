@@ -1,6 +1,11 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [/^\/api\/voxel\/.*/],
+    },
+  },
   server: {
     proxy: {
       // Proxy all Voxel Studio API requests to avoid CORS issues.

@@ -5,10 +5,6 @@
     "bounce": {
       "amplitude": 0.05,
       "frequency": 1.2
-    },
-    "tilt": {
-      "axis": "x",
-      "angle": 8
     }
   },
   "head": {
@@ -16,8 +12,7 @@
       "axis": "z",
       "amplitude": 0.03,
       "frequency": 1.2
-    },
-    "_attach": "body"
+    }
   },
   "rightLeg": {
     "swing": {
