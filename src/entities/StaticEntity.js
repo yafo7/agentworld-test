@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
-import { loadModel } from '../ai/modelLoader.js';
+import { createSpeechBubble } from '../ui/SpeechBubble.js';
+import { loadModel, buildModelFromJson, applyAnimation } from '../ai/modelLoader.js';
+import { generateAnimation } from '../ai/voxelApi.js';
 
 /**
  * Static entity — an immovable decoration or tree that displays a name + tag label.
@@ -45,6 +47,17 @@ export class StaticEntity {
     // Tag label
     this._label = createTagLabel(this.mesh, []);
     this._syncLabel();
+
+    // Construction label (for refine)
+    this._constructionBubble = createSpeechBubble(this.mesh);
+    this._constructionRefCount = 0;
+
+    // Interaction animation (generated after refine)
+    this._interactionPlan = null;
+    this._interactionDuration = 2.0;
+    this._interactionTime = 0;
+    this._interactionPlaying = false;
+    this._interactionPartMap = null;
   }
 
   async _loadModel(modelName) {
@@ -66,6 +79,116 @@ export class StaticEntity {
   }
 
   _syncLabel() { this._label.update(this.name, this.tags); }
+
+  setTags(newTags) {
+    this.tags = [...newTags];
+    this._syncLabel();
+  }
+
+  // ---- construction label ----
+
+  showConstructionLabel() {
+    this._constructionRefCount++;
+    this._constructionBubble.show('正在施工中...');
+  }
+
+  hideConstructionLabel() {
+    this._constructionRefCount = Math.max(0, this._constructionRefCount - 1);
+    if (this._constructionRefCount === 0) {
+      this._constructionBubble.hide();
+    }
+  }
+
+  // ---- model refine (async) ----
+
+  async refineModel(modelJson, newTags = []) {
+    try {
+      const newModel = buildModelFromJson(modelJson);
+      if (!newModel) throw new Error('Failed to build model from JSON');
+
+      // Remove old model or fallback
+      if (this._modelGroup) {
+        this._content.remove(this._modelGroup);
+        this._modelGroup = null;
+      } else {
+        this._content.remove(this._fallback);
+      }
+
+      // Add new model
+      const box = new THREE.Box3().setFromObject(newModel);
+      newModel.position.y = -box.min.y;
+      this._content.add(newModel);
+      this._modelGroup = newModel;
+
+      // Reset interaction animation (old plan no longer valid for new model)
+      this._interactionPlan = null;
+      this._interactionPlaying = false;
+      this._interactionPartMap = null;
+
+      // Update tags
+      for (const tag of newTags) {
+        if (tag && !this.tags.includes(tag)) this.tags.push(tag);
+      }
+      this._syncLabel();
+
+      console.log(`[StaticEntity] ${this.name} refined with tags [${newTags.join(', ')}]`);
+    } catch (err) {
+      console.error(`[StaticEntity] Refine failed for ${this.name}:`, err);
+      // Restore fallback if nothing is visible
+      if (!this._modelGroup && this._content.children.length === 0) {
+        this._content.add(this._fallback);
+      }
+    }
+  }
+
+  // ---- interaction animation (AI-generated, plays on E-key) ----
+
+  setInteractionAnimation(plan, duration = 2.0) {
+    this._interactionPlan = plan;
+    this._interactionDuration = duration;
+    this._interactionTime = 0;
+    this._interactionPlaying = false;
+    this._interactionPartMap = null;
+  }
+
+  playInteractionAnimation() {
+    if (!this._interactionPlan || !this._modelGroup) {
+      this.playBreathing();
+      return;
+    }
+    this._interactionPlaying = true;
+    this._interactionTime = 0;
+    this._interactionPartMap = null;
+  }
+
+  updateAnimation(dt = 0.016) {
+    if (!this._interactionPlaying || !this._interactionPlan || !this._modelGroup) return;
+
+    this._interactionTime += dt;
+    const t = this._interactionTime % this._interactionDuration;
+    this._interactionPartMap = applyAnimation(
+      this._interactionPlan,
+      this._interactionDuration,
+      this._modelGroup,
+      t,
+      this._interactionPartMap
+    );
+
+    if (this._interactionTime >= this._interactionDuration) {
+      this._interactionPlaying = false;
+      // Reset to base poses
+      if (this._interactionPartMap) {
+        for (const [partId, base] of this._interactionPartMap) {
+          const obj = this._modelGroup.getObjectByName(partId);
+          if (obj) {
+            obj.position.copy(base.position);
+            obj.rotation.copy(base.rotation);
+            obj.scale.copy(base.scale);
+          }
+        }
+      }
+    }
+  }
 
   // ---- breathing animation (client-side sine wave) ----
 

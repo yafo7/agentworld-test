@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
 import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { getPlayerLine } from '../game/gameData.js';
-import { loadModel, loadAnimationPlan, applyAnimation, getRuntime } from '../ai/modelLoader.js';
+import { loadModel, loadAnimationPlan, applyAnimation, getRuntime, buildModelFromJson } from '../ai/modelLoader.js';
+import { generateModel, generateAnimation } from '../ai/voxelApi.js';
 
 export { PET_CONFIGS, INTIMACY_ITEM_CONFIGS, ENV_POND, ENV_GRASSLAND } from '../game/gameData.js';
 
@@ -97,6 +98,37 @@ export class Pet {
     this._animDuration = 2.5;
     this._animPartMap = null;
     this._loadAnimations();
+
+    // ---- world data (injected by main.js) ----
+    this._staticEntities = [];
+    this._envGridConfigs = [];
+    this._allPets = [];
+    this._environments = [];
+    this._items = [];
+    this._homeEnvIndex = 4;
+    this._homePosition = new THREE.Vector3();
+
+    // ---- visit / action / linger timers ----
+    this._visitTimer = 0;
+    this._visitedEnvIndex = -1;
+    this._actionTimer = 30;
+    this._lingerTimer = 0;
+    this._followTarget = null;
+    this._returnToWander = false;
+
+    // ---- action target (decor or other pet) ----
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+
+    // ---- refine state ----
+    this._refineTarget = null;
+    this._refineAngle = 0;
+    this._refineCircling = false;
+    this._refineGenerating = false;
+
+    // ---- construction label (when being refined by others) ----
+    this._constructionBubble = createSpeechBubble(this.mesh);
+    this._constructionRefCount = 0;
   }
 
   // ===================================================================
@@ -144,7 +176,15 @@ export class Pet {
     this._behaviorTimer = BEHAVIOR_INTERVAL;
     this._isWalking = false;
     this.state = 'wandering';
-    this._pickRandomTarget(); // target relative to spawn position
+    this._visitTimer = 0;
+    this._visitedEnvIndex = -1;
+    this._actionTimer = 30;
+    this._lingerTimer = 0;
+    this._followTarget = null;
+    this._returnToWander = false;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._pickRandomTargetInEnv(this._homeEnvIndex);
   }
 
   despawn() {
@@ -153,13 +193,342 @@ export class Pet {
     this.state = 'wandering';
     this._bubble.hide();
     this._label.sprite.visible = false;
+    this._visitTimer = 0;
+    this._visitedEnvIndex = -1;
+    this._followTarget = null;
+    this._returnToWander = false;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
   }
 
   startRecall(homePosition, onComplete) {
     this.state = 'returning_home';
     this._recallTarget.copy(homePosition);
     this._onRecallComplete = onComplete;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
     console.log(`[Pet] ${this.name} is returning home...`);
+  }
+
+  // ===================================================================
+  // world data injection
+  // ===================================================================
+
+  setWorldData(staticEntities, envGridConfigs, homePosition, homeEnvIndex, allPets, environments, items) {
+    this._staticEntities = staticEntities;
+    this._envGridConfigs = envGridConfigs;
+    this._homePosition.set(homePosition.x, 0, homePosition.z);
+    this._homeEnvIndex = homeEnvIndex;
+    this._allPets = allPets;
+    this._environments = environments;
+    this._items = items;
+  }
+
+  getCurrentEnvIndex() {
+    const HALF_WIDTH = 10 * 2.05 / 2; // 10.25, matches main.js
+    for (let i = 0; i < this._envGridConfigs.length; i++) {
+      const cfg = this._envGridConfigs[i];
+      const dx = Math.abs(this.mesh.position.x - cfg.center[0]);
+      const dz = Math.abs(this.mesh.position.z - cfg.center[1]);
+      if (dx <= HALF_WIDTH && dz <= HALF_WIDTH) {
+        return i;
+      }
+    }
+    return this._homeEnvIndex;
+  }
+
+  _getNeighborEnvIndices() {
+    const idx = this.getCurrentEnvIndex();
+    const row = Math.floor(idx / 3);
+    const col = idx % 3;
+    const neighbors = [];
+    if (row > 0) neighbors.push(idx - 3);
+    if (row < 2) neighbors.push(idx + 3);
+    if (col > 0) neighbors.push(idx - 1);
+    if (col < 2) neighbors.push(idx + 1);
+    return neighbors;
+  }
+
+  _pickRandomTargetInEnv(envIndex) {
+    const cfg = this._envGridConfigs[envIndex];
+    if (!cfg) {
+      this._pickRandomTargetFallback();
+      return;
+    }
+    const range = 8; // slightly less than 9.225 half-width to stay inside grid
+    this._target.set(
+      cfg.center[0] + (Math.random() - 0.5) * 2 * range,
+      0,
+      cfg.center[1] + (Math.random() - 0.5) * 2 * range
+    );
+  }
+
+  _pickRandomTargetFallback() {
+    const cx = this.mesh.position.x;
+    const cz = this.mesh.position.z;
+    this._target.set(
+      cx + (Math.random() - 0.5) * 6,
+      0,
+      cz + (Math.random() - 0.5) * 6
+    );
+  }
+
+  // ===================================================================
+  // follow system
+  // ===================================================================
+
+  startFollowing(player) {
+    this.state = 'following';
+    this._followTarget = player;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
+    console.log(`[Pet] ${this.name} is now following the player.`);
+  }
+
+  stopFollowing() {
+    this.state = 'linger';
+    this._lingerTimer = 30;
+    this._followTarget = null;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
+    console.log(`[Pet] ${this.name} stopped following, lingering for 30s.`);
+  }
+
+  // ===================================================================
+  // visit system
+  // ===================================================================
+
+  _startVisiting() {
+    const neighbors = this._getNeighborEnvIndices();
+    if (neighbors.length === 0) return;
+    this._visitedEnvIndex = neighbors[Math.floor(Math.random() * neighbors.length)];
+    this._visitTimer = 60;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._pickRandomTargetInEnv(this._visitedEnvIndex);
+    this._isWalking = true;
+    console.log(`[Pet] ${this.name} is visiting ${this._envGridConfigs[this._visitedEnvIndex].name}`);
+  }
+
+  _startReturnHome() {
+    this.state = 'returning_home';
+    this._recallTarget.copy(this._homePosition);
+    this._returnToWander = true;
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
+    console.log(`[Pet] ${this.name} is returning home.`);
+  }
+
+  _clearRefine() {
+    if (this._refineTarget) {
+      this._refineTarget.hideConstructionLabel();
+    }
+    this._refineTarget = null;
+    this._refineAngle = 0;
+    this._refineCircling = false;
+    this._refineGenerating = false;
+  }
+
+  // ===================================================================
+  // action judgment helpers
+  // ===================================================================
+
+  _findEntitiesInEnv(envIndex) {
+    const cfg = this._envGridConfigs[envIndex];
+    const HALF_WIDTH = 10 * 2.05 / 2;
+    return this._staticEntities.filter(e => {
+      const dx = Math.abs(e.mesh.position.x - cfg.center[0]);
+      const dz = Math.abs(e.mesh.position.z - cfg.center[1]);
+      return dx <= HALF_WIDTH && dz <= HALF_WIDTH && e.mesh.visible;
+    });
+  }
+
+  _startInteractWithDecor() {
+    const currentEnv = this.getCurrentEnvIndex();
+    const entities = this._findEntitiesInEnv(currentEnv);
+    if (entities.length === 0) {
+      this._isWalking = true;
+      this._pickRandomTargetInEnv(currentEnv);
+      return;
+    }
+    this._actionTarget = entities[Math.floor(Math.random() * entities.length)];
+    this._actionTimerLocal = 5;
+    this._target.copy(this._actionTarget.mesh.position);
+    this._isWalking = true;
+    console.log(`[Pet] ${this.name} is going to interact with ${this._actionTarget.name}`);
+  }
+
+  _startChatWithOtherPet() {
+    const others = this._allPets.filter(p =>
+      p !== this && p.spawned && (p.state === 'wandering' || p.state === 'linger')
+    );
+    if (others.length === 0) {
+      this._startInteractWithDecor();
+      return;
+    }
+    const partner = others[Math.floor(Math.random() * others.length)];
+    this._actionTarget = partner;
+    this._actionTimerLocal = 3;
+    this._target.copy(partner.mesh.position);
+    this._isWalking = true;
+    console.log(`[Pet] ${this.name} is going to chat with ${partner.name}`);
+  }
+
+  // ===================================================================
+  // construction label (when being refined by others)
+  // ===================================================================
+
+  showConstructionLabel() {
+    this._constructionRefCount++;
+    this._constructionBubble.show('正在施工中...');
+  }
+
+  hideConstructionLabel() {
+    this._constructionRefCount = Math.max(0, this._constructionRefCount - 1);
+    if (this._constructionRefCount === 0) {
+      this._constructionBubble.hide();
+    }
+  }
+
+  // ===================================================================
+  // refine support (this pet can also be refined by others)
+  // ===================================================================
+
+  async refineModel(modelJson, newTags = []) {
+    try {
+      const newModel = buildModelFromJson(modelJson);
+      if (!newModel) throw new Error('Failed to build model from JSON');
+
+      if (this._modelGroup) {
+        this.mesh.remove(this._modelGroup);
+        this._modelGroup = null;
+      } else {
+        this.mesh.remove(this._fallback);
+      }
+
+      const box = new THREE.Box3().setFromObject(newModel);
+      newModel.position.y = -box.min.y;
+      this.mesh.add(newModel);
+      this._modelGroup = newModel;
+      this._animPartMap = null;
+
+      for (const tag of newTags) {
+        if (tag && !this.tags.includes(tag)) this.tags.push(tag);
+      }
+      this._syncLabel();
+
+      console.log(`[Pet] ${this.name} refined with tags [${newTags.join(', ')}]`);
+    } catch (err) {
+      console.error(`[Pet] Refine failed for ${this.name}:`, err);
+      if (!this._modelGroup && this.mesh.children.filter((c) => c !== this._label.sprite && c !== this._constructionBubble.sprite).length === 0) {
+        this.mesh.add(this._fallback);
+      }
+    }
+  }
+
+  // ===================================================================
+  // refine system (this pet refines other entities)
+  // ===================================================================
+
+  _findNearestRefinableTarget() {
+    let nearest = null;
+    let nearestDist = Infinity;
+
+    const candidates = [
+      ...this._staticEntities.filter((e) => e.mesh.visible),
+      ...this._allPets.filter((p) => p !== this && p.spawned),
+      ...(this._environments || []),
+      ...(this._items || []).filter((i) => !i.isHeld),
+    ];
+
+    for (const entity of candidates) {
+      const dist = this.mesh.position.distanceTo(entity.mesh.position);
+      if (dist < nearestDist) {
+        nearest = entity;
+        nearestDist = dist;
+      }
+    }
+    return nearest;
+  }
+
+  startRefine(target = null) {
+    if (!target) {
+      target = this._findNearestRefinableTarget();
+    }
+    if (!target) {
+      console.log(`[Pet] ${this.name} found nothing to refine nearby.`);
+      return;
+    }
+    this._clearRefine();
+    this._refineTarget = target;
+    this.state = 'refining';
+    this._refineCircling = false;
+    this._refineAngle = 0;
+    console.log(`[Pet] ${this.name} starts refining ${target.name}`);
+  }
+
+  async _runRefineAsync() {
+    if (this._refineGenerating) return;
+    this._refineGenerating = true;
+
+    const target = this._refineTarget;
+    if (!target) {
+      this._refineGenerating = false;
+      return;
+    }
+
+    // If no global promise exists yet, this pet becomes the master craftsman
+    if (!target._refinePromise) {
+      target._refinePromise = this._doActualRefine(target);
+    }
+
+    // All pets (including master) await the same shared promise
+    try {
+      await target._refinePromise;
+    } catch (err) {
+      console.error(`[Pet] ${this.name} refine failed:`, err);
+    } finally {
+      if (target) target.hideConstructionLabel();
+      this._refineGenerating = false;
+      this._refineCircling = false;
+      this._refineTarget = null;
+      if (this.state === 'refining') {
+        this.state = 'wandering';
+        this._behaviorTimer = BEHAVIOR_INTERVAL;
+      }
+    }
+  }
+
+  async _doActualRefine(target) {
+    try {
+      const allTags = target._pendingRefineTags || [this.tags[Math.floor(Math.random() * this.tags.length)]];
+      const tagDesc = allTags.join(', ');
+      const description = `A magical ${target.name} transformed by ${tagDesc} essence, lowpoly voxel style`;
+
+      const { modelJson } = await generateModel(description);
+      await target.refineModel(modelJson, allTags);
+      console.log(`[Pet] Refined ${target.name} with tags [${allTags.join(', ')}]`);
+
+      // Generate interaction animation for StaticEntity targets
+      try {
+        const { plan } = await generateAnimation(modelJson, 'a funny and lively interaction animation', 2.0);
+        if (target.setInteractionAnimation) {
+          target.setInteractionAnimation(plan, 2.0);
+        }
+      } catch (animErr) {
+        console.warn('[Pet] Animation generation failed:', animErr);
+      }
+    } catch (err) {
+      console.error(`[Pet] Refine failed:`, err);
+      throw err;
+    } finally {
+      delete target._pendingRefineTags;
+      delete target._refinePromise;
+    }
   }
 
   // ===================================================================
@@ -169,12 +538,88 @@ export class Pet {
   move(playerPos, dt = 0.016) {
     if (!this.spawned) return;
 
-    // Behavior timer
+    // ---- 5-second behavior timer ----
     this._behaviorTimer -= dt;
     if (this._behaviorTimer <= 0) {
       this._behaviorTimer = BEHAVIOR_INTERVAL;
-      this._isWalking = Math.random() < 0.5;
-      if (this._isWalking) this._pickRandomTarget();
+
+      if (this.state === 'following' || this.state === 'refining') {
+        // No random decisions while following or refining
+      } else if (this.state === 'linger' || this.state === 'visiting' || (this._visitTimer > 0 && this.state === 'wandering')) {
+        this._isWalking = Math.random() < 0.5;
+        if (this._isWalking) {
+          if (this._visitTimer > 0 && this._visitedEnvIndex !== -1) {
+            this._pickRandomTargetInEnv(this._visitedEnvIndex);
+          } else {
+            this._pickRandomTargetInEnv(this.getCurrentEnvIndex());
+          }
+        }
+      } else if (this.state === 'wandering') {
+        const roll = Math.random();
+        if (roll < 0.45) {
+          this._isWalking = true;
+          this._pickRandomTargetInEnv(this.getCurrentEnvIndex());
+        } else if (roll < 0.90) {
+          this._isWalking = false;
+        } else {
+          // 10% chance to visit a neighboring environment
+          this._startVisiting();
+        }
+      }
+    }
+
+    // ---- 30-second action timer ----
+    this._actionTimer -= dt;
+    if (this._actionTimer <= 0) {
+      this._actionTimer = 30;
+      if (this.state === 'wandering' || this.state === 'linger' || (this._visitTimer > 0 && this.state === 'wandering')) {
+        const roll = Math.random();
+        if (roll < 0.20) {
+          this._startReturnHome();
+        } else if (roll < 0.70) {
+          this._startInteractWithDecor();
+        } else {
+          this._startChatWithOtherPet();
+        }
+      }
+    }
+
+    // ---- countdown timers ----
+    if (this._visitTimer > 0) {
+      this._visitTimer -= dt;
+      if (this._visitTimer <= 0) {
+        this._visitTimer = 0;
+        this._visitedEnvIndex = -1;
+        this._startReturnHome();
+      }
+    }
+
+    if (this._lingerTimer > 0) {
+      this._lingerTimer -= dt;
+      if (this._lingerTimer <= 0) {
+        this._lingerTimer = 0;
+        this._startReturnHome();
+      }
+    }
+
+    if (this._actionTarget && this._actionTimerLocal > 0) {
+      const distToTarget = this.mesh.position.distanceTo(this._actionTarget.mesh.position);
+      if (distToTarget < 1.5) {
+        this._isWalking = false;
+        this._actionTimerLocal -= dt;
+        if (this._actionTimerLocal <= 0) {
+          // Trigger interaction effect
+          if (this._actionTarget.playBreathing) {
+            this._actionTarget.playBreathing();
+          }
+          if (this._allPets.includes(this._actionTarget)) {
+            this._bubble.show('嗨！');
+            setTimeout(() => this._bubble.hide(), 2000);
+          }
+          this._actionTarget = null;
+          this._actionTimerLocal = 0;
+        }
+      }
     }
 
     // Animation timer
@@ -184,6 +629,79 @@ export class Pet {
 
     switch (this.state) {
       case 'wandering':
+        if (this._isWalking) {
+          this._moveWander(playerPos);
+          if (this._animWalk && this._modelGroup) {
+            this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+          }
+        } else {
+          if (this._animIdle && this._modelGroup) {
+            this._animPartMap = applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+          }
+        }
+        break;
+
+      case 'following':
+        {
+          const dist = this.mesh.position.distanceTo(playerPos);
+          if (dist > 3.0) {
+            const dir = new THREE.Vector3().subVectors(playerPos, this.mesh.position);
+            dir.y = 0;
+            const angle = Math.atan2(dir.x, dir.z);
+            this.mesh.rotation.y = angle;
+            this.mesh.position.addScaledVector(dir.normalize(), WANDER_SPEED);
+            if (this._animWalk && this._modelGroup) {
+              this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+            }
+          } else {
+            if (this._animIdle && this._modelGroup) {
+              this._animPartMap = applyAnimation(this._animIdle, animDuration, this._modelGroup, t, this._animPartMap);
+            }
+          }
+        }
+        break;
+
+      case 'refining':
+        {
+          if (!this._refineTarget) {
+            this.state = 'wandering';
+            break;
+          }
+          const dist = this.mesh.position.distanceTo(this._refineTarget.mesh.position);
+          if (dist > 2.5 && !this._refineCircling) {
+            const dir = new THREE.Vector3().subVectors(this._refineTarget.mesh.position, this.mesh.position);
+            dir.y = 0;
+            const angle = Math.atan2(dir.x, dir.z);
+            this.mesh.rotation.y = angle;
+            this.mesh.position.addScaledVector(dir.normalize(), WANDER_SPEED);
+            if (this._animWalk && this._modelGroup) {
+              this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+            }
+          } else {
+            if (!this._refineCircling) {
+              this._refineCircling = true;
+              this._refineAngle = Math.atan2(
+                this.mesh.position.z - this._refineTarget.mesh.position.z,
+                this.mesh.position.x - this._refineTarget.mesh.position.x
+              );
+              this._refineTarget.showConstructionLabel();
+              this._runRefineAsync();
+            }
+            this._refineAngle += dt * 1.5;
+            const radius = 2.0;
+            const cx = this._refineTarget.mesh.position.x;
+            const cz = this._refineTarget.mesh.position.z;
+            this.mesh.position.x = cx + Math.cos(this._refineAngle) * radius;
+            this.mesh.position.z = cz + Math.sin(this._refineAngle) * radius;
+            this.mesh.rotation.y = this._refineAngle + Math.PI / 2;
+            if (this._animWalk && this._modelGroup) {
+              this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
+            }
+          }
+        }
+        break;
+
+      case 'linger':
         if (this._isWalking) {
           this._moveWander(playerPos);
           if (this._animWalk && this._modelGroup) {
@@ -215,8 +733,15 @@ export class Pet {
         {
           const arrived = this._moveToTarget(this._recallTarget, WANDER_SPEED);
           if (arrived) {
-            this.state = 'recall_pause';
-            this._recallTimer = 2.0;
+            if (this._returnToWander) {
+              this.state = 'wandering';
+              this._returnToWander = false;
+              this._isWalking = false;
+              this._behaviorTimer = BEHAVIOR_INTERVAL;
+            } else {
+              this.state = 'recall_pause';
+              this._recallTimer = 2.0;
+            }
           }
           if (this._animWalk && this._modelGroup) {
             this._animPartMap = applyAnimation(this._animWalk, animDuration, this._modelGroup, t, this._animPartMap);
@@ -245,9 +770,11 @@ export class Pet {
 
     // Fallback client-side animation when Voxel Runtime is unavailable
     if (!getRuntime() && this._modelGroup) {
-      const isMoving = this.state === 'wandering' && this._isWalking
+      const isMoving = (this.state === 'wandering' && this._isWalking)
                     || this.state === 'seeking_player'
-                    || this.state === 'returning_home';
+                    || this.state === 'returning_home'
+                    || this.state === 'following'
+                    || this.state === 'refining';
       if (isMoving) {
         // Simple walk bounce
         this._modelGroup.position.y = Math.abs(Math.sin(this._animTime * 6)) * 0.05;
@@ -266,7 +793,10 @@ export class Pet {
 
     const dir = new THREE.Vector3().subVectors(this._target, this.mesh.position);
     if (dir.length() < 0.15) {
-      this._pickRandomTarget();
+      // If chasing an action target, let move() handle arrival; otherwise pick new target
+      if (!this._actionTarget) {
+        this._pickRandomTarget();
+      }
     } else {
       // Face movement direction
       const angle = Math.atan2(dir.x, dir.z);
@@ -319,6 +849,9 @@ export class Pet {
     this._chatIndex = 0;
     this._chatTimer = 2.0;
     this._bubble.hide();
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
   }
 
   get isChatFinished() {
@@ -406,6 +939,9 @@ export class Pet {
 
   startSeekingPlayer() {
     this.state = 'seeking_player';
+    this._actionTarget = null;
+    this._actionTimerLocal = 0;
+    this._clearRefine();
     console.log(`[Pet] ${this.name} is seeking the player!`);
   }
 
@@ -420,13 +956,11 @@ export class Pet {
   // ===================================================================
 
   _pickRandomTarget() {
-    const cx = this.mesh.position.x;
-    const cz = this.mesh.position.z;
-    this._target.set(
-      cx + (Math.random() - 0.5) * 6,
-      0,
-      cz + (Math.random() - 0.5) * 6
-    );
+    if (this._visitTimer > 0 && this._visitedEnvIndex !== -1) {
+      this._pickRandomTargetInEnv(this._visitedEnvIndex);
+    } else {
+      this._pickRandomTargetInEnv(this.getCurrentEnvIndex());
+    }
   }
 
   getInfo() {

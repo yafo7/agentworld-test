@@ -1,0 +1,1787 @@
+{
+  "name": "Countryside Wooden Shop",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "mainBuilding",
+      "name": "Main Building",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "box",
+      "geometry": {
+        "width": 6,
+        "height": 3,
+        "depth": 5
+      },
+      "position": {
+        "x": 0,
+        "y": -1,
+        "z": 0
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m1",
+      "type": "box",
+      "geometry": {
+        "width": 6.2,
+        "height": 0.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 2.58
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m2",
+      "type": "box",
+      "geometry": {
+        "width": 6.2,
+        "height": 0.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 0,
+        "y": -2,
+        "z": 2.58
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m3",
+      "type": "box",
+      "geometry": {
+        "width": 0.2,
+        "height": 3.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": -1.5,
+        "y": -1,
+        "z": 2.58
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m4",
+      "type": "box",
+      "geometry": {
+        "width": 0.2,
+        "height": 3.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 1.5,
+        "y": -1,
+        "z": 2.58
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m5",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 1.4,
+        "depth": 0.2
+      },
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": 2.6
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m6",
+      "type": "box",
+      "geometry": {
+        "width": 0.9,
+        "height": 1.1,
+        "depth": 0.1
+      },
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": 2.72
+      },
+      "color": 8900331
+    },
+    {
+      "id": "m7",
+      "type": "box",
+      "geometry": {
+        "width": 0.9,
+        "height": 0.08,
+        "depth": 0.12
+      },
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": 2.78
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m8",
+      "type": "box",
+      "geometry": {
+        "width": 0.08,
+        "height": 1.1,
+        "depth": 0.12
+      },
+      "position": {
+        "x": -1.5,
+        "y": -0.5,
+        "z": 2.78
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m9",
+      "type": "box",
+      "geometry": {
+        "width": 1.4,
+        "height": 0.3,
+        "depth": 0.4
+      },
+      "position": {
+        "x": -1.5,
+        "y": -1.35,
+        "z": 2.8
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m10",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -1.8,
+        "y": -1.05,
+        "z": 2.85
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m11",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -1.5,
+        "y": -1,
+        "z": 2.95
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m12",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -1.2,
+        "y": -1.05,
+        "z": 2.85
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m13",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 0.1,
+        "depth": 0.3
+      },
+      "position": {
+        "x": -1.5,
+        "y": -1.15,
+        "z": 2.85
+      },
+      "color": 5597999
+    },
+    {
+      "id": "m14",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 1.4,
+        "depth": 0.2
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.5,
+        "z": 2.6
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m15",
+      "type": "box",
+      "geometry": {
+        "width": 0.9,
+        "height": 1.1,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.5,
+        "z": 2.72
+      },
+      "color": 8900331
+    },
+    {
+      "id": "m16",
+      "type": "box",
+      "geometry": {
+        "width": 0.9,
+        "height": 0.08,
+        "depth": 0.12
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.5,
+        "z": 2.78
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m17",
+      "type": "box",
+      "geometry": {
+        "width": 0.08,
+        "height": 1.1,
+        "depth": 0.12
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.5,
+        "z": 2.78
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m18",
+      "type": "box",
+      "geometry": {
+        "width": 1.4,
+        "height": 0.3,
+        "depth": 0.4
+      },
+      "position": {
+        "x": 1.5,
+        "y": -1.35,
+        "z": 2.8
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m19",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.2,
+        "y": -1.05,
+        "z": 2.85
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m20",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.5,
+        "y": -1,
+        "z": 2.95
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m21",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.8,
+        "y": -1.05,
+        "z": 2.85
+      },
+      "color": 13382451
+    },
+    {
+      "id": "m22",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 0.1,
+        "depth": 0.3
+      },
+      "position": {
+        "x": 1.5,
+        "y": -1.15,
+        "z": 2.85
+      },
+      "color": 5597999
+    },
+    {
+      "id": "roof",
+      "name": "Roof",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 4.675,
+        "z": 0
+      }
+    },
+    {
+      "id": "m23",
+      "type": "patch",
+      "geometry": {
+        "vertices": [
+          1.75,
+          1.25,
+          -3.2,
+          -1.75,
+          -1.25,
+          -3.2,
+          0,
+          0,
+          0,
+          -1.75,
+          -1.25,
+          -3.2,
+          -1.75,
+          -1.25,
+          3.2,
+          0,
+          0,
+          0,
+          -1.75,
+          -1.25,
+          3.2,
+          1.75,
+          1.25,
+          3.2,
+          0,
+          0,
+          0,
+          1.75,
+          1.25,
+          3.2,
+          1.75,
+          1.25,
+          -3.2,
+          0,
+          0,
+          0
+        ],
+        "d": 0.2
+      },
+      "position": {
+        "x": -1.75,
+        "y": -0.4249999999999998,
+        "z": 0
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m24",
+      "type": "patch",
+      "geometry": {
+        "vertices": [
+          -1.75,
+          1.25,
+          -3.2,
+          1.75,
+          -1.25,
+          -3.2,
+          0,
+          0,
+          0,
+          1.75,
+          -1.25,
+          -3.2,
+          1.75,
+          -1.25,
+          3.2,
+          0,
+          0,
+          0,
+          1.75,
+          -1.25,
+          3.2,
+          -1.75,
+          1.25,
+          3.2,
+          0,
+          0,
+          0,
+          -1.75,
+          1.25,
+          3.2,
+          -1.75,
+          1.25,
+          -3.2,
+          0,
+          0,
+          0
+        ],
+        "d": 0.2
+      },
+      "position": {
+        "x": 1.75,
+        "y": -0.4249999999999998,
+        "z": 0
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m25",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -3.5,
+          -0.8333333333333335,
+          -4.440892098500626e-16
+        ],
+        "b": [
+          3.5,
+          -0.8333333333333335,
+          -4.440892098500626e-16
+        ],
+        "c": [
+          0,
+          1.6666666666666665,
+          -4.440892098500626e-16
+        ],
+        "d": 0.2
+      },
+      "position": {
+        "x": 0,
+        "y": -0.8416666666666663,
+        "z": 3.2000000000000006
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m26",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -3.5,
+          -0.8333333333333335,
+          4.440892098500626e-16
+        ],
+        "b": [
+          3.5,
+          -0.8333333333333335,
+          4.440892098500626e-16
+        ],
+        "c": [
+          0,
+          1.6666666666666665,
+          4.440892098500626e-16
+        ],
+        "d": 0.2
+      },
+      "position": {
+        "x": 0,
+        "y": -0.8416666666666663,
+        "z": -3.2000000000000006
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m27",
+      "type": "box",
+      "geometry": {
+        "width": 7.2,
+        "height": 0.2,
+        "depth": 0.4
+      },
+      "position": {
+        "x": 0,
+        "y": -1.6749999999999998,
+        "z": 3.3
+      },
+      "color": 4863784
+    },
+    {
+      "id": "m28",
+      "type": "box",
+      "geometry": {
+        "width": 7.2,
+        "height": 0.2,
+        "depth": 0.4
+      },
+      "position": {
+        "x": 0,
+        "y": -1.6749999999999998,
+        "z": -3.3
+      },
+      "color": 4863784
+    },
+    {
+      "id": "m29",
+      "type": "box",
+      "geometry": {
+        "width": 0.4,
+        "height": 0.3,
+        "depth": 6.8
+      },
+      "position": {
+        "x": 0,
+        "y": 0.9750000000000005,
+        "z": 0
+      },
+      "color": 4863784
+    },
+    {
+      "id": "m30",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 2.5,
+        "depth": 0.8
+      },
+      "position": {
+        "x": -1.5,
+        "y": 0.3250000000000002,
+        "z": -1
+      },
+      "color": 8421504
+    },
+    {
+      "id": "m31",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 0.2,
+        "depth": 1
+      },
+      "position": {
+        "x": -1.5,
+        "y": 1.6749999999999998,
+        "z": -1
+      },
+      "color": 6908265
+    },
+    {
+      "id": "porch",
+      "name": "Porch",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 2.7,
+        "z": 2.6
+      }
+    },
+    {
+      "id": "m32",
+      "type": "box",
+      "geometry": {
+        "width": 3,
+        "height": 0.2,
+        "depth": 2
+      },
+      "position": {
+        "x": 0,
+        "y": -2.3000000000000003,
+        "z": 1.4
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m33",
+      "type": "box",
+      "geometry": {
+        "width": 3.2,
+        "height": 0.2,
+        "depth": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": -2.6,
+        "z": 2.65
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m34",
+      "type": "box",
+      "geometry": {
+        "width": 3.1,
+        "height": 0.2,
+        "depth": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": -2.4000000000000004,
+        "z": 2.15
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m35",
+      "type": "box",
+      "geometry": {
+        "width": 0.15,
+        "height": 1.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": -1.4,
+        "y": -1.7000000000000002,
+        "z": 2.3000000000000003
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m36",
+      "type": "box",
+      "geometry": {
+        "width": 0.15,
+        "height": 1.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": -1.4,
+        "y": -1.7000000000000002,
+        "z": 0.5
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m37",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 0.1,
+        "depth": 2
+      },
+      "position": {
+        "x": -1.4,
+        "y": -1.1,
+        "z": 1.4
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m38",
+      "type": "box",
+      "geometry": {
+        "width": 0.15,
+        "height": 1.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 1.4,
+        "y": -1.7000000000000002,
+        "z": 2.3000000000000003
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m39",
+      "type": "box",
+      "geometry": {
+        "width": 0.15,
+        "height": 1.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 1.4,
+        "y": -1.7000000000000002,
+        "z": 0.5
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m40",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 0.1,
+        "depth": 2
+      },
+      "position": {
+        "x": 1.4,
+        "y": -1.1,
+        "z": 1.4
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m41",
+      "type": "box",
+      "geometry": {
+        "width": 3,
+        "height": 0.1,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 0,
+        "y": -1.1,
+        "z": 2.3000000000000003
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m42",
+      "type": "box",
+      "geometry": {
+        "width": 1.4,
+        "height": 2.4,
+        "depth": 0.2
+      },
+      "position": {
+        "x": 0,
+        "y": -1.3000000000000003,
+        "z": 0
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m43",
+      "type": "box",
+      "geometry": {
+        "width": 1.2,
+        "height": 2.2,
+        "depth": 0.15
+      },
+      "position": {
+        "x": 0,
+        "y": -1.4000000000000001,
+        "z": 0.1200000000000001
+      },
+      "color": 4073251
+    },
+    {
+      "id": "m44",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.08,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.4,
+        "y": -1.4000000000000001,
+        "z": 0.21999999999999975
+      },
+      "color": 2236962
+    },
+    {
+      "id": "m45",
+      "type": "box",
+      "geometry": {
+        "width": 0.1,
+        "height": 1.5,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.7000000000000002,
+        "z": 0.5
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m46",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.1,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 1.5,
+        "y": 0,
+        "z": 0.6999999999999997
+      },
+      "color": 6045747
+    },
+    {
+      "id": "m47",
+      "type": "box",
+      "geometry": {
+        "width": 0.8,
+        "height": 0.6,
+        "depth": 0.1
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.40000000000000036,
+        "z": 0.7999999999999998
+      },
+      "color": 13808780
+    },
+    {
+      "id": "m48",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.05,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.10000000000000009,
+        "z": 0.75
+      },
+      "color": 2236962
+    },
+    {
+      "id": "m49",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.05,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.5,
+        "y": -0.10000000000000009,
+        "z": 0.8500000000000001
+      },
+      "color": 2236962
+    }
+  ],
+  "tree": [
+    {
+      "id": "mainBuilding",
+      "name": "Main Building",
+      "offset": [
+        0,
+        2.5,
+        0
+      ],
+      "meshes": [
+        {
+          "id": "m0",
+          "type": "box",
+          "geometry": {
+            "width": 6,
+            "height": 3,
+            "depth": 5
+          },
+          "position": {
+            "x": 0,
+            "y": -1,
+            "z": 0
+          },
+          "color": 13808780
+        },
+        {
+          "id": "m1",
+          "type": "box",
+          "geometry": {
+            "width": 6.2,
+            "height": 0.2,
+            "depth": 0.15
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 2.58
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m2",
+          "type": "box",
+          "geometry": {
+            "width": 6.2,
+            "height": 0.2,
+            "depth": 0.15
+          },
+          "position": {
+            "x": 0,
+            "y": -2,
+            "z": 2.58
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m3",
+          "type": "box",
+          "geometry": {
+            "width": 0.2,
+            "height": 3.2,
+            "depth": 0.15
+          },
+          "position": {
+            "x": -1.5,
+            "y": -1,
+            "z": 2.58
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m4",
+          "type": "box",
+          "geometry": {
+            "width": 0.2,
+            "height": 3.2,
+            "depth": 0.15
+          },
+          "position": {
+            "x": 1.5,
+            "y": -1,
+            "z": 2.58
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m5",
+          "type": "box",
+          "geometry": {
+            "width": 1.2,
+            "height": 1.4,
+            "depth": 0.2
+          },
+          "position": {
+            "x": -1.5,
+            "y": -0.5,
+            "z": 2.6
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m6",
+          "type": "box",
+          "geometry": {
+            "width": 0.9,
+            "height": 1.1,
+            "depth": 0.1
+          },
+          "position": {
+            "x": -1.5,
+            "y": -0.5,
+            "z": 2.72
+          },
+          "color": 8900331
+        },
+        {
+          "id": "m7",
+          "type": "box",
+          "geometry": {
+            "width": 0.9,
+            "height": 0.08,
+            "depth": 0.12
+          },
+          "position": {
+            "x": -1.5,
+            "y": -0.5,
+            "z": 2.78
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m8",
+          "type": "box",
+          "geometry": {
+            "width": 0.08,
+            "height": 1.1,
+            "depth": 0.12
+          },
+          "position": {
+            "x": -1.5,
+            "y": -0.5,
+            "z": 2.78
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m9",
+          "type": "box",
+          "geometry": {
+            "width": 1.4,
+            "height": 0.3,
+            "depth": 0.4
+          },
+          "position": {
+            "x": -1.5,
+            "y": -1.35,
+            "z": 2.8
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m10",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": -1.8,
+            "y": -1.05,
+            "z": 2.85
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m11",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": -1.5,
+            "y": -1,
+            "z": 2.95
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m12",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": -1.2,
+            "y": -1.05,
+            "z": 2.85
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m13",
+          "type": "box",
+          "geometry": {
+            "width": 1.2,
+            "height": 0.1,
+            "depth": 0.3
+          },
+          "position": {
+            "x": -1.5,
+            "y": -1.15,
+            "z": 2.85
+          },
+          "color": 5597999
+        },
+        {
+          "id": "m14",
+          "type": "box",
+          "geometry": {
+            "width": 1.2,
+            "height": 1.4,
+            "depth": 0.2
+          },
+          "position": {
+            "x": 1.5,
+            "y": -0.5,
+            "z": 2.6
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m15",
+          "type": "box",
+          "geometry": {
+            "width": 0.9,
+            "height": 1.1,
+            "depth": 0.1
+          },
+          "position": {
+            "x": 1.5,
+            "y": -0.5,
+            "z": 2.72
+          },
+          "color": 8900331
+        },
+        {
+          "id": "m16",
+          "type": "box",
+          "geometry": {
+            "width": 0.9,
+            "height": 0.08,
+            "depth": 0.12
+          },
+          "position": {
+            "x": 1.5,
+            "y": -0.5,
+            "z": 2.78
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m17",
+          "type": "box",
+          "geometry": {
+            "width": 0.08,
+            "height": 1.1,
+            "depth": 0.12
+          },
+          "position": {
+            "x": 1.5,
+            "y": -0.5,
+            "z": 2.78
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m18",
+          "type": "box",
+          "geometry": {
+            "width": 1.4,
+            "height": 0.3,
+            "depth": 0.4
+          },
+          "position": {
+            "x": 1.5,
+            "y": -1.35,
+            "z": 2.8
+          },
+          "color": 6045747
+        },
+        {
+          "id": "m19",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": 1.2,
+            "y": -1.05,
+            "z": 2.85
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m20",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": 1.5,
+            "y": -1,
+            "z": 2.95
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m21",
+          "type": "icosahedron",
+          "geometry": {
+            "radius": 0.15,
+            "detail": 0
+          },
+          "position": {
+            "x": 1.8,
+            "y": -1.05,
+            "z": 2.85
+          },
+          "color": 13382451
+        },
+        {
+          "id": "m22",
+          "type": "box",
+          "geometry": {
+            "width": 1.2,
+            "height": 0.1,
+            "depth": 0.3
+          },
+          "position": {
+            "x": 1.5,
+            "y": -1.15,
+            "z": 2.85
+          },
+          "color": 5597999
+        }
+      ],
+      "children": [
+        {
+          "id": "roof",
+          "name": "Roof",
+          "offset": [
+            0,
+            2.175,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m23",
+              "type": "patch",
+              "geometry": {
+                "vertices": [
+                  1.75,
+                  1.25,
+                  -3.2,
+                  -1.75,
+                  -1.25,
+                  -3.2,
+                  0,
+                  0,
+                  0,
+                  -1.75,
+                  -1.25,
+                  -3.2,
+                  -1.75,
+                  -1.25,
+                  3.2,
+                  0,
+                  0,
+                  0,
+                  -1.75,
+                  -1.25,
+                  3.2,
+                  1.75,
+                  1.25,
+                  3.2,
+                  0,
+                  0,
+                  0,
+                  1.75,
+                  1.25,
+                  3.2,
+                  1.75,
+                  1.25,
+                  -3.2,
+                  0,
+                  0,
+                  0
+                ],
+                "d": 0.2
+              },
+              "position": {
+                "x": -1.75,
+                "y": -0.4249999999999998,
+                "z": 0
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m24",
+              "type": "patch",
+              "geometry": {
+                "vertices": [
+                  -1.75,
+                  1.25,
+                  -3.2,
+                  1.75,
+                  -1.25,
+                  -3.2,
+                  0,
+                  0,
+                  0,
+                  1.75,
+                  -1.25,
+                  -3.2,
+                  1.75,
+                  -1.25,
+                  3.2,
+                  0,
+                  0,
+                  0,
+                  1.75,
+                  -1.25,
+                  3.2,
+                  -1.75,
+                  1.25,
+                  3.2,
+                  0,
+                  0,
+                  0,
+                  -1.75,
+                  1.25,
+                  3.2,
+                  -1.75,
+                  1.25,
+                  -3.2,
+                  0,
+                  0,
+                  0
+                ],
+                "d": 0.2
+              },
+              "position": {
+                "x": 1.75,
+                "y": -0.4249999999999998,
+                "z": 0
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m25",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -3.5,
+                  -0.8333333333333335,
+                  -4.440892098500626e-16
+                ],
+                "b": [
+                  3.5,
+                  -0.8333333333333335,
+                  -4.440892098500626e-16
+                ],
+                "c": [
+                  0,
+                  1.6666666666666665,
+                  -4.440892098500626e-16
+                ],
+                "d": 0.2
+              },
+              "position": {
+                "x": 0,
+                "y": -0.8416666666666663,
+                "z": 3.2000000000000006
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m26",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -3.5,
+                  -0.8333333333333335,
+                  4.440892098500626e-16
+                ],
+                "b": [
+                  3.5,
+                  -0.8333333333333335,
+                  4.440892098500626e-16
+                ],
+                "c": [
+                  0,
+                  1.6666666666666665,
+                  4.440892098500626e-16
+                ],
+                "d": 0.2
+              },
+              "position": {
+                "x": 0,
+                "y": -0.8416666666666663,
+                "z": -3.2000000000000006
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m27",
+              "type": "box",
+              "geometry": {
+                "width": 7.2,
+                "height": 0.2,
+                "depth": 0.4
+              },
+              "position": {
+                "x": 0,
+                "y": -1.6749999999999998,
+                "z": 3.3
+              },
+              "color": 4863784
+            },
+            {
+              "id": "m28",
+              "type": "box",
+              "geometry": {
+                "width": 7.2,
+                "height": 0.2,
+                "depth": 0.4
+              },
+              "position": {
+                "x": 0,
+                "y": -1.6749999999999998,
+                "z": -3.3
+              },
+              "color": 4863784
+            },
+            {
+              "id": "m29",
+              "type": "box",
+              "geometry": {
+                "width": 0.4,
+                "height": 0.3,
+                "depth": 6.8
+              },
+              "position": {
+                "x": 0,
+                "y": 0.9750000000000005,
+                "z": 0
+              },
+              "color": 4863784
+            },
+            {
+              "id": "m30",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 2.5,
+                "depth": 0.8
+              },
+              "position": {
+                "x": -1.5,
+                "y": 0.3250000000000002,
+                "z": -1
+              },
+              "color": 8421504
+            },
+            {
+              "id": "m31",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 0.2,
+                "depth": 1
+              },
+              "position": {
+                "x": -1.5,
+                "y": 1.6749999999999998,
+                "z": -1
+              },
+              "color": 6908265
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "porch",
+          "name": "Porch",
+          "offset": [
+            0,
+            0.2,
+            2.6
+          ],
+          "meshes": [
+            {
+              "id": "m32",
+              "type": "box",
+              "geometry": {
+                "width": 3,
+                "height": 0.2,
+                "depth": 2
+              },
+              "position": {
+                "x": 0,
+                "y": -2.3000000000000003,
+                "z": 1.4
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m33",
+              "type": "box",
+              "geometry": {
+                "width": 3.2,
+                "height": 0.2,
+                "depth": 0.5
+              },
+              "position": {
+                "x": 0,
+                "y": -2.6,
+                "z": 2.65
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m34",
+              "type": "box",
+              "geometry": {
+                "width": 3.1,
+                "height": 0.2,
+                "depth": 0.5
+              },
+              "position": {
+                "x": 0,
+                "y": -2.4000000000000004,
+                "z": 2.15
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m35",
+              "type": "box",
+              "geometry": {
+                "width": 0.15,
+                "height": 1.2,
+                "depth": 0.15
+              },
+              "position": {
+                "x": -1.4,
+                "y": -1.7000000000000002,
+                "z": 2.3000000000000003
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m36",
+              "type": "box",
+              "geometry": {
+                "width": 0.15,
+                "height": 1.2,
+                "depth": 0.15
+              },
+              "position": {
+                "x": -1.4,
+                "y": -1.7000000000000002,
+                "z": 0.5
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m37",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 0.1,
+                "depth": 2
+              },
+              "position": {
+                "x": -1.4,
+                "y": -1.1,
+                "z": 1.4
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m38",
+              "type": "box",
+              "geometry": {
+                "width": 0.15,
+                "height": 1.2,
+                "depth": 0.15
+              },
+              "position": {
+                "x": 1.4,
+                "y": -1.7000000000000002,
+                "z": 2.3000000000000003
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m39",
+              "type": "box",
+              "geometry": {
+                "width": 0.15,
+                "height": 1.2,
+                "depth": 0.15
+              },
+              "position": {
+                "x": 1.4,
+                "y": -1.7000000000000002,
+                "z": 0.5
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m40",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 0.1,
+                "depth": 2
+              },
+              "position": {
+                "x": 1.4,
+                "y": -1.1,
+                "z": 1.4
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m41",
+              "type": "box",
+              "geometry": {
+                "width": 3,
+                "height": 0.1,
+                "depth": 0.1
+              },
+              "position": {
+                "x": 0,
+                "y": -1.1,
+                "z": 2.3000000000000003
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m42",
+              "type": "box",
+              "geometry": {
+                "width": 1.4,
+                "height": 2.4,
+                "depth": 0.2
+              },
+              "position": {
+                "x": 0,
+                "y": -1.3000000000000003,
+                "z": 0
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m43",
+              "type": "box",
+              "geometry": {
+                "width": 1.2,
+                "height": 2.2,
+                "depth": 0.15
+              },
+              "position": {
+                "x": 0,
+                "y": -1.4000000000000001,
+                "z": 0.1200000000000001
+              },
+              "color": 4073251
+            },
+            {
+              "id": "m44",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.08,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.4,
+                "y": -1.4000000000000001,
+                "z": 0.21999999999999975
+              },
+              "color": 2236962
+            },
+            {
+              "id": "m45",
+              "type": "box",
+              "geometry": {
+                "width": 0.1,
+                "height": 1.5,
+                "depth": 0.1
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.7000000000000002,
+                "z": 0.5
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m46",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.1,
+                "depth": 0.1
+              },
+              "position": {
+                "x": 1.5,
+                "y": 0,
+                "z": 0.6999999999999997
+              },
+              "color": 6045747
+            },
+            {
+              "id": "m47",
+              "type": "box",
+              "geometry": {
+                "width": 0.8,
+                "height": 0.6,
+                "depth": 0.1
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.40000000000000036,
+                "z": 0.7999999999999998
+              },
+              "color": 13808780
+            },
+            {
+              "id": "m48",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.05,
+                "detail": 0
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.10000000000000009,
+                "z": 0.75
+              },
+              "color": 2236962
+            },
+            {
+              "id": "m49",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.05,
+                "detail": 0
+              },
+              "position": {
+                "x": 1.5,
+                "y": -0.10000000000000009,
+                "z": 0.8500000000000001
+              },
+              "color": 2236962
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"宽矩形1.5:1的单层小屋，屋顶占整体高度1/3，前方带突出门廊\",\n  \"regions\": [\n    {\n      \"name\": \"mainBuilding\",\n      \"desc\": \"宽矩形主体，墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]，两个前窗，窗下花箱-深棕、花-红[cc3333]、叶-绿[556b2f]\"\n    },\n    {\n      \"name\": \"roof\",\n      \"desc\": \"陡峭人字坡顶，宽大出挑屋檐，层叠瓦片轮廓-深棕，侧边单烟囱-灰[808080]\"\n    },\n    {\n      \"name\": \"porch\",\n      \"desc\": \"前方突出小门廊，围栏-暖木色，两级矮台阶-深棕，正中木门-深棕，门侧挂招牌-暖木色、金属挂钩-黑[222222]\"\n    }\n  ],\n  \"methodologies\": [\n    \"complex_stack\"\n  ]\n}\n```",
+  "_routerThinking": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly countryside wooden shop.\n    *   **Key features:** Rustic rural architecture, timber beams, sloped shingle roof, flower boxes under windows, small wooden porch with steps, warm/cozy village store aesthetic, natural wood tones.\n    *   **Role:** Structural Drafter for low-poly models.\n    *   **Constraints:** Output JSON only. No textures/bumps. Use basic geometric blocks. Describe proportions, widths, contrasts, and accessories (flower boxes, timber beams, porch). Inline colors with hex (no #). 60-30-10 color rule. Choose methodologies.\n\n2.  **Step 1: Concretization:**\n    *   \"Countryside wooden shop\" is a concrete noun (building). Skip concretization.\n\n3.  **Step 2: Structural Breakdown:**\n    *   It's a single building, so it's a single group, but I should break it down into logical structural regions for a building: base/walls, roof, porch, and decorations (flower boxes, beams).\n    *   *Wait, the prompt says \"单体模型：独立运动体 = 单独group...\". A building isn't a moving character, but breaking it into regions helps the model AI. Let's use:* `mainBuilding` (walls + timber beams + windows), `roof` (sloped shingle roof), `porch` (porch + steps + door), `decorations` (flower boxes + sign). Actually, keeping it to 3-4 regions is best.\n    *   *Regions:*\n        *   `mainBuilding`: The core box, timber beams, windows.\n        *   `roof`: Sloped roof, shingles.\n        *   `porch`: Small porch, steps, front door.\n        *   `flowerBoxes`: The flower boxes under windows (can be part of mainBuilding desc or separate. Let's put them in mainBuilding desc to keep regions simple, or as a separate region for clarity. Let's do `mainBuilding`, `roof`, `porch`).\n\n4.  **Step 3: Write desc + Accessories + Colors:**\n    *   *Color Palette:* Natural wood tones, warm/cozy.\n        *   60% Main Wood/Timber: Warm medium wood - Light Brown/Tan `[d2b48c]`\n        *   30% Roof/Shingles & Porch: Darker rustic wood - Dark Brown `[5c4033]`\n        *   10% Accents (Flowers, Door/Sign): Green leaves `[556b2f]`, Red/Yellow flowers `[cc3333]`, `[ffd700]`.\n    *   *mainBuilding desc:* Wide rectangular base, prominent exposed timber beams-深棕[5c4033] crisscrossing walls, walls-暖木色[d2b48c], two front windows, flower boxes-深棕 under windows with flowers-红[cc3333] and leaves-绿[556b2f].\n    *   *roof desc:* Steeply sloped single-side or gabled roof (let's say sloped/gabled), overhanging eaves, shingle texture implied by stepped blocks-深棕, chimney-灰[808080] on one side.\n    *   *porch desc:* Front protruding small porch, railing-暖木色, two short steps-深棕, central front door-深棕, hanging sign-暖木色 with metal bracket-黑[222222].\n\n5.  **Step 4: Methodology Selection:**\n    *   It's a building, so `complex_stack` or `mechanical`? Neither fits perfectly. `complex_stack` is for unordered. `mechanical` is for vehicles/mechs. A building is essentially a structured stack. Let's use `complex_stack` as it's the closest for constructed environments, or maybe just `mechanical` for rigid architectural parts. Actually, `complex_stack` fits \"building blocks\" architecture best.\n\n6.  **Refine JSON Structure & Constraints:**\n    *   No `#` in hex.\n    *   Only first occurrence gets hex.\n    *   Proportions: \"1.5:1 width to depth, single-story with loft height, steeply sloped roof takes 1/3 of total height\"\n    *   Check regions: `mainBuilding`, `roof`, `porch`.\n\n    *Drafting the desc:*\n    *   `mainBuilding`: 宽矩形主体，墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]，两个前窗，窗下花箱-深棕、花-红[cc3333]、叶-绿[556b2f]\n    *   `roof`: 陡峭单坡或人字顶，宽大出挑屋檐，瓦片层叠感-深棕，侧边烟囱-灰[808080]\n    *   `porch`: 前方突出小门廊，围栏-暖木色，两级矮台阶-深棕，正中木门-深棕，门侧挂招牌-暖木色、金属挂钩-黑[222222]\n\n7.  **Final Polish (Self-Correction during drafting):**\n    *   Ensure no texture words like \"shingle texture\" - use \"stepped blocks\" or just \"shingle outline/layered outline\". \"瓦片层叠轮廓\" is better.\n    *   Ensure colors follow 60-30-10 roughly. Warm wood (60), Dark wood (30), Flowers/Chimney (10).\n    *   Methodologies: `complex_stack` is appropriate for a building.\n\n8.  **Output Generation:** (Strictly JSON)",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly countryside wooden shop, rustic rural architecture, timber beams, sloped shingle roof, flower boxes, small wooden porch with steps, warm and cozy village store aesthetic, natural wood tones.\n    *   **Draft Structure:**\n        *   `mainBuilding`: Wide rectangular body, warm wood walls [d2b48c], exposed cross timber beams [5c4033], two front windows, flower boxes under windows [5c4033] with red flowers [cc3333] and green leaves [556b2f].\n        *   `roof`: Steep gable roof, wide overhanging eaves, layered shingle outline [5c4033], single side chimney [808080].\n        *   `porch`: Protruding front porch, railings [d2b48c], two low steps [5c4033], central wooden door [5c4033], sign hanging by door [d2b48c] with metal hooks [222222].\n    *   **Proportions:** Wide rectangular 1.5:1 single-story house, roof takes 1/3 of total height, protruding porch in front.\n    *   **Scale:** Scale 3. Typical single-story house might be around 4-5 units tall (including roof), 6-8 units wide, 5-6 units deep.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Use low-poly block logic.\n\n2.  **Deconstruct & Plan Geometry:**\n\n    *   **Main Building (`mainBuilding`):**\n        *   Base box: w=6, h=3, d=5. pos=[0, 1.5, 0]. Color: [d2b48c] (warm wood).\n        *   Timber beams (cross pattern on front face +Z): Thin boxes (d=0.15) on the front face.\n            *   Horizontal: w=6, h=0.2, d=0.15, pos=[0, 2.5, 2.575] and [0, 0.5, 2.575].\n            *   Vertical: w=0.2, h=3, d=0.15, pos=[-1.5, 1.5, 2.575] and [1.5, 1.5, 2.575].\n            *   Diagonal (optional, but cross is specified): Let's stick to simple cross (H and V).\n        *   Windows: Two holes or recessed boxes. Since we can't do true holes easily, use darker boxes recessed slightly, or just place frames.\n            *   Window frames: box w=1, h=1.2, d=0.2, pos=[-1.5, 2, 2.6] and [1.5, 2, 2.6]. Color: [5c4033] (dark wood).\n            *   Window panes: box w=0.8, h=1, d=0.1, pos=[-1.5, 2, 2.7] and [1.5, 2, 2.7]. Color: [87CEEB] (light blue/glass).\n        *   Flower boxes:\n            *   Box under each window: w=1.2, h=0.3, d=0.4, pos=[-1.5, 1.15, 2.7] and [1.5, 1.15, 2.7]. Color: [5c4033].\n            *   Flowers: Small spheres or polys. pos=[-1.5, 1.45, 2.7] and [1.5, 1.45, 2.7]. Color: [cc3333] (red).\n            *   Leaves: Small boxes or polys. pos=[-1.5, 1.35, 2.7] and [1.5, 1.35, 2.7]. Color: [556b2f] (green).\n\n    *   **Roof (`roof`):**\n        *   Gable roof. Width 6, depth 5 (with overhang, say depth 6).\n        *   Can be built with two slanted boxes or a custom shape. Slanted boxes are easier.\n        *   Left slope: w=6.5, h=0.2, d=3.5. Rotated? No, `along` doesn't do slant easily. Use `tri` or `patch` or slanted `box`? Wait, `box` doesn't slant.\n        *   Let's use two large `tri` for the gable ends, and `patch` for the roof surfaces? Or just build it with overlapping boxes to simulate shingles?\n        *   Actually, a roof can be made with two rotated boxes if we use `rotatePoint` or just place them. But `box` only aligns to axes.\n        *   Alternative: Use `patch` for the roof planes.\n            *   Roof height: 2.5. Ridge at y=5.5. Eaves at y=3.0.\n            *   Ridge line: z from -3 to +3. x=0.\n            *   Left plane: points: [0, 5.5, -3], [-3.5, 3.0, -3], [-3.5, 3.0, 3], [0, 5.5, 3]. d=0.2.\n            *   Right plane: points: [0, 5.5, -3], [3.5, 3.0, -3], [3.5, 3.0, 3], [0, 5.5, 3]. d=0.2.\n            *   Gable ends (triangles): `tri` a:[-3.5, 3.0, 3], b:[3.5, 3.0, 3], c:[0, 5.5, 3]. d=0.2. And back: z=-3.\n        *   Shingle outline: Add a few smaller overlapping patches or boxes at the bottom edge to give a layered look.\n            *   Eave trim: box w=7, h=0.2, d=0.3, pos=[0, 3.0, 3.15] and [0, 3.0, -3.15].\n            *   Ridge cap: box w=0.3, h=0.2, d=6.5, pos=[0, 5.6, 0].\n        *   Chimney: box w=0.8, h=2, d=0.8, pos=[-1.5, 5.5, -1]. Color: [808080]. (Needs to poke through roof, so pos y=5.5 is good, base at 4.5).\n        *   Color: Roof planes [5c4033] (dark brown), trim [4a3728].\n\n    *   **Porch (`porch`):**\n        *   Protruding front porch. Centered at z=3 (front wall).\n        *   Floor: box w=3, h=0.2, d=2, pos=[0, 0.4, 4.0]. Color: [d2b48c].\n        *   Steps: Two steps leading up to the porch (y=0.4).\n            *   Step 1: box w=3, h=0.2, d=0.5, pos=[0, 0.1, 5.25]. Color: [5c4033].\n            *   Step 2: box w=3, h=0.2, d=0.5, pos=[0, 0.3, 4.75]. Color: [5c4033].\n        *   Railings: 4 posts + 2 bars.\n            *   Posts: box w=0.15, h=1, d=0.15. pos: [-1.4, 1.0, 4.9], [1.4, 1.0, 4.9], [-1.4, 1.0, 3.1], [1.4, 1.0, 3.1]. Color: [d2b48c].\n            *   Top rail: box w=0.1, h=0.1, d=2. pos: [-1.4, 1.5, 4.0], [1.4, 1.5, 4.0]. Color: [d2b48c].\n        *   Door: Centered on front wall, but porch is in front.\n            *   Door frame: box w=1.2, h=2.2, d=0.2, pos=[0, 1.3, 3.1]. Color: [5c4033].\n            *   Door leaf: box w=1.0, h=2.0, d=0.15, pos=[0, 1.2, 3.2]. Color: [3e2723].\n        *   Sign:\n            *   Hanging sign post: box w=0.1, h=1.5, d=0.1, pos=[1.5, 2.0, 3.2]. Color: [5c4033].\n            *   Arm: box w=0.8, h=0.1, d=0.1, pos=[1.5, 2.7, 3.4]. Color: [5c4033].\n            *   Sign board: box w=0.8, h=0.6, d=0.1, pos=[1.5, 2.3, 3.5]. Color: [d2b48c].\n            *   Hooks: poly r=0.05, pos=[1.5, 2.6, 3.35] and [1.5, 2.6, 3.45]. Color: [222222].\n\n3.  **Refine Coordinates & Proportions:**\n    *   Main building: w=6, h=3, d=5. pos=[0, 1.5, 0]. Front face is at z=2.5.\n    *   Roof: Ridge at y=5.5. Eaves at y=3.0. Overhang: x from -3.5 to 3.5, z from -3.0 to 3.0.\n    *   Porch: Floor at y=0.4. Front of porch at z=5.0.\n    *   Let's check the porch connection. Main building front is z=2.5. Porch floor is w=3, d=2, pos=[0, 0.4, 4.0]. This means porch goes from z=3.0 to z=5.0. It attaches right to the front wall.\n    *   Door is on the front wall (z=2.5). Door pos: [0, 1.3, 2.6].\n    *   Windows: pos=[-1.5, 2.0, 2.6] and [1.5, 2.0, 2.6].\n    *   Flower boxes: pos=[-1.5, 1.15, 2.8] and [1.5, 1.15, 2.8].\n    *   Timber beams on front face (z=2.5 + d/2 = 2.5 + 0.075 = 2.575).\n        *   Horizontal: pos=[0, 2.5, 2.575] and [0, 0.5, 2.575].\n        *   Vertical: pos=[-1.5, 1.5, 2.575] and [1.5, 1.5, 2.575].\n        *   Diagonal cross: Let's add diagonals for that classic timber frame look.\n            *   From [-1.5, 2.5] to [1.5, 0.5]. Midpoint [0, 1.5]. Use a rotated box? No, use `tri` or just skip diagonals to keep it simple and blocky. The prompt says \"十字交叉外露木梁\" (cross exposed timber beams). Cross usually means horizontal + vertical, or an X. I'll do horizontal and vertical.\n    *   Roof planes:\n        *   Left: patch points: [0, 5.5, -3], [-3.5, 3.0, -3], [-3.5, 3.0, 3], [0, 5.5, 3].\n        *   Right: patch points: [0, 5.5, -3], [3.5, 3.0, -3], [3.5, 3.0, 3], [0, 5.5, 3].\n        *   Gable front: tri a:[-3.5, 3.0, 3], b:[3.5, 3.0, 3], c:[0, 5.5, 3].\n        *   Gable back: tri a:[-3.5, 3.0, -3], b:[3.5, 3.0, -3], c:[0, 5.5, -3].\n        *   Shingle layers: Add 2-3 horizontal strips (boxes) on the roof planes to simulate shingle rows.\n            *   Row 1 (bottom): box w=7, h=0.15, d=0.4, pos=[0, 3.1, 3.1] and [0, 3.1, -3.1]. Color: [4a3728].\n            *   Row 2: box w=6, h=0.15, d=0.4, pos=[0, 3.8, 2.5] and [0, 3.8, -2.5]. Wait, these are flat boxes, they won't follow the roof slope. Better to use small overlapping `patch` or just rely on the main roof color and add edge trims.\n            *   Let's use edge trims for the \"layered shingle outline\" (层叠瓦片轮廓).\n            *   Eave trim: box w=7.2, h=0.2, d=0.4, pos=[0, 3.0, 3.2] and [0, 3.0, -3.2]. Color: [4a3728].\n            *   Ridge trim: box w=0.4, h=0.3, d=6.4, pos=[0, 5.6, 0]. Color: [4a3728].\n            *   Side trims (along the sloped edges): Can use `chain` or just leave it. Let's use `box` slightly rotated? No, let's just use the flat patches and trims.\n    *   Chimney: box w=0.8, h=2.5, d=0.8, pos=[-1.5, 5.0, -1.0]. Color: [808080]. Top rim: box w=1.0, h=0.2, d=1.0, pos=[-1.5, 6.3, -1.0]. Color: [696969].\n\n4.  **Drafting the Code (Mental Check):**\n    *   `api.name('Countryside Wooden Shop');`\n    *   Colors:\n        *   `C_WALL = 0xd2b48c`\n        *   `C_DARK_WOOD = 0x5c4033`\n        *   `C_RED = 0xcc3333`\n        *   `C_GREEN = 0x556b2f`\n        *   `C_GREY = 0x808080`\n        *   `C_BLACK = 0x222222`\n        *   `C_ROOF = 0x4a3728`\n        *   `C_DOOR = 0x3e2723`\n    *   `mainBuilding` group:\n        *   Main box: `api.box({w:6, h:3, d:5, pos:[0,1.5,0], color:C_WALL});`\n        *   Beams:\n            *   `api.box({w:6.2, h:0.2, d:0.15, pos:[0,2.5,2.58], color:C_DARK_WOOD});`\n            *   `api.box({w:6.2, h:0.2, d:0.15, pos:[0,0.5,2.58], color:C_DARK_WOOD});`\n            *   `api.box({w:0.2, h:3.2, d:0.15, pos:[-1.5,1.5,2.58], color:C_DARK_WOOD});`\n            *   `api.box({w:0.2, h:3.2, d:0.15, pos:[1.5,1.5,2.58], color:C_DARK_WOOD});`\n        *   Windows (left):\n            *   Frame: `api.box({w:1.2, h:1.4, d:0.2, pos:[-1.5,2.0,2.6], color:C_DARK_WOOD});`\n            *   Pane: `api.box({w:0.9, h:1.1, d:0.1, pos:[-1.5,2.0,2.7], color:0x87CEEB});`\n            *   Cross pane: `api.box({w:0.9, h:0.08, d:0.12, pos:[-1.5,2.0,2.75], color:C_DARK_WOOD});`\n            *   `api.box({w:0.08, h:1.1, d:0.12, pos:[-1.5,2.0,2.75], color:C_DARK_WOOD});`\n        *   Windows (right): Same, pos x=1.5.\n        *   Flower boxes:\n            *   Box: `api.box({w:1.4, h:0.3, d:0.4, pos:[-1.5,1.15,2.8], color:C_DARK_WOOD});`\n            *   Flowers: `api.poly({r:0.15, pos:[-1.8,1.45,2.8], color:C_RED});` `api.poly({r:0.15, pos:[-1.5,1.5,2.9], color:C_RED});` `api.poly({r:0.15, pos:[-1.2,1.45,2.8], color:C_RED});`\n            *   Leaves: `api.box({w:0.2, h:0.1, d:0.3, pos:[-1.5,1.35,2.8], color:C_GREEN});`\n            *   Right side: Same, pos x=1.5.\n    *   `roof` group:\n        *   Left slope: `api.patch({points:[[0,5.5,-3],[-3.5,3.0,-3],[-3.5,3.0,3],[0,5.5,3]], d:0.2, color:C_DARK_WOOD});`\n        *   Right slope: `api.patch({points:[[0,5.5,-3],[3.5,3.0,-3],[3.5,3.0,3],[0,5.5,3]], d:0.2, color:C_DARK_WOOD});`\n        *   Gable front: `api.tri({a:[-3.5,3.0,3], b:[3.5,3.0,3], c:[0,5.5,3], d:0.2, color:C_WALL});`\n        *   Gable back: `api.tri({a:[-3.5,3.0,-3], b:[3.5,3.0,-3], c:[0,5.5,-3], d:0.2, color:C_WALL});`\n        *   Eave trim front: `api.box({w:7.2, h:0.2, d:0.4, pos:[0,3.0,3.2], color:C_ROOF});`\n        *   Eave trim back: `api.box({w:7.2, h:0.2, d:0.4, pos:[0,3.0,-3.2], color:C_ROOF});`\n        *   Ridge trim: `api.box({w:0.4, h:0.3, d:6.4, pos:[0,5.65,0], color:C_ROOF});`\n        *   Chimney: `api.box({w:0.8, h:2.5, d:0.8, pos:[-1.5,5.0,-1.0], color:C_GREY});`\n        *   Chimney top: `api.box({w:1.0, h:0.2, d:1.0, pos:[-1.5,6.3,-1.0], color:0x696969});`\n    *   `porch` group:\n        *   Floor: `api.box({w:3, h:0.2, d:2, pos:[0,0.4,4.0], color:C_WALL});`\n        *   Step 1: `api.box({w:3.2, h:0.2, d:0.5, pos:[0,0.1,5.25], color:C_DARK_WOOD});`\n        *   Step 2: `api.box({w:3.1, h:0.2, d:0.5, pos:[0,0.3,4.75], color:C_DARK_WOOD});`\n        *   Posts:\n            *   Front left: `api.box({w:0.15, h:1.2, d:0.15, pos:[-1.4,1.0,4.9], color:C_WALL});`\n            *   Front right: `api.box({w:0.15, h:1.2, d:0.15, pos:[1.4,1.0,4.9], color:C_WALL});`\n            *   Back left: `api.box({w:0.15, h:1.2, d:0.15, pos:[-1.4,1.0,3.1], color:C_WALL});`\n            *   Back right: `api.box({w:0.15, h:1.2, d:0.15, pos:[1.4,1.0,3.1], color:C_WALL});`\n        *   Top rails:\n            *   Left: `api.box({w:0.1, h:0.1, d:2, pos:[-1.4,1.6,4.0], color:C_WALL});`\n            *   Right: `api.box({w:0.1, h:0.1, d:2, pos:[1.4,1.6,4.0], color:C_WALL});`\n            *   Front: `api.box({w:3, h:0.1, d:0.1, pos:[0,1.6,4.9], color:C_WALL});`\n        *   Door:\n            *   Frame: `api.box({w:1.4, h:2.4, d:0.2, pos:[0,1.4,2.6], color:C_DARK_WOOD});`\n            *   Leaf: `api.box({w:1.2, h:2.2, d:0.15, pos:[0,1.3,2.7], color:C_DOOR});`\n            *   Handle: `api.poly({r:0.08, pos:[0.4,1.3,2.8], color:C_BLACK});`\n        *   Sign:\n            *   Post: `api.box({w:0.1, h:1.5, d:0.1, pos:[1.5,2.0,3.1], color:C_DARK_WOOD});`\n            *   Arm: `api.box({w:0.8, h:0.1, d:0.1, pos:[1.5,2.7,3.3], color:C_DARK_WOOD});`\n            *   Board: `api.box({w:0.8, h:0.6, d:0.1, pos:[1.5,2.3,3.4], color:C_WALL});`\n            *   Hooks: `api.poly({r:0.05, pos:[1.5,2.6,3.35], color:C_BLACK});` `api.poly({r:0.05, pos:[1.5,2.6,3.45], color:C_BLACK});`\n\n5.  **Review against Constraints:**\n    *   Only output `function build(api) { ... }`. No markdown.\n    *   Scale 3. Proportions look reasonable (width 6, height 3+2.5=5.5).\n    *   Colors match the draft.\n    *   Details: timber beams, flower boxes, shingle outline (eave/ridge trims), chimney, porch, steps, door, sign.\n    *   Coordinate intuition: Y+ up, Z+ front. Ground Y=0. Main building base is at Y=0 (pos Y=1.5, h=3). Porch steps start at Y=0.1.\n    *   Decorations are 15-25% of parent size. Flower polys r=0.15 on a 1.4 wide box. Handle r=0.08 on a 1.2 wide door. Good.\n    *   Symmetry handled correctly for windows and flower boxes.\n\n6.  **Final Polish:**\n    *   Make sure the gable ends match the wall color so it looks like the wall extends up, or make them dark wood? The draft says \"墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]\". I'll make the gable ends the wall color.\n    *   Add a small awning or porch roof? The draft says \"前方突出小门廊，围栏...\". A flat porch roof would be nice but the main roof already overhangs significantly (eaves at y=3, porch floor at y=0.4). The main roof overhang protects the porch. This is a classic design.\n    *   Let's ensure the sign is visible. pos:[1.5, 2.3, 3.4] is right next to the door.\n    *   Check window cross bars. Added.\n    *   Check chimney position. It's at x=-1.5, z=-1.0. The roof ridge is at x=0. It will intersect the left roof slope. That's correct for a chimney.\n    *   Ensure no markdown formatting around the function.\n\n7.  **Generate Code.**",
+  "_aiCode": "function build(api) {\n  api.name('Countryside Wooden Shop');\n  const C_WALL = 0xd2b48c, C_DARK_WOOD = 0x5c4033, C_ROOF = 0x4a3728, C_DOOR = 0x3e2723;\n  const C_RED = 0xcc3333, C_GREEN = 0x556b2f, C_GREY = 0x808080, C_BLACK = 0x222222, C_GLASS = 0x87CEEB;\n\n  api.group('mainBuilding', 'Main Building');\n  api.box({w:6, h:3, d:5, pos:[0,1.5,0], color:C_WALL});\n  \n  // Front timber beams\n  api.box({w:6.2, h:0.2, d:0.15, pos:[0,2.5,2.58], color:C_DARK_WOOD});\n  api.box({w:6.2, h:0.2, d:0.15, pos:[0,0.5,2.58], color:C_DARK_WOOD});\n  api.box({w:0.2, h:3.2, d:0.15, pos:[-1.5,1.5,2.58], color:C_DARK_WOOD});\n  api.box({w:0.2, h:3.2, d:0.15, pos:[1.5,1.5,2.58], color:C_DARK_WOOD});\n\n  // Windows\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? -1 : 1;\n    api.box({w:1.2, h:1.4, d:0.2, pos:[1.5*sx,2.0,2.6], color:C_DARK_WOOD});\n    api.box({w:0.9, h:1.1, d:0.1, pos:[1.5*sx,2.0,2.72], color:C_GLASS});\n    api.box({w:0.9, h:0.08, d:0.12, pos:[1.5*sx,2.0,2.78], color:C_DARK_WOOD});\n    api.box({w:0.08, h:1.1, d:0.12, pos:[1.5*sx,2.0,2.78], color:C_DARK_WOOD});\n    \n    // Flower boxes\n    api.box({w:1.4, h:0.3, d:0.4, pos:[1.5*sx,1.15,2.8], color:C_DARK_WOOD});\n    api.poly({r:0.15, pos:[1.5*sx-0.3,1.45,2.85], color:C_RED});\n    api.poly({r:0.15, pos:[1.5*sx,1.5,2.95], color:C_RED});\n    api.poly({r:0.15, pos:[1.5*sx+0.3,1.45,2.85], color:C_RED});\n    api.box({w:1.2, h:0.1, d:0.3, pos:[1.5*sx,1.35,2.85], color:C_GREEN});\n  }\n  api.endGroup();\n\n  api.group('roof', 'Roof');\n  api.patch({points:[[0,5.5,-3.2],[-3.5,3.0,-3.2],[-3.5,3.0,3.2],[0,5.5,3.2]], d:0.2, color:C_DARK_WOOD});\n  api.patch({points:[[0,5.5,-3.2],[3.5,3.0,-3.2],[3.5,3.0,3.2],[0,5.5,3.2]], d:0.2, color:C_DARK_WOOD});\n  api.tri({a:[-3.5,3.0,3.2], b:[3.5,3.0,3.2], c:[0,5.5,3.2], d:0.2, color:C_WALL});\n  api.tri({a:[-3.5,3.0,-3.2], b:[3.5,3.0,-3.2], c:[0,5.5,-3.2], d:0.2, color:C_WALL});\n  \n  // Shingle eave trims\n  api.box({w:7.2, h:0.2, d:0.4, pos:[0,3.0,3.3], color:C_ROOF});\n  api.box({w:7.2, h:0.2, d:0.4, pos:[0,3.0,-3.3], color:C_ROOF});\n  api.box({w:0.4, h:0.3, d:6.8, pos:[0,5.65,0], color:C_ROOF});\n  \n  // Chimney\n  api.box({w:0.8, h:2.5, d:0.8, pos:[-1.5,5.0,-1.0], color:C_GREY});\n  api.box({w:1.0, h:0.2, d:1.0, pos:[-1.5,6.35,-1.0], color:0x696969});\n  api.endGroup();\n\n  api.group('porch', 'Porch');\n  api.box({w:3, h:0.2, d:2, pos:[0,0.4,4.0], color:C_WALL});\n  api.box({w:3.2, h:0.2, d:0.5, pos:[0,0.1,5.25], color:C_DARK_WOOD});\n  api.box({w:3.1, h:0.2, d:0.5, pos:[0,0.3,4.75], color:C_DARK_WOOD});\n  \n  // Railings\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? -1 : 1;\n    api.box({w:0.15, h:1.2, d:0.15, pos:[1.4*sx,1.0,4.9], color:C_WALL});\n    api.box({w:0.15, h:1.2, d:0.15, pos:[1.4*sx,1.0,3.1], color:C_WALL});\n    api.box({w:0.1, h:0.1, d:2, pos:[1.4*sx,1.6,4.0], color:C_WALL});\n  }\n  api.box({w:3, h:0.1, d:0.1, pos:[0,1.6,4.9], color:C_WALL});\n  \n  // Door\n  api.box({w:1.4, h:2.4, d:0.2, pos:[0,1.4,2.6], color:C_DARK_WOOD});\n  api.box({w:1.2, h:2.2, d:0.15, pos:[0,1.3,2.72], color:C_DOOR});\n  api.poly({r:0.08, pos:[0.4,1.3,2.82], color:C_BLACK});\n  \n  // Sign\n  api.box({w:0.1, h:1.5, d:0.1, pos:[1.5,2.0,3.1], color:C_DARK_WOOD});\n  api.box({w:0.8, h:0.1, d:0.1, pos:[1.5,2.7,3.3], color:C_DARK_WOOD});\n  api.box({w:0.8, h:0.6, d:0.1, pos:[1.5,2.3,3.4], color:C_WALL});\n  api.poly({r:0.05, pos:[1.5,2.6,3.35], color:C_BLACK});\n  api.poly({r:0.05, pos:[1.5,2.6,3.45], color:C_BLACK});\n  api.endGroup();\n}",
+  "_description": "a charming lowpoly countryside wooden shop, rustic rural architecture with timber beams, a sloped shingle roof, flower boxes under the windows, a small wooden porch with steps, warm and cozy village store aesthetic, natural wood tones",
+  "_formulaResult": {
+    "methodologies": [
+      "complex_stack"
+    ],
+    "regions": [
+      {
+        "name": "mainBuilding",
+        "desc": "宽矩形主体，墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]，两个前窗，窗下花箱-深棕、花-红[cc3333]、叶-绿[556b2f]"
+      },
+      {
+        "name": "roof",
+        "desc": "陡峭人字坡顶，宽大出挑屋檐，层叠瓦片轮廓-深棕，侧边单烟囱-灰[808080]"
+      },
+      {
+        "name": "porch",
+        "desc": "前方突出小门廊，围栏-暖木色，两级矮台阶-深棕，正中木门-深棕，门侧挂招牌-暖木色、金属挂钩-黑[222222]"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n**所有 pos 都是世界坐标。** pos 是形状的几何中心（不是底面/顶点）。Y+上，Z+前，X+右，地面Y=0。\n系统自动将 group 内几何体偏移为相对于 pivot 的局部坐标，AI 不需要手动计算相对坐标。\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转，返回世界坐标。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点，返回世界坐标。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。pos是世界坐标，系统自动折算局部偏移。手持物target=所属肢体名。不使用pivot的group，系统自动用AABB中心作为轴心。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('mainBuilding','mainBuilding') → 宽矩形主体，墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]，两个前窗，窗下花箱-深棕、花-红[cc3333]、叶-绿[556b2f] → api.endGroup()\napi.group('roof','roof') → 陡峭人字坡顶，宽大出挑屋檐，层叠瓦片轮廓-深棕，侧边单烟囱-灰[808080] → api.endGroup()\napi.group('porch','porch') → 前方突出小门廊，围栏-暖木色，两级矮台阶-深棕，正中木门-深棕，门侧挂招牌-暖木色、金属挂钩-黑[222222] → api.endGroup()\n\n### 复杂堆叠 (complex_stack)\n非线性、无序堆叠（石头堆、烟雾、垃圾堆）。\n- 不是沿某条线的堆叠，而是相对无序的层次\n- 用多个小box/sphere随机偏移模拟无序感\n- 代码：api.box({w:0.8,h:0.6,d:0.7,pos:[0.1,0.3,0],color:0x808080}); api.box({w:0.6,h:0.5,d:0.8,pos:[-0.2,0.7,0.1],color:0x696969}); api.sphere({r:0.3,pos:[0.3,1.1,-0.1],color:0xA9A9A9});\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a charming lowpoly countryside wooden shop, rustic rural architecture with timber beams, a sloped shingle roof, flower boxes under the windows, a small wooden porch with steps, warm and cozy village store aesthetic, natural wood tones\"\n\n草稿结构：\n  mainBuilding: 宽矩形主体，墙面-暖木色[d2b48c]，十字交叉外露木梁-深棕[5c4033]，两个前窗，窗下花箱-深棕、花-红[cc3333]、叶-绿[556b2f]\n  roof: 陡峭人字坡顶，宽大出挑屋檐，层叠瓦片轮廓-深棕，侧边单烟囱-灰[808080]\n  porch: 前方突出小门廊，围栏-暖木色，两级矮台阶-深棕，正中木门-深棕，门侧挂招牌-暖木色、金属挂钩-黑[222222]\n整体比例：宽矩形1.5:1的单层小屋，屋顶占整体高度1/3，前方带突出门廊\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781339152071,
+    "provider": "fireworks",
+    "data": "JZ70DCqxouDwGfP37h8Rp2TbvnMTPfrllKwoZbzaPNw25RE1F4EnQ69xd77V32wQShpcXqzKrT6KeRzthLyAm2AQafU9Bi0gdH+wtAQcJ1tNlkyfXV6OK1GKKE8npK5YByp9VsGRNY1k56qWtmgTDqhzUCzYHI+mjvhOdgXAlvQA+i9tc5eBUh7Q71oCqM4zPpZ+Bn62LBqCOrzFeanoE9D+qAo2dQtaz2iEH2oCFrtEYDdDHJNa/DYj/9iOcEXoan5ZZXpBFSJCPxAqrOpnBoKRFxO505m9IU21XHriuR67MRbjFkA80Pirc+bO9CHAkCNEpWg1iJ+hi3jA5vb1yBa9k+6qFK5uRtJk7/V/0+B5rsVJmfiD2tq6Vh5akQ9KVCr378XyI9b62QdixZ1zzw8cSVTi3CXsuh3KdGD5v0MiRnicnfCXHeec/iK0D5EbkE1lW1EcbLCnSMizEMHXR3a7ln9a9JmYP5N98a2eILQpFC0AKSaJwuK9HqOvGC6gk7lx9nj4bfgg5twki1elU8w6v+0Aun/TEe5mpFXVG0eS+frlMsMk7bVOuorNWVzjuJVmFniOOUU6AGTlgyVDNcWhRawEXSNYp6DV7LdScrbFHHumnuY3XgHkU3ezeFaqhuwHz2GkyFUsMHnSEffW7R9tjLDd1mXikYUCG7VlGaz1VaesluuyYRRHc/oQ4dLiRay79rAXswYRl2cX8cr14ql1yX0CK5kVH37lfP29AMfJEn8rcLLdIIQtVvJ143mn75FYTfoe8ote5ZZg+MavBLVgEhKdnzBIvDlIxrJlfQgoJytWsod/S4ZHqpXAnbTON4XNteNTKxkwGqZG8VOK5Y1Jwg0d1qLvXEmA5lmwOmGaBE+wPl/O7uzGnl/48ClOymtz1VDmi1mTu4hj+0vfLJpOd347R2nIxTm9WGHPfDg0jtgSISsBjQPfI2a9UQcPXyyLva04ZpqLdYDnyGu8+ZyPi08eOOncZLNrKKrgj7TUrNt9f4IzKGyNiOv/LXkSUhZUGNLCX00bzxa5Y6y98G5UOjiLplqES7uigBXW/Civ2eu0wFUURLP26rqWHO/IQp74gq4IiMRpA7KJUUqtTC2+FbMagqvIVS3/4CG/fCDP9P/Igu2Q7GPhTtP0zWv1/+Oop4mscWC3kAOWCskauM+EG1cjJ/yWN1UI8Ekobr/mkbpaXa3nPyRZoyYsm74aeW62kggG+Csm/61DC+Wx8cp0qj5HrRzuW+7D863Xj/dTySXGiHB8NFyIT2XChiOtfOl8w/+PlUVDMzzTLyC+eYeAQ5wXdUwOaMyAh1m6iF2Bs+57BUL+Jgwpad/a4FNt3xR9hgNqkclmcRvcix0F5y3rp/7GA9iPsFCcR2HPI/4+E5gIs84+atY1HQGdwKahd27KhxTymiUWgyX+R9ZUuhsbOjGbOdDOnWmej1qsflI2zxgsl3rBMCGHCTcr2c2SYNs1iZ6SX46IFybVk2wAgF8wkDLfmdEwunXLFtdzuc1C7yyRVgBXTYf80zCk52si5izwVPiXsigxPNA6flYDMnDLxsofOxuZdAg6okNuJNnxkcbDXDbFE6NVkdemd6Q23E2X8GIQNNx0wGfVZPK8N4njQveF6TeYzdt/mybGoNNm8NZvG4Fu8qUhocqnvx++YMqTh+IlVTgxv/+5Dg7wng6NUq5dCGhk8yb3ecMjlh59z6++c9YIdvKDlmP1VZ9ep4rFzHpgDCTBAme8/a0bUOsfXrZLvQYR4RHVFTbXWBr2bxicP5wSk5Kv52arGxVyxBNx324f7w6Rgm8vhOc15/qOTAowi+/VKsACLMwYQiFbKkb+tKAhirmmsUrh7cb0SxavLxySCI7v361YvSJN+dcv90IIXr+aw5PnaYWqv8Un3m+uaj70UWa/awCd380+gIUfApvNBk7bvTotkkQvD1G0oSAfk/DFEoO9t+vkGMzJ1Z07FyK44vCcuZkxHvsqgTmbR1/d3yIje7i+akPDzjpCAWByDdkoDkQVqqSqGRq3xAUx5mGTNApQ7TeEkz+XXcZ6ZysI4/KhdMJdCuR6RlCbqQ4OzTiV87c8r7EDTtzOcqFKKN8TIuhJDHyK2ZPyB/h+of9NGvX1zgUe7KsJWF9u6xQfJsWcFYo7J7ZUiLCiC33scl8q1IwRqXgtEMiGON/QT8ipD+D6PnGBANJqC68sVnK24mUq9cwqkfspuHzewJYG9D3WTtFiaOLK0xCkcLW38ZCE4MSlcW8ypH6YTHRkzc63wwD8OeeMMFRSiWt2tYH/hNwDqIErjguLkOvco6v2GfoyjK2Vo9pJGI9Slno+8K0D4qQJQsP5RL3uwfQW8TS/hXhvTsMNtCLJ5Ux4FCWqdE7J+OFOvGOYk+v3gMudm30TIfnGc7tdPYAercW1rDBQ0OUL4L3W2w4H/qXvyVRCEGOynRUKXziEjrmZmj2DbvM5jCnotRE6mb8W9vEfdV2z2IeD6F1Bu8f/pZis4/jTR3HeeqJRHSMD/EbixvlXUIuj4ZuVEgKwvNRJ//AT87APLVlkXGEhuzkmLsHAkKrproGxnCCklybVY3qQkF8lPn1pHt4Pk0mpNiBePOIYqE1Hywh14ioxD5JMWyEIJxmip9+bH+DaBIIucisBsx7nF+OY39c1dxZlxLKuURQCvYJNiuqf6rKLTBJg6lTEcWD/CMxg8mf3hMphVexppNZwMD1cFs5/a/OHPwG1Cve/1dg9SNRyjlhS9qsgLayArnFlrKk3ih7Z1zEg3Eycg9MptEXvj2SSiCblTx27WR/wpFK2wjPjF6raKnQ1dTx2eM8oPWdk1xq7nYtUxaEI5/LIKeqvEXTwgmE5rjwg8ZWjdQ8bQJ76UGajnJAarW0qT2HwWwOSm7jQ6bmZGpdy6qw7vn1ivYLXmk0ZMlIB5stI+mBMNrRL2awrCTVIu/JslvJzVoOw97IsDJOuAU8/uMpT1Nbrh9RUWK17Ch4j3DF6E9xg+HRZMdfugXGO7fjHNfkDMYtyVQJUMAO5NRIcLK3WqJpzxyi7tMPizUuBMMpcUu4hYTaZyBWPCCEg/4powN2zP8pxCxUvpE77LHyshaklfxJE04K3Zzj211NUO9ikyCaWtiumOhBM3hhKALdKMm6BaLWChXPKc7m86oT/3fM7fbiKh9fbM1B4/1qzQ4w3AyopgIdE1oQemkJS2zzl9PfDeR0aYo9WId9kQeOP0elgh3oIQxA+ewu2HwWiYSeeI7glK9OiPYZtek4Xgtx0xSZBp9SGrdBGKcvTlri6CQXvPE6zsLeYMSN8nXK8i+M7iWKRT1ZqnxAQWx8MISBoIL7Rs/9juHbCQ2NA7LkZJmKOtv063q7Zut4X6x3PGtWsZOaWpviuoWUyJfvF+9iNiL/RU4zcrbMHFYrW9MlREYRZyoZUofpRTbmhDWiHiayzdpfOaZL+o4GZ0g8gY3EyodzzzFJNOBbiYSwD/MIp57eknKi1g7RH6VOKl78MaqVPW5VEol49mGda/bjnFAa++dpY4zlfvrcHGKO12Ql+U4lRQ6Htmkr3yPlVDOjwzps05eccTF7MHBGEAAj3ejSWpj1Wbme+DlAQnE4Oc+IF7iCHIkHdQyjfwlei6N+Sf1YcDGT8bQJ2nKIoJNUhhQYyhy0CaDbcr92a9DmphXFmfD/BgJZwm3lwVfEMcprhbWLUtkgim+srOqcJXwRPYjSiLblpwoGmjf+Af1V9B58QZUaIbccAMYxgJvWxsgVqg0+Ir/nJ6e5N22VLJndViHwQGXDaFzF+4RFR/gDOdgnPyYdeSL8MDCTsQBWvTHMkffjmlm1A1sn6xKJe5xxriP0Wbz1RZE2A1GY2kcXUirJAAJS6wUZIDcprHFo/ywKe+21/2jzpHjSPnGIs/H5JJY+T7fWo+SjuZBLJYeK+skZOF0Ijodn2GN1MdFkAWpTe55n1rNd8qcov3JgUh4C/cu45Dy7vqekDh72aE/s2ksuHOI2ak+L216FI5d/mml2+B1U+hGnl6C3dfpyyMkvpYDC0d8EO3q5yDaTeVHaSnL45REBu8pdmF03JWz7zLJ7s38vSmVgJgS4WWLFtlkArtMqxmJfeV2Q6R+BfceCU1V9aJTDsAzLfoqywA8MUMj5SYf6mxccSF825LYJMUjzXdxzy9Jj+TG0lAkAD4AeP+BqQhOvIewy5MnQG+0V68KBzPkUiYDykRcPfL1BkuMJB+WtB+ExOfxdfxeN2civJEadxgm4fI4wemeWdw6CSkurb75gG+m9QkBd27BKzAxKBEWpFaHJ41nLKnkQA+O+EgZsK07TcHi9K4/VQ1ZL1QYT3SvNOBeNr5Nz0nl8rytOAJgafsBBHua5YJVhQ7oETkymTLbHwkPBFQEPnyQB7x9NHdD95B3SP056jwn7Rj0ty5vzCEcI2j0ACbAu9qK2S3QYizpvndUT6Cuh6OCJgKJjpP1I9e0xN4pcAWMsUVl5SB5Nqm3l8zd2hO80BBFelyd7bNW6lwz4FjOvh5DW4S56yv/KqWG5gl3ZDYLKOtrtHtvTHGXW2+PgPTOJSAw19UumTpgg70P+kZnMThpbxQ7bHoAiiqkYhmNKaWj12L2fnrmc8u0ABmFk93UQuXu1Mz9O7vgewKPszcrpGmJvwiQhaBPr+pR9EwEIVztjiW82hLSQQ8cQ0QrfJf7rqVK+NDv2Z4yQt8DOR4fPYIIiRSFAs5Yye8xHDSUZq4JCUCcdSn2SJn7giT5D1ROavQwagr3Yeyydk+GnUGMpi26SIRp1Bo6wBRXJdQjvRWMBk3tojkMXZmRX4HHlglR85n7WV26Dox/5qUYka06R2eiqmbWmeP8RnXOdfOs1F4kgyj7mZZ1Fa472PwcFautsEN1NYvuhFRcqHr1Y8byJN0cGjPO/Zc7VpjYVtrErSFKa0L2Ovje+F6/3/KnZ4oPpt3UDGoj+wiDW1ZBgDjYwCQIvEqXDEJp5UgsGJxwpyrNn/z7iHryxkzvwXmTLGHmcOCfGk1keYVtkLMkdZRfKeXFYezENZGwrl1AoYkD+RhbMO/ihzEbFns/puMmVrMi9TXuvfW0qMPu3Z/umFUUC3XaQZ2q3FEYRmQTJlRUevmT+QxsfvNtR+lpB97VvfAkkQtSOC7PXD5PFV7L9ym8rEEfO4CUEKlI7EXNxiuWfeF69MwK8ELQMmXCOxdSrsH4YHrzwIpTvd0HNedrqN1qtBLzSS6BuetsAPmXgnEuGNMIPk1BoNEVtBPFjT5dMEqdfbLemxt8qgQwQCZHBvY66icEtLmLnUasdfg+A6CboHCq9rKYRGxup0Kgko3X2d9WUE8h/MyOmzq2q+QMJ5LP8JZ51OT5x9kdjV3oFAhjxfwyjW8/fiK2cvkC/C27S/Kh+iEwQsG9NZObgccfk4jleA0AvBjw4l76ledPH5BKjQQ/cITm1MydjwuaSg/VRJdxkI0Q6fBpFWaD26n4fAx04G8X1/CaG93m3KJNzhPL/CRJZNiHgBPYEgtDhViCcOSZEJ+IbwRkui5G1eXBv/VSFsq+Ph7rbFjIiPWGX/ySi51tpm3hOVT/vPjuZwJxmg6ljmZJaJ5fgnFcQXQX6slzFrFJMj8LbJwFbyTWwUl6Q5vdcZziyJiQ4Q2CwGpIjcCqGT1dKAZnpceYVAPRtjKEKLtUDiYk4IBBZbMwdl4WjvQpDvmUVQg9Uf/sr3oq6NDNHMbFXtNpDzKyWLMVpFjp1fTU0ST8gUqhCXTGTo1yaPThjHgyu0M3hbdeogPmpPVMcMx4BocwulekdD4xw4xq80NKCrfEYz/oMyU/y+4uKkVC/KOXbDygClUpUJ1H/vUqtWVbr+63LquK23+umam4xxbNZjlYNykJvE2cqaAUjwNMP4L7rOfmlxBvWDaDQPOUIf9ok8ZxgJyHIsIDWZBcCAyVgCnsjcL0RL/+pOKUFpdTmKkJv7Za4f06HkHzvUvYvgvPRGiwTsD41ioLUt8ofZ2fenuewR5oCYTR+hHlLNyqGzH+NZS0aDtjr5vEzbwX6QgMRPMabbE8l1xDGwanX7yQlZ+jcRBzjQy+C7ZrxaIht+mGqvudyz9tsNdKoKFIHnLlRGT8cCHM+7D98ueB06zPpA0DvWG9LLEmNfd4vxWREjH7mYqjF5Ah+0olp6vj5kWK+wsv5HNdyGSJOISs3qtcByqnZatiBRbojVo29v96I0Sz2O/6MDRR5rpZ1eVzxD1s3qWfXqywMtsY1PLQftGo+65vPsZahoLmWSlFjLsHNMotY9LB/EnbsCV+AFQoIfz0WWNPGx0//FzZmw9nCwSgQgC8N9U3Q4od4NtOWpeWb7qrp/GuOMU0bUzHhRYwkitjeVYvxZndJuyGhZ0UTAujc7yoJMP5SGv9a25bu4hGB0bceszw/knhCWnS6+EM2xxWy1wKCj6bmVQ19kBRQC7ZmMkLofdVznllBtB7RnnSwfle7LAcy56ZDGr9AqC8imvEaoQ2DymJnkSeZ4/5S0gPQo6wQcfXnUQzQoavXNU7dMQimOW3Y9ic6dzGUQmIH45PMoGRB27sxcOKyv2Dy+fPZ2F6kzMUhVj7ksMOspR0epTxhJlM1C0plictmb+9AiN4kJHcYnBRhSXz7vDCIX4VcMr4g2FYOn5NBoTjOndmCmV3fGFZd2yABihw4hBno0QopavAAdWd7hy6+JVXctz1ZYFdi7smcHmCgtBTcVVv+MsRxxMMhXqwt0aK+bO2t20Jp5+dVPpdH3sf4QgYJ9a2BFk/Q1iRi8T9ir7rrZ69BXmJAslbC4YXut/0eK1HnhADxiPLo6vuhOGLm1oZtBXbDAALHBdC+c1i0LsV82NCb3zxnUZnaNiWEzh4wVzK8G6q2I3O8W3xvzFeCd+y8Gto+tPCqXZyUAn7vA0jDfy8N9kBYWpXk+XWFsDwn4qvdQ9zqPpe1SiTeOMFwPamOxSAOOT4H2+2ZJwoMR9oj91heOm9XsKi2LuBl1J6jIX58XkVVOYJrpHqFg8af1oQ6KYH0/1jDXWyN86Fm8N5udcU7w6EVNkelPLGbZw4mc9IwvyBvJ05YgLLIPAgILqt+bGcYkL+n+Jupu7N7NLCalHBNCHhFr64lQTBKs4hbt9DiGeWRdRwCGkU+/D7ZBb7/vpj0XQxfX3hQvyoNEvyuI1ckyCZQlPHZ6nR2c3f0Nz8NezsVb/rBOrl+MF5VI9kJV1bjqUIX0JknK1KQ5toJSTFbaDU7gtkBKl1YkKLFTe1bRUgLscrQtrCeaew7sM28mnU+l81gBOsQ1J9d5+Iu8kRlLO+Eo64Q0SfD2lWF9z5UKxlk1OK0dIpPyluwln3tYbUSGRsMiMnXrdIYpChpwbXGnV/CccMVDWck3PBraXK6hJNuFlq8SPdCwzHnIMxnt7Flo7NazyAHS1wl3/HF12+Z/KMW9kcNbqI+kJoNCfjHtmqNMSapdoNH3iSKeqlBgf1aIZREwAicmVNUKWdSK9x8nnACoyGLp0sCZfsoI+EGKWeJk4suZQesA50zjDPn4hrBJ3SQIuDQJj+S0n575mUbjI5Rv/fDZVnVo1G84ikdAe5lvuz3tlVuInqAvHjTj25cqcbbLmiZmKLOpRFOItC0NyzeaVf5b0nAv8y6JOJ3ypbh4JYq/muxh3POb7VlRWXBWQrOX0djJJOwpCY5PhYD1T3exBaFdqegDhmrMbbIUsHE87C9hkxYeC6IkqDAii+S4I5hQ745PcJetpGcxQpoOyTp4Eh2ImeeyEqCIn090uhpF5RWQpjlvNp7IXyZoYwCBXF/D8skKTju8bCUlBgmlSHYrBBv3j08lpqOvjfPvQM0KYPK7asG2yxh3a9ZuB70PzSiOdCou6HSDNOqATtGxMERHxo58+mMHzrsxRF6AX0QP5DPOSch/pRVniU8E2uszQSVV+j7t+ZJi/122/6Ua5SvMKfWqIleN6FmE56qN7j6K/ttdL+p5cTXwEyWvlMUrq/VsCOXRdMQoLfjaNvvZObMVIk2IS8KQvbtCBXpqzlocC0SLg+X1NyXgdqQijhLVvin/NTF8elr+L7+mSPtej5lb0Ws8dev0d1lTwsJ5ut1zg40LUDxsAa/QaVx/EvFgkiQhtWvU2i6r4uwPYTLq91qZO6ejbNszCmIwOh/NGFpIxON20oMd988elwg31R3L1D5UpTXUpE4960Gf76Gghe4bfmX7iEKXbzoe4/suEc6oo8GIDmA8NzW7J95qotPLV1cAWuaDKuNSABlh2jtEJTeS0gRy21sVZYmm7ODYKBJTr9n5VP+svX75v8DPbftLXAW7CiN3kJ/OU0k9VRCkdwojZMMbns7zMmE3cBq9kKGJRO9W+A8LQ74iAvflb82MqAiBHwPRdNT/H/THlSl36GLFZz+NUbUkOIlaMlFwl/iKJaw6GUlMORK/bETD8LfcNCCpRdhI7Msyon7ykmnR34EGTHtX9J8+/3/kjyU72KGAS2zWsSWULMX7ZSDMWNSWpw0R23Byfau7OaWpoFF8n/atUyEPavWqRUNQoB+IQ4RTp2Rm/1iwmK81tirjP6TnDC7PpzeQzJbJ3r5hfozXlJWHF8pN9kmACaLUSBmufgRYXERn/0v9YA4mEN3p6z9vAyCzFxddYxMAm65vvmiZaeYsKxGZxX4TWRGY2RtibNx1Ayl1gWkAJM+E4ptYWgHu8PEHAbRcy7OnLlLMWuvnlVFd9A3uGIUcjEPPu8lY9ZkkopqskjqJAAL9zDFB2gKQEQT3YF+hJvk5ILRCMBvQiBL8kHeLqxReQNDfzw50Haye5aiYwgR0hdqqVhmQKJDcjH+Gx0Ad26Iz/KRf/mDbbxsINbslCLLBpohU833fHG4NO552kQ9kFe/5RwJoI2g7AfSyobyXzD/vYxmnEnxalXaVlPNItWS49xttURkxWdE3wA+et7h3WaWiPDY/0t78cOGyZsAUSkni9LiyLSwK8pllyLFLb82fVVyhiAH65Nu2NwOE2AN55E+7DwD7uBra8Jv1+CFIMt4PjP4AAbL2tBqz7LQeXAs2Eb9vEvCjt33+IMWLtVPxkaRQRxVgaurI6icD4FYnwRHlHYkGzSWuQO1N/jgEIg3AhjMkXt3kA6FafncLY7/rS8X6lkeH56Fd/FyOBmMi",
+    "edits": ""
+  }
+}

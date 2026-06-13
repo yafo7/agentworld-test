@@ -30,7 +30,7 @@ npm run preview  # Preview production build locally
 
 ---
 
-## 当前完成状态（2026-06-12，本轮后）
+## 当前完成状态（2026-06-13，本轮后）
 
 ### 当前玩法循环
 
@@ -42,16 +42,27 @@ npm run preview  # Preview production build locally
   |
   ├─ 靠近宠物 → E抚摸 → 亲密度+1
   |       ├─ lv5: AI 生成新物品
-  |       └─ lv10: AI 生成新环境 + 宠物寻主对话
+  |       └─ lv10: AI 生成新环境 + 宠物寻主对话（⚠️ 宠物对话系统暂时关闭）
   |
-  ├─ 靠近装饰/建筑/树木 → E交互 → 播放呼吸动画
+  ├─ 靠近装饰/建筑/树木 → E交互 → 播放 AI 生成交互动画（若有）或呼吸动画
   |
   ├─ 靠近风铃 → E捡起 / 再次E放下
+  |
+  ├─ 宠物跟随系统
+  |       ├─ H 靠近宠物 → 呼喊跟随（可多宠同时跟随）
+  |       ├─ J → 解散所有跟随中的宠物（进入 30s linger 后自动回家）
+  |       └─ R → 所有跟随宠物一起去 refine 离玩家最近的实体
+  |
+  ├─ 宠物 refine 系统（万物皆可 refine）
+  |       ├─ 宠物寻找最近带模型的实体（装饰/树木/环境/建筑/宠物/物品）
+  |       ├─ 走向目标 → 转圈 → 调用后端生成新模型替换旧模型
+  |       ├─ 从所有参与宠物的 tag 中各抽一个，合并后追加给被 refine 目标
+  |       └─ StaticEntity 被 refine 后获得 AI 生成交互动画，按 E 播放
   |
   ├─ 进入外围环境 → 右上角提示 "按P展示/隐藏该地形内容"
   |       └─ 按O全局显示/隐藏所有外围环境（一键回到单中心场景）
   |
-  └─ 屏幕底部显示 "xxx 按E交互/唤起/召回/抚摸/捡起" 提示
+  └─ 屏幕底部显示 "xxx 按E交互/唤起/召回/抚摸/捡起/呼喊跟随" 提示
 ```
 
 ### 世界网格系统（3×3）
@@ -89,7 +100,10 @@ npm run preview  # Preview production build locally
 | 树木 | 魔女/yafo/金鱼/tree_rand_1~6 等（StaticEntity），全尺寸，绿色单位面积 |
 | 宠物小屋 | 马扣的家/扶摇的家/momo的家 + 各环境主题小屋（StaticEntity），半尺寸，红色单位面积 |
 | 宠物召唤/召回 | E靠近小屋 → 在旁边一格召唤；再次E → 走回旁边一格 → 停顿 2s → 消失 |
-| 宠物 | 马扣（小马行走）/扶摇（小鸟飞翔）/momo（团子行走），模型+idle/walk动画，50%缩放，完整亲密度/状态机/dialogue |
+| 宠物 | 马扣（小马行走）/扶摇（小鸟飞翔）/momo（团子行走），模型+idle/walk动画，50%缩放，完整亲密度/状态机 |
+| 宠物跟随系统 | H 呼喊跟随（可多宠）；J 解散全部；R 指使 refine。跟随中宠物保持约 3 单位距离 |
+| 宠物行为判断 | 每5秒：45%行走/45%idle/10%去隔壁环境游玩（60s后自动回家）；每30秒：20%回家/50%与装饰交互/30%找其他宠物聊天 |
+| 宠物 refine | 万物皆可 refine：装饰/树木/环境/建筑/宠物/物品。多宠同时 refine 时共享一次后端调用，合并所有参与宠物的 tag |
 | 宠物动画 | 优先 Voxel Runtime（evaluateMotion）；`tilt` 类型已禁用（会导致卡死）；不可用 fallback 客户端 sine wave |
 | 按需加载 | `O` 全局开关 + `P` 单环境开关；按环境分组 `envEntityGroups`；进入环境检测 `getCurrentEnvIndex` |
 | 互动提示 UI | 屏幕底部 DOM overlay；右上角 `globalHintEl`（O键）+ `toggleHintEl`（P键） |
@@ -208,9 +222,9 @@ function trigger() {
 1. **模型渲染性能** — 每个mesh独立draw call，200+ mesh的模型渲染压力大。需合并同材质mesh或使用InstancedMesh。
 2. **Voxel Runtime 依赖** — 动画播放依赖后端 Runtime（`/api/voxel/api/templates/module.js`），不可用时使用客户端 fallback（sine wave），效果有限。
 3. **宠物动画 fallback** — 客户端 fallback 只能做简单的弹跳/呼吸，无法还原真正的 walk/idle 动画。
-4. **田园商店模型** — 后端多次生成失败（AI空返回/内部错误），`country_shop.json` 未生成，目前显示黄色方块 fallback。
-5. **生成脚本分散** — `scripts/` 下有多个生成脚本（generate-decor.mjs, generate-house-pets.mjs, generate-pet-house.mjs 等），缺少统一的批量生成入口。
-6. **环境内容同质化** — 8 个外围环境复用现有模型 JSON（tree_rand_1~6, pet_house 等），主题差异化主要靠标签和颜色。后续应为主题环境生成专属模型。
+4. **生成脚本分散** — `scripts/` 下有多个生成脚本（generate-decor.mjs, generate-house-pets.mjs, generate-pet-house.mjs 等），缺少统一的批量生成入口。
+5. **环境内容同质化** — 8 个外围环境复用现有模型 JSON（tree_rand_1~6, pet_house 等），主题差异化主要靠标签和颜色。后续应为主题环境生成专属模型。
+6. **宠物对话系统** — ⚠️ 暂时关闭：`petDialogue.js` 中 `_checkPetChats` 和 `_checkSeekPlayer` 已注释掉，避免宠物贴脸时反复触发对话。后续修复对话检测逻辑后恢复。
 7. **宠物召唤去重** — 已修复：`interact.js` 通过 `pets.includes(data.pet)` 防止重复 push。
 
 ---
@@ -280,11 +294,11 @@ Phase 3（中长期）：开拓与社交网络
 |------|--------|------|
 | `src/main.js` | ★★★ | 世界网格初始化、环境分组、按需加载、动画循环主调度。当前最复杂的启动文件 |
 | `src/ai/modelLoader.js` | ★★★ | 模型构建+动画播放核心。buildModelFromJson + fallbackBuildGeometry |
-| `src/entities/Pet.js` | ★★★ | 最复杂的实体：状态机(6种状态)、亲密度、对话、动画、变色、召回 |
-| `src/entities/Environment.js` | ★★ | tag系统核心，tag频率收集(Top5)，居民追踪 |
-| `src/interaction/interact.js` | ★★ | E键统一路由，6级优先级（掉物>寻主>宠物>召唤/召回>静态>捡物） |
-| `src/interaction/petDialogue.js` | ★★ | 对话触发+寻主检测，异步AI调用 |
-| `src/entities/StaticEntity.js` | ★★ | 不可移动实体（装饰/树/建筑），呼吸动画，自定义scale |
+| `src/entities/Pet.js` | ★★★ | 最复杂的实体：状态机(8种状态)、亲密度、动画、变色、召回、跟随、refine、万物 refine |
+| `src/entities/Environment.js` | ★★ | tag系统核心，tag频率收集(Top5)，居民追踪，支持被 refine |
+| `src/interaction/interact.js` | ★★ | E/H/J/R 键统一路由。E:6级优先级；H:多宠跟随；J:解散；R:统一 refine |
+| `src/interaction/petDialogue.js` | ★★ | ⚠️ 暂时关闭：对话触发+寻主检测已注释掉 |
+| `src/entities/StaticEntity.js` | ★★ | 不可移动实体（装饰/树/建筑），呼吸动画/AI交互动画，自定义scale，支持被 refine |
 | `src/game/gameData.js` | ★★ | HOUSE_PET_CONFIGS + PET_CONFIGS + ITEM_CONFIGS + dialogue |
 | `src/world/terrain.js` | ★★ | 单位环境(10×10) + paintUnitArea() + getGridWorldPosition() |
 | `src/core/camera.js` | ★★ | ThirdPersonCamera：左键拖拽旋转、球面坐标、getHorizontalAngle() |

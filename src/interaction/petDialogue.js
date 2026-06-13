@@ -19,20 +19,21 @@ export function setupPetDialogue(pets, playerPos) {
 
   return {
     update(dt) {
-      chatCheckTimer += dt;
-      seekCheckTimer += dt;
+      // Dialogue system temporarily disabled to avoid pets clustering bug
+      // chatCheckTimer += dt;
+      // seekCheckTimer += dt;
 
-      if (chatCheckTimer >= CHAT_CHECK_INTERVAL) {
-        chatCheckTimer = 0;
-        _checkPetChats(pets);
-      }
+      // if (chatCheckTimer >= CHAT_CHECK_INTERVAL) {
+      //   chatCheckTimer = 0;
+      //   _checkPetChats(pets);
+      // }
 
-      if (seekCheckTimer >= SEEK_CHECK_INTERVAL) {
-        seekCheckTimer = 0;
-        _checkSeekPlayer(pets);
-      }
+      // if (seekCheckTimer >= SEEK_CHECK_INTERVAL) {
+      //   seekCheckTimer = 0;
+      //   _checkSeekPlayer(pets);
+      // }
 
-      // Clean up finished dialogues
+      // Clean up finished dialogues only
       for (const pet of pets) {
         if (pet.isChatFinished) pet.endChat();
       }

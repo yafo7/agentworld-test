@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createTagLabel } from '../ui/TagLabel.js';
-import { loadModel, loadAnimationPlan, applyAnimation } from '../ai/modelLoader.js';
+import { createSpeechBubble } from '../ui/SpeechBubble.js';
+import { loadModel, loadAnimationPlan, applyAnimation, buildModelFromJson } from '../ai/modelLoader.js';
 
 export class Item {
   constructor(config) {
@@ -35,6 +36,10 @@ export class Item {
     // Tag label
     this._label = createTagLabel(this.mesh, []);
     this._syncLabel();
+
+    // Construction label (for refine)
+    this._constructionBubble = createSpeechBubble(this.mesh);
+    this._constructionRefCount = 0;
   }
 
   async _loadModelAndAnim() {
@@ -78,6 +83,54 @@ export class Item {
     this._animTime += dt;
     const t = this._animTime % this._animDuration;
     this._animPartMap = applyAnimation(this._animIdle, this._animDuration, this._modelGroup, t, this._animPartMap);
+  }
+
+  // ---- construction label ----
+
+  showConstructionLabel() {
+    this._constructionRefCount++;
+    this._constructionBubble.show('正在施工中...');
+  }
+
+  hideConstructionLabel() {
+    this._constructionRefCount = Math.max(0, this._constructionRefCount - 1);
+    if (this._constructionRefCount === 0) {
+      this._constructionBubble.hide();
+    }
+  }
+
+  // ---- model refine ----
+
+  async refineModel(modelJson, newTags = []) {
+    try {
+      const newModel = buildModelFromJson(modelJson);
+      if (!newModel) throw new Error('Failed to build model from JSON');
+
+      if (this._modelGroup) {
+        this.mesh.remove(this._modelGroup);
+        this._modelGroup = null;
+      } else {
+        this.mesh.remove(this._fallback);
+      }
+
+      const box = new THREE.Box3().setFromObject(newModel);
+      newModel.position.y = -box.min.y;
+      this.mesh.add(newModel);
+      this._modelGroup = newModel;
+      this._animPartMap = null;
+
+      for (const tag of newTags) {
+        if (tag && !this.tags.includes(tag)) this.tags.push(tag);
+      }
+      this._syncLabel();
+
+      console.log(`[Item] ${this.name} refined with tags [${newTags.join(', ')}]`);
+    } catch (err) {
+      console.error(`[Item] Refine failed for ${this.name}:`, err);
+      if (!this._modelGroup && this.mesh.children.filter((c) => c !== this._label.sprite && c !== this._constructionBubble.sprite).length === 0) {
+        this.mesh.add(this._fallback);
+      }
+    }
   }
 
   _syncLabel() { this._label.update(this.name, this.tags); }

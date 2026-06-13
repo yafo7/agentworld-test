@@ -19,6 +19,75 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
 
   return {
     update() {
+      // ---- J key: disband all following pets ----
+      if (consumeKeyPress('j')) {
+        let disbanded = false;
+        for (const pet of pets) {
+          if (pet.state === 'following') {
+            pet.stopFollowing();
+            disbanded = true;
+          }
+        }
+        if (disbanded) {
+          console.log('[Interact] All following pets disbanded.');
+          return;
+        }
+      }
+
+      // ---- R key: send all following pets to refine the same target (nearest to player) ----
+      if (consumeKeyPress('r')) {
+        const following = pets.filter((p) => p.state === 'following');
+        if (following.length === 0) return;
+
+        // Find nearest refinable entity to the player
+        let nearestTarget = null;
+        let nearestDist = Infinity;
+        const candidates = [
+          ...staticEntities.filter((e) => e.mesh.visible),
+          ...environments,
+          ...items.filter((i) => !i.isHeld),
+          ...pets.filter((p) => p.spawned),
+        ];
+        for (const entity of candidates) {
+          const dist = player.mesh.position.distanceTo(entity.mesh.position);
+          if (dist < nearestDist) {
+            nearestTarget = entity;
+            nearestDist = dist;
+          }
+        }
+
+        if (nearestTarget) {
+          // Collect one random tag from each participating pet (deduped)
+          const allTags = [];
+          for (const pet of following) {
+            const tag = pet.tags[Math.floor(Math.random() * pet.tags.length)];
+            if (!allTags.includes(tag)) allTags.push(tag);
+          }
+          nearestTarget._pendingRefineTags = allTags;
+
+          for (const pet of following) {
+            pet.startRefine(nearestTarget);
+          }
+          console.log(`[Interact] ${following.length} pets sent to refine ${nearestTarget.name} with tags [${allTags.join(', ')}]`);
+          return;
+        }
+      }
+
+      // ---- H key: call pet to follow (multi-pet) ----
+      if (consumeKeyPress('h')) {
+        for (const pet of pets) {
+          if (!pet.spawned) continue;
+          if (pet.state === 'chatting' || pet.state === 'seeking_player' || pet.state === 'returning_home' || pet.state === 'recall_pause' || pet.state === 'refining') continue;
+          const dist = player.mesh.position.distanceTo(pet.mesh.position);
+          if (dist < PET_INTERACT_RANGE) {
+            if (pet.state !== 'following') {
+              pet.startFollowing(player);
+            }
+            return;
+          }
+        }
+      }
+
       if (!consumeKeyPress('e')) return;
 
       // Priority 1: Drop held item
@@ -90,8 +159,8 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
         }
       }
       if (nearestStatic) {
-        nearestStatic.playBreathing();
-        console.log(`[Interact] ${nearestStatic.name} 呼吸动画`);
+        nearestStatic.playInteractionAnimation();
+        console.log(`[Interact] ${nearestStatic.name} 交互动画`);
         return;
       }
 

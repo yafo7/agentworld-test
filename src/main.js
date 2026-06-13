@@ -171,6 +171,15 @@ async function init() {
     housePetMap.set(hc.houseName, { house, pet, summoned: false, sidePos });
   });
 
+  // Inject world data into pets (basic)
+  const allPetInstances = Array.from(housePetMap.values()).map(v => v.pet);
+  allPetInstances.forEach((pet, idx) => {
+    const hc = houseConfigs[idx];
+    const sideGridX = hc.grid[0] + 1 < 10 ? hc.grid[0] + 1 : hc.grid[0] - 1;
+    const sidePos = getGridWorldPosition(sideGridX, hc.grid[1], 0, 0);
+    pet.setWorldData(staticEntities, envGridConfigs, sidePos, 4, allPetInstances, environments, []);
+  });
+
   // ---- player ----
   const player = new Player();
   scene.add(player.mesh);
@@ -178,6 +187,11 @@ async function init() {
   // ---- items ----
   const items = ITEM_CONFIGS.map((cfg) => new Item(cfg));
   items.forEach((item) => scene.add(item.mesh));
+
+  // Update pets with items reference
+  allPetInstances.forEach((pet) => {
+    pet._items = items;
+  });
 
   // ---- environment tag collection ----
   const allEntitiesForEnv = [...staticEntities, ...items];
@@ -223,6 +237,25 @@ async function init() {
     backdrop-filter: blur(4px);
   `;
   document.body.appendChild(toggleHintEl);
+
+  const followHintEl = document.createElement('div');
+  followHintEl.id = 'follow-hint';
+  followHintEl.style.cssText = `
+    position: fixed;
+    top: 92px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    pointer-events: none;
+    z-index: 100;
+    display: none;
+    backdrop-filter: blur(4px);
+  `;
+  document.body.appendChild(followHintEl);
 
   let outerEnvGlobalVisible = false;
 
@@ -295,6 +328,15 @@ async function init() {
       toggleHintEl.style.display = 'none';
     }
 
+    // Follow hint (J/R keys)
+    const followingPets = pets.filter((p) => p.state === 'following');
+    if (followingPets.length > 0) {
+      followHintEl.style.display = 'block';
+      followHintEl.textContent = `${followingPets.length}只宠物跟随中 | 按J解散 | 按R改造环境`;
+    } else {
+      followHintEl.style.display = 'none';
+    }
+
     // Play idle animations on items and static entities
     items.forEach((item) => item.updateAnimation?.(dt));
     staticEntities.forEach((entity) => {
@@ -325,6 +367,16 @@ async function init() {
       const dist = player.mesh.position.distanceTo(pet.mesh.position);
       if (dist < INTERACT_HINT_RANGE) {
         nearbyList.push({ name: pet.name, action: '按E抚摸' });
+        if (
+          pet.state !== 'following' &&
+          pet.state !== 'chatting' &&
+          pet.state !== 'seeking_player' &&
+          pet.state !== 'returning_home' &&
+          pet.state !== 'recall_pause' &&
+          pet.state !== 'refining'
+        ) {
+          nearbyList.push({ name: pet.name, action: '按H呼喊跟随' });
+        }
       }
     }
     for (const item of items) {
@@ -354,7 +406,8 @@ async function init() {
   console.log(
     '🌲 宠物庭院师\n' +
     '  WASD = 移动 | 鼠标拖拽 = 旋转 | 滚轮 = 缩放\n' +
-    '  E = 捡放物品/宠物互动/在宠物小屋前呼唤宠物/与建筑交互'
+    '  E = 捡放物品/宠物互动/在宠物小屋前呼唤宠物/与建筑交互\n' +
+    '  H = 呼喊宠物跟随（可多宠） | J = 解散所有跟随宠物 | R = 指使宠物改造环境'
   );
 }
 
