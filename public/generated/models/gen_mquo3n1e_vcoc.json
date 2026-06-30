@@ -1,0 +1,1833 @@
+{
+  "name": "Ornamental Fish Topiary",
+  "type": "lowpoly",
+  "meshes": [
+    {
+      "id": "planter",
+      "name": "planter",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 1.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "m0",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 1.3,
+        "radiusBottom": 1,
+        "height": 1.5,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.75,
+        "z": 0
+      },
+      "color": 11952975
+    },
+    {
+      "id": "m1",
+      "type": "torus",
+      "geometry": {
+        "radius": 1.3,
+        "tube": 0.1,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m2",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 1.2,
+        "radiusBottom": 1.2,
+        "height": 0.2,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": -0.10000000000000009,
+        "z": 0
+      },
+      "color": 4073251
+    },
+    {
+      "id": "tail",
+      "name": "tail",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "id": "m3",
+      "type": "box",
+      "geometry": {
+        "width": 1,
+        "height": 1.5,
+        "depth": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -0.75,
+        "z": 0
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m4",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0.6,
+          -1,
+          0
+        ],
+        "b": [
+          -1.2000000000000002,
+          0.5,
+          0
+        ],
+        "c": [
+          0.6,
+          0.5,
+          0
+        ],
+        "d": 0.3
+      },
+      "position": {
+        "x": -0.6,
+        "y": -0.5,
+        "z": 0
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m5",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.6,
+          -1,
+          0
+        ],
+        "b": [
+          1.2000000000000002,
+          0.5,
+          0
+        ],
+        "c": [
+          -0.6,
+          0.5,
+          0
+        ],
+        "d": 0.3
+      },
+      "position": {
+        "x": 0.6,
+        "y": -0.5,
+        "z": 0
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m6",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": -1.8,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m7",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.8,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m8",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": -1,
+        "y": -0.20000000000000018,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m9",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.1,
+        "detail": 0
+      },
+      "position": {
+        "x": 1,
+        "y": -0.20000000000000018,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "body",
+      "name": "body",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 5,
+        "z": 0.65
+      }
+    },
+    {
+      "id": "m10",
+      "type": "box",
+      "geometry": {
+        "width": 3.5,
+        "height": 3,
+        "depth": 2.5
+      },
+      "position": {
+        "x": 0,
+        "y": -0.5,
+        "z": -0.65
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m11",
+      "type": "box",
+      "geometry": {
+        "width": 2.5,
+        "height": 1.5,
+        "depth": 2
+      },
+      "position": {
+        "x": 0,
+        "y": 1.5,
+        "z": -0.65
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m12",
+      "type": "torus",
+      "geometry": {
+        "radius": 1.8,
+        "tube": 0.1,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": -0.5,
+        "z": -0.65
+      },
+      "color": 14329120
+    },
+    {
+      "id": "body_wp0",
+      "name": "wp0",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 1.8,
+        "y": -1.5,
+        "z": -0.15000000000000002
+      }
+    },
+    {
+      "id": "m13",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m14",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.08,
+        "radiusBottom": 0.08,
+        "height": 0.95,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0.51,
+        "z": 0
+      },
+      "color": 14329120,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "boneFrom": "body_wp0",
+      "boneTo": "body_wp1",
+      "boneRestLen": 0.95
+    },
+    {
+      "id": "body_wp1",
+      "name": "wp1",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 1.8,
+        "y": -0.5,
+        "z": -0.15000000000000002
+      },
+      "pivotTarget": "body_wp0"
+    },
+    {
+      "id": "m15",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m16",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.08,
+        "radiusBottom": 0.08,
+        "height": 1.53,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": -0.25,
+        "y": 0.75,
+        "z": 0
+      },
+      "color": 14329120,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.16,
+        "w": 0.99
+      },
+      "boneFrom": "body_wp1",
+      "boneTo": "body_wp2",
+      "boneRestLen": 1.53
+    },
+    {
+      "id": "body_wp2",
+      "name": "wp2",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": 1.3,
+        "y": 1,
+        "z": -0.15000000000000002
+      },
+      "pivotTarget": "body_wp1"
+    },
+    {
+      "id": "m17",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "body_wp0_1",
+      "name": "wp0",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": -1.8,
+        "y": -1.5,
+        "z": -0.15000000000000002
+      }
+    },
+    {
+      "id": "m18",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m19",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.08,
+        "radiusBottom": 0.08,
+        "height": 0.95,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0,
+        "y": 0.51,
+        "z": 0
+      },
+      "color": 14329120,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "boneFrom": "body_wp0_1",
+      "boneTo": "body_wp1_1",
+      "boneRestLen": 0.95
+    },
+    {
+      "id": "body_wp1_1",
+      "name": "wp1",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": -1.8,
+        "y": -0.5,
+        "z": -0.15000000000000002
+      },
+      "pivotTarget": "body_wp0_1"
+    },
+    {
+      "id": "m20",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.07,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m21",
+      "type": "cylinder",
+      "geometry": {
+        "radiusTop": 0.08,
+        "radiusBottom": 0.08,
+        "height": 1.53,
+        "radialSegments": 10
+      },
+      "position": {
+        "x": 0.25,
+        "y": 0.75,
+        "z": 0
+      },
+      "color": 14329120,
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": -0.16,
+        "w": 0.99
+      },
+      "boneFrom": "body_wp1_1",
+      "boneTo": "body_wp2_1",
+      "boneRestLen": 1.53
+    },
+    {
+      "id": "body_wp2_1",
+      "name": "wp2",
+      "group": true,
+      "parent": "body",
+      "position": {
+        "x": -1.3,
+        "y": 1,
+        "z": -0.15000000000000002
+      },
+      "pivotTarget": "body_wp1_1"
+    },
+    {
+      "id": "m22",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.08,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m23",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 1.5,
+        "y": -1,
+        "z": 0.65
+      },
+      "color": 14329120,
+      "parent": "body"
+    },
+    {
+      "id": "m24",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -1,
+        "y": 0,
+        "z": 0.65
+      },
+      "color": 14329120,
+      "parent": "body"
+    },
+    {
+      "id": "m25",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.5,
+        "y": -1.5,
+        "z": 0.65
+      },
+      "color": 14329120,
+      "parent": "body"
+    },
+    {
+      "id": "head",
+      "name": "head",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 6.5,
+        "z": 0.65
+      }
+    },
+    {
+      "id": "m26",
+      "type": "box",
+      "geometry": {
+        "width": 2.5,
+        "height": 1.5,
+        "depth": 2
+      },
+      "position": {
+        "x": 0,
+        "y": 0.5,
+        "z": -0.65
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m27",
+      "type": "box",
+      "geometry": {
+        "width": 1.5,
+        "height": 1,
+        "depth": 1.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0.7000000000000002,
+        "z": 0.5499999999999999
+      },
+      "color": 2263842
+    },
+    {
+      "id": "m28",
+      "type": "torus",
+      "geometry": {
+        "radius": 1.3,
+        "tube": 0.1,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.65
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m29",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": 0.8,
+        "y": 0.7999999999999998,
+        "z": 0.5499999999999999
+      },
+      "color": 16119285
+    },
+    {
+      "id": "m30",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 0.9,
+        "y": 0.7999999999999998,
+        "z": 0.7499999999999999
+      },
+      "color": 13421772
+    },
+    {
+      "id": "m31",
+      "type": "torus",
+      "geometry": {
+        "radius": 0.35,
+        "tube": 0.06,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": 0.8,
+        "y": 0.7999999999999998,
+        "z": 0.4999999999999999
+      },
+      "color": 14329120,
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "m32",
+      "type": "sphere",
+      "geometry": {
+        "radius": 0.3,
+        "widthSegments": 10,
+        "heightSegments": 7
+      },
+      "position": {
+        "x": -0.8,
+        "y": 0.7999999999999998,
+        "z": 0.5499999999999999
+      },
+      "color": 16119285
+    },
+    {
+      "id": "m33",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -0.9,
+        "y": 0.7999999999999998,
+        "z": 0.7499999999999999
+      },
+      "color": 13421772
+    },
+    {
+      "id": "m34",
+      "type": "torus",
+      "geometry": {
+        "radius": 0.35,
+        "tube": 0.06,
+        "radialSegments": 10,
+        "tubularSegments": 12
+      },
+      "position": {
+        "x": -0.8,
+        "y": 0.7999999999999998,
+        "z": 0.4999999999999999
+      },
+      "color": 14329120,
+      "rotation": {
+        "x": 1.5707963267948963,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "id": "dorsalFin",
+      "name": "dorsalFin",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 7.375,
+        "z": -1.5
+      }
+    },
+    {
+      "id": "m35",
+      "type": "patch",
+      "geometry": {
+        "vertices": [
+          0,
+          -1.875,
+          0.26249999999999996,
+          0,
+          -0.375,
+          -0.9875,
+          0,
+          0,
+          0,
+          0,
+          -0.375,
+          -0.9875,
+          0,
+          1.125,
+          0.012499999999999956,
+          0,
+          0,
+          0,
+          0,
+          1.125,
+          0.012499999999999956,
+          0,
+          1.125,
+          0.7124999999999999,
+          0,
+          0,
+          0,
+          0,
+          1.125,
+          0.7124999999999999,
+          0,
+          -1.875,
+          0.26249999999999996,
+          0,
+          0,
+          0
+        ],
+        "d": 0.3
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.012499999999999956
+      },
+      "color": 3329330
+    },
+    {
+      "id": "m36",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 1.125,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "pectoralFin",
+      "name": "pectoralFin",
+      "group": true,
+      "position": {
+        "x": 0,
+        "y": 4.333333333333333,
+        "z": 0
+      }
+    },
+    {
+      "id": "m37",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          -0.4166666666666665,
+          0.666666666666667,
+          0
+        ],
+        "b": [
+          0.8333333333333335,
+          -0.33333333333333304,
+          0
+        ],
+        "c": [
+          -0.4166666666666665,
+          -0.33333333333333304,
+          0
+        ],
+        "d": 0.3
+      },
+      "position": {
+        "x": 2.1666666666666665,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3329330
+    },
+    {
+      "id": "m38",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": 3,
+        "y": -0.33333333333333304,
+        "z": 0
+      },
+      "color": 14329120
+    },
+    {
+      "id": "m39",
+      "type": "tri",
+      "geometry": {
+        "a": [
+          0.4166666666666665,
+          0.666666666666667,
+          0
+        ],
+        "b": [
+          -0.8333333333333335,
+          -0.33333333333333304,
+          0
+        ],
+        "c": [
+          0.4166666666666665,
+          -0.33333333333333304,
+          0
+        ],
+        "d": 0.3
+      },
+      "position": {
+        "x": -2.1666666666666665,
+        "y": 0,
+        "z": 0
+      },
+      "color": 3329330
+    },
+    {
+      "id": "m40",
+      "type": "icosahedron",
+      "geometry": {
+        "radius": 0.15,
+        "detail": 0
+      },
+      "position": {
+        "x": -3,
+        "y": -0.33333333333333304,
+        "z": 0
+      },
+      "color": 14329120
+    }
+  ],
+  "tree": [
+    {
+      "id": "body",
+      "name": "body",
+      "offset": [
+        0,
+        5,
+        0.65
+      ],
+      "meshes": [
+        {
+          "id": "m10",
+          "type": "box",
+          "geometry": {
+            "width": 3.5,
+            "height": 3,
+            "depth": 2.5
+          },
+          "position": {
+            "x": 0,
+            "y": -0.5,
+            "z": -0.65
+          },
+          "color": 2263842
+        },
+        {
+          "id": "m11",
+          "type": "box",
+          "geometry": {
+            "width": 2.5,
+            "height": 1.5,
+            "depth": 2
+          },
+          "position": {
+            "x": 0,
+            "y": 1.5,
+            "z": -0.65
+          },
+          "color": 2263842
+        },
+        {
+          "id": "m12",
+          "type": "torus",
+          "geometry": {
+            "radius": 1.8,
+            "tube": 0.1,
+            "radialSegments": 10,
+            "tubularSegments": 12
+          },
+          "position": {
+            "x": 0,
+            "y": -0.5,
+            "z": -0.65
+          },
+          "color": 14329120
+        }
+      ],
+      "children": [
+        {
+          "id": "planter",
+          "name": "planter",
+          "offset": [
+            0,
+            -3.5,
+            -0.65
+          ],
+          "meshes": [
+            {
+              "id": "m0",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 1.3,
+                "radiusBottom": 1,
+                "height": 1.5,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": -0.75,
+                "z": 0
+              },
+              "color": 11952975
+            },
+            {
+              "id": "m1",
+              "type": "torus",
+              "geometry": {
+                "radius": 1.3,
+                "tube": 0.1,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m2",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 1.2,
+                "radiusBottom": 1.2,
+                "height": 0.2,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": -0.10000000000000009,
+                "z": 0
+              },
+              "color": 4073251
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "tail",
+          "name": "tail",
+          "offset": [
+            0,
+            -2,
+            -0.65
+          ],
+          "meshes": [
+            {
+              "id": "m3",
+              "type": "box",
+              "geometry": {
+                "width": 1,
+                "height": 1.5,
+                "depth": 1
+              },
+              "position": {
+                "x": 0,
+                "y": -0.75,
+                "z": 0
+              },
+              "color": 2263842
+            },
+            {
+              "id": "m4",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  0.6,
+                  -1,
+                  0
+                ],
+                "b": [
+                  -1.2000000000000002,
+                  0.5,
+                  0
+                ],
+                "c": [
+                  0.6,
+                  0.5,
+                  0
+                ],
+                "d": 0.3
+              },
+              "position": {
+                "x": -0.6,
+                "y": -0.5,
+                "z": 0
+              },
+              "color": 2263842
+            },
+            {
+              "id": "m5",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -0.6,
+                  -1,
+                  0
+                ],
+                "b": [
+                  1.2000000000000002,
+                  0.5,
+                  0
+                ],
+                "c": [
+                  -0.6,
+                  0.5,
+                  0
+                ],
+                "d": 0.3
+              },
+              "position": {
+                "x": 0.6,
+                "y": -0.5,
+                "z": 0
+              },
+              "color": 2263842
+            },
+            {
+              "id": "m6",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": -1.8,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m7",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": 1.8,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m8",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": -1,
+                "y": -0.20000000000000018,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m9",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.1,
+                "detail": 0
+              },
+              "position": {
+                "x": 1,
+                "y": -0.20000000000000018,
+                "z": 0
+              },
+              "color": 14329120
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "body_wp0",
+          "name": "wp0",
+          "offset": [
+            1.8,
+            -1.5,
+            -0.15
+          ],
+          "meshes": [
+            {
+              "id": "m13",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.08,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m14",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.08,
+                "radiusBottom": 0.08,
+                "height": 0.95,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 0.51,
+                "z": 0
+              },
+              "color": 14329120,
+              "quaternion": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "boneFrom": "body_wp0",
+              "boneTo": "body_wp1",
+              "boneRestLen": 0.95
+            }
+          ],
+          "children": [
+            {
+              "id": "body_wp1",
+              "name": "wp1",
+              "offset": [
+                0,
+                1,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m15",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.07,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 14329120
+                },
+                {
+                  "id": "m16",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.08,
+                    "radiusBottom": 0.08,
+                    "height": 1.53,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": -0.25,
+                    "y": 0.75,
+                    "z": 0
+                  },
+                  "color": 14329120,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.16,
+                    "w": 0.99
+                  },
+                  "boneFrom": "body_wp1",
+                  "boneTo": "body_wp2",
+                  "boneRestLen": 1.53
+                }
+              ],
+              "children": [
+                {
+                  "id": "body_wp2",
+                  "name": "wp2",
+                  "offset": [
+                    -0.5,
+                    1.5,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m17",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.08,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 14329120
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "body_wp0_1",
+          "name": "wp0",
+          "offset": [
+            -1.8,
+            -1.5,
+            -0.15
+          ],
+          "meshes": [
+            {
+              "id": "m18",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.08,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m19",
+              "type": "cylinder",
+              "geometry": {
+                "radiusTop": 0.08,
+                "radiusBottom": 0.08,
+                "height": 0.95,
+                "radialSegments": 10
+              },
+              "position": {
+                "x": 0,
+                "y": 0.51,
+                "z": 0
+              },
+              "color": 14329120,
+              "quaternion": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "boneFrom": "body_wp0_1",
+              "boneTo": "body_wp1_1",
+              "boneRestLen": 0.95
+            }
+          ],
+          "children": [
+            {
+              "id": "body_wp1_1",
+              "name": "wp1",
+              "offset": [
+                0,
+                1,
+                0
+              ],
+              "meshes": [
+                {
+                  "id": "m20",
+                  "type": "sphere",
+                  "geometry": {
+                    "radius": 0.07,
+                    "widthSegments": 10,
+                    "heightSegments": 7
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "color": 14329120
+                },
+                {
+                  "id": "m21",
+                  "type": "cylinder",
+                  "geometry": {
+                    "radiusTop": 0.08,
+                    "radiusBottom": 0.08,
+                    "height": 1.53,
+                    "radialSegments": 10
+                  },
+                  "position": {
+                    "x": 0.25,
+                    "y": 0.75,
+                    "z": 0
+                  },
+                  "color": 14329120,
+                  "quaternion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -0.16,
+                    "w": 0.99
+                  },
+                  "boneFrom": "body_wp1_1",
+                  "boneTo": "body_wp2_1",
+                  "boneRestLen": 1.53
+                }
+              ],
+              "children": [
+                {
+                  "id": "body_wp2_1",
+                  "name": "wp2",
+                  "offset": [
+                    0.5,
+                    1.5,
+                    0
+                  ],
+                  "meshes": [
+                    {
+                      "id": "m22",
+                      "type": "sphere",
+                      "geometry": {
+                        "radius": 0.08,
+                        "widthSegments": 10,
+                        "heightSegments": 7
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "color": 14329120
+                    },
+                    {
+                      "id": "m23",
+                      "type": "icosahedron",
+                      "geometry": {
+                        "radius": 0.15,
+                        "detail": 0
+                      },
+                      "position": {
+                        "x": 1.5,
+                        "y": -1,
+                        "z": 0.65
+                      },
+                      "color": 14329120
+                    },
+                    {
+                      "id": "m24",
+                      "type": "icosahedron",
+                      "geometry": {
+                        "radius": 0.15,
+                        "detail": 0
+                      },
+                      "position": {
+                        "x": -1,
+                        "y": 0,
+                        "z": 0.65
+                      },
+                      "color": 14329120
+                    },
+                    {
+                      "id": "m25",
+                      "type": "icosahedron",
+                      "geometry": {
+                        "radius": 0.15,
+                        "detail": 0
+                      },
+                      "position": {
+                        "x": 0.5,
+                        "y": -1.5,
+                        "z": 0.65
+                      },
+                      "color": 14329120
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "head",
+          "name": "head",
+          "offset": [
+            0,
+            1.5,
+            0
+          ],
+          "meshes": [
+            {
+              "id": "m26",
+              "type": "box",
+              "geometry": {
+                "width": 2.5,
+                "height": 1.5,
+                "depth": 2
+              },
+              "position": {
+                "x": 0,
+                "y": 0.5,
+                "z": -0.65
+              },
+              "color": 2263842
+            },
+            {
+              "id": "m27",
+              "type": "box",
+              "geometry": {
+                "width": 1.5,
+                "height": 1,
+                "depth": 1.5
+              },
+              "position": {
+                "x": 0,
+                "y": 0.7000000000000002,
+                "z": 0.5499999999999999
+              },
+              "color": 2263842
+            },
+            {
+              "id": "m28",
+              "type": "torus",
+              "geometry": {
+                "radius": 1.3,
+                "tube": 0.1,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": -0.65
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m29",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.3,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": 0.8,
+                "y": 0.7999999999999998,
+                "z": 0.5499999999999999
+              },
+              "color": 16119285
+            },
+            {
+              "id": "m30",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.15,
+                "detail": 0
+              },
+              "position": {
+                "x": 0.9,
+                "y": 0.7999999999999998,
+                "z": 0.7499999999999999
+              },
+              "color": 13421772
+            },
+            {
+              "id": "m31",
+              "type": "torus",
+              "geometry": {
+                "radius": 0.35,
+                "tube": 0.06,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": 0.8,
+                "y": 0.7999999999999998,
+                "z": 0.4999999999999999
+              },
+              "color": 14329120,
+              "rotation": {
+                "x": 1.5707963267948963,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "m32",
+              "type": "sphere",
+              "geometry": {
+                "radius": 0.3,
+                "widthSegments": 10,
+                "heightSegments": 7
+              },
+              "position": {
+                "x": -0.8,
+                "y": 0.7999999999999998,
+                "z": 0.5499999999999999
+              },
+              "color": 16119285
+            },
+            {
+              "id": "m33",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.15,
+                "detail": 0
+              },
+              "position": {
+                "x": -0.9,
+                "y": 0.7999999999999998,
+                "z": 0.7499999999999999
+              },
+              "color": 13421772
+            },
+            {
+              "id": "m34",
+              "type": "torus",
+              "geometry": {
+                "radius": 0.35,
+                "tube": 0.06,
+                "radialSegments": 10,
+                "tubularSegments": 12
+              },
+              "position": {
+                "x": -0.8,
+                "y": 0.7999999999999998,
+                "z": 0.4999999999999999
+              },
+              "color": 14329120,
+              "rotation": {
+                "x": 1.5707963267948963,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dorsalFin",
+          "name": "dorsalFin",
+          "offset": [
+            0,
+            2.375,
+            -2.15
+          ],
+          "meshes": [
+            {
+              "id": "m35",
+              "type": "patch",
+              "geometry": {
+                "vertices": [
+                  0,
+                  -1.875,
+                  0.26249999999999996,
+                  0,
+                  -0.375,
+                  -0.9875,
+                  0,
+                  0,
+                  0,
+                  0,
+                  -0.375,
+                  -0.9875,
+                  0,
+                  1.125,
+                  0.012499999999999956,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1.125,
+                  0.012499999999999956,
+                  0,
+                  1.125,
+                  0.7124999999999999,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1.125,
+                  0.7124999999999999,
+                  0,
+                  -1.875,
+                  0.26249999999999996,
+                  0,
+                  0,
+                  0
+                ],
+                "d": 0.3
+              },
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": -0.012499999999999956
+              },
+              "color": 3329330
+            },
+            {
+              "id": "m36",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.15,
+                "detail": 0
+              },
+              "position": {
+                "x": 0,
+                "y": 1.125,
+                "z": 0
+              },
+              "color": 14329120
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pectoralFin",
+          "name": "pectoralFin",
+          "offset": [
+            0,
+            -0.6667,
+            -0.65
+          ],
+          "meshes": [
+            {
+              "id": "m37",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  -0.4166666666666665,
+                  0.666666666666667,
+                  0
+                ],
+                "b": [
+                  0.8333333333333335,
+                  -0.33333333333333304,
+                  0
+                ],
+                "c": [
+                  -0.4166666666666665,
+                  -0.33333333333333304,
+                  0
+                ],
+                "d": 0.3
+              },
+              "position": {
+                "x": 2.1666666666666665,
+                "y": 0,
+                "z": 0
+              },
+              "color": 3329330
+            },
+            {
+              "id": "m38",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.15,
+                "detail": 0
+              },
+              "position": {
+                "x": 3,
+                "y": -0.33333333333333304,
+                "z": 0
+              },
+              "color": 14329120
+            },
+            {
+              "id": "m39",
+              "type": "tri",
+              "geometry": {
+                "a": [
+                  0.4166666666666665,
+                  0.666666666666667,
+                  0
+                ],
+                "b": [
+                  -0.8333333333333335,
+                  -0.33333333333333304,
+                  0
+                ],
+                "c": [
+                  0.4166666666666665,
+                  -0.33333333333333304,
+                  0
+                ],
+                "d": 0.3
+              },
+              "position": {
+                "x": -2.1666666666666665,
+                "y": 0,
+                "z": 0
+              },
+              "color": 3329330
+            },
+            {
+              "id": "m40",
+              "type": "icosahedron",
+              "geometry": {
+                "radius": 0.15,
+                "detail": 0
+              },
+              "position": {
+                "x": -3,
+                "y": -0.33333333333333304,
+                "z": 0
+              },
+              "color": 14329120
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_skipAutoCenter": true,
+  "_routerResponse": "```json\n{\n  \"proportions\": \"流线型鱼形轮廓，中段最宽，底座稳重，整体修长优雅\",\n  \"regions\": [\n    {\"name\": \"head\", \"desc\": \"鱼头、叶片-深绿[228B22]、金边眼饰-金[DAA520]、圆眼-白[F5F5F5]\"},\n    {\"name\": \"body\", \"desc\": \"丰满鱼身、叶片-深绿、侧线装饰-金、散布金叶点缀-金\"},\n    {\"name\": \"tail\", \"desc\": \"扇形散开鱼尾、叶片-深绿、尾缘-金\"},\n    {\"name\": \"dorsalFin\", \"desc\": \"高耸背鳍、叶片-浅绿[32CD32]、鳍尖-金\"},\n    {\"name\": \"pectoralFin\", \"desc\": \"两侧扁平胸鳍、叶片-浅绿、鳍尖-金\"},\n    {\"name\": \"planter\", \"desc\": \"底部直筒收口花盆、盆体-赤陶[B6634F]、盆沿-金、盆土-深棕[3E2723]\"}\n  ],\n  \"methodologies\": [\"vegetation\", \"head:projection\"]\n}\n```",
+  "_routerThinking": "1. **具象化**:\n   - \"ornamental golden fish-shaped topiary tree, elegant garden sculpture style\" -> 这是一个具体的实物：修剪成鱼形状的园林树木（造型树/绿雕）。不需要进一步拟人化或情境化，直接作为植物/雕塑处理。\n\n2. **结构划分**:\n   - 单体模型（一条鱼形状的树）。\n   - 组成部分：鱼头、鱼身、鱼尾、鱼鳍（背鳍、胸鳍、腹鳍）。\n   - 因为是topiary tree（绿雕），整体由植物叶片构成，带有一些装饰元素（比如花盆底座、金色的装饰/点缀）。\n   - proportions: 整体呈流线型鱼形，头尾比例协调，中段最宽，底座稳重。\n   - group: head, body, tail, dorsalFin, pectoralFin, planter\n\n3. **写desc + 配件**:\n   - 颜色分配：主色绿色(60%) - 植物叶片，辅色金色(30%) - 装饰/点缀，暗色(10%) - 花盆/底座。\n   - head: 鱼头形状，叶片-深绿[228B22]，金边眼罩-金[DAA520]，圆眼-白[F5F5F5]\n   - body: 鱼身，最宽处，叶片-深绿，金色鳞片纹装饰(不用纹理，用小几何块表示)-金，侧线-金\n   - tail: 散开的鱼尾，叶片-深绿，尾尖-金\n   - dorsalFin: 背鳍，叶片-浅绿[32CD32]，鳍尖-金\n   - pectoralFin: 两侧胸鳍，叶片-浅绿，鳍尖-金\n   - planter: 底部花盆/底座，直筒收口，陶盆-赤陶[B6634F]，盆沿-金，盆土-深棕[3E2723]\n\n4. **方法论选取**:\n   - 身体结构：vegetation (植物造型) / aquatic (流线型水中生物) -> 选 vegetation 为主，因为本质是树，aquadic辅助说明形态，但只能选一个的话，vegetation更贴切（造型树）。或者因为它是鱼形，aquatic更符合形态？题目说是topiary tree，所以vegetation优先，但形状是鱼。选 vegetation。\n   - 头部：head:projection (鱼有吻部)\n   - 翅膀：无（鱼鳍不算翅膀，不选）\n\n5. **精炼输出**:\n   - proportions: 流线型鱼形轮廓，中段最宽，底座稳重，整体修长优雅\n   - regions:\n     - head: 鱼头、叶片-深绿[228B22]、金边眼饰-金[DAA520]、圆眼-白[F5F5F5]\n     - body: 丰满鱼身、叶片-深绿、侧线装饰-金、散布金叶点缀-金\n     - tail: 扇形散开鱼尾、叶片-深绿、尾缘-金\n     - dorsalFin: 高耸背鳍、叶片-浅绿[32CD32]、鳍尖-金\n     - pectoralFin: 两侧扁平胸鳍、叶片-浅绿、鳍尖-金\n     - planter: 底部直筒收口花盆、盆体-赤陶[B6634F]、盆沿-金、盆土-深棕[3E2723]\n   - methodologies: [\"vegetation\", \"head:projection\"]",
+  "_modelReasoning": "The user wants a lowpoly ornamental golden fish-shaped topiary tree, elegant garden sculpture style.\nI need to write a `function build(api) { ... }` that creates this model based on the provided draft and guidelines.\n\nDraft structure:\n- head: Fish head, leaves-dark green [228B22], gold edge eye ornament-gold [DAA520], round eye-white [F5F5F5]\n- body: Plump fish body, leaves-dark green, lateral line decoration-gold, scattered gold leaf accents-gold\n- tail: Fan-shaped spread tail, leaves-dark green, tail edge-gold\n- dorsalFin: Tall dorsal fin, leaves-light green [32CD32], fin tip-gold\n- pectoralFin: Flat pectoral fins on both sides, leaves-light green, fin tip-gold\n- planter: Bottom straight tapered planter, pot body-terracotta [B6634F], pot rim-gold, pot soil-dark brown [3E2723]\n\nOverall proportions: Streamlined fish silhouette, widest in the middle, stable base, overall slender and elegant.\n\nLet's break down the geometry:\nPlanter:\n- A truncated cone or cylinder for the pot. Let's use a truncated cone (cyl with rTop and rBot).\n- Pot rim: torus or thin box around the top.\n- Pot soil: thin disc or box at the top.\n\nFish Body:\n- The main body should be a streamlined shape. A series of spheres or a thick chain, or overlapping cylinders/boxes. Since it's a topiary, overlapping spheres or a thick chain of spheres/cylinders with leaves texture (color) would work well.\n- Let's use a thick chain for the body, or overlapping spheres/cylinders to give a leafy volume.\n- Actually, a large ellipsoid (scaled sphere or box) is simpler and fits lowpoly. Let's use a large box or cyl for the main body volume, then add leafy accents.\n- Wait, topiary means it's made of leaves. So the main color is dark green, with gold accents.\n- Body: A large elongated shape. Let's use a `cyl` with `rTop: 1.2, rBot: 0.8, h: 4.0` or similar, or a `chain` of waypoints to make a fish body shape.\n- Chain waypoints: [0, 2.5, 0] (start near planter), [0, 4.5, 0] (widest), [0, 6.0, 0.5] (towards head).\n- Let's use overlapping boxes/cyls for a blocky lowpoly look.\n- Body: `cyl({r: 1.5, h: 3.0, pos: [0, 5.5, 0], seg: 6, color: 0x228B22})` - wait, fish body is horizontal or vertical? Topiary trees are usually vertical. The prompt says \"fish-shaped topiary tree\", so the fish is standing up or the tree is shaped like a fish. Let's make the fish vertical, standing on its tail in the planter, or swimming upwards. \"elegant garden sculpture style\" -> standing upright, tail at bottom, head at top.\n- Wait, if it's a topiary, the fish shape is the overall silhouette.\n- Let's make the fish vertical. Tail at the bottom, body in the middle, head at the top.\n- Planter at Y=0.\n- Pot: `cyl({rTop: 1.2, rBot: 1.0, h: 1.5, pos: [0, 0.75, 0], color: 0xB6634F})`\n- Pot rim: `torus({r: 1.2, tube: 0.1, pos: [0, 1.5, 0], color: 0xDAA520})`\n- Pot soil: `cyl({r: 1.1, h: 0.2, pos: [0, 1.4, 0], color: 0x3E2723})`\n\nTail (at the bottom, emerging from soil):\n- Fan-shaped. Let's use a few `tri` or `patch` or `box` angled outwards.\n- Center of tail at Y=2.5.\n- `box({w: 0.5, h: 1.5, d: 0.5, pos: [0, 2.5, 0], color: 0x228B22})` - main tail stem.\n- Left tail fin: `box({w: 1.2, h: 1.5, d: 0.3, pos: [-0.8, 2.5, 0], along: '-Z', color: 0x228B22})` rotated? No, `along` only sets the axis. Let's use `tri` or `patch` for the fins.\n- Actually, `box` with slight rotation isn't directly supported without pivot. Let's use `tri` for the tail fins.\n- Tail fins: Two `tri`s spreading out.\n- `tri({a: [0, 1.5, 0], b: [-1.5, 3.0, 0], c: [-0.5, 3.0, 0], d: 0.3, color: 0x228B22})` - wait, Y is up.\n- Let's place the tail group. `api.group('tail', 'tail')`\n- Tail stem: `cyl({r: 0.4, h: 1.5, pos: [0, 2.5, 0], color: 0x228B22})`\n- Left fin: `tri({a: [0, 1.8, 0], b: [-1.5, 3.2, 0], c: [0, 3.2, 0], d: 0.3, color: 0x228B22})`\n- Right fin: `tri({a: [0, 1.8, 0], b: [1.5, 3.2, 0], c: [0, 3.2, 0], d: 0.3, color: 0x228B22})`\n- Gold edges on fins: smaller `tri`s or `poly`s along the edge. Let's use `chain` or `poly` dots.\n- Let's use `poly` for gold accents on tail edge.\n\nBody (above tail):\n- Widest part. `cyl({r: 1.8, h: 3.0, pos: [0, 5.0, 0], seg: 8, color: 0x228B22})`\n- Or overlapping spheres/ellipsoids. `sphere({r: 2.0, pos: [0, 5.0, 0], color: 0x228B22})` squashed? No, sphere is round. `box({w: 3.0, h: 3.5, d: 2.5, pos: [0, 5.0, 0], color: 0x228B22})` - a bit too blocky.\n- Let's use a `cyl` with `rTop: 1.5, rBot: 1.8, h: 3.0, pos: [0, 4.5, 0], seg: 6, color: 0x228B22`.\n- Lateral line: A thin `box` or `chain` running along the side. `chain({waypoints: [[1.6, 3.5, 0], [1.8, 4.5, 0], [1.6, 5.5, 0], [1.2, 6.0, 0]], r: 0.08, color: 0xDAA520})`\n- Scattered gold leaf accents: `poly({r: 0.15, pos: [1.5, 4.0, 0.5], color: 0xDAA520})`, etc.\n\nHead (at the top):\n- Fish head. Needs a projection (mouth/snout).\n- Skull volume: `cyl({r: 1.2, h: 1.5, pos: [0, 7.0, 0], seg: 6, color: 0x228B22})`\n- Snout: projecting forward (+Z). `cyl({rTop: 0.6, rBot: 1.0, h: 1.5, pos: [0, 7.5, 0.8], along: '+Z', color: 0x228B22})`\n- Eyes: `sphere({r: 0.3, pos: [0.8, 7.5, 1.2], color: 0xF5F5F5})`, `poly({r: 0.15, pos: [0.9, 7.5, 1.4], color: 0x000000})`\n- Gold edge eye ornament: `torus({r: 0.35, tube: 0.06, pos: [0.8, 7.5, 1.15], along: '+Z', color: 0xDAA520})`\n\nDorsal Fin (on the back, -Z side):\n- Tall, along the back. `tri({a: [0, 6.0, -1.2], b: [0, 8.5, -1.5], c: [0, 8.5, -0.8], d: 0.3, color: 0x32CD32})`\n- Wait, dorsal fin should be a nice shape. `patch` or `tri`.\n- `tri({a: [0, 5.5, -1.3], b: [0, 8.0, -2.0], c: [0, 8.5, -1.0], d: 0.3, color: 0x32CD32})`\n- Fin tip: `poly({r: 0.12, pos: [0, 8.5, -1.5], color: 0xDAA520})`\n\nPectoral Fins (on the sides):\n- Flat, pointing outwards and slightly down.\n- Left: `tri({a: [-1.5, 5.0, 0], b: [-2.8, 4.0, 0], c: [-1.5, 4.0, 0], d: 0.3, color: 0x32CD32})`\n- Right: `tri({a: [1.5, 5.0, 0], b: [2.8, 4.0, 0], c: [1.5, 4.0, 0], d: 0.3, color: 0x32CD32})`\n- Fin tips: `poly({r: 0.12, pos: [-2.8, 4.0, 0], color: 0xDAA520})`\n\nLet's refine the proportions and positions.\nTotal height: Planter (1.5) + Tail (1.5) + Body (3.0) + Head (1.5) = 7.5. This is a good scale.\n\nPlanter:\n- `cyl({rTop: 1.3, rBot: 1.0, h: 1.5, pos: [0, 0.75, 0], color: 0xB6634F})`\n- `torus({r: 1.3, tube: 0.1, pos: [0, 1.5, 0], color: 0xDAA520})`\n- `cyl({r: 1.2, h: 0.2, pos: [0, 1.4, 0], color: 0x3E2723})`\n\nTail:\n- Group 'tail'. Pivot? No, it's part of the tree.\n- Stem: `cyl({r: 0.5, h: 1.5, pos: [0, 2.25, 0], color: 0x228B22})`\n- Left fin: `tri({a: [0, 1.5, 0], b: [-1.5, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: 0x228B22})`\n- Right fin: `tri({a: [0, 1.5, 0], b: [1.5, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: 0x228B22})`\n- Gold edges: `poly({r:0.1, pos:[-1.5,3.0,0], color:0xDAA520})`, `poly({r:0.1, pos:[1.5,3.0,0], color:0xDAA520})`, `poly({r:0.1, pos:[-0.8,2.8,0], color:0xDAA520})`, `poly({r:0.1, pos:[0.8,2.8,0], color:0xDAA520})`\n\nBody:\n- Group 'body'.\n- Main volume: `cyl({rTop: 1.4, rBot: 1.8, h: 3.0, pos: [0, 4.5, 0], seg: 6, color: 0x228B22})`\n- Wait, fish body is usually widest in the middle, tapering to head and tail.\n- Let's use overlapping shapes for a more organic topiary look.\n- `sphere({r: 2.0, pos: [0, 4.5, 0], color: 0x228B22})` - sphere is 4.0 high, 4.0 wide. A bit too round.\n- Let's use `cyl({rTop: 1.2, rBot: 1.8, h: 3.0, pos: [0, 4.5, 0], seg: 8, color: 0x228B22})`\n- And `cyl({rTop: 1.5, rBot: 1.2, h: 1.5, pos: [0, 6.0, 0], seg: 8, color: 0x228B22})` to taper towards head.\n- Lateral line: `chain({waypoints: [[1.8, 3.5, 0.5], [1.9, 4.5, 0.5], [1.6, 5.5, 0.5], [1.2, 6.5, 0.5]], r: 0.08, color: 0xDAA520})`\n- Other side: `chain({waypoints: [[-1.8, 3.5, 0.5], [-1.9, 4.5, 0.5], [-1.6, 5.5, 0.5], [-1.2, 6.5, 0.5]], r: 0.08, color: 0xDAA520})`\n- Scattered gold leaves: `poly({r:0.15, pos:[1.5, 4.0, 1.0], color:0xDAA520})`, `poly({r:0.15, pos:[-1.0, 5.0, 1.2], color:0xDAA520})`, `poly({r:0.15, pos:[0.5, 3.5, 1.5], color:0xDAA520})`\n\nHead:\n- Group 'head'.\n- Skull: `cyl({r: 1.2, h: 1.5, pos: [0, 7.0, 0], seg: 8, color: 0x228B22})`\n- Snout: `cyl({rTop: 0.5, rBot: 1.0, h: 1.5, pos: [0, 7.2, 1.0], along: '+Z', color: 0x228B22})`\n- Eyes: `sphere({r: 0.3, pos: [0.7, 7.3, 1.3], color: 0xF5F5F5})`, `poly({r: 0.15, pos: [0.8, 7.3, 1.5], color: 0x000000})`\n- Right eye: `sphere({r: 0.3, pos: [-0.7, 7.3, 1.3], color: 0xF5F5F5})`, `poly({r: 0.15, pos: [-0.8, 7.3, 1.5], color: 0x000000})`\n- Gold eye ornaments: `torus({r: 0.35, tube: 0.06, pos: [0.7, 7.3, 1.25], along: '+Z', color: 0xDAA520})`, `torus({r: 0.35, tube: 0.06, pos: [-0.7, 7.3, 1.25], along: '+Z', color: 0xDAA520})`\n\nDorsal Fin:\n- Group 'dorsalFin'.\n- `tri({a: [0, 5.5, -1.5], b: [0, 8.0, -2.2], c: [0, 8.5, -1.2], d: 0.3, color: 0x32CD32})`\n- `tri({a: [0, 5.5, -1.5], b: [0, 8.5, -1.2], c: [0, 8.5, -0.5], d: 0.3, color: 0x32CD32})` - wait, this makes a weird shape.\n- Let's use `patch` for a nicer fin shape.\n- `patch({points: [[0, 5.5, -1.5], [0, 7.0, -2.5], [0, 8.5, -1.5], [0, 8.5, -0.8]], d: 0.3, color: 0x32CD32})`\n- Fin tip: `poly({r: 0.15, pos: [0, 8.5, -1.5], color: 0xDAA520})`\n\nPectoral Fins:\n- Group 'pectoralFin'. Loop for left and right.\n- `for (let side = 0; side < 2; side++) { let sx = side === 0 ? 1 : -1; ... }`\n- `tri({a: [1.5*sx, 5.0, 0], b: [2.8*sx, 4.0, 0], c: [1.5*sx, 4.0, 0], d: 0.3, color: 0x32CD32})`\n- Fin tip: `poly({r: 0.15, pos: [2.8*sx, 4.0, 0], color: 0xDAA520})`\n\nWait, the body `cyl` with `seg: 8` might look faceted, which is good for lowpoly. But `seg: 6` is even more lowpoly. Let's use `seg: 6` for the main body and head to emphasize the lowpoly style.\nAlso, the snout `along: '+Z'` means the cylinder's height axis is along Z. `h: 1.5`, so it extends 0.75 forward and 0.75 backward from its pos. If pos is `[0, 7.2, 1.0]`, it goes from Z=0.25 to Z=1.75. The skull is at Z=0, radius 1.2, so it overlaps nicely.\n\nLet's adjust the body to be more fish-like. A fish is wider than it is deep (side to side > belly to back).\nBut a topiary is usually somewhat round or pruned. Let's make it slightly wider.\nUsing `box` for the main body might give a nice pruned hedge look.\n`box({w: 3.5, h: 3.0, d: 2.5, pos: [0, 4.5, 0], color: 0x228B22})`\nThen taper towards head: `box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 6.5, 0], color: 0x228B22})`\nAnd taper towards tail: `box({w: 1.5, h: 1.5, d: 1.5, pos: [0, 2.5, 0], color: 0x228B22})`\nThis blocky style is very \"topiary\" and lowpoly. Let's go with this!\n\nRefining the blocky topiary:\nPlanter:\n- `cyl({rTop: 1.3, rBot: 1.0, h: 1.5, pos: [0, 0.75, 0], color: 0xB6634F})`\n- `torus({r: 1.3, tube: 0.1, pos: [0, 1.5, 0], color: 0xDAA520})`\n- `cyl({r: 1.2, h: 0.2, pos: [0, 1.4, 0], color: 0x3E2723})`\n\nTail:\n- Stem: `box({w: 1.0, h: 1.5, d: 1.0, pos: [0, 2.25, 0], color: 0x228B22})`\n- Left fin: `tri({a: [0, 1.5, 0], b: [-1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: 0x228B22})`\n- Right fin: `tri({a: [0, 1.5, 0], b: [1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: 0x228B22})`\n- Gold edges: `poly({r:0.1, pos:[-1.8,3.0,0], color:0xDAA520})`, `poly({r:0.1, pos:[1.8,3.0,0], color:0xDAA520})`\n\nBody:\n- Main: `box({w: 3.5, h: 3.0, d: 2.5, pos: [0, 4.5, 0], color: 0x228B22})`\n- Upper taper: `box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 6.5, 0], color: 0x228B22})`\n- Lateral line: `chain({waypoints: [[1.8, 3.5, 0.5], [1.8, 4.5, 0.5], [1.3, 6.0, 0.5]], r: 0.08, color: 0xDAA520})`\n- Other side: `chain({waypoints: [[-1.8, 3.5, 0.5], [-1.8, 4.5, 0.5], [-1.3, 6.0, 0.5]], r: 0.08, color: 0xDAA520})`\n- Gold leaves: `poly({r:0.15, pos:[1.5, 4.0, 1.3], color:0xDAA520})`, `poly({r:0.15, pos:[-1.0, 5.0, 1.3], color:0xDAA520})`, `poly({r:0.15, pos:[0.5, 3.5, 1.3], color:0xDAA520})`\n\nHead:\n- Skull: `box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 7.0, 0], color: 0x228B22})`\n- Snout: `box({w: 1.5, h: 1.0, d: 1.5, pos: [0, 7.2, 1.2], color: 0x228B22})` - projecting forward.\n- Eyes: `sphere({r: 0.3, pos: [0.8, 7.3, 1.2], color: 0xF5F5F5})`, `poly({r: 0.15, pos: [0.9, 7.3, 1.4], color: 0x000000})`\n- Right eye: `sphere({r: 0.3, pos: [-0.8, 7.3, 1.2], color: 0xF5F5F5})`, `poly({r: 0.15, pos: [-0.9, 7.3, 1.4], color: 0x000000})`\n- Gold eye ornaments: `torus({r: 0.35, tube: 0.06, pos: [0.8, 7.3, 1.15], along: '+Z', color: 0xDAA520})`, `torus({r: 0.35, tube: 0.06, pos: [-0.8, 7.3, 1.15], along: '+Z', color: 0xDAA520})`\n\nDorsal Fin:\n- `patch({points: [[0, 5.5, -1.25], [0, 7.0, -2.5], [0, 8.5, -1.5], [0, 8.5, -0.8]], d: 0.3, color: 0x32CD32})`\n- Fin tip: `poly({r: 0.15, pos: [0, 8.5, -1.5], color: 0xDAA520})`\n\nPectoral Fins:\n- Left: `tri({a: [1.75, 5.0, 0], b: [3.0, 4.0, 0], c: [1.75, 4.0, 0], d: 0.3, color: 0x32CD32})`\n- Right: `tri({a: [-1.75, 5.0, 0], b: [-3.0, 4.0, 0], c: [-1.75, 4.0, 0], d: 0.3, color: 0x32CD32})`\n- Fin tips: `poly({r: 0.15, pos: [3.0, 4.0, 0], color: 0xDAA520})`, `poly({r: 0.15, pos: [-3.0, 4.0, 0], color: 0xDAA520})`\n\nWait, the body `box` has `w: 3.5`, so it extends from X=-1.75 to X=1.75. The pectoral fin starts at X=1.75, which is perfect.\nThe snout `box` has `d: 1.5`, so it extends from Z=0.45 to Z=1.95. The skull `box` has `d: 2.0`, extending from Z=-1.0 to Z=1.0. They overlap nicely.\n\nLet's add a few more gold accents to make it \"ornamental\".\n- A gold collar around the neck (where body meets head): `torus({r: 1.3, tube: 0.1, pos: [0, 6.5, 0], color: 0xDAA520})`\n- A gold belt around the widest part: `torus({r: 1.8, tube: 0.1, pos: [0, 4.5, 0], color: 0xDAA520})`\n\nLet's review the colors:\n- Leaves: 0x228B22 (Forest Green)\n- Light Leaves: 0x32CD32 (Lime Green)\n- Gold: 0xDAA520 (Goldenrod)\n- White: 0xF5F5F5\n- Black: 0x000000\n- Terracotta: 0xB6634F\n- Dark Brown: 0x3E2723\n\nLooks solid. I will structure the code exactly as required, no markdown, no explanation.\n\n```javascript\nfunction build(api) {\n  api.name('Ornamental Fish Topiary');\n  const C_LEAF = 0x228B22, C_LEAF_L = 0x32CD32, C_GOLD = 0xDAA520, C_WHITE = 0xF5F5F5, C_BLACK = 0x000000, C_POT = 0xB6634F, C_SOIL = 0x3E2723;\n\n  api.group('planter', 'planter');\n    api.cyl({rTop: 1.3, rBot: 1.0, h: 1.5, pos: [0, 0.75, 0], color: C_POT});\n    api.torus({r: 1.3, tube: 0.1, pos: [0, 1.5, 0], color: C_GOLD});\n    api.cyl({r: 1.2, h: 0.2, pos: [0, 1.4, 0], color: C_SOIL});\n  api.endGroup();\n\n  api.group('tail', 'tail');\n    api.box({w: 1.0, h: 1.5, d: 1.0, pos: [0, 2.25, 0], color: C_LEAF});\n    api.tri({a: [0, 1.5, 0], b: [-1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: C_LEAF});\n    api.tri({a: [0, 1.5, 0], b: [1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: C_LEAF});\n    api.poly({r: 0.1, pos: [-1.8, 3.0, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [1.8, 3.0, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [-1.0, 2.8, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [1.0, 2.8, 0], color: C_GOLD});\n  api.endGroup();\n\n  api.group('body', 'body');\n    api.box({w: 3.5, h: 3.0, d: 2.5, pos: [0, 4.5, 0], color: C_LEAF});\n    api.box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 6.5, 0], color: C_LEAF});\n    api.torus({r: 1.8, tube: 0.1, pos: [0, 4.5, 0], color: C_GOLD});\n    api.chain({waypoints: [[1.8, 3.5, 0.5], [1.8, 4.5, 0.5], [1.3, 6.0, 0.5]], r: 0.08, color: C_GOLD});\n    api.chain({waypoints: [[-1.8, 3.5, 0.5], [-1.8, 4.5, 0.5], [-1.3, 6.0, 0.5]], r: 0.08, color: C_GOLD});\n    api.poly({r: 0.15, pos: [1.5, 4.0, 1.3], color: C_GOLD});\n    api.poly({r: 0.15, pos: [-1.0, 5.0, 1.3], color: C_GOLD});\n    api.poly({r: 0.15, pos: [0.5, 3.5, 1.3], color: C_GOLD});\n  api.endGroup();\n\n  api.group('head', 'head');\n    api.box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 7.0, 0], color: C_LEAF});\n    api.box({w: 1.5, h: 1.0, d: 1.5, pos: [0, 7.2, 1.2], color: C_LEAF});\n    api.torus({r: 1.3, tube: 0.1, pos: [0, 6.5, 0], color: C_GOLD});\n    api.sphere({r: 0.3, pos: [0.8, 7.3, 1.2], color: C_WHITE});\n    api.poly({r: 0.15, pos: [0.9, 7.3, 1.4], color: C_BLACK});\n    api.torus({r: 0.35, tube: 0.06, pos: [0.8, 7.3, 1.15], along: '+Z', color: C_GOLD});\n    api.sphere({r: 0.3, pos: [-0.8, 7.3, 1.2], color: C_WHITE});\n    api.poly({r: 0.15, pos: [-0.9, 7.3, 1.4], color: C_BLACK});\n    api.torus({r: 0.35, tube: 0.06, pos: [-0.8, 7.3, 1.15], along: '+Z', color: C_GOLD});\n  api.endGroup();\n\n  api.group('dorsalFin', 'dorsalFin');\n    api.patch({points: [[0, 5.5, -1.25], [0, 7.0, -2.5], [0, 8.5, -1.5], [0, 8.5, -0.8]], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [0, 8.5, -1.5], color: C_GOLD});\n  api.endGroup();\n\n  api.group('pectoralFin', 'pectoralFin');\n    api.tri({a: [1.75, 5.0, 0], b: [3.0, 4.0, 0], c: [1.75, 4.0, 0], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [3.0, 4.0, 0], color: C_GOLD});\n    api.tri({a: [-1.75, 5.0, 0], b: [-3.0, 4.0, 0], c: [-1.75, 4.0, 0], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [-3.0, 4.0, 0], color: C_GOLD});\n  api.endGroup();\n}\n```\nWait, the `torus` for the neck collar is inside the `head` group, but its Y position is 6.5, which is exactly the top of the upper body taper. That's perfect.\nThe `torus` for the belt is inside the `body` group, at Y=4.5, which is the center of the main body box. Perfect.\nThe `patch` for the dorsal fin uses points with X=0, so it's a flat vertical surface. That's correct for a fin.\nThe `tri` for the pectoral fins are flat vertical surfaces (Z=0). That's correct for side fins.\nThe `chain` for the lateral lines has Z=0.5, which is slightly forward, giving a nice 3D curve.\nThe `poly` gold leaves are at Z=1.3, which is on the front surface of the body box (d=2.5, so front is Z=1.25). Perfect.\nThe snout is at Z=1.2, so its front is at Z=1.95. The eyes are at Z=1.2 and 1.4, sitting nicely on the snout/skull intersection.\nThe eye torus is at Z=1.15, wrapping the eye sphere.\n\nOne small detail: the `torus` for the neck collar is in the `head` group. If the head moves, the collar moves with it. That makes sense.\nThe `torus` for the belt is in the `body` group. If the body moves, the belt moves with it. Makes sense.\nThe `chain` for the lateral line is in the `body` group. Makes sense.\n\nI should make sure the `torus` along parameter is correct. By default, `torus` is in XZ plane. For the eye ornaments, I want them facing +Z, so `along: '+Z'` is correct.\nFor the belt and collar, they are horizontal rings, so default (along Y) is correct.\n\nLet's double check the `patch` points for the dorsal fin.\n`[[0, 5.5, -1.25], [0, 7.0, -2.5], [0, 8.5, -1.5], [0, 8.5, -0.8]]`\nThis creates a fin that starts at the back of the body (Z=-1.25), goes up and back to Z=-2.5, then forward to Z=-1.5 at the very top, and down to Z=-0.8. This is a nice swept-back fin shape.\n\nLet's double check the `tri` points for the pectoral fins.\nLeft: `a: [1.75, 5.0, 0], b: [3.0, 4.0, 0], c: [1.75, 4.0, 0]`\nThis creates a triangle that starts at the side of the body (X=1.75), goes out to X=3.0 and down to Y=4.0, then back to X=1.75 at Y=4.0. A nice downward-pointing side fin.\n\nEverything looks solid and follows the lowpoly topiary aesthetic. The code is clean and uses the API correctly.",
+  "_aiCode": "function build(api) {\n  api.name('Ornamental Fish Topiary');\n  const C_LEAF = 0x228B22, C_LEAF_L = 0x32CD32, C_GOLD = 0xDAA520, C_WHITE = 0xF5F5F5, C_BLACK = 0x000000, C_POT = 0xB6634F, C_SOIL = 0x3E2723;\n\n  api.group('planter', 'planter');\n    api.cyl({rTop: 1.3, rBot: 1.0, h: 1.5, pos: [0, 0.75, 0], color: C_POT});\n    api.torus({r: 1.3, tube: 0.1, pos: [0, 1.5, 0], color: C_GOLD});\n    api.cyl({r: 1.2, h: 0.2, pos: [0, 1.4, 0], color: C_SOIL});\n  api.endGroup();\n\n  api.group('tail', 'tail');\n    api.box({w: 1.0, h: 1.5, d: 1.0, pos: [0, 2.25, 0], color: C_LEAF});\n    api.tri({a: [0, 1.5, 0], b: [-1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: C_LEAF});\n    api.tri({a: [0, 1.5, 0], b: [1.8, 3.0, 0], c: [0, 3.0, 0], d: 0.3, color: C_LEAF});\n    api.poly({r: 0.1, pos: [-1.8, 3.0, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [1.8, 3.0, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [-1.0, 2.8, 0], color: C_GOLD});\n    api.poly({r: 0.1, pos: [1.0, 2.8, 0], color: C_GOLD});\n  api.endGroup();\n\n  api.group('body', 'body');\n    api.box({w: 3.5, h: 3.0, d: 2.5, pos: [0, 4.5, 0], color: C_LEAF});\n    api.box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 6.5, 0], color: C_LEAF});\n    api.torus({r: 1.8, tube: 0.1, pos: [0, 4.5, 0], color: C_GOLD});\n    api.chain({waypoints: [[1.8, 3.5, 0.5], [1.8, 4.5, 0.5], [1.3, 6.0, 0.5]], r: 0.08, color: C_GOLD});\n    api.chain({waypoints: [[-1.8, 3.5, 0.5], [-1.8, 4.5, 0.5], [-1.3, 6.0, 0.5]], r: 0.08, color: C_GOLD});\n    api.poly({r: 0.15, pos: [1.5, 4.0, 1.3], color: C_GOLD});\n    api.poly({r: 0.15, pos: [-1.0, 5.0, 1.3], color: C_GOLD});\n    api.poly({r: 0.15, pos: [0.5, 3.5, 1.3], color: C_GOLD});\n  api.endGroup();\n\n  api.group('head', 'head');\n    api.box({w: 2.5, h: 1.5, d: 2.0, pos: [0, 7.0, 0], color: C_LEAF});\n    api.box({w: 1.5, h: 1.0, d: 1.5, pos: [0, 7.2, 1.2], color: C_LEAF});\n    api.torus({r: 1.3, tube: 0.1, pos: [0, 6.5, 0], color: C_GOLD});\n    api.sphere({r: 0.3, pos: [0.8, 7.3, 1.2], color: C_WHITE});\n    api.poly({r: 0.15, pos: [0.9, 7.3, 1.4], color: C_BLACK});\n    api.torus({r: 0.35, tube: 0.06, pos: [0.8, 7.3, 1.15], along: '+Z', color: C_GOLD});\n    api.sphere({r: 0.3, pos: [-0.8, 7.3, 1.2], color: C_WHITE});\n    api.poly({r: 0.15, pos: [-0.9, 7.3, 1.4], color: C_BLACK});\n    api.torus({r: 0.35, tube: 0.06, pos: [-0.8, 7.3, 1.15], along: '+Z', color: C_GOLD});\n  api.endGroup();\n\n  api.group('dorsalFin', 'dorsalFin');\n    api.patch({points: [[0, 5.5, -1.25], [0, 7.0, -2.5], [0, 8.5, -1.5], [0, 8.5, -0.8]], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [0, 8.5, -1.5], color: C_GOLD});\n  api.endGroup();\n\n  api.group('pectoralFin', 'pectoralFin');\n    api.tri({a: [1.75, 5.0, 0], b: [3.0, 4.0, 0], c: [1.75, 4.0, 0], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [3.0, 4.0, 0], color: C_GOLD});\n    api.tri({a: [-1.75, 5.0, 0], b: [-3.0, 4.0, 0], c: [-1.75, 4.0, 0], d: 0.3, color: C_LEAF_L});\n    api.poly({r: 0.15, pos: [-3.0, 4.0, 0], color: C_GOLD});\n  api.endGroup();\n}",
+  "_description": "a lowpoly ornamental golden fish-shaped topiary tree, elegant garden sculpture style",
+  "_formulaResult": {
+    "methodologies": [
+      "vegetation",
+      "head:projection"
+    ],
+    "regions": [
+      {
+        "name": "head",
+        "desc": "鱼头、叶片-深绿[228B22]、金边眼饰-金[DAA520]、圆眼-白[F5F5F5]"
+      },
+      {
+        "name": "body",
+        "desc": "丰满鱼身、叶片-深绿、侧线装饰-金、散布金叶点缀-金"
+      },
+      {
+        "name": "tail",
+        "desc": "扇形散开鱼尾、叶片-深绿、尾缘-金"
+      },
+      {
+        "name": "dorsalFin",
+        "desc": "高耸背鳍、叶片-浅绿[32CD32]、鳍尖-金"
+      },
+      {
+        "name": "pectoralFin",
+        "desc": "两侧扁平胸鳍、叶片-浅绿、鳍尖-金"
+      },
+      {
+        "name": "planter",
+        "desc": "底部直筒收口花盆、盆体-赤陶[B6634F]、盆沿-金、盆土-深棕[3E2723]"
+      }
+    ]
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('head','head') → 鱼头、叶片-深绿[228B22]、金边眼饰-金[DAA520]、圆眼-白[F5F5F5] → api.endGroup()\napi.group('body','body') → 丰满鱼身、叶片-深绿、侧线装饰-金、散布金叶点缀-金 → api.endGroup()\napi.group('tail','tail') → 扇形散开鱼尾、叶片-深绿、尾缘-金 → api.endGroup()\napi.group('dorsalFin','dorsalFin') → 高耸背鳍、叶片-浅绿[32CD32]、鳍尖-金 → api.endGroup()\napi.group('pectoralFin','pectoralFin') → 两侧扁平胸鳍、叶片-浅绿、鳍尖-金 → api.endGroup()\napi.group('planter','planter') → 底部直筒收口花盆、盆体-赤陶[B6634F]、盆沿-金、盆土-深棕[3E2723] → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n### 投射型头部 (head:projection)\n狼/龙/鳄/马/鹰/所有有突出吻部或喙的头。\n头部 = 颅骨体积(锚) + 前向投射(核心) + 下颌(附)。禁止单个几何块——没有投射的动物头不是动物头。\n体积块之间重叠0.2~0.5单位，不要精确对接留缝隙。\n\n颅骨体积：占头部30~50%，偏小——辨识重心在前方投射上，颅骨只是投射的基座。\n前向投射：从颅骨正面向+Z延伸，占头部40~60%，物种身份签名——\n  截面形状和长宽比决定物种：长>宽=犬/鳄/马，宽>长=猫/熊猫，弯钩=鹰，扁平=鸭/河豚。\n  吻部几何选择思考路径：先看长宽比（长>宽→锥台cyl或递减box串联；宽>长→扁box(w>d)或半球前接），再看末端特征（截平/收窄/弯钩/扁平），灵活搭配，不固定映射。关键是把物种最突出的吻部特征用几何块表达出来。\n  投射长度≥颅骨纵深，否则读不出物种。\n  投射前端可收窄(吻尖)、保持(筒状)、或特殊(喙钩)。\n下颌：贴在投射正下方，长度≈投射的80~100%，与投射共同围出口腔侧面轮廓。下颌宽度≤投射宽度。\n  下颌开合角度表达嘴部状态：闭口=下颌与上投射平行紧贴；微张=下颌后段绕前端微旋，后端下沉0.2~0.4；咆哮=下颌整体下沉+后端大幅张开。厚唇动物（鳄/河马）上下颌之间加细扁box做唇线，颜色比皮肤深一个色阶，嘴部轮廓立刻清晰。\n  牙齿表达：lowpoly下单颗牙不可见。用上/下各一条细三角锯齿（2~3个tri沿嘴缝排列），只在张嘴时可见。\n\n五官（附着在已有体积表面，不可浮空）：\n  眼睛：成对，放颅骨上——\n    捕食者(狼/龙/鹰)→正面偏上，双眼朝前有立体视觉；\n    猎物(兔/鹿/马)→侧面偏后，视野宽广。\n    z > 头中心z + 头深×0.3。\n  耳朵：第二物种信号——猫科→头顶竖立，犬科→头顶半垂，兔→头顶极长竖起，马→头顶竖立偏后，象→两侧宽大。\n  角/冠：从颅骨顶部向上/后延伸，fork(分叉)或cone(独角)。\n\n颈部：矮cyl。颈端插入颅骨底部0.2~0.3，下端插入躯干顶部0.2~0.3，重叠避免缝隙，不要精确对接。长颈(长颈鹿/蛇颈龙)用chain，关节球小而少，waypoint微S形（头部略前探或上扬）增加优雅/威胁感。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"a lowpoly ornamental golden fish-shaped topiary tree, elegant garden sculpture style\"\n\n草稿结构：\n  head: 鱼头、叶片-深绿[228B22]、金边眼饰-金[DAA520]、圆眼-白[F5F5F5]\n  body: 丰满鱼身、叶片-深绿、侧线装饰-金、散布金叶点缀-金\n  tail: 扇形散开鱼尾、叶片-深绿、尾缘-金\n  dorsalFin: 高耸背鳍、叶片-浅绿[32CD32]、鳍尖-金\n  pectoralFin: 两侧扁平胸鳍、叶片-浅绿、鳍尖-金\n  planter: 底部直筒收口花盆、盆体-赤陶[B6634F]、盆沿-金、盆土-深棕[3E2723]\n整体比例：流线型鱼形轮廓，中段最宽，底座稳重，整体修长优雅\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
+  "_aiMeta": {
+    "v": 1,
+    "ts": 1781242408954,
+    "provider": "fireworks",
+    "data": "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",
+    "edits": ""
+  }
+}

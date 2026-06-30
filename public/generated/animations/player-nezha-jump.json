@@ -1,0 +1,77 @@
+{
+  "_duration": 0.8,
+  "_loop": false,
+  "body": {
+    "tilt": [
+      {
+        "axis": "x",
+        "angle": 20
+      },
+      {
+        "axis": "x",
+        "angle": -15,
+        "_loop": false
+      }
+    ],
+    "bounce": {
+      "amplitude": 1.2,
+      "frequency": 1,
+      "_loop": false
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.08,
+      "frequency": 1,
+      "_loop": false
+    }
+  },
+  "head": {
+    "tilt": {
+      "axis": "x",
+      "angle": -10
+    }
+  },
+  "leftArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": -130
+    }
+  },
+  "rightArm": {
+    "tilt": {
+      "axis": "z",
+      "angle": 130
+    }
+  },
+  "spear": {
+    "tilt": {
+      "axis": "x",
+      "angle": -20
+    }
+  },
+  "leftLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 1,
+      "_loop": false
+    }
+  },
+  "rightLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 1,
+      "phase": 0.5,
+      "_loop": false
+    }
+  },
+  "wheel": {
+    "spin": {
+      "axis": "y",
+      "frequency": 3,
+      "direction": "cw"
+    }
+  }
+}

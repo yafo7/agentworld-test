@@ -1,0 +1,286 @@
+[
+  {
+    "assetId": "gen_mqyxkcar_d0sa",
+    "name": "Ornamental Fish Topiary",
+    "description": "金鱼",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqyxkios_bt5u",
+        "name": "上下浮动",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqyxkios_bt5u.json"
+      }
+    ],
+    "path": "generated/models/gen_mqyxkcar_d0sa.json",
+    "createdAt": 1782720177551
+  },
+  {
+    "assetId": "gen_mqyw2nn3_v03m",
+    "name": "农村小屋",
+    "description": "有透明窗户的农村小屋",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqyw2nn3_v03m.json",
+    "createdAt": 1782717672879
+  },
+  {
+    "assetId": "gen_mqyvvdv5_mnyl",
+    "name": "高耸橡树",
+    "description": "一颗高耸的橡树",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqyvvdv5_mnyl.json",
+    "createdAt": 1782717333606
+  },
+  {
+    "assetId": "gen_mqyvothb_4us1",
+    "name": "开屏孔雀",
+    "description": "一只开屏的孔雀",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqyvpgbt_nm8h",
+        "name": "孔雀开屏",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqyvpgbt_nm8h.json"
+      }
+    ],
+    "path": "generated/models/gen_mqyvothb_4us1.json",
+    "createdAt": 1782717027260
+  },
+  {
+    "assetId": "gen_mqyvfkrx_358n",
+    "name": "Placeholder",
+    "description": "占位符_5",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqyvfkrx_358n.json",
+    "createdAt": 1782716596063
+  },
+  {
+    "assetId": "gen_mqyva3uz_8ma2",
+    "name": "巨无霸汉堡螃蟹",
+    "description": "雷霆大雪绒",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqyvafxq_cmty",
+        "name": "火球特效",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqyvafxq_cmty.json"
+      }
+    ],
+    "path": "generated/models/gen_mqyva3uz_8ma2.json",
+    "createdAt": 1782716340891
+  },
+  {
+    "assetId": "gen_mqyv9g14_z6sn",
+    "name": "正在放电的皮卡丘",
+    "description": "yafo",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqyv9n83_b2tt",
+        "name": "冲锋",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqyv9n83_b2tt.json"
+      }
+    ],
+    "path": "generated/models/gen_mqyv9g14_z6sn.json",
+    "createdAt": 1782716309983
+  },
+  {
+    "assetId": "gen_mqyubwt3_wj2j",
+    "name": "巨无霸汉堡螃蟹",
+    "description": "雷霆大雪绒",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqyuc3m0_en3h",
+        "name": "爬行",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqyuc3m0_en3h.json"
+      }
+    ],
+    "path": "generated/models/gen_mqyubwt3_wj2j.json",
+    "createdAt": 1782714745472
+  },
+  {
+    "assetId": "gen_mqyu9bj7_ilgt",
+    "name": "农村小房子",
+    "description": "农村小房子",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqyu9bj7_ilgt.json",
+    "createdAt": 1782714624576
+  },
+  {
+    "assetId": "gen_mqusfcca_rk6u",
+    "name": "正在放电的皮卡丘",
+    "description": "占位符_5",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqusfcca_rk6u.json",
+    "createdAt": 1782469680044
+  },
+  {
+    "assetId": "gen_mqurpfxp_83r6",
+    "name": "Fairy-Tale Pet House",
+    "description": "扶摇的家",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mqurpfxp_83r6.json",
+    "createdAt": 1782468471927
+  },
+  {
+    "assetId": "gen_mquoi1aw_pniw",
+    "name": "森林小屋",
+    "description": "一个森林里的小屋",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mquoi1aw_pniw.json",
+    "createdAt": 1782463087369
+  },
+  {
+    "assetId": "gen_mquoci5a_0171",
+    "name": "巨无霸汉堡螃蟹",
+    "description": "雷霆大雪绒",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mquoede0_pikt",
+        "name": "爬行",
+        "type": "interaction",
+        "path": "generated/animations/anim_mquoede0_pikt.json"
+      }
+    ],
+    "path": "generated/models/gen_mquoci5a_0171.json",
+    "createdAt": 1782462829280
+  },
+  {
+    "assetId": "gen_mquob9fb_u01v",
+    "name": "金鱼缸",
+    "description": "一个装着金鱼的鱼缸",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mquob9fb_u01v.json",
+    "createdAt": 1782462771307
+  },
+  {
+    "assetId": "gen_mquo3n1e_vcoc",
+    "name": "Ornamental Fish Topiary",
+    "description": "金鱼",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mquo3s7z_a76o",
+        "name": "上下浮动",
+        "type": "interaction",
+        "path": "generated/animations/anim_mquo3s7z_a76o.json"
+      }
+    ],
+    "path": "generated/models/gen_mquo3n1e_vcoc.json",
+    "createdAt": 1782462415734
+  },
+  {
+    "assetId": "gen_mqumkz6k_aco8",
+    "name": "雷电雪绒玩偶",
+    "description": "雷霆大雪绒",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [
+      {
+        "animId": "anim_mqumngw8_okg8",
+        "name": "轻轻摇摆",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqumngw8_okg8.json"
+      },
+      {
+        "animId": "anim_mqumm8j6_xn9u",
+        "name": "奔跑",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqumm8j6_xn9u.json"
+      },
+      {
+        "animId": "anim_mquml53y_kwbm",
+        "name": "奔跑",
+        "type": "interaction",
+        "path": "generated/animations/anim_mquml53y_kwbm.json"
+      }
+    ],
+    "path": "generated/models/gen_mqumkz6k_aco8.json",
+    "createdAt": 1782459865713
+  },
+  {
+    "assetId": "gen_mqumiqg2_3lsy",
+    "name": "Ornamental Fish Topiary",
+    "description": "金鱼",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": true,
+    "animations": [
+      {
+        "animId": "anim_mqumn120_m1iv",
+        "name": "轻轻摇摆",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqumn120_m1iv.json"
+      },
+      {
+        "animId": "anim_mqumjnzj_0rf5",
+        "name": "跳跃",
+        "type": "idle",
+        "path": "generated/animations/anim_mqumjnzj_0rf5.json"
+      },
+      {
+        "animId": "anim_mqumiuu5_ox60",
+        "name": "轻轻摇摆",
+        "type": "interaction",
+        "path": "generated/animations/anim_mqumiuu5_ox60.json"
+      }
+    ],
+    "path": "generated/models/gen_mqumiqg2_3lsy.json",
+    "createdAt": 1782459760815
+  },
+  {
+    "assetId": "gen_mquiqc4h_u19x",
+    "name": "巨无霸炸弹",
+    "description": "巨无霸炸弹",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "path": "generated/models/gen_mquiqc4h_u19x.json",
+    "createdAt": 1782453399362
+  }
+]

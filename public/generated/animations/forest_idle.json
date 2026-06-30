@@ -1,76 +1,80 @@
 {
   "_duration": 2.5,
   "_loop": true,
-  "ground": {
-    "breathe": {
-      "amplitude": 0.008,
-      "frequency": 0.25
-    }
-  },
-  "trees": {
+  "tree1": {
     "bounce": {
       "amplitude": 0.04,
-      "frequency": 0.25
+      "frequency": 0.4
     }
-  },
-  "tree1": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "phase": 0
-    },
-    "_attach": "trees"
   },
   "tree2": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "phase": 0.2
-    },
-    "_attach": "trees"
-  },
-  "tree3": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "phase": 0.4
-    },
-    "_attach": "trees"
-  },
-  "tree4": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "phase": 0.6
-    },
-    "_attach": "trees"
-  },
-  "tree5": {
-    "sway": {
-      "axis": "z",
-      "amplitude": 0.06,
-      "frequency": 0.3,
-      "phase": 0.8
-    },
-    "_attach": "trees"
-  },
-  "rocks": {
     "bounce": {
-      "amplitude": 0.03,
-      "frequency": 0.25
+      "amplitude": 0.04,
+      "frequency": 0.4
     }
   },
-  "rock1": {
-    "_attach": "rocks"
+  "t2_base": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4
+    }
   },
-  "rock2": {
-    "_attach": "rocks"
+  "t2_mid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
   },
-  "rock3": {
-    "_attach": "rocks"
+  "t2_top": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 0.4,
+      "phase": 0.2
+    }
+  },
+  "tree3": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.4
+    }
+  },
+  "t3_base": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4
+    }
+  },
+  "t3_mid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "t3_top": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 0.4,
+      "phase": 0.2
+    }
+  },
+  "moss1": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.4
+    }
+  },
+  "moss2": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.4
+    }
   }
 }

@@ -1,0 +1,73 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "canopy": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.4
+    }
+  },
+  "trunk": {
+    "breathe": {
+      "amplitude": 0.01,
+      "frequency": 0.4
+    }
+  },
+  "roots": {
+    "breathe": {
+      "amplitude": 0.005,
+      "frequency": 0.4
+    }
+  },
+  "branches": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4
+    }
+  },
+  "branch_0_0": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "branch_1_0": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.2
+    }
+  },
+  "branch_2_0": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.3
+    }
+  },
+  "branch_3_0": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.4
+    }
+  },
+  "branch_4_0": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.5
+    }
+  }
+}

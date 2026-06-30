@@ -1,0 +1,53 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.8
+    }
+  },
+  "body": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.8
+    },
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.8
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.1,
+      "frequency": 0.8
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.8
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.06,
+      "frequency": 0.8
+    }
+  },
+  "_name": "轻轻摇摆",
+  "_type": "interaction",
+  "_modelId": "gen_mqumkz6k_aco8"
+}

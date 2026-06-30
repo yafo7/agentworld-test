@@ -4,23 +4,23 @@ import * as THREE from 'three';
 // ★ Runtime 依赖全局 THREE
 window.THREE = THREE;
 
-import { initRuntime } from './ai/modelLoader.js';
-import { ThirdPersonCamera } from './core/camera.js';
-import { createLights } from './core/lights.js';
-import { createRenderer } from './core/renderer.js';
-import { createScene } from './core/scene.js';
-import { Environment } from './entities/Environment.js';
-import { Item } from './entities/Item.js';
-import { Pet } from './entities/Pet.js';
-import { Player } from './entities/Player.js';
-import { StaticEntity } from './entities/StaticEntity.js';
-import { ITEM_CONFIGS, HOUSE_PET_CONFIGS } from './game/gameData.js';
-import { setupInteract } from './interaction/interact.js';
-import { createInteractionHint } from './interaction/interactionHint.js';
-import { setupPetDialogue } from './interaction/petDialogue.js';
-import { setupRaycast } from './interaction/raycast.js';
-import { consumeKeyPress } from './input/keyboard.js';
-import { createUnitEnvironment, getGridWorldPosition, paintUnitArea } from './world/terrain.js';
+import { initRuntime } from './backend/runtimeLoader.js';
+import { ThirdPersonCamera } from './engine/core/camera.js';
+import { createLights } from './engine/core/lights.js';
+import { createRenderer } from './engine/core/renderer.js';
+import { createScene } from './engine/core/scene.js';
+import { Environment } from './engine/entity/Environment.js';
+import { Item } from './engine/entity/Item.js';
+import { Pet } from './engine/entity/Pet.js';
+import { Player } from './engine/entity/Player.js';
+import { StaticEntity } from './engine/entity/StaticEntity.js';
+import { ITEM_CONFIGS, HOUSE_PET_CONFIGS } from './demos/chii-island/data/gameData.js';
+import { setupInteract } from './engine/interaction/interact.js';
+import { createInteractionHint } from './engine/interaction/interactionHint.js';
+import { setupPetDialogue } from './demos/chii-island/systems/petDialogue.js';
+import { setupRaycast } from './engine/interaction/raycast.js';
+import { consumeKeyPress } from './engine/input/keyboard.js';
+import { createUnitEnvironment, getGridWorldPosition, paintUnitArea } from './engine/world/terrain.js';
 
 const INTERACT_HINT_RANGE = 1.8;
 
@@ -183,6 +183,12 @@ async function init() {
   // ---- player ----
   const player = new Player();
   scene.add(player.mesh);
+  player.loadModel('generated/models/player-nezha.json');
+  player.loadAnimations({
+    idle: 'generated/animations/player-nezha-idle.json',
+    walk: 'generated/animations/player-nezha-walk.json',
+    jump: 'generated/animations/player-nezha-jump.json',
+  });
 
   // ---- items ----
   const items = ITEM_CONFIGS.map((cfg) => new Item(cfg));
@@ -270,6 +276,7 @@ async function init() {
       }
     }
   }
+  applyEnvVisibility(); // initial state: all outer environments hidden
 
   function getCurrentEnvIndex(playerPos) {
     const HALF_WIDTH = 10 * 2.05 / 2; // 10.25
@@ -404,7 +411,7 @@ async function init() {
   });
 
   console.log(
-    '🌲 宠物庭院师\n' +
+    '🌲 奇异岛\n' +
     '  WASD = 移动 | 鼠标拖拽 = 旋转 | 滚轮 = 缩放\n' +
     '  E = 捡放物品/宠物互动/在宠物小屋前呼唤宠物/与建筑交互\n' +
     '  H = 呼喊宠物跟随（可多宠） | J = 解散所有跟随宠物 | R = 指使宠物改造环境'

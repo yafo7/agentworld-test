@@ -1,0 +1,49 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    },
+    "bounce": {
+      "amplitude": 0.15,
+      "frequency": 1.5
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.9,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.9,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.9,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.9,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "_name": "奔跑",
+  "_type": "interaction",
+  "_modelId": "gen_mqumkz6k_aco8"
+}

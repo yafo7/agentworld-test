@@ -1,0 +1,54 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.8
+    }
+  },
+  "neck": {
+    "wave": {
+      "amplitude": 0.08,
+      "frequency": 1.2,
+      "delay": 0.1
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.1,
+      "frequency": 1.2
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "tail": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -75
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.6
+    }
+  },
+  "_name": "孔雀开屏",
+  "_type": "interaction",
+  "_modelId": "gen_mqyvothb_4us1"
+}

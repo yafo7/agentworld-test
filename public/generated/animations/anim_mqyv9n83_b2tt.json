@@ -1,0 +1,82 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 25
+    },
+    "bounce": {
+      "amplitude": 0.25,
+      "frequency": 2.5
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -15
+    }
+  },
+  "armL": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -40
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.5,
+      "frequency": 2.5,
+      "phase": 0
+    }
+  },
+  "armR": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -40
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.5,
+      "frequency": 2.5,
+      "phase": 0.5
+    }
+  },
+  "legL": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 30
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.5,
+      "frequency": 2.5,
+      "phase": 0.5
+    }
+  },
+  "legR": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 30
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.5,
+      "frequency": 2.5,
+      "phase": 0
+    }
+  },
+  "tail": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 2.5
+    }
+  },
+  "_name": "冲锋",
+  "_type": "interaction",
+  "_modelId": "gen_mqyv9g14_z6sn"
+}

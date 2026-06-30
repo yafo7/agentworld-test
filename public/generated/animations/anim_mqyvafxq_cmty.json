@@ -1,0 +1,171 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": 15
+      }
+    ],
+    "bounce": {
+      "amplitude": 0.15,
+      "frequency": 2
+    },
+    "breathe": {
+      "amplitude": 0.04,
+      "frequency": 1.5
+    }
+  },
+  "leftClaw": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": -40
+      },
+      {
+        "axis": "x",
+        "angle": -20
+      }
+    ]
+  },
+  "lClaw_shoulder": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.15,
+        "frequency": 2,
+        "phase": 0
+      }
+    ]
+  },
+  "lClaw_arm": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.15,
+        "frequency": 2,
+        "phase": 0.1
+      }
+    ]
+  },
+  "lClaw_wrist": {
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.15,
+        "frequency": 3,
+        "phase": 0
+      }
+    ]
+  },
+  "rightClaw": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": 40
+      },
+      {
+        "axis": "x",
+        "angle": -20
+      }
+    ]
+  },
+  "rClaw_shoulder": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.15,
+        "frequency": 2,
+        "phase": 0
+      }
+    ]
+  },
+  "rClaw_arm": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.15,
+        "frequency": 2,
+        "phase": 0.1
+      }
+    ]
+  },
+  "rClaw_wrist": {
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": -0.8,
+        "frequency": 3,
+        "phase": 0
+      }
+    ]
+  },
+  "leftLegs_wp0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "leftLegs_wp0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.25
+    }
+  },
+  "leftLegs_wp0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "leftLegs_wp0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.75
+    }
+  },
+  "rightLegs_wp0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "rightLegs_wp0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.75
+    }
+  },
+  "rightLegs_wp0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "rightLegs_wp0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 2,
+      "phase": 0.25
+    }
+  },
+  "_name": "火球特效",
+  "_type": "interaction",
+  "_modelId": "gen_mqyva3uz_8ma2"
+}

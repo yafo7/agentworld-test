@@ -1,568 +1,653 @@
 {
-  "name": "Lowpoly Forest",
+  "name": "低多边形森林场景",
   "type": "lowpoly",
-  "meshes": [
-    {
-      "id": "trees",
-      "name": "Trees",
-      "group": true
-    },
+  "format": 2,
+  "nodes": [
     {
       "id": "tree1",
-      "name": "Tree1",
-      "group": true,
-      "parent": "trees",
-      "position": {
-        "x": -4,
-        "y": 0.3,
-        "z": -2.5
+      "transform": {
+        "pos": [
+          -2,
+          2.25,
+          -1
+        ]
+      }
+    },
+    {
+      "id": "ground",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          2,
+          -2.15,
+          1
+        ]
+      }
+    },
+    {
+      "id": "tree2",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          4,
+          0,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "t2_base",
+      "name": "wp0",
+      "parent": "tree2",
+      "transform": {
+        "pos": [
+          0,
+          -2.25,
+          0
+        ]
+      }
+    },
+    {
+      "id": "t2_mid",
+      "name": "wp1",
+      "parent": "t2_base",
+      "transform": {
+        "pos": [
+          0.2,
+          1.5,
+          -0.3
+        ]
+      }
+    },
+    {
+      "id": "t2_top",
+      "name": "wp2",
+      "parent": "t2_mid",
+      "transform": {
+        "pos": [
+          0.3,
+          1,
+          -0.2
+        ]
+      }
+    },
+    {
+      "id": "tree3",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          -2.5,
+          0,
+          4.4
+        ]
+      }
+    },
+    {
+      "id": "t3_base",
+      "name": "wp0",
+      "parent": "tree3",
+      "transform": {
+        "pos": [
+          0.5,
+          -2.25,
+          -0.4
+        ]
+      }
+    },
+    {
+      "id": "t3_mid",
+      "name": "wp1",
+      "parent": "t3_base",
+      "transform": {
+        "pos": [
+          -0.5,
+          2,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "t3_top",
+      "name": "wp2",
+      "parent": "t3_mid",
+      "transform": {
+        "pos": [
+          -0.5,
+          1.5,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "moss1",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          2.7,
+          -2,
+          -1.8
+        ]
+      }
+    },
+    {
+      "id": "moss2",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          -1.2,
+          -1.95,
+          3.2
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "ground",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 20,
+          "height": 0.2,
+          "depth": 20
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          0,
+          -0.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 4,
+          "radialSegments": 10
+        },
+        "color": 6045747
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          0,
+          3.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 1.5,
+          "height": 3,
+          "radialSegments": 10
+        },
+        "color": 3050327
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "tree1",
+      "transform": {
+        "pos": [
+          0,
+          4.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 1,
+          "height": 2,
+          "radialSegments": 10
+        },
+        "color": 3841390
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "t2_base",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "t2_base",
+      "transform": {
+        "pos": [
+          0.1,
+          0.76,
+          -0.15
+        ],
+        "quat": [
+          -0.1,
+          0,
+          -0.07,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 1.41,
+          "radialSegments": 10
+        },
+        "color": 6045747,
+        "boneFrom": "t2_base",
+        "boneTo": "t2_mid"
       }
     },
     {
       "id": "m6",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.25,
-        "radiusBottom": 0.25,
-        "height": 3.5,
-        "radialSegments": 10
+      "parent": "t2_mid",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 1.45,
-        "z": -0.5
-      },
-      "color": 9136404
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.18,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
+      }
     },
     {
       "id": "m7",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.8,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "t2_mid",
+      "transform": {
+        "pos": [
+          0.15,
+          0.5,
+          -0.1
+        ],
+        "quat": [
+          -0.1,
+          0,
+          -0.14,
+          0.99
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 3.9000000000000004,
-        "z": -0.5
-      },
-      "color": 3050327
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 6045747,
+        "boneFrom": "t2_mid",
+        "boneTo": "t2_top"
+      }
     },
     {
       "id": "m8",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "t2_top",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 4.9,
-        "z": 0
-      },
-      "color": 3329330
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
+      }
     },
     {
       "id": "m9",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.35,
-        "radiusBottom": 0.35,
-        "height": 0.6,
-        "radialSegments": 10
+      "parent": "tree2",
+      "transform": {
+        "pos": [
+          0.5,
+          1.25,
+          -0.5
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": -0.5
-      },
-      "color": 4878371
-    },
-    {
-      "id": "tree2",
-      "name": "Tree2",
-      "group": true,
-      "parent": "trees",
-      "position": {
-        "x": 3,
-        "y": 0.25,
-        "z": 1.8
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 8179068
       }
     },
     {
       "id": "m10",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.2,
-        "radiusBottom": 0.2,
-        "height": 2.8,
-        "radialSegments": 10
+      "parent": "tree2",
+      "transform": {
+        "pos": [
+          0,
+          0.75,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 1.15,
-        "z": 0.19999999999999996
-      },
-      "color": 9136404
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 9296781
+      }
     },
     {
       "id": "m11",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.5,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "t3_base",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 3.25,
-        "z": 0.19999999999999996
-      },
-      "color": 3050327
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
+      }
     },
     {
       "id": "m12",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "t3_base",
+      "transform": {
+        "pos": [
+          -0.25,
+          1.01,
+          0.25
+        ],
+        "quat": [
+          0.12,
+          0,
+          0.12,
+          0.99
+        ]
       },
-      "position": {
-        "x": 0.20000000000000018,
-        "y": 4.05,
-        "z": 0
-      },
-      "color": 3329330
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 1.99,
+          "radialSegments": 10
+        },
+        "color": 6045747,
+        "boneFrom": "t3_base",
+        "boneTo": "t3_mid"
+      }
     },
     {
       "id": "m13",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.3,
-        "radiusBottom": 0.3,
-        "height": 0.5,
-        "radialSegments": 10
+      "parent": "t3_mid",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0.19999999999999996
-      },
-      "color": 4878371
-    },
-    {
-      "id": "tree3",
-      "name": "Tree3",
-      "group": true,
-      "parent": "trees",
-      "position": {
-        "x": -0.8,
-        "y": 0.35,
-        "z": 4.8
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.18,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
       }
     },
     {
       "id": "m14",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.3,
-        "radiusBottom": 0.3,
-        "height": 4,
-        "radialSegments": 10
+      "parent": "t3_mid",
+      "transform": {
+        "pos": [
+          -0.25,
+          0.75,
+          0.15
+        ],
+        "quat": [
+          0.09,
+          0,
+          0.16,
+          0.98
+        ]
       },
-      "position": {
-        "x": -0.19999999999999996,
-        "y": 1.65,
-        "z": 0.20000000000000018
-      },
-      "color": 9136404
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 1.48,
+          "radialSegments": 10
+        },
+        "color": 6045747,
+        "boneFrom": "t3_mid",
+        "boneTo": "t3_top"
+      }
     },
     {
       "id": "m15",
-      "type": "sphere",
-      "geometry": {
-        "radius": 2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "t3_top",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.19999999999999996,
-        "y": 4.45,
-        "z": 0.20000000000000018
-      },
-      "color": 3050327
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 6045747
+      }
     },
     {
       "id": "m16",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.4,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "tree3",
+      "transform": {
+        "pos": [
+          -0.5,
+          1.75,
+          0.4
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 5.45,
-        "z": 0
-      },
-      "color": 3329330
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.5,
+          "radiusBottom": 1.5,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 3050327
+      }
     },
     {
       "id": "m17",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.4,
-        "radiusBottom": 0.4,
-        "height": 0.7,
-        "radialSegments": 10
+      "parent": "tree3",
+      "transform": {
+        "pos": [
+          -0.5,
+          2.25,
+          0.4
+        ]
       },
-      "position": {
-        "x": -0.19999999999999996,
-        "y": 0,
-        "z": 0.20000000000000018
-      },
-      "color": 4878371
-    },
-    {
-      "id": "tree4",
-      "name": "Tree4",
-      "group": true,
-      "parent": "trees",
-      "position": {
-        "x": 6,
-        "y": 0.20500000000000002,
-        "z": -3.8
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1,
+          "radiusBottom": 1,
+          "height": 0.4,
+          "radialSegments": 10
+        },
+        "color": 3841390
       }
     },
     {
       "id": "m18",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.15,
-        "radiusBottom": 0.15,
-        "height": 2.2,
-        "radialSegments": 10
+      "parent": "moss1",
+      "transform": {
+        "pos": [
+          0.3,
+          -0.05,
+          -0.2
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0.895,
-        "z": -0.20000000000000018
-      },
-      "color": 9136404
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.6,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3497531
+      }
     },
     {
       "id": "m19",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "moss1",
+      "transform": {
+        "pos": [
+          0.8,
+          -0.1,
+          -0.4
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 2.5949999999999998,
-        "z": -0.20000000000000018
-      },
-      "color": 3050327
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.4,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4025925
+      }
     },
     {
       "id": "m20",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.8,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "moss1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.09999999999999964,
-        "y": 3.295,
-        "z": 0
-      },
-      "color": 3329330
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2969139
+      }
     },
     {
       "id": "m21",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.25,
-        "radiusBottom": 0.25,
-        "height": 0.4,
-        "radialSegments": 10
+      "parent": "moss2",
+      "transform": {
+        "pos": [
+          0.2,
+          -0.15,
+          -0.2
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": -0.0050000000000000044,
-        "z": -0.20000000000000018
-      },
-      "color": 4878371
-    },
-    {
-      "id": "tree5",
-      "name": "Tree5",
-      "group": true,
-      "parent": "trees",
-      "position": {
-        "x": -5.8,
-        "y": 0.27,
-        "z": 0.8
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.3,
+          "depth": 1.2
+        },
+        "color": 12433259
       }
     },
     {
       "id": "m22",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.22,
-        "radiusBottom": 0.22,
-        "height": 3,
-        "radialSegments": 10
+      "parent": "moss2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.20000000000000018,
-        "y": 1.23,
-        "z": 0.19999999999999996
-      },
-      "color": 9136404
-    },
-    {
-      "id": "m23",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.6,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": -0.20000000000000018,
-        "y": 3.53,
-        "z": 0.19999999999999996
-      },
-      "color": 3050327
-    },
-    {
-      "id": "m24",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.1,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0,
-        "y": 4.33,
-        "z": 0
-      },
-      "color": 3329330
-    },
-    {
-      "id": "m25",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.32,
-        "radiusBottom": 0.32,
-        "height": 0.55,
-        "radialSegments": 10
-      },
-      "position": {
-        "x": -0.20000000000000018,
-        "y": 0,
-        "z": 0.19999999999999996
-      },
-      "color": 4878371
-    },
-    {
-      "id": "rocks",
-      "name": "Rocks",
-      "group": true
-    },
-    {
-      "id": "rock1",
-      "name": "Rock1",
-      "group": true,
-      "parent": "rocks",
-      "position": {
-        "x": 2,
-        "y": 0.3,
-        "z": -1.5
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.4,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 13223035
       }
-    },
-    {
-      "id": "m26",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0,
-        "y": 0.2,
-        "z": -0.5
-      },
-      "color": 8421504
-    },
-    {
-      "id": "m27",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.7,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0.2999999999999998,
-        "y": 0,
-        "z": 0
-      },
-      "color": 6908265
-    },
-    {
-      "id": "m28",
-      "type": "box",
-      "geometry": {
-        "width": 1.8,
-        "height": 0.15,
-        "depth": 1.8
-      },
-      "position": {
-        "x": 0,
-        "y": 0.75,
-        "z": -0.5
-      },
-      "color": 4878371
-    },
-    {
-      "id": "rock2",
-      "name": "Rock2",
-      "group": true,
-      "parent": "rocks",
-      "position": {
-        "x": -3,
-        "y": 0.3,
-        "z": 4
-      }
-    },
-    {
-      "id": "m29",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 8421504
-    },
-    {
-      "id": "m30",
-      "type": "box",
-      "geometry": {
-        "width": 1.1,
-        "height": 0.12,
-        "depth": 1.1
-      },
-      "position": {
-        "x": 0,
-        "y": 0.36000000000000004,
-        "z": 0
-      },
-      "color": 4878371
-    },
-    {
-      "id": "rock3",
-      "name": "Rock3",
-      "group": true,
-      "parent": "rocks",
-      "position": {
-        "x": 5,
-        "y": 0.25,
-        "z": 5
-      }
-    },
-    {
-      "id": "m31",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.8,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0,
-        "y": 0.15000000000000002,
-        "z": 0
-      },
-      "color": 6908265
-    },
-    {
-      "id": "m32",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.5,
-        "widthSegments": 10,
-        "heightSegments": 7
-      },
-      "position": {
-        "x": 0.5,
-        "y": 0,
-        "z": 0.2999999999999998
-      },
-      "color": 8421504
-    },
-    {
-      "id": "m33",
-      "type": "box",
-      "geometry": {
-        "width": 1.4,
-        "height": 0.12,
-        "depth": 1.4
-      },
-      "position": {
-        "x": 0.20000000000000018,
-        "y": 0.61,
-        "z": 0.09999999999999964
-      },
-      "color": 4878371
     }
   ],
-  "_skipAutoCenter": true,
-  "_routerResponse": "```json\n{\n  \"proportions\": \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\uff0c\u4f4e\u77ee\u7684\u5c0f\u6811\u5360\u6574\u4f53\u9ad8\u5ea61/3\uff0c\u6574\u4f53\u5e73\u7f13\u5b81\u9759\",\n  \"regions\": [\n    {\"name\": \"ground\", \"desc\": \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228b22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723]\"},\n    {\"name\": \"trees\", \"desc\": \"\u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8b6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff\"},\n    {\"name\": \"rocks\", \"desc\": \"\u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff\"}\n  ],\n  \"methodologies\": [\"vegetation\"]\n}\n```",
-  "_routerThinking": "1.  **Analyze the Request:**\n    *   Input: \"a lowpoly forest environment, green ground with small trees, mossy, peaceful woodland\"\n    *   Role: Low-poly structural drafter.\n    *   Goal: Fast conversion to a build list, speed over perfection, specific JSON format.\n\n2.  **Step 1: Concretization**\n    *   Is it abstract or concrete? It's a concrete noun phrase (\"forest environment\", \"ground\", \"trees\", \"moss\").\n    *   Action: Skip concretization, go straight to Step 2.\n\n3.  **Step 2: Structural Division**\n    *   Identify independent moving parts / key structural groups.\n    *   \"forest environment\" -> Ground plane, Trees (can be grouped or individual, let's group them by size/type for efficiency), maybe some rocks/moss details.\n    *   Groups: `ground` (base, moss), `trees` (small trees, foliage, trunks), `rocks` (mossy rocks for woodland feel).\n    *   Proportions: Flat, wide ground plane, small trees taking up about 1/3 to 1/2 of the vertical space, overall low and peaceful proportions.\n\n4.  **Step 3: Write desc**\n    *   *Proportions*: \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\uff0c\u4f4e\u77ee\u7684\u5c0f\u6811\u5360\u6574\u4f53\u9ad8\u5ea61/3\uff0c\u6574\u4f53\u5e73\u7f13\u5b81\u9759\"\n    *   *Colors (60-30-10)*:\n        *   Main (60%): Greens (ground, moss, tree leaves) - Forest Green [228B22], Moss Green [4A7023]\n        *   Secondary (30%): Browns (tree trunks, dirt) - Dark Brown [3E2723], Light Brown [8B6914]\n        *   Accent (10%): Lighter greens/yellows for highlights or small flowers - Pale Green [98FB98], Yellow [DAA520]\n    *   *Group: ground* -> \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228B22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4A7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3E2723]\"\n    *   *Group: trees* -> \"\u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8B6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff\"\n    *   *Group: rocks* -> \"\u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff\"\n\n5.  **Step 4: Methodology**\n    *   `vegetation`: Trees, moss, ground cover.\n    *   `complex_stack`: Rocks, moss patches (maybe, but vegetation covers most). Let's stick to `vegetation` as primary.\n\n6.  **Format Output:**\n    *   Construct JSON strictly matching the requested format. No extra text.\n\n    ```json\n    {\n      \"proportions\": \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\uff0c\u4f4e\u77ee\u7684\u5c0f\u6811\u5360\u6574\u4f53\u9ad8\u5ea61/3\uff0c\u6574\u4f53\u5e73\u7f13\u5b81\u9759\",\n      \"regions\": [\n        {\"name\": \"ground\", \"desc\": \"\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228b22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723]\"},\n        {\"name\": \"trees\", \"desc\": \"\u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8b6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff\"},\n        {\"name\": \"rocks\", \"desc\": \"\u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff\"}\n      ],\n      \"methodologies\": [\"vegetation\"]\n    }\n    ```\n    Wait, I should double check the color hex rules: \"hex\u4e0d\u5e26#\u53f7\", \"\u6bcf\u79cd\u989c\u8272\u53ea\u5728\u9996\u6b21\u51fa\u73b0\u65f6\u5199hex\u503c\uff0c\u540e\u7eed\u51fa\u73b0\u53ea\u7528\u8272\u540d\u4e0d\u5199hex\".\n    Let's refine colors:\n    \u68ee\u6797\u7eff [228b22]\n    \u82d4\u7eff [4a7023]\n    \u6df1\u68d5 [3e2723]\n    \u6d45\u68d5 [8b6914]\n    \u7070 [808080]\n\n    Ground: \u8349\u5730-\u68ee\u6797\u7eff[228b22], \u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023], \u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723]\n    Trees: \u6811\u5e72-\u6d45\u68d5[8b6914], \u6811\u51a0-\u68ee\u6797\u7eff, \u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff\n    Rocks: \u77f3\u5934-\u7070[808080], \u9876\u90e8\u82d4\u85d3-\u82d4\u7eff\n\n    Looks good. Fast and meets all constraints.",
-  "_modelReasoning": "",
-  "_aiCode": "function build(api) {\n  api.name('Lowpoly Forest');\n\n  const C_GRASS = 0x228B22;\n  const C_MOSS = 0x4A7023;\n  const C_DIRT = 0x3E2723;\n  const C_TRUNK = 0x8B6914;\n  const C_LEAF = 0x2E8B57;\n  const C_LEAF_LIGHT = 0x32CD32;\n  const C_ROCK = 0x808080;\n  const C_ROCK_DARK = 0x696969;\n\n  // Ground\n  api.group('ground', 'Ground');\n  api.box({w:20, h:0.3, d:20, pos:[0, 0.15, 0], color:C_GRASS});\n  api.box({w:20, h:0.08, d:20, pos:[0, 0.34, 0], color:C_MOSS});\n  api.box({w:20, h:0.15, d:1.5, pos:[0, 0.07, 9.5], color:C_DIRT});\n  api.box({w:20, h:0.15, d:1.5, pos:[0, 0.07, -9.5], color:C_DIRT});\n  api.box({w:1.5, h:0.15, d:20, pos:[9.5, 0.07, 0], color:C_DIRT});\n  api.box({w:1.5, h:0.15, d:20, pos:[-9.5, 0.07, 0], color:C_DIRT});\n  api.endGroup();\n\n  // Trees\n  api.group('trees', 'Trees');\n  \n  // Tree 1\n  api.group('tree1', 'Tree1');\n  api.cyl({r:0.25, h:3.5, pos:[-4, 1.75, -3], color:C_TRUNK});\n  api.sphere({r:1.8, pos:[-4, 4.2, -3], color:C_LEAF});\n  api.sphere({r:1.2, pos:[-4, 5.2, -2.5], color:C_LEAF_LIGHT});\n  api.cyl({r:0.35, h:0.6, pos:[-4, 0.3, -3], color:C_MOSS});\n  api.endGroup();\n\n  // Tree 2\n  api.group('tree2', 'Tree2');\n  api.cyl({r:0.2, h:2.8, pos:[3, 1.4, 2], color:C_TRUNK});\n  api.sphere({r:1.5, pos:[3, 3.5, 2], color:C_LEAF});\n  api.sphere({r:1.0, pos:[3.2, 4.3, 1.8], color:C_LEAF_LIGHT});\n  api.cyl({r:0.3, h:0.5, pos:[3, 0.25, 2], color:C_MOSS});\n  api.endGroup();\n\n  // Tree 3\n  api.group('tree3', 'Tree3');\n  api.cyl({r:0.3, h:4.0, pos:[-1, 2.0, 5], color:C_TRUNK});\n  api.sphere({r:2.0, pos:[-1, 4.8, 5], color:C_LEAF});\n  api.sphere({r:1.4, pos:[-0.8, 5.8, 4.8], color:C_LEAF_LIGHT});\n  api.cyl({r:0.4, h:0.7, pos:[-1, 0.35, 5], color:C_MOSS});\n  api.endGroup();\n\n  // Tree 4\n  api.group('tree4', 'Tree4');\n  api.cyl({r:0.15, h:2.2, pos:[6, 1.1, -4], color:C_TRUNK});\n  api.sphere({r:1.2, pos:[6, 2.8, -4], color:C_LEAF});\n  api.sphere({r:0.8, pos:[6.1, 3.5, -3.8], color:C_LEAF_LIGHT});\n  api.cyl({r:0.25, h:0.4, pos:[6, 0.2, -4], color:C_MOSS});\n  api.endGroup();\n\n  // Tree 5\n  api.group('tree5', 'Tree5');\n  api.cyl({r:0.22, h:3.0, pos:[-6, 1.5, 1], color:C_TRUNK});\n  api.sphere({r:1.6, pos:[-6, 3.8, 1], color:C_LEAF});\n  api.sphere({r:1.1, pos:[-5.8, 4.6, 0.8], color:C_LEAF_LIGHT});\n  api.cyl({r:0.32, h:0.55, pos:[-6, 0.27, 1], color:C_MOSS});\n  api.endGroup();\n\n  api.endGroup();\n\n  // Rocks\n  api.group('rocks', 'Rocks');\n  \n  // Rock 1\n  api.group('rock1', 'Rock1');\n  api.sphere({r:1.0, pos:[2, 0.5, -2], color:C_ROCK});\n  api.sphere({r:0.7, pos:[2.3, 0.3, -1.5], color:C_ROCK_DARK});\n  api.box({w:1.8, h:0.15, d:1.8, pos:[2, 1.05, -2], color:C_MOSS});\n  api.endGroup();\n\n  // Rock 2\n  api.group('rock2', 'Rock2');\n  api.sphere({r:0.6, pos:[-3, 0.3, 4], color:C_ROCK});\n  api.box({w:1.1, h:0.12, d:1.1, pos:[-3, 0.66, 4], color:C_MOSS});\n  api.endGroup();\n\n  // Rock 3\n  api.group('rock3', 'Rock3');\n  api.sphere({r:0.8, pos:[5, 0.4, 5], color:C_ROCK_DARK});\n  api.sphere({r:0.5, pos:[5.5, 0.25, 5.3], color:C_ROCK});\n  api.box({w:1.4, h:0.12, d:1.4, pos:[5.2, 0.86, 5.1], color:C_MOSS});\n  api.endGroup();\n\n  api.endGroup();\n}",
-  "_description": "a lowpoly forest environment, green ground with small trees, mossy, peaceful woodland",
-  "_formulaResult": {
-    "methodologies": [
-      "vegetation"
-    ],
-    "regions": [
-      {
-        "name": "ground",
-        "desc": "\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228b22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723]"
-      },
-      {
-        "name": "trees",
-        "desc": "\u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8b6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff"
-      },
-      {
-        "name": "rocks",
-        "desc": "\u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff"
-      }
-    ]
-  },
-  "_promptSystem": "\u4f60\u662f\u4f4e\u591a\u8fb9\u5f623D\u5efa\u6a21\u5e08\u3002\u53ea\u8f93\u51fa function build(api) { ... }\u3002\u4e0d\u8981markdown\uff0c\u4e0d\u8981\u89e3\u91ca\u3002\n\n## \u5757\u9762\u6784\u6210\u539f\u5219\n\u4f60\u7684\u57fa\u672c\u89c6\u89c9\u5355\u5143\u662f\u4f53\u79ef\u5757\u548c\u8272\u5757\u9762\uff1a\n- \u4f53\u79ef\u5757\uff1a\u6709\u539a\u5ea6\u7684\u51e0\u4f55\u4f53(d\u22650.15)\uff0c\u51b3\u5b9a\u8f6e\u5ed3\uff0c\u7528box/cyl/sphere/cone/chain\u3002\u5757\u95f4\u91cd\u53e00.2~0.5\uff0c\u4e0d\u7cbe\u786e\u5bf9\u63a5\u3002\n- \u8272\u5757\u9762\uff1a\u9644\u7740\u5728\u4f53\u79ef\u8868\u9762\u7684\u8584\u5c42(d:0.05~0.12)\uff0c\u63d0\u4f9b\u6b63\u9762\u989c\u8272\u533a\u5206\uff0c\u7528tri/\u8584box\u3002\u4e0d\u6539\u53d8\u8f6e\u5ed3\u4f46\u4ece\u6700\u5e38\u89c1\u89c6\u89d2\u63d0\u4f9b\u6838\u5fc3\u8bc6\u522b\u4fe1\u53f7\u3002\n- \u989c\u8272\u89c4\u5219\uff1a\u6bcf\u4e2a\u51e0\u4f55\u4f53\u53ea\u6709\u4e00\u79cd\u989c\u8272\uff08\u6846\u67b6\u9650\u5236\uff09\u3002\u989c\u8272\u53d8\u5316\u2192\u9700\u8981\u51e0\u4f55\u8fb9\u754c\u2192\u9700\u8981\u4e24\u4e2a\u7247\u3002\u9700\u8981\u591a\u8272\u6216\u6e10\u53d8\u6548\u679c\u2192\u7528\u591a\u4e2a\u76f8\u90bb\u8584\u7247\u62fc\u51fa\u3002\n- \u6bcf\u4e2a\u51e0\u4f55\u5757\u90fd\u5e94\u6709\u660e\u786e\u89c6\u89c9\u89d2\u8272\uff1a\u5efa\u7acb\u8f6e\u5ed3\uff08\u4f53\u79ef\u5757\uff09/ \u533a\u5206\u7ed3\u6784\u533a\u57df\uff08\u8272\u5757\u9762\uff09/ \u63d0\u4f9b\u8bc6\u522b\u951a\u70b9\uff08\u5c0f\u88c5\u9970\uff09\u3002\n- \u8fa8\u8bc6\u5ea6\u4e24\u5c42\uff1a\uff081\uff09\u5757\u95f4\u7a7a\u95f4\u5173\u7cfb\u51b3\u5b9a\"\u8fd9\u662f\u4ec0\u4e48\u7c7b\u578b\"\uff08\u4eba\u5f62/\u56db\u8db3/\u98de\u884c\u5668\uff09\uff1b\uff082\uff09\u5173\u952e\u5c0f\u51e0\u4f55\u88c5\u9970\u51b3\u5b9a\"\u8fd9\u662f\u54ea\u4e00\u4e2a\"\uff08\u53d1\u7c2a/\u7434\u5f26/\u5929\u7ebf\uff09\u3002\n\n## \u786c\u7ea6\u675f\uff08\u8fdd\u53cd=\u9519\u8bef\uff09\n1. \u65b9\u5411\u7528 along:'+Z' \u7b49\u8f74\u65b9\u5411\u3002\n2. Y+\u4e0a\uff0c+Z\u524d\uff0c\u5730\u9762y=0\u3002chain waypoints\u4ece-Z(\u5c3e)\u5230+Z(\u5934)\u3002\n\n## \u4e09\u6b65\u5efa\u9020\u6cd5\uff08\u6bcf\u4e2agroup\u90fd\u6309\uff1a\u8f6e\u5ed3\u2192\u7279\u5f81\u2192\u7ec6\u8282\uff09\n1. \u8f6e\u5ed3\u5757\uff081~4\u4e2a\u5927shape\uff09\uff1a\u5b9asilhouette\uff0c\u536070%\u4f53\u79ef\n2. \u7279\u5f81\u5757\uff082~6\u4e2a\u4e2dshape\uff09\uff1a\u5efa\u7acb\u8bc6\u522b\u7279\u5f81\n3. \u7ec6\u8282\u5757\uff083~8\u4e2a\u5c0fshape\uff09\uff1a\u70b9\u7f00\n\n\u6784\u5efa\u987a\u5e8f\uff1a\n- \u5148\u642d\u5927\u5757\uff08\u8f6e\u5ed3\uff09\uff0c\u518d\u642d\u4e2d\u5757\uff08\u7279\u5f81\uff09\uff0c\u6700\u540e\u642d\u5c0f\u5757\uff08\u7ec6\u8282\uff09\n- \u540c\u4e00\u8868\u9762\u4e0a\u4ece\u5185\u5230\u5916\uff1a\u5e95\u5c42\u7ed3\u6784\u2192\u8868\u9762\u8272\u5757\u9762(d:0.05~0.08)\u2192\u5916\u90e8\u9644\u7740\u7269(\u773c/\u88c5\u9970)\n- \u8272\u5757\u9762\u662f\u76ae\u80a4(d:0.05~0.08)\uff0c\u4e0d\u662f\u7816\u5757(d\u22650.15)\u2014\u2014\u8584\u624d\u80fd\u8d34\u9762\u3002\u592a\u539a\u4f1a\u9677\u8fdb\u5185\u90e8\u6216\u906e\u4f4f\u5916\u90e8\u9644\u7740\u7269\n- \u26a0\ufe0f \u5168\u5c40\u987a\u5e8f\uff1a\u4efb\u4f55group\u5185\uff0c\u5148\u642d\u5b8c\u5168\u90e8\u4f53\u79ef\u5757\uff08\u8f6e\u5ed3+\u7279\u5f81\uff09\uff0c\u518d\u653e\u9644\u7740\u7269\uff08\u8272\u5757\u9762+\u7ec6\u8282\uff09\u3002\u4e0d\u8981\u8fb9\u642d\u5927\u5757\u8fb9\u653e\u9644\u7740\u7269\u2014\u2014\u4e4b\u540e\u52a0\u7684\u5927\u5757\u4f1a\u906e\u6321\u5df2\u653e\u7684\u9644\u7740\u7269\n- \u26a0\ufe0f \u5934\u90e8\u989d\u5916\u6ce8\u610f\uff1a\u543b\u90e8/\u5599/\u9f3b\u5c16\u662f\u4f53\u79ef\u5757\uff0c\u5fc5\u987b\u5728\u653e\u773c\u4e4b\u524d\u642d\u5b8c\u3002\u773c\u775b\u4f4d\u7f6e\u2265\u5df2\u642d\u597d\u7684\u6700\u524d\u51f8\u7ed3\u6784\u2014\u2014\u5426\u5219\u57cb\u5728\u543b\u90e8\u540e\u9762\u3002\u5982\u679c\u5934\u671d\u5411\u4e0d\u662f\u6b63+Z\uff08\u5982\u9888\u90e8\u5f2f\u66f2\uff09\uff0c\u773c\u775b\u8ddf\u968f\u5934\u7684\u524d\u65b9\uff0c\u4e0d\u662f\u5168\u5c40+Z\n\nshape\u6570\u91cf\u53ea\u662f\u5355\u4e2agroup\u5185\u7684\u53c2\u8003\uff0c\u4e0d\u662f\u786c\u7ea6\u675f\uff0c\u5b9e\u9645\u6570\u91cf\u6839\u636e\u9700\u6c42\u8c03\u6574\u3002\n\n## \u63a8\u7406\u7ea6\u675f\n- \u601d\u8003\u91cd\u70b9\u5728\u4e8e\u600e\u6837\u901a\u8fc7shape\u7684\u5806\u53e0\u6765\u66f4\u597d\u7684\u5b9e\u73b0\u6a21\u578b\u7684\u5916\u89c2\u5916\u7ed3\u6784\uff0c\u7c7b\u4f3c\u642d\u79ef\u6728\uff0c\u4e0d\u53ef\u89c6\u7684\u5185\u90e8\u7ed3\u6784\u4e0d\u7528\u8003\u8651\u3002\n- \u4f60\u53ef\u4ee5\u5728router\u8349\u7a3f\u57fa\u7840\u4e0a\u81ea\u7531\u589e/\u5220/\u6539\uff0c\u6dfb\u52a0\u4f60\u8ba4\u4e3a\u5408\u9002\u7684\u914d\u4ef6\u548c\u7ec6\u8282\u3002\n- \u5750\u6807\u548c\u5c3a\u5bf8\u7cbe\u5ea6\u52300.01\u5373\u53ef\u3002\u00b10.05\u4ee5\u5185\u7684\u504f\u5dee\u5728lowpoly\u4e0b\u8089\u773c\u4e0d\u53ef\u89c1\uff0c\u65e0\u9700\u7ea0\u7ed3\u5fae\u8c03\u3002\u91cd\u70b9\u662f\u7ed3\u6784\u5173\u7cfb\u6b63\u786e\uff0c\u4e0d\u662f\u6570\u503c\u7cbe\u786e\u3002\n- \u4fee\u6539\u65f6\u53ea\u6539\u52a8\u51fa\u9519\u7684\u90e8\u5206\uff0c\u4e0d\u8981\u56e0\u4e3a\u4e00\u4e2a\u5c0f\u95ee\u9898\u5c31\u628a\u6240\u6709\u4ee3\u7801\u91cd\u5199\u4e00\u904d\u2014\u2014\u8fd9\u4f1a\u9020\u6210\u5927\u91cf\u6d6a\u8d39\u3002\u7b2c\u4e8c\u8f6e\u53ca\u4e4b\u540e\u7684\u4fee\u6539\u5e94\u8be5\u662f\u5c40\u90e8\u7684\u3001\u9488\u5bf9\u6027\u7684\u3002\n- \u6784\u5efa\u5b8c\u6240\u6709group\u540e\u626b\u4e00\u773c\uff1aRouter\u7684\u6bcf\u4e2agroup\u90fd\u5efa\u4e86\uff1f\u4e0d\u7528mirror\u7684group\u91cc\u6210\u5bf9\u7279\u5f81(\u773c\u8033\u624b\u811a\u7fc5)\u5de6\u53f3\u90fd\u5199\u4e86\uff1f\u9644\u7740\u7269\u81f3\u5c11\u4e00\u534a\u9732\u5728\u7236\u7ea7\u5916\uff1f\u8fd9\u662f\u5feb\u901f\u626b\u89c6\u4e0d\u662f\u68c0\u67e5\u6e05\u5355\u3002\n- \u7528cone\u65f6\uff1aalong=\u5c16\u7aef\u6307\u5411\u3002\u8863\u670d\u2192\u5c16\u7aef\u671d\u8eab\u4f53\uff0c\u7c97\u53e3\u671d\u5916\u3002\n- \u5c0f\u7ed3\u6784\u5c3a\u5bf8\u5360\u6240\u5728group\u4e3b\u8981\u5c3a\u5bf8\u768415~25%\uff08\u5934\u9ad81.0\u2192\u773c\u775br\u22480.2~0.3\uff1b\u8eaf\u5e72\u9ad82.5\u2192\u8170\u5e26tube\u22480.38~0.63\uff09\u3002\u4f4e\u4e8e\u6b64\u5728lowpoly\u4e0b\u4e0d\u5177\u53ef\u8bfb\u6027\u3002\u773c\u775b\u7edd\u5bf9\u6700\u5c0f\u534a\u5f84r\u22650.2\u3002\n- \u7ebf\u6027\u5143\u7d20\u4f8b\u5916\uff1a\u7434\u5f26/\u7ebf\u7f06/\u5929\u7ebf/\u7ec6\u94fe/\u7ef3\u7d22/\u53d1\u7c2a/\u8f90\u6761/\u7d22\u5177\u2014\u2014\u8bed\u4e49\u672c\u8d28\u662f\"\u7ebf\"\u7684\u7ed3\u6784\uff0cr\u53ef\u4f4e\u81f30.01~0.05\uff0c\u4e0d\u9002\u7528\u6bd4\u4f8b\u4e0b\u9650\u3002\u94c6\u9489/\u773c\u775b/\u7ebd\u6263/\u8170\u5e26\u4e0d\u662f\u7ebf\uff0c\u4e0d\u53ef\u5957\u7528\u6b64\u4f8b\u5916\u3002\n\n## \u5750\u6807\u653e\u7f6e\uff1a\u4e24\u6b65\u9644\u7740\u6cd5\n\n\u5b50\u7ea7\u9644\u7740\u5230\u7236\u7ea7\u65f6\uff0c\u5206\u4e24\u6b65\u5224\u65ad\uff1a\n\n**\u7b2c\u4e00\u6b65\uff1a\u5224\u65ad\u9644\u7740\u5728\u7236\u7ea7\u7684\u54ea\u4e2a\u9762**\n- \u5b50\u7ea7\u5728\u7236\u7ea7\u7684\u524d\u65b9(+Z) / \u540e\u65b9(-Z) / \u4e0a\u65b9(+Y) / \u4e0b\u65b9(-Y) / \u4fa7\u9762(\u00b1X)\uff1f\n- \u60f3\u8c61\u5b50\u7ea7\u7684\u89c6\u89c9\u4f4d\u7f6e\uff0c\u5b83\u81ea\u7136\u5c5e\u4e8e\u54ea\u4e2a\u9762\u5c31\u662f\u54ea\u4e2a\u9762\n- \u7591\u96be\u65f6\u53c2\u8003\uff1a\u773c\u2192\u524d\uff0c\u7fc5\u8180\u2192\u540e\uff0c\u5e3d\u2192\u4e0a\uff0c\u88d9\u2192\u4e0b\uff0c\u80a9\u7532\u2192\u4fa7\n\n**\u7b2c\u4e8c\u6b65\uff1a\u5224\u65ad\u5728\u8be5\u9762\u4e0a\u7684\u5177\u4f53\u4f4d\u7f6e**\n- \u5b50\u7ea7\u5728\u9762\u7684\u4e2d\u5fc3\u8fd8\u662f\u504f\u4e0a/\u504f\u4e0b/\u504f\u5de6/\u504f\u53f3\uff1f\n- \u504f\u79fb\u91cf = \u5b50\u7ea7\u5728\u8be5\u65b9\u5411\u534a\u5c3a\u5bf8 \u00d7 (0.3~0.6)\n- \u5b50\u7ea7\u4e2d\u5fc3 = \u7236\u7ea7\u8868\u9762 + \u504f\u79fb\uff08\u6cbf\u9644\u7740\u65b9\u5411\uff09\n\n\u9ad8\u9891\u53cd\u9762\u6848\u4f8b\uff1a\n- \u7fc5\u8180z\u22480\uff0c\u8eab\u4f53\u4e2d\u5fc3 \u2192 \u5361\u4f53\u5185 \u2192 \u4ece\u80cc\u9762(-Z)\u9644\u7740\uff1a\u5b50\u7ea7\u4e2d\u5fc3z = \u7236\u7ea7\u540e\u8868\u9762z - \u5b50\u7ea7\u534a\u6df1\n- \u5149\u73afy\u4e0e\u5934\u9876\u540c \u2192 \u9677\u5934\u91cc \u2192 \u4ece\u9876\u9762(+Y)\u9644\u7740\uff1a\u5b50\u7ea7\u4e2d\u5fc3y = \u7236\u7ea7\u9876\u8868\u9762y + \u5b50\u7ea7\u534a\u9ad8\n- \u53d1\u7c2a\u4e0e\u53d1\u9afb\u540cpos \u2192 \u88ab\u541e \u2192 \u4ece\u9876/\u4fa7\u9762\u9644\u7740\uff0c\u4e2d\u5fc3\u5728\u7236\u7ea7\u8868\u9762\u5916\n\n\u7a7f\u5165\u578b\uff08\u53d1\u7c2a\u7a7f\u8fc7\u53d1\u9afb\uff09\uff1a\n- \u4ece\u4e00\u9762\u7a7f\u5165\u53e6\u4e00\u9762\u7a7f\u51fa\u3002\u4e2d\u5fc3 \u2248 \u7236\u7ea7\u8868\u9762 - \u5fae\u63d2\u5165(\u5b50\u7ea7\u534a\u5f84\u00d70.2~0.3)\n\n## \u989c\u8272\u5c42\u6b21\n- \u6574\u4f53\uff1a\u6574\u4e2a\u6a21\u578b\u7684\u989c\u8272\u630960-30-10\u5206\u914d\uff1a\u4e3b\u8272\u7cfb(60%\uff0c\u8986\u76d6\u4e3b\u4f53\u5927\u90e8\u5206)\u3001\u8f85\u8272\u7cfb(30%\uff0c\u6b21\u8981\u533a\u57df/\u5185\u5c42)\u3001\u5f3a\u8c03\u8272(10%\uff0c\u5c0f\u9762\u79ef\u70b9\u7f00)\u3002\u4f8b\uff1a\u9e1f\u4eba\u2192\u7070\u767d\u4e3b\u8272\u7cfb60%+\u6df1\u7070\u8f85\u8272\u7cfb30%+\u91d1\u9ec4\u5f3a\u8c03\u827210%\u3002\n- \u5c40\u90e8\uff1a\u6bcf\u4e2a\u5927\u9762\u79ef\u90e8\u4ef6\u5185\u90e8\u7ed92~3\u4e2a\u540c\u8272\u7cfb\u8272\u6309\u9762\u79ef\u9012\u51cf\uff1a\u4e3b\u8272(60%)\u2192\u8fc7\u6e21\u8272(30%)\u2192\u5f3a\u8c03\u8272(10%)\u3002\u540c\u8272\u7cfb=\u8272\u76f8\u76f8\u8fd1\uff0c\u660e\u5ea6/\u9971\u548c\u5ea6\u9012\u53d8\u3002\u5c0f\u9762\u79ef\u90e8\u4ef6\u53ea\u97001\u4e2a\u8272\u3002\n\n## \u8fb9\u7f18\u88c5\u9970\u6cd5\n\u8868\u9762\u88c5\u9970\uff08\u8986\u7fbd\u3001\u9cde\u7247\u3001\u9b03\u6bdb\u3001\u6d41\u82cf\u7b49\uff09\u4e0d\u8981\u5b8c\u5168\u8d34\u5408\u5728\u4e3b\u4f53\u8868\u9762\u2014\u2014\u4f1a\u7a7f\u6a21\u4e14\u4e0d\u53ef\u89c1\u3002\n\u6b63\u786e\u505a\u6cd5\uff1a\u4ece\u4e3b\u4f53\u8fb9\u7f18\u5411\u5916\u5ef6\u4f38\uff0c\u50cf\u74e6\u7247/\u5c4b\u6a90\u5c42\u5c42\u5916\u6311\u3002\u989c\u8272\u4e0e\u4e3b\u4f53\u7a0d\u6709\u533a\u5206\uff08\u540c\u8272\u7cfb\u66f4\u6df1/\u66f4\u6d45\uff09\uff0c\u786e\u4fdd\u53ef\u89c1\u3002\n- \u8986\u7fbd/\u9cde\u7247\uff1a\u6cbf\u80a2\u4f53\u8fb9\u7f18\uff0c\u6bcf\u96940.3~0.5\u653e\u4e00\u4e2atri\uff0c\u6839\u90e8\u8d34\u4f4f\u8fb9\u7f18\uff0c\u672b\u7aef\u5411\u5916\u7fd80.1~0.2\uff0c\u9010\u5c42\u6392\u5217\u3002\u989c\u8272\u6bd4\u4e3b\u4f53\u7565\u6df1\u3002\n- \u9b03\u6bdb/\u810a\u523a\uff1a\u6cbf\u810a\u67f1\u6392\u5217cone\uff0c\u6839\u90e8\u5d4c\u5165\u4e3b\u4f53\uff0c\u5c16\u7aef\u5411\u5916+Y\u3002\n- \u6bdb\u9886/\u56f4\u8116\uff1a\u7528torus\u56f4\u5728\u9888\u90e8\uff0ctube:0.15~0.25\uff0c\u989c\u8272\u4e0e\u4e3b\u4f53\u533a\u5206\u3002\n- \u6d41\u82cf/\u6302\u9970\uff1a\u4ece\u8fb9\u7f18\u6302\u4e0b\u77edchain\uff0cr:0.05~0.08\uff0c\u672b\u7aef\u53ef\u52a0poly\u505a\u5760\u9970\u3002\n- \u62a4\u8155/\u811a\u73af\uff1a\u7528torus\u5957\u5728\u56db\u80a2\u4e0a\uff0ctube:0.1~0.15\u3002\n- \u88c5\u9970\u94c6\u9489/\u5b9d\u77f3\uff1a\u7528poly\u6cbf\u8fb9\u7f18\u7b49\u8ddd\u6392\u5217\uff0cr:0.08~0.12\u3002\n\n## API \u53c2\u8003\n\n### \u901a\u7528\u53c2\u6570\uff08\u6240\u6709\u5f62\u72b6\u5171\u4eab\uff09\n- pos:[x,y,z] \u2014 \u5f62\u72b6\u7684\u51e0\u4f55\u4e2d\u5fc3\uff08\u4e0d\u662f\u5e95\u9762/\u9876\u70b9/\u8d77\u70b9\uff09\u3002box\u534a\u9ad8=h/2\uff0ccyl/cone\u534a\u9ad8=h/2\uff0csphere\u534a\u5f84=r\u3002Y+\u4e0a\uff0cZ+\u524d\uff0cX+\u53f3\uff0c\u5730\u9762Y=0\n- color:0xRRGGBB \u2014 \u5341\u516d\u8fdb\u5236\u989c\u8272\n- along:\u8f74\u65b9\u5411\u5b57\u7b26\u4e32 \u2014 \u63a7\u5236\u5f62\u72b6\u671d\u5411\uff0c\u5982'+Z'\u671d\u524d\u3001'-X'\u671d\u5de6\u3001'+X+Y+Z'\u659c\u5411\u3002\n\n### \u57fa\u7840\u5f62\u72b6\nbox({w,h,d, along?, pos, color?})\n  w=\u5bbd, h=\u9ad8, d=\u6df1\n  along=\u8f74\u65b9\u5411\uff0c\u8ba9\u76d2\u4f53\u6cbf\u8be5\u65b9\u5411\u5ef6\u4f38\u3002\u9ed8\u8ba4\u6cbfY+(h\u671d\u4e0a)\u3002\n  \u7528\u9014\uff1a\u4e3b\u4f53\u7ed3\u6784\u3001\u8584\u677f(d:0.1~0.3\u505a\u7eb8\u7247)\u3001\u65b9\u5757\u5806\u53e0\u3001\u503e\u659c\u677f\u5757\u3002\n\nsphere({r, pos, color?})\n  r=\u534a\u5f84\n  \u7528\u9014\uff1a\u7403\u4f53\u3001\u5934\u90e8\u8f6e\u5ed3\u3001\u5173\u8282\u7403\u3002\u65e0\u65b9\u5411\u6027\u3002\n\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?})\n  r=\u7edf\u4e00\u534a\u5f84(\u4e0a\u4e0b\u4e00\u6837\u7c97) | rTop=\u9876\u90e8\u534a\u5f84 + rBot=\u5e95\u90e8\u534a\u5f84(rTop\u2260rBot=\u9525\u53f0)\n  h=\u9ad8\u5ea6 | seg=\u5f84\u5411\u5206\u6bb5(\u9ed8\u8ba410, seg:4=\u65b9\u5f62\u622a\u9762)\n  along=\u8f74\u65b9\u5411\uff0c\u9ed8\u8ba4\u6cbfY+\u3002\n  \u7528\u9014\uff1a\u67f1\u4f53\u3001\u56db\u80a2\u3001\u9888\u3001\u9525\u53f0(rTop\u2260rBot\u505a\u65b9\u5f62\u8138/\u9525\u5f62\u8eaf\u5e72)\u3002\n\ncone({r, h, seg?, along?, pos, color?})\n  r=\u5e95\u9762\u534a\u5f84(\u7c97\u7aef) | h=\u9ad8\u5ea6(\u5e95\u9762\u5230\u5c16\u7aef) | seg=\u5f84\u5411\u5206\u6bb5(\u9ed8\u8ba410)\n  along=\u5c16\u7aef\u6307\u5411\uff0c-along=\u5e95\u9762\u65b9\u5411\u3002\u9ed8\u8ba4\u5c16\u7aef\u671dY+(\u4e0a)\u3002\n  \u7528\u9014\uff1a\u5c16\u89d2\u3001\u5599\u3001\u89d2\u3001\u672b\u7aef\u6536\u675f\u3001\u523a\u3002\u8863\u670d(\u88d9/\u8896)\u2192\u5c16\u7aef\u671d\u8eab\u4f53\uff0c\u7c97\u53e3\u671d\u5916\u3002\n\ntorus({r, tube, along?, pos, color?})\n  r=\u73af\u534a\u5f84(\u5706\u5fc3\u5230\u7ba1\u4e2d\u5fc3) | tube=\u7ba1\u7c97\u7ec6(\u7ba1\u622a\u9762\u534a\u5f84)\n  along=\u8f74\u65b9\u5411\uff0c\u73af\u5b54\u7ed5\u8be5\u8f74\u3002\u9ed8\u8ba4\u5e73\u653eXZ\u9762(\u73af\u9762\u671d\u4e0a\uff0c\u50cf\u751c\u751c\u5708)\u3002\n  \u5957\u5728\u5706\u67f1\u4e0a\u5f53\u7b8d\uff1atorus\u548ccyl\u7528**\u540c\u4e00\u4e2aalong**\u3002\n  \u7528\u9014\uff1a\u5706\u73af\u3001\u6551\u751f\u5708\u3001\u7b8d\u3001\u628a\u624b\u3001\u62a4\u8155\u3001\u811a\u73af\u3001\u56f4\u8116\u3002\n\npoly({r, pos, color?})\n  r=\u534a\u5f84\n  \u7528\u9014\uff1a\u773c\u775b(r:0.15~0.4)\u3001\u5b9d\u77f3\u3001\u94c6\u9489\u3001\u88c5\u9970\u7403\u3002\u4e8c\u5341\u9762\u4f53\uff0c\u4e09\u89d2\u9762\u5207\u9762\u8d28\u611f\uff0c\u6bd4sphere\u5c16\u9510\u6709\u68f1\u89d2\u3002\n  \u65e0\u65b9\u5411\u6027\u3002\n\n### \u81ea\u7531\u9762\u7247 \u2014 \u75283D\u9876\u70b9\u5b9a\u4e49\u5f62\u72b6\uff0c\u671d\u5411\u7531\u9876\u70b9\u5750\u6807\u76f4\u63a5\u51b3\u5b9a\ntri({a:[x,y,z], b:[x,y,z], c:[x,y,z], d?, color?})\n  a/b/c=\u4e09\u89d2\u5f62\u4e09\u4e2a\u9876\u70b9 | d=\u539a\u5ea6(\u9ed8\u8ba40.1)\n  \u671d\u5411\u7531\u9876\u70b9\u4f4d\u7f6e\u76f4\u63a5\u51b3\u5b9a\u3002\u60f3\u63a7\u5236\u671d\u5411\u2192\u628a\u9876\u70b9\u653e\u5728\u60f3\u8981\u7684\u65b9\u5411\u4e0a\u3002\n  \u7528\u9014\uff1a\u4e09\u89d2\u9762\u7247\u3001\u659c\u9762\u3001\u65a7\u5203\u3001\u5c4b\u9876\u3001\u6954\u5f62\u3001\u5c3e\u7fbd\u3001\u82b1\u74e3\u3002\n\npatch({points:[[x,y,z],...], d?, color?})\n  points=3D\u70b9\u6570\u7ec4(3\u4e2a\u4ee5\u4e0a)\uff0c\u81ea\u52a8\u4e09\u89d2\u5316\u586b\u5145 | d=\u539a\u5ea6(\u9ed8\u8ba40.1)\n  \u7528\u9014\uff1a\u7fc5\u8180\u819c\u3001\u5e06\u3001\u9ccd\u3001\u62ab\u98ce\u3002\u4e0d\u89c4\u5219\u591a\u70b9\u9762\u7247\u3002\n  \u26a0\ufe0f \u5f3a\u5236\uff1apoints\u5fc5\u987b\u5305\u542b\u6240\u6709\u9aa8\u67b6/\u652f\u6491\u70b9\u7684\u5750\u6807\u2014\u2014chain\u7684\u6bcf\u4e2awaypoint\uff08\u4e0d\u53ea\u662f\u9996\u5c3e\uff01\uff09\u3001fork\u7684\u6bcf\u4e2aend\uff0c\u5168\u90e8\u90fd\u8981\u653e\u8fdbpoints\uff0c\u5426\u5219\u819c\u9762\u4f1a\u7a7f\u8fc7\u9aa8\u67b6\u7403\u4f53\u51fa\u73b0\u7f1d\u9699\u3002\n  \u4ee3\u7801\uff1alet w=chain.waypoints, f=fork.ends;\n  api.patch({points:[w[0].pos, ..., w[n].pos, f[0].pos, ..., f[m].pos], color})\n\n### \u590d\u5408\u6784\u9020\nchain({waypoints, r|rStart+rEnd, jointIds?, color?})\n  waypoints=[[x,y,z],...] \u7edd\u5bf9\u5750\u6807\u8def\u5f84\u70b9\uff0c\u4f9d\u6b21\u4e32\u8054\n  r=\u7edf\u4e00\u534a\u5f84\uff0c\u4ece\u5934\u5230\u5c3e\u4e00\u6837\u7c97\n  rStart=\u8d77\u59cb\u534a\u5f84 + rEnd=\u672b\u7aef\u534a\u5f84\uff0c\u4ecerStart\u7ebf\u6027\u6e10\u53d8\u5230rEnd\n  r=0.3 + rEnd=0.1 \u5feb\u6377\u5199\u6cd5\uff0c\u7b49\u4ef7\u4e8e rStart:0.3, rEnd:0.1\uff0c\u4ec5\u4f20rEnd=\u9519\u8bef\n  jointIds=['hip','knee','ankle'] \u7ed9\u6bcf\u4e2a\u8def\u5f84\u70b9\u547d\u540d\u5b50group(\u52a8\u753b\u9aa8\u9abc)\uff0c\u4e0d\u4f20=\u9759\u6001\u94fe\n  \u7528\u9014\uff1a\u6cbf\u7ebf\u4e32\u8054 \u2014 \u56db\u80a2\u3001\u86c7\u8eab\u3001\u89e6\u624b\u3001\u5c3e\u5df4\u3001\u810a\u67f1\u3001\u94a9\u5b50\u3002\n\nradial({count, from, axis?, shape, color?})\n  count=\u526f\u672c\u6570\u91cf | from=[x,y,z] \u4e2d\u5fc3\u70b9 | axis=\u65cb\u8f6c\u8f74('y'\u9ed8\u8ba4)\n  shape={ type, ... } \u2014 shape\u5185\u5750\u6807(points/pos/a/b/c)\u662f\u76f8\u5bf9from\u7684\u5c40\u90e8\u5750\u6807\uff0cradial\u7ed5axis\u65cb\u8f6c\u6bcf\u4e2a\u526f\u672c\u3002\n  axis='y'\u65f6\uff1a\u6a21\u677f\u7684X\u548cZ\u88ab\u65cb\u8f6c\uff08cos/sin\u4e92\u6362\uff09\uff0cY\u4fdd\u6301\u4e0d\u53d8\u3002\u6a21\u677f\u671dZ\u2192\u65cb\u8f6c\u540e\u5404\u65b9\u5411\u5747\u6709Z\u5206\u91cf\uff1b\u6a21\u677f\u671dY\u2192\u6240\u6709\u526f\u672c\u671dY\u4e0d\u53d8\u3002\n  \u7528\u9014(shape type)\uff1a\u67f1\u5eca/\u8f90\u6761(cyl)\u3001\u7b8d\u5708(torus)\u3001\u82b1\u74e3(patch)\u3001\u7ae0\u9c7c\u89e6\u624b(chain)\u3001\u9f7f\u8f6e\u7684\u9f7f(box)\u3001\u5176\u4ed6(cone\u3001poly\u3001tri\u3001torus)\u3002\n\nfork({from:[x,y,z], to:[[x,y,z],...], r, color?}) \u2192 {ends:[{pos,r}]}\n  from=\u5206\u53c9\u8d77\u70b9(\u653e\u4e00\u4e2a\u5173\u8282\u7403) | to=\u76ee\u6807\u7ec8\u70b9\u6570\u7ec4(\u5230\u6bcf\u4e2a\u7ec8\u70b9\u62c9\u4e00\u6839\u67f1\u4f53)\n  r=\u67f1\u4f53\u534a\u5f84\n  \u7528\u9014\uff1a\u4e00\u70b9\u591a\u5411\u5206\u53c9 \u2014 \u9e7f\u89d2\u3001\u73ca\u745a\u3001\u6811\u679d\u3001\u8840\u7ba1\u3002\n  \u8fd4\u56deends\u6570\u7ec4\uff0c\u5305\u542b\u6bcf\u4e2a\u7ec8\u70b9\u7684\u4f4d\u7f6e\u548c\u534a\u5f84\uff0c\u53ef\u7528\u4e8e\u63a5\u7eedchain\u3002\n\n### \u5c42\u7ea7\u4e0e\u955c\u50cf\ngroup(id, name?, {pos?,noMirror?})\n  id=\u552f\u4e00\u6807\u8bc6(\u52a8\u753b\u9aa8\u9abc\u5f15\u7528\u7528\u8fd9\u4e2a) | name=\u663e\u793a\u540d(\u7701\u7565\u5219\u7528id)\n  pos=\u7ec4\u7684\u4e2d\u5fc3\u70b9/\u951a\u70b9 | noMirror:true \u2192 \u955c\u50cf\u65f6\u8df3\u8fc7\u6b64\u7ec4\u53ca\u5176\u5b50\u8282\u70b9\n  \u7528\u9014\uff1a\u6bcf\u4e2a\u72ec\u7acb\u8fd0\u52a8\u7684\u90e8\u4f4d\u5fc5\u987b\u5305\u5728group\u91cc\uff0cgroup=\u52a8\u753b\u9aa8\u9abc\u3002\n\nendGroup() \u2014 \u5173\u95ed\u5f53\u524dgroup\uff0c\u540e\u7eed\u51e0\u4f55\u4f53\u56de\u5230\u4e0a\u7ea7\u3002\n\nmirror('x') / mirror('y') / mirror('z') \u2192 endMirror()\n  \u4e2d\u95f4\u6240\u6709\u51e0\u4f55\u4f53\u81ea\u52a8\u751f\u6210\u6cbf\u6307\u5b9a\u8f74\u7684\u955c\u50cf\u526f\u672c\u3002\n  group ID \u81ea\u52a8\u91cd\u547d\u540d\uff1aleft\u2192right, _L\u2192_R\u3002\n  mirror('x')=\u5de6\u53f3\u5bf9\u79f0(\u6700\u5e38\u7528)\uff0cmirror('y')=\u4e0a\u4e0b\u5bf9\u79f0\uff0cmirror('z')=\u524d\u540e\u5bf9\u79f0\u3002\n  \u53ea\u5728\u5de6\u53f3\u5b8c\u5168\u5bf9\u79f0\u65f6\u7528 mirror('x')\u3002\u6709\u72ec\u7acb\u914d\u4ef6\uff08\u5355\u624b\u6b66\u5668\u3001\u5355\u4fa7\u88c5\u9970\uff09\u65f6\u7981\u6b62\u7528mirror\uff0c\u624b\u52a8\u5206\u522b\u5efa\u5de6\u53f3\u7ec4\u3002\u89d2\u8272\u9762\u5411+Z\uff0c\u5de6\u624b=-X\uff0c\u53f3\u624b=+X\u3002\n\n### \u8f85\u52a9\u51fd\u6570api\nchainEnd()\n  \u8fd4\u56de\u4e0a\u4e00\u6b21chain()\u672b\u7aef\u7684{pos,r,rot}\u3002\u7528\u4e8e\u4ece\u4e0a\u4e00\u6761\u94fe\u7684\u672b\u7aef\u63a5\u7eed\u4e0b\u4e00\u6761\u94fe\u3002\n\n## \u901a\u7528\u793a\u4f8b\uff1a\u84b8\u6c7d\u673a\u68b0\u8239\nfunction build(api) {\n  api.name('\u84b8\u6c7d\u673a\u68b0\u8239');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','\u8239\u4f53');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','\u7532\u677f');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  api.mirror('x');\n  api.group('chimney','\u70df\u56f1');\n  api.cyl({r:0.4,h:2,pos:[1.2,3.5,-1],color:C_RUST});\n  api.torus({r:0.45,tube:0.08,pos:[1.2,4.4,-1],color:C_GOLD}); // \u7b8d\u5728\u70df\u56f1(along Y)\u4e0a\uff0c\u9ed8\u8ba4\u5373\u6cbfY\n  api.endGroup();\n  api.endMirror();\n  api.group('propeller','\u87ba\u65cb\u6868');\n  api.radial({count:3,from:[0,1.5,-4.2],axis:'z',shape:{type:'box',w:0.1,h:0.8,d:0.05},color:C_METAL});\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','\u951a\u94fe');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','\u5e06');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','\u7d22\u5177');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## \u5c3a\u5bf8\u53c2\u8003\nscale:3\u3002\u5178\u578b\u4eba\u5f62\u89d2\u8272\u603b\u9ad8\u7ea66~7\u5355\u4f4d\uff08\u5934~1.0 + \u8eaf\u5e72~3.0 + \u817f~2.5~3.0\uff09\u3002\u53c2\u8003\u5c3a\u5bf8 box(w\u22482.5, h\u22483.0, d\u22482.0) cyl(r\u22481.00) \u4e3a\u5178\u578b\u8eaf\u5e72\u5757\u5927\u5c0f\uff0c\u4e0d\u662f\u89d2\u8272\u603b\u9ad8\u3002\u624b\u6301\u7269\u6bd4\u4f8b\u53c2\u8003\uff1a\u5355\u624b\u5251\u2248\u8eaf\u5e72\u9ad8\u00d70.6~1.0(\u22481.8~3.0)\uff0c\u5927\u5251\u2248\u8eaf\u5e72\u9ad8\u00d71.0~1.5(\u22483.0~4.5)\uff0c\u76fe\u724c\u76f4\u5f84\u2248\u8eaf\u5e72\u5bbd\u00d70.8~1.2(\u22482.0~3.0)\u3002\u53ea\u5173\u6ce8\u6bd4\u4f8b\u5173\u7cfb\uff0c\u6240\u6709\u6a21\u578b\u7edf\u4e00\u5927\u5c0f\uff0c\u7528\u6237\u540e\u671f\u7f29\u653e\u3002\n## \u6784\u5efa\u987a\u5e8f\napi.group('ground','ground') \u2192 \u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228b22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723] \u2192 api.endGroup()\napi.group('trees','trees') \u2192 \u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8b6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff \u2192 api.endGroup()\napi.group('rocks','rocks') \u2192 \u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff \u2192 api.endGroup()\n\n### \u690d\u7269 (vegetation)\n\n\u901a\u7528\uff1a\u6839\u90e8y\u22480\u3002\u53f6\u7247\u5c16\u7aef\u671d\u4e0a/\u671d\u5916\u4e0a\u65b9\uff08\u5782\u67f3/\u85e4\u8513\u9664\u5916\uff09\u3002\n\n\u82b1\u7c7b\uff1a\n- \u830e = \u7ec6cyl\u6cbf+Y\uff0c\u9ad8\u2248\u603b\u9ad860~70%\n- \u82b1\u51a0\u5728\u830e\u9876\u7aef\u3002\u82b1\u74e3 = radial({count,from:\u830e\u9876\u7aef,axis:'y',shape:tri/patch})\uff0c\u82b1\u854a = \u4e2d\u5fc3cyl + \u9876\u7aefpoly\n- \u53f6\u7247\u4ece\u830e\u4e24\u4fa7\u5411\u4e0a\u659c\u51fa\uff08patch/tri\uff09\uff0c\u4e0d\u4e0b\u5782\n- \u4ee3\u7801\u793a\u4f8b(5\u74e3\u82b1\uff0c\u603b\u9ad8~6)\uff1a\n  api.group('bloom','\u82b1\u51a0');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // \u82b1\u6258\n    api.radial({count:5,from:[0,5.4,0],axis:'y',shape:{type:'tri',a:[0.15,0,0],b:[0.6,0.6,0.15],c:[0.1,0.6,0.2],d:0.06},color:0xFF6B81}); // \u82b1\u74e3(z>0\u2192\u5916\u503e\uff0c\u975e\u5782\u76f4)\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // \u82b1\u854a\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // \u82b1\u836f\n  api.endGroup();\n  api.group('stem','\u830e'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','\u53f6'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n\u6811\uff1a\u4e3b\u5e72cyl\u2192fork\u5206\u4e00\u7ea7\u679d\u2192\u679d\u7aefradial\u53f6\u7c07(4~6 patch/tri)\n\u85e4\u8513/\u5782\u67f3\uff1a\u4e3b\u85e4chain\u5f2f\u66f2\u2192\u4fa7\u679dfork\u2192\u5c0f\u53f6patch\uff0c\u5141\u8bb8\u4e0b\u5782\u3002\n\n## \u8f93\u51fa\n\u53ea\u8f93\u51fa\u51fd\u6570\u4f53\u3002\u4e0d\u8981\u5176\u4ed6\u4efb\u4f55\u6587\u672c\u3002",
-  "_promptUser": "\u7528\u6237\u63cf\u8ff0\uff1a\"a lowpoly forest environment, green ground with small trees, mossy, peaceful woodland\"\n\n\u8349\u7a3f\u7ed3\u6784\uff1a\n  ground: \u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\u3001\u8986\u76d6\u8349\u5730-\u68ee\u6797\u7eff[228b22]\u3001\u6563\u5e03\u82d4\u85d3-\u82d4\u7eff[4a7023]\u3001\u8fb9\u7f18\u6ce5\u571f-\u6df1\u68d5[3e2723]\n  trees: \u4f4e\u77ee\u7ec6\u957f\u7684\u6811\u5e72-\u6d45\u68d5[8b6914]\u3001\u9876\u90e8\u5706\u6da6\u7a00\u758f\u7684\u6811\u51a0-\u68ee\u6797\u7eff\u3001\u6811\u5e72\u5e95\u90e8\u82d4\u85d3-\u82d4\u7eff\n  rocks: \u4f4e\u77ee\u5706\u6da6\u7684\u77f3\u5934-\u7070[808080]\u3001\u9876\u90e8\u8986\u76d6\u539a\u82d4\u85d3-\u82d4\u7eff\n\u6574\u4f53\u6bd4\u4f8b\uff1a\u5e7f\u9614\u5e73\u5766\u7684\u5730\u9762\uff0c\u4f4e\u77ee\u7684\u5c0f\u6811\u5360\u6574\u4f53\u9ad8\u5ea61/3\uff0c\u6574\u4f53\u5e73\u7f13\u5b81\u9759\n\n\u57fa\u4e8e\u8349\u7a3f\u6784\u5efa\u4f4e\u591a\u8fb9\u5f62\u6a21\u578b\u3002\u8349\u7a3f\u53ea\u662f\u5efa\u8bae\uff0c\u4f60\u53ef\u4ee5\u81ea\u7531\u589e\u5220\u6539\u3002",
-  "_aiMeta": {
-    "v": 1,
-    "ts": 1780888586243,
-    "provider": "fireworks",
-    "data": "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",
-    "edits": ""
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782297954620,
+      "provider": "fireworks",
+      "data": "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",
+      "edits": ""
+    }
   }
 }

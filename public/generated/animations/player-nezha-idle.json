@@ -1,0 +1,44 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.5
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.4
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.5
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.5
+    }
+  },
+  "wheel": {
+    "spin": {
+      "axis": "y",
+      "frequency": 0.5,
+      "direction": "cw"
+    }
+  }
+}

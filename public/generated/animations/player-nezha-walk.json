@@ -1,0 +1,99 @@
+{
+  "_duration": 1,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "chest": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.05,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1
+    }
+  },
+  "spear": {
+    "tilt": {
+      "axis": "x",
+      "angle": 20
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1
+    }
+  },
+  "leftLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 1
+    }
+  },
+  "leftLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.3,
+      "frequency": 1,
+      "phase": 0.25
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  },
+  "rightLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.4,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  },
+  "rightLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.3,
+      "frequency": 1,
+      "phase": 0.75
+    }
+  },
+  "wheel": {
+    "spin": {
+      "axis": "y",
+      "frequency": 2,
+      "direction": "cw"
+    }
+  }
+}

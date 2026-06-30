@@ -1,26 +1,21 @@
-# Voxel Studio Backend — API Reference
-
-> **适用场景**：用 AI 生成低多边形 3D 模型和动画。后端处理所有 AI 调用，前端只需发 HTTP 请求。
+适用场景：用 AI 生成低多边形 3D 模型和动画。本指南面向第三方前端集成——涵盖所有需要正确渲染的信息。
 
 ---
-
-## 目录
-
-1. [快速开始](#1-快速开始)
-2. [端点总览](#2-端点总览)
-3. [模型生成](#3-模型生成)
-4. [动画生成](#4-动画生成)
-5. [模板模块 (Runtime)](#5-模板模块-runtime)
-6. [简单 LLM 对话](#6-简单-llm-对话)
-7. [完整集成示例](#7-完整集成示例)
-8. [错误处理](#8-错误处理)
-9. [注意事项](#9-注意事项)
+目录
+1. 快速开始
+2. 端点总览
+3. 模型生成
+4. 修改模型 (Refine)
+5. 动画生成 (Motion Plan)
+6. 模板模块 (Runtime)
+7. 粒子系统
+8. 简单 LLM 对话
+9. 完整集成示例
+10. 错误处理
+11. 注意事项
 
 ---
-
-## 1. 快速开始
-
-```js
+1. 快速开始
 const API = 'https://voxel-studio-backend.zeabur.app';
 
 // 生成一个模型
@@ -31,70 +26,110 @@ const resp = await fetch(`${API}/api/generate/model`, {
 });
 const text = await resp.text();
 // 解析 SSE 取 modelJson
-```
 
 ---
-
-## 2. 端点总览
-
-| 端点 | 方法 | 返回 | 用途 |
-|------|------|------|------|
-| `/health` | GET | `{"ok":true}` | 健康检查 |
-| `/api/generate/model` | POST | SSE 流 | 生成单个模型 |
-| `/api/generate/batch` | POST | JSON | 批量生成多个模型 |
-| `/api/generate/animation` | POST | JSON | 生成 Motion Plan 动画 |
-| `/api/chat` | POST | JSON | 简单 LLM 对话 |
-| `/api/templates/module.js` | GET | ES Module | 获取模板和几何构建运行时 |
+2. 端点总览
+端点
+方法
+返回
+用途
+/health
+GET
+{"ok":true}
+健康检查
+/api/generate/model
+POST
+SSE 流
+生成单个模型
+/api/generate/batch
+POST
+JSON
+批量生成多个模型
+/api/generate/animation
+POST
+JSON
+生成 Motion Plan 动画
+/api/refine/model
+POST
+JSON
+AI 修改已有模型
+/api/chat
+POST
+JSON
+简单 LLM 对话
+/api/templates/module.js
+GET
+ES Module
+runtime（动画模板 + 几何构建 + 粒子转换）
+/api/templates/geometry-schema.js
+GET
+ES Module
+几何参数 schema（module.js 相对 import）
 
 ---
+3. 模型生成
+3.1 单个模型 — POST /api/generate/model
+Provider 选项（所有生成端点通用）：
+key
+说明
+glm
+GLM 模型
+gpt
+GPT 模型
+fireworks
+Fireworks 模型
+deepseek
+DeepSeek 模型
+mode（可选，默认 standard）：
+值
+说明
 
-## 3. 模型生成
+standard（默认）
+标准生成，质量最高
 
-### 3.1 单个模型 — `POST /api/generate/model`
+lite
+快速生成，适合简单模型
 
-### Provider 和 Model
+voxel
+体素风格（仅 box + group）
 
-3 个可用 provider（所有生成端点通用，推荐使用fireworks）：
+curve
+曲线风格（sphere/cyl/torus，偏符号感）
 
-| `fireworks` | 
-| `glm` | 
-| `gpt` | 
+wire
+金属铁丝勾线风格（极细 cyl + 极少 tri，抽象符号化）
 
-
-**请求**
-```json
+请求
 {
   "description": "a lowpoly knight with a sword and shield",
-  "provider": "fireworks"
+  "provider": "glm",
+  "mode": "standard"
 }
-```
-
-
-
-**返回：SSE 流**
-
-```
+返回：SSE 流
 event: blockout
 data: {"stage":"blockout","text":"Analyzing description..."}
+
+event: thinking_start
+data: {"stage":"thinking_start"}
+
+event: thinking_done
+data: {"stage":"thinking_done"}
 
 event: code
 data: {"stage":"code","text":"function"}
 
 event: result
-data: {"stage":"result","done":true,"modelJson":{...},"rawCode":"...","timing":{...}}
+data: {"stage":"result","done":true,"modelJson":{...},"timing":{...}}
 
 event: error
-data: {"error":"Router failed: ..."}
-```
-
+data: {"stage":"error","error":"Generation failed","errorDetail":{"phase":"...","error":"...","hint":"...","httpStatus":...}}
 SSE 事件类型：
-- `blockout` — 结构分析阶段（可选使用）
-- `code` — 代码生成中，text 字段是增量代码
-- `result` — 完成，`modelJson` 是 Three.js 兼容的模型数据
-- `error` — 错误，`error` 字段是原因
-
-**前端解析示例**（简单版，等完整响应）：
-```js
+- blockout — 结构分析阶段
+- thinking_start / thinking_done — AI 思考中，可用于 UI 加载动画
+- code — 代码生成中，text 字段是增量代码
+- result — 完成，modelJson 是渲染就绪的模型数据
+- error — 错误。error 是简短原因；errorDetail 含 phase、hint（人话解读）、httpStatus
+前端解析示例：
 async function generateModel(description) {
   const resp = await fetch(`${API}/api/generate/model`, {
     method: 'POST',
@@ -102,94 +137,169 @@ async function generateModel(description) {
     body: JSON.stringify({ description, provider: 'fireworks' }),
   });
   const text = await resp.text();
-  const lines = text.split(/\r?\n/);
-  let modelJson = null, rawCode = '';
-  for (const line of lines) {
+  let modelJson = null;
+  for (const line of text.split(/\r?\n/)) {
     if (!line.startsWith('data:')) continue;
     const event = JSON.parse(line.slice(5).trim());
     if (event.stage === 'error') throw new Error(event.error);
     if (event.done || event.stage === 'result') {
       modelJson = event.modelJson;
-      rawCode = event.rawCode || '';
     }
   }
-  return { modelJson, rawCode };
+  return modelJson;
 }
-```
-
-### 3.2 modelJson 格式
-
-```json
+3.2 modelJson 格式（v2）
+生成返回的 modelJson 是 v2 格式（format: 2）：一个扁平 nodes 数组，每个 node 的 transform 都是相对父级的局部坐标，层级由 parent 字段表达。
 {
   "name": "Knight",
   "type": "lowpoly",
-  "meshes": [
-    {
-      "id": "body",
-      "name": "Body",
-      "group": true,
-      "position": { "x": 0, "y": 2.5, "z": 0 }
-    },
-    {
-      "id": "m0",
-      "type": "box",
-      "geometry": { "width": 2, "height": 3, "depth": 1.4 },
-      "position": { "x": 0, "y": 2, "z": 0 },
-      "color": 10066329,
-      "parent": "body"
-    }
+  "format": 2,
+  "nodes": [
+    { "id": "body", "transform": { "pos": [0, 2.5, 0] } },
+    { "id": "m0", "parent": "body",
+      "transform": { "pos": [0, 0, 0] },
+      "mesh": { "type": "box", "params": { "width": 2, "height": 3, "depth": 1.4 }, "color": 10066329 } },
+    { "id": "m5", "parent": "upperArmR",
+      "transform": { "pos": [0.19, -0.32, 0.16], "quat": [0.61, 0, -0.73, 0.33] },
+      "mesh": { "type": "cylinder",
+                "params": { "radiusTop": 0.18, "radiusBottom": 0.2, "height": 0.9, "radialSegments": 8 },
+                "color": 9055202, "boneFrom": "upperArmR_wp0", "boneTo": "upperArmR_wp1" } }
   ],
-  "_skipAutoCenter": true
+  "_meta": { "skipAutoCenter": true, "ai": { "v": 1, "data": "<encrypted>", "edits": "" } }
 }
-```
-
-- `meshes` 是扁平数组，通过 `group:true` / `parent` 属性表达层级
-- `type` 决定几何形状：`box`, `sphere`, `cylinder`, `cone`, `torus`, `wedge`, `tri`, `patch`, `icosahedron`, `dodecahedron`, `octahedron`
-- `geometry` 字段名因 type 而异。**不要硬编码参数名，用 runtime 构建几何**
-
-### 3.3 批量生成 — `POST /api/generate/batch`
-
-**请求**
-```json
+group vs mesh：node 有 mesh → 几何叶节点；无 mesh → group（= 动画骨骼节点）。动画 plan 的 key 指向任意 node id（group 即骨骼）。
+⚠️ 朝向（最常见的渲染错误）
+cylinder / cone 的默认轴是 +Y（竖直）。斜向件的朝向由 node 的 transform.quat 给出。渲染时必须 obj.quaternion.set(...quat)，否则所有圆柱竖直 → 模型朝向全错。
+node 字段
+字段
+类型
+说明
+id
+string
+唯一 id
+parent
+string
+父 node id（省略则根）
+transform.pos
+[x,y,z]
+相对父级的局部偏移
+transform.quat
+[x,y,z,w]
+朝向（cylinder/cone 必需）。默认轴 +Y，quat 将 +Y 转到目标方向
+transform.scale
+[sx,sy,sz]
+可选的非均匀缩放，默认 [1,1,1]。应用前建议检查全 > 0
+mesh
+object
+有 → 叶几何节点；无 → group
+mesh.type
+string
+box sphere cylinder cone torus wedge tri patch icosahedron dodecahedron octahedron
+mesh.params
+object
+几何参数（完整表见 §6）。用 runtime.buildGeometry(type, params) 构建
+mesh.color
+number
+0xRRGGBB 简写
+mesh.material
+object
+完整材质 {color, roughness?, metalness?, opacity?, transparent?, flatShading?}，存在时覆盖 color
+mesh.boneFrom / mesh.boneTo
+string
+chain/connect 圆柱的骨骼端点（动画链检测用；静态渲染可忽略）
+顶层字段
+字段
+说明
+name / type
+模型名 / 固定 lowpoly
+format
+2（版本号，渲染器可 feature-detect）
+_meta.skipAutoCenter
+渲染端忽略
+_meta.ai
+渲染端忽略
+3.3 批量生成 — POST /api/generate/batch
+请求
 {
   "descriptions": ["a knight", "a dragon", "a castle"],
-  "provider": "fireworks"
+  "provider": "glm",
+  "mode": "standard"
 }
-```
-
-**返回：JSON**
-```json
+返回：JSON
 {
   "total": 3,
   "succeeded": 3,
   "failed": 0,
   "results": [
-    { "success": true, "index": 0, "modelJson": {...}, "rawCode": "...", "name": "Knight", "meshCount": 85 },
-    { "success": false, "index": 2, "error": "Router failed: 429" }
+    { "success": true, "index": 0, "modelJson": {...}, "name": "Knight", "meshCount": 85 },
+    { "success": false, "index": 2, "error": "Generation failed" }
   ]
 }
-```
-
-> 一次请求，内部全部并行。失败项不阻塞其他项。
+一次请求，失败项不阻塞其他项。
+3.4 修改已有模型 — POST /api/refine/model
+对已生成的模型进行 AI 修改。需要模型保留 _meta.ai 元数据（仅限通过 /api/generate/model 生成的模型）。
+请求
+{
+  "modelJson": { ... },
+  "description": "make the sword bigger, add a cape",
+  "provider": "fireworks"
+}
+字段
+类型
+说明
+modelJson
+object
+完整模型数据（须含 _meta.ai）
+description
+string
+修改描述
+provider
+string
+AI provider，同模型生成
+返回：JSON
+{
+  "ok": true,
+  "modelJson": { ... }
+}
+错误
+error
+含义
+no_metadata
+模型缺少 AI 元数据（非 AI 生成或手动编辑过）
+metadata_corrupted
+元数据损坏，需重新生成模型
+非流式。Refine 一次返回完整结果，不像模型生成那样走 SSE。
 
 ---
-
-## 4. 动画生成
-
-### `POST /api/generate/animation`
-
-**请求**
-```json
+5. 动画生成 (Motion Plan)
+POST /api/generate/animation
+请求
 {
   "modelJson": { ... },
   "description": "running cycle, arms swinging",
   "duration": 2.0,
-  "provider": "fireworks"
+  "provider": "fireworks",
+  "emitParticles": false
 }
-```
-
-**返回：JSON**
-```json
+字段
+类型
+说明
+modelJson
+object
+模型数据
+description
+string
+动画描述
+duration
+number
+动画时长（秒），默认 2.0
+provider
+string
+AI provider，同模型生成
+emitParticles
+boolean
+是否生成粒子特效 emit track，默认 false
+返回：JSON
 {
   "ok": true,
   "plan": {
@@ -200,49 +310,91 @@ async function generateModel(description) {
     "rightArm": { "swing": { "axis": "x", "amplitude": 0.4, "frequency": 1, "phase": 0.5 } }
   }
 }
-```
-
-Motion Plan 结构：
-- `_duration`（秒）、`_loop`（是否循环）是元数据
-- 其他 key 是 group ID，值是一个或多个动画模板 + `_attach` 父级跟随
-- 后端解析 LLM 输出，验证 group 存在性，限幅参数
-
-**前端播放**（60fps）：
-```js
-// 每帧调用 runtime.evaluateMotion
+Motion Plan 结构
+- _duration（秒）、_loop（是否循环）是元数据
+- 其他 key 是 group ID（对应 modelJson 中无 mesh 的 node）
+- 每个 group 的值是一个或多个动画模板的参数配置，key 为模板名，value 为参数对象
+- 同一 group 可以有多个模板叠加（如 swing + emit）
+- _attach：父级空间跟随配置（可选，渲染端读取）
+内置动画模板
+所有可用模板可通过 runtime.listAnimationTemplates() 动态获取。以下为常见模板及其参数含义：
+模板
+效果
+典型参数
+bounce
+弹跳
+amplitude(幅度), frequency(频率)
+swing
+摆动
+axis(轴), amplitude(幅度), frequency(频率), phase(相位)
+sway
+轻摆
+同 swing
+slide
+滑动
+axis(轴), distance(距离), frequency(频率)
+spin
+旋转
+axis(轴), frequency(频率), direction(cw/ccw)
+breathe
+呼吸缩放
+amplitude(幅度), frequency(频率)
+wave
+波浪
+amplitude(幅度), frequency(频率), delay(子节点延迟)
+drop
+坠落
+amplitude(幅度), axis(轴), bounce(反弹)
+impulse
+冲击
+amplitude(幅度), axis(轴)
+launch
+发射
+axis(轴), speed(速度), decel(减速度)
+dash
+冲刺
+axis(轴), speed(速度)
+slash
+挥砍
+axis(轴), amplitude(幅度), speed(速度)
+tilt
+倾斜
+axis(轴), angle(角度)
+shift
+位移
+axis(轴), distance(距离)
+squash
+挤压
+axis(轴), amount(缩放量)
+flow
+流动
+axis(轴), speed(速度), distance(距离)
+emit
+粒子发射
+见 §6 粒子系统
+前端播放
+使用 runtime.evaluateMotion() 每帧计算姿态增量（delta）：
 function onAnimationFrame(t) {
-  const pose = runtime.evaluateMotion(plan, duration, model, t);
+  const pose = runtime.evaluateMotion(plan, duration, t, lookups);
   // pose = { body: { position:[0,0.15,0], rotation:[0,0,0], scale:null }, ... }
+  // ⚠️ 返回值是增量，需叠加到基础姿态，不可直接赋值！
   for (const [partId, delta] of Object.entries(pose)) {
-    applyDelta(partId, delta); // 叠加到基础姿态
+    if (partId.startsWith('_')) continue;
+    applyDelta(partId, delta); // 叠加增量到基础姿态
   }
 }
-```
 
 ---
-
-## 5. 模板模块 (Runtime)
-
-### `GET /api/templates/module.js`
-
-返回一个 ES Module，是前端的运行时核心。前端通过 `import()` 动态加载：
-
-```js
-const mod = await import('https://voxel-studio-backend.zeabur.app/api/templates/module.js');
-const runtime = mod.voxelStudioRuntime;
-```
-
-**注意**：此模块使用全局 `THREE`。确保 `window.THREE` 在 import 前就绪：
-```js
+6. 模板模块 (Runtime)
+GET /api/templates/module.js
+返回一个 ES Module，是前端的运行时核心。几何参数 schema 单独 serve 在 GET /api/templates/geometry-schema.js，module.js 会相对 import 它——无需 bundler，浏览器原生 ESM。
+THREE 注入（推荐）——不必污染全局 window.THREE：
 import * as THREE from 'three';
-window.THREE = THREE;
-// 然后 import('https://...')
-```
-
-### Runtime API
-
-```js
-const rt = window.__voxelRuntime; // 或 mod.voxelStudioRuntime
+const mod = await import(`${API}/api/templates/module.js`);
+const runtime = mod.create({ THREE });   // 绑定 THREE 实例
+向后兼容：不调 create() 时回退到全局 THREE；mod.voxelStudioRuntime 也仍导出。
+Runtime API
+const rt = mod.create({ THREE });
 
 // ═══ 动画 ═══
 
@@ -250,13 +402,30 @@ const rt = window.__voxelRuntime; // 或 mod.voxelStudioRuntime
 rt.listAnimationTemplates()
 // → [{ key:'bounce', label:'Bounce', params:[{key:'amplitude',type:'float',min:-1,max:1,default:0.2,curve:2.5},...], isLooping:true }, ...]
 
-// 评估完整 Motion Plan（每帧播放用）
-rt.evaluateMotion(plan, duration, model, t)
-// → { groupId: { position:[x,y,z], rotation:[rx,ry,rz], scale:[sx,sy,sz], _attachMap:{...} } }
+// ⚠️ emit 模板的 params 使用扁平 key（如 velDirX, colorStartR），与 plan 中的嵌套 emit config 不同。
+// 用下面的 flattenEmitConfig / unflattenEmitConfig 在 flat ↔ nested 之间转换。
+
+// 评估完整 Motion Plan（每帧播放用）— v2: (plan, duration, t, lookups?)
+//   lookups = { getPart(id), getChildren(id) }，解耦具体 model 表示；
+//   wave/flow/tilt 等需要结构信息的模板从 lookups 取，无则安全降级。
+rt.evaluateMotion(plan, duration, t, lookups)
+// → { groupId: { position:[dx,dy,dz], rotation:[rx,ry,rz], scale:[sx,sy,sz]|null } }
+//   ⚠️ 返回值是增量（delta），需叠加到基础姿态
 
 // 评估单个模板（Canvas 曲线预览用）
 rt.evaluateTemplate(name, params, t, duration)
 // → { position:[x,y,z] } 或 { rotation:[rx,ry,rz] } 或 { scale:[sx,sy,sz] }
+
+// ═══ 粒子 ═══
+
+// 将 plan 中的嵌套 emit config 转为扁平 key（slider UI 用）
+rt.flattenEmitConfig(nestedConfig)
+// nested:  { rate:20, velocity:{dir:[0,1,0],speed:[1,3],spread:0.3}, acceleration:[0,-2,0], ... }
+// flat:    { rate:20, velDirX:0, velDirY:1, velDirZ:0, velSpeedMin:1, velSpeedMax:3, ... }
+
+// 将扁平 slider key 还原为嵌套 emit config（写入 plan / 传给粒子系统）
+rt.unflattenEmitConfig(flatConfig)
+// flat → nested（结构与上面相反）
 
 // ═══ 几何 ═══
 
@@ -268,44 +437,216 @@ rt.listGeometryTypes()
 rt.buildGeometry(type, params)
 // → THREE.BoxGeometry / THREE.BufferGeometry / ...
 // 类型不存在时 throw Error
-```
-
-### `evaluateMotion` 返回值
-
-每个 group 的 delta 格式：
-```js
+evaluateMotion 返回值
+每个 group 返回的是增量（delta），不是绝对位姿：
 {
   position: [dx, dy, dz],  // 位移增量
   rotation: [rx, ry, rz],  // 旋转增量（弧度）
   scale: null | [sx,sy,sz] // 缩放，null 表示不变
 }
-```
-
-### `buildGeometry` 参数
-
-参数名取决于 type。常见映射：
-```
-box:     { width, height, depth }
-sphere:  { radius, widthSegments(8), heightSegments(6) }
-cylinder:{ radiusTop(1), radiusBottom(1), height, radialSegments(8) }
-cone:    { radius, height, radialSegments(8) }
-torus:   { radius, tube(0.3), radialSegments(8), tubularSegments(12) }
-icosahedron/dodecahedron/octahedron: { radius, detail(0) }
-wedge:   { width, height, depth }
-tri:     { a:[x,y,z], b:[x,y,z], c:[x,y,z], d(0) }
-patch:   { vertices:[x1,y1,z1,...], d(0) }
-```
+⚠️ 关键：必须将 delta 叠加到 group 的基础姿态上（加/乘），不可直接赋值替换。见 §8 集成示例。
+buildGeometry 参数
+每种 type 的 geometry 参数（括号内为默认值）：
+type
+geometry 参数
+box
+width(1), height(1), depth(1)
+sphere
+radius(1), widthSegments(8), heightSegments(6)
+cylinder
+radiusTop(1), radiusBottom(1), height(1), radialSegments(8)
+cone
+radius(1), height(1), radialSegments(8)
+torus
+radius(1), tube(0.3), radialSegments(8), tubularSegments(12)
+icosahedron / dodecahedron / octahedron
+radius(1), detail(0)
+wedge
+width(1), height(1), depth(1)
+tri
+a[x,y,z], b[x,y,z], c[x,y,z], d(0；>0 时为有厚度的三角棱柱)
+patch
+vertices[x1,y1,z1,...]（每 3 顶点一个三角形）, d(0；>0 时双面偏移成带厚薄片)
+朝向提醒：cylinder/cone 默认轴是 +Y，斜向件的朝向由 mesh 的 quaternion 给出（见 §3.2）。buildGeometry 只返回裸几何，不应用 quaternion——前端创建 Mesh 后自行 mesh.quaternion.set(...)。
+材质提醒：buildGeometry 不含材质。用 mesh 的 color 或 material 字段创建 MeshStandardMaterial，lowpoly 风格建议 flatShading:true。tri/patch 当 d==0（零厚度薄片）时材质需 side: THREE.DoubleSide 才能双面可见。
 
 ---
+7. 粒子系统
+当 emitParticles: true 时，Motion Plan 中可能包含 emit track。emit 不产生 transform 增量，而是配置一个粒子发射器——前端需自行实现粒子渲染。
+6.1 emit 配置格式
+emit 以嵌套结构存储在 plan 中：
+{
+  "rightHand": {
+    "swing": { "axis": "y", "amplitude": 0.8, "frequency": 1.5 },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.4,
+      "rate": 25,
+      "lifetime": [0.4, 0.8],
+      "velocity": { "dir": [0, 1, 0], "speed": [1, 2], "spread": 0.4 },
+      "acceleration": [0, -3, 0],
+      "offset": [0, 0, 0],
+      "colorStart": [1, 0.8, 0.2],
+      "colorEnd": [0.5, 0, 0],
+      "scaleStart": 1.0,
+      "scaleEnd": 0.3
+    }
+  }
+}
+注意：emit 使用嵌套结构。UI slider 开发时，用 rt.flattenEmitConfig() / rt.unflattenEmitConfig() 在 flat ↔ nested 之间转换。粒子渲染时直接读取嵌套格式。
+6.2 参数说明
+参数
+类型
+默认
+说明
+emitMode
+string
+"point"
+发射模式："point"—从 group 世界坐标中心 + offset 发射；"volume"—从 group 的 AABB 体积内随机点发射
+mesh
+string
+"sphere"
+粒子形状："box" 或 "sphere"
+meshSize
+number
+0.4
+粒子基础尺寸（世界单位），乘以 scaleStart/scaleEnd 得实际大小
+rate
+number
+15
+每秒发射粒子数
+lifetime
+[min, max]
+[0.5, 1.5]
+粒子寿命范围（秒），每个粒子在范围内随机取值
+velocity.dir
+[x,y,z]
+[0,1,0]
+发射主方向（无需归一化，内部会归一化）
+velocity.speed
+[min,max]
+[1,3]
+初速范围（世界单位/秒），每个粒子在范围内随机取值
+velocity.spread
+number
+0.3
+散布角度（0=平行发射，1=半球散布）
+acceleration
+[x,y,z]
+[0,0,0]
+加速度（世界单位/s²）。重力效果用负 Y：[0,-5,0]；上升烟雾用正 Y
+offset
+[x,y,z]
+[0,0,0]
+发射点偏移（相对 group 世界坐标，仅 emitMode:"point" 有效）
+colorStart
+[r,g,b]
+[1,0.8,0.2]
+粒子出生颜色（0~1 RGB）
+colorEnd
+[r,g,b]
+[0.5,0,0]
+粒子死亡颜色（0~1 RGB）
+scaleStart
+number
+1.0
+出生时尺寸倍数（× meshSize）
+scaleEnd
+number
+0.3
+死亡时尺寸倍数（× meshSize）
+6.3 渲染实现指南
+粒子渲染核心流程：spawn → simulate → interpolate → render。
+1. 发射器初始化
+扫描 plan 中所有 emit track，为每个创建发射器。推荐使用 THREE.InstancedMesh（单 draw call 高效渲染数百粒子）：
+// 最大粒子数 = rate × maxLifetime（向上取整，建议上限 500）
+const maxCount = Math.min(500, Math.ceil(rate * maxLifetime + 5));
+const geometry = mesh === 'box'
+  ? new THREE.BoxGeometry(1, 1, 1)
+  : new THREE.IcosahedronGeometry(0.5, 0); // sphere
+const material = new THREE.MeshStandardMaterial({
+  flatShading: true, transparent: true, opacity: 0.9,
+});
+const im = new THREE.InstancedMesh(geometry, material, maxCount);
+im.count = 0;
+im.castShadow = false;
+im.frustumCulled = false;  // 粒子可能飞离视锥边界
+scene.add(im);
+2. 每帧更新
+for each emitter:
+  1. 获取 group 的世界位置 (group.getWorldPosition)
+  2. 若 emitMode === 'volume'：计算 group 的世界 AABB
+     - 遍历 group 所有子 mesh
+     - geometry.computeBoundingBox() → applyMatrix4(mesh.matrixWorld)
+     - Box3.union() 合并所有子 mesh 的包围盒
+     - 若 AABB 为空，回退为 point 模式
+  3. 按 rate 生成新粒子 (accumulator += rate × dt)
+     - point 模式：pos = worldPos + offset
+     - volume 模式：pos = randomPointInAABB(min, max)
+  4. 模拟已有粒子：pos += vel × dt; vel += accel × dt; life -= dt
+  5. 移除死亡粒子 (life ≤ 0)
+  6. 同步 InstancedMesh：为每个存活粒子设置 matrix + color
+3. 颜色/尺寸插值
+每个粒子在 lifetime 内从起始值线性过渡到终止值。使用 t = 1 - life / maxLife（0=出生, 1=死亡）：
+// 尺寸插值
+const s = meshSize * (scaleStart + (scaleEnd - scaleStart) * t);
+// 颜色插值
+const r = colorStart[0] + (colorEnd[0] - colorStart[0]) * t;
+const g = colorStart[1] + (colorEnd[1] - colorStart[1]) * t;
+const b = colorStart[2] + (colorEnd[2] - colorStart[2]) * t;
 
-## 6. 简单 LLM 对话
+// 更新 InstancedMesh
+dummy.position.set(px, py, pz);
+dummy.scale.set(s, s, s);
+dummy.updateMatrix();
+im.setMatrixAt(i, dummy.matrix);
+im.setColorAt(i, new THREE.Color(r, g, b));
+im.instanceMatrix.needsUpdate = true;
+im.instanceColor.needsUpdate = true;
+4. 速度生成
+// 方向 + 随机散布
+let vx = dir[0] + (Math.random() - 0.5) * spread * 2;
+let vy = dir[1] + (Math.random() - 0.5) * spread * 2;
+let vz = dir[2] + (Math.random() - 0.5) * spread * 2;
+const len = Math.sqrt(vx*vx + vy*vy + vz*vz) || 1;
+// 随机速度
+const speed = speedMin + Math.random() * (speedMax - speedMin);
+// 最终速度 = 归一化方向 × 速度标量
+vel = [(vx/len)*speed, (vy/len)*speed, (vz/len)*speed];
+5. AABB 体积发射
+// 计算 group 的世界 AABB
+const aabb = new THREE.Box3().makeEmpty();
+group.traverse(child => {
+  if (child.isMesh && child.geometry) {
+    child.geometry.computeBoundingBox();
+    const childBox = child.geometry.boundingBox.clone();
+    childBox.applyMatrix4(child.matrixWorld);
+    aabb.union(childBox);
+  }
+});
+// 体积模式：在 AABB 中随机取点
+const pos = new THREE.Vector3(
+  aabb.min.x + Math.random() * (aabb.max.x - aabb.min.x),
+  aabb.min.y + Math.random() * (aabb.max.y - aabb.min.y),
+  aabb.min.z + Math.random() * (aabb.max.z - aabb.min.z)
+);
+6. 生命周期管理
+- 播放开始：为每个 emit group 创建发射器
+- 动画自然结束（非循环，t ≥ duration）：销毁所有发射器，移除 InstancedMesh
+- 动画停止/切换：销毁所有发射器
+- 循环动画：粒子持续运行，无需处理
+6.4 UI 开发注意事项
+- listAnimationTemplates() 中 emit 的 params 使用扁平 key（如 velDirX、colorStartR），与 plan 中的嵌套格式不同
+- Slider 读取 emit 参数：rt.flattenEmitConfig(plan[groupId].emit) → 得扁平对象
+- Slider 写入 emit 参数：从 slider 收集扁平值 → rt.unflattenEmitConfig(flat) → 写回 plan[groupId].emit
+- 粒子效果在 slider 调整时需实时重建发射器以预览变化
 
-### `POST /api/chat`
-
-用于标题生成、剧情创作等——前端提供提示词，后端转发 LLM 调用。
-
-**请求**
-```json
+---
+8. 简单 LLM 对话
+POST /api/chat
+用于标题生成、剧情创作等辅助功能。
+请求
 {
   "messages": [
     { "role": "system", "content": "you are a game writer" },
@@ -315,28 +656,19 @@ patch:   { vertices:[x1,y1,z1,...], d(0) }
   "maxTokens": 1024,
   "provider": "fireworks"
 }
-```
-
-**返回**
-```json
+返回
 { "ok": true, "content": "The Dragon's Awakening" }
-```
 
 ---
-
-## 7. 完整集成示例
-
-### 最小化的前端应用
-
-```js
+9. 完整集成示例
+最小化的前端应用
 import * as THREE from 'three';
-window.THREE = THREE; // runtime 需要
 
 const API = 'https://voxel-studio-backend.zeabur.app';
 
-// 1. 加载 runtime
+// 1. 加载 runtime（THREE 注入）
 const mod = await import(`${API}/api/templates/module.js`);
-const runtime = mod.voxelStudioRuntime;
+const runtime = mod.create({ THREE });
 
 // 2. 生成模型
 async function genModel(desc) {
@@ -356,60 +688,133 @@ async function genModel(desc) {
   return modelJson;
 }
 
-// 3. 构建 Three.js 场景
+// 3. 构建 Three.js 场景 — v2 扁平 nodes（局部坐标，parent 表达层级）
 function buildScene(modelJson) {
   const scene = new THREE.Scene();
-  const meshes = {}; // id → group/mesh
 
-  for (const m of modelJson.meshes) {
-    if (m.group) {
-      const g = new THREE.Group();
-      g.position.set(m.position?.x||0, m.position?.y||0, m.position?.z||0);
-      g.name = m.name;
-      meshes[m.id] = g;
-    } else {
-      const geo = runtime.buildGeometry(m.type, m.geometry || {});
-      const mat = new THREE.MeshStandardMaterial({ color: m.color || 0x888888, flatShading: true });
-      const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(m.position?.x||0, m.position?.y||0, m.position?.z||0);
-      meshes[m.id] = mesh;
+  function makeMaterial(mesh) {
+    const mat = mesh.material || {};
+    const color = mat.color ?? mesh.color ?? 0x888888;
+    const zeroThick = (mesh.type === 'tri' || mesh.type === 'patch') && ((mesh.params?.d ?? 0) <= 0);
+    return new THREE.MeshStandardMaterial({
+      color,
+      roughness: mat.roughness ?? 0.5,
+      metalness: mat.metalness ?? 0.05,
+      transparent: mat.transparent === true,
+      opacity: mat.opacity ?? 1,
+      flatShading: mat.flatShading !== false,
+      side: zeroThick ? THREE.DoubleSide : THREE.FrontSide,
+    });
+  }
+
+  // 两遍式：先按 node 建 Object3D，再按 parent 挂载
+  const objs = new Map();
+  for (const n of (modelJson.nodes || [])) {
+    const obj = n.mesh
+      ? new THREE.Mesh(runtime.buildGeometry(n.mesh.type, n.mesh.params || {}), makeMaterial(n.mesh))
+      : new THREE.Group();
+    obj.name = n.id;
+    const t = n.transform || {};
+    const p = t.pos || [0, 0, 0];
+    obj.position.set(p[0], p[1], p[2]);
+    if (t.quat) obj.quaternion.set(t.quat[0], t.quat[1], t.quat[2], t.quat[3]);
+    if (t.scale && t.scale[0] > 0 && t.scale[1] > 0 && t.scale[2] > 0) {
+      obj.scale.set(t.scale[0], t.scale[1], t.scale[2]);
     }
+    objs.set(n.id, obj);
   }
-
-  // 建立层级
-  for (const m of modelJson.meshes) {
-    if (!m.parent) scene.add(meshes[m.id]);
-    else if (meshes[m.parent]) meshes[m.parent].add(meshes[m.id]);
+  for (const n of (modelJson.nodes || [])) {
+    const obj = objs.get(n.id);
+    if (n.parent && objs.has(n.parent)) objs.get(n.parent).add(obj);
+    else scene.add(obj);
   }
-
-  return scene;
+  return { scene, objs };
 }
 
-// 4. 生成动画
-async function genAnimation(modelJson, desc) {
+// 4. 存储基础姿态（动画停止时恢复用）
+function saveBasePose(objs) {
+  const base = new Map();
+  for (const [id, obj] of objs) {
+    base.set(id, {
+      position: obj.position.clone(),
+      rotation: obj.rotation.clone().toArray(),
+      scale: obj.scale.clone(),
+    });
+  }
+  return base;
+}
+
+// 5. 生成动画
+async function genAnimation(modelJson, desc, emitParticles = false) {
   const resp = await fetch(`${API}/api/generate/animation`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ modelJson, description: desc, duration: 2.0, provider: 'fireworks' }),
+    body: JSON.stringify({ modelJson, description: desc, duration: 2.0, provider: 'fireworks', emitParticles }),
   });
   const { plan } = await resp.json();
   return plan;
 }
 
-// 5. 播放动画
-function playAnimation(plan, scene, duration) {
+// 6. 播放动画 — ⚠️ evaluateMotion 返回增量（delta），必须叠加到基础姿态
+function playAnimation(plan, objs, duration) {
+  // 保存基础姿态
+  const basePose = saveBasePose(objs);
   const start = performance.now();
+
   function loop() {
     const t = (performance.now() - start) / 1000;
     const ct = plan._loop ? t % duration : Math.min(t, duration);
-    const pose = runtime.evaluateMotion(plan, duration, scene, ct);
+
+    // 获取动画增量
+    const pose = runtime.evaluateMotion(plan, duration, ct);
+
+    // 叠加增量到每个 group
     for (const [partId, delta] of Object.entries(pose)) {
       if (partId.startsWith('_')) continue;
-      const obj = scene.getObjectByName(partId); // 需要先通过 name 映射
-      if (obj && delta.rotation) {
-        obj.rotation.set(delta.rotation[0], delta.rotation[1], delta.rotation[2]);
+      const obj = objs.get(partId);
+      const base = basePose.get(partId);
+      if (!obj || !base) continue;
+
+      // 位置 = 基础 + 增量
+      if (delta.position) {
+        obj.position.set(
+          base.position.x + delta.position[0],
+          base.position.y + delta.position[1],
+          base.position.z + delta.position[2]
+        );
+      }
+      // 旋转 = 基础 + 增量（用 Euler 临时叠加；生产环境建议用 Quaternion）
+      if (delta.rotation) {
+        obj.rotation.set(
+          base.rotation[0] + delta.rotation[0],
+          base.rotation[1] + delta.rotation[1],
+          base.rotation[2] + delta.rotation[2]
+        );
+      }
+      // 缩放 = 基础 × 增量（scale 为乘法叠加）
+      if (delta.scale) {
+        obj.scale.set(
+          base.scale.x * delta.scale[0],
+          base.scale.y * delta.scale[1],
+          base.scale.z * delta.scale[2]
+        );
       }
     }
+
+    // 动画结束处理
+    if (!plan._loop && ct >= duration) {
+      // 恢复基础姿态
+      for (const [partId, base] of basePose) {
+        const obj = objs.get(partId);
+        if (obj) {
+          obj.position.copy(base.position);
+          obj.rotation.set(base.rotation[0], base.rotation[1], base.rotation[2]);
+          obj.scale.copy(base.scale);
+        }
+      }
+      return; // 停止循环
+    }
+
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
@@ -417,43 +822,37 @@ function playAnimation(plan, scene, duration) {
 
 // ═══ 启动 ═══
 const modelJson = await genModel('a lowpoly dragon');
-const scene = buildScene(modelJson);
+const { scene, objs } = buildScene(modelJson);
 const plan = await genAnimation(modelJson, 'flying loop');
-playAnimation(plan, scene, plan._duration);
-```
+playAnimation(plan, objs, plan._duration);
 
 ---
-
-## 8. 错误处理
-
-| HTTP 状态 | 含义 | 处理 |
-|-----------|------|------|
-| `200` SSE 含 `error` | AI 流水线中某步失败 | 展示 `event.error` |
-| `429` | 该 provider 被限速 | 换一个 provider 重试 |
-| `500` | 服务器内部错误 | 检查 `error` 字段 |
-
-**Provider 可用列表**：
-```js
+10. 错误处理
+HTTP 状态
+含义
+处理
+200 SSE 含 error
+AI 生成失败
+展示 event.errorDetail.hint
+429
+该 provider 被限速
+换一个 provider 重试
+500
+服务器内部错误
+检查 error 字段
+Provider 可用列表：
 const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
-```
 建议实现 fallback chain：fireworks → glm → gpt → deepseek。
 
 ---
-
-## 9. 注意事项
-
-1. **不要在前端硬编码动画模板名或几何类型名**。所有类型信息从 `runtime.listAnimationTemplates()` 和 `runtime.listGeometryTypes()` 动态获取。
-
-2. **不要硬编码 geometry 参数名**。用 `runtime.buildGeometry(type, params)` 构建几何——参数名由后端模板定义，前端只负责传递 modelJson 中的 `geometry` 字段。
-
-3. **播放动画用 `runtime.evaluateMotion`**。每帧调用，传入 `plan`、`duration`、`model`、当前时间 `t`。返回每个 group 的位移/旋转/缩放增量。
-
-4. **动画 Canvas 预览用 `runtime.evaluateTemplate`**。传入单个模板名、参数、时间、duration，得到 pose 增量。
-
-5. **模型生成是 SSE 流式**。`POST /api/generate/model` 返回 `text/event-stream`。事件由 `\n\n` 分隔，每行以 `data:` 开头为 JSON。
-
-6. **批量生成是 JSON**。`POST /api/generate/batch` 返回普通 JSON，包含所有结果（成功 + 失败）。适合需要大量模型但不想要流式复杂度的场景。
-
-7. **Health check**：`GET /health` 返回 `{"ok":true}`。可用于启动时验证后端可用。
-
-8. **CORS**：后端已配置 `Access-Control-Allow-Origin`，本地开发不需要代理。
+11. 注意事项
+1. 不要硬编码模板名或几何类型名。所有类型信息从 runtime.listAnimationTemplates() 和 runtime.listGeometryTypes() 动态获取。
+2. 不要硬编码 geometry 参数名。用 runtime.buildGeometry(type, params) 构建几何——参数名由模板定义，前端只负责传递 modelJson 中的 mesh.params。
+3. 播放动画必须叠加增量。runtime.evaluateMotion 返回的是增量（delta），不是绝对位姿。必须叠加到基础姿态上——见 §8 完整示例的 playAnimation 函数。
+4. 动画 Canvas 预览用 runtime.evaluateTemplate。传入单个模板名、参数、时间、duration，得到单个模板的增量。
+5. 模型生成是 SSE 流式。POST /api/generate/model 返回 text/event-stream，按 \n\n 分隔事件。
+6. 批量生成是 JSON。POST /api/generate/batch 返回普通 JSON，成功和失败项都在 results 数组中。
+7. 粒子需独立渲染。emit track 不产生 transform 增量（evaluateMotion 会跳过它）。前端需自行实现 InstancedMesh 粒子系统——见 §6 完整指南。
+8. 粒子 slider UI 需要 flat ↔ nested 转换。listAnimationTemplates() 中 emit 的 params 是扁平 key。从 plan 读取 emit 参数时用 rt.flattenEmitConfig()，写回时用 rt.unflattenEmitConfig()。
+9. Health check：GET /health 返回 {"ok":true}，可用于启动时验证后端可用。
+10. CORS：后端已配置 Access-Control-Allow-Origin，本地开发不需要代理。

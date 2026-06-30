@@ -1,0 +1,874 @@
+{
+  "name": "巨无霸炸弹",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "bomb_body",
+      "name": "炸弹主体",
+      "transform": {
+        "pos": [
+          0,
+          3.175,
+          0
+        ]
+      }
+    },
+    {
+      "id": "fuse",
+      "name": "引信",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          3.025,
+          0
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp0",
+      "name": "wp0",
+      "parent": "fuse",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp1",
+      "name": "wp1",
+      "parent": "fuse_wp0",
+      "transform": {
+        "pos": [
+          0.3866,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp2",
+      "name": "wp2",
+      "parent": "fuse_wp1",
+      "transform": {
+        "pos": [
+          0.3394,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp3",
+      "name": "wp3",
+      "parent": "fuse_wp2",
+      "transform": {
+        "pos": [
+          0.2616,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp4",
+      "name": "wp4",
+      "parent": "fuse_wp3",
+      "transform": {
+        "pos": [
+          0.1532,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp5",
+      "name": "wp5",
+      "parent": "fuse_wp4",
+      "transform": {
+        "pos": [
+          0.0144,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "fuse_wp6",
+      "name": "wp6",
+      "parent": "fuse_wp5",
+      "transform": {
+        "pos": [
+          -0.1551,
+          0.5,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "spark",
+      "name": "火花",
+      "parent": "fuse_wp6",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -0.375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710622
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -3.025,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.2,
+          "radiusBottom": 1.2,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 3355443
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -0.375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 2.85,
+          "tube": 0.15,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 12632256
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          0.325,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 2.71,
+          "tube": 0.15,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 12632256
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -1.075,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 2.71,
+          "tube": 0.15,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 12632256
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          3,
+          -0.375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          2.1213,
+          -0.375,
+          2.1213
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -0.375,
+          3
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          -2.1213,
+          -0.375,
+          2.1213
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          -3,
+          -0.375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          -2.1213,
+          -0.375,
+          -2.1213
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          -0.375,
+          -3
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          2.1213,
+          -0.375,
+          -2.1213
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.12,
+          "detail": 0
+        },
+        "color": 8947848
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          2.625,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.3,
+          "radiusBottom": 0.3,
+          "height": 0.4,
+          "radialSegments": 10
+        },
+        "color": 12632256
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "bomb_body",
+      "transform": {
+        "pos": [
+          0,
+          3.025,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.4,
+          "tube": 0.1,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 12632256
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "fuse_wp0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "fuse_wp0",
+      "transform": {
+        "pos": [
+          0.19,
+          0.25,
+          0.13
+        ],
+        "quat": [
+          0.2,
+          0,
+          -0.31,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 0.62,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp0",
+        "boneTo": "fuse_wp1"
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "fuse_wp1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "fuse_wp1",
+      "transform": {
+        "pos": [
+          0.17,
+          0.25,
+          0.13
+        ],
+        "quat": [
+          0.2,
+          0,
+          -0.28,
+          0.94
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.09,
+          "radiusBottom": 0.09,
+          "height": 0.59,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp1",
+        "boneTo": "fuse_wp2"
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "fuse_wp2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "fuse_wp2",
+      "transform": {
+        "pos": [
+          0.13,
+          0.25,
+          0.13
+        ],
+        "quat": [
+          0.21,
+          0,
+          -0.22,
+          0.95
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.09,
+          "radiusBottom": 0.09,
+          "height": 0.57,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp2",
+        "boneTo": "fuse_wp3"
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "fuse_wp3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.07,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "fuse_wp3",
+      "transform": {
+        "pos": [
+          0.08,
+          0.25,
+          0.13
+        ],
+        "quat": [
+          0.22,
+          0,
+          -0.14,
+          0.97
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.08,
+          "radiusBottom": 0.08,
+          "height": 0.54,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp3",
+        "boneTo": "fuse_wp4"
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "fuse_wp4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "fuse_wp4",
+      "transform": {
+        "pos": [
+          0.01,
+          0.25,
+          0.13
+        ],
+        "quat": [
+          0.23,
+          0,
+          -0.01,
+          0.97
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.07,
+          "radiusBottom": 0.07,
+          "height": 0.52,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp4",
+        "boneTo": "fuse_wp5"
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "fuse_wp5",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "fuse_wp5",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.25,
+          0.12
+        ],
+        "quat": [
+          0.22,
+          0,
+          0.14,
+          0.96
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.07,
+          "radiusBottom": 0.07,
+          "height": 0.54,
+          "radialSegments": 10
+        },
+        "color": 12088115,
+        "boneFrom": "fuse_wp5",
+        "boneTo": "fuse_wp6"
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "fuse_wp6",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12088115
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -1,
+          -9.2,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.35,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16737792
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -1,
+          -9.2,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -0.7,
+          -9,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 16755200
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -1.2708,
+          -9,
+          -1.6291
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 16755200
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -0.8111,
+          -9,
+          -1.2669
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 16755200
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "spark",
+      "transform": {
+        "pos": [
+          -1.0702,
+          -9,
+          -1.7917
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 16755200
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782453369568,
+      "provider": "fireworks",
+      "data": "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",
+      "edits": ""
+    }
+  }
+}

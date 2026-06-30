@@ -1,2489 +1,3982 @@
 {
-  "name": "Ancient Fantasy Tree",
+  "name": "古老大树",
   "type": "lowpoly",
-  "meshes": [
+  "format": 2,
+  "nodes": [
+    {
+      "id": "canopy",
+      "transform": {
+        "pos": [
+          0.0914,
+          10.15,
+          0.062
+        ]
+      }
+    },
     {
       "id": "roots",
-      "name": "roots",
-      "group": true,
-      "position": {
-        "x": -0.2599999999999999,
-        "y": 0.25,
-        "z": 0.59
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -9.65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_0_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_0_25",
+      "name": "wp1",
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0.9703,
+          -0.1094,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_0_50",
+      "name": "wp2",
+      "parent": "root_0_25",
+      "transform": {
+        "pos": [
+          1.0922,
+          -0.1656,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_0_75",
+      "name": "wp3",
+      "parent": "root_0_50",
+      "transform": {
+        "pos": [
+          1.1859,
+          -0.2031,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_0_100",
+      "name": "wp4",
+      "parent": "root_0_75",
+      "transform": {
+        "pos": [
+          1.2516,
+          -0.2219,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_1_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_1_25",
+      "name": "wp1",
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0.4852,
+          -0.1094,
+          0.8403
+        ]
+      }
+    },
+    {
+      "id": "root_1_50",
+      "name": "wp2",
+      "parent": "root_1_25",
+      "transform": {
+        "pos": [
+          0.5461,
+          -0.1656,
+          0.9459
+        ]
+      }
+    },
+    {
+      "id": "root_1_75",
+      "name": "wp3",
+      "parent": "root_1_50",
+      "transform": {
+        "pos": [
+          0.593,
+          -0.2031,
+          1.0271
+        ]
+      }
+    },
+    {
+      "id": "root_1_100",
+      "name": "wp4",
+      "parent": "root_1_75",
+      "transform": {
+        "pos": [
+          0.6258,
+          -0.2219,
+          1.0839
+        ]
+      }
+    },
+    {
+      "id": "root_2_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_2_25",
+      "name": "wp1",
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          -0.4852,
+          -0.1094,
+          0.8403
+        ]
+      }
+    },
+    {
+      "id": "root_2_50",
+      "name": "wp2",
+      "parent": "root_2_25",
+      "transform": {
+        "pos": [
+          -0.5461,
+          -0.1656,
+          0.9459
+        ]
+      }
+    },
+    {
+      "id": "root_2_75",
+      "name": "wp3",
+      "parent": "root_2_50",
+      "transform": {
+        "pos": [
+          -0.593,
+          -0.2031,
+          1.0271
+        ]
+      }
+    },
+    {
+      "id": "root_2_100",
+      "name": "wp4",
+      "parent": "root_2_75",
+      "transform": {
+        "pos": [
+          -0.6258,
+          -0.2219,
+          1.0839
+        ]
+      }
+    },
+    {
+      "id": "root_3_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_3_25",
+      "name": "wp1",
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          -0.9703,
+          -0.1094,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_3_50",
+      "name": "wp2",
+      "parent": "root_3_25",
+      "transform": {
+        "pos": [
+          -1.0922,
+          -0.1656,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_3_75",
+      "name": "wp3",
+      "parent": "root_3_50",
+      "transform": {
+        "pos": [
+          -1.1859,
+          -0.2031,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_3_100",
+      "name": "wp4",
+      "parent": "root_3_75",
+      "transform": {
+        "pos": [
+          -1.2516,
+          -0.2219,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_4_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_4_25",
+      "name": "wp1",
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          -0.4852,
+          -0.1094,
+          -0.8403
+        ]
+      }
+    },
+    {
+      "id": "root_4_50",
+      "name": "wp2",
+      "parent": "root_4_25",
+      "transform": {
+        "pos": [
+          -0.5461,
+          -0.1656,
+          -0.9459
+        ]
+      }
+    },
+    {
+      "id": "root_4_75",
+      "name": "wp3",
+      "parent": "root_4_50",
+      "transform": {
+        "pos": [
+          -0.593,
+          -0.2031,
+          -1.0271
+        ]
+      }
+    },
+    {
+      "id": "root_4_100",
+      "name": "wp4",
+      "parent": "root_4_75",
+      "transform": {
+        "pos": [
+          -0.6258,
+          -0.2219,
+          -1.0839
+        ]
+      }
+    },
+    {
+      "id": "root_5_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.0914,
+          0,
+          -0.062
+        ]
+      }
+    },
+    {
+      "id": "root_5_25",
+      "name": "wp1",
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          0.4852,
+          -0.1094,
+          -0.8403
+        ]
+      }
+    },
+    {
+      "id": "root_5_50",
+      "name": "wp2",
+      "parent": "root_5_25",
+      "transform": {
+        "pos": [
+          0.5461,
+          -0.1656,
+          -0.9459
+        ]
+      }
+    },
+    {
+      "id": "root_5_75",
+      "name": "wp3",
+      "parent": "root_5_50",
+      "transform": {
+        "pos": [
+          0.593,
+          -0.2031,
+          -1.0271
+        ]
+      }
+    },
+    {
+      "id": "root_5_100",
+      "name": "wp4",
+      "parent": "root_5_75",
+      "transform": {
+        "pos": [
+          0.6258,
+          -0.2219,
+          -1.0839
+        ]
+      }
+    },
+    {
+      "id": "trunk",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -6.65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "branches",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -1.35,
+          0
+        ]
+      }
+    },
+    {
+      "id": "branch_0_0",
+      "name": "wp0",
+      "parent": "branches",
+      "transform": {
+        "pos": [
+          0.864,
+          -2.8,
+          0.2335
+        ]
+      }
+    },
+    {
+      "id": "branch_0_25",
+      "name": "wp1",
+      "parent": "branch_0_0",
+      "transform": {
+        "pos": [
+          0.7508,
+          0.8594,
+          0.2323
+        ]
+      }
+    },
+    {
+      "id": "branch_0_50",
+      "name": "wp2",
+      "parent": "branch_0_25",
+      "transform": {
+        "pos": [
+          0.8135,
+          0.7656,
+          0.2517
+        ]
+      }
+    },
+    {
+      "id": "branch_0_75",
+      "name": "wp3",
+      "parent": "branch_0_50",
+      "transform": {
+        "pos": [
+          0.8673,
+          0.6531,
+          0.2683
+        ]
+      }
+    },
+    {
+      "id": "branch_0_100",
+      "name": "wp4",
+      "parent": "branch_0_75",
+      "transform": {
+        "pos": [
+          0.912,
+          0.5219,
+          0.2821
+        ]
+      }
+    },
+    {
+      "id": "branch_1_0",
+      "name": "wp0",
+      "parent": "branches",
+      "transform": {
+        "pos": [
+          -0.0772,
+          -2.8,
+          0.9379
+        ]
+      }
+    },
+    {
+      "id": "branch_1_25",
+      "name": "wp1",
+      "parent": "branch_1_0",
+      "transform": {
+        "pos": [
+          0.0111,
+          0.8594,
+          0.7859
+        ]
+      }
+    },
+    {
+      "id": "branch_1_50",
+      "name": "wp2",
+      "parent": "branch_1_25",
+      "transform": {
+        "pos": [
+          0.0121,
+          0.7656,
+          0.8515
+        ]
+      }
+    },
+    {
+      "id": "branch_1_75",
+      "name": "wp3",
+      "parent": "branch_1_50",
+      "transform": {
+        "pos": [
+          0.0129,
+          0.6531,
+          0.9077
+        ]
+      }
+    },
+    {
+      "id": "branch_1_100",
+      "name": "wp4",
+      "parent": "branch_1_75",
+      "transform": {
+        "pos": [
+          0.0135,
+          0.5219,
+          0.9546
+        ]
+      }
+    },
+    {
+      "id": "branch_2_0",
+      "name": "wp0",
+      "parent": "branches",
+      "transform": {
+        "pos": [
+          -1.0379,
+          -2.8,
+          0.2604
+        ]
+      }
+    },
+    {
+      "id": "branch_2_25",
+      "name": "wp1",
+      "parent": "branch_2_0",
+      "transform": {
+        "pos": [
+          -0.744,
+          0.8594,
+          0.2534
+        ]
+      }
+    },
+    {
+      "id": "branch_2_50",
+      "name": "wp2",
+      "parent": "branch_2_25",
+      "transform": {
+        "pos": [
+          -0.8061,
+          0.7656,
+          0.2746
+        ]
+      }
+    },
+    {
+      "id": "branch_2_75",
+      "name": "wp3",
+      "parent": "branch_2_50",
+      "transform": {
+        "pos": [
+          -0.8593,
+          0.6531,
+          0.2927
+        ]
+      }
+    },
+    {
+      "id": "branch_2_100",
+      "name": "wp4",
+      "parent": "branch_2_75",
+      "transform": {
+        "pos": [
+          -0.9037,
+          0.5219,
+          0.3078
+        ]
+      }
+    },
+    {
+      "id": "branch_3_0",
+      "name": "wp0",
+      "parent": "branches",
+      "transform": {
+        "pos": [
+          -0.6905,
+          -2.8,
+          -0.8626
+        ]
+      }
+    },
+    {
+      "id": "branch_3_25",
+      "name": "wp1",
+      "parent": "branch_3_0",
+      "transform": {
+        "pos": [
+          -0.4709,
+          0.8594,
+          -0.6292
+        ]
+      }
+    },
+    {
+      "id": "branch_3_50",
+      "name": "wp2",
+      "parent": "branch_3_25",
+      "transform": {
+        "pos": [
+          -0.5102,
+          0.7656,
+          -0.6818
+        ]
+      }
+    },
+    {
+      "id": "branch_3_75",
+      "name": "wp3",
+      "parent": "branch_3_50",
+      "transform": {
+        "pos": [
+          -0.5439,
+          0.6531,
+          -0.7268
+        ]
+      }
+    },
+    {
+      "id": "branch_3_100",
+      "name": "wp4",
+      "parent": "branch_3_75",
+      "transform": {
+        "pos": [
+          -0.572,
+          0.5219,
+          -0.7643
+        ]
+      }
+    },
+    {
+      "id": "branch_4_0",
+      "name": "wp0",
+      "parent": "branches",
+      "transform": {
+        "pos": [
+          0.4849,
+          -2.8,
+          -0.8793
+        ]
+      }
+    },
+    {
+      "id": "branch_4_25",
+      "name": "wp1",
+      "parent": "branch_4_0",
+      "transform": {
+        "pos": [
+          0.4529,
+          0.8594,
+          -0.6423
+        ]
+      }
+    },
+    {
+      "id": "branch_4_50",
+      "name": "wp2",
+      "parent": "branch_4_25",
+      "transform": {
+        "pos": [
+          0.4907,
+          0.7656,
+          -0.6959
+        ]
+      }
+    },
+    {
+      "id": "branch_4_75",
+      "name": "wp3",
+      "parent": "branch_4_50",
+      "transform": {
+        "pos": [
+          0.5231,
+          0.6531,
+          -0.7419
+        ]
+      }
+    },
+    {
+      "id": "branch_4_100",
+      "name": "wp4",
+      "parent": "branch_4_75",
+      "transform": {
+        "pos": [
+          0.5502,
+          0.5219,
+          -0.7802
+        ]
       }
     },
     {
       "id": "m0",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.72,
-        "y": 0,
-        "z": 0.84
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.73,
-        "y": 0,
-        "z": -0.24,
-        "w": 0.65
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m1",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0.53,
+          -0.06,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.75,
+          0.67
+        ]
       },
-      "position": {
-        "x": 1.1870509831248421,
-        "y": -0.15,
-        "z": 2.2631695488854606
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_0_0",
+        "boneTo": "root_0_25"
+      }
     },
     {
       "id": "m2",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_0_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.2899999999999999,
-        "y": 0,
-        "z": 0.91
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.76,
-        "y": 0,
-        "z": -0.01,
-        "w": 0.65
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m3",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_0_25",
+      "transform": {
+        "pos": [
+          0.57,
+          -0.09,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.76,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0.312822185730577,
-        "y": -0.15,
-        "z": 2.409534933401284
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_0_25",
+        "boneTo": "root_0_50"
+      }
     },
     {
       "id": "m4",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_0_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.15000000000000008,
-        "y": 0,
-        "z": 0.85
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.73,
-        "y": 0,
-        "z": 0.21,
-        "w": 0.65
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m5",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_0_50",
+      "transform": {
+        "pos": [
+          0.62,
+          -0.11,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.76,
+          0.64
+        ]
       },
-      "position": {
-        "x": -0.5660179815287903,
-        "y": -0.15,
-        "z": 2.294041312844028
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_0_50",
+        "boneTo": "root_0_75"
+      }
     },
     {
       "id": "m6",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_0_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.56,
-        "y": 0,
-        "z": 0.67
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.64,
-        "y": 0,
-        "z": 0.42,
-        "w": 0.65
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m7",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_0_75",
+      "transform": {
+        "pos": [
+          0.65,
+          -0.12,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.77,
+          0.64
+        ]
       },
-      "position": {
-        "x": -1.3727468876699782,
-        "y": -0.15,
-        "z": 1.926771265094228
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_0_75",
+        "boneTo": "root_0_100"
+      }
     },
     {
       "id": "m8",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_0_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.89,
-        "y": 0,
-        "z": 0.37
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.49,
-        "y": 0,
-        "z": 0.58,
-        "w": 0.65
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m9",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -2.0369372053185053,
-        "y": -0.15,
-        "z": 1.3397874170031314
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m10",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.55,
-        "radiusBottom": 0.55,
-        "height": 3.04,
-        "radialSegments": 10
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0.26,
+          -0.06,
+          0.46
+        ],
+        "quat": [
+          0.65,
+          0,
+          -0.37,
+          0.67
+        ]
       },
-      "position": {
-        "x": -1.12,
-        "y": 0,
-        "z": 0
-      },
-      "color": 5125166,
-      "quaternion": {
-        "x": 0.3,
-        "y": 0,
-        "z": 0.7,
-        "w": 0.65
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_1_0",
+        "boneTo": "root_1_25"
       }
     },
     {
       "id": "m11",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.6,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -2.500605207123227,
-        "y": -0.15,
-        "z": 0.584333381286645
-      },
-      "color": 4073251
-    },
-    {
-      "id": "trunk",
-      "name": "trunk",
-      "group": true,
-      "position": {
-        "x": -0.2599999999999999,
-        "y": 1.65,
-        "z": 0.07000000000000006
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m12",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 1.3,
-        "radiusBottom": 1.5,
-        "height": 3.5,
-        "radialSegments": 8
+      "parent": "root_1_25",
+      "transform": {
+        "pos": [
+          0.29,
+          -0.09,
+          0.5
+        ],
+        "quat": [
+          0.66,
+          0,
+          -0.38,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": 0.10000000000000009,
-        "z": -0.07000000000000006
-      },
-      "color": 5125166
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_1_25",
+        "boneTo": "root_1_50"
+      }
     },
     {
       "id": "m13",
-      "type": "sphere",
-      "geometry": {
-        "radius": 1.1,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.8599999999999999,
-        "y": 1.15,
-        "z": 0.5299999999999999
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m14",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.9,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_50",
+      "transform": {
+        "pos": [
+          0.31,
+          -0.11,
+          0.54
+        ],
+        "quat": [
+          0.66,
+          0,
+          -0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": -0.44000000000000006,
-        "y": 0.15000000000000013,
-        "z": -0.5700000000000001
-      },
-      "color": 4073251
-    },
-    {
-      "id": "trunk_wp0",
-      "name": "wp0",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.06,
-        "y": 0.8500000000000001,
-        "z": 0.42999999999999994
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_1_50",
+        "boneTo": "root_1_75"
       }
     },
     {
       "id": "m15",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.15,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m16",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.13,
-        "radiusBottom": 0.13,
-        "height": 0.95,
-        "radialSegments": 10
+      "parent": "root_1_75",
+      "transform": {
+        "pos": [
+          0.32,
+          -0.12,
+          0.56
+        ],
+        "quat": [
+          0.66,
+          0,
+          -0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0.12,
-        "y": -0.51,
-        "z": 0.05
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.38,
-        "y": 0,
-        "z": -0.92,
-        "w": 0.13
-      },
-      "boneFrom": "trunk_wp0",
-      "boneTo": "trunk_wp1",
-      "boneRestLen": 0.95
-    },
-    {
-      "id": "trunk_wp1",
-      "name": "wp1",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.2999999999999998,
-        "y": -0.1499999999999999,
-        "z": 0.5299999999999999
-      },
-      "pivotTarget": "trunk_wp0"
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_1_75",
+        "boneTo": "root_1_100"
+      }
     },
     {
       "id": "m17",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.09,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_1_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m18",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.08,
-        "radiusBottom": 0.08,
-        "height": 0.97,
-        "radialSegments": 10
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.08,
-        "y": -0.5,
-        "z": 0.05
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.53,
-        "y": 0,
-        "z": 0.84,
-        "w": 0.09
-      },
-      "boneFrom": "trunk_wp1",
-      "boneTo": "trunk_wp2",
-      "boneRestLen": 0.97
-    },
-    {
-      "id": "trunk_wp2",
-      "name": "wp2",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.1400000000000001,
-        "y": -1.15,
-        "z": 0.6299999999999999
-      },
-      "pivotTarget": "trunk_wp1"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m19",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.05,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          -0.26,
+          -0.06,
+          0.46
+        ],
+        "quat": [
+          0.65,
+          0,
+          0.37,
+          0.67
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
-    },
-    {
-      "id": "trunk_wp0_1",
-      "name": "wp0",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.2599999999999998,
-        "y": 0.8500000000000001,
-        "z": -0.67
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_2_0",
+        "boneTo": "root_2_25"
       }
     },
     {
       "id": "m20",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.15,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_2_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m21",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.13,
-        "radiusBottom": 0.13,
-        "height": 0.97,
-        "radialSegments": 10
+      "parent": "root_2_25",
+      "transform": {
+        "pos": [
+          -0.29,
+          -0.09,
+          0.5
+        ],
+        "quat": [
+          0.66,
+          0,
+          0.38,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0.15,
-        "y": -0.51,
-        "z": -0.06
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": -0.37,
-        "y": 0,
-        "z": -0.92,
-        "w": 0.16
-      },
-      "boneFrom": "trunk_wp0_1",
-      "boneTo": "trunk_wp1_1",
-      "boneRestLen": 0.97
-    },
-    {
-      "id": "trunk_wp1_1",
-      "name": "wp1",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.56,
-        "y": -0.1499999999999999,
-        "z": -0.79
-      },
-      "pivotTarget": "trunk_wp0_1"
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_2_25",
+        "boneTo": "root_2_50"
+      }
     },
     {
       "id": "m22",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.09,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_2_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m23",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.08,
-        "radiusBottom": 0.08,
-        "height": 0.98,
-        "radialSegments": 10
+      "parent": "root_2_50",
+      "transform": {
+        "pos": [
+          -0.31,
+          -0.11,
+          0.54
+        ],
+        "quat": [
+          0.66,
+          0,
+          0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": -0.1,
-        "y": -0.51,
-        "z": -0.06
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": -0.51,
-        "y": 0,
-        "z": 0.85,
-        "w": 0.11
-      },
-      "boneFrom": "trunk_wp1_1",
-      "boneTo": "trunk_wp2_1",
-      "boneRestLen": 0.98
-    },
-    {
-      "id": "trunk_wp2_1",
-      "name": "wp2",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.3599999999999999,
-        "y": -1.15,
-        "z": -0.91
-      },
-      "pivotTarget": "trunk_wp1_1"
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_2_50",
+        "boneTo": "root_2_75"
+      }
     },
     {
       "id": "m24",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.05,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_2_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
-    },
-    {
-      "id": "trunk_wp0_2",
-      "name": "wp0",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.46,
-        "y": 0.8500000000000001,
-        "z": 0.6299999999999999
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m25",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.15,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_2_75",
+      "transform": {
+        "pos": [
+          -0.32,
+          -0.12,
+          0.56
+        ],
+        "quat": [
+          0.66,
+          0,
+          0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_2_75",
+        "boneTo": "root_2_100"
+      }
     },
     {
       "id": "m26",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.13,
-        "radiusBottom": 0.13,
-        "height": 0.99,
-        "radialSegments": 10
+      "parent": "root_2_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.18,
-        "y": -0.51,
-        "z": 0.07
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.36,
-        "y": 0,
-        "z": -0.92,
-        "w": 0.18
-      },
-      "boneFrom": "trunk_wp0_2",
-      "boneTo": "trunk_wp1_2",
-      "boneRestLen": 0.99
-    },
-    {
-      "id": "trunk_wp1_2",
-      "name": "wp1",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.8200000000000003,
-        "y": -0.1499999999999999,
-        "z": 0.7699999999999999
-      },
-      "pivotTarget": "trunk_wp0_2"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m27",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.09,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m28",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.08,
-        "radiusBottom": 0.08,
-        "height": 0.99,
-        "radialSegments": 10
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          -0.53,
+          -0.06,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.75,
+          0.67
+        ]
       },
-      "position": {
-        "x": -0.12,
-        "y": -0.5,
-        "z": 0.07
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.5,
-        "y": 0,
-        "z": 0.86,
-        "w": 0.14
-      },
-      "boneFrom": "trunk_wp1_2",
-      "boneTo": "trunk_wp2_2",
-      "boneRestLen": 0.99
-    },
-    {
-      "id": "trunk_wp2_2",
-      "name": "wp2",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": 1.58,
-        "y": -1.15,
-        "z": 0.9099999999999998
-      },
-      "pivotTarget": "trunk_wp1_2"
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_3_0",
+        "boneTo": "root_3_25"
+      }
     },
     {
       "id": "m29",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.05,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
-    },
-    {
-      "id": "trunk_wp0_3",
-      "name": "wp0",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.1400000000000001,
-        "y": 0.8500000000000001,
-        "z": -0.8700000000000001
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m30",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.15,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_25",
+      "transform": {
+        "pos": [
+          -0.57,
+          -0.09,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.76,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_3_25",
+        "boneTo": "root_3_50"
+      }
     },
     {
       "id": "m31",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.13,
-        "radiusBottom": 0.13,
-        "height": 1.02,
-        "radialSegments": 10
+      "parent": "root_3_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.21,
-        "y": -0.51,
-        "z": -0.08
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": -0.35,
-        "y": 0,
-        "z": 0.91,
-        "w": 0.21
-      },
-      "boneFrom": "trunk_wp0_3",
-      "boneTo": "trunk_wp1_3",
-      "boneRestLen": 1.02
-    },
-    {
-      "id": "trunk_wp1_3",
-      "name": "wp1",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.5600000000000005,
-        "y": -0.1499999999999999,
-        "z": -1.03
-      },
-      "pivotTarget": "trunk_wp0_3"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m32",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.09,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_50",
+      "transform": {
+        "pos": [
+          -0.62,
+          -0.11,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.76,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_3_50",
+        "boneTo": "root_3_75"
+      }
     },
     {
       "id": "m33",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.08,
-        "radiusBottom": 0.08,
-        "height": 1,
-        "radialSegments": 10
+      "parent": "root_3_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.14,
-        "y": -0.5,
-        "z": -0.08
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": -0.49,
-        "y": 0,
-        "z": -0.86,
-        "w": 0.16
-      },
-      "boneFrom": "trunk_wp1_3",
-      "boneTo": "trunk_wp2_3",
-      "boneRestLen": 1
-    },
-    {
-      "id": "trunk_wp2_3",
-      "name": "wp2",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.2800000000000002,
-        "y": -1.15,
-        "z": -1.19
-      },
-      "pivotTarget": "trunk_wp1_3"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m34",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.05,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_75",
+      "transform": {
+        "pos": [
+          -0.65,
+          -0.12,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.77,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
-    },
-    {
-      "id": "trunk_wp0_4",
-      "name": "wp0",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.3400000000000003,
-        "y": 0.8500000000000001,
-        "z": 0.83
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_3_75",
+        "boneTo": "root_3_100"
       }
     },
     {
       "id": "m35",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.15,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_3_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m36",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.13,
-        "radiusBottom": 0.13,
-        "height": 1.04,
-        "radialSegments": 10
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.24,
-        "y": -0.51,
-        "z": 0.09
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.91,
-        "w": 0.23
-      },
-      "boneFrom": "trunk_wp0_4",
-      "boneTo": "trunk_wp1_4",
-      "boneRestLen": 1.04
-    },
-    {
-      "id": "trunk_wp1_4",
-      "name": "wp1",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.8200000000000003,
-        "y": -0.1499999999999999,
-        "z": 1.01
-      },
-      "pivotTarget": "trunk_wp0_4"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m37",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.09,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          -0.26,
+          -0.06,
+          -0.46
+        ],
+        "quat": [
+          -0.65,
+          0,
+          0.37,
+          0.67
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_4_0",
+        "boneTo": "root_4_25"
+      }
     },
     {
       "id": "m38",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.08,
-        "radiusBottom": 0.08,
-        "height": 1.02,
-        "radialSegments": 10
+      "parent": "root_4_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.16,
-        "y": -0.51,
-        "z": 0.09
-      },
-      "color": 7048739,
-      "quaternion": {
-        "x": 0.48,
-        "y": 0,
-        "z": -0.86,
-        "w": 0.18
-      },
-      "boneFrom": "trunk_wp1_4",
-      "boneTo": "trunk_wp2_4",
-      "boneRestLen": 1.02
-    },
-    {
-      "id": "trunk_wp2_4",
-      "name": "wp2",
-      "group": true,
-      "parent": "trunk",
-      "position": {
-        "x": -1.5000000000000004,
-        "y": -1.15,
-        "z": 1.19
-      },
-      "pivotTarget": "trunk_wp1_4"
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m39",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.05,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_25",
+      "transform": {
+        "pos": [
+          -0.29,
+          -0.09,
+          -0.5
+        ],
+        "quat": [
+          -0.66,
+          0,
+          0.38,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "color": 7048739
-    },
-    {
-      "id": "canopy",
-      "name": "canopy",
-      "group": true,
-      "position": {
-        "x": -0.2599999999999999,
-        "y": 5,
-        "z": 0.07000000000000006
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_4_25",
+        "boneTo": "root_4_50"
       }
     },
     {
       "id": "m40",
-      "type": "sphere",
-      "geometry": {
-        "radius": 3.2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": 0.5,
-        "z": -0.07000000000000006
-      },
-      "color": 3046706
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m41",
-      "type": "sphere",
-      "geometry": {
-        "radius": 2.8,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_50",
+      "transform": {
+        "pos": [
+          -0.31,
+          -0.11,
+          -0.54
+        ],
+        "quat": [
+          -0.66,
+          0,
+          0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 2.06,
-        "y": 0,
-        "z": 1.13
-      },
-      "color": 1793568
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_4_50",
+        "boneTo": "root_4_75"
+      }
     },
     {
       "id": "m42",
-      "type": "sphere",
-      "geometry": {
-        "radius": 2.8,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -1.54,
-        "y": 0,
-        "z": -1.27
-      },
-      "color": 1793568
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m43",
-      "type": "sphere",
-      "geometry": {
-        "radius": 2.2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_75",
+      "transform": {
+        "pos": [
+          -0.32,
+          -0.12,
+          -0.56
+        ],
+        "quat": [
+          -0.66,
+          0,
+          0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": 2,
-        "z": -0.07000000000000006
-      },
-      "color": 3046706
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_4_75",
+        "boneTo": "root_4_100"
+      }
     },
     {
       "id": "m44",
-      "type": "sphere",
-      "geometry": {
-        "radius": 2,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_4_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 1.2599999999999998,
-        "y": 1.5,
-        "z": -1.57
-      },
-      "color": 1793568
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m45",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.165,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": 0.5,
-        "z": -0.07000000000000006
-      },
-      "color": 4073251
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.9,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m46",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.15,
-        "radiusBottom": 0.15,
-        "height": 3.08,
-        "radialSegments": 10
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          0.26,
+          -0.06,
+          -0.46
+        ],
+        "quat": [
+          -0.65,
+          0,
+          -0.37,
+          0.67
+        ]
       },
-      "position": {
-        "x": 1.5099999999999998,
-        "y": 1,
-        "z": 0.6799999999999999
-      },
-      "color": 4073251,
-      "quaternion": {
-        "x": 0.3,
-        "y": 0,
-        "z": -0.5,
-        "w": 0.81
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.43,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_5_0",
+        "boneTo": "root_5_25"
       }
     },
     {
       "id": "m47",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.15,
-        "radiusBottom": 0.15,
-        "height": 2.87,
-        "radialSegments": 10
+      "parent": "root_5_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.7400000000000001,
-        "y": 0.75,
-        "z": -1.07
-      },
-      "color": 4073251,
-      "quaternion": {
-        "x": -0.45,
-        "y": 0,
-        "z": 0.45,
-        "w": 0.77
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.66,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m48",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.15,
-        "radiusBottom": 0.15,
-        "height": 2.12,
-        "radialSegments": 10
+      "parent": "root_5_25",
+      "transform": {
+        "pos": [
+          0.29,
+          -0.09,
+          -0.5
+        ],
+        "quat": [
+          -0.66,
+          0,
+          -0.38,
+          0.65
+        ]
       },
-      "position": {
-        "x": 0.5099999999999999,
-        "y": 1.5,
-        "z": -0.32000000000000006
-      },
-      "color": 4073251,
-      "quaternion": {
-        "x": -0.12,
-        "y": 0,
-        "z": -0.12,
-        "w": 0.99
-      }
-    },
-    {
-      "id": "face",
-      "name": "face",
-      "group": true,
-      "position": {
-        "x": -0.2599999999999999,
-        "y": 1.65,
-        "z": 1.15
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.64,
+          "radiusBottom": 0.64,
+          "height": 0.69,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_5_25",
+        "boneTo": "root_5_50"
       }
     },
     {
       "id": "m49",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.3,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_5_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.1900000000000001,
-        "y": 1.25,
-        "z": 0
-      },
-      "color": 1710618
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m50",
-      "type": "sphere",
-      "geometry": {
-        "radius": 0.3,
-        "widthSegments": 10,
-        "heightSegments": 7
+      "parent": "root_5_50",
+      "transform": {
+        "pos": [
+          0.31,
+          -0.11,
+          -0.54
+        ],
+        "quat": [
+          -0.66,
+          0,
+          -0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0.71,
-        "y": 1.25,
-        "z": 0
-      },
-      "color": 1710618
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.47,
+          "radiusBottom": 0.47,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_5_50",
+        "boneTo": "root_5_75"
+      }
     },
     {
       "id": "m51",
-      "type": "icosahedron",
-      "geometry": {
-        "radius": 0.12,
-        "detail": 0
+      "parent": "root_5_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": -0.1900000000000001,
-        "y": 1.25,
-        "z": 0.25
-      },
-      "color": 5597999
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.34,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
     },
     {
       "id": "m52",
-      "type": "icosahedron",
-      "geometry": {
-        "radius": 0.12,
-        "detail": 0
+      "parent": "root_5_75",
+      "transform": {
+        "pos": [
+          0.32,
+          -0.12,
+          -0.56
+        ],
+        "quat": [
+          -0.66,
+          0,
+          -0.38,
+          0.64
+        ]
       },
-      "position": {
-        "x": 0.71,
-        "y": 1.25,
-        "z": 0.25
-      },
-      "color": 5597999
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.08,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "root_5_75",
+        "boneTo": "root_5_100"
+      }
     },
     {
       "id": "m53",
-      "type": "cylinder",
-      "geometry": {
-        "radiusTop": 0.3,
-        "radiusBottom": 0.3,
-        "height": 1,
-        "radialSegments": 10
+      "parent": "root_5_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": 0.3500000000000001,
-        "z": 0.3500000000000001
-      },
-      "color": 4073251,
-      "quaternion": {
-        "x": 0.95,
-        "y": 0,
-        "z": 0,
-        "w": 0.32
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
       }
     },
     {
       "id": "m54",
-      "type": "box",
-      "geometry": {
-        "width": 1.2,
-        "height": 0.15,
-        "depth": 0.3
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0914,
+          -0.5,
+          -0.062
+        ]
       },
-      "position": {
-        "x": 0.2599999999999999,
-        "y": -0.34999999999999987,
-        "z": 0.20000000000000018
-      },
-      "color": 1710618
-    }
-  ],
-  "tree": [
-    {
-      "id": "roots",
-      "name": "roots",
-      "offset": [
-        -0.26,
-        0.25,
-        0.59
-      ],
-      "meshes": [
-        {
-          "id": "m0",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": 0.72,
-            "y": 0,
-            "z": 0.84
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.73,
-            "y": 0,
-            "z": -0.24,
-            "w": 0.65
-          }
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.4,
+          "radiusBottom": 2.2,
+          "height": 6,
+          "radialSegments": 10
         },
-        {
-          "id": "m1",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": 1.1870509831248421,
-            "y": -0.15,
-            "z": 2.2631695488854606
-          },
-          "color": 4073251
-        },
-        {
-          "id": "m2",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": 0.2899999999999999,
-            "y": 0,
-            "z": 0.91
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.76,
-            "y": 0,
-            "z": -0.01,
-            "w": 0.65
-          }
-        },
-        {
-          "id": "m3",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": 0.312822185730577,
-            "y": -0.15,
-            "z": 2.409534933401284
-          },
-          "color": 4073251
-        },
-        {
-          "id": "m4",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": -0.15000000000000008,
-            "y": 0,
-            "z": 0.85
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.73,
-            "y": 0,
-            "z": 0.21,
-            "w": 0.65
-          }
-        },
-        {
-          "id": "m5",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": -0.5660179815287903,
-            "y": -0.15,
-            "z": 2.294041312844028
-          },
-          "color": 4073251
-        },
-        {
-          "id": "m6",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": -0.56,
-            "y": 0,
-            "z": 0.67
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.64,
-            "y": 0,
-            "z": 0.42,
-            "w": 0.65
-          }
-        },
-        {
-          "id": "m7",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": -1.3727468876699782,
-            "y": -0.15,
-            "z": 1.926771265094228
-          },
-          "color": 4073251
-        },
-        {
-          "id": "m8",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": -0.89,
-            "y": 0,
-            "z": 0.37
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.49,
-            "y": 0,
-            "z": 0.58,
-            "w": 0.65
-          }
-        },
-        {
-          "id": "m9",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": -2.0369372053185053,
-            "y": -0.15,
-            "z": 1.3397874170031314
-          },
-          "color": 4073251
-        },
-        {
-          "id": "m10",
-          "type": "cylinder",
-          "geometry": {
-            "radiusTop": 0.55,
-            "radiusBottom": 0.55,
-            "height": 3.04,
-            "radialSegments": 10
-          },
-          "position": {
-            "x": -1.12,
-            "y": 0,
-            "z": 0
-          },
-          "color": 5125166,
-          "quaternion": {
-            "x": 0.3,
-            "y": 0,
-            "z": 0.7,
-            "w": 0.65
-          }
-        },
-        {
-          "id": "m11",
-          "type": "sphere",
-          "geometry": {
-            "radius": 0.6,
-            "widthSegments": 10,
-            "heightSegments": 7
-          },
-          "position": {
-            "x": -2.500605207123227,
-            "y": -0.15,
-            "z": 0.584333381286645
-          },
-          "color": 4073251
-        }
-      ],
-      "children": [
-        {
-          "id": "trunk",
-          "name": "trunk",
-          "offset": [
-            0,
-            1.4,
-            -0.52
-          ],
-          "meshes": [
-            {
-              "id": "m12",
-              "type": "cylinder",
-              "geometry": {
-                "radiusTop": 1.3,
-                "radiusBottom": 1.5,
-                "height": 3.5,
-                "radialSegments": 8
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": 0.10000000000000009,
-                "z": -0.07000000000000006
-              },
-              "color": 5125166
-            },
-            {
-              "id": "m13",
-              "type": "sphere",
-              "geometry": {
-                "radius": 1.1,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 0.8599999999999999,
-                "y": 1.15,
-                "z": 0.5299999999999999
-              },
-              "color": 4073251
-            },
-            {
-              "id": "m14",
-              "type": "sphere",
-              "geometry": {
-                "radius": 0.9,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": -0.44000000000000006,
-                "y": 0.15000000000000013,
-                "z": -0.5700000000000001
-              },
-              "color": 4073251
-            }
-          ],
-          "children": [
-            {
-              "id": "trunk_wp0",
-              "name": "wp0",
-              "offset": [
-                1.06,
-                0.85,
-                0.43
-              ],
-              "meshes": [
-                {
-                  "id": "m15",
-                  "type": "sphere",
-                  "geometry": {
-                    "radius": 0.15,
-                    "widthSegments": 10,
-                    "heightSegments": 7
-                  },
-                  "position": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "color": 7048739
-                },
-                {
-                  "id": "m16",
-                  "type": "cylinder",
-                  "geometry": {
-                    "radiusTop": 0.13,
-                    "radiusBottom": 0.13,
-                    "height": 0.95,
-                    "radialSegments": 10
-                  },
-                  "position": {
-                    "x": 0.12,
-                    "y": -0.51,
-                    "z": 0.05
-                  },
-                  "color": 7048739,
-                  "quaternion": {
-                    "x": 0.38,
-                    "y": 0,
-                    "z": -0.92,
-                    "w": 0.13
-                  },
-                  "boneFrom": "trunk_wp0",
-                  "boneTo": "trunk_wp1",
-                  "boneRestLen": 0.95
-                }
-              ],
-              "children": [
-                {
-                  "id": "trunk_wp1",
-                  "name": "wp1",
-                  "offset": [
-                    0.24,
-                    -1,
-                    0.1
-                  ],
-                  "meshes": [
-                    {
-                      "id": "m17",
-                      "type": "sphere",
-                      "geometry": {
-                        "radius": 0.09,
-                        "widthSegments": 10,
-                        "heightSegments": 7
-                      },
-                      "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                      },
-                      "color": 7048739
-                    },
-                    {
-                      "id": "m18",
-                      "type": "cylinder",
-                      "geometry": {
-                        "radiusTop": 0.08,
-                        "radiusBottom": 0.08,
-                        "height": 0.97,
-                        "radialSegments": 10
-                      },
-                      "position": {
-                        "x": -0.08,
-                        "y": -0.5,
-                        "z": 0.05
-                      },
-                      "color": 7048739,
-                      "quaternion": {
-                        "x": 0.53,
-                        "y": 0,
-                        "z": 0.84,
-                        "w": 0.09
-                      },
-                      "boneFrom": "trunk_wp1",
-                      "boneTo": "trunk_wp2",
-                      "boneRestLen": 0.97
-                    }
-                  ],
-                  "children": [
-                    {
-                      "id": "trunk_wp2",
-                      "name": "wp2",
-                      "offset": [
-                        -0.16,
-                        -1,
-                        0.1
-                      ],
-                      "meshes": [
-                        {
-                          "id": "m19",
-                          "type": "sphere",
-                          "geometry": {
-                            "radius": 0.05,
-                            "widthSegments": 10,
-                            "heightSegments": 7
-                          },
-                          "position": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                          },
-                          "color": 7048739
-                        }
-                      ],
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "trunk_wp0_1",
-              "name": "wp0",
-              "offset": [
-                1.26,
-                0.85,
-                -0.67
-              ],
-              "meshes": [
-                {
-                  "id": "m20",
-                  "type": "sphere",
-                  "geometry": {
-                    "radius": 0.15,
-                    "widthSegments": 10,
-                    "heightSegments": 7
-                  },
-                  "position": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "color": 7048739
-                },
-                {
-                  "id": "m21",
-                  "type": "cylinder",
-                  "geometry": {
-                    "radiusTop": 0.13,
-                    "radiusBottom": 0.13,
-                    "height": 0.97,
-                    "radialSegments": 10
-                  },
-                  "position": {
-                    "x": 0.15,
-                    "y": -0.51,
-                    "z": -0.06
-                  },
-                  "color": 7048739,
-                  "quaternion": {
-                    "x": -0.37,
-                    "y": 0,
-                    "z": -0.92,
-                    "w": 0.16
-                  },
-                  "boneFrom": "trunk_wp0_1",
-                  "boneTo": "trunk_wp1_1",
-                  "boneRestLen": 0.97
-                }
-              ],
-              "children": [
-                {
-                  "id": "trunk_wp1_1",
-                  "name": "wp1",
-                  "offset": [
-                    0.3,
-                    -1,
-                    -0.12
-                  ],
-                  "meshes": [
-                    {
-                      "id": "m22",
-                      "type": "sphere",
-                      "geometry": {
-                        "radius": 0.09,
-                        "widthSegments": 10,
-                        "heightSegments": 7
-                      },
-                      "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                      },
-                      "color": 7048739
-                    },
-                    {
-                      "id": "m23",
-                      "type": "cylinder",
-                      "geometry": {
-                        "radiusTop": 0.08,
-                        "radiusBottom": 0.08,
-                        "height": 0.98,
-                        "radialSegments": 10
-                      },
-                      "position": {
-                        "x": -0.1,
-                        "y": -0.51,
-                        "z": -0.06
-                      },
-                      "color": 7048739,
-                      "quaternion": {
-                        "x": -0.51,
-                        "y": 0,
-                        "z": 0.85,
-                        "w": 0.11
-                      },
-                      "boneFrom": "trunk_wp1_1",
-                      "boneTo": "trunk_wp2_1",
-                      "boneRestLen": 0.98
-                    }
-                  ],
-                  "children": [
-                    {
-                      "id": "trunk_wp2_1",
-                      "name": "wp2",
-                      "offset": [
-                        -0.2,
-                        -1,
-                        -0.12
-                      ],
-                      "meshes": [
-                        {
-                          "id": "m24",
-                          "type": "sphere",
-                          "geometry": {
-                            "radius": 0.05,
-                            "widthSegments": 10,
-                            "heightSegments": 7
-                          },
-                          "position": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                          },
-                          "color": 7048739
-                        }
-                      ],
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "trunk_wp0_2",
-              "name": "wp0",
-              "offset": [
-                1.46,
-                0.85,
-                0.63
-              ],
-              "meshes": [
-                {
-                  "id": "m25",
-                  "type": "sphere",
-                  "geometry": {
-                    "radius": 0.15,
-                    "widthSegments": 10,
-                    "heightSegments": 7
-                  },
-                  "position": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "color": 7048739
-                },
-                {
-                  "id": "m26",
-                  "type": "cylinder",
-                  "geometry": {
-                    "radiusTop": 0.13,
-                    "radiusBottom": 0.13,
-                    "height": 0.99,
-                    "radialSegments": 10
-                  },
-                  "position": {
-                    "x": 0.18,
-                    "y": -0.51,
-                    "z": 0.07
-                  },
-                  "color": 7048739,
-                  "quaternion": {
-                    "x": 0.36,
-                    "y": 0,
-                    "z": -0.92,
-                    "w": 0.18
-                  },
-                  "boneFrom": "trunk_wp0_2",
-                  "boneTo": "trunk_wp1_2",
-                  "boneRestLen": 0.99
-                }
-              ],
-              "children": [
-                {
-                  "id": "trunk_wp1_2",
-                  "name": "wp1",
-                  "offset": [
-                    0.36,
-                    -1,
-                    0.14
-                  ],
-                  "meshes": [
-                    {
-                      "id": "m27",
-                      "type": "sphere",
-                      "geometry": {
-                        "radius": 0.09,
-                        "widthSegments": 10,
-                        "heightSegments": 7
-                      },
-                      "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                      },
-                      "color": 7048739
-                    },
-                    {
-                      "id": "m28",
-                      "type": "cylinder",
-                      "geometry": {
-                        "radiusTop": 0.08,
-                        "radiusBottom": 0.08,
-                        "height": 0.99,
-                        "radialSegments": 10
-                      },
-                      "position": {
-                        "x": -0.12,
-                        "y": -0.5,
-                        "z": 0.07
-                      },
-                      "color": 7048739,
-                      "quaternion": {
-                        "x": 0.5,
-                        "y": 0,
-                        "z": 0.86,
-                        "w": 0.14
-                      },
-                      "boneFrom": "trunk_wp1_2",
-                      "boneTo": "trunk_wp2_2",
-                      "boneRestLen": 0.99
-                    }
-                  ],
-                  "children": [
-                    {
-                      "id": "trunk_wp2_2",
-                      "name": "wp2",
-                      "offset": [
-                        -0.24,
-                        -1,
-                        0.14
-                      ],
-                      "meshes": [
-                        {
-                          "id": "m29",
-                          "type": "sphere",
-                          "geometry": {
-                            "radius": 0.05,
-                            "widthSegments": 10,
-                            "heightSegments": 7
-                          },
-                          "position": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                          },
-                          "color": 7048739
-                        }
-                      ],
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "trunk_wp0_3",
-              "name": "wp0",
-              "offset": [
-                -1.14,
-                0.85,
-                -0.87
-              ],
-              "meshes": [
-                {
-                  "id": "m30",
-                  "type": "sphere",
-                  "geometry": {
-                    "radius": 0.15,
-                    "widthSegments": 10,
-                    "heightSegments": 7
-                  },
-                  "position": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "color": 7048739
-                },
-                {
-                  "id": "m31",
-                  "type": "cylinder",
-                  "geometry": {
-                    "radiusTop": 0.13,
-                    "radiusBottom": 0.13,
-                    "height": 1.02,
-                    "radialSegments": 10
-                  },
-                  "position": {
-                    "x": -0.21,
-                    "y": -0.51,
-                    "z": -0.08
-                  },
-                  "color": 7048739,
-                  "quaternion": {
-                    "x": -0.35,
-                    "y": 0,
-                    "z": 0.91,
-                    "w": 0.21
-                  },
-                  "boneFrom": "trunk_wp0_3",
-                  "boneTo": "trunk_wp1_3",
-                  "boneRestLen": 1.02
-                }
-              ],
-              "children": [
-                {
-                  "id": "trunk_wp1_3",
-                  "name": "wp1",
-                  "offset": [
-                    -0.42,
-                    -1,
-                    -0.16
-                  ],
-                  "meshes": [
-                    {
-                      "id": "m32",
-                      "type": "sphere",
-                      "geometry": {
-                        "radius": 0.09,
-                        "widthSegments": 10,
-                        "heightSegments": 7
-                      },
-                      "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                      },
-                      "color": 7048739
-                    },
-                    {
-                      "id": "m33",
-                      "type": "cylinder",
-                      "geometry": {
-                        "radiusTop": 0.08,
-                        "radiusBottom": 0.08,
-                        "height": 1,
-                        "radialSegments": 10
-                      },
-                      "position": {
-                        "x": 0.14,
-                        "y": -0.5,
-                        "z": -0.08
-                      },
-                      "color": 7048739,
-                      "quaternion": {
-                        "x": -0.49,
-                        "y": 0,
-                        "z": -0.86,
-                        "w": 0.16
-                      },
-                      "boneFrom": "trunk_wp1_3",
-                      "boneTo": "trunk_wp2_3",
-                      "boneRestLen": 1
-                    }
-                  ],
-                  "children": [
-                    {
-                      "id": "trunk_wp2_3",
-                      "name": "wp2",
-                      "offset": [
-                        0.28,
-                        -1,
-                        -0.16
-                      ],
-                      "meshes": [
-                        {
-                          "id": "m34",
-                          "type": "sphere",
-                          "geometry": {
-                            "radius": 0.05,
-                            "widthSegments": 10,
-                            "heightSegments": 7
-                          },
-                          "position": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                          },
-                          "color": 7048739
-                        }
-                      ],
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "trunk_wp0_4",
-              "name": "wp0",
-              "offset": [
-                -1.34,
-                0.85,
-                0.83
-              ],
-              "meshes": [
-                {
-                  "id": "m35",
-                  "type": "sphere",
-                  "geometry": {
-                    "radius": 0.15,
-                    "widthSegments": 10,
-                    "heightSegments": 7
-                  },
-                  "position": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "color": 7048739
-                },
-                {
-                  "id": "m36",
-                  "type": "cylinder",
-                  "geometry": {
-                    "radiusTop": 0.13,
-                    "radiusBottom": 0.13,
-                    "height": 1.04,
-                    "radialSegments": 10
-                  },
-                  "position": {
-                    "x": -0.24,
-                    "y": -0.51,
-                    "z": 0.09
-                  },
-                  "color": 7048739,
-                  "quaternion": {
-                    "x": 0.34,
-                    "y": 0,
-                    "z": 0.91,
-                    "w": 0.23
-                  },
-                  "boneFrom": "trunk_wp0_4",
-                  "boneTo": "trunk_wp1_4",
-                  "boneRestLen": 1.04
-                }
-              ],
-              "children": [
-                {
-                  "id": "trunk_wp1_4",
-                  "name": "wp1",
-                  "offset": [
-                    -0.48,
-                    -1,
-                    0.18
-                  ],
-                  "meshes": [
-                    {
-                      "id": "m37",
-                      "type": "sphere",
-                      "geometry": {
-                        "radius": 0.09,
-                        "widthSegments": 10,
-                        "heightSegments": 7
-                      },
-                      "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                      },
-                      "color": 7048739
-                    },
-                    {
-                      "id": "m38",
-                      "type": "cylinder",
-                      "geometry": {
-                        "radiusTop": 0.08,
-                        "radiusBottom": 0.08,
-                        "height": 1.02,
-                        "radialSegments": 10
-                      },
-                      "position": {
-                        "x": 0.16,
-                        "y": -0.51,
-                        "z": 0.09
-                      },
-                      "color": 7048739,
-                      "quaternion": {
-                        "x": 0.48,
-                        "y": 0,
-                        "z": -0.86,
-                        "w": 0.18
-                      },
-                      "boneFrom": "trunk_wp1_4",
-                      "boneTo": "trunk_wp2_4",
-                      "boneRestLen": 1.02
-                    }
-                  ],
-                  "children": [
-                    {
-                      "id": "trunk_wp2_4",
-                      "name": "wp2",
-                      "offset": [
-                        0.32,
-                        -1,
-                        0.18
-                      ],
-                      "meshes": [
-                        {
-                          "id": "m39",
-                          "type": "sphere",
-                          "geometry": {
-                            "radius": 0.05,
-                            "widthSegments": 10,
-                            "heightSegments": 7
-                          },
-                          "position": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                          },
-                          "color": 7048739
-                        }
-                      ],
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "canopy",
-          "name": "canopy",
-          "offset": [
-            0,
-            4.75,
-            -0.52
-          ],
-          "meshes": [
-            {
-              "id": "m40",
-              "type": "sphere",
-              "geometry": {
-                "radius": 3.2,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": 0.5,
-                "z": -0.07000000000000006
-              },
-              "color": 3046706
-            },
-            {
-              "id": "m41",
-              "type": "sphere",
-              "geometry": {
-                "radius": 2.8,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 2.06,
-                "y": 0,
-                "z": 1.13
-              },
-              "color": 1793568
-            },
-            {
-              "id": "m42",
-              "type": "sphere",
-              "geometry": {
-                "radius": 2.8,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": -1.54,
-                "y": 0,
-                "z": -1.27
-              },
-              "color": 1793568
-            },
-            {
-              "id": "m43",
-              "type": "sphere",
-              "geometry": {
-                "radius": 2.2,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": 2,
-                "z": -0.07000000000000006
-              },
-              "color": 3046706
-            },
-            {
-              "id": "m44",
-              "type": "sphere",
-              "geometry": {
-                "radius": 2,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 1.2599999999999998,
-                "y": 1.5,
-                "z": -1.57
-              },
-              "color": 1793568
-            },
-            {
-              "id": "m45",
-              "type": "sphere",
-              "geometry": {
-                "radius": 0.165,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": 0.5,
-                "z": -0.07000000000000006
-              },
-              "color": 4073251
-            },
-            {
-              "id": "m46",
-              "type": "cylinder",
-              "geometry": {
-                "radiusTop": 0.15,
-                "radiusBottom": 0.15,
-                "height": 3.08,
-                "radialSegments": 10
-              },
-              "position": {
-                "x": 1.5099999999999998,
-                "y": 1,
-                "z": 0.6799999999999999
-              },
-              "color": 4073251,
-              "quaternion": {
-                "x": 0.3,
-                "y": 0,
-                "z": -0.5,
-                "w": 0.81
-              }
-            },
-            {
-              "id": "m47",
-              "type": "cylinder",
-              "geometry": {
-                "radiusTop": 0.15,
-                "radiusBottom": 0.15,
-                "height": 2.87,
-                "radialSegments": 10
-              },
-              "position": {
-                "x": -0.7400000000000001,
-                "y": 0.75,
-                "z": -1.07
-              },
-              "color": 4073251,
-              "quaternion": {
-                "x": -0.45,
-                "y": 0,
-                "z": 0.45,
-                "w": 0.77
-              }
-            },
-            {
-              "id": "m48",
-              "type": "cylinder",
-              "geometry": {
-                "radiusTop": 0.15,
-                "radiusBottom": 0.15,
-                "height": 2.12,
-                "radialSegments": 10
-              },
-              "position": {
-                "x": 0.5099999999999999,
-                "y": 1.5,
-                "z": -0.32000000000000006
-              },
-              "color": 4073251,
-              "quaternion": {
-                "x": -0.12,
-                "y": 0,
-                "z": -0.12,
-                "w": 0.99
-              }
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "face",
-          "name": "face",
-          "offset": [
-            0,
-            1.4,
-            0.56
-          ],
-          "meshes": [
-            {
-              "id": "m49",
-              "type": "sphere",
-              "geometry": {
-                "radius": 0.3,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": -0.1900000000000001,
-                "y": 1.25,
-                "z": 0
-              },
-              "color": 1710618
-            },
-            {
-              "id": "m50",
-              "type": "sphere",
-              "geometry": {
-                "radius": 0.3,
-                "widthSegments": 10,
-                "heightSegments": 7
-              },
-              "position": {
-                "x": 0.71,
-                "y": 1.25,
-                "z": 0
-              },
-              "color": 1710618
-            },
-            {
-              "id": "m51",
-              "type": "icosahedron",
-              "geometry": {
-                "radius": 0.12,
-                "detail": 0
-              },
-              "position": {
-                "x": -0.1900000000000001,
-                "y": 1.25,
-                "z": 0.25
-              },
-              "color": 5597999
-            },
-            {
-              "id": "m52",
-              "type": "icosahedron",
-              "geometry": {
-                "radius": 0.12,
-                "detail": 0
-              },
-              "position": {
-                "x": 0.71,
-                "y": 1.25,
-                "z": 0.25
-              },
-              "color": 5597999
-            },
-            {
-              "id": "m53",
-              "type": "cylinder",
-              "geometry": {
-                "radiusTop": 0.3,
-                "radiusBottom": 0.3,
-                "height": 1,
-                "radialSegments": 10
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": 0.3500000000000001,
-                "z": 0.3500000000000001
-              },
-              "color": 4073251,
-              "quaternion": {
-                "x": 0.95,
-                "y": 0,
-                "z": 0,
-                "w": 0.32
-              }
-            },
-            {
-              "id": "m54",
-              "type": "box",
-              "geometry": {
-                "width": 1.2,
-                "height": 0.15,
-                "depth": 0.3
-              },
-              "position": {
-                "x": 0.2599999999999999,
-                "y": -0.34999999999999987,
-                "z": 0.20000000000000018
-              },
-              "color": 1710618
-            }
-          ],
-          "children": []
-        }
-      ]
-    }
-  ],
-  "_skipAutoCenter": true,
-  "_routerResponse": "```json\n{\n  \"proportions\": \"粗壮扭曲主干占1/2高，底部放射状抓地树根，顶部巨大球形浓密树冠，整体稳重\",\n  \"regions\": [\n    {\"name\": \"trunk\", \"desc\": \"极粗且扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23]\"},\n    {\"name\": \"roots\", \"desc\": \"粗大放射状抓地、树根-深棕\"},\n    {\"name\": \"canopy\", \"desc\": \"巨大球形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723]\"},\n    {\"name\": \"face\", \"desc\": \"位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑\"}\n  ],\n  \"methodologies\": [\"vegetation\"]\n}\n```",
-  "_routerThinking": "1. **具象化**:\n   - 输入: \"a lowpoly stylized ancient fantasy tree with thick gnarled trunk and round dense canopy, wise looking\"\n   - 这是一个实物（古树），不需要情境化。但带有\"wise looking\"（看起来充满智慧）的拟人特征，可以在结构上体现（比如树干上的树洞像一张老脸，或者粗壮扭曲的枝干像手臂/胡须）。\n\n2. **结构划分**:\n   - 单体模型：树。\n   - 部件：trunk (树干，粗壮扭曲), roots (树根，抓地), canopy (树冠，圆形浓密), face_features (智慧的面容特征，如树洞眼/嘴/树瘤胡须)。\n   - proportions: 粗壮扭曲的树干占据主体，底部树根抓地，顶部圆形浓密树冠，整体比例稳重。\n   - regions: trunk, roots, canopy, face\n\n3. **写desc + 配件**:\n   - proportions: \"粗壮扭曲的主干占主体1/2高，底部放射状树根，顶部巨大球形浓密树冠，整体稳重\"\n   - trunk: 粗壮扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23]\n   - roots: 粗大抓地、树根-深棕\n   - canopy: 圆形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723]\n   - face: 位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑\n\n4. **方法论选取**:\n   - 身体结构: vegetation (植物)\n   - 头部: head:projection (有突出的鼻子/树瘤) 或者直接用 vegetation 覆盖。既然有wise looking拟人特征，可以加个 head:projection 体现突出的面部特征，但树不是动物。还是只用 vegetation 吧，或者不选head。树干上的脸算作附着物。\n   - 翅膀: 无\n\n5. **检查与格式化**:\n   - JSON格式\n   - 颜色内联，首次带hex\n   - desc只描述比例、宽窄、配件，不描述几何块具体形状。\n   - 去掉纹理词。\n\n   ```json\n   {\n     \"proportions\": \"粗壮扭曲主干占1/2高，底部放射状抓地树根，顶部巨大球形浓密树冠，整体稳重\",\n     \"regions\": [\n       {\"name\": \"trunk\", \"desc\": \"极粗且扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23]\"},\n       {\"name\": \"roots\", \"desc\": \"粗大放射状抓地、树根-深棕\"},\n       {\"name\": \"canopy\", \"desc\": \"巨大球形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723]\"},\n       {\"name\": \"face\", \"desc\": \"位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑\"}\n     ],\n     \"methodologies\": [\"vegetation\"]\n   }\n   ```",
-  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Lowpoly stylized ancient fantasy tree, thick gnarled trunk, round dense canopy, wise looking.\n    *   **Draft Structure:**\n        *   `trunk`: Thick, twisted, bark-dark brown [4e342e], burls-dark brown, drooping beard-like branches-gray-green [6b8e23].\n        *   `roots`: Thick radial ground-gripping, dark brown.\n        *   `canopy`: Huge spherical dense, leaves-dark green [2e7d32], interspersed dead branches-dark brown [3e2723].\n        *   `face`: Upper trunk, deep eye hollows-black [1a1a1a], long nose burl-dark brown, large mouth crack-black.\n    *   **Proportions:** Thick twisted trunk = 1/2 height, radial roots at base, huge spherical dense canopy at top, overall stable.\n    *   **Scale:** ~6-7 units total height. Trunk ~3.0-3.5, Canopy ~3.0-3.5.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Block-based modeling.\n\n2.  **Deconstruct & Plan Geometry:**\n    *   **Total Height:** ~7 units. Trunk base at Y=0, trunk top at Y=3.5, canopy center at Y=5.5, canopy top at Y=7.\n    *   **Roots (`roots`):** Radial thick roots. Use `cyl` or `box` angled outwards. Let's use `chain` or angled `cyl` for 5-6 thick roots spreading from Y=0.\n    *   **Trunk (`trunk`):** Thick, twisted. Use a wide `cyl` (r=1.2, h=3.5) or stacked `box`/`cyl` with slight offsets to simulate twist. Let's use a main `cyl` and add burls (`sphere`) and twisted texture (overlapping `cyl` or `box` at slight angles). Drooping beard branches: `chain` hanging down from mid-trunk.\n    *   **Canopy (`canopy`):** Huge spherical dense. Use multiple overlapping `sphere` (different sizes, slight offsets) to create a dense, low-poly cluster. Add a few dead branches (`fork` or `cyl`) poking out.\n    *   **Face (`face`):** Upper trunk (Y~2.5-3.0). Deep eye hollows: `sphere` (black) pushed slightly *into* the trunk (or just placed on surface). Long nose burl: `cyl` or `cone` pointing forward (+Z). Mouth crack: `box` (thin, wide) or `tri`.\n\n3.  **Drafting the Code (Mental or Scratchpad):**\n    *   *Colors:* C_BARK=0x4e342e, C_BURL=0x3e2723, C_BEARD=0x6b8e23, C_LEAF=0x2e7d32, C_LEAF2=0x1b5e20, C_DARK=0x1a1a1a.\n    *   *Roots:*\n        ```javascript\n        api.group('roots','roots');\n        for(let i=0; i<6; i++) {\n            let angle = i/6 * Math.PI * 2;\n            let pos = api.pointOnCircle([0,0,0], 1.2, 'Y', angle);\n            // connect base to ground\n            api.cyl({r:0.4, rBot:0.6, h:1.5, pos:[pos[0]*1.5, 0.3, pos[2]*1.5], along:'+X', color:C_BARK}); // need to rotate to point outwards\n            // Better: use chain or just angled boxes/cyls\n            let p1 = [0, 0.5, 0];\n            let p2 = [pos[0]*2.5, 0, pos[2]*2.5];\n            api.connect(p1, p2, {r:0.5, color:C_BARK});\n        }\n        api.endGroup();\n        ```\n    *   *Trunk:*\n        ```javascript\n        api.group('trunk','trunk');\n        // Main trunk body - slightly tapered\n        api.cyl({r:1.2, rBot:1.4, h:3.5, pos:[0,1.75,0], seg:8, color:C_BARK});\n        // Twist/burl details\n        api.sphere({r:1.0, pos:[0.5, 2.5, 0.8], color:C_BURL});\n        api.sphere({r:0.8, pos:[-0.6, 1.5, -0.5], color:C_BURL});\n        // Beard branches\n        for(let i=0; i<4; i++) {\n            let sx = i%2===0 ? 1 : -1;\n            let sz = i<2 ? 1 : -1;\n            api.chain({waypoints:[[sx*0.8, 2.5, sz*0.5], [sx*1.2, 1.5, sz*0.8], [sx*1.0, 0.5, sz*1.0]], r:0.1, color:C_BEARD});\n        }\n        api.endGroup();\n        ```\n    *   *Canopy:*\n        ```javascript\n        api.group('canopy','canopy');\n        // Dense spherical cluster\n        api.sphere({r:3.0, pos:[0,5.5,0], seg:6, color:C_LEAF});\n        api.sphere({r:2.5, pos:[1.5,5.0,1.0], seg:5, color:C_LEAF2});\n        api.sphere({r:2.5, pos:[-1.5,5.0,-1.0], seg:5, color:C_LEAF2});\n        api.sphere({r:2.0, pos:[0,6.5,0], seg:5, color:C_LEAF});\n        // Dead branches poking out\n        api.fork({from:[0,5.5,0], to:[[2.5, 6.0, 1.5], [-2.0, 5.5, -2.0]], r:0.15, color:C_BURL});\n        api.endGroup();\n        ```\n    *   *Face:*\n        ```javascript\n        api.group('face','face');\n        // Eyes - deep hollows\n        api.sphere({r:0.25, pos:[-0.4, 2.8, 1.1], color:C_DARK});\n        api.sphere({r:0.25, pos:[0.4, 2.8, 1.1], color:C_DARK});\n        // Nose - long burl\n        api.cone({r:0.3, h:1.2, pos:[0, 2.2, 1.4], along:'+Z', color:C_BURL}); // along +Z points tip away? Wait, cone along is tip direction. So along:'+Y' is tip up. We want tip pointing down and out. Let's use along:'-Y' rotated? No, just use pos and along.\n        // If along is not specified, cone points +Y. We want it pointing down and forward.\n        // Let's use a cyl for the nose, slightly tapered.\n        api.cyl({rTop:0.15, rBot:0.3, h:1.0, pos:[0, 1.8, 1.3], along:'+Z', color:C_BURL}); // Wait, along:'+Z' makes h along Z. pos Y=1.8, so it goes from Y=1.8 Z=0.8 to Z=1.8. That's horizontal. We want it drooping.\n        // Better: api.connect([0, 2.2, 1.2], [0, 1.5, 1.8], {r:0.25, color:C_BURL});\n        api.connect([0, 2.2, 1.2], [0, 1.5, 1.8], {r:0.25, color:C_BURL});\n        // Mouth - crack\n        api.box({w:1.0, h:0.15, d:0.2, pos:[0, 1.2, 1.3], color:C_DARK});\n        api.endGroup();\n        ```\n\n4.  **Refining Geometry & Details:**\n    *   *Roots:* `connect` is great for roots. Let's do 5-6 thick roots.\n    *   *Trunk:* `cyl` with `seg:7` or `8` for lowpoly look. Add a couple of `sphere` burls. Beard branches: `chain` with `rStart:0.15, rEnd:0.05` for tapering.\n    *   *Canopy:* Overlapping `sphere` with `seg:5` or `6` for stylized lowpoly look. Add some `fork` dead branches.\n    *   *Face:* The eyes should be deep. Maybe `poly` or `sphere` in black. Nose: `connect` gives a nice tapered cylinder. Mouth: thin `box`.\n    *   *Proportions check:* Trunk height 3.5, roots at 0, canopy center at 5.5 (r=3, so top is 8.5, bottom is 2.5 - overlaps trunk nicely). Total height ~8.5. Scale is fine.\n\n5.  **Polishing the Code:**\n    *   Ensure all API calls match the spec.\n    *   `connect(p1, p2, opts)` -> `api.connect(p1, p2, opts)`\n    *   `chain({waypoints: [...], r:..., color:...})`\n    *   `fork({from: [...], to: [[...],[...]], r:..., color:...})`\n    *   `pointOnCircle` for root placement.\n    *   Colors: C_BARK=0x4e342e, C_BURL=0x3e2723, C_BEARD=0x6b8e23, C_LEAF=0x2e7d32, C_LEAF2=0x1b5e20, C_DARK=0x1a1a1a.\n\n6.  **Final Code Assembly:**\n    ```javascript\n    function build(api) {\n      api.name('Ancient Fantasy Tree');\n      const C_BARK = 0x4e342e, C_BURL = 0x3e2723, C_BEARD = 0x6b8e23, C_LEAF = 0x2e7d32, C_LEAF2 = 0x1b5e20, C_DARK = 0x1a1a1a;\n\n      api.group('roots', 'roots');\n      for (let i = 0; i < 6; i++) {\n        let p = api.pointOnCircle([0, 0.5, 0], 1.2, 'Y', i / 6 * Math.PI * 2);\n        let pEnd = api.pointOnCircle([0, 0, 0], 3.0, 'Y', i / 6 * Math.PI * 2 + 0.2);\n        api.connect([0, 0.5, 0], pEnd, {r: 0.5, color: C_BARK});\n      }\n      api.endGroup();\n\n      api.group('trunk', 'trunk');\n      api.cyl({r: 1.3, rBot: 1.5, h: 3.5, pos: [0, 1.75, 0], seg: 8, color: C_BARK});\n      api.sphere({r: 1.1, pos: [0.6, 2.8, 0.6], color: C_BURL});\n      api.sphere({r: 0.9, pos: [-0.7, 1.8, -0.5], color: C_BURL});\n      \n      for (let i = 0; i < 5; i++) {\n        let sx = i < 3 ? 1 : -1;\n        let sz = i % 2 === 0 ? 1 : -1;\n        let xOff = sx * (0.8 + i * 0.2);\n        let zOff = sz * (0.5 + i * 0.1);\n        api.chain({\n          waypoints: [[xOff, 2.5, zOff], [xOff * 1.3, 1.5, zOff * 1.2], [xOff * 1.1, 0.5, zOff * 1.4]],\n          rStart: 0.15, rEnd: 0.05, color: C_BEARD\n        });\n      }\n      api.endGroup();\n\n      api.group('canopy', 'canopy');\n      api.sphere({r: 3.2, pos: [0, 5.5, 0], seg: 6, color: C_LEAF});\n      api.sphere({r: 2.8, pos: [1.8, 5.0, 1.2], seg: 5, color: C_LEAF2});\n      api.sphere({r: 2.8, pos: [-1.8, 5.0, -1.2], seg: 5, color: C_LEAF2});\n      api.sphere({r: 2.2, pos: [0, 7.0, 0], seg: 5, color: C_LEAF});\n      api.sphere({r: 2.0, pos: [1.0, 6.5, -1.5], seg: 5, color: C_LEAF2});\n      \n      api.fork({from: [0, 5.5, 0], to: [[2.5, 6.5, 1.5], [-2.0, 6.0, -2.0], [0.5, 7.5, -0.5]], r: 0.15, color: C_BURL});\n      api.endGroup();\n\n      api.group('face', 'face');\n      api.sphere({r: 0.3, pos: [-0.45, 2.9, 1.15], color: C_DARK});\n      api.sphere({r: 0.3, pos: [0.45, 2.9, 1.15], color: C_DARK});\n      api.poly({r: 0.12, pos: [-0.45, 2.9, 1.4], color: 0x556B2F});\n      api.poly({r: 0.12, pos: [0.45, 2.9, 1.4], color: 0x556B2F});\n      \n      api.connect([0, 2.4, 1.2], [0, 1.6, 1.8], {r: 0.3, color: C_BURL});\n      \n      api.box({w: 1.2, h: 0.15, d: 0.3, pos: [0, 1.3, 1.35], color: C_DARK});\n      api.endGroup();\n    }\n    ```\n    Wait, `connect` syntax: `api.connect([x1,y1,z1],[x2,y2,z2],{r,color?})`. Yes.\n    `fork` syntax: `api.fork({from,to,r,color?})`. Yes.\n    `chain` syntax: `api.chain({waypoints,r|rStart+rEnd,jointIds?,color?})`. Yes.\n    Let's check the face. The trunk is `r:1.3` at top, so surface is at Z~1.3. Eyes at Z=1.15 will be slightly embedded, which is good for \"deep hollows\". Pupils at Z=1.4 will protrude slightly. Nose from Z=1.2 to Z=1.8 protrudes nicely. Mouth at Z=1.35 protrudes slightly. This looks solid.\n    Roots: `connect` from `[0,0.5,0]` to `pEnd`. `pEnd` is at Y=0, radius 3.0. This will create nice sloping roots.\n    Canopy: overlapping spheres with low `seg` gives the lowpoly stylized look. Dead branches via `fork` add character.\n    Beard: `chain` with tapering adds the wise/old look.\n    All constraints met. No markdown, just the function.",
-  "_aiCode": "function build(api) {\n  api.name('Ancient Fantasy Tree');\n  const C_BARK = 0x4e342e, C_BURL = 0x3e2723, C_BEARD = 0x6b8e23, C_LEAF = 0x2e7d32, C_LEAF2 = 0x1b5e20, C_DARK = 0x1a1a1a;\n\n  api.group('roots', 'roots');\n  for (let i = 0; i < 6; i++) {\n    let pEnd = api.pointOnCircle([0, 0, 0], 3.0, 'Y', i / 6 * Math.PI * 2 + 0.2);\n    api.connect([0, 0.5, 0], pEnd, {r: 0.55, color: C_BARK});\n    api.sphere({r: 0.6, pos: [pEnd[0], 0.1, pEnd[2]], color: C_BURL});\n  }\n  api.endGroup();\n\n  api.group('trunk', 'trunk');\n  api.cyl({r: 1.3, rBot: 1.5, h: 3.5, pos: [0, 1.75, 0], seg: 8, color: C_BARK});\n  api.sphere({r: 1.1, pos: [0.6, 2.8, 0.6], color: C_BURL});\n  api.sphere({r: 0.9, pos: [-0.7, 1.8, -0.5], color: C_BURL});\n  \n  for (let i = 0; i < 5; i++) {\n    let sx = i < 3 ? 1 : -1;\n    let sz = i % 2 === 0 ? 1 : -1;\n    let xOff = sx * (0.8 + i * 0.2);\n    let zOff = sz * (0.5 + i * 0.1);\n    api.chain({\n      waypoints: [[xOff, 2.5, zOff], [xOff * 1.3, 1.5, zOff * 1.2], [xOff * 1.1, 0.5, zOff * 1.4]],\n      rStart: 0.15, rEnd: 0.05, color: C_BEARD\n    });\n  }\n  api.endGroup();\n\n  api.group('canopy', 'canopy');\n  api.sphere({r: 3.2, pos: [0, 5.5, 0], seg: 6, color: C_LEAF});\n  api.sphere({r: 2.8, pos: [1.8, 5.0, 1.2], seg: 5, color: C_LEAF2});\n  api.sphere({r: 2.8, pos: [-1.8, 5.0, -1.2], seg: 5, color: C_LEAF2});\n  api.sphere({r: 2.2, pos: [0, 7.0, 0], seg: 5, color: C_LEAF});\n  api.sphere({r: 2.0, pos: [1.0, 6.5, -1.5], seg: 5, color: C_LEAF2});\n  \n  api.fork({from: [0, 5.5, 0], to: [[2.5, 6.5, 1.5], [-2.0, 6.0, -2.0], [0.5, 7.5, -0.5]], r: 0.15, color: C_BURL});\n  api.endGroup();\n\n  api.group('face', 'face');\n  api.sphere({r: 0.3, pos: [-0.45, 2.9, 1.15], color: C_DARK});\n  api.sphere({r: 0.3, pos: [0.45, 2.9, 1.15], color: C_DARK});\n  api.poly({r: 0.12, pos: [-0.45, 2.9, 1.4], color: 0x556B2F});\n  api.poly({r: 0.12, pos: [0.45, 2.9, 1.4], color: 0x556B2F});\n  \n  api.connect([0, 2.4, 1.2], [0, 1.6, 1.8], {r: 0.3, color: C_BURL});\n  \n  api.box({w: 1.2, h: 0.15, d: 0.3, pos: [0, 1.3, 1.35], color: C_DARK});\n  api.endGroup();\n}",
-  "_description": "a lowpoly stylized ancient fantasy tree with thick gnarled trunk and round dense canopy, wise looking",
-  "_formulaResult": {
-    "methodologies": [
-      "vegetation"
-    ],
-    "regions": [
-      {
-        "name": "trunk",
-        "desc": "极粗且扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23]"
-      },
-      {
-        "name": "roots",
-        "desc": "粗大放射状抓地、树根-深棕"
-      },
-      {
-        "name": "canopy",
-        "desc": "巨大球形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723]"
-      },
-      {
-        "name": "face",
-        "desc": "位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑"
+        "color": 4073251
       }
-    ]
-  },
-  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点。axis='Y'且t=0→+X\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称用for循环+sx乘数。不对称用if(side===0/1)分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。手持物target=所属肢体名。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('trunk','trunk') → 极粗且扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23] → api.endGroup()\napi.group('roots','roots') → 粗大放射状抓地、树根-深棕 → api.endGroup()\napi.group('canopy','canopy') → 巨大球形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723] → api.endGroup()\napi.group('face','face') → 位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑 → api.endGroup()\n\n### 植物 (vegetation)\n\n通用：根部y≈0。叶片尖端朝上/朝外上方（垂柳/藤蔓除外）。\n\n花类：\n- 茎 = 细cyl沿+Y，高≈总高60~70%\n- 花冠在茎顶端。花瓣 = for 循环 + api.rotatePoint(茎顶端, 'Y', i/count*Math.PI*2)，花蕊 = 中心cyl + 顶端poly\n- 叶片从茎两侧向上斜出（patch/tri），不下垂\n- 代码示例(5瓣花，总高~6)：\n  api.group('bloom','花冠');\n    api.cyl({r:0.25,h:0.4,pos:[0,5.2,0],color:0x228B22}); // 花托\n    for (let i = 0; i < 5; i++) {\n      let pos = api.rotatePoint([0, 5.4, 0], 'Y', i/5 * Math.PI*2);\n      api.tri({a:pos, b:[pos[0]+0.6,pos[1]+0.6,pos[2]+0.15], c:[pos[0]+0.1,pos[1]+0.6,pos[2]+0.2], d:0.06, color:0xFF6B81}); // 花瓣\n    }\n    api.cyl({r:0.08,h:0.4,pos:[0,5.6,0],color:0xFFD700}); // 花蕊\n    api.poly({r:0.12,pos:[0,5.8,0],color:0xFFA500}); // 花药\n  api.endGroup();\n  api.group('stem','茎'); api.cyl({r:0.15,h:5,pos:[0,2.5,0],color:0x2E8B57}); api.endGroup();\n  api.group('leaf','叶'); api.patch({points:[[0,0,0],[0.6,0.5,0],[1.2,0.3,0],[0.6,-0.2,0]],d:0.05,pos:[0.15,2.5,0],color:0x228B22}); api.endGroup();\n\n树：主干cyl→fork分一级枝→枝端 fan 叶簇(4~6 patch/tri，沿 appropriate along 展开)\n藤蔓/垂柳：主藤chain弯曲→侧枝fork→小叶patch，允许下垂。\n\n植物装饰参考：花蕊用中心cyl+顶端poly，叶片用patch从茎两侧斜出，花冠用for+rotatePoint辐射，枝端叶簇用fan_pattern。\n\n## 输出\n只输出函数体。不要其他任何文本。",
-  "_promptUser": "用户描述：\"a lowpoly stylized ancient fantasy tree with thick gnarled trunk and round dense canopy, wise looking\"\n\n草稿结构：\n  trunk: 极粗且扭曲、树皮-深棕[4e342e]、树瘤-深棕、下垂枝条似胡须-灰绿[6b8e23]\n  roots: 粗大放射状抓地、树根-深棕\n  canopy: 巨大球形浓密、树叶-深绿[2e7d32]、穿插枯枝-深棕[3e2723]\n  face: 位于树干上部、深邃双眼树洞-黑[1a1a1a]、长鼻树瘤-深棕、大嘴裂缝-黑\n整体比例：粗壮扭曲主干占1/2高，底部放射状抓地树根，顶部巨大球形浓密树冠，整体稳重\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。",
-  "_aiMeta": {
-    "v": 1,
-    "ts": 1781242297840,
-    "provider": "fireworks",
-    "data": "QXLJMprvZrv6AC6JrFIY6y6Tjc0LljZk9rYnHEEH0X4SILtLhr0gEjQY8Z4PMbdQmGnGlXFeAZLfI+AU3pWyX1MxONMewpfaNa2j2pMo/pDUv9s6m21C82GwGEfAzkCA555cDJo8G3uAmicnMbGXbJBaZRkiE4KZ9lpMXkxFm39zXCfXUbFh2UneRl8sQHju8MI+ShpKcKE/nJuQlRPp4POhwkVwFfoxKWWl6xgE/OfLaRZok47KYc5iv1HREOWZOzw8vi7DPpMDpOoNo1M2GU6dfvYH3Ri432aZgl0XomfMxfeLrVFeqB469xek38H63ZgwheWrHXu0hFWfWkU5f6l4TmJnp34ogn98DAKefaTZu91ZooVCWEFMpa+eR7p3myacG/TGa661+EDtKrtS1wINLCFkNXBgs2eGwxPP+0XXN0k7EYiSXSwoYm7+2roBXzv4Xae5QQ41szg6c4TouvmQ6sxHWBoMpQFayVMpytj93zgiZruyVlPMilY92azC3eEtCPfU77DCTQzBLt3E965FjApnV8GebRrxeOqOZ6/v9XDHKGl0uptzQmT2dvywyKED4LVFtRazCTMAPQUZygIhD5hDC9rUJQ7PKUhkBlS86SAA4/YRNk1lH3Kxn76uOlJNBYL0qMa29rrZ0IJfZbsRPgokjpKRWQVOrh8L956G4oOc7ADVDpvkOkT+zA5iSDgTPYX/QpbrRpM7xpoFW/ccKYfVZa9u2vy/ZQR9T5gEk3dACRVHx+WwTEsdmv+WYJ+tx2IYwmFEAbz4OCHiZj9RLez2kq/4mESNfNFOYyr60GC2OX0x6RGgBgMfsOuv/THmqd4iR5pwFjvbUiplLNeID0xjnBk9T8BBMkpWE+IfE1B7BuRU1IQyn4z2sJoT3o4pTPNyozdS+wIpew7zA5H9EGPmDOlfXJbLyjJQLe3HB9wvkznYspaWtlhYB6p+k7KktXK0VfCwm1Sb7jOKlDY0q/2HPdMZS8XB8tdIrXJR8EtGMs0KsiA8w6+zW5Gn46ufSp5Q26rr9iVVF1U2aG1SEhPBx/Qk7iMMB1G1ggFTc0n/pziFnpXDh/D6u3yoOJEkIsGG1GoMuTE25Zq/qvTSS3HURGtVXXv08jRnC4yxd+/RpXNUT50v6Rd0Cy6ahHQtm892jxWgs0CJ+22H5qA4tH6AzJxtyYxX8aXPKtJaVnVu/XbWwCktepETYzOdSgMeXO9qI4lxjvySdqoU0mx67fv3XzQse5arZVel/5KBjvSlSypuRzBcbxwDtZf6PZCxX+E6QWD870leGkUPTcykp6QrQ3Jc69W056CMT9p0QP6LkhUKQ4gMNeEOGFzZeymz7562ZSR6maNqbYpot7LZBZoznyNSNzQolfHPeWXair/blxomj+52gVoPCa7HQKdiSVL3uL86FJh4J98GMArmwpZ7DgwPNcOftoXkNI4ucURAABB0kRYAPwdsuzneetdvd1A0UxPzvjTxQI5mJk8O6g5F+oP9yLEA/uB1gfwUeVJuMvvpktBcCecnHVtx+hgK9awduYVEf4h2ELKQHo1FQRDio6pUlQXGEiRHeX/oawXKz6zdJs5pHbpbwPb1CT+btTdxqQRWLV+Nc6x4qtHA27gwjFmAr7ST4QqIjMoNtFKCvWFaoRU9PC31/M2RUyMcfopxli0XCQyj/9X5+37KsIqdx/i+2U+d/wfR1aN2bqODYVTk8K58esoFhq4tKB0rquDjFT6hZ4lEKpbyvn6PnuwxbueBwuuITTrcNMl0tEk+w4Ia46DQGaPRhiG7fUnBb+3Z59zbag7+hfUFJFuXHDc4Y5SAMHQNyT7Ffb9uvfEcc4jpcVW1a7OtBkpRbJVK+jRNP8+XMbLuWfdlC72EwO7xE8rqTp7YJznmDaAAC/Mz/1mrI9KDWX2h8TAvnU/G0zWDoyPwe2N8o7+g8o8sVqqHaVK4Bh0EfAygMzHc6atZp8q1YUEKHtdFF13NbtkceYQviKj9u8hUiAu3Sy4w20c6w35mrh/vtcQtJuGYrcYWQZ+JXEiuVpxr49G0ECvZ8O7umUHoTUMV/QPrxY3YuZ8uxTPF4gU7FF2pK3Vf5pkyeNOIm03jRNyX+o8D16XVdwW9AKVIgBEshMG8lh/peavhgi3f976u2NcfyjYMgEBSnNUSQWY65xkR6kYm0rS1WpGq2hQdU17qMgCanolVkuLjeNLuxSXT4aowwfIcpHhxxtnEKpYGxuhv6ULGrw4CbrKP4qgUQeIvlBa4+sE+yfECRHC6+DxtTVxM74ZGLWakiZVrb98X2O2mjHlFaWEL+4tiGECCgkL9M9S5oFFuwbVcBvUxJWRKdp7njs6l+VRfyekRrz5xCxuKumVHhlplP8b4hjE9Jg3gaG8UDB05QaGuU48ejjoHU9wmzgkZRTu2BOWLu/zIYatKVHSdBOM6+17NSPLTVgeU3etEJd0hgWwk378B5BeJuVBWoNDIznArQdDR5o8ctPAwiLyUvkD9mWVm3CS2KRmsjHhuThnZLmZX0VdNxvPIJkB5KeHmH/GuXqyHvVP3WlU93yfPRQOIIzHV2ze2ecswMKgpN4RofKobtxB1blsMhnKyVsh6doII8yqMByA2k8SPC9Kic3fjYFp7Z7h0rvBjEtBhk51ylG4T5X63uraOrTDNpYc0H3ODztoFCw6g0V05sIlih+Q0wsGbNImXUUxL2/NmD/HElC5ksd0XD+aQJLH4j5cSSJmFWhRe3p9vUwZYMqWWLHv4968acX0geOlVqK/FPHXy/KE+cFn4OnHksOp/P3VVjSroEi1JPer7ZJH8FZLQcaU46XNObgLwymnejRCbHFNiVCj3HtVZxTSMatnyiQaU8R/XqFaaycRi/9DL4fGzj+/h8WTRhCNc1jb2g++PUg2KZJold5HynIL9ZA4g6cZ64ClxwA2qToQ2i3kaOa6B9dLGBXYNX70l2BDij3Ue/zfdGZYOCocYe/kANs78hcKP1Z6fGyRk1gV3lRzJ5CQMQdiVeJgjr9HocoDPik3vMoGmO6TWAwVClxftqgZjNU75URzVEXTDRbDV7PvKstjWafEr1my0IbCHwUOux+po/GKykjG5H4a5VguaYPWR6rFDDPSY36lGmqzDTL5Br3Btjwy4+NosXOQScQvUVhNWDsuT88vZlFWUMgsGPlljyz58Tx4efNSJrUF9/oatbYUQVxmFn6+MLZWOGIimtpwm1czgpbp431W++JIBCLpFUnndjph1mjYKGY7JcQOYyIGcgb8ZkC0d2f1MiBviVF+6ZEnUyD5zdnE7genQyD55JqVoJFqyKDiY0SvY8FcuXqYFbVmsG8f0fEs8vrU1lmv2BNrMX8e2U16pb2JAYkNAETxeJHtV+hELxmL6iQuaJtERohCEd7DOv/rGzJzt09gI7Yyq59CwOtOZiuNms1QViT9wCCbWDo+TcXjX4iixO/HAmSkYoMCsJA9qk8jVJAOZoH9doqrersyJnCPEIIfeKxHCi6NooOMa0HEhlna+QP/FrMc7aD4h1enkYdNDSPUkCsj3l6gqHU/K+94ro46uKL1zcBL7lvBRM0c0A8u/Eoo8wsaMjCWUGrKBmgRg/TaQYII9DWr8qCp8sxmn1EkHtjqL+VnftXVvzKSdWw3/sniAKoUZOk8X6H7uRQ3897tqcfGp1iXrA2rLNjwabY6CYKFSSouGsq+FMDwjhVaNUag0MYAV0Taj67nIKBDpdac/BgKQCAxOo96Hwn89tFDMupgWDZDE5p9laSBk39bj3SCiXrU38A/JfGvmqxIMqDlG90+Uz6HEwQER2WNz/tIDirLHmjJgdqAkuDL9DLFTEVkivn/CRi5UAscZ/byZzjScpFqegYT/igQIs7A5WhL/nzs26r5mgQxjni0yiXlx5wM4mqwwMqfrSUCFb0Ap8/SNX7iiRTb+BB8cFxqyI4fJLDHGpYXuOJZDz4MZBxqsmG18tHQ9K/nDqa7Ww9Z2IKRjgC5vZXYm55+qYxG5TjiMciVKAuoKsvGn+HhunrH1dwyL9vEOZakb7P7GnPX8naCZz72J5VXc8QSaml1RC+bj8/NUJZT0eAgTH8uPFnq17+AkWWFKpErt0VjgIROWe6bBxuldc0P+XubOY/rnNg0hOwTyhHcUj0i4hMTtWC3as/X+zp2c+9xOtJRJjqFUDCN0kEIUW/dwN8Xef9wfq/k+jwO/VKGBZH/2zZJfRJUgG787I3tyDY0aGdJ8kjkmYD3nGmyRL+6rEIOly/L5+m1rb1h9ld0c8VLeyhtYERF8WM4IkH75Z9ovmZ9bml+OzoIr25FfZ5cR3KJJr++qAjYLLw9XEYMiJKxdomuaEzdVMLAHyiWWaTCFCuRR9KucD+qNdOgOrtcZBaEyvAf357YuTrr6KQNR7LcHdGAOgP4PuFAM9OSoWqtRaJkvFdqUInGXUirWm8AEpSB9JH0rJtGIPBo4zzTuiGCUWHBU1KC9bq3s6r1bUvZxHDTANlUMUj7kbx7m6UQ7R9XO0hIoEWFbTmtxvBZKmz+0JqWkdgq9xEBMa3wlzWQT1Goj6niH+ve5vEZEEqgwWn1hquf2vz0spBNUfuECQVPrVMrzOtVrHwlLVu2O2/SLB7+zJSYsfLCziDFtFdUfyQ+KTr9YhdRzPCZztMPO2rVr9INksoIfcbv2xCVtNRpNWswXh9bOlsL8z8B3XAP2z3oSMxyVz9Fhb2kJ+e0Rxgkqi/pUUYs8079Dai5a6DYdR2SmibfiPuY3FyKUzxQ72CK8W1RR1kx1wSfQJDltOfOgs3eZ9XEVhbKKHMQEZoB6j26k9100e1NAkpNvd/bQvJD8O7oyYCemN7Of/qJeVViZg33XvN0bzRIPzC/Nfii93NjWoWJAiyL2v+l/pJZNzvX7FhzT+kbZVCnYWGhdglTO3hLFqyNA+MgTPzTnoaAVGezeklptlBzIVYYIHEJjG60mcrPX8WMbt+1ChwJe2L9GxN3WDG3U+VxwI8KKgOi78DN5Y9xlkWKqPWDCi4pQooThO0n0n3izw7YTVSPtNrm5YpDhJfv9zkoCHj6bpnjNFP+7QJNT91gTwsXoO2WJQa+chCHiJ3PS5XCpCTqkUTEsmxPEzHWNOUHb/5ho09d72wYgABuwft+W9aMvIyV7KYjgVp5sHn2sOCXvmi9/YQGTNEvBOqsJA5l4Wz7jRDapIbpBVlg3pzF+zo+6veWPekWO/u/m/t4oeH/+Htqdpn0P+Rt9/JfNmXtrZIvQphnsymXVIpE4+XpBq4sxenwNZhqWjaiLz+IXavg5rcPt2xHmmzKMjS+9HyI5iMGlGBnEHxIz1v7fdCQZQH/ZFX9G8ZaH5iQHcjaa4zVvjjrFqi01Jgj/RluEfB/mSKGcJ8noh0gWCo0MAkixkpFVKBOdvEw78mjqFJDmbkBaR0z9p3GdRDWaon0ShGmgXypLn/mmSaWdvdXXaaq0UUdSm/Sop2d6sIurwMGPMT9I+TqiX9LVtonjUesidQYbr/FLzGc+g9PaSpqESxKWP7o8OKZN7wO8jul/qU094CiffbEnhyguWYpAIOZBHoQqnG7lVSOobEptlPeSy3AB73MwY4yUnO3KN41UTDdSji8FqFDNvh+6WwPe4GYdYoLfPwBWxatdR+0A8Q94iD5ICwgywJ3o/TP6BbX51Ye9LWfxixTnfb+nI0ntcWJdxJE4Fra6J4BgnSUJCqFoqhPWnnz0GqCoMMJo1AJKJq7UfoMoVdESi9XAIrXRWiMPpP6Fj+fWEumS3DqC1dVVF/qfxUy3gTRC5c3IjOCHPWBKhnjGMNBXaNhVUHeU482vVx8qTwh9GoVi9Mq42P1e+gFbeWeETqlkaVe/Xgd10n9KZ1xLI1UKu9RkBciS4ItdHQ2yD1AAQSZpWMPgvJXNQz/xLrEXd76yB1o1N758d/SZca3ImzwnMjzd9m8t+4Qb8ITFbadLNK7gKl5ANHIpSlEQlfj8S0I4n4jNnyv++ncLluQSC3fetPlJcUEr7wMD7TxmiJXFh1plqMuoocA0wzhFU2P+TbvJIZ+U9dskuR9Tudsn7tIy/WDXCG9dv2DgjEWw3KxcdT5dCv9IhHZez24rwdTXdPM792w04RJXVjU7HwPWqk0KsxRywKzuvZITtdavswy5TR9GWl4qmtzxQDIENhI2BiiHL7TbHCV8jFc4XWB18N+P9oSDi4q5zkZ0zaAoZxW7KBV75YyoOi2FgpBXIbd0xYGad3hWfPiJMdV4LkxltFk/qWoE8JTxwGRvVXvM2uXTGdPIzCcMy68evE9x6JV0oleaGQQLI1b0kAFgJuUctmblFbf15cu0P4opifGLZfdc7bk2tgoCGZM3elKwl69I/Xt9Ol62MjxShJwEzK3vDoUQ6s3++KlPbAbVN6FW/lcKgfGvYrg2t1swXzYBy48SUiw/epsID8oc3hblAtVLe3HsLuJyajh6h7FJk0nk27DdA28B1gx7Ys4VC3LbJ2SS/JC/KxVe1+x0Rm8hkE8NifXbL/IElVxmXukfeFaQ7oKrhek48qtn+0fvYbrob8siIhmBtVV5gOANJ8ThS3pgif9Dzoyd6KiM8JuEjK3yrWeKoA9m7oH/eqHbYBtYP8lZ/A6fSY7yRL3FvqfE6LU=",
-    "edits": ""
+    },
+    {
+      "id": "m55",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0914,
+          -1.7,
+          1.938
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.7,
+          "radiusBottom": 0.7,
+          "height": 0.6,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          1.7086,
+          0,
+          0.738
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4863784
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -1.4914,
+          -1,
+          1.138
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4863784
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "branch_0_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "branch_0_0",
+      "transform": {
+        "pos": [
+          0.39,
+          0.45,
+          0.12
+        ],
+        "quat": [
+          0.11,
+          0,
+          -0.35,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_0_0",
+        "boneTo": "branch_0_25"
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "branch_0_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.37,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "branch_0_25",
+      "transform": {
+        "pos": [
+          0.41,
+          0.39,
+          0.13
+        ],
+        "quat": [
+          0.12,
+          0,
+          -0.39,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.37,
+          "radiusBottom": 0.37,
+          "height": 0.91,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_0_25",
+        "boneTo": "branch_0_50"
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "branch_0_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "branch_0_50",
+      "transform": {
+        "pos": [
+          0.44,
+          0.33,
+          0.14
+        ],
+        "quat": [
+          0.13,
+          0,
+          -0.44,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_0_50",
+        "boneTo": "branch_0_75"
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "branch_0_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "branch_0_75",
+      "transform": {
+        "pos": [
+          0.47,
+          0.27,
+          0.15
+        ],
+        "quat": [
+          0.15,
+          0,
+          -0.49,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_0_75",
+        "boneTo": "branch_0_100"
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "branch_0_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "branch_1_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "branch_1_0",
+      "transform": {
+        "pos": [
+          0.01,
+          0.45,
+          0.41
+        ],
+        "quat": [
+          0.36,
+          0,
+          -0.01,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_1_0",
+        "boneTo": "branch_1_25"
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "branch_1_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.37,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "branch_1_25",
+      "transform": {
+        "pos": [
+          0.01,
+          0.39,
+          0.43
+        ],
+        "quat": [
+          0.41,
+          0,
+          -0.01,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.37,
+          "radiusBottom": 0.37,
+          "height": 0.91,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_1_25",
+        "boneTo": "branch_1_50"
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "branch_1_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "branch_1_50",
+      "transform": {
+        "pos": [
+          0.01,
+          0.33,
+          0.46
+        ],
+        "quat": [
+          0.46,
+          0,
+          -0.01,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_1_50",
+        "boneTo": "branch_1_75"
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "branch_1_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "branch_1_75",
+      "transform": {
+        "pos": [
+          0.01,
+          0.27,
+          0.49
+        ],
+        "quat": [
+          0.51,
+          0,
+          -0.01,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_1_75",
+        "boneTo": "branch_1_100"
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "branch_1_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "branch_2_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m77",
+      "parent": "branch_2_0",
+      "transform": {
+        "pos": [
+          -0.39,
+          0.45,
+          0.13
+        ],
+        "quat": [
+          0.12,
+          0,
+          0.34,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_2_0",
+        "boneTo": "branch_2_25"
+      }
+    },
+    {
+      "id": "m78",
+      "parent": "branch_2_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.37,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m79",
+      "parent": "branch_2_25",
+      "transform": {
+        "pos": [
+          -0.41,
+          0.39,
+          0.14
+        ],
+        "quat": [
+          0.13,
+          0,
+          0.39,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.37,
+          "radiusBottom": 0.37,
+          "height": 0.91,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_2_25",
+        "boneTo": "branch_2_50"
+      }
+    },
+    {
+      "id": "m80",
+      "parent": "branch_2_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m81",
+      "parent": "branch_2_50",
+      "transform": {
+        "pos": [
+          -0.44,
+          0.33,
+          0.15
+        ],
+        "quat": [
+          0.15,
+          0,
+          0.43,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_2_50",
+        "boneTo": "branch_2_75"
+      }
+    },
+    {
+      "id": "m82",
+      "parent": "branch_2_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m83",
+      "parent": "branch_2_75",
+      "transform": {
+        "pos": [
+          -0.47,
+          0.27,
+          0.16
+        ],
+        "quat": [
+          0.16,
+          0,
+          0.48,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_2_75",
+        "boneTo": "branch_2_100"
+      }
+    },
+    {
+      "id": "m84",
+      "parent": "branch_2_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m85",
+      "parent": "branch_3_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m86",
+      "parent": "branch_3_0",
+      "transform": {
+        "pos": [
+          -0.25,
+          0.45,
+          -0.33
+        ],
+        "quat": [
+          -0.29,
+          0,
+          0.22,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_3_0",
+        "boneTo": "branch_3_25"
+      }
+    },
+    {
+      "id": "m87",
+      "parent": "branch_3_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.37,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m88",
+      "parent": "branch_3_25",
+      "transform": {
+        "pos": [
+          -0.26,
+          0.39,
+          -0.35
+        ],
+        "quat": [
+          -0.33,
+          0,
+          0.24,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.37,
+          "radiusBottom": 0.37,
+          "height": 0.91,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_3_25",
+        "boneTo": "branch_3_50"
+      }
+    },
+    {
+      "id": "m89",
+      "parent": "branch_3_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m90",
+      "parent": "branch_3_50",
+      "transform": {
+        "pos": [
+          -0.28,
+          0.33,
+          -0.37
+        ],
+        "quat": [
+          -0.37,
+          0,
+          0.27,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_3_50",
+        "boneTo": "branch_3_75"
+      }
+    },
+    {
+      "id": "m91",
+      "parent": "branch_3_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m92",
+      "parent": "branch_3_75",
+      "transform": {
+        "pos": [
+          -0.29,
+          0.27,
+          -0.39
+        ],
+        "quat": [
+          -0.41,
+          0,
+          0.31,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_3_75",
+        "boneTo": "branch_3_100"
+      }
+    },
+    {
+      "id": "m93",
+      "parent": "branch_3_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m94",
+      "parent": "branch_4_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.5,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m95",
+      "parent": "branch_4_0",
+      "transform": {
+        "pos": [
+          0.24,
+          0.45,
+          -0.34
+        ],
+        "quat": [
+          -0.3,
+          0,
+          -0.21,
+          0.93
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_4_0",
+        "boneTo": "branch_4_25"
+      }
+    },
+    {
+      "id": "m96",
+      "parent": "branch_4_25",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.37,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m97",
+      "parent": "branch_4_25",
+      "transform": {
+        "pos": [
+          0.25,
+          0.39,
+          -0.35
+        ],
+        "quat": [
+          -0.33,
+          0,
+          -0.23,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.37,
+          "radiusBottom": 0.37,
+          "height": 0.91,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_4_25",
+        "boneTo": "branch_4_50"
+      }
+    },
+    {
+      "id": "m98",
+      "parent": "branch_4_50",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m99",
+      "parent": "branch_4_50",
+      "transform": {
+        "pos": [
+          0.27,
+          0.33,
+          -0.38
+        ],
+        "quat": [
+          -0.37,
+          0,
+          -0.26,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.93,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_4_50",
+        "boneTo": "branch_4_75"
+      }
+    },
+    {
+      "id": "m100",
+      "parent": "branch_4_75",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m101",
+      "parent": "branch_4_75",
+      "transform": {
+        "pos": [
+          0.28,
+          0.27,
+          -0.4
+        ],
+        "quat": [
+          -0.42,
+          0,
+          -0.29,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.2,
+          "radiusBottom": 0.2,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 4073251,
+        "boneFrom": "branch_4_75",
+        "boneTo": "branch_4_100"
+      }
+    },
+    {
+      "id": "m102",
+      "parent": "branch_4_100",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m103",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.0914,
+          -2.35,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 4.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m104",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.1086,
+          -1.95,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m105",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.5086,
+          -1.95,
+          -2.8333
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m106",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.6914,
+          -1.95,
+          -2.8333
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m107",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -3.2914,
+          -1.95,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m108",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.6914,
+          -1.95,
+          2.7092
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m109",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.5086,
+          -1.95,
+          2.7092
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m110",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.0914,
+          -0.35,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 3.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m111",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.8393,
+          0.35,
+          -1.1168
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m112",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.4979,
+          0.35,
+          -2.2242
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m113",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.2733,
+          0.35,
+          -0.3436
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m114",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.0334,
+          0.35,
+          1.9261
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m115",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.5084,
+          0.35,
+          1.4482
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m116",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.0914,
+          1.35,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.8,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m117",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.0914,
+          2.85,
+          -0.062
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.6,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1993502
+      }
+    },
+    {
+      "id": "m118",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          4.4753,
+          -2.85,
+          0.0046
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666643,
+            0.5,
+            -0.06666666666666667
+          ],
+          "b": [
+            0.3333333333333339,
+            -0.09999999999999964,
+            -0.06666666666666667
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.13333333333333336
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m119",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -4.4753,
+          -2.85,
+          -0.6602
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666643,
+            0.5,
+            -0.06666666666666665
+          ],
+          "b": [
+            0.3333333333333339,
+            -0.09999999999999964,
+            -0.06666666666666665
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.13333333333333336
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m120",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          4.2789,
+          -2.85,
+          1.3196
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666732,
+            0.5,
+            -0.06666666666666665
+          ],
+          "b": [
+            0.33333333333333304,
+            -0.09999999999999964,
+            -0.06666666666666665
+          ],
+          "c": [
+            -0.2666666666666675,
+            -0.40000000000000036,
+            0.1333333333333333
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m121",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -4.0868,
+          -2.85,
+          -1.9317
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666643,
+            0.5,
+            -0.06666666666666665
+          ],
+          "b": [
+            0.3333333333333335,
+            -0.09999999999999964,
+            -0.06666666666666665
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.1333333333333333
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m122",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.7068,
+          -2.85,
+          2.5198
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666643,
+            0.5,
+            -0.06666666666666687
+          ],
+          "b": [
+            0.3333333333333335,
+            -0.09999999999999964,
+            -0.06666666666666687
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.1333333333333333
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m123",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -3.3436,
+          -2.85,
+          -3.0342
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666687,
+            0.5,
+            -0.06666666666666687
+          ],
+          "b": [
+            0.33333333333333304,
+            -0.09999999999999964,
+            -0.06666666666666687
+          ],
+          "c": [
+            -0.26666666666666705,
+            -0.40000000000000036,
+            0.1333333333333333
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m124",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.8089,
+          -2.85,
+          3.5005
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666643,
+            0.5,
+            -0.06666666666666643
+          ],
+          "b": [
+            0.3333333333333335,
+            -0.09999999999999964,
+            -0.06666666666666643
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.13333333333333375
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m125",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.3107,
+          -2.85,
+          -3.8715
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666687,
+            0.5,
+            -0.06666666666666687
+          ],
+          "b": [
+            0.33333333333333304,
+            -0.09999999999999964,
+            -0.06666666666666687
+          ],
+          "c": [
+            -0.26666666666666705,
+            -0.40000000000000036,
+            0.1333333333333333
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m126",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.6636,
+          -2.85,
+          4.1759
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666665,
+            0.5,
+            -0.06666666666666732
+          ],
+          "b": [
+            0.33333333333333326,
+            -0.09999999999999964,
+            -0.06666666666666732
+          ],
+          "c": [
+            -0.2666666666666666,
+            -0.40000000000000036,
+            0.13333333333333286
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m127",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.0782,
+          -2.85,
+          -4.3703
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666676,
+            0.5,
+            -0.06666666666666643
+          ],
+          "b": [
+            0.33333333333333326,
+            -0.09999999999999964,
+            -0.06666666666666643
+          ],
+          "c": [
+            -0.2666666666666667,
+            -0.40000000000000036,
+            0.13333333333333375
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m128",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.371,
+          -2.85,
+          4.4872
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666665,
+            0.5,
+            -0.06666666666666643
+          ],
+          "b": [
+            0.3333333333333334,
+            -0.09999999999999964,
+            -0.06666666666666643
+          ],
+          "c": [
+            -0.26666666666666666,
+            -0.40000000000000036,
+            0.13333333333333375
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m129",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2462,
+          -2.85,
+          -4.4872
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.06666666666666671,
+            0.5,
+            -0.06666666666666643
+          ],
+          "b": [
+            0.33333333333333326,
+            -0.09999999999999964,
+            -0.06666666666666643
+          ],
+          "c": [
+            -0.2666666666666667,
+            -0.40000000000000036,
+            0.13333333333333375
+          ],
+          "d": 0.08
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m130",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.9657,
+          -1.95,
+          -1.0077
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.45,
+          "radiusBottom": 0.45,
+          "height": 0.2,
+          "radialSegments": 10
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m131",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.9657,
+          -1.85,
+          -1.0077
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.45,
+          "tube": 0.1,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m132",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.1157,
+          -1.75,
+          -1.0077
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m133",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.0901,
+          -1.75,
+          -0.9239
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m134",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.022,
+          -1.75,
+          -0.8687
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782298632770,
+      "provider": "fireworks",
+      "data": "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",
+      "edits": ""
+    }
   }
 }

@@ -1,0 +1,93 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.8
+    }
+  },
+  "lClaw_shoulder": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "rClaw_shoulder": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "leftLegs_wp0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "leftLegs_wp0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "leftLegs_wp0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "leftLegs_wp0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "rightLegs_wp0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "rightLegs_wp0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "rightLegs_wp0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0
+    }
+  },
+  "rightLegs_wp0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 0.8,
+      "phase": 0.5
+    }
+  },
+  "_name": "爬行",
+  "_type": "interaction",
+  "_modelId": "gen_mqyubwt3_wj2j"
+}

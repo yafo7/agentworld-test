@@ -1,0 +1,1461 @@
+{
+  "name": "哪吒",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "躯干",
+      "transform": {
+        "pos": [
+          0,
+          1.55,
+          -0.525
+        ]
+      }
+    },
+    {
+      "id": "chest",
+      "name": "胸",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.75,
+          0.525
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "name": "头部",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0.8,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          -1.1,
+          0.5,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm_upperArm",
+      "name": "upperArm",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm_forearm",
+      "name": "forearm",
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          -0.8125,
+          -0.8625,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "leftArm_hand",
+      "name": "hand",
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0.9125,
+          -0.6375,
+          0.25
+        ]
+      }
+    },
+    {
+      "id": "rightArm",
+      "name": "右臂",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          1.1,
+          0.5,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightArm_upperArm",
+      "name": "upperArm",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightArm_forearm",
+      "name": "forearm",
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0.875,
+          0.3875,
+          0.6875
+        ]
+      }
+    },
+    {
+      "id": "rightArm_hand",
+      "name": "hand",
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          -0.775,
+          0.6125,
+          0.3125
+        ]
+      }
+    },
+    {
+      "id": "spear",
+      "name": "火尖枪",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "abdomen",
+      "name": "腹",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.15,
+          0.525
+        ]
+      }
+    },
+    {
+      "id": "pelvis",
+      "name": "胯",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          -0.4,
+          0.525
+        ]
+      }
+    },
+    {
+      "id": "leftLeg",
+      "name": "左腿",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          -0.5,
+          -0.25,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_thigh",
+      "name": "thigh",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_shin",
+      "name": "shin",
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          -0.1,
+          -0.5,
+          0.2
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_foot",
+      "name": "foot",
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          -0.1,
+          -0.4,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "wheel",
+      "name": "风火轮",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.2,
+          -0.9,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "rightLeg",
+      "name": "右腿",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0.5,
+          -0.25,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_thigh",
+      "name": "thigh",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_shin",
+      "name": "shin",
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0.1,
+          -0.5,
+          0.2
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_foot",
+      "name": "foot",
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          0.1,
+          -0.4,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          1.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.3,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.6,
+          "height": 0.8,
+          "depth": 1.2
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 0.5,
+          "depth": 0.3
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.7,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 1,
+          "depth": 0.3
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.9,
+          0.7,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 1,
+          "depth": 0.3
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.7,
+          2.1,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.45,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.7,
+          2.1,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.45,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.7,
+          1.9,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.45,
+          "tube": 0.08,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.7,
+          1.9,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.45,
+          "tube": 0.08,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.8,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.6,
+          "height": 0.4,
+          "depth": 0.15
+        },
+        "color": 4868682
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.45,
+          0.8,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.6,
+          "height": 0.4,
+          "depth": 0.15
+        },
+        "color": 4868682
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.8,
+          1.1
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.2,
+          "detail": 0
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.8,
+          1.15
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.1,
+          "detail": 0
+        },
+        "color": 1118481
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.45,
+          0.8,
+          1.1
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.2,
+          "detail": 0
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.45,
+          0.8,
+          1.15
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.1,
+          "detail": 0
+        },
+        "color": 1118481
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.2,
+          0,
+          1
+        ],
+        "quat": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.2,
+          "radialSegments": 10
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.2,
+          0,
+          1
+        ],
+        "quat": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.08,
+          "height": 0.2,
+          "radialSegments": 10
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 1.2,
+          "depth": 1.4
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.1,
+          "height": 1,
+          "depth": 0.2
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 0.6,
+          "depth": 1.3
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 0.5,
+          "depth": 1.3
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.55,
+          0.525
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.8,
+          "tube": 0.12,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 13938487
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.45,
+          -0.525
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -1,
+            1,
+            0.45000000000000007,
+            1,
+            1,
+            0.45000000000000007,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0.45000000000000007,
+            -1.5,
+            -1,
+            -0.44999999999999996,
+            0,
+            0,
+            0,
+            -1.5,
+            -1,
+            -0.44999999999999996,
+            1.5,
+            -1,
+            -0.44999999999999996,
+            0,
+            0,
+            0,
+            1.5,
+            -1,
+            -0.44999999999999996,
+            -1,
+            1,
+            0.45000000000000007,
+            0,
+            0,
+            0
+          ],
+          "d": 0.1
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          -0.42,
+          -0.44,
+          0.13
+        ],
+        "quat": [
+          0.27,
+          0,
+          0.88,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 1.01,
+          "radialSegments": 10
+        },
+        "color": 16764074,
+        "boneFrom": "leftArm_upperArm",
+        "boneTo": "leftArm_forearm"
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.25,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0.46,
+          -0.32,
+          0.12
+        ],
+        "quat": [
+          0.23,
+          0,
+          -0.85,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.96,
+          "radialSegments": 10
+        },
+        "color": 16764074,
+        "boneFrom": "leftArm_forearm",
+        "boneTo": "leftArm_hand"
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.25,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          0.1,
+          -1.5,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.3,
+          "tube": 0.05,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0.45,
+          0.2,
+          0.35
+        ],
+        "quat": [
+          0.36,
+          0,
+          -0.46,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.29,
+          "radiusBottom": 0.29,
+          "height": 0.98,
+          "radialSegments": 10
+        },
+        "color": 16764074,
+        "boneFrom": "rightArm_upperArm",
+        "boneTo": "rightArm_forearm"
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.25,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          -0.39,
+          0.31,
+          0.16
+        ],
+        "quat": [
+          0.17,
+          0,
+          0.42,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.86,
+          "radialSegments": 10
+        },
+        "color": 16764074,
+        "boneFrom": "rightArm_forearm",
+        "boneTo": "rightArm_hand"
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.25,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16764074
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "spear",
+      "transform": {
+        "pos": [
+          0,
+          2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.08,
+          "radiusBottom": 0.08,
+          "height": 4,
+          "radialSegments": 10
+        },
+        "color": 13938487
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "spear",
+      "transform": {
+        "pos": [
+          0,
+          4.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.2,
+          "height": 0.6,
+          "radialSegments": 10
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "spear",
+      "transform": {
+        "pos": [
+          0,
+          0.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.5,
+          "depth": 0.1
+        },
+        "color": 13379891
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.35,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          -0.05,
+          -0.26,
+          0.1
+        ],
+        "quat": [
+          0.87,
+          0,
+          0.44,
+          0.21
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.34,
+          "radiusBottom": 0.34,
+          "height": 0.33,
+          "radialSegments": 10
+        },
+        "color": 1710638,
+        "boneFrom": "leftLeg_thigh",
+        "boneTo": "leftLeg_shin"
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.29,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          -0.05,
+          -0.2,
+          0.15
+        ],
+        "quat": [
+          0.9,
+          0,
+          0.3,
+          0.33
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.31,
+          "radiusBottom": 0.31,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 1710638,
+        "boneFrom": "leftLeg_shin",
+        "boneTo": "leftLeg_foot"
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "wheel",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.6,
+          "tube": 0.15,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 16729344
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "wheel",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.4,
+          "tube": 0.1,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 16755200
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "wheel",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.8
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.1,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 16755200
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.35,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0.05,
+          -0.26,
+          0.1
+        ],
+        "quat": [
+          0.87,
+          0,
+          -0.44,
+          0.21
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.34,
+          "radiusBottom": 0.34,
+          "height": 0.33,
+          "radialSegments": 10
+        },
+        "color": 1710638,
+        "boneFrom": "rightLeg_thigh",
+        "boneTo": "rightLeg_shin"
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.29,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          0.05,
+          -0.2,
+          0.15
+        ],
+        "quat": [
+          0.9,
+          0,
+          -0.3,
+          0.33
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.31,
+          "radiusBottom": 0.31,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 1710638,
+        "boneFrom": "rightLeg_shin",
+        "boneTo": "rightLeg_foot"
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710638
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1781763686650,
+      "provider": "glm",
+      "data": "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",
+      "edits": ""
+    }
+  },
+  "_routerResponse": "```json\n{\n  \"proportions\": \"矮小顽童体型，头大身小四肢短粗，嚣张叉腰站姿\",\n  \"regions\": [\n    {\"name\": \"head\", \"desc\": \"圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙\"},\n    {\"name\": \"body\", \"desc\": \"短粗躯干、红肚兜-红[cc2933]、乾坤圈-金[d4af37]（套脖）、混天绫-红（绕肩向后飘）\"},\n    {\"name\": \"leftArm\", \"desc\": \"短粗手臂、左手叉腰、手腕红绳-红\"},\n    {\"name\": \"rightArm\", \"desc\": \"短粗手臂、右手持火尖枪-金/红\"},\n    {\"name\": \"leftLeg\", \"desc\": \"短粗腿、灯笼裤-深蓝[1a1a2e]、踩风火轮-橙红[ff4500]\"},\n    {\"name\": \"rightLeg\", \"desc\": \"短粗腿、灯笼裤-深蓝、踩风火轮-橙红\"}\n  ],\n  \"methodologies\": [\"humanoid_body\", \"head:flatface\"]\n}\n```",
+  "_routerThinking": "1. **分析请求**：\n    * 目标：哪吒（出自电影《哪吒之魔童降世》——注意：用户输入了“魔童脑海”，这是“魔童降世”的错别字，但显然指的是该电影中的哪吒）。\n    * 角色：低多边形模型的结构草稿器。\n    * 输出：JSON格式，包含proportions、regions（带有desc和配件）以及methodologies。\n\n2. **步骤1：具象化**：\n    * 哪吒是一个具体的角色（神话/电影角色）。跳过抽象转化。\n    * 关键视觉特征：双丸子头（丸子头），深色眼圈（烟熏妆），顽童/小孩体型，混天绑在腰间（混天绫），乾坤圈在脖子上（乾坤圈），火尖枪（火尖枪），风火轮在脚下（风火轮）。有时穿红色肚兜（肚兜）和深色裤子。\n\n3. **步骤2：结构划分**：\n    * 单体模型：哪吒是一个独立运动体。\n    * Group：head，body，leftArm，rightArm，leftLeg，rightLeg。\n    * 配件附着物：head（丸子头，眼罩/烟熏妆），body（肚兜，混天绫，乾坤圈），leftArm/rightArm（火尖枪在一只手上），leftLeg/rightLeg（风火轮）。\n\n4. **步骤3：写desc + 配件**：\n    * *Proportions*：矮小顽童体型，头大身小，四肢短粗，站姿嚣张（双手插兜或叉腰）。\n    * *Head*：圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙。\n    * *Body*：短粗躯干、红肚兜-红[cc2933]、莲花肚兜带-金[d4af37]、乾坤圈-金（在脖子上）、混天绫-红（缠绕双臂/腰部，向后飘）。\n    * *Arms*：短粗手臂、手腕红绳-红、左手持火尖枪-金/红。\n    * *Legs*：短粗腿、灯笼裤-深蓝[1a1a2e]、脚踝环-金、踩风火轮-橙红[ff4500]。\n    * *颜色分配*：60%红/暗色（肚兜，混天绫，裤子），30%肤色/金（皮肤，乾坤圈，火尖枪），10%黑/火（头发，风火轮）。\n\n5. **步骤4：方法论选取**：\n    * 身体结构：humanoid_body（直立人形，小孩）。\n    * 头部：head:flatface（平面型，人/精灵）。\n\n6. **完善JSON**：\n    * 确保配件是“一两个几何块就能表达”的（乾坤圈=torus，丸子头=小球，火尖枪=圆柱+锥，风火轮=torus/圆柱）。\n    * 颜色内联，hex不带#。每种颜色只在首次出现时写hex。\n    * 不输出纹理/表面状态词。\n    * 姿势：“双手插兜嚣张站姿”或“叉腰”。让我们用“双手插兜嚣张站姿”来捕捉他的态度，尽管插兜意味着需要口袋，也许“双手插裤兜站姿”或者只是“嚣张叉腰站姿”。我们就用“嚣张叉腰站姿”吧。\n\n    *起草regions*：\n    - head：圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙\n    - body：短粗躯干、红肚兜-红[cc2933]、乾坤圈-金[d4af37]（套在脖子上）、混天绫-红（缠绕腰部向后飘）\n    - leftArm：短粗手臂、左手叉腰\n    - rightArm：短粗手臂、右手持火尖枪-金/红\n    - leftLeg：短粗腿、灯笼裤-深蓝[1a1a2e]、踩风火轮-橙红[ff4500]\n    - rightLeg：短粗腿、灯笼裤-深蓝、踩风火轮-橙红\n\n    等等，混天绫缠绕双臂还是腰部？在电影中，它通常像围巾/披肩一样缠绕在手臂/肩膀上，但有时也缠绕在腰部。让我们把它放在body上：“混天绫-红（绕颈向后飘）”。\n    火尖枪在右手。\n    风火轮在脚下。让我们把它们作为配件添加到腿部。\n\n7. **最终JSON构建**：\n    检查约束：只输出JSON，不附加解释。速度优先，允许瑕疵。hex不带#。每种颜色只在首次出现时写hex。",
+  "_modelReasoning": "1.  **Analyze the Request:**\n    *   **Subject:** Nezha from \"Ne Zha\" (2019 animated movie).\n    *   **Style:** Low-poly 3D modeling (building blocks).\n    *   **Key Features:**\n        *   Head: Round big head, double bun hair (black), blunt bangs (black), smoky eye circles (dark gray), fangs.\n        *   Body: Short chunky torso, red dudou (belly wrap) [cc2933], Universe Ring (golden hoop around neck) [d4af37], Red Armillary Sash (flowing behind shoulders).\n        *   Left Arm: Short chunky arm, left hand on hip, red string on wrist.\n        *   Right Arm: Short chunky arm, right hand holding Fire-Tipped Spear (gold/red).\n        *   Left Leg: Short chunky leg, lantern pants (dark blue) [1a1a2e], stepping on Wind Fire Wheel (orange-red) [ff4500].\n        *   Right Leg: Short chunky leg, lantern pants (dark blue), stepping on Wind Fire Wheel (orange-red).\n        *   Proportion: Short, stubby, big head, arrogant hands-on-hips stance.\n    *   **Constraints:** Output *only* `function build(api) { ... }`. No markdown, no explanation. Use specific API. Y+ is up, Z+ is front. Use `pivot` for moving parts. Use `chain` for limbs. Use `bezierPoint` for curves. Use `group` hierarchy.\n\n2.  **Proportions & Scale:**\n    *   Total height ~ 4.5 - 5.0 (chibi/stubby kid).\n    *   Head: ~1.5 - 1.8 (big head).\n    *   Torso: ~1.5 (short).\n    *   Legs: ~1.5 (short).\n    *   Arms: short, reaching down to hips.\n\n3.  **Step-by-Step Construction Plan:**\n\n    *   **Head (`head`):**\n        *   Pivot at neck base (e.g., [0, 3.0, 0]), target `chest`.\n        *   Skull: Sphere r=0.9, pos=[0, 4.0, 0].\n        *   Jaw/Face: Box or sphere slightly forward and down to give flat-face profile. Let's use a box w=1.4, h=0.8, d=1.0, pos=[0, 3.4, 0.3].\n        *   Bangs: Thin box or tri on forehead. Box w=1.5, h=0.4, d=0.2, pos=[0, 4.3, 0.8].\n        *   Buns (Double meatball hair): Two spheres on top. Sphere r=0.4, pos=[±0.6, 5.0, 0].\n        *   Smoky Eyes: Two dark gray patches (thin boxes or tris) around the eyes. Box w=0.5, h=0.3, d=0.1, pos=[±0.4, 3.8, 0.9].\n        *   Eyes: Poly r=0.15, pos=[±0.4, 3.8, 1.0]. Pupils: Poly r=0.08.\n        *   Fangs: Two small cones pointing down from mouth. Cone r=0.06, h=0.15, pos=[±0.15, 3.0, 0.9], along='-Y'.\n\n    *   **Body (`body`):**\n        *   Group `body` contains `chest`, `abdomen`, `pelvis`.\n        *   Chest: Box w=1.8, h=1.0, d=1.2, pos=[0, 2.5, 0].\n        *   Abdomen: Box w=1.6, h=0.6, d=1.1, pos=[0, 1.7, 0].\n        *   Pelvis: Box w=1.6, h=0.5, d=1.1, pos=[0, 1.15, 0].\n        *   Dudou (Red belly wrap): Box w=1.9, h=0.8, d=0.15, pos=[0, 2.2, 0.65], color=0xcc2933.\n        *   Universe Ring (Golden hoop around neck): Torus r=0.7, tube=0.1, pos=[0, 3.0, 0], color=0xd4af37.\n        *   Red Armillary Sash (混天绫): Flowing behind. Use `patch` or `chain` or a couple of angled thin boxes. Let's use a `patch` flowing from shoulders to back and down. Or a couple of thin boxes angled back. Let's do a `patch` for the flowing sash. Points: [0, 3.0, -0.5], [-1.5, 2.0, -1.5], [1.5, 2.0, -1.5], [0, 0.5, -2.0]. Color=0xcc2933.\n\n    *   **Left Arm (`leftArm`):**\n        *   Pivot at left shoulder [-1.0, 2.8, 0], target `chest`.\n        *   Hands-on-hips pose: Elbow out, hand on hip.\n        *   Waypoints: [-1.0, 2.8, 0] (shoulder) -> [-1.8, 2.0, 0.5] (elbow out) -> [-1.2, 1.5, 0.5] (hand on hip).\n        *   Use `bezierPoint` for the curve.\n        *   Chain r=0.3, rEnd=0.25. jointIds=['upperArm','forearm','hand'].\n        *   Red string on wrist: Torus r=0.3, tube=0.05, pos=[-1.2, 1.5, 0.5], color=0xcc2933.\n\n    *   **Right Arm (`rightArm`):**\n        *   Pivot at right shoulder [1.0, 2.8, 0], target `chest`.\n        *   Holding spear, pointing up or angled.\n        *   Waypoints: [1.0, 2.8, 0] -> [2.0, 2.5, 0.5] -> [1.5, 3.5, 1.0] (holding up).\n        *   Chain r=0.3, rEnd=0.25. jointIds=['upperArm','forearm','hand'].\n        *   Spear (`spear` group inside rightArm):\n            *   Pivot at hand [1.5, 3.5, 1.0], target `hand`.\n            *   Shaft: Cyl r=0.08, h=4.0, pos=[1.5, 3.5, 1.0], along='+Y', color=0xd4af37.\n            *   Tip: Cone r=0.2, h=0.6, pos=[1.5, 5.8, 1.0], along='+Y', color=0xcc2933.\n\n    *   **Left Leg (`leftLeg`):**\n        *   Pivot at left hip [-0.5, 0.9, 0], target `pelvis`.\n        *   Stance: Slightly apart.\n        *   Waypoints: [-0.5, 0.9, 0] -> [-0.6, 0.4, 0.2] -> [-0.7, 0.0, 0.5] (foot forward).\n        *   Chain r=0.35, rEnd=0.3. jointIds=['thigh','shin','foot']. Color=0x1a1a2e (dark blue pants).\n        *   Wind Fire Wheel (`wheel` group inside leftLeg):\n            *   Pivot at foot [-0.7, 0.0, 0.5], target `foot`.\n            *   Torus r=0.6, tube=0.15, pos=[-0.7, 0.0, 0.5], color=0xff4500.\n            *   Inner fire: Torus r=0.4, tube=0.1, pos=[-0.7, 0.0, 0.5], color=0xffaa00.\n\n    *   **Right Leg (`rightLeg`):**\n        *   Pivot at right hip [0.5, 0.9, 0], target `pelvis`.\n        *   Waypoints: [0.5, 0.9, 0] -> [0.6, 0.4, 0.2] -> [0.7, 0.0, 0.5].\n        *   Chain r=0.35, rEnd=0.3. jointIds=['thigh','shin','foot']. Color=0x1a1a2e.\n        *   Wind Fire Wheel (`wheel` group inside rightLeg):\n            *   Pivot at foot [0.7, 0.0, 0.5], target `foot`.\n            *   Torus r=0.6, tube=0.15, pos=[0.7, 0.0, 0.5], color=0xff4500.\n            *   Inner fire: Torus r=0.4, tube=0.1, pos=[0.7, 0.0, 0.5], color=0xffaa00.\n\n4.  **Refining Details & Coordinates:**\n    *   *Head:* Let's make the head really big and round. Sphere r=1.0, pos=[0, 4.2, 0]. Jaw box w=1.6, h=0.8, d=1.2, pos=[0, 3.4, 0.2].\n    *   *Buns:* Sphere r=0.45, pos=[±0.7, 5.2, -0.1].\n    *   *Bangs:* Box w=1.8, h=0.5, d=0.3, pos=[0, 4.6, 0.7].\n    *   *Smoky Eyes:* Box w=0.6, h=0.4, d=0.15, pos=[±0.45, 3.9, 1.0], color=0x4a4a4a.\n    *   *Eyes:* Poly r=0.2, pos=[±0.45, 3.9, 1.1], color=0xffffff. Pupils: Poly r=0.1, pos=[±0.45, 3.9, 1.15], color=0x1a1a1a.\n    *   *Fangs:* Cone r=0.08, h=0.2, pos=[±0.2, 3.1, 1.0], along='-Y', color=0xffffff.\n    *   *Body:*\n        *   Chest: Box w=2.0, h=1.2, d=1.4, pos=[0, 2.6, 0], color=0xffccaa (skin).\n        *   Abdomen: Box w=1.8, h=0.6, d=1.3, pos=[0, 1.7, 0], color=0xffccaa.\n        *   Pelvis: Box w=1.8, h=0.5, d=1.3, pos=[0, 1.15, 0], color=0x1a1a2e.\n        *   Dudou: Box w=2.1, h=1.0, d=0.2, pos=[0, 2.3, 0.75], color=0xcc2933.\n        *   Universe Ring: Torus r=0.8, tube=0.12, pos=[0, 3.1, 0], color=0xd4af37.\n        *   Sash: patch points [[-1.0, 3.0, -0.6], [1.0, 3.0, -0.6], [-1.5, 1.0, -1.5], [1.5, 1.0, -1.5]], d=0.1, color=0xcc2933.\n    *   *Arms:* Use bezierPoint for the hands-on-hips pose.\n        *   Left: p0=[-1.1, 2.8, 0], p1=[-2.0, 2.8, 0], p2=[-2.0, 1.0, 0.5], p3=[-1.0, 1.3, 0.5].\n        *   Right: p0=[1.1, 2.8, 0], p1=[2.5, 2.8, 0.5], p2=[2.0, 3.5, 1.0], p3=[1.2, 3.8, 1.0].\n    *   *Legs:* Straight-ish but stubby.\n        *   Left: [[-0.5, 0.9, 0], [-0.6, 0.4, 0.2], [-0.7, 0.0, 0.5]].\n        *   Right: [[0.5, 0.9, 0], [0.6, 0.4, 0.2], [0.7, 0.0, 0.5]].\n\n5.  **Drafting the Code:**\n    *   Need to import/use `bezierPoint` for the arm waypoints.\n    *   Let's write the bezier sampling loop for the left arm:\n        ```javascript\n        let lArmPts = [];\n        for(let i=0; i<3; i++) {\n          let t = i / 2;\n          let pt = api.bezierPoint(t, [-1.1, 2.8, 0], [-2.2, 2.8, 0], [-2.2, 1.0, 0.5], [-1.0, 1.3, 0.5]);\n          lArmPts.push(pt.pos);\n        }\n        ```\n    *   Right arm:\n        ```javascript\n        let rArmPts = [];\n        for(let i=0; i<3; i++) {\n          let t = i / 2;\n          let pt = api.bezierPoint(t, [1.1, 2.8, 0], [2.5, 2.8, 0.5], [2.0, 3.5, 1.0], [1.2, 3.8, 1.0]);\n          rArmPts.push(pt.pos);\n        }\n        ```\n    *   Wait, the prompt says \"只输出 function build(api) { ... }。不要markdown，不要解释。\"\n    *   Let's refine the colors and sizes.\n    *   Skin color: 0xFFCCAA\n    *   Hair color: 0x1A1A1A\n    *   Smoky eye: 0x4A4A4A\n    *   Dudou/Sash: 0xCC2933\n    *   Ring/Spear shaft: 0xD4AF37\n    *   Pants: 0x1A1A2E\n    *   Wheels: 0xFF4500, 0xFFAA00\n\n6.  **Double check constraints:**\n    *   Pivot for head: `[0, 3.1, 0]`, target `chest`.\n    *   Pivot for leftArm: `[-1.1, 2.8, 0]`, target `chest`.\n    *   Pivot for rightArm: `[1.1, 2.8, 0]`, target `chest`.\n    *   Pivot for leftLeg: `[-0.5, 0.9, 0]`, target `pelvis`.\n    *   Pivot for rightLeg: `[0.5, 0.9, 0]`, target `pelvis`.\n    *   Spear pivot: at hand position, target `hand`.\n    *   Wheel pivot: at foot position, target `foot`.\n    *   All groups properly closed.\n    *   No markdown formatting outside the code block. Just the raw function.\n\n7.  **Refining Geometry:**\n    *   Head: Sphere r=1.0 is good. Jaw box w=1.6, h=0.8, d=1.2.\n    *   Buns: Sphere r=0.45. Add a small torus or box at the base of each bun for the hair tie. Torus r=0.45, tube=0.08, pos=[±0.7, 5.0, -0.1], color=0xcc2933.\n    *   Bangs: Box w=1.8, h=0.5, d=0.3. Add side hair? Box w=0.3, h=1.0, d=0.3, pos=[±0.9, 3.8, 0.5].\n    *   Smoky eyes: Box w=0.6, h=0.4, d=0.15.\n    *   Fangs: Cone r=0.08, h=0.2.\n    *   Universe Ring: Torus r=0.8, tube=0.12.\n    *   Sash: patch is good. Let's make it a bit more dynamic. `points: [[-1.0, 3.0, -0.6], [1.0, 3.0, -0.6], [-1.5, 1.0, -1.5], [1.5, 1.0, -1.5]]`.\n    *   Spear: Cyl r=0.08, h=4.0. Cone r=0.2, h=0.6. Add a small red tassel near the tip. Box w=0.3, h=0.5, d=0.1, pos=[1.2, 3.2, 1.0], color=0xcc2933.\n    *   Wind Fire Wheels: Torus r=0.6, tube=0.15. Inner torus r=0.4, tube=0.1. Add some flame details? Small cones pointing outwards. Cone r=0.1, h=0.3, pos=[-0.7, 0.0, 1.1], along='+Z', color=0xffaa00.\n\n8.  **Final Code Structure:**\n    ```javascript\n    function build(api) {\n      api.name('哪吒');\n      const C_SKIN = 0xFFCCAA, C_HAIR = 0x1A1A1A, C_SMOKE = 0x4A4A4A, C_RED = 0xCC2933, C_GOLD = 0xD4AF37, C_PANTS = 0x1A1A2E, C_FIRE1 = 0xFF4500, C_FIRE2 = 0xFFAA00, C_WHITE = 0xFFFFFF, C_BLACK = 0x111111;\n\n      // Head\n      api.group('head', '头部');\n      api.pivot([0, 3.1, 0], 'chest');\n      api.sphere({r: 1.0, pos: [0, 4.2, 0], color: C_SKIN});\n      api.box({w: 1.6, h: 0.8, d: 1.2, pos: [0, 3.4, 0.2], color: C_SKIN});\n      // Hair\n      api.box({w: 1.8, h: 0.5, d: 0.3, pos: [0, 4.6, 0.7], color: C_HAIR});\n      api.box({w: 0.3, h: 1.0, d: 0.3, pos: [-0.9, 3.8, 0.5], color: C_HAIR});\n      api.box({w: 0.3, h: 1.0, d: 0.3, pos: [0.9, 3.8, 0.5], color: C_HAIR});\n      // Buns\n      api.sphere({r: 0.45, pos: [-0.7, 5.2, -0.1], color: C_HAIR});\n      api.sphere({r: 0.45, pos: [0.7, 5.2, -0.1], color: C_HAIR});\n      api.torus({r: 0.45, tube: 0.08, pos: [-0.7, 5.0, -0.1], color: C_RED});\n      api.torus({r: 0.45, tube: 0.08, pos: [0.7, 5.0, -0.1], color: C_RED});\n      // Face\n      api.box({w: 0.6, h: 0.4, d: 0.15, pos: [-0.45, 3.9, 1.0], color: C_SMOKE});\n      api.box({w: 0.6, h: 0.4, d: 0.15, pos: [0.45, 3.9, 1.0], color: C_SMOKE});\n      api.poly({r: 0.2, pos: [-0.45, 3.9, 1.1], color: C_WHITE});\n      api.poly({r: 0.1, pos: [-0.45, 3.9, 1.15], color: C_BLACK});\n      api.poly({r: 0.2, pos: [0.45, 3.9, 1.1], color: C_WHITE});\n      api.poly({r: 0.1, pos: [0.45, 3.9, 1.15], color: C_BLACK});\n      api.cone({r: 0.08, h: 0.2, pos: [-0.2, 3.1, 1.0], along: '-Y', color: C_WHITE});\n      api.cone({r: 0.08, h: 0.2, pos: [0.2, 3.1, 1.0], along: '-Y', color: C_WHITE});\n      api.endGroup();\n\n      // Body\n      api.group('body', '躯干');\n      api.group('chest', '胸');\n      api.box({w: 2.0, h: 1.2, d: 1.4, pos: [0, 2.6, 0], color: C_SKIN});\n      api.box({w: 2.1, h: 1.0, d: 0.2, pos: [0, 2.3, 0.75], color: C_RED}); // Dudou\n      api.endGroup();\n      api.group('abdomen', '腹');\n      api.box({w: 1.8, h: 0.6, d: 1.3, pos: [0, 1.7, 0], color: C_SKIN});\n      api.endGroup();\n      api.group('pelvis', '胯');\n      api.box({w: 1.8, h: 0.5, d: 1.3, pos: [0, 1.15, 0], color: C_PANTS});\n      api.endGroup();\n      // Universe Ring\n      api.torus({r: 0.8, tube: 0.12, pos: [0, 3.1, 0], color: C_GOLD});\n      // Sash\n      api.patch({points: [[-1.0, 3.0, -0.6], [1.0, 3.0, -0.6], [-1.5, 1.0, -1.5], [1.5, 1.0, -1.5]], d: 0.1, color: C_RED});\n      api.endGroup();\n\n      // Left Arm\n      api.group('leftArm', '左臂');\n      api.pivot([-1.1, 2.8, 0], 'chest');\n      let lPts = [];\n      for(let i=0; i<3; i++) {\n        let pt = api.bezierPoint(i/2, [-1.1, 2.8, 0], [-2.2, 2.8, 0], [-2.2, 1.0, 0.5], [-1.0, 1.3, 0.5]);\n        lPts.push(pt.pos);\n      }\n      api.chain({waypoints: lPts, jointIds: ['upperArm', 'forearm', 'hand'], r: 0.3, rEnd: 0.25, color: C_SKIN});\n      api.torus({r: 0.3, tube: 0.05, pos: lPts[2], color: C_RED}); // Wrist string\n      api.endGroup();\n\n      // Right Arm\n      api.group('rightArm', '右臂');\n      api.pivot([1.1, 2.8, 0], 'chest');\n      let rPts = [];\n      for(let i=0; i<3; i++) {\n        let pt = api.bezierPoint(i/2, [1.1, 2.8, 0], [2.5, 2.8, 0.5], [2.0, 3.5, 1.0], [1.2, 3.8, 1.0]);\n        rPts.push(pt.pos);\n      }\n      api.chain({waypoints: rPts, jointIds: ['upperArm', 'forearm', 'hand'], r: 0.3, rEnd: 0.25, color: C_SKIN});\n      // Spear\n      api.group('spear', '火尖枪');\n      api.pivot(rPts[2], 'hand');\n      api.cyl({r: 0.08, h: 4.0, pos: [rPts[2][0], rPts[2][1]+2, rPts[2][2]], along: '+Y', color: C_GOLD});\n      api.cone({r: 0.2, h: 0.6, pos: [rPts[2][0], rPts[2][1]+4.2, rPts[2][2]], along: '+Y', color: C_RED});\n      api.box({w: 0.3, h: 0.5, d: 0.1, pos: [rPts[2][0], rPts[2][1]+0.5, rPts[2][2]], color: C_RED}); // Tassel\n      api.endGroup();\n      api.endGroup();\n\n      // Left Leg\n      api.group('leftLeg', '左腿');\n      api.pivot([-0.5, 0.9, 0], 'pelvis');\n      let lLegPts = [[-0.5, 0.9, 0], [-0.6, 0.4, 0.2], [-0.7, 0.0, 0.5]];\n      api.chain({waypoints: lLegPts, jointIds: ['thigh', 'shin', 'foot'], r: 0.35, rEnd: 0.3, color: C_PANTS});\n      // Wind Fire Wheel\n      api.group('wheel', '风火轮');\n      api.pivot(lLegPts[2], 'foot');\n      api.torus({r: 0.6, tube: 0.15, pos: lLegPts[2], color: C_FIRE1});\n      api.torus({r: 0.4, tube: 0.1, pos: lLegPts[2], color: C_FIRE2});\n      api.cone({r: 0.1, h: 0.3, pos: [lLegPts[2][0], lLegPts[2][1], lLegPts[2][2]+0.8], along: '+Z', color: C_FIRE2});\n      api.endGroup();\n      api.endGroup();\n\n      // Right Leg\n      api.group('rightLeg', '右腿');\n      api.pivot([0.5, 0.9, 0], 'pelvis');\n      let rLegPts = [[0.5, 0.9, 0], [0.6, 0.4, 0.2], [0.7, 0.0, 0.5]];\n      api.chain({waypoints: rLegPts, jointIds: ['thigh', 'shin', 'foot'], r: 0.35, rEnd: 0.3, color: C_PANTS});\n      // Wind Fire Wheel\n      api.group('wheel', '风火轮');\n      api.pivot(rLegPts[2], 'foot');\n      api.torus({r: 0.6, tube: 0.15, pos: rLegPts[2], color: C_FIRE1});\n      api.torus({r: 0.4, tube: 0.1, pos: rLegPts[2], color: C_FIRE2});\n      api.cone({r: 0.1, h: 0.3, pos: [rLegPts[2][0], rLegPts[2][1], rLegPts[2][2]+0.8], along: '+Z', color: C_FIRE2});\n      api.endGroup();\n      api.endGroup();\n    }\n    ```\n\n9.  **Review against instructions:**\n    *   No markdown? Yes.\n    *   No explanation? Yes.\n    *   Only `function build(api) { ... }`? Yes.\n    *   Pivot logic correct? Yes, pivots are at joint origins, targets are parent groups.\n    *   Spear inside rightArm? Yes.\n    *   Wheels inside legs? Yes.\n    *   Bezier used for arms? Yes.\n    *   Colors match description? Yes.\n    *   Proportions match \"short stubby kid\"? Yes, big head, short torso/legs.\n\n10. **Final Polish:** Ensure variable names and syntax are perfectly valid JS. The `rPts[2]` usage in the spear group is fine since it's evaluated at build time. The `along` parameter for cones is correct. The `patch` for the sash is a nice touch. The `torus` for the universe ring is placed correctly.",
+  "_aiCode": "function build(api) {\n  api.name('哪吒');\n  const C_SKIN = 0xFFCCAA, C_HAIR = 0x1A1A1A, C_SMOKE = 0x4A4A4A, C_RED = 0xCC2933, C_GOLD = 0xD4AF37, C_PANTS = 0x1A1A2E, C_FIRE1 = 0xFF4500, C_FIRE2 = 0xFFAA00, C_WHITE = 0xFFFFFF, C_BLACK = 0x111111;\n\n  api.group('head', '头部');\n  api.pivot([0, 3.1, 0], 'chest');\n  api.sphere({r: 1.0, pos: [0, 4.2, 0], color: C_SKIN});\n  api.box({w: 1.6, h: 0.8, d: 1.2, pos: [0, 3.4, 0.2], color: C_SKIN});\n  api.box({w: 1.8, h: 0.5, d: 0.3, pos: [0, 4.6, 0.7], color: C_HAIR});\n  api.box({w: 0.3, h: 1.0, d: 0.3, pos: [-0.9, 3.8, 0.5], color: C_HAIR});\n  api.box({w: 0.3, h: 1.0, d: 0.3, pos: [0.9, 3.8, 0.5], color: C_HAIR});\n  api.sphere({r: 0.45, pos: [-0.7, 5.2, -0.1], color: C_HAIR});\n  api.sphere({r: 0.45, pos: [0.7, 5.2, -0.1], color: C_HAIR});\n  api.torus({r: 0.45, tube: 0.08, pos: [-0.7, 5.0, -0.1], color: C_RED});\n  api.torus({r: 0.45, tube: 0.08, pos: [0.7, 5.0, -0.1], color: C_RED});\n  api.box({w: 0.6, h: 0.4, d: 0.15, pos: [-0.45, 3.9, 1.0], color: C_SMOKE});\n  api.box({w: 0.6, h: 0.4, d: 0.15, pos: [0.45, 3.9, 1.0], color: C_SMOKE});\n  api.poly({r: 0.2, pos: [-0.45, 3.9, 1.1], color: C_WHITE});\n  api.poly({r: 0.1, pos: [-0.45, 3.9, 1.15], color: C_BLACK});\n  api.poly({r: 0.2, pos: [0.45, 3.9, 1.1], color: C_WHITE});\n  api.poly({r: 0.1, pos: [0.45, 3.9, 1.15], color: C_BLACK});\n  api.cone({r: 0.08, h: 0.2, pos: [-0.2, 3.1, 1.0], along: '-Y', color: C_WHITE});\n  api.cone({r: 0.08, h: 0.2, pos: [0.2, 3.1, 1.0], along: '-Y', color: C_WHITE});\n  api.endGroup();\n\n  api.group('body', '躯干');\n  api.group('chest', '胸');\n  api.box({w: 2.0, h: 1.2, d: 1.4, pos: [0, 2.6, 0], color: C_SKIN});\n  api.box({w: 2.1, h: 1.0, d: 0.2, pos: [0, 2.3, 0.75], color: C_RED});\n  api.endGroup();\n  api.group('abdomen', '腹');\n  api.box({w: 1.8, h: 0.6, d: 1.3, pos: [0, 1.7, 0], color: C_SKIN});\n  api.endGroup();\n  api.group('pelvis', '胯');\n  api.box({w: 1.8, h: 0.5, d: 1.3, pos: [0, 1.15, 0], color: C_PANTS});\n  api.endGroup();\n  api.torus({r: 0.8, tube: 0.12, pos: [0, 3.1, 0], color: C_GOLD});\n  api.patch({points: [[-1.0, 3.0, -0.6], [1.0, 3.0, -0.6], [-1.5, 1.0, -1.5], [1.5, 1.0, -1.5]], d: 0.1, color: C_RED});\n  api.endGroup();\n\n  api.group('leftArm', '左臂');\n  api.pivot([-1.1, 2.8, 0], 'chest');\n  let lPts = [];\n  for(let i=0; i<3; i++) {\n    let pt = api.bezierPoint(i/2, [-1.1, 2.8, 0], [-2.2, 2.8, 0], [-2.2, 1.0, 0.5], [-1.0, 1.3, 0.5]);\n    lPts.push(pt.pos);\n  }\n  api.chain({waypoints: lPts, jointIds: ['upperArm', 'forearm', 'hand'], r: 0.3, rEnd: 0.25, color: C_SKIN});\n  api.torus({r: 0.3, tube: 0.05, pos: lPts[2], color: C_RED});\n  api.endGroup();\n\n  api.group('rightArm', '右臂');\n  api.pivot([1.1, 2.8, 0], 'chest');\n  let rPts = [];\n  for(let i=0; i<3; i++) {\n    let pt = api.bezierPoint(i/2, [1.1, 2.8, 0], [2.5, 2.8, 0.5], [2.0, 3.5, 1.0], [1.2, 3.8, 1.0]);\n    rPts.push(pt.pos);\n  }\n  api.chain({waypoints: rPts, jointIds: ['upperArm', 'forearm', 'hand'], r: 0.3, rEnd: 0.25, color: C_SKIN});\n  api.group('spear', '火尖枪');\n  api.pivot(rPts[2], 'hand');\n  api.cyl({r: 0.08, h: 4.0, pos: [rPts[2][0], rPts[2][1]+2, rPts[2][2]], along: '+Y', color: C_GOLD});\n  api.cone({r: 0.2, h: 0.6, pos: [rPts[2][0], rPts[2][1]+4.2, rPts[2][2]], along: '+Y', color: C_RED});\n  api.box({w: 0.3, h: 0.5, d: 0.1, pos: [rPts[2][0], rPts[2][1]+0.5, rPts[2][2]], color: C_RED});\n  api.endGroup();\n  api.endGroup();\n\n  api.group('leftLeg', '左腿');\n  api.pivot([-0.5, 0.9, 0], 'pelvis');\n  let lLegPts = [[-0.5, 0.9, 0], [-0.6, 0.4, 0.2], [-0.7, 0.0, 0.5]];\n  api.chain({waypoints: lLegPts, jointIds: ['thigh', 'shin', 'foot'], r: 0.35, rEnd: 0.3, color: C_PANTS});\n  api.group('wheel', '风火轮');\n  api.pivot(lLegPts[2], 'foot');\n  api.torus({r: 0.6, tube: 0.15, pos: lLegPts[2], color: C_FIRE1});\n  api.torus({r: 0.4, tube: 0.1, pos: lLegPts[2], color: C_FIRE2});\n  api.cone({r: 0.1, h: 0.3, pos: [lLegPts[2][0], lLegPts[2][1], lLegPts[2][2]+0.8], along: '+Z', color: C_FIRE2});\n  api.endGroup();\n  api.endGroup();\n\n  api.group('rightLeg', '右腿');\n  api.pivot([0.5, 0.9, 0], 'pelvis');\n  let rLegPts = [[0.5, 0.9, 0], [0.6, 0.4, 0.2], [0.7, 0.0, 0.5]];\n  api.chain({waypoints: rLegPts, jointIds: ['thigh', 'shin', 'foot'], r: 0.35, rEnd: 0.3, color: C_PANTS});\n  api.group('wheel', '风火轮');\n  api.pivot(rLegPts[2], 'foot');\n  api.torus({r: 0.6, tube: 0.15, pos: rLegPts[2], color: C_FIRE1});\n  api.torus({r: 0.4, tube: 0.1, pos: rLegPts[2], color: C_FIRE2});\n  api.cone({r: 0.1, h: 0.3, pos: [rLegPts[2][0], rLegPts[2][1], rLegPts[2][2]+0.8], along: '+Z', color: C_FIRE2});\n  api.endGroup();\n  api.endGroup();\n}",
+  "_description": "哪吒之魔童脑海的主角哪吒",
+  "_formulaResult": {
+    "methodologies": [
+      "humanoid_body",
+      "head:flatface"
+    ],
+    "regions": [
+      {
+        "name": "head",
+        "desc": "圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙"
+      },
+      {
+        "name": "body",
+        "desc": "短粗躯干、红肚兜-红[cc2933]、乾坤圈-金[d4af37]（套脖）、混天绫-红（绕肩向后飘）"
+      },
+      {
+        "name": "leftArm",
+        "desc": "短粗手臂、左手叉腰、手腕红绳-红"
+      },
+      {
+        "name": "rightArm",
+        "desc": "短粗手臂、右手持火尖枪-金/红"
+      },
+      {
+        "name": "leftLeg",
+        "desc": "短粗腿、灯笼裤-深蓝[1a1a2e]、踩风火轮-橙红[ff4500]"
+      },
+      {
+        "name": "rightLeg",
+        "desc": "短粗腿、灯笼裤-深蓝、踩风火轮-橙红"
+      }
+    ],
+    "mode": "standard"
+  },
+  "_promptSystem": "你是低多边形3D建模师。凭直觉直接写代码——你对几何块的空间关系有本能的把握，坐标差不多就行，结构关系对才是重点。只输出 function build(api) { ... }。不要markdown，不要解释。\n\n## 核心认知：这是一个搭积木系统\n模型 = 几何块像搭积木一样拼接。box=方块，cyl=柱子，torus=圆环。没有雕刻纹理贴图。\n\"细节\" = 更多小积木：poly=纽扣/铆钉，扁box=徽章/衣领/补丁，torus=手镯/护腕，tri=面片/衣领。\n识别度来自：(1)大块空间关系决定类型 (2)关键小装饰决定\"这是哪一个\"。\n\n## 建造直觉\n大块定轮廓，小块添识别。group 内先放体积块(d≥0.15)再放表面装饰(d:0.05~0.08)——装饰贴在已有体积上，别被后来的体积块挡住。\n薄片是贴面的皮肤，只能在平面上大块使用。曲面(chain/sphere)上只用小块——大薄片贴曲面会边缘分离、中间穿模。\n头部的吻部/喙/鼻尖是体积块，必须在放眼睛之前搭好。衣物描述轮廓形状（宽松/收紧/喇叭），不追求表面状态（破旧/褶皱）。\n\n## 积木式细节\n细节来自小几何块的创造性使用。常用模式（原理，非穷举）：\n- 薄片附着：tri/扁box(d:0.05~0.12) → 衣领、披肩、马甲前襟、徽章、补丁。贴在平面上，曲面用小片\n- 环/箍：torus套在肢体或身体上 → 手镯、护腕、脚环、臂环、头环、腰带（身体截面圆形→torus，方形→扁box比身体宽一圈）\n- 点装饰：poly/sphere(r:0.08~0.15)放在表面 → 纽扣、铆钉、宝石、眼珠\n- 边缘排列：小几何块沿边缘等距放置 → 铆钉沿肩甲边缘、牙齿沿嘴缝排列\n- 层叠：同一位置叠2~3个不同尺寸/颜色的薄块 → 多层衣领、勋章\n- 双层 chain：做双色肢体时（如蛇腹），内层 chain 每个 waypoint 的偏移跟随该点半径比例——粗端偏移大，细端偏移小。不能统一偏移\n比例法则：装饰比现实大 2~3 倍才可见。纽扣r≥0.08，腰带tube≥0.1。\n\n## 坐标直觉\n子级放父级面上(前+Z/后-Z/上+Y/下-Y/侧±X)，从面向外偏。±0.2偏差不可见，重叠比缝隙好。\n眼睛/装饰放在父级表面之外——sphere用父级中心+半径推算表面，box用半尺寸+pos推算。陷进表面0.3就看不见。\n小装饰占 group 主要尺寸 15~25% 才有可读性。线性元素(琴弦/发簪)例外，r可低至0.01。cone的along=尖端指向。\n对称不仅是位置的镜像，形态方向也要对应——左耳向左垂，右耳向右垂。\n\n## 基础约束\nY+上，+Z前，地面Y=0。每个可独立运动的 group 设 api.pivot([x,y,z], \"target\")，手持物 target=所属肢体名，不是 body。\n颜色60-30-10：主色60%+辅色30%+强调色10%。大面积部件给2~3个同色系渐变色。\n多实例模型（花丛/棋局/鸟群）：每个编号实例(rose1/rose2/rose3)是独立顶级group，各自内部完整构建——不要把不同实例的同类部件合并到一个group。\n\n## API 速查\n**所有 pos 都是世界坐标。** pos 是形状的几何中心（不是底面/顶点）。Y+上，Z+前，X+右，地面Y=0。\n系统自动将 group 内几何体偏移为相对于 pivot 的局部坐标，AI 不需要手动计算相对坐标。\n### 基础形状\nbox({w,h,d, along?, pos, color?}) — 方块。along控制h方向。薄板用d:0.05~0.12\nsphere({r, pos, color?}) — 球体。关节球、头部\ncyl({r|rTop+rBot, h, seg?, along?, pos, color?}) — 圆柱。seg:4=方形截面。rTop≠rBot=锥台(方脸/锥形躯干)\ncone({r, h, seg?, along?, pos, color?}) — 圆锥。along=尖端指向，-along=底面方向。衣服尖端朝身体\ntorus({r, tube, along?, pos, color?}) — 圆环。默认平放XZ面。套在cyl上当箍用同一个along\npoly({r, pos, color?}) — 二十面体。眼睛(r:0.15~0.4)、宝石、纽扣(r:0.08~0.15)\ntri({a,b,c,d?, color?}) — 三角面片。朝向由顶点位置决定，d默认0.1\npatch({points,d?,color?}) — 多点面片。自动三角化。膜面/帆/披风。d:0.05~0.08\n### 复合构造\nchain({waypoints,r|rStart+rEnd,jointIds?,color?}) — 管体串联。每个waypoint=独立动画group。rStart>rEnd做末端收束。**弯曲路径用 bezierPoint 采样生成 waypoints，不要手写折线坐标**\nfork({from,to,r,color?})→{ends} — 一点多向分叉。鹿角/珊瑚/树枝\nconnect([x1,y1,z1],[x2,y2,z2],{r,color?}) — 端点自动连接，系统算位置+旋转\n### 坐标辅助\nrotatePoint([x,y,z],axis,angle)→[x,y,z] — 绕X/Y/Z轴旋转，返回世界坐标。axis取along垂直轴\npointOnCircle([cx,cy,cz],radius,axis,t)→[x,y,z] — 圆环取点，返回世界坐标。axis='Y'且t=0→+X\n### 数学工具——参数化设计（核心能力，每个模型必须考虑）\n参数化造型是本系统的核心能力。**每个模型构建时都必须自问：以下结构是否出现？如果出现，优先用对应工具，不要手写坐标。**\n- bezierPoint(t,p0,p1,p2,p3)→{pos,tangent}：贝塞尔曲线。**只要轮廓或路径不是直线——弯曲、弧形、S形、弧度、任何曲线形态**——就该用 bezierPoint 定义曲线再沿它放置形状。4 个控制点定义弧度，for(t) 采样。tangent 给朝向。\n- fibPoint(i,n,r)→{pos,normal}：球面均匀撒点。**只要需要在一颗球（或球冠/弧面）上均匀放置多个小元素**——就该用 fibPoint(i,n) 循环。比手写经纬坐标更均匀、更省事。\n- twist(pt,amt)→[x,y,z]：绕Y扭转。**只要竖直结构上下截面有角度差异（旋转渐变/螺旋/扭转）**——就该用 twist 变换坐标，而非手写每层的旋转角。\n- noise(x,y,z)→[-1,1]：Perlin噪声。**只要某个参数不想全均一——尺寸、位置、颜色、角度需要自然/不规则变化**——就该用 noise 加偏移。base + noise(x,y,z) * amp 是通用模式。\n- attractor(pt,attractors,falloff)→[0,1]：距离场。**只要有\"近处多/大/密、远处少/小/疏\"的空间渐变**——就该用 attractor 算权重。比手写 if/距离判断更简洁。\n### 层级\ngroup(id,name?,{pos?}) → endGroup()。对称一律用 for 循环 + sx 乘数（let sx = side===0?1:-1; 所有 X 坐标×sx），不对称用 if(side===0/1) 分叉。\npivot([x,y,z],\"target\") — 在group()内、几何体前调用。pos是世界坐标，系统自动折算局部偏移。手持物target=所属肢体名。不使用pivot的group，系统自动用AABB中心作为轴心。\n\n## 通用示例：蒸汽机械船\nfunction build(api) {\n  api.name('蒸汽机械船');\n  const C_HULL=0x5C4033, C_DECK=0x8B7355, C_METAL=0x708090, C_RUST=0xA0522D, C_GOLD=0xDAA520;\n  api.group('hull','船体');\n  api.box({w:4,h:1.5,d:8,pos:[0,0.75,0],color:C_HULL});\n  api.tri({a:[-2,0,4],b:[2,0,4],c:[0,1.5,6],d:0.2,color:C_HULL});\n  api.endGroup();\n  api.group('deck','甲板');\n  api.box({w:3.8,h:0.2,d:7,pos:[0,1.8,-0.5],color:C_DECK});\n  api.endGroup();\n  for (let side = 0; side < 2; side++) {\n    let sx = side === 0 ? 1 : -1;\n    api.group(side === 0 ? 'chimney_left' : 'chimney_right');\n    api.cyl({r:0.4,h:2,pos:[1.2*sx,3.5,-1],color:C_RUST});\n    api.torus({r:0.45,tube:0.08,pos:[1.2*sx,4.4,-1],color:C_GOLD});\n    api.endGroup();\n  }\n  api.group('propeller','螺旋桨');\n  for (let i = 0; i < 3; i++) {\n    let pos = api.rotatePoint([0, 1.5, -4.2], 'X', i/3 * Math.PI*2);\n    api.box({w:0.1,h:0.8,d:0.05,pos:pos,along:'+X',color:C_METAL});\n  }\n  api.sphere({r:0.1,pos:[0,1.5,-4.15],color:0x555555});\n  api.endGroup();\n  api.group('anchor','锚链');\n  api.chain({waypoints:[[1.5,2,2],[1.2,1,3],[1,0.3,3.5]],r:0.08,color:C_METAL});\n  api.endGroup();\n  api.group('sail','帆');\n  api.patch({points:[[0,3,-2],[0,5,-1.5],[0,5,0.5],[0,3,1]],d:0.05,color:0xF5F5DC});\n  api.endGroup();\n  api.group('rigging','索具');\n  api.fork({from:[0,5,-1.5],to:[[-1,3,-2],[1,3,-2]],r:0.03,color:C_METAL});\n  api.endGroup();\n}\n\n## 边缘装饰\n表面装饰从边缘向外延伸——不要完全贴合主体表面（会穿模且不可见）。颜色与主体稍有区分确保可见。\n\n## 输出\n只输出函数体。不要其他任何文本。\n\n\n## 尺寸参考\nscale:3。典型人形角色总高约6~7单位（头~1.0 + 躯干~3.0 + 腿~2.5~3.0）。参考尺寸 box(w≈2.5, h≈3.0, d≈2.0) cyl(r≈1.00) 为典型躯干块大小，不是角色总高。手持物比例参考：单手剑≈躯干高×0.6~1.0(≈1.8~3.0)，大剑≈躯干高×1.0~1.5(≈3.0~4.5)，盾牌直径≈躯干宽×0.8~1.2(≈2.0~3.0)。只关注比例关系，所有模型统一大小，用户后期缩放。\n## 构建顺序\napi.group('head','head') → 圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙 → api.endGroup()\napi.group('body','body') → 短粗躯干、红肚兜-红[cc2933]、乾坤圈-金[d4af37]（套脖）、混天绫-红（绕肩向后飘） → api.endGroup()\napi.group('leftArm','leftArm') → 短粗手臂、左手叉腰、手腕红绳-红 → api.endGroup()\napi.group('rightArm','rightArm') → 短粗手臂、右手持火尖枪-金/红 → api.endGroup()\napi.group('leftLeg','leftLeg') → 短粗腿、灯笼裤-深蓝[1a1a2e]、踩风火轮-橙红[ff4500] → api.endGroup()\napi.group('rightLeg','rightLeg') → 短粗腿、灯笼裤-深蓝、踩风火轮-橙红 → api.endGroup()\n\n### 直立躯干 (humanoid_body)\n竖直方向生物躯体。\n\n## 躯干 = body 一级group内包 3 个二级 group（胸→腹→胯）\n- 构建顺序中写的是 body，实际建造时用 body 包裹 chest + abdomen + pelvis：\n  api.group('body','躯干');\n    api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n    api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n    api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n  api.endGroup();\n- 每个分段用 group 包裹，附着装饰放在对应分段内\n  api.group('chest','胸'); → 胸块 + 肩甲 + 前襟等 → api.endGroup();\n  api.group('abdomen','腹'); → 腹块 + 腰带 + 腰饰等 → api.endGroup();\n  api.group('pelvis','胯'); → 骨盆块 + 裙甲 + 下摆等 → api.endGroup();\n- 块间层叠微偏移，重叠≥0.2\n\n## 四肢 = chain({waypoints, jointIds})，末端收束\n- 四肢一律用 chain——不用 chain 就没有肘/膝关节球，四肢像橡胶管。\n- chain 每个 waypoint 自动生成关节球，靠这个球表达肘/膝的转折。\n- **弯曲四肢（屈臂/弯腿/抓握姿态）的 waypoints 用 bezierPoint 采样曲线，比手写折线更自然。用 noise 给关节角度加微抖动更有机。**\n- jointIds 命名：臂→['upperArm','forearm','hand']，腿→['thigh','shin','foot']\n- 手持物（武器/盾牌/道具）各自用 group 包裹为二级group，嵌套在对应手臂 group 内部，与 upperArm/forearm/hand 平级。不是放在手臂 group 外面的顶级group。例：api.group('sword','长剑') 或 api.group('shield','盾牌')\n- 代码：api.chain({waypoints:[[-2,6,0],[-2,3,0],[-2,0,0]], jointIds:['upperArm','forearm','hand'], r:0.5, color:0x3a5f8a});\n\n## 关节 pivot（连接推理）\nhumanoid 的每个非躯干 group 都与 body 相连：\n- 四肢 group → pivot at 肩/髋关节, target=body/chest/pelvis\n- 头部 group → pivot at 颈根, target=chest\n- 尾巴 group → pivot at 尾根, target=pelvis\n- 手持物(武器/盾牌) group → pivot at 掌心, target=对应手臂group\n\n### 平面型头部 (head:flatface)\n人/精灵/矮人/兽人/机器人 — 面部与颅骨正面大致齐平，无突出吻部或喙。\n头部 = 颅骨体积(主) + 颌面体积(辅)。禁止单个几何块——单块从侧面看是纯弧线，零辨识度。\n体积块之间重叠0.2~0.5单位，不要精确对接留缝隙。\n\n颅骨体积：占头部60~70%。确立整体形态和气质——偏圆=柔和/可爱，偏方=刚硬/威严，偏长=智慧/沧桑。\n  颅骨是头部\"画布\"，后续一切附着其上，先定颅骨再建其余。\n颌面体积：占30~40%，贴在颅骨前下方。这是制造侧面起伏的关键——\n  颌面比颅骨正面略向前凸0.3~0.8单位，或颅骨下方追加下巴块。\n  侧视轮廓必须有≥2处凸起变化（颅顶弧+颌面前凸），不能是纯圆弧。\n  不需要大凸出，但必须有——这是\"头\"和\"球\"的区别。\n\n五官（附着在已有体积表面，不可浮空）：\n  眼睛：成对，放颅骨前表面偏上1/3处。z > 头中心z + 头深×0.3。\n    结构=轮廓几何体+更小瞳孔几何体。poly=棱角切面感，sphere=圆润感。\n    眼位偏移0.1~0.2即可改变神态：眼位高+外扩=天真/可爱；眼位低+内聚=阴沉/邪恶；眼距宽=憨厚；眼距窄=精明。\n  眉弓：可选，一条细长box或tri压在眼睛上方0.05~0.1处。内端低外端高=愤怒/严肃；平直=冷静；外端高内端低=悲伤/疲惫。颜色比肤色深一个色阶。\n  耳朵：人形→颅骨两侧；动物化→颅骨顶部偏两侧。\n  鼻：可选，颌面前表面微凸的小体积块。\n\n颈部：矮cyl连接躯干与颅骨底部。颈端插入颅骨底部0.2~0.3，下端插入躯干顶部0.2~0.3，重叠避免缝隙，不要精确对接。长颈用chain，关节球小而少。\n\n## 输出\n只输出函数体。不要其他任何文本。",
+  "_promptUser": "用户描述：\"哪吒之魔童脑海的主角哪吒\"\n\n草稿结构：\n  head: 圆大头、双丸子头-黑[1a1a1a]、齐刘海-黑、烟熏眼圈-深灰[4a4a4a]、尖牙\n  body: 短粗躯干、红肚兜-红[cc2933]、乾坤圈-金[d4af37]（套脖）、混天绫-红（绕肩向后飘）\n  leftArm: 短粗手臂、左手叉腰、手腕红绳-红\n  rightArm: 短粗手臂、右手持火尖枪-金/红\n  leftLeg: 短粗腿、灯笼裤-深蓝[1a1a2e]、踩风火轮-橙红[ff4500]\n  rightLeg: 短粗腿、灯笼裤-深蓝、踩风火轮-橙红\n整体比例：矮小顽童体型，头大身小四肢短粗，嚣张叉腰站姿\n\n基于草稿构建低多边形模型。草稿只是建议，你可以自由增删改。"
+}
