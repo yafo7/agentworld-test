@@ -4,10 +4,9 @@ import { installGlobalSync } from '../../backend/index.js';
 import { createScene, createRenderer, createLights, ThirdPersonCamera } from '../../engine';
 import { Player, StaticEntity } from '../../engine';
 import { createUnitEnvironment, getGridWorldPosition, paintUnitArea, worldToGridCoordinates } from '../../engine';
-import { createInteractionHint } from '../../engine';
+import { createInteractionHint, Input } from '../../engine';
 import { setupInteract } from '../../engine/interaction/interact.js';
 import { setupRaycast } from '../../engine';
-import { consumeKeyPress } from '../../engine';
 import { createGenerateSystem } from '../chii-island/systems/generateSystem.js';
 import { entityRegistry } from '../../storage';
 import { envGridConfigs } from './config.js';
@@ -33,42 +32,42 @@ async function init() {
     renderer.domElement.style.height = '100%';
     renderer.domElement.style.display = 'block';
   }
+
+  // ---- unified input (pointer lock + keyboard) ----
+  const input = new Input(renderer.domElement);
+
   const thirdPersonCamera = new ThirdPersonCamera();
   const camera = thirdPersonCamera.camera;
   createLights(scene);
 
-  // ---- 3×3 world grid (terrain only, no environment center models) ----
+  // ---- single center environment (20×20 grid, terrain only) ----
+  const GRID_SIZE = 20;
   const unitEnvironments = [];
 
-  envGridConfigs.forEach((cfg) => {
-    const unitEnv = createUnitEnvironment(cfg.center[0], cfg.center[1], 10);
-    scene.add(unitEnv);
-    unitEnvironments.push(unitEnv);
-  });
+  const centerCfg = envGridConfigs[0];
+  const unitEnv = createUnitEnvironment(centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+  scene.add(unitEnv);
+  unitEnvironments.push(unitEnv);
 
   // ---- terrain mesh collection for edit mode ----
   const terrainMeshes = [];
-  unitEnvironments.forEach((unitEnv, envIndex) => {
-    unitEnv.traverse((child) => {
-      if (child.userData?.type === 'unitArea') {
-        child.userData.envIndex = envIndex;
-        terrainMeshes.push(child);
-      }
-    });
+  unitEnv.traverse((child) => {
+    if (child.userData?.type === 'unitArea') {
+      child.userData.envIndex = 0;
+      terrainMeshes.push(child);
+    }
   });
 
   // ---- static entities (empty by default; G key can add placeholders) ----
   const staticEntities = [];
-  const envEntityGroups = Array.from({ length: 9 }, () => []);
-  const envVisibleState = new Array(9).fill(true);
-  envVisibleState[4] = true; // center env always visible
-  const gridOccupancy = Array.from({ length: 9 }, () => Array.from({ length: 10 }, () => Array(10).fill(false)));
+  const envEntityGroups = [[]];
+  const gridOccupancy = [Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(false))];
 
-  function placeStaticEntity(cfg, envIndex = 4) {
+  function placeStaticEntity(cfg, envIndex = 0) {
     const targetUnitEnv = unitEnvironments[envIndex];
     const centerX = envGridConfigs[envIndex].center[0];
     const centerZ = envGridConfigs[envIndex].center[1];
-    const pos = getGridWorldPosition(cfg.grid[0], cfg.grid[1], centerX, centerZ);
+    const pos = getGridWorldPosition(cfg.grid[0], cfg.grid[1], centerX, centerZ, GRID_SIZE);
     const entity = new StaticEntity({
       id: cfg.id,
       name: cfg.name,
@@ -83,9 +82,6 @@ async function init() {
     envEntityGroups[envIndex].push(entity);
     entityRegistry.add(entity, { envIndex, type: cfg.category });
     gridOccupancy[envIndex][cfg.grid[0]][cfg.grid[1]] = true;
-    if (envIndex !== 4) {
-      entity.mesh.visible = false;
-    }
   }
 
   // ---- player ----
@@ -108,20 +104,9 @@ async function init() {
   // ---- interaction hint UI ----
   const hintSystem = createInteractionHint();
 
-  // ---- env toggle hints (top-right) ----
-  const globalHintEl = document.createElement('div');
-  globalHintEl.id = 'env-global-hint';
-  globalHintEl.style.cssText = `position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;font-family:"Microsoft YaHei","PingFang SC",sans-serif;pointer-events:none;z-index:100;backdrop-filter:blur(4px);`;
-  document.body.appendChild(globalHintEl);
-
-  const toggleHintEl = document.createElement('div');
-  toggleHintEl.id = 'env-toggle-hint';
-  toggleHintEl.style.cssText = `position:fixed;top:56px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;font-family:"Microsoft YaHei","PingFang SC",sans-serif;pointer-events:none;z-index:100;display:none;backdrop-filter:blur(4px);`;
-  document.body.appendChild(toggleHintEl);
-
   const followHintEl = document.createElement('div');
   followHintEl.id = 'follow-hint';
-  followHintEl.style.cssText = `position:fixed;top:92px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;font-family:"Microsoft YaHei","PingFang SC",sans-serif;pointer-events:none;z-index:100;display:none;backdrop-filter:blur(4px);`;
+  followHintEl.style.cssText = `position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;font-family:"Microsoft YaHei","PingFang SC",sans-serif;pointer-events:none;z-index:100;display:none;backdrop-filter:blur(4px);`;
   document.body.appendChild(followHintEl);
 
   // Center-screen placement warning
@@ -131,29 +116,13 @@ async function init() {
   placementWarningEl.textContent = '该位置已有物品，不可重复放置';
   document.body.appendChild(placementWarningEl);
 
-  let outerEnvGlobalVisible = false;
-
-  function applyEnvVisibility() {
-    for (let i = 0; i < 9; i++) {
-      if (i === 4) continue;
-      const visible = outerEnvGlobalVisible && envVisibleState[i];
-      unitEnvironments[i].visible = visible;
-      for (const entity of envEntityGroups[i]) {
-        entity.mesh.visible = visible;
-      }
-    }
-  }
-  applyEnvVisibility();
-
   function getCurrentEnvIndex(playerPos) {
-    const HALF_WIDTH = 10 * 2.05 / 2;
-    for (let i = 0; i < envGridConfigs.length; i++) {
-      const cfg = envGridConfigs[i];
-      const dx = Math.abs(playerPos.x - cfg.center[0]);
-      const dz = Math.abs(playerPos.z - cfg.center[1]);
-      if (dx <= HALF_WIDTH && dz <= HALF_WIDTH) return i;
-    }
-    return -1;
+    const SPACING = 4.05;
+    const HALF_WIDTH = (GRID_SIZE * SPACING) / 2;
+    const cfg = envGridConfigs[0];
+    const dx = Math.abs(playerPos.x - cfg.center[0]);
+    const dz = Math.abs(playerPos.z - cfg.center[1]);
+    return dx <= HALF_WIDTH && dz <= HALF_WIDTH ? 0 : -1;
   }
 
   const dynamicTargets = [player, ...items, ...environments, ...staticEntities];
@@ -164,7 +133,7 @@ async function init() {
   }
 
   // ---- interaction systems ----
-  const interactSystem = setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, allEntitiesForEnv);
+  const interactSystem = setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, allEntitiesForEnv, undefined, input);
   setupRaycast(camera, dynamicTargets);
 
   // ---- G key: place placeholder as a decor StaticEntity on the unit grid ----
@@ -237,32 +206,19 @@ async function init() {
     generateSystem.update(dt);
 
     // ---- G key: place placeholder ----
-    if (consumeKeyPress('g')) {
+    if (input.justPressed('KeyG')) {
       placePlaceholder();
     }
 
+    // ---- pointer-lock driven camera ----
+    const { dx, dy } = input.consumeMouseDelta();
+    if (dx !== 0 || dy !== 0) {
+      thirdPersonCamera.applyMouseDelta(dx, dy);
+    }
+
     // ---- game logic ----
-    player.update(dt, thirdPersonCamera.getHorizontalAngle());
+    player.update(dt, input, thirdPersonCamera);
     pets.forEach((pet) => pet.move(player.mesh.position, dt));
-
-    globalHintEl.textContent = outerEnvGlobalVisible ? '按O隐藏所有外围环境' : '按O显示所有外围环境';
-    if (consumeKeyPress('o')) {
-      outerEnvGlobalVisible = !outerEnvGlobalVisible;
-      applyEnvVisibility();
-    }
-
-    const currentEnvIdx = getCurrentEnvIndex(player.mesh.position);
-    if (currentEnvIdx !== -1 && currentEnvIdx !== 4) {
-      const isVisible = envVisibleState[currentEnvIdx];
-      toggleHintEl.textContent = isVisible ? '按P隐藏该地形内容' : '按P展示该地形内容';
-      toggleHintEl.style.display = 'block';
-      if (consumeKeyPress('p')) {
-        envVisibleState[currentEnvIdx] = !isVisible;
-        applyEnvVisibility();
-      }
-    } else {
-      toggleHintEl.style.display = 'none';
-    }
 
     const followingPets = pets.filter((p) => p.state === 'following');
     if (followingPets.length > 0) {
@@ -350,6 +306,7 @@ async function init() {
       }
     }
 
+    input.endFrame();
     renderer.render(scene, camera);
   }
   animate();
@@ -359,6 +316,11 @@ async function init() {
   const editorWrap = document.getElementById('editor-wrap');
   let isResizing = false;
   if (resizer && editorWrap) {
+    // Release pointer lock when cursor enters the editor panel so users can interact with UI
+    editorWrap.addEventListener('mouseenter', () => input.setPointerLockEnabled(false));
+    // Re-enable pointer lock when cursor returns to the game area
+    editorWrap.addEventListener('mouseleave', () => input.setPointerLockEnabled(true));
+
     resizer.addEventListener('mousedown', (e) => {
       isResizing = true;
       document.body.style.cursor = 'col-resize';

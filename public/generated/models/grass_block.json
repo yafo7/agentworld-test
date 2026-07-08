@@ -1,0 +1,515 @@
+{
+  "name": "草方块",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "dirt_layer",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      }
+    },
+    {
+      "id": "grass_layer",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0,
+          1.425,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 0.35,
+          "depth": 3
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          0,
+          0.215,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.08,
+          "height": 0.08,
+          "depth": 3.08
+        },
+        "color": 10275941
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.28,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.06,
+          "depth": 0.45
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          0.55,
+          0.285,
+          -0.85
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.06,
+          "depth": 0.55
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          1.05,
+          0.29,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.06,
+          "depth": 0.32
+        },
+        "color": 10275941
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "grass_layer",
+      "transform": {
+        "pos": [
+          -0.25,
+          0.295,
+          -0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.06,
+          "depth": 0.36
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 3,
+          "depth": 3
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -0.8,
+          1.05,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.08,
+          "depth": 0.55
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0.45,
+          0.88,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.08,
+          "depth": 0.42
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          1.1,
+          0.45,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -1.15,
+          -0.05,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.08,
+          "depth": 0.45
+        },
+        "color": 7162945
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0.15,
+          -0.95,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.08,
+          "depth": 0.32
+        },
+        "color": 11108954
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -1.54,
+          0.98,
+          -0.65
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.08,
+          "depth": 0.42
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -1.54,
+          0.55,
+          0.45
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.08,
+          "depth": 0.5
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -1.54,
+          -0.3,
+          -1
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 7162945
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          1.54,
+          1.02,
+          0.75
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.08,
+          "depth": 0.48
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          1.54,
+          0.35,
+          -0.35
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.08,
+          "depth": 0.38
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          1.54,
+          -0.75,
+          0.95
+        ],
+        "quat": [
+          0,
+          0,
+          -0.7071,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.08,
+          "depth": 0.32
+        },
+        "color": 7162945
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0.75,
+          0.92,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.08,
+          "depth": 0.48
+        },
+        "color": 8172354
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -0.55,
+          0.65,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.08,
+          "depth": 0.4
+        },
+        "color": 6197038
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          0.15,
+          -0.35,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 7162945
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "dirt_layer",
+      "transform": {
+        "pos": [
+          -1.05,
+          -1.05,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.08,
+          "depth": 0.32
+        },
+        "color": 11108954
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782900335488,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1782900334622_i81f1j"
+}

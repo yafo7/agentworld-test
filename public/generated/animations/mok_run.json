@@ -1,0 +1,76 @@
+{
+  "body": {
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.5
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    }
+  },
+  "chest": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 1.5,
+      "phase": 0.25
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "leftLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "rightLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -22
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.75,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "rightArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 22
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.75,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "tail_base": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.15,
+      "frequency": 1.5,
+      "phase": 0.25
+    }
+  }
+}

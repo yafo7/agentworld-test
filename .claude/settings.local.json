@@ -2,9 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(*)",
-      "WebFetch(domain:github.com)",
-      "Skill(run)",
-      "WebFetch(domain:localhost)"
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Read(*)",
+      "WebFetch(*)",
+      "WebSearch",
+      "Skill(*)",
+      "Agent(*)",
+      "TaskCreate(*)",
+      "TaskUpdate(*)",
+      "mcp__ide__*"
     ]
   }
 }

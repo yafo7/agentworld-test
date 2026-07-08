@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev *)",
+      "Bash(npm run build *)",
+      "Bash(curl -s *)",
+      "Bash(npm install *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:localhost)",
+      "WebSearch",
+      "Skill(verify)",
+      "Skill(code-review)",
+      "Skill(simplify)",
+      "Skill(run)",
+      "Skill(fewer-permission-prompts)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}

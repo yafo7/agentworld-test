@@ -1,0 +1,62 @@
+{
+  "body": {
+    "breathe": {
+      "amplitude": 0.03,
+      "frequency": 0.5
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.5
+    },
+    "slide": {
+      "axis": "y",
+      "distance": 0.04,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.5,
+      "phase": 0.1
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.5,
+      "phase": 0.25
+    }
+  },
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.15
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.08,
+      "frequency": 0.5,
+      "phase": 0.15
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.5,
+      "phase": 0.3
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.5,
+      "phase": 0.45
+    }
+  }
+}

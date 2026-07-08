@@ -1,0 +1,320 @@
+{
+  "syncedAt": "2026-07-07T09:49:15.066Z",
+  "studio": "http://localhost:8000",
+  "source": "runtime",
+  "publish": false,
+  "assets": [
+    {
+      "id": "nailong",
+      "label": "nailong",
+      "assetId": "nailong",
+      "commit": "2026-07-01_16-40-22",
+      "folder": "一只站立的奶龙，手里拿着一把红色的折扇_3.7m",
+      "modelOut": "public/generated/models/nailong.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/nailong_idle.json",
+          "studioName": "呼吸"
+        },
+        {
+          "name": "walk",
+          "outPath": "public/generated/animations/nailong_walk.json",
+          "studioName": "行走"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/nailong_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/nailong_jump.json",
+          "studioName": "跳跃"
+        },
+        {
+          "name": "wave_left",
+          "outPath": "public/generated/animations/nailong_wave_left.json",
+          "studioName": "挥舞左手"
+        },
+        {
+          "name": "fan_spark",
+          "outPath": "public/generated/animations/nailong_fan_spark.json",
+          "studioName": "挥舞扇子，然后出现闪光特效"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "oak",
+      "label": "oak",
+      "assetId": "m_1782902681545_6tnbkq",
+      "commit": "2026-07-01_18-40-24",
+      "folder": "一颗高大的橡树_4.3m",
+      "modelOut": "public/generated/models/oak.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "normal-tree",
+      "label": "normal-tree",
+      "assetId": "m_1782902809342_g9ssc6",
+      "commit": "2026-07-01_18-45-21",
+      "folder": "一颗树_1.5m",
+      "modelOut": "public/generated/models/normal_tree.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "apple-tree",
+      "label": "apple-tree",
+      "assetId": "m_1782902961307_m2rb52",
+      "commit": "2026-07-01_18-47-39",
+      "folder": "一颗苹果树_1.7m",
+      "modelOut": "public/generated/models/apple_tree.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "glowgrass",
+      "label": "glowgrass",
+      "assetId": "m_1782903132260_m5dpns",
+      "commit": "2026-07-01_18-50-19",
+      "folder": "一丛荧光草_1.9m",
+      "modelOut": "public/generated/models/glowgrass.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "windmill",
+      "label": "windmill",
+      "assetId": "m_1782903666317_v5xkm7",
+      "commit": "2026-07-01_18-58-41",
+      "folder": "一个巨大的风车，底部长宽比是2/2_2.4m",
+      "modelOut": "public/generated/models/windmill.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "church",
+      "label": "church",
+      "assetId": "m_1782903418394_5e16ir",
+      "commit": "2026-07-01_18-53-35",
+      "folder": "一个巨大的哥特教堂，底部长宽比是5/8_3.4m",
+      "modelOut": "public/generated/models/church.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "temple",
+      "label": "temple",
+      "assetId": "m_1782974628699_589hom",
+      "commit": "2026-07-02_14-42-30",
+      "folder": "一座西方的古老神殿，占地的长宽比是8/5_1.3m",
+      "modelOut": "public/generated/models/temple.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "stump",
+      "label": "stump",
+      "assetId": "m_1783233755159_68ulo4",
+      "commit": "2026-07-05_14-40-00",
+      "folder": "一个树桩_2.6m",
+      "modelOut": "public/generated/models/stump.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "fangk",
+      "label": "fangk",
+      "assetId": "m_1782981320708_dyg5gl",
+      "commit": "2026-07-02_16-32-30",
+      "folder": "一位穿着黑色西装的建筑设计师_2.8m",
+      "modelOut": "public/generated/models/fangk.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/fangk_idle.json",
+          "studioName": "idle"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/fangk_run.json",
+          "studioName": "run"
+        },
+        {
+          "name": "construct",
+          "outPath": "public/generated/animations/fangk_construct.json",
+          "studioName": "construct"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "momo",
+      "label": "momo",
+      "assetId": "m_1782975006671_j3z0xr",
+      "commit": "2026-07-02_14-47-47",
+      "folder": "一只粉色，圆滚滚的小熊_2.3m",
+      "modelOut": "public/generated/models/momo.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/momo_idle.json",
+          "studioName": "idle"
+        },
+        {
+          "name": "walk",
+          "outPath": "public/generated/animations/momo_walk.json",
+          "studioName": "walk"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/momo_run.json",
+          "studioName": "run"
+        },
+        {
+          "name": "chop",
+          "outPath": "public/generated/animations/momo_chop.json",
+          "studioName": "chop"
+        },
+        {
+          "name": "smash",
+          "outPath": "public/generated/animations/momo_smash.json",
+          "studioName": "举起左掌向前拍击，同时出现闪光特效"
+        },
+        {
+          "name": "wave",
+          "outPath": "public/generated/animations/momo_wave.json",
+          "studioName": "举起左臂-->挥舞左手"
+        },
+        {
+          "name": "magic",
+          "outPath": "public/generated/animations/momo_magic.json",
+          "studioName": "平举双手，同时手前出现烟雾特效"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "mako",
+      "label": "mako",
+      "assetId": "m_1782980861175_k8v1ft",
+      "commit": "2026-07-02_16-25-32",
+      "folder": "一匹棕色的马儿，身上穿着7号红色球衣_2.1m",
+      "modelOut": "public/generated/models/mako.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/mako_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/mako_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/mako_jump.json",
+          "studioName": "跳跃"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "mok",
+      "label": "mok",
+      "assetId": "m_1782979209392_2y89nt",
+      "commit": "2026-07-02_15-57-38",
+      "folder": "一只站立行走的鳄鱼，双手各拿着一把大斧子_2.5m",
+      "modelOut": "public/generated/models/mok.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/mok_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/mok_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/mok_jump.json",
+          "studioName": "跳跃"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "lingq",
+      "label": "lingq",
+      "assetId": "m_1782978762044_zuag8m",
+      "commit": "2026-07-02_15-49-39",
+      "folder": "一只孔雀_3.0m",
+      "modelOut": "public/generated/models/lingq.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/lingq_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/lingq_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/lingq_jump.json",
+          "studioName": "跳跃"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "yafo",
+      "label": "yafo",
+      "assetId": "m_1782976335773_o6d7e1",
+      "commit": "2026-07-02_15-09-45",
+      "folder": "一只天蓝色的小鸟_2.5m",
+      "modelOut": "public/generated/models/yafo.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/yafo_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/yafo_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/yafo_jump.json",
+          "studioName": "跳跃"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    }
+  ]
+}

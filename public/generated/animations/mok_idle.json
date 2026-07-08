@@ -1,0 +1,78 @@
+{
+  "body": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.04,
+      "frequency": 0.5
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.5
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.035,
+      "frequency": 0.5
+    },
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.05,
+      "frequency": 0.5
+    }
+  },
+  "abdomen": {
+    "breathe": {
+      "amplitude": 0.025,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.5,
+      "phase": 0.08
+    }
+  },
+  "leftArm_upperArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.06,
+      "frequency": 0.5,
+      "phase": 0.05
+    }
+  },
+  "rightArm_upperArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.5,
+      "phase": 0.05
+    }
+  },
+  "tail_base": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.15
+    }
+  },
+  "tail_mid1": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.07,
+      "frequency": 0.5,
+      "phase": 0.25
+    }
+  },
+  "tail_mid2": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.06,
+      "frequency": 0.5,
+      "phase": 0.35
+    }
+  }
+}

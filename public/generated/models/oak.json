@@ -1,0 +1,6389 @@
+{
+  "name": "高大的橡树",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "canopy",
+      "transform": {
+        "pos": [
+          -0.0763,
+          6.99,
+          0.1997
+        ]
+      }
+    },
+    {
+      "id": "trunk",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -2.54,
+          0
+        ]
+      }
+    },
+    {
+      "id": "roots",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -6.6498,
+          0
+        ]
+      }
+    },
+    {
+      "id": "root_0_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          0.4263,
+          -0.1602,
+          -0.1997
+        ]
+      }
+    },
+    {
+      "id": "root_0_1",
+      "name": "wp1",
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0.4367,
+          0.1602,
+          0.0633
+        ]
+      }
+    },
+    {
+      "id": "root_0_2",
+      "name": "wp2",
+      "parent": "root_0_1",
+      "transform": {
+        "pos": [
+          0.4695,
+          -0.0189,
+          -0.0445
+        ]
+      }
+    },
+    {
+      "id": "root_0_3",
+      "name": "wp3",
+      "parent": "root_0_2",
+      "transform": {
+        "pos": [
+          0.4789,
+          -0.1145,
+          -0.0539
+        ]
+      }
+    },
+    {
+      "id": "root_0_4",
+      "name": "wp4",
+      "parent": "root_0_3",
+      "transform": {
+        "pos": [
+          0.4648,
+          -0.1267,
+          0.0352
+        ]
+      }
+    },
+    {
+      "id": "root_1_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          0.3238,
+          -0.1602,
+          0.0478
+        ]
+      }
+    },
+    {
+      "id": "root_1_1",
+      "name": "wp1",
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0.2679,
+          0.1602,
+          0.3574
+        ]
+      }
+    },
+    {
+      "id": "root_1_2",
+      "name": "wp2",
+      "parent": "root_1_1",
+      "transform": {
+        "pos": [
+          0.3906,
+          -0.0189,
+          0.3276
+        ]
+      }
+    },
+    {
+      "id": "root_1_3",
+      "name": "wp3",
+      "parent": "root_1_2",
+      "transform": {
+        "pos": [
+          0.4502,
+          -0.1145,
+          0.374
+        ]
+      }
+    },
+    {
+      "id": "root_1_4",
+      "name": "wp4",
+      "parent": "root_1_3",
+      "transform": {
+        "pos": [
+          0.4469,
+          -0.1267,
+          0.4966
+        ]
+      }
+    },
+    {
+      "id": "root_2_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          0.0763,
+          -0.1602,
+          0.1503
+        ]
+      }
+    },
+    {
+      "id": "root_2_1",
+      "name": "wp1",
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          -0.0633,
+          0.1602,
+          0.4477
+        ]
+      }
+    },
+    {
+      "id": "root_2_2",
+      "name": "wp2",
+      "parent": "root_2_1",
+      "transform": {
+        "pos": [
+          0.0445,
+          -0.0189,
+          0.5461
+        ]
+      }
+    },
+    {
+      "id": "root_2_3",
+      "name": "wp3",
+      "parent": "root_2_2",
+      "transform": {
+        "pos": [
+          0.0539,
+          -0.1145,
+          0.6867
+        ]
+      }
+    },
+    {
+      "id": "root_2_4",
+      "name": "wp4",
+      "parent": "root_2_3",
+      "transform": {
+        "pos": [
+          -0.0352,
+          -0.1267,
+          0.8695
+        ]
+      }
+    },
+    {
+      "id": "root_3_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.1712,
+          -0.1602,
+          0.0478
+        ]
+      }
+    },
+    {
+      "id": "root_3_1",
+      "name": "wp1",
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          -0.3536,
+          0.1602,
+          0.2641
+        ]
+      }
+    },
+    {
+      "id": "root_3_2",
+      "name": "wp2",
+      "parent": "root_3_1",
+      "transform": {
+        "pos": [
+          -0.3005,
+          -0.0189,
+          0.3635
+        ]
+      }
+    },
+    {
+      "id": "root_3_3",
+      "name": "wp3",
+      "parent": "root_3_2",
+      "transform": {
+        "pos": [
+          -0.3005,
+          -0.1145,
+          0.3768
+        ]
+      }
+    },
+    {
+      "id": "root_3_4",
+      "name": "wp4",
+      "parent": "root_3_3",
+      "transform": {
+        "pos": [
+          -0.3536,
+          -0.1267,
+          0.3038
+        ]
+      }
+    },
+    {
+      "id": "root_4_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.2737,
+          -0.1602,
+          -0.1997
+        ]
+      }
+    },
+    {
+      "id": "root_4_1",
+      "name": "wp1",
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          -0.4422,
+          0.1602,
+          -0.0633
+        ]
+      }
+    },
+    {
+      "id": "root_4_2",
+      "name": "wp2",
+      "parent": "root_4_1",
+      "transform": {
+        "pos": [
+          -0.5078,
+          -0.0189,
+          0.0445
+        ]
+      }
+    },
+    {
+      "id": "root_4_3",
+      "name": "wp3",
+      "parent": "root_4_2",
+      "transform": {
+        "pos": [
+          -0.5828,
+          -0.1145,
+          0.0539
+        ]
+      }
+    },
+    {
+      "id": "root_4_4",
+      "name": "wp4",
+      "parent": "root_4_3",
+      "transform": {
+        "pos": [
+          -0.6672,
+          -0.1267,
+          -0.0352
+        ]
+      }
+    },
+    {
+      "id": "root_5_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          -0.1712,
+          -0.1602,
+          -0.4472
+        ]
+      }
+    },
+    {
+      "id": "root_5_1",
+      "name": "wp1",
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          -0.2718,
+          0.1602,
+          -0.3613
+        ]
+      }
+    },
+    {
+      "id": "root_5_2",
+      "name": "wp2",
+      "parent": "root_5_1",
+      "transform": {
+        "pos": [
+          -0.4176,
+          -0.0189,
+          -0.3547
+        ]
+      }
+    },
+    {
+      "id": "root_5_3",
+      "name": "wp3",
+      "parent": "root_5_2",
+      "transform": {
+        "pos": [
+          -0.5237,
+          -0.1145,
+          -0.4475
+        ]
+      }
+    },
+    {
+      "id": "root_5_4",
+      "name": "wp4",
+      "parent": "root_5_3",
+      "transform": {
+        "pos": [
+          -0.59,
+          -0.1267,
+          -0.6397
+        ]
+      }
+    },
+    {
+      "id": "root_6_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          0.0763,
+          -0.1602,
+          -0.5497
+        ]
+      }
+    },
+    {
+      "id": "root_6_1",
+      "name": "wp1",
+      "parent": "root_6_0",
+      "transform": {
+        "pos": [
+          0.0633,
+          0.1602,
+          -0.4367
+        ]
+      }
+    },
+    {
+      "id": "root_6_2",
+      "name": "wp2",
+      "parent": "root_6_1",
+      "transform": {
+        "pos": [
+          -0.0445,
+          -0.0189,
+          -0.4695
+        ]
+      }
+    },
+    {
+      "id": "root_6_3",
+      "name": "wp3",
+      "parent": "root_6_2",
+      "transform": {
+        "pos": [
+          -0.0539,
+          -0.1145,
+          -0.4789
+        ]
+      }
+    },
+    {
+      "id": "root_6_4",
+      "name": "wp4",
+      "parent": "root_6_3",
+      "transform": {
+        "pos": [
+          0.0352,
+          -0.1267,
+          -0.4648
+        ]
+      }
+    },
+    {
+      "id": "root_7_0",
+      "name": "wp0",
+      "parent": "roots",
+      "transform": {
+        "pos": [
+          0.3238,
+          -0.1602,
+          -0.4472
+        ]
+      }
+    },
+    {
+      "id": "root_7_1",
+      "name": "wp1",
+      "parent": "root_7_0",
+      "transform": {
+        "pos": [
+          0.3574,
+          0.1602,
+          -0.2679
+        ]
+      }
+    },
+    {
+      "id": "root_7_2",
+      "name": "wp2",
+      "parent": "root_7_1",
+      "transform": {
+        "pos": [
+          0.3276,
+          -0.0189,
+          -0.3906
+        ]
+      }
+    },
+    {
+      "id": "root_7_3",
+      "name": "wp3",
+      "parent": "root_7_2",
+      "transform": {
+        "pos": [
+          0.374,
+          -0.1145,
+          -0.4502
+        ]
+      }
+    },
+    {
+      "id": "root_7_4",
+      "name": "wp4",
+      "parent": "root_7_3",
+      "transform": {
+        "pos": [
+          0.4966,
+          -0.1267,
+          -0.4469
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.0763,
+          -3.85,
+          -0.1997
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.76,
+          "radiusBottom": 0.95,
+          "height": 1.2,
+          "radialSegments": 9
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.0763,
+          -2.6,
+          -0.1997
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.66,
+          "radiusBottom": 0.78,
+          "height": 1.3,
+          "radialSegments": 9
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.0763,
+          -1.2,
+          -0.1997
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.48,
+          "radiusBottom": 0.68,
+          "height": 1.5,
+          "radialSegments": 9
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.0763,
+          0,
+          -0.1997
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.34,
+          "radiusBottom": 0.5,
+          "height": 0.9,
+          "radialSegments": 8
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.9963,
+          -3.8,
+          -0.1997
+        ],
+        "quat": [
+          0,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.8763,
+          -3.18,
+          0.0903
+        ],
+        "quat": [
+          -0.02,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.6863,
+          -2.56,
+          0.3103
+        ],
+        "quat": [
+          -0.03,
+          0,
+          0.04,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.4363,
+          -1.94,
+          0.4303
+        ],
+        "quat": [
+          -0.04,
+          0,
+          0.02,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.1963,
+          -1.32,
+          0.4603
+        ],
+        "quat": [
+          -0.05,
+          0,
+          0.01,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0337,
+          -0.7,
+          0.4003
+        ],
+        "quat": [
+          -0.05,
+          0,
+          -0.01,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.3837,
+          -3.8,
+          0.5903
+        ],
+        "quat": [
+          -0.04,
+          0,
+          -0.02,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5737,
+          -3.18,
+          0.3503
+        ],
+        "quat": [
+          -0.03,
+          0,
+          -0.04,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.6637,
+          -2.56,
+          0.0703
+        ],
+        "quat": [
+          -0.02,
+          0,
+          -0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.6537,
+          -1.94,
+          -0.1997
+        ],
+        "quat": [
+          0,
+          0,
+          -0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5537,
+          -1.32,
+          -0.4297
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.3837,
+          -0.7,
+          -0.5897
+        ],
+        "quat": [
+          0.03,
+          0,
+          -0.04,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.3837,
+          -3.8,
+          -0.9897
+        ],
+        "quat": [
+          0.04,
+          0,
+          -0.02,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0737,
+          -3.18,
+          -1.0397
+        ],
+        "quat": [
+          0.05,
+          0,
+          -0.01,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.2163,
+          -2.56,
+          -0.9797
+        ],
+        "quat": [
+          0.05,
+          0,
+          0.01,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.4363,
+          -1.94,
+          -0.8297
+        ],
+        "quat": [
+          0.04,
+          0,
+          0.02,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.5863,
+          -1.32,
+          -0.6297
+        ],
+        "quat": [
+          0.03,
+          0,
+          0.04,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.6463,
+          -0.7,
+          -0.4097
+        ],
+        "quat": [
+          0.02,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.7523,
+          -3.35,
+          -0.1997
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.7823,
+          -3.35,
+          -0.1997
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.4778,
+          -2.55,
+          0.3038
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.4965,
+          -2.55,
+          0.3272
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0599,
+          -1.75,
+          0.3969
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0665,
+          -1.75,
+          0.4262
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5327,
+          -3.35,
+          0.0936
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5598,
+          -3.35,
+          0.1066
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5039,
+          -2.55,
+          -0.4791
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.5309,
+          -2.55,
+          -0.4922
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0599,
+          -1.75,
+          -0.7964
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          -0.0665,
+          -1.75,
+          -0.8256
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.4978,
+          -3.35,
+          -0.7282
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.13,
+          "tube": 0.025,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 2233869
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0.5165,
+          -3.35,
+          -0.7517
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "root_0_0",
+      "transform": {
+        "pos": [
+          0.23,
+          0.09,
+          0.03
+        ],
+        "quat": [
+          0.08,
+          0,
+          -0.57,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_0_0",
+        "boneTo": "root_0_1"
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "root_0_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "root_0_1",
+      "transform": {
+        "pos": [
+          0.24,
+          -0.01,
+          -0.02
+        ],
+        "quat": [
+          -0.07,
+          0,
+          -0.72,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_0_1",
+        "boneTo": "root_0_2"
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "root_0_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "root_0_2",
+      "transform": {
+        "pos": [
+          0.25,
+          -0.06,
+          -0.03
+        ],
+        "quat": [
+          -0.09,
+          0,
+          -0.78,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.4,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_0_2",
+        "boneTo": "root_0_3"
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "root_0_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "root_0_3",
+      "transform": {
+        "pos": [
+          0.24,
+          -0.07,
+          0.02
+        ],
+        "quat": [
+          0.06,
+          0,
+          -0.79,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.41,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_0_3",
+        "boneTo": "root_0_4"
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "root_0_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "root_1_0",
+      "transform": {
+        "pos": [
+          0.14,
+          0.08,
+          0.19
+        ],
+        "quat": [
+          0.46,
+          0,
+          -0.35,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_1_0",
+        "boneTo": "root_1_1"
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "root_1_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "root_1_1",
+      "transform": {
+        "pos": [
+          0.2,
+          -0.01,
+          0.17
+        ],
+        "quat": [
+          0.46,
+          0,
+          -0.55,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.38,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_1_1",
+        "boneTo": "root_1_2"
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "root_1_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m50",
+      "parent": "root_1_2",
+      "transform": {
+        "pos": [
+          0.23,
+          -0.06,
+          0.19
+        ],
+        "quat": [
+          0.49,
+          0,
+          -0.59,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_1_2",
+        "boneTo": "root_1_3"
+      }
+    },
+    {
+      "id": "m51",
+      "parent": "root_1_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m52",
+      "parent": "root_1_3",
+      "transform": {
+        "pos": [
+          0.23,
+          -0.07,
+          0.26
+        ],
+        "quat": [
+          0.57,
+          0,
+          -0.52,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.61,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_1_3",
+        "boneTo": "root_1_4"
+      }
+    },
+    {
+      "id": "m53",
+      "parent": "root_1_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m54",
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m55",
+      "parent": "root_2_0",
+      "transform": {
+        "pos": [
+          -0.03,
+          0.08,
+          0.23
+        ],
+        "quat": [
+          0.57,
+          0,
+          0.08,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.31,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_2_0",
+        "boneTo": "root_2_1"
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "root_2_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "root_2_1",
+      "transform": {
+        "pos": [
+          0.02,
+          -0.01,
+          0.28
+        ],
+        "quat": [
+          0.72,
+          0,
+          -0.06,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.42,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_2_1",
+        "boneTo": "root_2_2"
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "root_2_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "root_2_2",
+      "transform": {
+        "pos": [
+          0.03,
+          -0.06,
+          0.35
+        ],
+        "quat": [
+          0.76,
+          0,
+          -0.06,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.6,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_2_2",
+        "boneTo": "root_2_3"
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "root_2_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "root_2_3",
+      "transform": {
+        "pos": [
+          -0.02,
+          -0.06,
+          0.44
+        ],
+        "quat": [
+          0.76,
+          0,
+          0.03,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.81,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_2_3",
+        "boneTo": "root_2_4"
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "root_2_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "root_3_0",
+      "transform": {
+        "pos": [
+          -0.19,
+          0.09,
+          0.14
+        ],
+        "quat": [
+          0.34,
+          0,
+          0.46,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_3_0",
+        "boneTo": "root_3_1"
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "root_3_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "root_3_1",
+      "transform": {
+        "pos": [
+          -0.15,
+          -0.01,
+          0.18
+        ],
+        "quat": [
+          0.56,
+          0,
+          0.46,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_3_1",
+        "boneTo": "root_3_2"
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "root_3_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "root_3_2",
+      "transform": {
+        "pos": [
+          -0.16,
+          -0.06,
+          0.2
+        ],
+        "quat": [
+          0.61,
+          0,
+          0.49,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.4,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_3_2",
+        "boneTo": "root_3_3"
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "root_3_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "root_3_3",
+      "transform": {
+        "pos": [
+          -0.18,
+          -0.07,
+          0.16
+        ],
+        "quat": [
+          0.52,
+          0,
+          0.6,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.41,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_3_3",
+        "boneTo": "root_3_4"
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "root_3_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "root_4_0",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.08,
+          -0.03
+        ],
+        "quat": [
+          -0.08,
+          0,
+          0.57,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_4_0",
+        "boneTo": "root_4_1"
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "root_4_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "root_4_1",
+      "transform": {
+        "pos": [
+          -0.26,
+          -0.01,
+          0.02
+        ],
+        "quat": [
+          0.06,
+          0,
+          0.72,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.38,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_4_1",
+        "boneTo": "root_4_2"
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "root_4_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m77",
+      "parent": "root_4_2",
+      "transform": {
+        "pos": [
+          -0.3,
+          -0.06,
+          0.03
+        ],
+        "quat": [
+          0.07,
+          0,
+          0.77,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_4_2",
+        "boneTo": "root_4_3"
+      }
+    },
+    {
+      "id": "m78",
+      "parent": "root_4_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m79",
+      "parent": "root_4_3",
+      "transform": {
+        "pos": [
+          -0.34,
+          -0.07,
+          -0.02
+        ],
+        "quat": [
+          -0.04,
+          0,
+          0.77,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.61,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_4_3",
+        "boneTo": "root_4_4"
+      }
+    },
+    {
+      "id": "m80",
+      "parent": "root_4_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m81",
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m82",
+      "parent": "root_5_0",
+      "transform": {
+        "pos": [
+          -0.14,
+          0.08,
+          -0.19
+        ],
+        "quat": [
+          -0.46,
+          0,
+          0.35,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.31,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_5_0",
+        "boneTo": "root_5_1"
+      }
+    },
+    {
+      "id": "m83",
+      "parent": "root_5_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m84",
+      "parent": "root_5_1",
+      "transform": {
+        "pos": [
+          -0.21,
+          -0.01,
+          -0.18
+        ],
+        "quat": [
+          -0.47,
+          0,
+          0.55,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.42,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_5_1",
+        "boneTo": "root_5_2"
+      }
+    },
+    {
+      "id": "m85",
+      "parent": "root_5_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m86",
+      "parent": "root_5_2",
+      "transform": {
+        "pos": [
+          -0.27,
+          -0.06,
+          -0.23
+        ],
+        "quat": [
+          -0.5,
+          0,
+          0.58,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.6,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_5_2",
+        "boneTo": "root_5_3"
+      }
+    },
+    {
+      "id": "m87",
+      "parent": "root_5_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m88",
+      "parent": "root_5_3",
+      "transform": {
+        "pos": [
+          -0.3,
+          -0.06,
+          -0.32
+        ],
+        "quat": [
+          -0.56,
+          0,
+          0.51,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.81,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_5_3",
+        "boneTo": "root_5_4"
+      }
+    },
+    {
+      "id": "m89",
+      "parent": "root_5_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m90",
+      "parent": "root_6_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m91",
+      "parent": "root_6_0",
+      "transform": {
+        "pos": [
+          0.03,
+          0.09,
+          -0.23
+        ],
+        "quat": [
+          -0.57,
+          0,
+          -0.08,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_6_0",
+        "boneTo": "root_6_1"
+      }
+    },
+    {
+      "id": "m92",
+      "parent": "root_6_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m93",
+      "parent": "root_6_1",
+      "transform": {
+        "pos": [
+          -0.02,
+          -0.01,
+          -0.24
+        ],
+        "quat": [
+          -0.72,
+          0,
+          0.07,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_6_1",
+        "boneTo": "root_6_2"
+      }
+    },
+    {
+      "id": "m94",
+      "parent": "root_6_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m95",
+      "parent": "root_6_2",
+      "transform": {
+        "pos": [
+          -0.03,
+          -0.06,
+          -0.25
+        ],
+        "quat": [
+          -0.78,
+          0,
+          0.09,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.4,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_6_2",
+        "boneTo": "root_6_3"
+      }
+    },
+    {
+      "id": "m96",
+      "parent": "root_6_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m97",
+      "parent": "root_6_3",
+      "transform": {
+        "pos": [
+          0.02,
+          -0.07,
+          -0.24
+        ],
+        "quat": [
+          -0.79,
+          0,
+          -0.06,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.41,
+          "radialSegments": 10
+        },
+        "color": 4929057,
+        "boneFrom": "root_6_3",
+        "boneTo": "root_6_4"
+      }
+    },
+    {
+      "id": "m98",
+      "parent": "root_6_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m99",
+      "parent": "root_7_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m100",
+      "parent": "root_7_0",
+      "transform": {
+        "pos": [
+          0.19,
+          0.08,
+          -0.14
+        ],
+        "quat": [
+          -0.35,
+          0,
+          -0.46,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.3,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_7_0",
+        "boneTo": "root_7_1"
+      }
+    },
+    {
+      "id": "m101",
+      "parent": "root_7_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m102",
+      "parent": "root_7_1",
+      "transform": {
+        "pos": [
+          0.17,
+          -0.01,
+          -0.2
+        ],
+        "quat": [
+          -0.55,
+          0,
+          -0.46,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.38,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_7_1",
+        "boneTo": "root_7_2"
+      }
+    },
+    {
+      "id": "m103",
+      "parent": "root_7_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m104",
+      "parent": "root_7_2",
+      "transform": {
+        "pos": [
+          0.19,
+          -0.06,
+          -0.23
+        ],
+        "quat": [
+          -0.59,
+          0,
+          -0.49,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.16,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_7_2",
+        "boneTo": "root_7_3"
+      }
+    },
+    {
+      "id": "m105",
+      "parent": "root_7_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m106",
+      "parent": "root_7_3",
+      "transform": {
+        "pos": [
+          0.26,
+          -0.07,
+          -0.23
+        ],
+        "quat": [
+          -0.52,
+          0,
+          -0.57,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.11,
+          "radiusBottom": 0.11,
+          "height": 0.61,
+          "radialSegments": 10
+        },
+        "color": 5913122,
+        "boneFrom": "root_7_3",
+        "boneTo": "root_7_4"
+      }
+    },
+    {
+      "id": "m107",
+      "parent": "root_7_4",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 5913122
+      }
+    },
+    {
+      "id": "m108",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.3263,
+          -2.12,
+          0.1503
+        ],
+        "quat": [
+          0.14,
+          0,
+          -0.51,
+          0.85
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.88,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m109",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1237,
+          -2.16,
+          0.0003
+        ],
+        "quat": [
+          0.09,
+          0,
+          0.53,
+          0.84
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.69,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m110",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.0263,
+          -1.81,
+          -1.0497
+        ],
+        "quat": [
+          -0.3,
+          0,
+          -0.34,
+          0.89
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 3.15,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m111",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.8237,
+          -1.77,
+          -0.9497
+        ],
+        "quat": [
+          -0.27,
+          0,
+          0.33,
+          0.91
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 3.05,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m112",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.5263,
+          -0.94,
+          0.8003
+        ],
+        "quat": [
+          0.13,
+          0,
+          -0.61,
+          0.78
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 5.97,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m113",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.7237,
+          -1.04,
+          0.6503
+        ],
+        "quat": [
+          0.3,
+          0,
+          0.27,
+          0.92
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 1.63,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m114",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.3763,
+          -0.29,
+          0.2003
+        ],
+        "quat": [
+          0.58,
+          0,
+          0.17,
+          0.8
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 4.53,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m115",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.6263,
+          -0.34,
+          0.1503
+        ],
+        "quat": [
+          0.52,
+          0,
+          0.34,
+          0.78
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 5.03,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m116",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2763,
+          -0.04,
+          -1.9997
+        ],
+        "quat": [
+          -0.08,
+          0,
+          -0.56,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 4.31,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m117",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.8237,
+          0.01,
+          -1.9497
+        ],
+        "quat": [
+          -0.15,
+          0,
+          0.06,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 1.69,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m118",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.7263,
+          0.46,
+          0.7003
+        ],
+        "quat": [
+          -0.22,
+          0,
+          0.51,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.1,
+          "height": 3.89,
+          "radialSegments": 10
+        },
+        "color": 4929057
+      }
+    },
+    {
+      "id": "m119",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          -0.99,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2.1,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m120",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.8237,
+          -0.84,
+          0.1003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.75,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2055973
+      }
+    },
+    {
+      "id": "m121",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.9763,
+          -0.79,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.75,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m122",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2763,
+          0.26,
+          -0.0997
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 2,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m123",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.3237,
+          0.01,
+          -0.9997
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.55,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m124",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.5763,
+          0.06,
+          -0.9997
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.55,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2055973
+      }
+    },
+    {
+      "id": "m125",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1237,
+          0.86,
+          0.9003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.45,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m126",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.2763,
+          0.91,
+          0.9003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.45,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m127",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          1.56,
+          -0.5997
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.35,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 2055973
+      }
+    },
+    {
+      "id": "m128",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.9237,
+          -0.64,
+          1.0003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m129",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.0763,
+          -0.59,
+          1.0003
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 1.15,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m130",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          2.16,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m131",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.7958,
+          2.0297,
+          0.6371
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m132",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2202,
+          1.8994,
+          -1.307
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m133",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.2832,
+          1.7691,
+          1.2551
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m134",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.1412,
+          1.6388,
+          -0.3124
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m135",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1638,
+          1.5085,
+          -1.0582
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m136",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.6146,
+          1.3782,
+          2.0489
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m137",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.2238,
+          1.2479,
+          -1.9951
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m138",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.8539,
+          1.1176,
+          0.8088
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m139",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.7642,
+          0.9873,
+          0.9349
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m140",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.4203,
+          0.857,
+          -2.2891
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m141",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.0498,
+          0.7267,
+          2.4742
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m142",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.7955,
+          0.5964,
+          -1.3263
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m143",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.3692,
+          0.4661,
+          -0.5768
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m144",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.885,
+          0.3358,
+          2.224
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m145",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.3652,
+          0.2055,
+          -2.7156
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m146",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.7131,
+          0.0752,
+          1.7717
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m147",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -3.3692,
+          -0.0552,
+          0.1138
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m148",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.5116,
+          -0.1855,
+          -1.9315
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m149",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.0812,
+          -0.3158,
+          2.7156
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m150",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0838,
+          -0.4461,
+          -2.0631
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m151",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          3.3659,
+          -0.5764,
+          0.3531
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m152",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.5937,
+          -0.7067,
+          1.4811
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m153",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.7723,
+          0.3064,
+          -2.4657
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m154",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.6041,
+          0.352,
+          2.1256
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m155",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.7408,
+          0.3977,
+          -0.7161
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m156",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.637,
+          0.4433,
+          -0.9428
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m157",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.9511,
+          0.4889,
+          1.9571
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m158",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.761,
+          0.5345,
+          -1.8554
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m159",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.0697,
+          0.5801,
+          0.8354
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m160",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.8418,
+          0.6257,
+          0.4033
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m161",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.9667,
+          0.6713,
+          -1.1036
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m162",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2766,
+          0.7169,
+          0.9295
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m163",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          0.7625,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.27,
+          "detail": 0
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m164",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          -0.615,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m165",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          -0.475,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m166",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.8606,
+          -0.495,
+          0.7155
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m167",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.8606,
+          -0.355,
+          0.7155
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m168",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2284,
+          -0.375,
+          -1.444
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m169",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.2284,
+          -0.235,
+          -1.444
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m170",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.3288,
+          -0.615,
+          1.3617
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m171",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.3288,
+          -0.475,
+          1.3617
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m172",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.1793,
+          0.0359,
+          -0.3322
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m173",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.1793,
+          0.1759,
+          -0.3322
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m174",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1524,
+          -0.0676,
+          -1.1002
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m175",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1524,
+          0.0724,
+          -1.1002
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m176",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.5936,
+          -0.5312,
+          2.077
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m177",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.5936,
+          -0.3912,
+          2.077
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m178",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1486,
+          -0.6347,
+          -1.9651
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m179",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1486,
+          -0.4947,
+          -1.9651
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m180",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.6081,
+          -0.7382,
+          0.7708
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m181",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.6081,
+          -0.5982,
+          0.7708
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m182",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.4151,
+          -0.9782,
+          0.8573
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m183",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.4151,
+          -0.8382,
+          0.8573
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m184",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.2027,
+          -0.6347,
+          -2.0056
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m185",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.2027,
+          -0.4947,
+          -2.0056
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m186",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8486,
+          -0.2912,
+          2.0522
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m187",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8486,
+          -0.1512,
+          2.0522
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m188",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0525,
+          -0.3076,
+          -1.0278
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m189",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0525,
+          -0.1676,
+          -1.0278
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m190",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.3135,
+          0.0359,
+          -0.4096
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m191",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.3135,
+          0.1759,
+          -0.4096
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m192",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1076,
+          0.3794,
+          1.4037
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m193",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.1076,
+          0.5194,
+          1.4037
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m194",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.1473,
+          0.3629,
+          -1.4376
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m195",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.1473,
+          0.5029,
+          -1.4376
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m196",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.0479,
+          0.7065,
+          0.6826
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m197",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          1.0479,
+          0.8465,
+          0.6826
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m198",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          1.05,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.1,
+          "radiusBottom": 0.16,
+          "height": 0.22,
+          "radialSegments": 6
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m199",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.0763,
+          1.19,
+          0.0003
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.08,
+          "radialSegments": 6
+        },
+        "color": 6108183
+      }
+    },
+    {
+      "id": "m200",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.7093,
+          -0.2433,
+          -0.2519
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.2330096144647693,
+            -0.1466666666666674,
+            0.05222515610172404
+          ],
+          "b": [
+            -0.054304060011073574,
+            -0.026666666666667282,
+            0.07377335341372952
+          ],
+          "c": [
+            0.28731367447584333,
+            0.1733333333333329,
+            -0.12599850951545358
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m201",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.7151,
+          -0.2433,
+          -0.1998
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.23879056455709513,
+            -0.1466666666666674,
+            0.0001167962916998518
+          ],
+          "b": [
+            -0.06909472476199285,
+            -0.026666666666667282,
+            0.06014447287704645
+          ],
+          "c": [
+            0.307885289319088,
+            0.1733333333333329,
+            -0.060261269168746294
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m202",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.7094,
+          -0.2433,
+          -0.1477
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.23306059128619916,
+            -0.1466666666666674,
+            -0.05199719369540171
+          ],
+          "b": [
+            -0.08055467130378435,
+            -0.026666666666667282,
+            0.0436163219303573
+          ],
+          "c": [
+            0.31361526258998396,
+            0.1733333333333329,
+            0.008380871765044436
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m203",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.6924,
+          -0.2433,
+          -0.0981
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.2160959085942742,
+            -0.1466666666666674,
+            -0.1016046536910838
+          ],
+          "b": [
+            -0.08813147175206426,
+            -0.026666666666667282,
+            0.024985641764990005
+          ],
+          "c": [
+            0.30422738034633845,
+            0.1733333333333329,
+            0.07661901192609381
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m204",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.2372,
+          0.1067,
+          1.0706
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.21920591451001892,
+            -0.1466666666666674,
+            -0.09470857620456719
+          ],
+          "b": [
+            -0.0872957965612664,
+            -0.026666666666667282,
+            0.027764771029621826
+          ],
+          "c": [
+            0.3065017110712849,
+            0.1733333333333329,
+            0.06694380517494558
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m205",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.2112,
+          0.1067,
+          1.1161
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.19325427596086175,
+            -0.1466666666666674,
+            -0.14026308204838922
+          ],
+          "b": [
+            -0.09125084071814449,
+            -0.026666666666667282,
+            0.008045040448946716
+          ],
+          "c": [
+            0.2845051166790058,
+            0.1733333333333329,
+            0.13221804159944228
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m206",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1759,
+          0.1067,
+          1.1549
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.15798679545485683,
+            -0.1466666666666674,
+            -0.17905619180797738
+          ],
+          "b": [
+            -0.09080712885095421,
+            -0.026666666666667282,
+            -0.012062502121844343
+          ],
+          "c": [
+            0.24879392430581104,
+            0.1733333333333329,
+            0.19111869392982217
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m207",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1331,
+          0.1067,
+          1.1851
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.1151035454637599,
+            -0.1466666666666674,
+            -0.20921787969612482
+          ],
+          "b": [
+            -0.08598605013521943,
+            -0.026666666666667282,
+            -0.03158857055545283
+          ],
+          "c": [
+            0.20108959559898,
+            0.1733333333333329,
+            0.24080645025157743
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m208",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.9396,
+          0.4567,
+          1.9079
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.12167300574744466,
+            -0.1466666666666665,
+            -0.20546685142682342
+          ],
+          "b": [
+            -0.08694350590005151,
+            -0.026666666666666394,
+            -0.028849010197943503
+          ],
+          "c": [
+            0.20861651164749617,
+            0.17333333333333378,
+            0.2343158616247667
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m209",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8919,
+          0.4567,
+          1.9295
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.0739014224188308,
+            -0.1466666666666665,
+            -0.22706723041280896
+          ],
+          "b": [
+            -0.07855223702196756,
+            -0.026666666666666394,
+            -0.04712732398978314
+          ],
+          "c": [
+            0.15245365944079803,
+            0.17333333333333378,
+            0.27419455440259144
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m210",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8405,
+          0.4567,
+          1.9401
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.022567413533436387,
+            -0.1466666666666665,
+            -0.2377218105460266
+          ],
+          "b": [
+            -0.06637434959785093,
+            -0.026666666666666394,
+            -0.0631338603528695
+          ],
+          "c": [
+            0.0889417631312871,
+            0.17333333333333378,
+            0.30085567089889587
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m211",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.7881,
+          0.4567,
+          1.9393
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.0298544598082916,
+            -0.1466666666666665,
+            -0.23691698671143224
+          ],
+          "b": [
+            -0.050996879925073735,
+            -0.026666666666666394,
+            -0.0760970225797366
+          ],
+          "c": [
+            0.0211424201167818,
+            0.17333333333333378,
+            0.3130140092911695
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m212",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.6877,
+          0.8067,
+          1.9401
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.02233485569729199,
+            -0.1466666666666665,
+            -0.2377437729654579
+          ],
+          "b": [
+            -0.05338175108609411,
+            -0.026666666666666394,
+            -0.07444345007168618
+          ],
+          "c": [
+            0.031046895388801787,
+            0.17333333333333378,
+            0.3121872230371441
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m213",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.739,
+          0.8067,
+          1.9295
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.07367926267023017,
+            -0.1466666666666665,
+            -0.2271394144908392
+          ],
+          "b": [
+            -0.03584934867573675,
+            -0.026666666666666394,
+            -0.08429865246324386
+          ],
+          "c": [
+            -0.0378299139944932,
+            0.17333333333333378,
+            0.31143806695408305
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m214",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.7868,
+          0.8067,
+          1.908
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.12147195331958249,
+            -0.1466666666666665,
+            -0.2055857775226566
+          ],
+          "b": [
+            -0.01658882477953616,
+            -0.026666666666666394,
+            -0.09009022977008785
+          ],
+          "c": [
+            -0.10488312854004633,
+            0.17333333333333378,
+            0.295676007292744
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m215",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.8287,
+          0.8067,
+          1.8765
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.16340907614934364,
+            -0.1466666666666665,
+            -0.17412185731518015
+          ],
+          "b": [
+            0.0034713650962533427,
+            -0.026666666666666394,
+            -0.09153899842122937
+          ],
+          "c": [
+            -0.1668804412455972,
+            0.17333333333333378,
+            0.26566085573640974
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m216",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0231,
+          -0.2433,
+          1.1551
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.15781156139948727,
+            -0.1466666666666674,
+            -0.17921065384492563
+          ],
+          "b": [
+            0.0005700182637644602,
+            -0.026666666666667282,
+            -0.09160302225785077
+          ],
+          "c": [
+            -0.1583815796632524,
+            0.1733333333333329,
+            0.2708136761027766
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m217",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0584,
+          -0.2433,
+          1.1163
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.19311697368529468,
+            -0.1466666666666674,
+            -0.14045206241811936
+          ],
+          "b": [
+            0.020546772390079404,
+            -0.026666666666667282,
+            -0.08927076090156061
+          ],
+          "c": [
+            -0.21366374607537342,
+            0.1733333333333329,
+            0.2297228233196802
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m218",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0844,
+          -0.2433,
+          1.0708
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.21911316268436143,
+            -0.1466666666666674,
+            -0.09492296508920584
+          ],
+          "b": [
+            0.039533067271144695,
+            -0.026666666666667282,
+            -0.08263519346942005
+          ],
+          "c": [
+            -0.2586462299555059,
+            0.1733333333333329,
+            0.1775581585586259
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m219",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0999,
+          -0.2433,
+          1.0207
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.23454697947156622,
+            -0.1466666666666674,
+            -0.04481809660878855
+          ],
+          "b": [
+            0.0566136666381718,
+            -0.026666666666667282,
+            -0.07201618816193545
+          ],
+          "c": [
+            -0.2911606461097378,
+            0.1733333333333329,
+            0.11683428477072422
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m220",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.5567,
+          0.1067,
+          -0.1475
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2330096144647693,
+            -0.1466666666666674,
+            -0.052225156101724075
+          ],
+          "b": [
+            0.054304060011073574,
+            -0.026666666666667282,
+            -0.07377335341372955
+          ],
+          "c": [
+            -0.28731367447584333,
+            0.1733333333333329,
+            0.12599850951545363
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m221",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.5625,
+          0.1067,
+          -0.1996
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.23879056455709513,
+            -0.1466666666666674,
+            -0.00011679629169984048
+          ],
+          "b": [
+            0.06909472476199285,
+            -0.026666666666667282,
+            -0.06014447287704646
+          ],
+          "c": [
+            -0.307885289319088,
+            0.1733333333333329,
+            0.06026126916874631
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m222",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.5568,
+          0.1067,
+          -0.2517
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.23306059128619916,
+            -0.1466666666666674,
+            0.05199719369540167
+          ],
+          "b": [
+            0.08055467130378435,
+            -0.026666666666667282,
+            -0.04361632193035733
+          ],
+          "c": [
+            -0.31361526258998396,
+            0.1733333333333329,
+            -0.008380871765044345
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m223",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.5398,
+          0.1067,
+          -0.3013
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2160959085942742,
+            -0.1466666666666674,
+            0.1016046536910838
+          ],
+          "b": [
+            0.08813147175206426,
+            -0.026666666666667282,
+            -0.024985641764990033
+          ],
+          "c": [
+            -0.30422738034633845,
+            0.1733333333333329,
+            -0.07661901192609379
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m224",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0845,
+          0.4567,
+          -1.47
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.21920591451001892,
+            -0.1466666666666665,
+            0.09470857620456719
+          ],
+          "b": [
+            0.0872957965612664,
+            -0.026666666666666394,
+            -0.027764771029621826
+          ],
+          "c": [
+            -0.3065017110712853,
+            0.17333333333333378,
+            -0.06694380517494558
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m225",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0586,
+          0.4567,
+          -1.5156
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.19325427596086175,
+            -0.1466666666666665,
+            0.140263082048389
+          ],
+          "b": [
+            0.09125084071814449,
+            -0.026666666666666394,
+            -0.008045040448946716
+          ],
+          "c": [
+            -0.2845051166790058,
+            0.17333333333333378,
+            -0.13221804159944273
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m226",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -2.0233,
+          0.4567,
+          -1.5543
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.15798679545485728,
+            -0.1466666666666665,
+            0.17905619180797738
+          ],
+          "b": [
+            0.09080712885095465,
+            -0.026666666666666394,
+            0.012062502121844343
+          ],
+          "c": [
+            -0.24879392430581104,
+            0.17333333333333378,
+            -0.19111869392982195
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m227",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -1.9804,
+          0.4567,
+          -1.5845
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.1151035454637599,
+            -0.1466666666666665,
+            0.2092178796961246
+          ],
+          "b": [
+            0.08598605013521943,
+            -0.026666666666666394,
+            0.03158857055545261
+          ],
+          "c": [
+            -0.20108959559898,
+            0.17333333333333378,
+            -0.24080645025157765
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m228",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.787,
+          0.8067,
+          -2.3073
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.12167300574744466,
+            -0.1466666666666665,
+            0.20546685142682342
+          ],
+          "b": [
+            0.08694350590005162,
+            -0.026666666666666394,
+            0.02884901019794306
+          ],
+          "c": [
+            -0.20861651164749617,
+            0.17333333333333378,
+            -0.23431586162476625
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m229",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.7392,
+          0.8067,
+          -2.3289
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.0739014224188308,
+            -0.1466666666666665,
+            0.22706723041280896
+          ],
+          "b": [
+            0.07855223702196756,
+            -0.026666666666666394,
+            0.04712732398978314
+          ],
+          "c": [
+            -0.15245365944079825,
+            0.17333333333333378,
+            -0.27419455440259144
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m230",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.6879,
+          0.8067,
+          -2.3396
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.022567413533436276,
+            -0.1466666666666665,
+            0.2377218105460266
+          ],
+          "b": [
+            0.06637434959785082,
+            -0.026666666666666394,
+            0.0631338603528695
+          ],
+          "c": [
+            -0.0889417631312871,
+            0.17333333333333378,
+            -0.30085567089889587
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m231",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.6355,
+          0.8067,
+          -2.3388
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.02985445980829171,
+            -0.1466666666666665,
+            0.23691698671143224
+          ],
+          "b": [
+            0.050996879925073624,
+            -0.026666666666666394,
+            0.0760970225797366
+          ],
+          "c": [
+            -0.021142420116782024,
+            0.17333333333333378,
+            -0.3130140092911695
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m232",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8403,
+          -0.2433,
+          -2.3396
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.0223348556972921,
+            -0.1466666666666674,
+            0.2377437729654579
+          ],
+          "b": [
+            0.053381751086094,
+            -0.026666666666667282,
+            0.07444345007168618
+          ],
+          "c": [
+            -0.03104689538880201,
+            0.1733333333333329,
+            -0.3121872230371441
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m233",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.8916,
+          -0.2433,
+          -2.329
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.07367926267023006,
+            -0.1466666666666674,
+            0.2271394144908392
+          ],
+          "b": [
+            0.03584934867573686,
+            -0.026666666666667282,
+            0.08429865246324386
+          ],
+          "c": [
+            0.03782991399449309,
+            0.1733333333333329,
+            -0.31143806695408305
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m234",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.9394,
+          -0.2433,
+          -2.3074
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.1214719533195826,
+            -0.1466666666666674,
+            0.2055857775226566
+          ],
+          "b": [
+            0.01658882477953616,
+            -0.026666666666667282,
+            0.09009022977008785
+          ],
+          "c": [
+            0.10488312854004622,
+            0.1733333333333329,
+            -0.295676007292744
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m235",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.9814,
+          -0.2433,
+          -2.276
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.16340907614934364,
+            -0.1466666666666674,
+            0.17412185731518015
+          ],
+          "b": [
+            -0.0034713650962533427,
+            -0.026666666666667282,
+            0.09153899842122937
+          ],
+          "c": [
+            0.1668804412455971,
+            0.1733333333333329,
+            -0.26566085573640974
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m236",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.1758,
+          0.1067,
+          -1.5545
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.15781156139948727,
+            -0.1466666666666674,
+            0.17921065384492585
+          ],
+          "b": [
+            -0.0005700182637644602,
+            -0.026666666666667282,
+            0.091603022257851
+          ],
+          "c": [
+            0.1583815796632524,
+            0.1733333333333329,
+            -0.2708136761027764
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m237",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.2111,
+          0.1067,
+          -1.5157
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.19311697368529424,
+            -0.1466666666666674,
+            0.14045206241811958
+          ],
+          "b": [
+            -0.02054677239007896,
+            -0.026666666666667282,
+            0.08927076090156061
+          ],
+          "c": [
+            0.21366374607537342,
+            0.1733333333333329,
+            -0.2297228233196802
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    },
+    {
+      "id": "m238",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.2371,
+          0.1067,
+          -1.4702
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.21911316268436143,
+            -0.1466666666666674,
+            0.09492296508920561
+          ],
+          "b": [
+            -0.039533067271144695,
+            -0.026666666666667282,
+            0.08263519346941983
+          ],
+          "c": [
+            0.25864622995550635,
+            0.1733333333333329,
+            -0.1775581585586259
+          ],
+          "d": 0.05
+        },
+        "color": 6732650
+      }
+    },
+    {
+      "id": "m239",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          2.2525,
+          0.1067,
+          -1.4201
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.23454697947156622,
+            -0.1466666666666674,
+            0.04481809660878877
+          ],
+          "b": [
+            -0.0566136666381718,
+            -0.026666666666667282,
+            0.07201618816193567
+          ],
+          "c": [
+            0.2911606461097378,
+            0.1733333333333329,
+            -0.11683428477072422
+          ],
+          "d": 0.05
+        },
+        "color": 3046706
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782902681113,
+      "provider": "gpt",
+      "data": "ZvTB/M8PaQnkoNXKdhghBXOJHYh+y22AhYg+K3vKCvtwX9Vdk863ytjiDwULRV1IYPlxx9x77iwMNCXqI294niOORaStFO7PAytAZ4K279ZpOpv8qCz8i0wmNAMBHw/1x8b9/2erSd30t5fTk8VE1NSJ1UAmllSvvuOzvmPuWGeznx8fbg614aI5zbVzXUWGLdymTspDUaVQxonMCwv2iHN007/dotwE8M8wpDDbT2aMtTW8Zo9OeDp8p7ShDHLRRogPevKCjGANaO+ezgzkEGZfMhyJNLRZW9Ilmf7yKH57XrP0PCdV7JfNiB5dBaHYvJ9Luut/FLCZ94995FR0P8ABW+HiPHH86xi383CcjFHOwx06fk8CMhqzFpBJLJPSfNCOWr+Sep6tS55Vv8TqLaUxGCkFXxhPmOMT+TP1Di+tLdEMWifXp4Toobt4khv8hj8+KPNsoqvcnFpCJncPqLLMP4DsaHcGst/bny3PAp4gyuA0eepu2GVkk8C+mOQFPB5vJEFSa7l+tWri72ziwebdCiicRrkotMxt9CdAawK5GGYx1o6tbmERAV+jKPQsij0v9JlTDGNA2n++pOMhw2sSLMlLzfMD2VVVAGnVOByx5Nih8gLzcoyBq35IeRG/v8Lvexjz6HRKeaaxZkt8UMKhIWVDQ3kcsqOK3/tWPg7zyIZQliTVQPWxzHEY12k2QGv+Q0vKq11f8mHrwT7R7rvyMLMtNnG7RaKr654D91p/oEMNjyiMpEeFeVjWhJp2waUDZtAaYsoBTG/AYIGznwO1h5bpE1cw9b5AuIak5BGHE8zPyDXs54Uwvyun7uXq3Z8P+uotmHQ+0fWlCle2/f8s0mtnwF7tGDFHq2dNZbRi3xbZXF5dmlpOSrQO/1spxR7rKrJQ9Dzq4+jypOnAEW4QJ1h8k2RKUDXfGn8Y7JTBbcG8S8F9ZKienXxlPiPTQpWKFbNotIf3EI0KR0Wn1B4JU3vX7tKL4IEKOgdN+8VYh0zGToW2mi4Jj1J6aEhdfEVMM+lCp7MOgG5+ejigbYkrb6d3r+Q4o7m1Q8Thxn3shxYCSv5jBqZ9VqXoCsvftdqc7InRSrTyMyLmxpO33uMhp2ILeKXVhBTI9pFUhQNRsRYuZddyMeLKJl84C9yCoKVyhKV9paH9Se7kZjzz5/L971sOecJiWQ18GKaW/Wc2NLiYDe5gdWzWalYgtyp8fbuNN3SOQ6FqufN/CqB4r64zNwJhFUTRHA70bFpxm739A6Zy/Rdf5psWMxv3Xwz/CUaM7D+ByooGNiLjlDjtFfXXRIDrtE2ppp2GU7kVrrHTHdslz1k0N75RytLon+qwTD9T17z4sRZXlpfVv2J4Yvg6py2DUJpQHlAcsT5I6HtGr0dNSGPoRr4IuMzSRsE4KorcFpqNxkd7jtmX1b3UBGgVYmW6si5ZvuzS58YtYwlRsC3Lkg009us4D42dqd0xZeqOUu4xKtRtwVWHXkSexUMNaXI2BP2fDhEqQb7sSQgl0RrNKOUQcmjxJi54PWMHb7cIMtX5sj1oq/8jPt33/pGcv8JUqGbYXZDwmSdxtTUDd1ecpnvUUo5ldtDGMJG6thwot5PZtKyjABXiswOJAxJQzqD0SerDM24a4/rmqIz4QuuURBiRfqMEOq2U8edKGlcC0xcyc4DNBa4WCK4sTsDXjiwEn829Xhqs6GRzK2Sc6IEdkKF/j80prZdlLNQZ8t2B8VbykLKgAl80WDThordDNY9NlbTWhh0bsDruMTEnw6Tjl7QH4kWay/MJE1gGVf7hYXtDJuFj6xEtzgKc/MQNNu2fRaTgjTlMpaLnp3ciZOyhf11TR5ew39fbL60vMUj2rmPT/DiNJPNaGAsr1/nLypDg6p7Q5Z2oCYq2i+NNt8jsB0TsjBUnm/+uJSr6CDgghxOz0u4FNZNienemSwMC4HtNIe6qCx7Xa38J7swg97vmVTtiz9x6CvmJjkwVAhYj8uXtBzX4fpq7vfhnavbT3+CnoYCYq6DycCkpTJEt1Wg+H9dR89sg2XBh+3qjaefTcamUFB8WSvCxFcY89M92I1SFAUs8wpkKhasJqhnT989zB1m+HAuceqKbnobUqBt8CkWV89KLeoAFFAQvcE1p6RD8YNCC5XCcrSxAHbkn05VEGmNlNGfashz0gzpHg8NvDfPowlC4T9QOGBQixLvxVpY9gJt+tUmR99nzDNhF4F8wrzVnKuIa7dvk2W5Zv3f56TYjZqQi5j7kU76r9yRb7zQVU0Crrqz4/p09qBQFvEUaaG4rhDywxehuiQqV/0HZQdCkMPcHS8t9ahozarzm/Zz48LpeEWDRVch+vUbJemCsl2qjx1UMFA6qn1R/e26g+JXq92UJcOuXYxb+8jSL/Fn7kA8whKlA3u07qASatdXbFPCpTZ2AjCSJ7dp3vw2w6xSF3FoagcGLoUMuoD8rKiDCldBoBJW0ZLkkwy7RgsUNsKMm/9fPH+LrcEr9PWFzgwVuJsVkUS8Fwsb3mbyKOvMWIKZFd5C0CJ+uc9B0kOJr7Df04yaalbwDezOjXnqR7juU/7rolPUPHA/lNKcnfvcE9Wjx5K8KhgY6YOurgPbDifq5rzwwZQmAXVPeUNmmfJs0bfUvY9gBRpNNxEy2HMvnXZQFnCUdkjj5oh6lJVEzaa1asxXR7XlH/TApVhMdhAEDp4X4xi9J7T/uF0TcpQ7MklqzZGxsjDfrx8Tw3AS86rlJlPbj8z1VdLppN9+bPN4p02244NY3z/x19E0aPTHcx6G2qfgQoe/5/QKKXqU4iM4SLYrfIiHpv72gr1Hbihclyl9RsisRjpqaqj+qLuKAgKrYiYBZIWp4cbC9WAFXFQwiwh7JaGzkcCrbPYLnw2h3ErhkHu8MnsPkKjG7Ag9yDmTczh9jLP+dTt0FNIp+j6+7IpOKvbY9HgGzc5/EX4iqUzoFwULw4jDJK67/MPtSRUhmRVTo3IMStv+oUNUo4zEyW6MAObhx6cUkFaj8wta1anAxlG5sqJFfqt5kzl4uS+/sngqeAlokZrGpHrHVP7a+OGUIPDlqVN0JyN9GjM++vcf2/NnYUSVc5tjOWbDCm6N9aVbGe2AgKpg2PyVfn729+dbH6mZa28mtZuAKt7ktU3evPQjDHpbaP/sDTdHClvKpTUPIt2GANyaGEH9XKdZ7V56TXS81jc7WaRo4z6f7SHLuz+rFJJ6MKLRINk6jjDdHjwX9TUZTX3I1xqcZQ0xwUOgkPmt2H047uNKrRfguxIF2Y5iyaTltSkmcj4CKgLd12ZtagE8+4RkyKjZ8mN9REmSdkrsjSXAiCfg8WIP12MHMMlYPyQMdDEz0KvmQc/E5Jck8cW9r+EvYtilbG26QBRA3a0+ZNb3wBVb+hsoxXAKONVDlTbK4eezLSXYOXmmp+0UuY2yYnk8NDEmChu4d8MEt9BLcG+yWSNjmHCrlGttNi4mvxsM/754AUwOPmy6LX84kQuZERLL9K51uupMveTh/GZFogjTLnpUw895jUw9DLtiykhYqv/ge+Egq4nkZ8dofu/4RsmdhGwObRH71355H26g0fC24mlNPaXECiXivUxPDSXngCzEfh9xRinxkchUIYzSiLilCB/+EYmIFyF9CohVEM2Fi9RlzzrUmx8RvIC7X0cb1",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1782902681545_6tnbkq"
+}

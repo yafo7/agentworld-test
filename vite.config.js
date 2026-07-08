@@ -148,6 +148,9 @@ function localLibraryPlugin() {
 }
 
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ['@dimforge/rapier3d-compat'],
+  },
   build: {
     rollupOptions: {
       external: [/^\/api\/voxel\/.*/],

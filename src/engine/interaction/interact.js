@@ -1,7 +1,3 @@
-import { consumeKeyPress } from '../input/keyboard.js';
-import { Environment } from '../entity/Environment.js';
-import { Item } from '../entity/Item.js';
-import { generateMilestoneItem, generateMilestoneEnv } from '../../backend/prompts/milestoneGen.js';
 import { generatePlayerDialogue } from '../../backend/prompts/dialogueGen.js';
 
 const PET_INTERACT_RANGE = 3.0;
@@ -12,8 +8,10 @@ const HOUSE_SUMMON_RANGE = 3.0;
 /**
  * Unified E-key interaction handler.
  * Priority: drop item > pet seeking player > pet interact > summon house pet > static entity interact > pickup item.
+ *
+ * @param {Input} input - unified input state (for justPressed checks)
  */
-export function setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, onChange, onRefineRequest) {
+export function setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, onChange, onRefineRequest, input) {
   const spawnedMilestoneItems = {};
   const completedPlayerDialogues = {};
 
@@ -24,7 +22,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
   return {
     update() {
       // ---- J key: disband all following pets ----
-      if (consumeKeyPress('j')) {
+      if (input?.justPressed('KeyJ')) {
         let disbanded = false;
         for (const pet of pets) {
           if (pet.state === 'following') {
@@ -39,7 +37,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
       }
 
       // ---- R key: send all following pets to refine the same target (nearest to player) ----
-      if (consumeKeyPress('r')) {
+      if (input?.justPressed('KeyR')) {
         const following = pets.filter((p) => p.state === 'following');
         if (following.length === 0) return;
 
@@ -85,7 +83,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
       }
 
       // ---- H key: call pet to follow (multi-pet) ----
-      if (consumeKeyPress('h')) {
+      if (input?.justPressed('KeyH')) {
         for (const pet of pets) {
           if (!pet.spawned) continue;
           if (pet.state === 'chatting' || pet.state === 'seeking_player' || pet.state === 'returning_home' || pet.state === 'recall_pause' || pet.state === 'refining') continue;
@@ -99,7 +97,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
         }
       }
 
-      if (!consumeKeyPress('e')) return;
+      if (!input?.justPressed('KeyE')) return;
 
       // Priority 1: Drop held item
       if (player.heldItem) {
@@ -119,20 +117,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
         }
       }
 
-      // Priority 3: Pet nearby → affection interaction
-      for (const pet of pets) {
-        if (!pet.spawned || pet.state === 'chatting' || pet.state === 'seeking_player') continue;
-        const dist = player.mesh.position.distanceTo(pet.mesh.position);
-        if (dist < PET_INTERACT_RANGE) {
-          const result = pet.interactWithPlayer();
-          _handlePetInteractResult(result, pet, items, environments, addToScene, spawnedMilestoneItems, onChange);
-          console.log(`[Pet] ${pet.name} affection: ${pet.affection}/10`);
-          if (typeof onChange === 'function') onChange();
-          return;
-        }
-      }
-
-      // Priority 4: Near house → summon or recall
+      // Priority 3: Near house → summon or recall
       if (housePetMap) {
         for (const [houseName, data] of housePetMap.entries()) {
           const dist = player.mesh.position.distanceTo(data.house.mesh.position);
@@ -163,7 +148,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
         }
       }
 
-      // Priority 5: Static entity interaction (breathing animation)
+      // Priority 4: Static entity interaction (breathing animation)
       let nearestStatic = null;
       let nearestStaticDist = Infinity;
       for (const entity of staticEntities) {
@@ -179,7 +164,7 @@ export function setupInteract(player, items, environments, pets, housePetMap, st
         return;
       }
 
-      // Priority 6: Pickup item (wind chime only now)
+      // Priority 5: Pickup item (wind chime only now)
       _pickupNearest(player, items);
       _refreshAllEnvTags(environments, staticEntities, items);
       if (typeof onChange === 'function') onChange();
@@ -222,68 +207,6 @@ function _refreshAllEnvTags(environments, staticEntities, items) {
   const allEntities = [...staticEntities, ...items];
   for (const env of environments) {
     env.refreshTagsFromEntities(allEntities);
-  }
-}
-
-// ===================================================================
-// pet interaction milestones (AI-generated)
-// ===================================================================
-
-function _handlePetInteractResult(result, pet, items, environments, addToScene, spawnedMilestoneItems, onChange) {
-  if (result.type === 'already_max') return;
-
-  if (result.milestone === 5) {
-    const key = `${pet.name}_lv5`;
-    if (spawnedMilestoneItems[key]) return;
-    spawnedMilestoneItems[key] = true;
-
-    generateMilestoneItem(pet)
-      .then((itemCfg) => {
-        const newItem = new Item({
-          id: itemCfg.name,
-          name: itemCfg.name,
-          color: itemCfg.color,
-          tags: itemCfg.tags,
-          correspondsTo: pet.name,
-          spawnPosition: [
-            pet.mesh.position.x + (Math.random() - 0.5) * 2,
-            0,
-            pet.mesh.position.z + (Math.random() - 0.5) * 2,
-          ],
-        });
-        items.push(newItem);
-        addToScene(newItem.mesh);
-        console.log(`[Milestone] ${pet.name} lv5 → AI item: ${itemCfg.name} [${itemCfg.tags.join(', ')}]`);
-        if (typeof onChange === 'function') onChange();
-      })
-      .catch((err) => console.error('[Milestone] AI item failed:', err));
-  }
-
-  if (result.milestone === 10) {
-    const key = `${pet.name}_lv10`;
-    if (spawnedMilestoneItems[key]) return;
-    spawnedMilestoneItems[key] = true;
-
-    generateMilestoneEnv(pet)
-      .then((envCfg) => {
-        const newEnv = new Environment({
-          name: envCfg.name,
-          color: envCfg.color,
-          size: [1.5, 0.6, 1.5],
-          position: [
-            pet.mesh.position.x + (Math.random() - 0.5) * 3,
-            0,
-            pet.mesh.position.z + (Math.random() - 0.5) * 3,
-          ],
-          coreTags: envCfg.tags,
-          moreTags: [],
-        });
-        addToScene(newEnv.mesh);
-        environments.push(newEnv);
-        console.log(`[Milestone] ${pet.name} lv10 → AI env: ${envCfg.name} [${envCfg.tags.join(', ')}]`);
-        if (typeof onChange === 'function') onChange();
-      })
-      .catch((err) => console.error('[Milestone] AI env failed:', err));
   }
 }
 

@@ -4,6 +4,61 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## 操作模式与全局规则（优先级最高）
+
+You are a coding agent optimized for real-time 3D game development using Three.js.
+
+Your primary goal is:
+- Preserve existing game architecture
+- Make minimal, safe, incremental changes
+- Never break rendering loop stability
+
+### MODES
+
+**[CODE MODE]**
+- Only implement requested feature
+- Minimal output
+- PATCH ONLY (do not rewrite full files)
+- Reuse existing architecture
+
+**[DEBUG MODE]**
+- Identify root cause in 1–2 lines max
+- Fix with smallest possible change
+- Do NOT refactor unrelated systems
+- Do NOT restructure rendering pipeline unless explicitly required
+
+**[ARCH MODE]**
+- Only used for system design
+- Must be concise and practical (game-dev oriented)
+- Prefer incremental architecture changes, not full rewrites
+
+### GLOBAL RULES (VERY IMPORTANT)
+
+1. NEVER rewrite full files unless explicitly requested.
+2. NEVER modify core loop unless necessary: requestAnimationFrame loop, renderer.render(), scene / camera initialization.
+3. Prefer "local patch changes": single function edits, small class modifications, parameter adjustments.
+4. Do NOT redesign systems unless asked: Do not replace ECS / scene graph / physics unless requested.
+5. Always assume: Game must keep running after change. Stability > cleanliness.
+6. Avoid: Large refactors, renaming many variables, moving files unnecessarily.
+7. If uncertain: choose smallest safe fix.
+
+### THREE.JS SPECIFIC RULES
+
+- Do not modify camera setup unless bug is camera-related
+- Do not modify renderer unless visual glitch is confirmed
+- Do not change delta time logic unless physics bug exists
+- Do not touch animation loop timing unless performance issue is stated
+
+### OUTPUT STYLE
+
+- No explanations by default
+- No alternatives
+- No design essays
+- Prefer code patch or diff only
+- Keep responses minimal and actionable
+
+---
+
 ## 项目定位
 
 **多 Demo 3D 创造游戏技术验证平台** — 基于 Three.js + Vite，验证"文字 → 3D object → 交互演化"的 gameplay 管线。
@@ -20,7 +75,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **一句话定义：** 玩家不是"抓宠物然后养"，而是"先创造一个值得生命到来的地方，然后观察什么样的生命愿意住进来"——进而派遣它们工作、战斗、社交，逐步开拓属于自己的奇异岛屿。
 
-**背景故事：** 玩家作为一名待业青年画家，偶然在求职 app 上看到"奇异岛"的招聘，决定前往试试。目的地是一座"奇异岛"，岛上的生命由环境的"tag"孕育而生。
+**背景故事：** 玩家流落到一个无人岛；在这里发生的故事，岛上的生命由环境的"tag"孕育而生。
 
 **关键词：** 筑巢、等待、邂逅、观察、照顾、共生、变化、收藏、产生故事、派遣、开拓、进化。
 
@@ -84,7 +139,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```
-npm run dev      # Start Vite dev server (add --host 0.0.0.0 for LAN/public access)
+npm run dev      # 启动 Vite 开发服务器（默认 localhost；加 --host 0.0.0.0 可局域网访问）
 npm run build    # Production build to dist/
 npm run preview  # Preview production build locally
 ```
@@ -93,17 +148,25 @@ npm run preview  # Preview production build locally
 
 > 以下地址为两个 Demo 的固定访问入口，必须牢记：
 
-- **Chii Island（奇异岛）**：`http://111.230.91.60:5173/src/demos/chii-island/`
+- **Chii Island（奇异岛）**：`http://localhost:5173/src/demos/chii-island/`
 - **Ghost Home（鬼屋）**：`http://localhost:5173/src/demos/ghost-home/index.html`
 
 ---
 
-## 当前完成状态（2026-06-29，玛扣大森林替换修复后）
+## 当前完成状态（2026-06-30，操控与世界规模重构后）
 
 ### 当前玩法循环
 
 ```
-玩家在 3×3 世界网格（9个单位环境）上漫游
+玩家在单一中心环境（玛扣大森林，20×20 大地盘）上漫游
+  |
+  ├─ 点击游戏画布锁定鼠标 → 移动鼠标自由旋转视角 | Esc 释放鼠标
+  |       └─ 鼠标离开右侧编辑器后点击画布可重新锁定
+  |
+  ├─ WASD 移动（A/D 快速转向并前进，W/S 前后），Shift 奔跑，Space 跳跃
+  |       └─ 移动直接响应：按下即走，松开即停；转向快速丝滑，弧线很小
+  |
+  ├─ 哪吒模型放大一倍（目标高度 6.0）
   |
   ├─ G 放置占位符
   |       └─ 按G键 → 在玩家脚下最近的空闲单位面积上放置一个装饰类型占位符
@@ -111,8 +174,8 @@ npm run preview  # Preview production build locally
   |               若该单位面积已有物品，屏幕正中央提示"不可重复放置"
   |               放置后即可被右侧模型编辑器识别和修改
   |
-  ├─ F 清除装饰
-  |       └─ 按F键 → 清除玩家附近最近的装饰类 StaticEntity（占位符/预放置装饰）
+  ├─ X 清除装饰
+  |       └─ 按X键 → 清除玩家附近最近的装饰类 StaticEntity（占位符/预放置装饰）
   |               房屋与树木不会被清除；清除后地块恢复灰色、网格占用释放
   |
   ├─ 场景本地持久化
@@ -147,7 +210,7 @@ npm run preview  # Preview production build locally
   ├─ E靠近宠物小屋 → 召唤宠物（马扣/扶摇/momo）在旁边一格生成
   |       └─ E再次靠近小屋 → 宠物走回旁边一格 → 停顿 → 消失（可重新召唤）
   |
-  ├─ 靠近宠物 → E抚摸 → 亲密度+1
+  ├─ 靠近宠物 → F交谈 → 弹出选择框：抚摸（亲密度+1）/ 呼喊跟随 / 一起去改造 / 再见
   |       ├─ lv5: AI 生成新物品
   |       └─ lv10: AI 生成新环境 + 宠物寻主对话（⚠️ 宠物对话系统暂时关闭）
   |
@@ -168,54 +231,58 @@ npm run preview  # Preview production build locally
   |       ├─ 从所有参与宠物的 tag 中各抽一个，合并后追加给被 refine 目标
   |       └─ StaticEntity 被 refine 后获得 AI 生成交互动画，按 E 播放
   |
-  ├─ 进入外围环境 → 右上角提示 "按P展示/隐藏该地形内容"
-  |       └─ 按O全局显示/隐藏所有外围环境（一键回到单中心场景）
-  |
-  └─ 屏幕底部显示 "xxx 按E交互/唤起/召回/抚摸/捡起/呼喊跟随" 提示
+  └─ 屏幕底部显示 "xxx 按E交互/唤起/召回/捡起 | 按F交谈 | 按X清除 | 按H呼喊跟随" 提示
 ```
 
-### 世界网格系统（3×3）
+### 世界网格系统（单一中心环境）
 
-以中心环境（玛扣大森林）为核心，周围布置 8 个差异化环境，间距 23。
+只保留中心环境（玛扣大森林），移除外围 8 个环境与 O/P 切换功能。
 
-```
-待售空地    | 繁华城市    | 农村池塘
-------------|-------------|------------
-暗黑森林    | 玛扣大森林  | 田园牧场
-------------|-------------|------------
-危险区域    | 另一片森林  | 干旱沙地
-```
+- 中心环境尺寸：`20×20` 离散地块
+- 单位面积尺寸：`4×4×0.1`（相对原先扩大一倍）
+- 地块染色规则：树=浅绿 / 装饰=浅黄 / 宠物小屋=浅红 / 普通房屋=浅黄 / 默认=灰色
+- 环境中心 `[10,10]` 放置主题 `Environment` 模型（tree_marko）
+- 中心环境初始布局：树木、装饰、宠物小屋、田园商店分散在 20×20 网格上
 
-每个环境内部：中心 `[5,5]` 放置主题 `Environment` 模型；3-4棵树（全尺寸）；1-3个宠物小屋（半尺寸）；2-4个装饰物（半尺寸）。地块染色逻辑保持一致（树=绿/装饰=黄/小屋=红）。
+### 渲染与光照
 
-**按需加载机制（性能优化）：**
-- 外围 8 个环境的物品默认隐藏（`mesh.visible = false`），只保留灰色地块 + 环境中心模型
-- `O` 键：全局切换所有外围环境的显隐（一键显示/一键回到中心）
-- `P` 键：在当前所在的外围环境内，单独切换该环境物品的显隐
-- 实际可见性公式：`visible = outerEnvGlobalVisible && envVisibleState[i]`
-- 物品按环境分组存储于 `envEntityGroups[9]`，状态记录在 `envVisibleState[9]`
-- 交互提示自动跳过 `visible=false` 的实体
+- 背景色与雾效：`0x87CEEB`（天蓝色）
+- 天光：`HemisphereLight(0x87CEEB, 0x445566, 0.5)`
+- 太阳光：`DirectionalLight(0xffffff, 1.0)` 带阴影
+- SkyDome 已移除
+
+### 输入与操控
+
+- 统一输入模块 `engine/input/Input.js`：Pointer Lock + 键盘状态
+- 点击 canvas 锁定鼠标，mousemove 控制视角，Esc / 右侧编辑器 mouseenter 释放
+- 鼠标离开编辑器区域后再次点击画布可重新锁定
+- 键盘使用 `e.code`（KeyW/KeyS/KeyA/KeyD/Space/ShiftLeft）
+- 玩家实体 `Player.js`：
+  - 目标高度 6.0（相对原先放大一倍）
+  - 速度直接响应：按下即走，松开即停
+  - 快速转向：spring mass=1/damping=0.1，turnMultiplier=8，移动中丝滑转向
+  - 奔跑速度 12，基础速度 8
 
 ### 已实现系统
 
 | 系统 | 说明 |
 |------|------|
-| 世界网格 | 3×3 单位环境矩阵，间距 23。每个环境 10×10 离散地块 |
-| 单位面积 | 2×2×0.1 灰色体块，顶部齐平 Y=0。通过 `paintUnitArea()` 按类型染色 |
-| 环境染色 | 树=浅绿 / 装饰=浅黄 / 宠物小屋=浅红 / 默认=灰色 |
-| 环境实体 | 9 个环境各有一个中心 `Environment` 模型（tree_marko/pond/grassland/forest/trainer/sun_stone 等） |
-| 玩家 | 哪吒模型（player-nezha.json），WASD 直接向量移动，空格跳跃，左键拖拽旋转相机，滚轮缩放 |
+| 世界网格 | 单一中心环境（玛扣大森林），20×20 离散地块，已移除外围 8 个环境与 O/P 切换功能 |
+| 单位面积 | 4×4×0.1 灰色体块，顶部齐平 Y=0。通过 `paintUnitArea()` 按类型染色 |
+| 环境染色 | 树=浅绿 / 装饰=浅黄 / 宠物小屋=浅红 / 普通房屋=浅黄 / 默认=灰色 |
+| 环境实体 | 中心环境放置 `Environment` 模型（tree_marko） |
+| 玩家 | 哪吒模型（player-nezha.json），目标高度 6.0（放大一倍）；WASD 移动（A/D 快速转向），Shift 奔跑，Space 跳跃；Pointer Lock 鼠标控制视角，滚轮缩放；按下即走、松开即停，转向快速丝滑 |
+| 天空 | 背景色与雾效为天蓝色 `0x87CEEB`；`SkyDome` 已移除 |
 | 装饰品 | ps5/ns2/雷霆大雪绒/苔藓灯/风铃/太阳石/训练桩等（StaticEntity），半尺寸，不可移动，按 E 呼吸动画 |
 | 树木 | 魔女/yafo/金鱼/tree_rand_1~6 等（StaticEntity），全尺寸，绿色单位面积 |
-| 宠物小屋 | 马扣的家/扶摇的家/momo的家 + 各环境主题小屋（StaticEntity），半尺寸，红色单位面积 |
+| 宠物小屋 | 马扣的家/扶摇的家/momo的家，半尺寸，红色单位面积 |
 | 宠物召唤/召回 | E靠近小屋 → 在旁边一格召唤；再次E → 走回旁边一格 → 停顿 2s → 消失 |
-| 宠物 | 马扣（小马行走）/扶摇（小鸟飞翔）/momo（团子行走），模型+idle/walk动画，50%缩放，完整亲密度/状态机 |
+| 宠物 | 马扣（小马行走）/扶摇（小鸟飞翔）/momo（团子行走），模型+idle/walk动画，50%缩放，完整亲密度/状态机；靠近按 F 交谈，可选择抚摸/跟随/改造 |
 | 宠物跟随系统 | H 呼喊跟随（可多宠）；J 解散全部；R 指使 refine。跟随中宠物保持约 3 单位距离 |
-| 宠物行为判断 | 每5秒：45%行走/45%idle/10%去隔壁环境游玩（60s后自动回家）；每30秒：20%回家/50%与装饰交互/30%找其他宠物聊天 |
+| 宠物行为判断 | 每5秒：45%行走/45%idle/10%在中心环境内游荡；每30秒：20%回家/50%与装饰交互/30%找其他宠物聊天 |
 | 宠物 refine | 万物皆可 refine。优先调用后端 refineModel 基于原模型改造（保留特征+新增特色），无 metadata 时 fallback 生成。多宠共享一次调用，合并 tag |
 | 宠物动画 | 优先 Voxel Runtime（evaluateMotion）；`tilt` 类型已禁用（会导致卡死）；不可用 fallback 客户端 sine wave |
-| 按需加载 | `O` 全局开关 + `P` 单环境开关；按环境分组 `envEntityGroups`；进入环境检测 `getCurrentEnvIndex` |
-| 互动提示 UI | 屏幕底部 DOM overlay；右上角 `globalHintEl`（O键）+ `toggleHintEl`（P键） |
+| 互动提示 UI | 屏幕底部 DOM overlay |
 | 物品 | 仅保留风铃，E 捡起/放下 |
 | 模型加载 | 优先 Voxel Runtime buildGeometry；不可用时 fallbackBuildGeometry（box/sphere/cylinder/cone/icosahedron） |
 | Tag 标签 | 所有实体上方浮动 Canvas Sprite，显示名字 + tag + 居民信息 |
@@ -225,8 +292,9 @@ npm run preview  # Preview production build locally
 | 动画库 | 以模型为单位管理多组动画（idle / interaction）。生成/库选/切换的动画均可指定为 E 交互或 idle 循环 |
 | 体素工作室桥接 | 游戏模型库直接读取本地 3d-generate 工作室（`localhost:8000` / `/studio`）保存的模型，选择后拉取模型 JSON 与动画并应用到场景实体 |
 | G键占位符 | 按G在玩家脚下空闲单位面积放置装饰类型占位符（`generated/models/placeholder.json`），占用并染黄该单位面积；重复放置时屏幕中央提示"不可重复放置"；**放置后立即可被右侧模型编辑器识别和修改** |
-| F键清除装饰 | 按F清除玩家附近最近的装饰类 StaticEntity（占位符/预放置装饰），不作用于房屋/树木；清除后释放网格占用并恢复地块默认灰色 |
-| 场景本地持久化 | 通过 `src/storage/sceneSnapshot.js` 把场景状态实时写入 `localStorage`（key: `chii-island-scene`）；刷新后自动恢复静态实体、环境模型/动画、环境显隐、宠物状态、物品位置；首次访问保存初始基线 |
+| F键宠物交谈 | 靠近宠物时按 F 弹出对话选择框：抚摸（亲密度+1）、呼喊跟随、一起去改造、再见。对话打开时暂停玩家移动 |
+| X键清除装饰 | 按X清除玩家附近最近的装饰类 StaticEntity（占位符/预放置装饰），不作用于房屋/树木；清除后释放网格占用并恢复地块默认灰色 |
+| 场景本地持久化 | 通过 `src/storage/sceneSnapshot.js` 把场景状态实时写入 `localStorage`（key: `chii-island-scene`）；刷新后自动恢复静态实体、环境模型/动画、宠物状态、物品位置；首次访问保存初始基线 |
 
 ### Voxel / AI 接入点
 
@@ -246,12 +314,12 @@ API: `sk-49e1871170a442bcb963cc45f68a4988` @ `https://api.deepseek.com/v1/chat/c
 
 ### Demo 2: 鬼屋（Ghost Home）当前状态
 
-Ghost Home 已完成最小可运行框架，直接复用 Chii Island 的 3×3 世界网格场景与全部交互逻辑：
+Ghost Home 已完成最小可运行框架，复用 Chii Island 的单中心世界网格与交互逻辑：
 
-- **场景**：保留 3×3 单位环境地形网格；移除环境中心模型、树木、房屋、宠物小屋、宠物、物品等全部非玩家模型
-- **玩家**：保留哪吒模型 + idle/walk/jump 动画，WASD 移动、空格跳跃、鼠标拖拽旋转相机、滚轮缩放
-- **交互逻辑**：保留 E 交互、G 放置占位符、O/P 环境显隐、H/J/R 宠物交互逻辑（当前无宠物，逻辑空转）、点击检查（raycast）
-- **UI**：保留右侧分屏模型编辑器、底部交互提示、右上角环境切换提示
+- **场景**：保留单一中心单位环境地形网格（20×20）；移除环境中心模型、树木、房屋、宠物小屋、宠物、物品等全部非玩家模型
+- **玩家**：保留哪吒模型 + idle/walk/jump 动画，WASD 移动、空格跳跃、Pointer Lock 鼠标控制视角、滚轮缩放
+- **交互逻辑**：保留 E 交互、G 放置占位符、H/J/R 宠物交互逻辑（当前无宠物，逻辑空转）、点击检查（raycast）
+- **UI**：保留右侧分屏模型编辑器、底部交互提示
 - **访问地址**：`http://localhost:5173/src/demos/ghost-home/index.html`
 
 **待排查问题**：用户反馈 Ghost Home 在特定环境下无法打开，但本地 Playwright 与生产构建测试均正常（0 控制台错误），具体原因待用户提供浏览器报错信息后进一步定位。
@@ -266,6 +334,8 @@ Ghost Home 已完成最小可运行框架，直接复用 Chii Island 的 3×3 �
 agentworld-test/
 ├── index.html
 ├── package.json
+├── artwork/                    # 技术美术提供的场景文档与素材说明
+│   └── agentworld.json
 ├── public/                     # 静态资源
 │   └── generated/              # AI 生成的模型和动画 JSON
 │       ├── models/
@@ -349,6 +419,8 @@ agentworld-test/
 11. **单位面积颜色** — 始终通过 `paintUnitArea()` 染色，先灰后色。不可在 createUnitEnvironment 时硬编码颜色
 12. **静态实体放置** — 通过 `placeStaticEntity()` 辅助函数，同时处理 mesh 添加 + 单位面积染色
 13. **文档集中管理** — `CLAUDE.md` 是项目核心知识库。所有说明文档、任务文档、设计备忘等需要以 Markdown 形式沉淀的内容，优先写入 `CLAUDE.md` 的对应章节；超大/专用文档（如 `api-reference.md`、Excalidraw 图纸 `image.md`）可独立成文件，但必须在 `CLAUDE.md` 中引用入口，禁止散落未索引的 `.md` 文件
+14. **artwork 文件夹** — 该目录存放技术美术提供的场景文档与素材说明（如 `artwork/agentworld.json`），属外部美术输入，代码修改时请勿删除或改动其中的美术源文件；如需引用其内容，优先读取后按项目 schema 转换使用
+15. **仓库边界** — `agentworld-test` 与相邻的 `3d-generate`（体素工作室）和 `voxel-game` 是独立项目。除非用户明确授权，否则只允许修改 `agentworld-test/` 内的源代码与配置文件；对 `3d-generate` 和 `voxel-game` 仅允许运行服务、安装依赖等操作，禁止改动其代码文件。
 
 ### 新增模块时的异步模式
 
@@ -505,8 +577,8 @@ Phase 3（派对化）：多人扩展
 ## 注意事项
 
 - ⚠️ **3d-generate（`https://voxel-studio-backend.zeabur.app`）是我们的后端服务，不能做任何修改，一定注意。** 所有对该后端的集成只能通过其已有 API（见 `api-reference.md`）进行，禁止尝试修改其服务端代码或绕过其接口。
-- 云服务器仅开放端口 5173 和 8082，其他端口需通过Vite proxy
-- 本地开发 vs 服务器部署性能无差异（渲染在本地GPU）
+- 项目已改为本地部署：Vite dev server 默认监听 `localhost:5173`，加 `--host 0.0.0.0` 可在局域网访问
+- 渲染在本地 GPU 上运行，与本地或远程部署无关
 - `public/generated/` 下所有 JSON 文件是预设模型，勿删
 - Voxel Runtime通过Vite proxy加载，路径 `/api/voxel/...`
 - 后端编辑器通过 `/studio/` proxy 访问，本地开发需先启动 3d-generate 服务端（`python3 server.py`，端口 8000）

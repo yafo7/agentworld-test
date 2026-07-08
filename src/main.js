@@ -19,7 +19,7 @@ import { setupInteract } from './engine/interaction/interact.js';
 import { createInteractionHint } from './engine/interaction/interactionHint.js';
 import { setupPetDialogue } from './demos/chii-island/systems/petDialogue.js';
 import { setupRaycast } from './engine/interaction/raycast.js';
-import { consumeKeyPress } from './engine/input/keyboard.js';
+import { Input } from './engine/input/Input.js';
 import { createUnitEnvironment, getGridWorldPosition, paintUnitArea } from './engine/world/terrain.js';
 
 const INTERACT_HINT_RANGE = 1.8;
@@ -32,6 +32,7 @@ async function init() {
   // ---- Three.js setup ----
   const scene = createScene();
   const renderer = createRenderer();
+  const input = new Input(renderer.domElement);
   const thirdPersonCamera = new ThirdPersonCamera();
   const camera = thirdPersonCamera.camera;
   createLights(scene);
@@ -77,8 +78,6 @@ async function init() {
   // ---- static entities ----
   const staticEntities = [];
   const envEntityGroups = Array.from({ length: 9 }, () => []);
-  const envVisibleState = new Array(9).fill(true);
-  envVisibleState[4] = true; // center env always visible
 
   function placeStaticEntity(cfg, category, areaType, scale = 1, envIndex = 4) {
     const targetUnitEnv = unitEnvironments[envIndex];
@@ -206,49 +205,11 @@ async function init() {
   // ---- interaction hint UI ----
   const hintSystem = createInteractionHint();
 
-  // ---- env toggle hints (top-right) ----
-  const globalHintEl = document.createElement('div');
-  globalHintEl.id = 'env-global-hint';
-  globalHintEl.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-    pointer-events: none;
-    z-index: 100;
-    backdrop-filter: blur(4px);
-  `;
-  document.body.appendChild(globalHintEl);
-
-  const toggleHintEl = document.createElement('div');
-  toggleHintEl.id = 'env-toggle-hint';
-  toggleHintEl.style.cssText = `
-    position: fixed;
-    top: 56px;
-    right: 20px;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-    pointer-events: none;
-    z-index: 100;
-    display: none;
-    backdrop-filter: blur(4px);
-  `;
-  document.body.appendChild(toggleHintEl);
-
   const followHintEl = document.createElement('div');
   followHintEl.id = 'follow-hint';
   followHintEl.style.cssText = `
     position: fixed;
-    top: 92px;
+    top: 20px;
     right: 20px;
     background: rgba(0,0,0,0.6);
     color: #fff;
@@ -262,21 +223,6 @@ async function init() {
     backdrop-filter: blur(4px);
   `;
   document.body.appendChild(followHintEl);
-
-  let outerEnvGlobalVisible = false;
-
-  function applyEnvVisibility() {
-    for (let i = 0; i < 9; i++) {
-      if (i === 4) continue;
-      const visible = outerEnvGlobalVisible && envVisibleState[i];
-      unitEnvironments[i].visible = visible;
-      environments[i].mesh.visible = visible;
-      for (const entity of envEntityGroups[i]) {
-        entity.mesh.visible = visible;
-      }
-    }
-  }
-  applyEnvVisibility(); // initial state: all outer environments hidden
 
   function getCurrentEnvIndex(playerPos) {
     const HALF_WIDTH = 10 * 2.05 / 2; // 10.25
@@ -299,7 +245,7 @@ async function init() {
   }
 
   // ---- interaction systems ----
-  const interactSystem = setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, allEntitiesForEnv);
+  const interactSystem = setupInteract(player, items, environments, pets, housePetMap, staticEntities, addToScene, allEntitiesForEnv, undefined, input);
   const dialogueSystem = setupPetDialogue(pets, player.mesh.position);
   setupRaycast(camera, dynamicTargets);
 
@@ -311,29 +257,14 @@ async function init() {
 
     const dt = Math.min(clock.getDelta(), 0.1);
 
-    player.update(dt, thirdPersonCamera.getHorizontalAngle());
+    // ---- pointer-lock driven camera ----
+    const { dx, dy } = input.consumeMouseDelta();
+    if (dx !== 0 || dy !== 0) {
+      thirdPersonCamera.applyMouseDelta(dx, dy);
+    }
+
+    player.update(dt, input, thirdPersonCamera);
     pets.forEach((pet) => pet.move(player.mesh.position, dt));
-
-    // Global outer env toggle (O key)
-    globalHintEl.textContent = outerEnvGlobalVisible ? '按O隐藏所有外围环境' : '按O显示所有外围环境';
-    if (consumeKeyPress('o')) {
-      outerEnvGlobalVisible = !outerEnvGlobalVisible;
-      applyEnvVisibility();
-    }
-
-    // Per-env visibility toggle (P key)
-    const currentEnvIdx = getCurrentEnvIndex(player.mesh.position);
-    if (currentEnvIdx !== -1 && currentEnvIdx !== 4) {
-      const isVisible = envVisibleState[currentEnvIdx];
-      toggleHintEl.textContent = isVisible ? '按P隐藏该地形内容' : '按P展示该地形内容';
-      toggleHintEl.style.display = 'block';
-      if (consumeKeyPress('p')) {
-        envVisibleState[currentEnvIdx] = !isVisible;
-        applyEnvVisibility();
-      }
-    } else {
-      toggleHintEl.style.display = 'none';
-    }
 
     // Follow hint (J/R keys)
     const followingPets = pets.filter((p) => p.state === 'following');
@@ -399,6 +330,7 @@ async function init() {
     dialogueSystem.update(dt);
     thirdPersonCamera.update(player.mesh.position);
 
+    input.endFrame();
     renderer.render(scene, camera);
   }
   animate();

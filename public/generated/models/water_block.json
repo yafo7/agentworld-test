@@ -1,0 +1,548 @@
+{
+  "name": "一个水方块",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          1.355,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          -0.055,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 2.6,
+          "depth": 2.6
+        },
+        "color": 5227511
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          1.265,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.62,
+          "height": 0.08,
+          "depth": 2.62
+        },
+        "color": 8248575
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          -1.315,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.62,
+          "height": 0.08,
+          "depth": 2.62
+        },
+        "color": 2730472
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.34,
+          -0.055,
+          -1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 2.62,
+          "depth": 0.09
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.34,
+          -0.055,
+          1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 2.62,
+          "depth": 0.09
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.34,
+          -0.055,
+          -1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 2.62,
+          "depth": 0.09
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.34,
+          -0.055,
+          1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 2.62,
+          "depth": 0.09
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.34,
+          1.275,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.08,
+          "depth": 2.6
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.34,
+          -1.305,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.08,
+          "depth": 2.6
+        },
+        "color": 12119290
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.34,
+          1.275,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.08,
+          "depth": 2.6
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.34,
+          -1.305,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.08,
+          "depth": 2.6
+        },
+        "color": 12119290
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          1.275,
+          -1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          -1.305,
+          -1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 12119290
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          1.275,
+          1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0,
+          -1.305,
+          1.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 12119290
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -0.35,
+          1.305,
+          1.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.2,
+          "height": 0.06,
+          "depth": 0.06
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0.55,
+          1.315,
+          1.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.06,
+          "depth": 0.06
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.37,
+          0.595,
+          1.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.06,
+          "height": 0.55,
+          "depth": 0.06
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          1.37,
+          -0.405,
+          1.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.06,
+          "height": 0.35,
+          "depth": 0.06
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -0.65,
+          -0.155,
+          1.36
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.13,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 11791615
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -0.35,
+          0.295,
+          1.36
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.09,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 11791615
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0.45,
+          -0.505,
+          1.36
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.11,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 11791615
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          0.75,
+          0.095,
+          1.36
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 14743546
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.37,
+          0.395,
+          -0.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.7,
+          "depth": 0.08
+        },
+        "color": 10414079
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -1.37,
+          -0.405,
+          0.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.45,
+          "depth": 0.08
+        },
+        "color": 10414079
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "water_block",
+      "transform": {
+        "pos": [
+          -0.55,
+          1.315,
+          -1.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.7,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 16777215
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782901716538,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1782901715409_l1aoz2"
+}

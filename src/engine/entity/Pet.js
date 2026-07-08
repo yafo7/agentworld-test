@@ -229,7 +229,7 @@ export class Pet {
   // world data injection
   // ===================================================================
 
-  setWorldData(staticEntities, envGridConfigs, homePosition, homeEnvIndex, allPets, environments, items) {
+  setWorldData(staticEntities, envGridConfigs, homePosition, homeEnvIndex, allPets, environments, items, envHalfWidth = 10.25) {
     this._staticEntities = staticEntities;
     this._envGridConfigs = envGridConfigs;
     this._homePosition.set(homePosition.x, 0, homePosition.z);
@@ -237,10 +237,11 @@ export class Pet {
     this._allPets = allPets;
     this._environments = environments;
     this._items = items;
+    this._envHalfWidth = envHalfWidth;
   }
 
   getCurrentEnvIndex() {
-    const HALF_WIDTH = 10 * 2.05 / 2; // 10.25, matches main.js
+    const HALF_WIDTH = this._envHalfWidth ?? 10.25;
     for (let i = 0; i < this._envGridConfigs.length; i++) {
       const cfg = this._envGridConfigs[i];
       const dx = Math.abs(this.mesh.position.x - cfg.center[0]);
@@ -253,6 +254,8 @@ export class Pet {
   }
 
   _getNeighborEnvIndices() {
+    // Single-environment mode: no neighbors to visit.
+    if (this._envGridConfigs.length <= 1) return [];
     const idx = this.getCurrentEnvIndex();
     const row = Math.floor(idx / 3);
     const col = idx % 3;
@@ -270,7 +273,8 @@ export class Pet {
       this._pickRandomTargetFallback();
       return;
     }
-    const range = 8; // slightly less than 9.225 half-width to stay inside grid
+    const halfWidth = this._envHalfWidth ?? 10.25;
+    const range = Math.max(8, halfWidth - 1); // use most of the enlarged grid
     this._target.set(
       cfg.center[0] + (Math.random() - 0.5) * 2 * range,
       0,

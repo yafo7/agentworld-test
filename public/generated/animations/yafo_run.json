@@ -1,0 +1,68 @@
+{
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    },
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.6
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.6,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "leftLeg_knee": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 1.6,
+      "phase": 0.25
+    }
+  },
+  "rightLeg_knee": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 1.6,
+      "phase": 0.75
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "leftWing": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.18,
+      "frequency": 1.6,
+      "phase": 0.25
+    }
+  },
+  "rightWing": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.18,
+      "frequency": 1.6,
+      "phase": 0.75
+    }
+  }
+}

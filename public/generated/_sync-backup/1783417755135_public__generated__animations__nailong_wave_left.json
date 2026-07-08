@@ -1,0 +1,33 @@
+{
+  "id": "mp_1782898050139_arkh",
+  "name": "挥舞左手",
+  "description": "挥舞左手",
+  "motionPlan": {
+    "leftArm": {
+      "pointTo": {
+        "axis": "z",
+        "angle": -130
+      },
+      "sway": {
+        "axis": "z",
+        "amplitude": 0.4,
+        "frequency": 2
+      }
+    },
+    "head": {
+      "swing": {
+        "axis": "y",
+        "amplitude": 0.1,
+        "frequency": 2
+      }
+    },
+    "body": {
+      "bounce": {
+        "amplitude": 0.05,
+        "frequency": 2
+      }
+    }
+  },
+  "duration": 2,
+  "timestamp": 1782898050139
+}

@@ -1,0 +1,170 @@
+{
+  "body": {
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.6
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 1.6,
+      "phase": 0.25
+    }
+  },
+  "frontLeftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.95,
+      "frequency": 1.6,
+      "phase": 0
+    }
+  },
+  "hindRightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.6,
+      "phase": 0
+    }
+  },
+  "frontRightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.95,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "hindLeftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "neck": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.6,
+      "phase": 0.35
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 1.6,
+      "phase": 0.65
+    }
+  },
+  "tail_root": {
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.15,
+        "frequency": 1.6,
+        "phase": 0.2
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.12,
+        "frequency": 1.6,
+        "phase": 0.45
+      }
+    ]
+  },
+  "hindLeftLeg_paw": {
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.45,
+      "rate": 28,
+      "lifetime": [
+        0.35,
+        0.7
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          0.5,
+          -1
+        ],
+        "speed": [
+          1.2,
+          2.4
+        ],
+        "spread": 0.65
+      },
+      "acceleration": [
+        0,
+        -3,
+        0
+      ],
+      "offset": [
+        0,
+        -0.15,
+        0
+      ],
+      "colorStart": [
+        0.55,
+        0.42,
+        0.25
+      ],
+      "colorEnd": [
+        0.25,
+        0.18,
+        0.12
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  },
+  "hindRightLeg_paw": {
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.45,
+      "rate": 28,
+      "lifetime": [
+        0.35,
+        0.7
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          0.5,
+          -1
+        ],
+        "speed": [
+          1.2,
+          2.4
+        ],
+        "spread": 0.65
+      },
+      "acceleration": [
+        0,
+        -3,
+        0
+      ],
+      "offset": [
+        0,
+        -0.15,
+        0
+      ],
+      "colorStart": [
+        0.55,
+        0.42,
+        0.25
+      ],
+      "colorEnd": [
+        0.25,
+        0.18,
+        0.12
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  }
+}

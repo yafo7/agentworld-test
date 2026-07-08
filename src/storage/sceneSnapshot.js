@@ -126,15 +126,11 @@ export function saveScene({
   environments = [],
   pets = [],
   items = [],
-  outerEnvGlobalVisible = false,
-  envVisibleState = [],
 } = {}) {
   try {
     const snapshot = {
       version: SNAPSHOT_VERSION,
       timestamp: Date.now(),
-      outerEnvGlobalVisible,
-      envVisibleState: [...envVisibleState],
       staticEntities: staticEntities.map(serializeStaticEntity),
       environments: environments.filter(Boolean).map(serializeEnvironment),
       pets: pets.map((entry) => {

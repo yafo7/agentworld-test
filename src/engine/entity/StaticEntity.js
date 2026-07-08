@@ -1,8 +1,7 @@
 import * as THREE from 'three';
-import { createTagLabel } from '../ui/TagLabel.js';
 import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { loadModel } from '../model/loader.js';
-import { buildModelFromJson } from '../model/builder.js';
+import { buildModelFromJson, mergeMeshGroup } from '../model/builder.js';
 import { applyAnimation } from '../animation/player.js';
 import { generateAnimation } from '../../backend/voxelApi.js';
 import { generateInstanceId } from '../../storage/sceneSnapshot.js';
@@ -35,11 +34,11 @@ export class StaticEntity {
     let fallbackGeo, fallbackMat, fallbackY;
     if (this.category === 'tree') {
       fallbackGeo = new THREE.CylinderGeometry(0.3, 0.3, 2, 8);
-      fallbackMat = new THREE.MeshStandardMaterial({ color: 0x44aa44, flatShading: true });
+      fallbackMat = new THREE.MeshLambertMaterial({ color: 0x44aa44, flatShading: true });
       fallbackY = 1.0;
     } else {
       fallbackGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
-      fallbackMat = new THREE.MeshStandardMaterial({ color: 0xffcc00, flatShading: true });
+      fallbackMat = new THREE.MeshLambertMaterial({ color: 0xffcc00, flatShading: true });
       fallbackY = 0.4;
     }
     this._fallback = new THREE.Mesh(fallbackGeo, fallbackMat);
@@ -50,11 +49,8 @@ export class StaticEntity {
     this._modelGroup = null;
     this._originalModelJson = config.modelJson || null;
     this._hasCustomModel = !!config.modelJson;
+    this._mergeGeometry = config.mergeGeometry !== false; // merge sub-meshes into 1 draw call
     this._loadModel(config.modelName || config.id, config.modelJson);
-
-    // Tag label
-    this._label = createTagLabel(this.mesh, []);
-    this._syncLabel();
 
     // Construction label (for refine)
     this._constructionBubble = createSpeechBubble(this.mesh);
@@ -83,8 +79,16 @@ export class StaticEntity {
         // Guard against race: if already replaced while async load was in flight, skip.
         if (this._modelGroup) return;
 
+        // Merge sub-meshes into single geometry (N draw calls → 1)
+        // Must run BEFORE bounding-box / positioning, so all vertices are
+        // baked into group-local space while the group is still at origin.
+        if (this._mergeGeometry) {
+          mergeMeshGroup(model);
+        }
+
         const box = new THREE.Box3().setFromObject(model);
         model.position.y = -box.min.y;
+
         this._content.remove(this._fallback);
         this._content.add(model);
         this._modelGroup = model;
@@ -97,6 +101,17 @@ export class StaticEntity {
   }
 
   get position() { return this.mesh.position; }
+
+  /**
+   * World-space axis-aligned bounding box for collision.
+   * Returns null if model hasn't loaded yet.
+   */
+  getWorldBBox() {
+    if (!this._modelGroup) return null;
+    // Ensure all world matrices are fresh so setFromObject gives world-space bounds
+    this.mesh.updateWorldMatrix(false, true);
+    return new THREE.Box3().setFromObject(this._modelGroup);
+  }
 
   getInfo() {
     return { name: this.name, tags: this.tags, category: this.category };
@@ -134,11 +149,8 @@ export class StaticEntity {
     return { type: 'path', path: `generated/models/${this._modelName}.json` };
   }
 
-  _syncLabel() { this._label.update(this.name, this.tags); }
-
   setTags(newTags) {
     this.tags = [...newTags];
-    this._syncLabel();
   }
 
   // ---- construction label ----
@@ -186,7 +198,6 @@ export class StaticEntity {
         if (tag && !this.tags.includes(tag)) this.tags.push(tag);
       }
       this._hasCustomModel = true;
-      this._syncLabel();
 
       console.log(`[StaticEntity] ${this.name} refined with tags [${newTags.join(', ')}]`);
     } catch (err) {

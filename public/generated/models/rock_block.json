@@ -1,0 +1,682 @@
+{
+  "name": "岩石方块",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "rock",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 2.8,
+          "depth": 3
+        },
+        "color": 8421504
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -0.72,
+          1.48,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.35,
+          "height": 0.42,
+          "depth": 1.1
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.82,
+          1.43,
+          -0.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.36,
+          "depth": 1.25
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.15,
+          1.55,
+          0.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.22,
+          "depth": 0.9
+        },
+        "color": 8421504
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.58,
+          -0.05,
+          -0.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 1.8,
+          "depth": 0.7
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.58,
+          -0.45,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 1.25,
+          "depth": 0.85
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -0.55,
+          -0.35,
+          1.58
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 1.1,
+          "depth": 0.18
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.62,
+          0.15,
+          -1.58
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1,
+          "height": 1.45,
+          "depth": 0.16
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.43,
+          1.12,
+          1.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.508197287557559,
+          "height": 0.41864796566816925,
+          "depth": 0.508197287557559
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.43,
+          1.05,
+          1.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5403696500942068,
+          "height": 0.442777237570655,
+          "depth": 0.5403696500942068
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.43,
+          0.95,
+          -1.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5342643729976744,
+          "height": 0.4381982797482557,
+          "depth": 0.5342643729976744
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.43,
+          1.18,
+          -1.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5492347250924624,
+          "height": 0.4494260438193468,
+          "depth": 0.5492347250924624
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.45,
+          -1.15,
+          1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5564863874210144,
+          "height": 0.45486479056576085,
+          "depth": 0.5564863874210144
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.45,
+          -1.08,
+          1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.517158418721065,
+          "height": 0.42536881404079874,
+          "depth": 0.517158418721065
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.45,
+          -1.12,
+          -1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5384573107988462,
+          "height": 0.4413429830991346,
+          "depth": 0.5384573107988462
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.45,
+          -1.05,
+          -1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5681610887497583,
+          "height": 0.4636208165623187,
+          "depth": 0.5681610887497583
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.32,
+          1.0067,
+          1.3833
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.19999999999999996,
+            0.21333333333333382,
+            -0.3333333333333335
+          ],
+          "b": [
+            -0.19999999999999996,
+            -0.35666666666666647,
+            0.16666666666666652
+          ],
+          "c": [
+            0.4,
+            0.14333333333333353,
+            0.16666666666666652
+          ],
+          "d": 0.08
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          1.3133,
+          -0.5,
+          -1.35
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.20666666666666678,
+            -0.25,
+            0.3999999999999999
+          ],
+          "b": [
+            0.20666666666666678,
+            0.3500000000000001,
+            -0.20000000000000018
+          ],
+          "c": [
+            -0.4133333333333332,
+            -0.09999999999999998,
+            -0.20000000000000018
+          ],
+          "d": 0.08
+        },
+        "color": 6908265
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.05,
+          1.3167,
+          -1.55
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.39999999999999997,
+            0.13333333333333375,
+            0
+          ],
+          "b": [
+            0.4,
+            0.13333333333333375,
+            0
+          ],
+          "c": [
+            -6.938893903907228e-18,
+            -0.2666666666666666,
+            0
+          ],
+          "d": 0.08
+        },
+        "color": 10132122
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -0.85,
+          1.72,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.25,
+          "height": 0.07,
+          "depth": 0.85
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.72,
+          1.68,
+          -0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.07,
+          "depth": 0.55
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.05,
+          1.75,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.07,
+          "depth": 0.42
+        },
+        "color": 3497022
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.64,
+          0.55,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.62,
+          "depth": 0.95
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.65,
+          -0.08,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.38,
+          "depth": 0.52
+        },
+        "color": 3497022
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -0.55,
+          1.05,
+          1.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.75,
+          0.42,
+          1.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.08,
+          "depth": 0.08
+        },
+        "color": 3497022
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0,
+          1.74,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 3497022
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -0.5609,
+          1.74,
+          0.5138
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.0871,
+          1.74,
+          -0.9921
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 4881497
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          0.6775,
+          1.74,
+          0.8837
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 3497022
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "rock",
+      "transform": {
+        "pos": [
+          -1.1324,
+          1.74,
+          -0.2003
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 4881497
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782900503160,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1782900502374_fn9y0o"
+}
