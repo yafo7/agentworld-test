@@ -1,0 +1,1240 @@
+{
+  "name": "原木篝火",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "log1",
+      "transform": {
+        "pos": [
+          0,
+          0.28,
+          0
+        ]
+      }
+    },
+    {
+      "id": "log2",
+      "transform": {
+        "pos": [
+          0,
+          0.32,
+          0
+        ]
+      }
+    },
+    {
+      "id": "log3",
+      "transform": {
+        "pos": [
+          -0.65,
+          1.08,
+          -0.28
+        ]
+      }
+    },
+    {
+      "id": "log4",
+      "transform": {
+        "pos": [
+          0.62,
+          1.08,
+          0.26
+        ]
+      }
+    },
+    {
+      "id": "log5",
+      "transform": {
+        "pos": [
+          0,
+          1.12,
+          0.05
+        ]
+      }
+    },
+    {
+      "id": "flame",
+      "transform": {
+        "pos": [
+          0,
+          1.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "quat": [
+          0.16,
+          0,
+          -0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.28,
+          "radiusBottom": 0.28,
+          "height": 4.73,
+          "radialSegments": 10
+        },
+        "color": 6111287
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          -1.55,
+          0,
+          -0.37
+        ],
+        "quat": [
+          -0.17,
+          0,
+          0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.29,
+          "tube": 0.10307764064044149,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          1.55,
+          0,
+          0.38
+        ],
+        "quat": [
+          -0.17,
+          0,
+          0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.29,
+          "tube": 0.10307764064044149,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          -0.55,
+          0.22,
+          -0.05
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.13,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          0.85,
+          0.24,
+          0.22
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.1,
+          "detail": 0
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          -2.27,
+          0,
+          -0.54
+        ],
+        "quat": [
+          0.15,
+          0,
+          -0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.18,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "log1",
+      "transform": {
+        "pos": [
+          2.27,
+          0,
+          0.54
+        ],
+        "quat": [
+          0.15,
+          0,
+          -0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.18,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "quat": [
+          -0.2,
+          0,
+          -0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.3,
+          "radiusBottom": 0.3,
+          "height": 4.49,
+          "radialSegments": 10
+        },
+        "color": 6111287
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          -1.4,
+          0,
+          0.43
+        ],
+        "quat": [
+          0.18,
+          0,
+          0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.31,
+          "tube": 0.09823441352194248,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          1.41,
+          0,
+          -0.43
+        ],
+        "quat": [
+          0.18,
+          0,
+          0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.31,
+          "tube": 0.09823441352194248,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          0.35,
+          0.25,
+          -0.16
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          -0.95,
+          0.26,
+          0.34
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.1,
+          "detail": 0
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          -2.13,
+          0,
+          0.65
+        ],
+        "quat": [
+          -0.19,
+          0,
+          -0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.22,
+          "radiusBottom": 0.22,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "log2",
+      "transform": {
+        "pos": [
+          2.13,
+          0,
+          -0.64
+        ],
+        "quat": [
+          -0.19,
+          0,
+          -0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.22,
+          "radiusBottom": 0.22,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.17,
+          -0.15
+        ],
+        "quat": [
+          0.24,
+          0,
+          -0.46,
+          0.85
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.19,
+          "radiusBottom": 0.19,
+          "height": 3.07,
+          "radialSegments": 10
+        },
+        "color": 10586239
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          -0.76,
+          -0.22,
+          -0.49
+        ],
+        "quat": [
+          -0.38,
+          0,
+          0.76,
+          0.52
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.2,
+          "tube": 0.08789197915623471,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          0.62,
+          0.57,
+          0.22
+        ],
+        "quat": [
+          -0.38,
+          0,
+          0.76,
+          0.52
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.2,
+          "tube": 0.0878919791562347,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          -0.13,
+          0.2,
+          -0.13
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.09,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          -1.29,
+          -0.53,
+          -0.77
+        ],
+        "quat": [
+          0.24,
+          0,
+          -0.46,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.15,
+          "radiusBottom": 0.15,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "log3",
+      "transform": {
+        "pos": [
+          1.13,
+          0.86,
+          0.48
+        ],
+        "quat": [
+          0.24,
+          0,
+          -0.46,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.15,
+          "radiusBottom": 0.15,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          0.13,
+          0.15,
+          0.13
+        ],
+        "quat": [
+          -0.24,
+          0,
+          0.47,
+          0.85
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.19,
+          "radiusBottom": 0.19,
+          "height": 3.01,
+          "radialSegments": 10
+        },
+        "color": 10586239
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          0.76,
+          -0.21,
+          0.46
+        ],
+        "quat": [
+          0.38,
+          0,
+          -0.76,
+          0.52
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.2,
+          "tube": 0.0878919791562347,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          -0.61,
+          0.56,
+          -0.24
+        ],
+        "quat": [
+          0.38,
+          0,
+          -0.76,
+          0.52
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.2,
+          "tube": 0.0878919791562347,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          0.08,
+          0.2,
+          0.12
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.09,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          1.33,
+          -0.54,
+          0.74
+        ],
+        "quat": [
+          0.4,
+          0,
+          -0.76,
+          0.52
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.15,
+          "radiusBottom": 0.15,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "log4",
+      "transform": {
+        "pos": [
+          -1.07,
+          0.82,
+          -0.48
+        ],
+        "quat": [
+          -0.26,
+          0,
+          0.46,
+          0.85
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.15,
+          "radiusBottom": 0.15,
+          "height": 0.18,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "quat": [
+          -0.18,
+          0,
+          -0.68,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.59,
+          "radialSegments": 10
+        },
+        "color": 6111287
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          -0.7,
+          0,
+          0.19
+        ],
+        "quat": [
+          0.17,
+          0,
+          0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.19,
+          "tube": 0.08246211251235323,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          0.7,
+          0,
+          -0.19
+        ],
+        "quat": [
+          0.17,
+          0,
+          0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.19,
+          "tube": 0.08246211251235323,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 4861736
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          0.1,
+          0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.08,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 9268835
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          -1.23,
+          0,
+          0.33
+        ],
+        "quat": [
+          -0.17,
+          0,
+          -0.69,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.14,
+          "radiusBottom": 0.14,
+          "height": 0.16,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "log5",
+      "transform": {
+        "pos": [
+          1.23,
+          0,
+          -0.33
+        ],
+        "quat": [
+          -0.21,
+          0,
+          -0.67,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.14,
+          "radiusBottom": 0.14,
+          "height": 0.17,
+          "radialSegments": 10
+        },
+        "color": 13148794
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0,
+          -1.08,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 0.12,
+          "depth": 1.35
+        },
+        "color": 4073251
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.45,
+          -0.97,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.23,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12000284
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.38,
+          -0.95,
+          -0.18
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.18,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 12000284
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.05,
+          -0.89,
+          0.35
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.16,
+          "detail": 0
+        },
+        "color": 16740096
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.12,
+          -0.85,
+          -0.32
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.13,
+          "detail": 0
+        },
+        "color": 12000284
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0,
+          0.19,
+          0.03
+        ],
+        "quat": [
+          0.01,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.78,
+          "height": 2.22,
+          "radialSegments": 10
+        },
+        "color": 16740096
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.46,
+          -0.11,
+          0.12
+        ],
+        "quat": [
+          0.02,
+          0,
+          0.16,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.38,
+          "height": 1.56,
+          "radialSegments": 10
+        },
+        "color": 16740096
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.53,
+          -0.17,
+          -0.13
+        ],
+        "quat": [
+          -0.04,
+          0,
+          -0.18,
+          0.98
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.34,
+          "height": 1.42,
+          "radialSegments": 10
+        },
+        "color": 16740096
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.05,
+          0.07,
+          0.02
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.42,
+          "height": 1.67,
+          "radialSegments": 10
+        },
+        "color": 16766720
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.22,
+          -0.21,
+          0.15
+        ],
+        "quat": [
+          0.03,
+          0,
+          0.1,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.22,
+          "height": 1.05,
+          "radialSegments": 10
+        },
+        "color": 16766720
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.25,
+          -0.26,
+          -0.14
+        ],
+        "quat": [
+          -0.04,
+          0,
+          -0.07,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.2,
+          "height": 0.94,
+          "radialSegments": 10
+        },
+        "color": 16766720
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.85,
+          0.75,
+          0.15
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.75,
+          0.9,
+          -0.25
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.06,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          0.25,
+          1.4,
+          0.35
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.07,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          -0.3,
+          1.6,
+          -0.22
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.05,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "flame",
+      "transform": {
+        "pos": [
+          1.05,
+          0.4,
+          0.28
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.06,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1783573173417,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1783573173496_88n5kf"
+}

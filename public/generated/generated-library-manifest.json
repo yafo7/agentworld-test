@@ -1,5 +1,41 @@
 [
   {
+    "assetId": "gen_mrd4tqv6_zwc8",
+    "name": "蓝白条纹10号球衣方块宠物",
+    "description": "蓝白条纹10号球衣的方块人形宠物，短方腿配足球鞋，头顶亮片发带",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": true,
+    "animations": [
+      {
+        "animId": "anim_mrd4tqys_94ta",
+        "name": "special",
+        "type": "special",
+        "path": "generated/animations/anim_mrd4tqys_94ta.json"
+      },
+      {
+        "animId": "anim_mrd4tqyf_mrwb",
+        "name": "jump",
+        "type": "jump",
+        "path": "generated/animations/anim_mrd4tqyf_mrwb.json"
+      },
+      {
+        "animId": "anim_mrd4tqy0_89en",
+        "name": "run",
+        "type": "run",
+        "path": "generated/animations/anim_mrd4tqy0_89en.json"
+      },
+      {
+        "animId": "anim_mrd4tqxn_3fz7",
+        "name": "idle",
+        "type": "idle",
+        "path": "generated/animations/anim_mrd4tqxn_3fz7.json"
+      }
+    ],
+    "path": "generated/models/gen_mrd4tqv6_zwc8.json",
+    "createdAt": 1783578899789
+  },
+  {
     "assetId": "gen_mqyxkcar_d0sa",
     "name": "Ornamental Fish Topiary",
     "description": "金鱼",

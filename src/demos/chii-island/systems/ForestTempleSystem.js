@@ -1,0 +1,477 @@
+import * as THREE from 'three';
+import { ArchitectNPC } from '../entities/ArchitectNPC.js';
+import { ParticleSystem } from '../../../engine/animation/particles.js';
+import { applyAnimation } from '../../../engine/animation/player.js';
+import { generateAnimation, generateModel } from '../../../backend/voxelApi.js';
+import { callBackendChat } from '../../../backend/chatApi.js';
+import { saveAnimationForModel, saveGeneratedModel } from '../data/generatedLibrary.js';
+
+const INTERACT_RANGE = 6;
+
+function horizontalDistance(a, b) {
+  const dx = a.x - b.x;
+  const dz = a.z - b.z;
+  return Math.sqrt(dx * dx + dz * dz);
+}
+
+function cleanLine(text, maxLength = 38) {
+  return String(text || '')
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/^["'“”]+|["'“”]+$/g, '')
+    .replace(/^(答案|描述|名称|动作)[:：]\s*/i, '')
+    .replace(/\s+/g, '')
+    .split(/[。！？\n]/)[0]
+    .slice(0, maxLength);
+}
+
+function normalizePlan(raw) {
+  if (!raw) return null;
+  if (raw.motionPlan) {
+    return { ...raw.motionPlan, _duration: raw.duration || 2, _loop: true };
+  }
+  return raw;
+}
+
+function waitForPet(pet, timeoutMs = 9000) {
+  return new Promise((resolve) => {
+    const start = performance.now();
+    const timer = setInterval(() => {
+      if (!pet._targetPosition || performance.now() - start >= timeoutMs) {
+        clearInterval(timer);
+        resolve();
+      }
+    }, 80);
+  });
+}
+
+export class ForestTempleSystem {
+  constructor({
+    scene,
+    physics,
+    player,
+    petManager,
+    dialogueSystem,
+    trophyEntity,
+    tentEntity,
+    trophyWaitPlan,
+    getPets,
+  }) {
+    this.scene = scene;
+    this.physics = physics;
+    this.player = player;
+    this.petManager = petManager;
+    this.dialogueSystem = dialogueSystem;
+    this.trophy = trophyEntity;
+    this.tent = tentEntity;
+    this.trophyWaitPlan = normalizePlan(trophyWaitPlan);
+    this.getPets = getPets;
+
+    this.trophyState = 'idle';
+    this.tentState = 'idle';
+    this.campingPet = null;
+    this.campingParticles = null;
+    this.campingToken = 0;
+    this.trophyAnimTime = 0;
+    this.trophyPoseMap = null;
+    this.generatedPets = [];
+  }
+
+  getFollowingPet() {
+    return this.getPets().find(pet => pet._petState === 'following' || pet._followEnabled) || null;
+  }
+
+  findInteraction(playerPosition, range = INTERACT_RANGE) {
+    const hits = [];
+    const followingPet = this.getFollowingPet();
+
+    if (this.trophy && this.trophyState === 'idle' && followingPet) {
+      const distance = horizontalDistance(playerPosition, this.trophy.mesh.position);
+      if (distance <= range) {
+        hits.push({ type: 'trophy', distance, label: '向奖杯许愿', pet: followingPet });
+      }
+    }
+
+    const tentPet = this.tentState === 'camping' ? this.campingPet : followingPet;
+    if (this.tent && tentPet) {
+      const distance = horizontalDistance(playerPosition, this.tent.mesh.position);
+      if (distance <= range) {
+        hits.push({
+          type: 'tent',
+          distance,
+          label: this.tentState === 'camping' ? '结束露营' : '和宠物一起露营',
+          pet: tentPet,
+        });
+      }
+    }
+
+    hits.sort((a, b) => a.distance - b.distance);
+    return hits[0] || null;
+  }
+
+  async interact(hit) {
+    if (hit?.type === 'trophy') return this._interactTrophy(hit.pet);
+    if (hit?.type === 'tent') return this._interactTent(hit.pet);
+    return false;
+  }
+
+  async introducePet(pet) {
+    if (!pet || pet._hasIntroduced !== false) return false;
+    const confirmed = await this.dialogueSystem.askChoice({
+      speakerName: pet._petName,
+      text: `你好呀，我是${pet._petName}！一直听说奇异岛，这次终于可以来玩了！`,
+      options: [{ key: 'hello', label: '你好你好！' }],
+    });
+    if (!confirmed) return true;
+    pet._hasIntroduced = true;
+    pet.hasIntroduced = true;
+    pet._initialInteractionDone = true;
+    return true;
+  }
+
+  async _interactTrophy(companion) {
+    if (!companion || this.trophyState !== 'idle') return false;
+    this.trophyState = 'dialogue';
+    companion.stopFollow?.();
+    companion._petState = 'summoning_participant';
+
+    try {
+      const playerPetWish = await this.dialogueSystem.askInput({
+        speakerName: '奖杯',
+        text: '你期待邂逅什么样的生命？',
+        placeholder: '例如：喜欢水的小动物',
+      });
+      if (!playerPetWish) return this._cancelSummon(companion);
+
+      const playerMoodWish = await this.dialogueSystem.askInput({
+        speakerName: '奖杯',
+        text: '你这次来的心情如何呢？',
+        placeholder: '输入期待的性格和特征',
+      });
+      if (!playerMoodWish) return this._cancelSummon(companion);
+
+      const continued = await this.dialogueSystem.say({
+        speakerName: '奖杯',
+        text: '似乎你的伙伴也有些想要说的呢。',
+      });
+      if (!continued) return this._cancelSummon(companion);
+
+      const companionPoint = this.trophy.mesh.position.clone().add(new THREE.Vector3(4.8, 0, 2.8));
+      companion.walkTo?.(companionPoint.x, companionPoint.z, 4);
+      await waitForPet(companion);
+      companion.lockFacing?.(this.trophy.mesh.position.x, this.trophy.mesh.position.z);
+
+      const companionWish = await this._makeCompanionWish(companion);
+      const heard = await this.dialogueSystem.say({
+        speakerName: companion._petName,
+        text: companionWish,
+      });
+      if (!heard) return this._cancelSummon(companion);
+
+      const accepted = await this.dialogueSystem.say({
+        speakerName: '奖杯',
+        text: '明白了，你想要的邂逅正在发生，去做些自己的事情吧。',
+      });
+      if (!accepted) return this._cancelSummon(companion);
+
+      companion.unlockFacing?.();
+      companion._petState = 'following';
+      companion.followTarget?.(this.player.mesh, 3.2, 6);
+      this.trophyState = 'summoning';
+      this.trophyAnimTime = 0;
+      this._runSummon({
+        playerPetWish,
+        playerMoodWish,
+        companionWish,
+        companionProfile: companion._profile || {},
+      }).catch(error => {
+        console.warn('[ForestTemple] summon failed:', error.message);
+        this._stopTrophyAnimation();
+        this.trophyState = 'idle';
+      });
+      return true;
+    } catch (error) {
+      this._cancelSummon(companion);
+      throw error;
+    }
+  }
+
+  _cancelSummon(companion) {
+    companion.unlockFacing?.();
+    companion._petState = 'following';
+    companion.followTarget?.(this.player.mesh, 3.2, 6);
+    this.trophyState = 'idle';
+    return false;
+  }
+
+  async _makeCompanionWish(pet) {
+    const profile = pet._profile || {};
+    const fallback = `我希望新朋友能和我一样喜欢${profile.favoriteActions?.[0] || '一起玩'}！`;
+    try {
+      const content = await callBackendChat([
+        {
+          role: 'system',
+          content: '你是奇异岛宠物。根据资料只说一句简短中文愿望，使用第一人称，不解释。',
+        },
+        {
+          role: 'user',
+          content: [
+            `名字:${pet._petName}`,
+            `性格:${(profile.personalityTags || []).join('、')}`,
+            `特点:${(profile.featureTags || []).join('、')}`,
+            `能力:${(profile.abilityTags || []).join('、')}`,
+            `喜欢:${(profile.favoriteActions || []).join('、')}`,
+          ].join('\n'),
+        },
+      ], 'gpt', 0.6, 100);
+      return cleanLine(content, 34) || fallback;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  async _makeFinalPrompt(context) {
+    const profile = context.companionProfile || {};
+    const content = await callBackendChat([
+      {
+        role: 'system',
+        content: [
+          '你是体素宠物外形提炼器。',
+          '只输出一句简短、具体、可视化的中文宠物外形描述。',
+          '必须包含动物原型或身体形态，以及1到3个明显视觉特征。',
+          '不要解释、故事、分析、世界观或抽象氛围词。',
+        ].join(''),
+      },
+      {
+        role: 'user',
+        content: [
+          `玩家想邂逅:${context.playerPetWish}`,
+          `玩家心情与性格期待:${context.playerMoodWish}`,
+          `伙伴愿望:${context.companionWish}`,
+          `伙伴性格:${(profile.personalityTags || []).join('、')}`,
+          `伙伴特点:${(profile.featureTags || []).join('、')}`,
+          `伙伴能力:${(profile.abilityTags || []).join('、')}`,
+        ].join('\n'),
+      },
+    ], 'gpt', 0.3, 120);
+    return cleanLine(content, 32);
+  }
+
+  async _makePetName(finalModelPrompt) {
+    try {
+      const content = await callBackendChat([
+        { role: 'system', content: '只输出一个2到4个汉字的宠物名字，不解释。' },
+        { role: 'user', content: finalModelPrompt },
+      ], 'gpt', 0.7, 30);
+      return cleanLine(content, 4) || '新朋友';
+    } catch (_) {
+      return '新朋友';
+    }
+  }
+
+  async _makeSpecialPrompt(finalModelPrompt) {
+    try {
+      const content = await callBackendChat([
+        { role: 'system', content: '只输出一个5到10字的具体宠物动作，不解释，不写氛围。' },
+        { role: 'user', content: `宠物外形:${finalModelPrompt}\n动作要体现其可见特征。` },
+      ], 'gpt', 0.4, 40);
+      return cleanLine(content, 10) || '开心挥舞双手';
+    } catch (_) {
+      return '开心挥舞双手';
+    }
+  }
+
+  async _runSummon(context) {
+    const finalModelPrompt = await this._makeFinalPrompt(context);
+    if (!finalModelPrompt) throw new Error('GPT 未生成有效宠物外形描述');
+
+    const [{ modelJson }, petName, specialPrompt] = await Promise.all([
+      generateModel(finalModelPrompt, 'gpt', 'standard'),
+      this._makePetName(finalModelPrompt),
+      this._makeSpecialPrompt(finalModelPrompt),
+    ]);
+
+    const animationRequests = [
+      ['idle', '轻轻呼吸摇晃', 2.5, false],
+      ['run', '快速向前奔跑', 2.0, false],
+      ['jump', '开心向上跳跃', 1.8, false],
+      ['special', specialPrompt, 2.5, true],
+    ];
+    const animations = {};
+    for (const [name, prompt, duration, particles] of animationRequests) {
+      const result = await generateAnimation(modelJson, prompt, duration, 'gpt', particles);
+      animations[name] = result.plan;
+    }
+
+    const { assetId } = await saveGeneratedModel({
+      name: petName,
+      description: finalModelPrompt,
+      modelJson,
+      tags: ['pet', 'forest_summon'],
+    });
+    for (const [name, plan] of Object.entries(animations)) {
+      await saveAnimationForModel({
+        modelId: assetId,
+        name,
+        plan,
+        type: name === 'idle' ? 'idle' : name,
+      });
+    }
+
+    this._spawnGeneratedPet({
+      petName,
+      modelJson,
+      animations,
+      finalModelPrompt,
+      context,
+      specialPrompt,
+      assetId,
+    });
+    this._stopTrophyAnimation();
+    this.trophyState = 'complete';
+  }
+
+  _spawnGeneratedPet({ petName, modelJson, animations, finalModelPrompt, context, specialPrompt, assetId }) {
+    const pet = new ArchitectNPC();
+    const spawn = this.trophy.mesh.position.clone().add(new THREE.Vector3(-5.5, 0, 3.5));
+    pet.mesh.name = petName;
+    pet._petId = assetId;
+    pet._petName = petName;
+    pet._generatedAssetId = assetId;
+    pet._hasIntroduced = false;
+    pet.hasIntroduced = false;
+    pet._initialInteractionDone = true;
+    pet.loadModelFromJson(modelJson);
+    for (const [name, plan] of Object.entries(animations)) pet.loadAnimation(name, plan);
+    pet.setPosition(spawn.x, 0, spawn.z);
+    pet.setOrigin(spawn.x, 0, spawn.z);
+    pet.initPhysics(this.physics);
+    this.scene.add(pet.mesh);
+
+    const profile = {
+      id: assetId,
+      name: petName,
+      species: finalModelPrompt,
+      personalityTags: [cleanLine(context.playerMoodWish, 12)].filter(Boolean),
+      featureTags: [finalModelPrompt],
+      abilityTags: [specialPrompt],
+      favoriteActions: ['follow', 'play'],
+      preferredObjects: ['forest', 'temple'],
+      autonomousBehavior: ['idle', 'run'],
+    };
+    this.petManager.registerPet(pet, {
+      name: petName,
+      profile,
+      spawn: [spawn.x, 0, spawn.z],
+      initialState: 'idle',
+      region: 'forest_generated',
+      bounds: {
+        minX: spawn.x - 10,
+        maxX: spawn.x + 10,
+        minZ: spawn.z - 10,
+        maxZ: spawn.z + 10,
+      },
+    });
+    this.generatedPets.push(pet);
+  }
+
+  async _interactTent(pet) {
+    if (!pet) return false;
+    if (this.tentState === 'camping') {
+      const choice = await this.dialogueSystem.askChoice({
+        speakerName: this.campingPet?._petName || '宠物',
+        text: '还要继续露营吗？',
+        options: [{ key: 'leave', label: '我们回去吧！' }],
+      });
+      if (choice?.key === 'leave') this._endCamping();
+      return true;
+    }
+
+    if (this.tentState !== 'idle' || (pet._petState !== 'following' && !pet._followEnabled)) return false;
+    this.tentState = 'camping';
+    this.campingPet = pet;
+    const token = ++this.campingToken;
+    pet.stopFollow?.();
+    pet._petState = 'camping';
+    const campPoint = this.tent.mesh.position.clone().add(new THREE.Vector3(0, 0, 6));
+    pet.walkTo?.(campPoint.x, campPoint.z, 4);
+
+    if (!pet._animPlans?.camping) {
+      this._prepareCampingAnimation(pet, token).catch(error => {
+        console.warn('[ForestTemple] camping animation failed:', error.message);
+      });
+    }
+    return true;
+  }
+
+  async _prepareCampingAnimation(pet, token) {
+    const modelJson = pet._originalModelJson;
+    if (!modelJson) throw new Error('宠物缺少模型数据');
+    const result = await generateAnimation(modelJson, '宠物在帐篷旁开心跳舞', 3, 'gpt', true);
+    if (token !== this.campingToken) return;
+    pet.loadAnimation('camping', result.plan);
+  }
+
+  _startCampingDance() {
+    const pet = this.campingPet;
+    if (!pet || !pet._animPlans?.camping) return;
+    pet.playAnimation('camping');
+    if (!this.campingParticles && pet._modelGroup) {
+      this.campingParticles = new ParticleSystem(this.scene);
+      this.campingParticles.setup(pet._animPlans.camping, pet._modelGroup);
+    }
+  }
+
+  _endCamping() {
+    const pet = this.campingPet;
+    this.campingToken++;
+    if (this.campingParticles) {
+      this.campingParticles.dispose();
+      this.campingParticles = null;
+    }
+    if (pet) {
+      pet.stopWalking?.();
+      pet._petState = 'following';
+      pet.playAnimation?.('idle');
+      pet.followTarget?.(this.player.mesh, 3.2, 6);
+    }
+    this.campingPet = null;
+    this.tentState = 'idle';
+  }
+
+  _stopTrophyAnimation() {
+    if (this.trophyPoseMap && this.trophy?._modelGroup) {
+      for (const [partId, base] of this.trophyPoseMap) {
+        const object = this.trophy._modelGroup.getObjectByName(partId);
+        if (!object) continue;
+        object.position.copy(base.position);
+        object.rotation.copy(base.rotation);
+        object.scale.copy(base.scale);
+      }
+    }
+    this.trophyPoseMap = null;
+    this.trophyAnimTime = 0;
+  }
+
+  update(dt) {
+    if (this.trophyState === 'summoning' && this.trophyWaitPlan && this.trophy?._modelGroup) {
+      this.trophyAnimTime += dt;
+      const duration = this.trophyWaitPlan._duration || 2;
+      this.trophyPoseMap = applyAnimation(
+        this.trophyWaitPlan,
+        duration,
+        this.trophy._modelGroup,
+        this.trophyAnimTime % duration,
+        this.trophyPoseMap
+      );
+    }
+
+    if (this.tentState === 'camping' && this.campingPet) {
+      if (!this.campingPet._targetPosition && this.campingPet._animPlans?.camping) {
+        if (this.campingPet._animState !== 'camping') this._startCampingDance();
+      }
+      if (this.campingParticles) {
+        this.campingParticles.update(dt, this.campingPet._modelGroup);
+      }
+    }
+  }
+}

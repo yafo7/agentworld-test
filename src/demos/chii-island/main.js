@@ -18,6 +18,10 @@ import { ArchitectNPC } from './entities/ArchitectNPC.js';
 import { createDialogueSystem } from './systems/DialogueSystem.js';
 import { createConstructionEffect } from './systems/ConstructionEffect.js';
 import { PetManager } from './systems/PetManager.js';
+import { createPastoralSlice } from './systems/pastoralSlice.js';
+import { PetPartyEvent } from './systems/PetPartyEvent.js';
+import { ForestTempleSystem } from './systems/ForestTempleSystem.js';
+import { getPetProfile } from './data/petProfiles.js';
 
 // ---- bootstrap ----
 async function init() {
@@ -70,12 +74,34 @@ async function init() {
     { key: 'windmill', commit: '2026-07-01_18-58-41', folder: '一个巨大的风车，底部长宽比是2/2_2.4m' },
     { key: 'church',   commit: '2026-07-01_18-53-35', folder: '一个巨大的哥特教堂，底部长宽比是5/8_3.4m' },
     { key: 'temple',   commit: '2026-07-02_14-42-30', folder: '一座西方的古老神殿，占地的长宽比是8/5_1.3m' },
+    { key: 'pinkFlower',    path: 'generated/models/pink_flower.json' },
+    { key: 'grassClump',    path: 'generated/models/grass_clump.json' },
+    { key: 'trumpetFlower', path: 'generated/models/trumpet_flower.json' },
+    { key: 'blueTulips',    path: 'generated/models/blue_tulips.json' },
+    { key: 'wheatField',    path: 'generated/models/wheat_field.json' },
+    { key: 'flowerPot',     path: 'generated/models/flower_pot.json' },
+    { key: 'giantCarrot',   path: 'generated/models/giant_carrot.json' },
+    { key: 'campfire',      path: 'generated/models/campfire.json' },
+    { key: 'forestTrophy',  path: 'generated/models/forest_temple_trophy.json' },
+    { key: 'forestTent',    path: 'generated/models/forest_temple_tent.json' },
   ];
+
+  async function fetchLocalModel(path) {
+    try {
+      const resp = await fetch(`/${path}`);
+      if (!resp.ok) return null;
+      return await resp.json();
+    } catch (err) {
+      console.warn(`[Init] Failed to load local model: ${path}`, err.message);
+      return null;
+    }
+  }
 
   async function fetchAllStudioModels() {
     const entries = await Promise.all(
       STUDIO_MODELS.map(async (m) => {
-        const json = await loadStudioModel(m.commit, m.folder);
+        let json = m.path ? await fetchLocalModel(m.path) : null;
+        if (!json && m.commit && m.folder) json = await loadStudioModel(m.commit, m.folder);
         return { key: m.key, json };
       })
     );
@@ -98,6 +124,27 @@ async function init() {
   console.log('[Terrain] 50×50 terrain:', countBlockTypes(scenePlan.modifiedLayout));
   scene.add(unitEnv);
 
+  function gridSpawn(name, fallback) {
+    const spawn = scenePlan.pastoral?.petSpawns?.[name];
+    if (!spawn) return fallback;
+    const pos = getGridWorldPosition(spawn.gridX, spawn.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+    return [pos.x, 0, pos.z];
+  }
+
+  function townGridSpawn(name, fallback) {
+    const spawn = scenePlan.town?.petSpawns?.[name];
+    if (!spawn) return fallback;
+    const pos = getGridWorldPosition(spawn.gridX, spawn.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+    return [pos.x, 0, pos.z];
+  }
+
+  function gridBoundsToWorld(bounds) {
+    if (!bounds) return null;
+    const min = getGridWorldPosition(bounds.minX, bounds.minZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+    const max = getGridWorldPosition(bounds.maxX, bounds.maxZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+    return { minX: min.x, maxX: max.x, minZ: min.z, maxZ: max.z };
+  }
+
   // ---- place scene entities (buildings, trees, grass) ----
   const staticEntities = [];
 
@@ -111,17 +158,28 @@ async function init() {
   function placeEntity(gridX, gridZ, modelJson, name, tags, category, scale = 1, extra = {}) {
     const pos = getGridWorldPosition(gridX, gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
     const entity = new StaticEntity({
-      id: `${category}_${gridX}_${gridZ}`,
+      id: extra.id || `${category}_${gridX}_${gridZ}`,
       name,
       tags,
       category,
-      position: [pos.x + (extra.offsetX || 0), 0, pos.z + (extra.offsetZ || 0)],
+      position: [
+        pos.x + (extra.offsetX || 0),
+        extra.offsetY || 0,
+        pos.z + (extra.offsetZ || 0),
+      ],
       scale,
       modelJson,
+      mergeGeometry: extra.mergeGeometry !== false,
     });
     // Random Y rotation for natural variety
     if (extra.randomRotate && entity.mesh) {
       entity.mesh.rotation.y = _vegRand() * Math.PI * 2;
+    }
+    if (extra.rotation !== undefined && entity.mesh) {
+      entity.mesh.rotation.y = extra.rotation;
+    }
+    if (extra.noCollider && entity.mesh) {
+      entity.mesh.userData.noCollider = true;
     }
     staticEntities.push(entity);
     scene.add(entity.mesh);
@@ -165,11 +223,103 @@ async function init() {
   // Glowing grass (random scale 0.5–1.0, random Y rotation, no shadows)
   for (const g of scenePlan.grasses) {
     if (_bldClear.has(`${g.gridX},${g.gridZ}`)) continue;
-    const modelJson = modelJsons.glowgrass;
+    const roll = _vegRand();
+    const modelKey = roll < 0.58 ? 'glowgrass' : roll < 0.82 ? 'grassClump' : 'pinkFlower';
+    const modelJson = modelJsons[modelKey] || modelJsons.glowgrass;
     if (!modelJson) continue;
-    const s = 0.5 + _vegRand() * 0.5;
+    const s = (modelKey === 'glowgrass' ? 0.5 : 0.35) + _vegRand() * 0.35;
     const entity = placeEntity(g.gridX, g.gridZ, modelJson, '荧光草', ['植物', '发光'], 'decor', s, { randomRotate: true });
+    entity.mesh.userData.noCollider = true;
     entity.mesh.traverse((c) => { if (c.isMesh) { c.castShadow = false; c.receiveShadow = false; } });
+  }
+
+  const decorMeta = {
+    pinkFlower:    { name: 'pink flower',    scale: 0.58, tags: ['plant', 'flower', 'garden'] },
+    grassClump:    { name: 'grass clump',    scale: 0.42, tags: ['plant', 'grass'] },
+    trumpetFlower: { name: 'trumpet flower', scale: 0.48, tags: ['plant', 'flower', 'garden'] },
+    blueTulips:    { name: 'blue tulips',    scale: 0.55, tags: ['plant', 'flower', 'garden'] },
+    wheatField:    { name: 'wheat field',    scale: 0.38, tags: ['plant', 'wheat', 'farm'] },
+    flowerPot:     { name: 'flower pot',     scale: 0.52, tags: ['decor', 'garden'] },
+    giantCarrot:   { name: 'giant carrot',   scale: 0.34, tags: ['crop', 'farm'] },
+  };
+
+  for (const d of scenePlan.decorations || []) {
+    if (_bldClear.has(`${d.gridX},${d.gridZ}`)) continue;
+    const meta = decorMeta[d.type];
+    const modelJson = modelJsons[d.type];
+    if (!meta || !modelJson) continue;
+    const entity = placeEntity(d.gridX, d.gridZ, modelJson, meta.name, meta.tags, 'decor', meta.scale * (d.scale || 1), {
+      offsetX: d.offsetX || 0,
+      offsetY: d.offsetY || 0,
+      offsetZ: d.offsetZ || 0,
+      rotation: d.rotation,
+      noCollider: true,
+    });
+    entity.mesh.traverse((c) => { if (c.isMesh) { c.castShadow = false; c.receiveShadow = false; } });
+  }
+
+  let campfireParticles = null;
+  const campfireCell = scenePlan.town?.campfire;
+  if (campfireCell && modelJsons.campfire) {
+    const campfire = placeEntity(
+      campfireCell.gridX,
+      campfireCell.gridZ,
+      modelJsons.campfire,
+      '篝火',
+      ['城镇', '篝火', '聚会'],
+      'decor',
+      1.6,
+      { mergeGeometry: false }
+    );
+    const rawBurnPlan = await fetchLocalModel('generated/animations/campfire_burn.json');
+    if (rawBurnPlan) {
+      const burnPlan = rawBurnPlan.motionPlan
+        ? { ...rawBurnPlan.motionPlan, _duration: rawBurnPlan.duration || 2.5, _loop: true }
+        : rawBurnPlan;
+      campfire.playIdleAnimation(burnPlan, burnPlan._duration || 2.5);
+      if (campfire._modelGroup) {
+        campfireParticles = new ParticleSystem(scene);
+        campfireParticles.setup(burnPlan, campfire._modelGroup);
+      }
+    }
+  }
+
+  let forestTrophy = null;
+  let forestTent = null;
+  let forestTrophyWaitPlan = null;
+  const forestPlan = scenePlan.forestTemple;
+  if (forestPlan?.trophy && modelJsons.forestTrophy) {
+    forestTrophy = placeEntity(
+      forestPlan.trophy.gridX,
+      forestPlan.trophy.gridZ,
+      modelJsons.forestTrophy,
+      '森林神殿奖杯',
+      ['森林神殿', '召唤装置'],
+      'decor',
+      0.4,
+      {
+        id: 'forest_temple_trophy',
+        mergeGeometry: false,
+      }
+    );
+    forestTrophy.mesh.userData.interactionType = 'summon_pet_device';
+    forestTrophyWaitPlan = await fetchLocalModel('generated/animations/forest_trophy_wait.json');
+  }
+  if (forestPlan?.tent && modelJsons.forestTent) {
+    forestTent = placeEntity(
+      forestPlan.tent.gridX,
+      forestPlan.tent.gridZ,
+      modelJsons.forestTent,
+      '森林神殿帐篷',
+      ['森林神殿', '露营'],
+      'decor',
+      0.9,
+      {
+        id: 'forest_temple_tent',
+        mergeGeometry: false,
+      }
+    );
+    forestTent.mesh.userData.interactionType = 'camping_tent';
   }
 
   console.log(`[Init] Created ${staticEntities.length} static entities`);
@@ -177,6 +327,7 @@ async function init() {
   // ---- create Rapier static colliders from entity world-space AABBs ----
   let colliderCount = 0;
   for (const e of staticEntities) {
+    if (e.mesh?.userData?.noCollider) continue;
     const box = e.getWorldBBox();
     if (!box) continue;
     const hx = (box.max.x - box.min.x) / 2;
@@ -198,7 +349,17 @@ async function init() {
   // ---- player (nailong model from voxel studio) ----
   const player = new Player();
   player.setTerrainLayout(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, layout);
-  player.initPhysics(physics, 0, 0, 0);
+  const townDemoEnabled = new URLSearchParams(window.location.search).has('church-town');
+  const forestDemoEnabled = new URLSearchParams(window.location.search).has('forest-temple');
+  const townDemoCell = scenePlan.town?.petSpawns?.fangk;
+  const forestDemoCell = scenePlan.forestTemple?.trophy;
+  let demoSpawn = { x: 0, z: 0 };
+  if (forestDemoEnabled && forestDemoCell) {
+    demoSpawn = getGridWorldPosition(forestDemoCell.gridX, forestDemoCell.gridZ - 1, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+  } else if (townDemoEnabled && townDemoCell) {
+    demoSpawn = getGridWorldPosition(townDemoCell.gridX - 1, townDemoCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
+  }
+  player.initPhysics(physics, demoSpawn.x, 0, demoSpawn.z);
   window.__player = player;
   player._scene = scene; // for particle emitters
   scene.add(player.mesh);
@@ -217,18 +378,16 @@ async function init() {
   // ---- architect NPC ----
   const architect = new ArchitectNPC();
   architect.mesh.name = 'fangk';
-  architect._petName = 'fangk';
-  architect.setPosition(0, 0, 30); // default spawn, overridden below
-  architect.setOrigin(0, 0, 30);
+  architect._petName = 'fangke';
+  architect._petId = 'fangk';
+  architect._profile = getPetProfile('fangke');
+  architect._petState = 'free_roam';
+  architect._petRegion = 'church_town';
+  const architectSpawn = townGridSpawn('fangk', [0, 0, 30]);
+  architect.setPosition(...architectSpawn);
+  architect.setOrigin(...architectSpawn);
+  architect.initPhysics(physics);
   scene.add(architect.mesh);
-
-  // Place architect near the temple
-  const templeEntity = staticEntities.find(e => e.name === '古老神殿');
-  if (templeEntity) {
-    const tp = templeEntity.mesh.position;
-    architect.setPosition(tp.x - 14, 0, tp.z - 10);
-    architect.setOrigin(tp.x - 14, 0, tp.z - 10);
-  }
 
   // Load architect model + animations from voxel studio backend
   const ARCHITECT_COMMIT = '2026-07-02_16-32-30';
@@ -236,7 +395,8 @@ async function init() {
 
   (async () => {
     try {
-      const archModel = await loadStudioModel(ARCHITECT_COMMIT, ARCHITECT_FOLDER);
+      const archModel = await fetchLocalModel('generated/models/fangk.json')
+        || await loadStudioModel(ARCHITECT_COMMIT, ARCHITECT_FOLDER);
       if (archModel) {
         architect.loadModelFromJson(archModel);
         if (architect._modelGroup) {
@@ -245,15 +405,26 @@ async function init() {
         }
         console.log('[Init] Architect model loaded from studio');
       }
-      // Load animations from studio
+      const localAnimations = {
+        idle: 'generated/animations/fangk_idle.json',
+        run: 'generated/animations/fangk_run.json',
+        construct: 'generated/animations/fangk_construct.json',
+        dance: 'generated/animations/fangk_dance.json',
+      };
+      for (const [name, path] of Object.entries(localAnimations)) {
+        const plan = await fetchLocalModel(path);
+        if (plan) architect.loadAnimation(name, plan);
+      }
+
+      // Studio remains a compatibility fallback for missing local animations.
       const anims = await loadStudioAnimations(ARCHITECT_COMMIT, ARCHITECT_FOLDER);
       for (const anim of anims) {
         const name = anim.name || '';
-        if (/idle|待机/i.test(name)) architect.loadAnimation('idle', anim.plan || anim);
-        else if (/run|奔跑|走/i.test(name)) architect.loadAnimation('run', anim.plan || anim);
-        else if (/construct|建造|挥舞|施工/i.test(name)) architect.loadAnimation('construct', anim.plan || anim);
+        if (!architect._animPlans.idle && /idle|待机/i.test(name)) architect.loadAnimation('idle', anim.plan || anim);
+        else if (!architect._animPlans.run && /run|奔跑|走/i.test(name)) architect.loadAnimation('run', anim.plan || anim);
+        else if (!architect._animPlans.construct && /construct|建造|挥舞|施工/i.test(name)) architect.loadAnimation('construct', anim.plan || anim);
       }
-      console.log('[Init] Architect ready from studio');
+      console.log('[Init] Architect ready from runtime assets');
     } catch (e) {
       console.warn('[Init] Architect studio load failed, using placeholder:', e.message);
     }
@@ -264,9 +435,11 @@ async function init() {
   window.__bear = bear;
   bear.mesh.name = 'momo';
   bear._petName = 'momo';
+  bear._profile = getPetProfile('momo');
+  bear._petState = 'idle';
+  bear._initialInteractionDone = false;
   bear.initPhysics(physics);
-  const bearSpawnX = -60;
-  const bearSpawnZ = 15;
+  const [bearSpawnX, , bearSpawnZ] = gridSpawn('momo', [-60, 0, 15]);
   bear.setPosition(bearSpawnX, 0, bearSpawnZ);
   bear.setOrigin(bearSpawnX, 0, bearSpawnZ);
   scene.add(bear.mesh);
@@ -311,12 +484,31 @@ async function init() {
     }
   })();
 
-  // Bear starts wandering near its spawn point
-  bear.enableWander(2.0, { minX: bearSpawnX - 10, maxX: bearSpawnX + 10, minZ: bearSpawnZ - 10, maxZ: bearSpawnZ + 10 });
-
   // ---- polished pet NPCs ----
-  const petManager = new PetManager({ scene, physics });
+  const townPetBounds = gridBoundsToWorld(scenePlan.town?.roamBounds);
+  const petManager = new PetManager({
+    scene,
+    physics,
+    petSpawns: {
+      yafo: gridSpawn('yafo', [-30, 0, 30]),
+      mok: gridSpawn('mok', [38, 0, 18]),
+      mako: townGridSpawn('mako', [-38, 0, -18]),
+      lingq: townGridSpawn('lingq', [26, 0, -24]),
+    },
+    petBehaviors: {
+      mako: { initialState: 'free_roam', region: 'church_town', bounds: townPetBounds },
+      lingq: { initialState: 'free_roam', region: 'church_town', bounds: townPetBounds },
+    },
+  });
   await petManager.load();
+  petManager.registerPet(architect, {
+    name: 'fangke',
+    spawn: architectSpawn,
+    initialState: 'free_roam',
+    region: 'church_town',
+    bounds: townPetBounds,
+    updateExternally: true,
+  });
   window.__petManager = petManager;
 
   // ---- dialogue / construction state flags ----
@@ -325,9 +517,11 @@ async function init() {
   let architectGraphState = 'intro'; // 'intro' | 'busy' | 'followup'
   let bearDialogueActive = false; // tracks whether bear is in dialogue mode
   let activePetNpc = null;
+  let pastoralDialogueLock = false;
+  let pastoralWorkCameraTimer = null;
 
   // ---- dynamic targets for raycast ----
-  const dynamicTargets = [player, ...staticEntities, ...petManager.pets];
+  const dynamicTargets = [...new Set([player, architect, bear, ...staticEntities, ...petManager.pets])];
 
   setupRaycast(camera, dynamicTargets);
 
@@ -364,11 +558,132 @@ async function init() {
 
   // ---- dialogue system ----
   const dialogueSystem = createDialogueSystem();
+
+  function getNpcPosition(npc) {
+    return npc?.getPosition?.() || npc?.mesh?.position?.clone?.() || new THREE.Vector3();
+  }
+
+  function framePastoralPair(npc, targetPosition = null, distance = 9.0, height = 1.25, fov = 52) {
+    const playerPos = player.mesh.position.clone();
+    const npcPos = getNpcPosition(npc);
+    const targetPos = targetPosition ? targetPosition.clone() : npcPos;
+    const midPoint = new THREE.Vector3()
+      .add(playerPos)
+      .add(npcPos)
+      .add(targetPos)
+      .multiplyScalar(1 / 3);
+    midPoint.y = 1.35;
+
+    const spanA = new THREE.Vector3().subVectors(npcPos, playerPos);
+    const spanB = new THREE.Vector3().subVectors(targetPos, playerPos);
+    let dir = spanA.lengthSq() > spanB.lengthSq() ? spanA : spanB;
+    dir.y = 0;
+    if (dir.lengthSq() < 0.001) dir = new THREE.Vector3(0, 0, 1);
+    dir.normalize();
+    const sideDir = new THREE.Vector3(-dir.z, 0, dir.x);
+
+    const span = Math.max(
+      playerPos.distanceTo(npcPos),
+      playerPos.distanceTo(targetPos),
+      npcPos.distanceTo(targetPos),
+      4
+    );
+    const camPos = midPoint.clone()
+      .addScaledVector(sideDir, distance + span * 0.45)
+      .addScaledVector(dir, distance * 0.35);
+    camPos.y += height + span * 0.03;
+    thirdPersonCamera.lockTo(camPos, midPoint, fov);
+  }
+
+  function setPastoralDialogueLock(locked, npc = activePetNpc) {
+    pastoralDialogueLock = locked;
+    if (locked) {
+      if (pastoralWorkCameraTimer) {
+        clearTimeout(pastoralWorkCameraTimer);
+        pastoralWorkCameraTimer = null;
+      }
+      const npcPos = getNpcPosition(npc);
+      document.exitPointerLock();
+      player.lockTo(npcPos.x, npcPos.z);
+      npc?.lockFacing?.(player.mesh.position.x, player.mesh.position.z);
+      framePastoralPair(npc, null, 9.5, 1.25, 54);
+    } else {
+      pastoralDialogueLock = false;
+      player.unlock();
+      npc?.unlockFacing?.();
+      thirdPersonCamera.unlock(60);
+    }
+  }
+
+  function focusPastoralWorkCamera(pet, targetPos) {
+    framePastoralPair(pet, targetPos, 11.5, 1.45, 58);
+    if (pastoralWorkCameraTimer) clearTimeout(pastoralWorkCameraTimer);
+    pastoralWorkCameraTimer = setTimeout(() => {
+      if (!pastoralDialogueLock && !dialogueSystem.isActive()) {
+        thirdPersonCamera.unlock(60);
+      }
+      pastoralWorkCameraTimer = null;
+    }, 3600);
+  }
+
+  const pastoralSlice = createPastoralSlice({
+    scene,
+    player,
+    staticEntities,
+    pets: [bear, ...petManager.pets.filter(pet => pet._petRegion !== 'church_town')],
+    dialogueSystem,
+    center: [centerCfg.center[0], centerCfg.center[1]],
+    gridSize: GRID_SIZE,
+    terrainLayout: scenePlan.modifiedLayout,
+    setDialogueLock: setPastoralDialogueLock,
+    focusDialogueCamera: (pet) => framePastoralPair(pet, null, 9.5, 1.25, 54),
+    focusWorkCamera: focusPastoralWorkCamera,
+  });
+
+  const townCenterGrid = scenePlan.town?.center;
+  const townCenterWorld = townCenterGrid
+    ? getGridWorldPosition(townCenterGrid.x, townCenterGrid.z, centerCfg.center[0], centerCfg.center[1], GRID_SIZE)
+    : { x: 0, z: -30 };
+  const townPets = [
+    architect,
+    petManager.pets.find(pet => pet._petName === 'lingq'),
+    petManager.pets.find(pet => pet._petName === 'mako'),
+  ].filter(Boolean);
+  const petPartyEvent = new PetPartyEvent({
+    scene,
+    player,
+    petManager,
+    participants: townPets,
+    center: new THREE.Vector3(townCenterWorld.x, 0, townCenterWorld.z),
+  });
+  window.__petPartyEvent = petPartyEvent;
+
+  const forestTempleSystem = new ForestTempleSystem({
+    scene,
+    physics,
+    player,
+    petManager,
+    dialogueSystem,
+    trophyEntity: forestTrophy,
+    tentEntity: forestTent,
+    trophyWaitPlan: forestTrophyWaitPlan,
+    getPets: () => [bear, ...petManager.pets],
+  });
+  window.__forestTempleSystem = forestTempleSystem;
+  if (forestDemoEnabled) {
+    const demoPet = petManager.pets.find(pet => pet._petName === 'yafo');
+    if (demoPet) {
+      demoPet.setPosition(demoSpawn.x - 3, 0, demoSpawn.z - 3);
+      demoPet.setOrigin(demoSpawn.x - 3, 0, demoSpawn.z - 3);
+      pastoralSlice.startFollowing(demoPet);
+    }
+  }
+
   function resumePetNpc(npc) {
     if (!npc) return;
     npc.unlockFacing?.();
     if (npc === bear) {
-      if (!bear._followEnabled) {
+      if (!bear._followEnabled && bear._petState === 'free_roam') {
         bear.enableWander(2.0, { minX: bearSpawnX - 10, maxX: bearSpawnX + 10, minZ: bearSpawnZ - 10, maxZ: bearSpawnZ + 10 });
       }
       return;
@@ -396,6 +711,78 @@ async function init() {
     thirdPersonCamera.lockTo(camPos, midPoint, 45);
 
     dialogueSystem.show(graph, context);
+  }
+
+  function beginPastoralPetDialogue(npc, npcPos, playerPos, dx, dz) {
+    activePetNpc = npc;
+    dialogueSystem.setPetSpeakerName(npc._petName || '宠物');
+    framePastoralPair(npc, null, 9.5, 1.25, 54);
+
+    pastoralSlice.interact(npc)
+      .catch((err) => console.warn('[Pastoral] interaction failed:', err.message))
+      .finally(() => {
+        pastoralDialogueLock = false;
+        if (pastoralWorkCameraTimer) {
+          clearTimeout(pastoralWorkCameraTimer);
+          pastoralWorkCameraTimer = null;
+        }
+        thirdPersonCamera.unlock(60);
+        player.unlock();
+        npc.unlockFacing?.();
+        activePetNpc = null;
+      });
+  }
+
+  function beginTownPetDialogue(npc) {
+    activePetNpc = npc;
+    dialogueActive = true;
+    dialogueSystem.setPetSpeakerName(npc._petName || '宠物');
+    setPastoralDialogueLock(true, npc);
+
+    petPartyEvent.interact(npc, dialogueSystem)
+      .catch((err) => console.warn('[ChurchTown] interaction failed:', err.message))
+      .finally(() => {
+        dialogueActive = false;
+        setPastoralDialogueLock(false, npc);
+        activePetNpc = null;
+      });
+  }
+
+  function beginForestInteraction(hit) {
+    activePetNpc = hit.pet || null;
+    dialogueActive = true;
+    pastoralDialogueLock = true;
+    document.exitPointerLock();
+    player.lockTo(hit.type === 'trophy' ? forestTrophy.mesh.position.x : forestTent.mesh.position.x,
+      hit.type === 'trophy' ? forestTrophy.mesh.position.z : forestTent.mesh.position.z);
+    hit.pet?.lockFacing?.(
+      hit.type === 'trophy' ? forestTrophy.mesh.position.x : forestTent.mesh.position.x,
+      hit.type === 'trophy' ? forestTrophy.mesh.position.z : forestTent.mesh.position.z
+    );
+
+    forestTempleSystem.interact(hit)
+      .catch((err) => console.warn('[ForestTemple] interaction failed:', err.message))
+      .finally(() => {
+        dialogueActive = false;
+        pastoralDialogueLock = false;
+        player.unlock();
+        hit.pet?.unlockFacing?.();
+        activePetNpc = null;
+      });
+  }
+
+  function beginGeneratedPetIntroduction(pet) {
+    activePetNpc = pet;
+    dialogueActive = true;
+    setPastoralDialogueLock(true, pet);
+
+    forestTempleSystem.introducePet(pet)
+      .catch((err) => console.warn('[ForestTemple] introduction failed:', err.message))
+      .finally(() => {
+        dialogueActive = false;
+        setPastoralDialogueLock(false, pet);
+        activePetNpc = null;
+      });
   }
 
   dialogueSystem.setOnConstructionTrigger((buildingEntity, description) => {
@@ -640,7 +1027,7 @@ async function init() {
     generateSystem.update(dt);
 
     // Pointer-lock camera (skip when dialogue or panel are active)
-    if (!dialogueActive && !panelOpen) {
+    if (!dialogueActive && !pastoralDialogueLock && !dialogueSystem.isActive() && !panelOpen) {
       const { dx, dy } = input.consumeMouseDelta();
       if (dx !== 0 || dy !== 0) {
         thirdPersonCamera.applyMouseDelta(dx, dy);
@@ -649,7 +1036,9 @@ async function init() {
 
     // ESC: close dialogue first, then toggle management panel
     if (input.justPressed('Escape')) {
-      if (dialogueActive) {
+      if (dialogueSystem.isActive()) {
+        dialogueSystem.hide();
+      } else if (dialogueActive) {
         dialogueSystem.hide(); // onDialogueEnd callback handles unlock
       } else if (!document.pointerLockElement) {
         setPanelOpen(!panelOpen);
@@ -657,7 +1046,7 @@ async function init() {
     }
 
     // E-key: interact with architect or bear NPC
-    if (!dialogueActive && !panelOpen && !constructionActive) {
+    if (!dialogueActive && !pastoralDialogueLock && !dialogueSystem.isActive() && !panelOpen && !constructionActive) {
       const playerPos = player.mesh.position;
       const INTERACT_RANGE = 5.2;
       const promptEl = document.getElementById('interact-prompt');
@@ -673,29 +1062,52 @@ async function init() {
       const bearDx = bearPos.x - playerPos.x;
       const bearDz = bearPos.z - playerPos.z;
       const bearDist = Math.sqrt(bearDx * bearDx + bearDz * bearDz);
+      const forestHit = forestTempleSystem.findInteraction(playerPos, INTERACT_RANGE + 0.8);
       const petHit = petManager.findNearest(playerPos, INTERACT_RANGE);
-      const petDist = petHit?.dist ?? Infinity;
+      const townPetHit = petHit && petPartyEvent.canInteract(petHit.pet) ? petHit : null;
+      const regularPetHit = petHit && !petPartyEvent.isTownPet(petHit.pet) ? petHit : null;
+      const petDist = (townPetHit || regularPetHit)?.dist ?? Infinity;
 
       // Pick closest NPC in range
       let targetNpc = null;
-      if (archDist <= INTERACT_RANGE && archDist <= bearDist && archDist <= petDist) {
+      if (forestHit) {
+        targetNpc = 'forest';
+      } else if (townPetHit && townPetHit.dist <= bearDist) {
+        targetNpc = 'town-pet';
+      } else if (!petPartyEvent.isTownPet(architect) && archDist <= INTERACT_RANGE && archDist <= bearDist && archDist <= petDist) {
         targetNpc = 'architect';
       } else if (bearDist <= INTERACT_RANGE && bearDist <= archDist && bearDist <= petDist) {
         targetNpc = 'bear';
-      } else if (petHit) {
+      } else if (regularPetHit) {
         targetNpc = 'pet';
       }
 
-      // Pause bear wandering when player is near
-      if (bearDist <= INTERACT_RANGE + 2 && bear._wanderEnabled) {
+      // Pause momo wandering when player is near, unless it is working.
+      if (bearDist <= INTERACT_RANGE + 2 && bear._wanderEnabled && !bear._pastoralBusy && bear._petState !== 'working') {
         bear.stopWalking();
         bear.lockFacing(playerPos.x, playerPos.z);
-      } else if (bearDist > INTERACT_RANGE + 3 && bear._wanderEnabled && !bear._followEnabled) {
+      } else if (bearDist > INTERACT_RANGE + 3 && bear._wanderEnabled && !bear._followEnabled && bear._petState !== 'working') {
         bear.unlockFacing();
       }
       petManager.pauseNear(playerPos, INTERACT_RANGE + 2);
 
-      if (targetNpc === 'architect') {
+      if (targetNpc === 'forest') {
+        promptEl.classList.add('visible');
+        document.getElementById('interact-prompt-text').textContent = forestHit.label;
+        if (input.justPressed('KeyE')) {
+          beginForestInteraction(forestHit);
+        }
+      } else if (targetNpc === 'town-pet') {
+        const pet = townPetHit.pet;
+        promptEl.classList.add('visible');
+        document.getElementById('interact-prompt-text').textContent = `与${pet._petName || '宠物'}对话`;
+        pet.stopWalking();
+        pet.lockFacing(playerPos.x, playerPos.z);
+
+        if (input.justPressed('KeyE')) {
+          beginTownPetDialogue(pet);
+        }
+      } else if (targetNpc === 'architect') {
         promptEl.classList.add('visible');
         document.getElementById('interact-prompt-text').textContent = '与fangk对话';
 
@@ -718,65 +1130,36 @@ async function init() {
           dialogueSystem.show('architect_' + architectGraphState, temple || staticEntities[0]);
         }
       } else if (targetNpc === 'bear') {
-        // Check if bear is following and player near a tree (tree chop)
-        let nearTree = null;
-        if (bear._followEnabled) {
-          const TREE_RANGE = 5.0;
-          let bestDist = TREE_RANGE;
-          for (const e of staticEntities) {
-            if (e.category !== 'tree' && e.category !== 'decor') continue;
-            if (!e._modelGroup) continue;
-            const tp = e.mesh.position;
-            const tdx = tp.x - playerPos.x;
-            const tdz = tp.z - playerPos.z;
-            const d = Math.sqrt(tdx * tdx + tdz * tdz);
-            if (d <= bestDist) {
-              bestDist = d;
-              nearTree = e;
-            }
-          }
-        }
-
-        if (nearTree) {
-          promptEl.classList.add('visible');
-          document.getElementById('interact-prompt-text').textContent = '和momo一起砍树';
-          bear._wanderEnabled = false;
-          if (!bear._followEnabled) bear.stopWalking();
-
-          if (input.justPressed('KeyE')) {
-            // Store which tree to chop
-            window.__chopTree = nearTree;
-            beginPetDialogue(bear, bearPos, playerPos, bearDx, bearDz, 'bear_chop_tree', nearTree);
-          }
-        } else if (!bear._followEnabled) {
-          // Only show regular chat prompt when bear is NOT following
-          promptEl.classList.add('visible');
-          document.getElementById('interact-prompt-text').textContent = '与momo对话';
-
-          // Disable bear wander while in range
-          bear._wanderEnabled = false;
-
-          if (input.justPressed('KeyE')) {
-            beginPetDialogue(bear, bearPos, playerPos, bearDx, bearDz, 'bear_greet', null);
-          }
-        } else {
-          // Bear following but no tree nearby: hide prompt
-          promptEl.classList.remove('visible');
-        }
-      } else if (targetNpc === 'pet') {
-        const pet = petHit.pet;
-        const petPos = petHit.position;
         promptEl.classList.add('visible');
-        document.getElementById('interact-prompt-text').textContent = `与${pet._petName || '宠物'}对话`;
-        pet.stopWalking();
-        pet.lockFacing(playerPos.x, playerPos.z);
+        document.getElementById('interact-prompt-text').textContent = '与momo对话';
+        if (!bear._pastoralBusy && bear._petState !== 'working') {
+          if (!bear._followEnabled && bear._petState !== 'free_roam') bear.stopWalking();
+          bear.lockFacing(playerPos.x, playerPos.z);
+        }
 
         if (input.justPressed('KeyE')) {
-          beginPetDialogue(pet, petPos, playerPos, petHit.dx, petHit.dz, 'bear_greet', null);
+          beginPastoralPetDialogue(bear, bearPos, playerPos, bearDx, bearDz);
+        }
+      } else if (targetNpc === 'pet') {
+        const pet = regularPetHit.pet;
+        const petPos = regularPetHit.position;
+        promptEl.classList.add('visible');
+        document.getElementById('interact-prompt-text').textContent = `与${pet._petName || '宠物'}对话`;
+        if (!pet._pastoralBusy && pet._petState !== 'working') {
+          pet.stopWalking();
+          pet.lockFacing(playerPos.x, playerPos.z);
+        }
+
+        if (input.justPressed('KeyE')) {
+          if (pet._hasIntroduced === false) {
+            beginGeneratedPetIntroduction(pet);
+          } else {
+            beginPastoralPetDialogue(pet, petPos, playerPos, regularPetHit.dx, regularPetHit.dz);
+          }
         }
       } else {
-        // Re-enable wander if player walks away and bear isn't following
-        if (bearDist > INTERACT_RANGE + 3 && !bear._wanderEnabled && !bear._followEnabled) {
+        // Re-enable wander if player walks away and momo is in free roam.
+        if (bearDist > INTERACT_RANGE + 3 && !bear._wanderEnabled && !bear._followEnabled && bear._petState === 'free_roam') {
           bear.enableWander(2.0, { minX: bearSpawnX - 10, maxX: bearSpawnX + 10, minZ: bearSpawnZ - 10, maxZ: bearSpawnZ + 10 });
         }
         promptEl.classList.remove('visible');
@@ -787,11 +1170,11 @@ async function init() {
     }
 
     // H key: 挥舞左手 (one-shot)
-    if (!dialogueActive && !panelOpen && input.justPressed('KeyH')) {
+    if (!dialogueActive && !pastoralDialogueLock && !dialogueSystem.isActive() && !panelOpen && input.justPressed('KeyH')) {
       player.playOneShot('wave_left', 2.0);
     }
     // J key: 挥舞扇子+特效 (one-shot)
-    if (!dialogueActive && !panelOpen && input.justPressed('KeyJ')) {
+    if (!dialogueActive && !pastoralDialogueLock && !dialogueSystem.isActive() && !panelOpen && input.justPressed('KeyJ')) {
       player.playOneShot('fan_spark', 2.0);
     }
 
@@ -801,8 +1184,8 @@ async function init() {
       e.updateBreathing?.(dt);
     }
 
-    // Player update (always run for animation even when locked, but skip when panel open)
-    if (!panelOpen) {
+    // Player update: fully freeze movement while any dialogue/input UI is active.
+    if (!panelOpen && !dialogueActive && !pastoralDialogueLock && !dialogueSystem.isActive()) {
       player.update(dt, input, thirdPersonCamera);
     }
 
@@ -812,10 +1195,14 @@ async function init() {
     // Bear update (always runs)
     bear.update(dt);
     petManager.update(dt);
+    pastoralSlice.update(dt);
+    petPartyEvent.update(dt);
+    forestTempleSystem.update(dt);
 
     // Particle systems + reveal animations
     _runDustPS.update(dt, bear.mesh);
     if (window.__chopPS) window.__chopPS.update(dt, bear.mesh);
+    if (campfireParticles) campfireParticles.update(dt, null);
     _updateRevealAnimations(dt);
 
     // (chop sparks handled by ParticleSystem via window.__chopPS)

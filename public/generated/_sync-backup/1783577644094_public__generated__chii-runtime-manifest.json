@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-09T06:14:04.021Z",
+  "syncedAt": "2026-07-09T06:13:24.006Z",
   "studio": "http://localhost:8000",
   "source": "runtime",
   "publish": false,
@@ -432,13 +432,7 @@
       "commit": "2026-07-09_13-22-45",
       "folder": "一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s",
       "modelOut": "public/generated/models/forest_temple_trophy.json",
-      "animations": [
-        {
-          "name": "wait",
-          "outPath": "public/generated/animations/forest_trophy_wait.json",
-          "studioName": "召唤等待"
-        }
-      ],
+      "animations": [],
       "source": "edit",
       "runtimeVersion": null
     },

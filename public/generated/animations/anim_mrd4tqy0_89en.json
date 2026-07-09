@@ -1,0 +1,132 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    },
+    "bounce": {
+      "amplitude": 0.18,
+      "frequency": 1.8
+    }
+  },
+  "chest": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 1.8
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 1.8,
+      "phase": 0.1
+    }
+  },
+  "leftLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "rightLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "leftLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 1.8,
+      "phase": 0.25
+    }
+  },
+  "rightLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 1.8,
+      "phase": 0.75
+    }
+  },
+  "leftLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.8,
+      "phase": 0.25
+    }
+  },
+  "rightLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.8,
+      "phase": 0.75
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "rightArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "leftArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -25
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.35,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "rightArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -25
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.35,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "_name": "run",
+  "_type": "run",
+  "_modelId": "gen_mrd4tqv6_zwc8"
+}

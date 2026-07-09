@@ -131,6 +131,39 @@ export class ArchitectNPC {
     }
   }
 
+  replaceModelFromJson(modelJson) {
+    try {
+      const model = buildModelFromJson(modelJson);
+      if (!model) return false;
+
+      const box = new THREE.Box3().setFromObject(model);
+      const h = box.max.y - box.min.y;
+      const targetHeight = 3.0;
+      const scale = targetHeight / Math.max(h, 0.01);
+      model.scale.setScalar(scale);
+      model.position.y = -box.min.y * scale;
+
+      if (this._modelGroup) {
+        this.mesh.remove(this._modelGroup);
+      } else {
+        this.mesh.remove(this._placeholder);
+      }
+
+      this.mesh.add(model);
+      this._modelGroup = model;
+      this._originalModelJson = modelJson;
+      this._basePoseMap = null;
+      if (this._modelGroup) {
+        this._modelGroup.userData._baseScale = this._modelGroup.scale.x;
+        this._modelGroup.userData._baseY = this._modelGroup.position.y;
+      }
+      return true;
+    } catch (e) {
+      console.warn('[ArchitectNPC] Replace model failed:', e.message);
+      return false;
+    }
+  }
+
   /**
    * Register an animation plan by name.
    * @param {string} name - 'idle' | 'run' | 'construct'

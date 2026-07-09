@@ -91,7 +91,7 @@ export async function generateAnimation(modelJson, description, duration = 2.0, 
       const resp = await fetch(`${API_BASE}/api/generate/animation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ modelJson, description, duration, provider: p, emitParticles }),
+        body: JSON.stringify({ mode: 'quick', modelJson, description, duration, provider: p, emitParticles }),
       });
 
       if (resp.status === 429) {
@@ -161,4 +161,41 @@ export async function refineModel(modelJson, description, provider = 'fireworks'
 
   const data = await resp.json();
   return data;
+}
+
+/**
+ * Mount a secondary object/description onto a primary model.
+ * Prefer local Studio via /studio, then fall back to the proxied backend.
+ *
+ * @param {object} primary - primary modelJson
+ * @param {object|string} secondary - modelJson or short Chinese description
+ * @param {string} description - concrete placement instruction
+ * @param {string} [provider='deepseek']
+ * @returns {Promise<{modelJson: object, mountPlan?: object}>}
+ */
+export async function mountModel(primary, secondary, description, provider = 'deepseek') {
+  const body = { primary, secondary, description, provider };
+  const endpoints = ['/studio/api/mount', `${API_BASE}/api/mount`];
+  let lastError = null;
+
+  for (const endpoint of endpoints) {
+    try {
+      const resp = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(300000),
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data.ok) {
+        throw new Error(data.message || data.error || `Mount failed: HTTP ${resp.status}`);
+      }
+      return { modelJson: data.modelJson, mountPlan: data.mountPlan };
+    } catch (err) {
+      lastError = err;
+      console.warn(`[Voxel] mount failed via ${endpoint}:`, err.message);
+    }
+  }
+
+  throw lastError || new Error('Mount failed');
 }

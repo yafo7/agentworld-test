@@ -1,0 +1,55 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "topper": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.25,
+      "frequency": 2
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.35,
+      "rate": 22,
+      "lifetime": [
+        0.5,
+        1
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0
+        ],
+        "speed": [
+          1.2,
+          2.4
+        ],
+        "spread": 0.7
+      },
+      "acceleration": [
+        0,
+        -1.8,
+        0
+      ],
+      "offset": [
+        0,
+        0.8,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.85,
+        0.25
+      ],
+      "colorEnd": [
+        1,
+        0.45,
+        0.05
+      ],
+      "scaleStart": 1,
+      "scaleEnd": 0.45
+    }
+  }
+}

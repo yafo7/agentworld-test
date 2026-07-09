@@ -1,0 +1,272 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.12,
+      "frequency": 1.6
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 1.6,
+      "phase": 0.25
+    }
+  },
+  "chest": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 1.6,
+      "phase": 0.25
+    }
+  },
+  "head": {
+    "swing": [
+      {
+        "axis": "y",
+        "amplitude": 0.15,
+        "frequency": 1.6,
+        "phase": 0.1
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.12,
+        "frequency": 3.2,
+        "phase": 0.35
+      }
+    ],
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.35,
+      "rate": 18,
+      "lifetime": [
+        0.35,
+        0.7
+      ],
+      "velocity": {
+        "dir": [
+          0.8,
+          0.4,
+          0.1
+        ],
+        "speed": [
+          0.8,
+          1.6
+        ],
+        "spread": 0.55
+      },
+      "acceleration": [
+        0,
+        -1.5,
+        0
+      ],
+      "offset": [
+        0,
+        1.6,
+        0.1
+      ],
+      "colorStart": [
+        0.4,
+        0.75,
+        1
+      ],
+      "colorEnd": [
+        1,
+        1,
+        1
+      ],
+      "scaleStart": 1,
+      "scaleEnd": 0.45
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -22
+    },
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.35,
+        "frequency": 1.6,
+        "phase": 0.5
+      },
+      {
+        "axis": "z",
+        "amplitude": -0.18,
+        "frequency": 1.6
+      }
+    ]
+  },
+  "rightArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 22
+    },
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.35,
+        "frequency": 1.6
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.18,
+        "frequency": 1.6,
+        "phase": 0.5
+      }
+    ]
+  },
+  "leftLeg_thigh": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.6
+    }
+  },
+  "leftLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 1.6,
+      "phase": 0.12
+    }
+  },
+  "leftLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1.6,
+      "phase": 0.18
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.42,
+      "rate": 22,
+      "lifetime": [
+        0.3,
+        0.6
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0.35
+        ],
+        "speed": [
+          1.2,
+          2.2
+        ],
+        "spread": 0.45
+      },
+      "acceleration": [
+        0,
+        -3,
+        0
+      ],
+      "offset": [
+        0,
+        -0.25,
+        0.55
+      ],
+      "colorStart": [
+        1,
+        1,
+        1
+      ],
+      "colorEnd": [
+        0.2,
+        0.55,
+        1
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.35
+    }
+  },
+  "rightLeg_thigh": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "rightLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 1.6,
+      "phase": 0.62
+    }
+  },
+  "rightLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.5,
+      "frequency": 1.6,
+      "phase": 0.68
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.42,
+      "rate": 22,
+      "lifetime": [
+        0.3,
+        0.6
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0.35
+        ],
+        "speed": [
+          1.2,
+          2.2
+        ],
+        "spread": 0.45
+      },
+      "acceleration": [
+        0,
+        -3,
+        0
+      ],
+      "offset": [
+        0,
+        -0.25,
+        0.55
+      ],
+      "colorStart": [
+        1,
+        1,
+        1
+      ],
+      "colorEnd": [
+        0.2,
+        0.55,
+        1
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.35
+    }
+  },
+  "_name": "special",
+  "_type": "special",
+  "_modelId": "gen_mrd4tqv6_zwc8"
+}

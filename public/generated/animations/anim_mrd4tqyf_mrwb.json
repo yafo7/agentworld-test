@@ -1,0 +1,86 @@
+{
+  "_duration": 1.8,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.48,
+      "frequency": 1.15
+    },
+    "squash": {
+      "axis": "y",
+      "amount": 1.12
+    }
+  },
+  "chest": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 1.2
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -6
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 1.6
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -58
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.22,
+      "frequency": 2.1
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 58
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.22,
+      "frequency": 2.1,
+      "phase": 0.05
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.25
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.25,
+      "phase": 0.25
+    }
+  },
+  "_name": "jump",
+  "_type": "jump",
+  "_modelId": "gen_mrd4tqv6_zwc8"
+}

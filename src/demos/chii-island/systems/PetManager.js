@@ -1,5 +1,6 @@
 import { ArchitectNPC } from '../entities/ArchitectNPC.js';
 import { loadStudioAnimations, loadStudioModel } from '../data/studioLibrary.js';
+import { getPetProfile } from '../data/petProfiles.js';
 
 const PET_CONFIGS = [
   {
@@ -8,6 +9,13 @@ const PET_CONFIGS = [
     commit: '2026-07-02_16-25-32',
     folder: '一匹棕色的马儿，身上穿着7号红色球衣_2.1m',
     spawn: [-38, 0, -18],
+    modelPath: 'generated/models/mako.json',
+    animationPaths: {
+      idle: 'generated/animations/mako_idle.json',
+      run: 'generated/animations/mako_run.json',
+      jump: 'generated/animations/mako_jump.json',
+      dance: 'generated/animations/mako_dance.json',
+    },
   },
   {
     id: 'croc_axe',
@@ -22,6 +30,13 @@ const PET_CONFIGS = [
     commit: '2026-07-02_15-49-39',
     folder: '一只孔雀_3.0m',
     spawn: [26, 0, -24],
+    modelPath: 'generated/models/lingq.json',
+    animationPaths: {
+      idle: 'generated/animations/lingq_idle.json',
+      run: 'generated/animations/lingq_run.json',
+      jump: 'generated/animations/lingq_jump.json',
+      dance: 'generated/animations/lingq_dance.json',
+    },
   },
   {
     id: 'sky_bird',
@@ -47,24 +62,40 @@ function randomIn(min, max) {
   return min + Math.random() * (max - min);
 }
 
+async function fetchJson(path) {
+  if (!path) return null;
+  try {
+    const response = await fetch(`/${path}`);
+    if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) return null;
+    return response.json();
+  } catch (_) {
+    return null;
+  }
+}
+
 export class PetManager {
-  constructor({ scene, physics }) {
+  constructor({ scene, physics, petSpawns = {}, petBehaviors = {} }) {
     this.scene = scene;
     this.physics = physics;
+    this.petSpawns = petSpawns;
+    this.petBehaviors = petBehaviors;
     this.pets = [];
   }
 
   async load() {
-    for (const config of PET_CONFIGS) {
+    for (const config of PET_CONFIGS.filter(c => c.enabled !== false)) {
       const pet = new ArchitectNPC();
+      const spawn = this.petSpawns[config.name] || config.spawn;
       pet.mesh.name = config.name;
       pet._petId = config.id;
       pet._petName = config.name;
-      pet._petBounds = makeBounds(config.spawn[0], config.spawn[2], 10);
-      pet._nextPetActionAt = randomIn(1.0, 3.0);
+      pet._profile = getPetProfile(config.name);
+      pet._managedByPetManager = true;
+      this._configurePet(pet, config.name, spawn);
+      pet._initialInteractionDone = false;
 
-      pet.setPosition(...config.spawn);
-      pet.setOrigin(...config.spawn);
+      pet.setPosition(...spawn);
+      pet.setOrigin(...spawn);
       pet.initPhysics(this.physics);
       this.scene.add(pet.mesh);
       this.pets.push(pet);
@@ -75,7 +106,8 @@ export class PetManager {
 
   async _loadPetAssets(pet, config) {
     try {
-      const modelJson = await loadStudioModel(config.commit, config.folder);
+      let modelJson = await fetchJson(config.modelPath);
+      if (!modelJson) modelJson = await loadStudioModel(config.commit, config.folder);
       if (modelJson) {
         pet.loadModelFromJson(modelJson);
         if (pet._modelGroup) {
@@ -84,14 +116,21 @@ export class PetManager {
         }
       }
 
+      if (config.animationPaths) {
+        for (const [name, path] of Object.entries(config.animationPaths)) {
+          const plan = await fetchJson(path);
+          if (plan) pet.loadAnimation(name, plan);
+        }
+      }
+
       const anims = await loadStudioAnimations(config.commit, config.folder);
       const idle = matchAnimation(anims, [/呼吸|idle|待机/i]);
       const run = matchAnimation(anims, [/奔跑|run|行走|walk/i]);
       const jump = matchAnimation(anims, [/跳跃|飞跃|jump/i]);
 
-      if (idle) pet.loadAnimation('idle', idle.plan || idle);
-      if (run) pet.loadAnimation('run', run.plan || run);
-      if (jump) pet.loadAnimation('jump', jump.plan || jump);
+      if (!pet._animPlans.idle && idle) pet.loadAnimation('idle', idle.plan || idle);
+      if (!pet._animPlans.run && run) pet.loadAnimation('run', run.plan || run);
+      if (!pet._animPlans.jump && jump) pet.loadAnimation('jump', jump.plan || jump);
       if (!pet._animPlans.jump && pet._animPlans.run) pet._animPlans.jump = pet._animPlans.run;
       if (!pet._animPlans.run && pet._animPlans.idle) pet._animPlans.run = pet._animPlans.idle;
 
@@ -101,10 +140,36 @@ export class PetManager {
     }
   }
 
+  _configurePet(pet, name, spawn) {
+    const behavior = this.petBehaviors[name] || {};
+    pet._petState = behavior.initialState || 'idle';
+    pet._petRegion = behavior.region || 'pastoral';
+    pet._petBounds = behavior.bounds || makeBounds(spawn[0], spawn[2], 10);
+    pet._nextPetActionAt = randomIn(1.0, 3.0);
+  }
+
+  registerPet(pet, { name, profile = null, spawn, initialState = 'idle', region = 'pastoral', bounds = null, updateExternally = false } = {}) {
+    if (!pet || this.pets.includes(pet)) return pet;
+    const petName = name || pet._petName || pet.mesh?.name || 'pet';
+    const origin = spawn || [pet.mesh.position.x, pet.mesh.position.y, pet.mesh.position.z];
+    pet._petName = petName;
+    pet._profile = profile || getPetProfile(petName);
+    pet._managedByPetManager = true;
+    pet._petState = initialState;
+    pet._petRegion = region;
+    pet._petBounds = bounds || makeBounds(origin[0], origin[2], 10);
+    pet._nextPetActionAt = randomIn(1.0, 3.0);
+    pet._petManagerExternalUpdate = updateExternally;
+    this.pets.push(pet);
+    return pet;
+  }
+
   update(dt) {
     for (const pet of this.pets) {
-      if (!pet._followEnabled) this._updateRandomAction(pet, dt);
-      pet.update(dt);
+      if (pet._petState === 'free_roam' && !pet._followEnabled && !pet._pastoralBusy) {
+        this._updateRandomAction(pet, dt);
+      }
+      if (!pet._petManagerExternalUpdate) pet.update(dt);
     }
   }
 
@@ -113,14 +178,15 @@ export class PetManager {
     if (pet._nextPetActionAt > 0 || pet._targetPosition) return;
 
     const roll = Math.random();
-    if (roll < 0.42) {
+    const idleThreshold = pet._petRegion === 'church_town' ? 0.48 : 0.42;
+    if (roll < idleThreshold) {
       pet.stopWalking();
       pet.playAnimation('idle');
       pet._nextPetActionAt = randomIn(1.8, 3.8);
       return;
     }
 
-    if (roll < 0.78) {
+    if (pet._petRegion === 'church_town' || roll < 0.78) {
       const b = pet._petBounds;
       pet.walkTo(randomIn(b.minX, b.maxX), randomIn(b.minZ, b.maxZ), randomIn(2.5, 4.2));
       pet._nextPetActionAt = randomIn(2.0, 4.0);
@@ -150,6 +216,7 @@ export class PetManager {
 
   pauseNear(position, range) {
     for (const pet of this.pets) {
+      if (pet._pastoralBusy || pet._petState === 'working' || pet._petState === 'performing' || pet._petState === 'interacting') continue;
       if (pet._followEnabled) continue;
       const p = pet.getPosition();
       const dx = p.x - position.x;
@@ -165,7 +232,7 @@ export class PetManager {
   }
 
   resumePet(pet) {
-    if (!pet || pet._followEnabled) return;
+    if (!pet || pet._followEnabled || pet._petState !== 'free_roam') return;
     pet.unlockFacing();
     pet._nextPetActionAt = randomIn(0.5, 1.5);
   }

@@ -55,12 +55,98 @@ const ASSETS = [
     modelOut: 'public/generated/models/glowgrass.json',
   },
   {
+    id: 'pink-flower',
+    label: 'pink-flower',
+    assetId: 'm_1783324896462_ass32c',
+    commit: '2026-07-06_16-00-29',
+    folder: '一株粉红色的花_1.1m',
+    modelOut: 'public/generated/models/pink_flower.json',
+  },
+  {
+    id: 'grass-clump',
+    label: 'grass-clump',
+    assetId: 'm_1783324779627_8zhv3i',
+    commit: '2026-07-06_15-57-38',
+    folder: '一从小草_2.0m',
+    modelOut: 'public/generated/models/grass_clump.json',
+  },
+  {
+    id: 'trumpet-flower',
+    label: 'trumpet-flower',
+    assetId: 'm_1783324640413_upjvb8',
+    commit: '2026-07-06_15-54-58',
+    folder: '一株喇叭花_2.4m',
+    modelOut: 'public/generated/models/trumpet_flower.json',
+  },
+  {
+    id: 'blue-tulips',
+    label: 'blue-tulips',
+    assetId: 'm_1783495597678_n7mzuq',
+    commit: '2026-07-08_15-25-24',
+    folder: '一丛蓝色的郁金香_1.2m',
+    modelOut: 'public/generated/models/blue_tulips.json',
+  },
+  {
+    id: 'wheat-field',
+    label: 'wheat-field',
+    assetId: 'wheat-field',
+    commit: '8ff94eb',
+    folder: '一片麦田_1783494517958',
+    modelOut: 'public/generated/models/wheat_field.json',
+  },
+  {
+    id: 'flower-pot',
+    label: 'flower-pot',
+    assetId: 'flower-pot',
+    commit: '8ff94eb',
+    folder: '圆木花盆_1783496137463',
+    modelOut: 'public/generated/models/flower_pot.json',
+  },
+  {
+    id: 'giant-carrot',
+    label: 'giant-carrot',
+    assetId: 'giant-carrot',
+    commit: '8ff94eb',
+    folder: '一根巨大的胡萝卜_1783496035572',
+    modelOut: 'public/generated/models/giant_carrot.json',
+  },
+  {
     id: 'windmill',
     label: 'windmill',
     assetId: 'm_1782903666317_v5xkm7',
     commit: '2026-07-01_18-58-41',
     folder: '一个巨大的风车，底部长宽比是2/2_2.4m',
     modelOut: 'public/generated/models/windmill.json',
+  },
+  {
+    id: 'campfire',
+    label: 'campfire',
+    assetId: 'm_1783573173496_88n5kf',
+    commit: '2026-07-09_12-58-15',
+    folder: '一个由原木条堆起来的篝火_1.3m',
+    modelOut: 'public/generated/models/campfire.json',
+    animations: [
+      ['burn', 'public/generated/animations/campfire_burn.json', ['燃烧', '火焰', 'burn']],
+    ],
+  },
+  {
+    id: 'forest-trophy',
+    label: 'forest-trophy',
+    assetId: 'm_1783574625142_cbsm97',
+    commit: '2026-07-09_13-22-45',
+    folder: '一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s',
+    modelOut: 'public/generated/models/forest_temple_trophy.json',
+    animations: [
+      ['wait', 'public/generated/animations/forest_trophy_wait.json', ['召唤等待', '上下跳动', 'wait']],
+    ],
+  },
+  {
+    id: 'forest-tent',
+    label: 'forest-tent',
+    assetId: 'm_1783574993844_zexjyw',
+    commit: '2026-07-09_13-28-22',
+    folder: '一个野外的露营帐篷_1.5m',
+    modelOut: 'public/generated/models/forest_temple_tent.json',
   },
   {
     id: 'church',
@@ -124,7 +210,7 @@ const ASSETS = [
     commit: '2026-07-02_16-25-32',
     folder: '一匹棕色的马儿，身上穿着7号红色球衣_2.1m',
     modelOut: 'public/generated/models/mako.json',
-    animations: petAnimations('mako'),
+    animations: [...petAnimations('mako'), ['dance', 'public/generated/animations/mako_dance.json', ['跳舞', '舞蹈', 'dance']]],
   },
   {
     id: 'mok',
@@ -142,7 +228,7 @@ const ASSETS = [
     commit: '2026-07-02_15-49-39',
     folder: '一只孔雀_3.0m',
     modelOut: 'public/generated/models/lingq.json',
-    animations: petAnimations('lingq'),
+    animations: [...petAnimations('lingq'), ['dance', 'public/generated/animations/lingq_dance.json', ['跳舞', '舞蹈', 'dance']]],
   },
   {
     id: 'yafo',
@@ -154,6 +240,10 @@ const ASSETS = [
     animations: petAnimations('yafo'),
   },
 ];
+
+ASSETS.find(asset => asset.id === 'fangk')?.animations?.push(
+  ['dance', 'public/generated/animations/fangk_dance.json', ['跳舞', '舞蹈', 'dance']]
+);
 
 function petAnimations(prefix) {
   return [
@@ -311,12 +401,21 @@ async function main() {
   const selected = ASSETS.filter(asset => !args.only || args.only.includes(asset.id) || args.only.includes(asset.label));
   if (!selected.length) throw new Error('No assets selected. Use --all or --only <ids>.');
 
+  let preservedAssets = [];
+  if (args.only) {
+    try {
+      const previous = JSON.parse(await fs.readFile(path.join(repoRoot, 'public/generated/chii-runtime-manifest.json'), 'utf8'));
+      const selectedIds = new Set(selected.map(asset => asset.id));
+      preservedAssets = (previous.assets || []).filter(entry => !selectedIds.has(entry.id));
+    } catch {}
+  }
+
   const manifest = {
     syncedAt: new Date().toISOString(),
     studio: args.studio,
     source: args.source,
     publish: args.publish,
-    assets: [],
+    assets: preservedAssets,
   };
   const warnings = [];
   let models = 0;

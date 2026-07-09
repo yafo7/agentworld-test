@@ -1,0 +1,55 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.04,
+      "frequency": 0.4,
+      "phase": 0
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.4
+    }
+  },
+  "abdomen": {
+    "breathe": {
+      "amplitude": 0.012,
+      "frequency": 0.4
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.035,
+      "frequency": 0.4,
+      "phase": 0.15
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.045,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.045,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "_name": "idle",
+  "_type": "idle",
+  "_modelId": "gen_mrd4tqv6_zwc8"
+}

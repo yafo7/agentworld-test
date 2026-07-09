@@ -9,6 +9,8 @@ const BLOCK_COLORS = {
   dirt:  0x9b7b3c,
   rock:  0x7a7a7a,
   water: 0x4488bb,
+  farmland: 0x8f5f2f,
+  brick: 0xa4513f,
 };
 
 // Cached merged geometry per block type
@@ -28,7 +30,7 @@ function _buildBlockGeos() {
   const geo = new THREE.BoxGeometry(UNIT_SIZE, H, UNIT_SIZE);
   geo.translate(0, -H / 2, 0); // top face at Y=0, block extends downward
 
-  for (const type of ['grass', 'dirt', 'rock', 'water']) {
+  for (const type of ['grass', 'dirt', 'rock', 'water', 'farmland', 'brick']) {
     _blockGeos[type] = { geo, plainColor: BLOCK_COLORS[type] };
   }
 
@@ -41,6 +43,23 @@ export function preloadBlocks(jsons) {
 
 export function getBlockModel(blockType) {
   return null; // simplified — no voxel block models loaded
+}
+
+export function paintUnitArea(unitEnv, gridX, gridZ, areaType = 'default') {
+  if (!unitEnv?.userData?.layout) return;
+  const typeMap = {
+    default: 'grass',
+    tree: 'grass',
+    decor: 'dirt',
+    house: 'rock',
+    farmland: 'farmland',
+    crop: 'farmland',
+    water: 'water',
+  };
+  const blockType = BLOCK_COLORS[areaType] ? areaType : (typeMap[areaType] || 'grass');
+  if (unitEnv.userData.layout[gridZ]) {
+    unitEnv.userData.layout[gridZ][gridX] = blockType;
+  }
 }
 
 export function getGridWorldPosition(gridX, gridZ, centerX = 0, centerZ = 0, size = 10) {

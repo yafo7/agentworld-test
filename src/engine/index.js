@@ -25,7 +25,7 @@ export { PhysicsWorld } from './physics/PhysicsWorld.js';
 export { RapierDebugRenderer } from './physics/RapierDebugRenderer.js';
 
 // ---- World (re-export from legacy src/world/; Phase 2 will physically move) ----
-export { createUnitEnvironment, getGridWorldPosition, worldToGridCoordinates, preloadBlocks, generateTerrainLayout, getBlockModel } from './world/terrain.js';
+export { createUnitEnvironment, getGridWorldPosition, worldToGridCoordinates, paintUnitArea, preloadBlocks, generateTerrainLayout, getBlockModel } from './world/terrain.js';
 
 // ---- Entity (re-export from legacy src/entities/; Phase 2 will physically move) ----
 export { Player } from './entity/Player.js';

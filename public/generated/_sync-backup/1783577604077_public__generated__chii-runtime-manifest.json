@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-09T06:14:04.021Z",
+  "syncedAt": "2026-07-09T05:29:26.894Z",
   "studio": "http://localhost:8000",
   "source": "runtime",
   "publish": false,
@@ -424,34 +424,6 @@
       ],
       "source": "runtime",
       "runtimeVersion": "v001"
-    },
-    {
-      "id": "forest-trophy",
-      "label": "forest-trophy",
-      "assetId": "m_1783574625142_cbsm97",
-      "commit": "2026-07-09_13-22-45",
-      "folder": "一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s",
-      "modelOut": "public/generated/models/forest_temple_trophy.json",
-      "animations": [
-        {
-          "name": "wait",
-          "outPath": "public/generated/animations/forest_trophy_wait.json",
-          "studioName": "召唤等待"
-        }
-      ],
-      "source": "edit",
-      "runtimeVersion": null
-    },
-    {
-      "id": "forest-tent",
-      "label": "forest-tent",
-      "assetId": "m_1783574993844_zexjyw",
-      "commit": "2026-07-09_13-28-22",
-      "folder": "一个野外的露营帐篷_1.5m",
-      "modelOut": "public/generated/models/forest_temple_tent.json",
-      "animations": [],
-      "source": "edit",
-      "runtimeVersion": null
     }
   ]
 }

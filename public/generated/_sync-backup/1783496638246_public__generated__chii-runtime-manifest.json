@@ -1,0 +1,85 @@
+{
+  "syncedAt": "2026-07-08T07:38:45.436Z",
+  "studio": "http://localhost:8000",
+  "source": "runtime",
+  "publish": false,
+  "assets": [
+    {
+      "id": "pink-flower",
+      "label": "pink-flower",
+      "assetId": "m_1783324896462_ass32c",
+      "commit": "2026-07-06_16-00-29",
+      "folder": "一株粉红色的花_1.1m",
+      "modelOut": "public/generated/models/pink_flower.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "grass-clump",
+      "label": "grass-clump",
+      "assetId": "m_1783324779627_8zhv3i",
+      "commit": "2026-07-06_15-57-38",
+      "folder": "一从小草_2.0m",
+      "modelOut": "public/generated/models/grass_clump.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "trumpet-flower",
+      "label": "trumpet-flower",
+      "assetId": "m_1783324640413_upjvb8",
+      "commit": "2026-07-06_15-54-58",
+      "folder": "一株喇叭花_2.4m",
+      "modelOut": "public/generated/models/trumpet_flower.json",
+      "animations": [],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "blue-tulips",
+      "label": "blue-tulips",
+      "assetId": "m_1783495597678_n7mzuq",
+      "commit": "2026-07-08_15-25-24",
+      "folder": "一丛蓝色的郁金香_1.2m",
+      "modelOut": "public/generated/models/blue_tulips.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "wheat-field",
+      "label": "wheat-field",
+      "assetId": "wheat-field",
+      "commit": "8ff94eb",
+      "folder": "一片麦田_1783494517958",
+      "modelOut": "public/generated/models/wheat_field.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "flower-pot",
+      "label": "flower-pot",
+      "assetId": "flower-pot",
+      "commit": "8ff94eb",
+      "folder": "圆木花盆_1783496137463",
+      "modelOut": "public/generated/models/flower_pot.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "giant-carrot",
+      "label": "giant-carrot",
+      "assetId": "giant-carrot",
+      "commit": "8ff94eb",
+      "folder": "一根巨大的胡萝卜_1783496035572",
+      "modelOut": "public/generated/models/giant_carrot.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    }
+  ]
+}

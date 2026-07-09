@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-09T06:14:04.021Z",
+  "syncedAt": "2026-07-08T07:43:57.928Z",
   "studio": "http://localhost:8000",
   "source": "runtime",
   "publish": false,
@@ -179,23 +179,6 @@
       "runtimeVersion": "v001"
     },
     {
-      "id": "campfire",
-      "label": "campfire",
-      "assetId": "m_1783573173496_88n5kf",
-      "commit": "2026-07-09_12-58-15",
-      "folder": "一个由原木条堆起来的篝火_1.3m",
-      "modelOut": "public/generated/models/campfire.json",
-      "animations": [
-        {
-          "name": "burn",
-          "outPath": "public/generated/animations/campfire_burn.json",
-          "studioName": "篝火燃烧"
-        }
-      ],
-      "source": "edit",
-      "runtimeVersion": null
-    },
-    {
       "id": "church",
       "label": "church",
       "assetId": "m_1782903418394_5e16ir",
@@ -250,11 +233,6 @@
           "name": "construct",
           "outPath": "public/generated/animations/fangk_construct.json",
           "studioName": "construct"
-        },
-        {
-          "name": "dance",
-          "outPath": "public/generated/animations/fangk_dance.json",
-          "studioName": "fangk跳舞"
         }
       ],
       "source": "runtime",
@@ -329,11 +307,6 @@
           "name": "jump",
           "outPath": "public/generated/animations/mako_jump.json",
           "studioName": "跳跃"
-        },
-        {
-          "name": "dance",
-          "outPath": "public/generated/animations/mako_dance.json",
-          "studioName": "mako跳舞"
         }
       ],
       "source": "runtime",
@@ -388,11 +361,6 @@
           "name": "jump",
           "outPath": "public/generated/animations/lingq_jump.json",
           "studioName": "跳跃"
-        },
-        {
-          "name": "dance",
-          "outPath": "public/generated/animations/lingq_dance.json",
-          "studioName": "lingq跳舞"
         }
       ],
       "source": "runtime",
@@ -424,34 +392,6 @@
       ],
       "source": "runtime",
       "runtimeVersion": "v001"
-    },
-    {
-      "id": "forest-trophy",
-      "label": "forest-trophy",
-      "assetId": "m_1783574625142_cbsm97",
-      "commit": "2026-07-09_13-22-45",
-      "folder": "一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s",
-      "modelOut": "public/generated/models/forest_temple_trophy.json",
-      "animations": [
-        {
-          "name": "wait",
-          "outPath": "public/generated/animations/forest_trophy_wait.json",
-          "studioName": "召唤等待"
-        }
-      ],
-      "source": "edit",
-      "runtimeVersion": null
-    },
-    {
-      "id": "forest-tent",
-      "label": "forest-tent",
-      "assetId": "m_1783574993844_zexjyw",
-      "commit": "2026-07-09_13-28-22",
-      "folder": "一个野外的露营帐篷_1.5m",
-      "modelOut": "public/generated/models/forest_temple_tent.json",
-      "animations": [],
-      "source": "edit",
-      "runtimeVersion": null
     }
   ]
 }

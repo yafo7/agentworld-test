@@ -139,6 +139,259 @@ export function generateRoad(layout, riverData, gridSize, buildingCells) {
   return roadCells;
 }
 
+// ---- windmill pastoral layout ----
+
+function addRect(set, x0, z0, w, d, gridSize) {
+  for (let z = z0; z < z0 + d; z++) {
+    for (let x = x0; x < x0 + w; x++) {
+      if (x >= 1 && x < gridSize - 1 && z >= 1 && z < gridSize - 1) {
+        set.add(`${x},${z}`);
+      }
+    }
+  }
+}
+
+function addSoftRoad(set, from, to, gridSize, width = 2) {
+  const steps = Math.max(Math.abs(to.x - from.x), Math.abs(to.z - from.z), 1);
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const x = Math.round(from.x + (to.x - from.x) * t);
+    const z = Math.round(from.z + (to.z - from.z) * t);
+    for (let dz = 0; dz < width; dz++) {
+      for (let dx = 0; dx < width; dx++) {
+        const gx = x + dx;
+        const gz = z + dz;
+        if (gx >= 1 && gx < gridSize - 1 && gz >= 1 && gz < gridSize - 1) {
+          set.add(`${gx},${gz}`);
+        }
+      }
+    }
+  }
+}
+
+function makeWindmillPastoral(buildings, layout, gridSize) {
+  const windmill = buildings.find(b => b.type === 'windmill');
+  const farmlandCells = new Set();
+  const wheatCells = new Set();
+  const gardenCells = new Set();
+  const roadCells = new Set();
+  const reserveCells = new Set();
+  const avoidCells = new Set();
+
+  if (!windmill) {
+    return { farmlandCells, wheatCells, gardenCells, roadCells, reserveCells, avoidCells, petSpawns: {} };
+  }
+
+  const wx = windmill.gridX;
+  const wz = windmill.gridZ;
+  const windmillCenter = {
+    x: Math.round(wx + windmill.width / 2),
+    z: Math.round(wz + windmill.depth / 2),
+  };
+
+  // Small farm plots near the windmill.
+  const smallFarm = { x: Math.max(2, wx + 5), z: Math.max(2, wz - 2), w: 4, d: 5 };
+  addRect(farmlandCells, smallFarm.x, smallFarm.z, smallFarm.w, smallFarm.d, gridSize);
+
+  // Larger rice/farmland visual core.
+  const riceField = { x: Math.max(2, wx + 5), z: Math.min(gridSize - 11, wz + 5), w: 8, d: 7 };
+  addRect(farmlandCells, riceField.x, riceField.z, riceField.w, riceField.d, gridSize);
+
+  // Golden wheat patch: close to the farm path, visually distinct from crop land.
+  const wheatField = { x: Math.max(2, wx + 11), z: Math.max(2, wz - 4), w: 6, d: 7 };
+  addRect(wheatCells, wheatField.x, wheatField.z, wheatField.w, wheatField.d, gridSize);
+
+  // Small flower garden for momo / yafo.
+  const garden = { x: Math.max(2, wx - 4), z: Math.max(2, wz + 6), w: 5, d: 5 };
+  addRect(gardenCells, garden.x, garden.z, garden.w, garden.d, gridSize);
+
+  // 3-4 future building pads, each roughly 5x8. Keep as grass/dirt reserve, no buildings.
+  const reserves = [
+    { x: Math.max(2, wx + 13), z: Math.max(2, wz - 6), w: 5, d: 8 },
+    { x: Math.max(2, wx + 14), z: Math.min(gridSize - 10, wz + 4), w: 5, d: 8 },
+    { x: Math.max(2, wx - 6), z: Math.min(gridSize - 10, wz + 12), w: 5, d: 8 },
+  ];
+  for (const r of reserves) addRect(reserveCells, r.x, r.z, r.w, r.d, gridSize);
+
+  const farmCenter = { x: smallFarm.x + 2, z: smallFarm.z + 2 };
+  const riceCenter = { x: riceField.x + 4, z: riceField.z + 3 };
+  const wheatCenter = { x: wheatField.x + 3, z: wheatField.z + 3 };
+  const gardenCenter = { x: garden.x + 2, z: garden.z + 2 };
+  addSoftRoad(roadCells, windmillCenter, farmCenter, gridSize);
+  addSoftRoad(roadCells, farmCenter, riceCenter, gridSize);
+  addSoftRoad(roadCells, farmCenter, wheatCenter, gridSize);
+  addSoftRoad(roadCells, windmillCenter, gardenCenter, gridSize);
+  addSoftRoad(roadCells, gardenCenter, riceCenter, gridSize);
+
+  for (const set of [farmlandCells, wheatCells, gardenCells, roadCells]) {
+    for (const key of set) avoidCells.add(key);
+  }
+
+  return {
+    farmlandCells,
+    wheatCells,
+    gardenCells,
+    roadCells,
+    reserveCells,
+    avoidCells,
+    anchors: { windmillCenter, farmCenter, riceCenter, wheatCenter, gardenCenter },
+    petSpawns: {
+      momo: { gridX: gardenCenter.x, gridZ: gardenCenter.z + 2 },
+      yafo: { gridX: gardenCenter.x - 2, gridZ: gardenCenter.z },
+      mok: { gridX: wheatCenter.x + 1, gridZ: wheatCenter.z },
+    },
+  };
+}
+
+function addOrthogonalRoad(set, from, to, gridSize, width = 2) {
+  const stepX = from.x <= to.x ? 1 : -1;
+  const stepZ = from.z <= to.z ? 1 : -1;
+  for (let x = from.x; x !== to.x + stepX; x += stepX) {
+    for (let w = 0; w < width; w++) {
+      if (x >= 1 && x < gridSize - 1 && from.z + w >= 1 && from.z + w < gridSize - 1) {
+        set.add(`${x},${from.z + w}`);
+      }
+    }
+  }
+  for (let z = from.z; z !== to.z + stepZ; z += stepZ) {
+    for (let w = 0; w < width; w++) {
+      if (to.x + w >= 1 && to.x + w < gridSize - 1 && z >= 1 && z < gridSize - 1) {
+        set.add(`${to.x + w},${z}`);
+      }
+    }
+  }
+}
+
+function makeChurchTown(buildings, gridSize) {
+  const church = buildings.find(b => b.type === 'church');
+  const temple = buildings.find(b => b.type === 'temple');
+  const squareCells = new Set();
+  const roadCells = new Set();
+  const avoidCells = new Set();
+  const trees = [];
+  const decorations = [];
+
+  if (!church) {
+    return { squareCells, roadCells, avoidCells, trees, decorations, petSpawns: {} };
+  }
+
+  const square = {
+    x: Math.min(gridSize - 11, Math.max(2, church.gridX - 1)),
+    z: Math.min(gridSize - 12, Math.max(16, church.gridZ + church.depth + 6)),
+    w: 9,
+    d: 9,
+  };
+  addRect(squareCells, square.x, square.z, square.w, square.d, gridSize);
+
+  const center = {
+    x: square.x + Math.floor(square.w / 2),
+    z: square.z + Math.floor(square.d / 2),
+  };
+  const churchDoor = {
+    x: Math.round(church.gridX + church.width / 2),
+    z: church.gridZ + church.depth,
+  };
+  const templeDoor = temple
+    ? { x: Math.round(temple.gridX + temple.width / 2), z: temple.gridZ - 1 }
+    : { x: center.x, z: Math.min(gridSize - 2, center.z + 12) };
+
+  addOrthogonalRoad(roadCells, churchDoor, { x: center.x, z: square.z }, gridSize);
+  addOrthogonalRoad(roadCells, { x: center.x, z: square.z + square.d - 1 }, templeDoor, gridSize);
+  addOrthogonalRoad(roadCells, { x: center.x, z: center.z }, { x: square.x - 2, z: center.z }, gridSize);
+  for (const key of squareCells) roadCells.delete(key);
+
+  for (const set of [squareCells, roadCells]) {
+    for (const key of set) avoidCells.add(key);
+  }
+
+  const treePoints = [
+    [square.x - 1, square.z - 1],
+    [square.x + square.w, square.z - 1],
+    [square.x - 1, square.z + square.d],
+    [square.x + square.w, square.z + square.d],
+  ];
+  for (let i = 0; i < treePoints.length; i++) {
+    const [gridX, gridZ] = treePoints[i];
+    trees.push({ gridX, gridZ, type: i % 2 === 0 ? 'normal' : 'apple' });
+    avoidCells.add(`${gridX},${gridZ}`);
+  }
+
+  const flowerPoints = [
+    [square.x - 1, center.z - 2],
+    [square.x - 1, center.z + 2],
+    [square.x + square.w, center.z - 2],
+    [square.x + square.w, center.z + 2],
+  ];
+  for (let i = 0; i < flowerPoints.length; i++) {
+    const [gridX, gridZ] = flowerPoints[i];
+    decorations.push({
+      type: i % 2 === 0 ? 'pinkFlower' : 'grassClump',
+      gridX,
+      gridZ,
+      offsetX: 0,
+      offsetY: 0,
+      offsetZ: 0,
+      scale: 0.9,
+      rotation: i * Math.PI * 0.5,
+    });
+    avoidCells.add(`${gridX},${gridZ}`);
+  }
+
+  return {
+    squareCells,
+    roadCells,
+    avoidCells,
+    trees,
+    decorations,
+    center,
+    campfire: { gridX: center.x, gridZ: center.z },
+    roamBounds: {
+      minX: square.x + 1,
+      maxX: square.x + square.w - 2,
+      minZ: square.z + 1,
+      maxZ: square.z + square.d - 2,
+    },
+    petSpawns: {
+      fangk: { gridX: center.x - 3, gridZ: center.z - 2 },
+      lingq: { gridX: center.x + 3, gridZ: center.z - 2 },
+      mako: { gridX: center.x, gridZ: center.z + 3 },
+    },
+  };
+}
+
+function makeForestTemple(buildings, gridSize) {
+  const temple = buildings.find(b => b.type === 'temple');
+  const avoidCells = new Set();
+  const deviceCells = new Set();
+  if (!temple) return { avoidCells, deviceCells };
+
+  const trophy = {
+    gridX: Math.round(temple.gridX + temple.width / 2),
+    gridZ: Math.min(gridSize - 2, temple.gridZ + temple.depth + 1),
+  };
+  const tent = {
+    gridX: Math.min(gridSize - 2, temple.gridX + temple.width + 1),
+    gridZ: Math.round(temple.gridZ + temple.depth / 2),
+  };
+
+  for (const point of [trophy, tent]) {
+    for (let dz = -1; dz <= 1; dz++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        const key = `${point.gridX + dx},${point.gridZ + dz}`;
+        avoidCells.add(key);
+        deviceCells.add(key);
+      }
+    }
+  }
+
+  return {
+    trophy,
+    tent,
+    avoidCells,
+    deviceCells,
+  };
+}
+
 // ---- clearance expansion ----
 
 function expandClearance(footprintCells, expandBy, gridSize) {
@@ -160,10 +413,10 @@ function expandClearance(footprintCells, expandBy, gridSize) {
 
 // ---- vegetation placement ----
 
-const TREE_CAP = 200;
-const GRASS_CAP = 80;
+const TREE_CAP = 260;
+const GRASS_CAP = 140;
 
-export function placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed) {
+export function placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed, extraAvoidCells = new Set()) {
   const rand = mulberry32(seed);
   const clearanceSet = expandClearance(buildingCells, 8, gridSize);
   const trees = [];
@@ -177,6 +430,7 @@ export function placeVegetation(layout, riverData, buildingCells, roadCells, gri
       const key = `${x},${z}`;
       if (clearanceSet.has(key)) continue;
       if (roadCells.has(key)) continue;
+      if (extraAvoidCells.has(key)) continue;
 
       const side = getRiverSide(x, z, riverData);
       const edgeDist = Math.min(x, z, gridSize - 1 - x, gridSize - 1 - z);
@@ -203,9 +457,9 @@ export function placeVegetation(layout, riverData, buildingCells, roadCells, gri
     if (c.isEdge) {
       treeChance = 0.80;
     } else if (c.side === 'left') {
-      treeChance = 0.45;
+      treeChance = 0.50;
     } else {
-      treeChance = 0.15;
+      treeChance = 0.22;
     }
 
     if (trees.length < TREE_CAP && !occupied.has(cellKey) && rand() < treeChance) {
@@ -229,6 +483,76 @@ export function placeVegetation(layout, riverData, buildingCells, roadCells, gri
   return { trees, grasses };
 }
 
+function makePastoralDecorations(pastoral, gridSize, seed) {
+  const rand = mulberry32(seed);
+  const decorations = [];
+  const occupied = new Set();
+
+  function has(set, x, z) {
+    return set?.has(`${x},${z}`);
+  }
+
+  function add(type, x, z, options = {}) {
+    const {
+      chance = 1,
+      ordered = false,
+      offsetY = 0,
+    } = options;
+    const key = `${x},${z}`;
+    if (occupied.has(key) || rand() > chance) return;
+    if (x < 1 || x >= gridSize - 1 || z < 1 || z >= gridSize - 1) return;
+    decorations.push({
+      type,
+      gridX: x,
+      gridZ: z,
+      offsetX: ordered ? 0 : (rand() - 0.5) * 1.2,
+      offsetY,
+      offsetZ: ordered ? 0 : (rand() - 0.5) * 1.2,
+      scale: ordered ? 1 : 0.78 + rand() * 0.48,
+      rotation: ordered ? 0 : rand() * Math.PI * 2,
+    });
+    occupied.add(key);
+  }
+
+  // Garden rows alternate between blue tulips and trumpet flowers.
+  for (const key of pastoral.gardenCells || []) {
+    const [x, z] = key.split(',').map(Number);
+    const type = (x + z) % 2 === 0 ? 'blueTulips' : 'trumpetFlower';
+    add(type, x, z, { ordered: true });
+  }
+
+  // Wheat is planted in a regular grid. Sink it slightly so its built-in
+  // ground plate sits below the farmland tile surface.
+  for (const key of pastoral.wheatCells || []) {
+    const [x, z] = key.split(',').map(Number);
+    add('wheatField', x, z, { ordered: true, offsetY: -0.12 });
+  }
+
+  // Vegetable plots alternate carrot and grass rows.
+  for (const key of pastoral.farmlandCells || []) {
+    const [x, z] = key.split(',').map(Number);
+    const type = (x + z) % 2 === 0 ? 'giantCarrot' : 'grassClump';
+    add(type, x, z, { ordered: true });
+  }
+
+  // Outside the three cultivated areas, only scatter the established
+  // ambient grass and pink flower assets.
+  const anchors = pastoral.anchors || {};
+  for (const anchor of [anchors.windmillCenter, anchors.farmCenter, anchors.riceCenter, anchors.wheatCenter, anchors.gardenCenter]) {
+    if (!anchor) continue;
+    for (let i = 0; i < 8; i++) {
+      const x = anchor.x + Math.round((rand() - 0.5) * 10);
+      const z = anchor.z + Math.round((rand() - 0.5) * 10);
+      if (has(pastoral.roadCells, x, z) || has(pastoral.reserveCells, x, z)) continue;
+      if (has(pastoral.farmlandCells, x, z) || has(pastoral.wheatCells, x, z) || has(pastoral.gardenCells, x, z)) continue;
+      const type = rand() < 0.62 ? 'grassClump' : 'pinkFlower';
+      add(type, x, z, { chance: 0.45 });
+    }
+  }
+
+  return decorations;
+}
+
 // ---- master orchestrator ----
 
 export function generateSceneLayout(layout, gridSize, seed = 42) {
@@ -240,7 +564,14 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
 
   const { buildings, buildingCells } = placeBuildings(layout, riverData, gridSize);
   const roadCells = generateRoad(layout, riverData, gridSize, buildingCells);
-  const { trees, grasses } = placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed + 1);
+  const pastoral = makeWindmillPastoral(buildings, layout, gridSize);
+  const town = makeChurchTown(buildings, gridSize);
+  const forestTemple = makeForestTemple(buildings, gridSize);
+  for (const key of pastoral.roadCells) roadCells.add(key);
+  const vegetationAvoid = new Set([...pastoral.avoidCells, ...town.avoidCells, ...forestTemple.avoidCells]);
+  const { trees, grasses } = placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed + 1, vegetationAvoid);
+  trees.push(...town.trees);
+  const decorations = [...makePastoralDecorations(pastoral, gridSize, seed + 9), ...town.decorations];
 
   // Modified layout: dirt under road, irregular rock scatter under buildings
   const modifiedLayout = layout.map(row => [...row]);
@@ -248,6 +579,38 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
   for (const key of roadCells) {
     const [gx, gz] = key.split(',').map(Number);
     if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'dirt';
+  }
+  for (const key of pastoral.farmlandCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'farmland';
+  }
+  for (const key of pastoral.wheatCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'farmland';
+  }
+  for (const key of pastoral.gardenCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'grass';
+  }
+  for (const key of town.roadCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'rock';
+  }
+  for (const key of town.squareCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water') modifiedLayout[gz][gx] = 'brick';
+  }
+  for (const key of forestTemple.deviceCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz]?.[gx] && modifiedLayout[gz][gx] !== 'water') {
+      modifiedLayout[gz][gx] = 'rock';
+    }
+  }
+  for (const key of pastoral.reserveCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz][gx] !== 'water' && modifiedLayout[gz][gx] !== 'farmland') {
+      modifiedLayout[gz][gx] = rockRand() < 0.18 ? 'dirt' : 'grass';
+    }
   }
   // Rock placement under buildings: footprint + 1-ring = 100% rock (solid base),
   // outer rings = random scatter for organic transition to surrounding terrain.
@@ -272,5 +635,5 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
     }
   }
 
-  return { buildings, trees, grasses, roadCells, modifiedLayout };
+  return { buildings, trees, grasses, decorations, roadCells, modifiedLayout, pastoral, town, forestTemple };
 }

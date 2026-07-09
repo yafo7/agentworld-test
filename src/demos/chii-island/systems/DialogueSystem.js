@@ -40,6 +40,10 @@ export function createDialogueSystem() {
   let _choiceActive = false;
   let _choiceIndex = 0;
   let _choiceCallbacks = null; // { onSelect(choiceKey) }
+  let _customResolve = null;
+  let _customChoiceOptions = null;
+  let _customInputMode = false;
+  let _customMessageMode = false;
 
   // --- callbacks ---
   let _onTriggerConstruction = null;
@@ -178,7 +182,7 @@ export function createDialogueSystem() {
           pointer-events: auto;
           background: #fdf6e3; border: 3px solid #2a2330;
           border-radius: 16px; box-shadow: 6px 6px 0 rgba(42,35,48,0.3);
-          padding: 20px 24px; margin-bottom: 10%;
+          padding: 16px 22px; margin-bottom: 22px;
           min-width: 420px; max-width: 640px; width: 90vw;
           font-family: "Microsoft YaHei","PingFang SC",sans-serif;
           color: #2a2330;
@@ -260,6 +264,12 @@ export function createDialogueSystem() {
   function _submitInput() {
     const val = _textInput.value.trim();
     if (!val) return;
+    if (_customInputMode && _customResolve) {
+      const resolve = _customResolve;
+      _closeCustom(false);
+      resolve(val);
+      return;
+    }
     _playerDescription = val;
     _playerAccepted = true;
     _inputRow.style.display = 'none';
@@ -271,6 +281,14 @@ export function createDialogueSystem() {
   function _onKeydown(e) {
     if (!_active) return;
     if (_inputActive) return; // let input handle itself
+
+    if (_customMessageMode && _customResolve && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      const resolve = _customResolve;
+      _closeCustom(false);
+      resolve(true);
+      return;
+    }
 
     // Choice navigation
     if (_choiceActive) {
@@ -458,6 +476,13 @@ export function createDialogueSystem() {
   function _selectChoice(index) {
     const options = _choicesEl ? _choicesEl.querySelectorAll('.dialogue-choice-btn') : [];
     if (index < 0 || index >= options.length) return;
+    if (_customChoiceOptions && _customResolve) {
+      const option = _customChoiceOptions[index];
+      const resolve = _customResolve;
+      _closeCustom(false);
+      resolve({ index, key: option?.key ?? String(index), label: option?.label ?? String(option) });
+      return;
+    }
     // Find the next edge matching this choice index
     const node = _currentGraph.nodes[_currentNodeIndex];
     const choiceEdges = (_currentGraph.edges || []).filter(e => e.from === node.id);
@@ -507,6 +532,13 @@ export function createDialogueSystem() {
 
   function hide() {
     if (!_active) return;
+    if (_customResolve) {
+      const resolve = _customResolve;
+      _customResolve = null;
+      _customChoiceOptions = null;
+      _customInputMode = false;
+      resolve(null);
+    }
     _active = false;
     _inputActive = false;
     _thinkingActive = false;
@@ -519,6 +551,92 @@ export function createDialogueSystem() {
     if (_choicesEl) _choicesEl.style.display = 'none';
 
     if (_onDialogueEnd) _onDialogueEnd();
+  }
+
+  function _openCustomBase(speakerName, text) {
+    _ensureContainer();
+    _active = true;
+    _currentGraphName = 'custom';
+    _currentGraph = null;
+    _currentNodeIndex = 0;
+    _buildingEntity = null;
+    _playerAccepted = false;
+    _playerDescription = '';
+    _thinkingActive = false;
+    _thinkingTimer = 0;
+    _twText = '';
+    _twDone = true;
+    _inputActive = false;
+    _choiceActive = false;
+    _customChoiceOptions = null;
+    _customInputMode = false;
+    _customMessageMode = false;
+
+    _root.classList.add('active');
+    _speakerDot.style.background = '#e9b44c';
+    _speakerName.textContent = speakerName || _petSpeakerName || 'momo';
+    _textEl.textContent = text || '';
+    _cursorEl.classList.add('done');
+    _hintEl.textContent = 'Esc 关闭';
+  }
+
+  function _closeCustom(notifyEnd = true) {
+    _active = false;
+    _inputActive = false;
+    _thinkingActive = false;
+    _choiceActive = false;
+    _customChoiceOptions = null;
+    _customInputMode = false;
+    _customMessageMode = false;
+    _customResolve = null;
+    _twText = '';
+    _twDone = true;
+
+    if (_root) _root.classList.remove('active');
+    if (_inputRow) _inputRow.style.display = 'none';
+    if (_choicesEl) _choicesEl.style.display = 'none';
+    if (notifyEnd && _onDialogueEnd) _onDialogueEnd();
+  }
+
+  function askChoice({ speakerName, text, options }) {
+    return new Promise((resolve) => {
+      _openCustomBase(speakerName, text);
+      _customResolve = resolve;
+      _customChoiceOptions = (options || []).map((option, index) => {
+        if (typeof option === 'string') return { key: String(index), label: option };
+        return { key: option.key ?? String(index), label: option.label ?? String(option.label || option.key || index) };
+      });
+      _choiceActive = true;
+      _choiceIndex = 0;
+      _inputRow.style.display = 'none';
+      _choicesEl.style.display = 'flex';
+      _hintEl.textContent = '↑↓ 选择 · Enter 确认 · Esc 关闭';
+      _renderChoices(_customChoiceOptions);
+    });
+  }
+
+  function askInput({ speakerName, text, placeholder }) {
+    return new Promise((resolve) => {
+      _openCustomBase(speakerName, text);
+      _customResolve = resolve;
+      _customInputMode = true;
+      _inputActive = true;
+      _choicesEl.style.display = 'none';
+      _inputRow.style.display = 'flex';
+      _textInput.placeholder = placeholder || '输入具体描述...';
+      _textInput.value = '';
+      _hintEl.textContent = '输入后按 Enter 发送 · Esc 关闭';
+      setTimeout(() => _textInput.focus(), 100);
+    });
+  }
+
+  function say({ speakerName, text }) {
+    return new Promise((resolve) => {
+      _openCustomBase(speakerName, text);
+      _customResolve = resolve;
+      _customMessageMode = true;
+      _hintEl.textContent = 'Enter / Space 继续 · Esc 关闭';
+    });
   }
 
   function update(dt) {
@@ -578,6 +696,9 @@ export function createDialogueSystem() {
 
   return {
     show,
+    askChoice,
+    askInput,
+    say,
     hide,
     update,
     isActive,

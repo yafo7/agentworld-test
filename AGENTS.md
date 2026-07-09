@@ -227,6 +227,60 @@ Rules:
 - Chii should read its local synced runtime copy in `public/generated/`.
 - Do not create more ad hoc asset entry points.
 
+### Two Asset Workflows
+
+Chii Island currently has two valid asset workflows. Keep them separate.
+
+#### 1. User-Controlled Studio Workflow
+
+Use this workflow when the user says they edited, refined, animated, or mounted something in Voxel Studio / `3d-generate`.
+
+```text
+User edits in Voxel Studio
+↓
+Studio saves/publishes edited/runtime asset
+↓
+Codex syncs only Chii-used assets
+↓
+public/generated/
+↓
+Chii Island uses the synced local runtime copy
+```
+
+Rules:
+
+- The user owns the creative operation inside Studio.
+- Codex should not regenerate or reinterpret the asset.
+- Codex should refresh Chii by using the project sync workflow/skill.
+- Sync only assets that Chii Island actually uses; do not pull the whole Studio library by default.
+- Treat the synced `public/generated/` runtime copy as the local game input.
+
+#### 2. Codex Autonomous Backend Workflow
+
+Use this workflow when the requested gameplay requires Codex/the game to generate, refine, animate, create VFX, or mount/add parts directly.
+
+```text
+Chii gameplay event or pet action
+↓
+Codex reads `api-reference.md` and existing API wrappers
+↓
+Call the Voxel Studio backend API
+↓
+Receive model / animation / VFX / mount result
+↓
+Apply it to the current Chii scene
+↓
+Persist through the existing local generated/runtime path when needed
+```
+
+Rules:
+
+- Before adding or changing autonomous backend calls, read `api-reference.md` and reuse existing wrappers such as `src/backend/voxelApi.js`.
+- This workflow is allowed to call generate/refine/animation/VFX/mount APIs directly.
+- Do not route autonomous gameplay through manual Studio editing.
+- Keep prompts short, concrete, and in Chinese for pet-autonomous actions unless the user asks otherwise.
+- For higher-quality autonomous model generation, prefer the GPT pro-capable backend mode when the wrapper supports provider/mode selection.
+
 ### 3d-generate / Studio Current API Understanding
 
 Local Studio is the sibling project `../3d-generate`, normally served on port `8000`.

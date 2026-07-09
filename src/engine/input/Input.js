@@ -18,7 +18,14 @@ export class Input {
     this.pointerLocked = false;
     this.pointerLockEnabled = true;
 
+    this._isTypingTarget = (target) => {
+      if (!target) return false;
+      const tag = target.tagName;
+      return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable;
+    };
+
     this._onKeyDown = (e) => {
+      if (this._isTypingTarget(e.target)) return;
       if (!this.keys.has(e.code)) this.justDown.add(e.code);
       this.keys.add(e.code);
     };

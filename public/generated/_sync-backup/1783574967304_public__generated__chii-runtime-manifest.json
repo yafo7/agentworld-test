@@ -1,0 +1,121 @@
+{
+  "syncedAt": "2026-07-09T05:21:31.290Z",
+  "studio": "http://localhost:8000",
+  "source": "runtime",
+  "publish": false,
+  "assets": [
+    {
+      "id": "campfire",
+      "label": "campfire",
+      "assetId": "m_1783573173496_88n5kf",
+      "commit": "2026-07-09_12-58-15",
+      "folder": "一个由原木条堆起来的篝火_1.3m",
+      "modelOut": "public/generated/models/campfire.json",
+      "animations": [
+        {
+          "name": "burn",
+          "outPath": "public/generated/animations/campfire_burn.json",
+          "studioName": "篝火燃烧"
+        }
+      ],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "fangk",
+      "label": "fangk",
+      "assetId": "m_1782981320708_dyg5gl",
+      "commit": "2026-07-02_16-32-30",
+      "folder": "一位穿着黑色西装的建筑设计师_2.8m",
+      "modelOut": "public/generated/models/fangk.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/fangk_idle.json",
+          "studioName": "idle"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/fangk_run.json",
+          "studioName": "run"
+        },
+        {
+          "name": "construct",
+          "outPath": "public/generated/animations/fangk_construct.json",
+          "studioName": "construct"
+        },
+        {
+          "name": "dance",
+          "outPath": "public/generated/animations/fangk_dance.json",
+          "studioName": "fangk跳舞"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "mako",
+      "label": "mako",
+      "assetId": "m_1782980861175_k8v1ft",
+      "commit": "2026-07-02_16-25-32",
+      "folder": "一匹棕色的马儿，身上穿着7号红色球衣_2.1m",
+      "modelOut": "public/generated/models/mako.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/mako_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/mako_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/mako_jump.json",
+          "studioName": "跳跃"
+        },
+        {
+          "name": "dance",
+          "outPath": "public/generated/animations/mako_dance.json",
+          "studioName": "mako跳舞"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
+      "id": "lingq",
+      "label": "lingq",
+      "assetId": "m_1782978762044_zuag8m",
+      "commit": "2026-07-02_15-49-39",
+      "folder": "一只孔雀_3.0m",
+      "modelOut": "public/generated/models/lingq.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/lingq_idle.json",
+          "studioName": "呼吸摇摆"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/lingq_run.json",
+          "studioName": "奔跑"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/lingq_jump.json",
+          "studioName": "跳跃"
+        },
+        {
+          "name": "dance",
+          "outPath": "public/generated/animations/lingq_dance.json",
+          "studioName": "lingq跳舞"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    }
+  ]
+}

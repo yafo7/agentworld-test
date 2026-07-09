@@ -1,0 +1,19 @@
+{
+  "syncedAt": "2026-07-09T05:18:19.088Z",
+  "studio": "http://localhost:8000",
+  "source": "runtime",
+  "publish": false,
+  "assets": [
+    {
+      "id": "campfire",
+      "label": "campfire",
+      "assetId": "m_1783573173496_88n5kf",
+      "commit": "2026-07-09_12-58-15",
+      "folder": "一个由原木条堆起来的篝火_1.3m",
+      "modelOut": "public/generated/models/campfire.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    }
+  ]
+}
