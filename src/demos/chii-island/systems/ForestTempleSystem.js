@@ -4,7 +4,8 @@ import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { applyAnimation } from '../../../engine/animation/player.js';
 import { generateAnimation, generateModel } from '../../../backend/voxelApi.js';
 import { callBackendChat } from '../../../backend/chatApi.js';
-import { saveAnimationForModel, saveGeneratedModel } from '../data/generatedLibrary.js';
+import { getGeneratedAsset, saveAnimationForModel, saveGeneratedModel } from '../data/generatedLibrary.js';
+import { getAIWorldEvents, recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 
 const INTERACT_RANGE = 6;
 
@@ -55,6 +56,8 @@ export class ForestTempleSystem {
     tentEntity,
     trophyWaitPlan,
     getPets,
+    onPetSpawned = null,
+    runtimeStatus = null,
   }) {
     this.scene = scene;
     this.physics = physics;
@@ -65,12 +68,15 @@ export class ForestTempleSystem {
     this.tent = tentEntity;
     this.trophyWaitPlan = normalizePlan(trophyWaitPlan);
     this.getPets = getPets;
+    this.onPetSpawned = onPetSpawned;
+    this.runtimeStatus = runtimeStatus;
 
     this.trophyState = 'idle';
     this.tentState = 'idle';
     this.campingPet = null;
     this.campingParticles = null;
     this.campingToken = 0;
+    this.campingJobId = null;
     this.trophyAnimTime = 0;
     this.trophyPoseMap = null;
     this.generatedPets = [];
@@ -87,7 +93,13 @@ export class ForestTempleSystem {
     if (this.trophy && this.trophyState === 'idle' && followingPet) {
       const distance = horizontalDistance(playerPosition, this.trophy.mesh.position);
       if (distance <= range) {
-        hits.push({ type: 'trophy', distance, label: '向奖杯许愿', pet: followingPet });
+        hits.push({
+          type: 'trophy',
+          distance,
+          position: this.trophy.mesh.position,
+          label: '向奖杯许愿',
+          pet: followingPet,
+        });
       }
     }
 
@@ -98,6 +110,7 @@ export class ForestTempleSystem {
         hits.push({
           type: 'tent',
           distance,
+          position: this.tent.mesh.position,
           label: this.tentState === 'camping' ? '结束露营' : '和宠物一起露营',
           pet: tentPet,
         });
@@ -125,6 +138,8 @@ export class ForestTempleSystem {
     pet._hasIntroduced = true;
     pet.hasIntroduced = true;
     pet._initialInteractionDone = true;
+    const event = getAIWorldEvents('forest_pet').find(item => item.assetId === pet._generatedAssetId);
+    if (event) recordAIWorldEvent({ ...event, hasIntroduced: true });
     return true;
   }
 
@@ -178,13 +193,16 @@ export class ForestTempleSystem {
       companion.followTarget?.(this.player.mesh, 3.2, 6);
       this.trophyState = 'summoning';
       this.trophyAnimTime = 0;
+      const summonJobId = this.runtimeStatus?.startJob('森林神殿正在召唤', '整理你们的愿望');
       this._runSummon({
         playerPetWish,
         playerMoodWish,
         companionWish,
         companionProfile: companion._profile || {},
+        summonJobId,
       }).catch(error => {
         console.warn('[ForestTemple] summon failed:', error.message);
+        this.runtimeStatus?.failJob(summonJobId, error);
         this._stopTrophyAnimation();
         this.trophyState = 'idle';
       });
@@ -281,9 +299,11 @@ export class ForestTempleSystem {
   }
 
   async _runSummon(context) {
+    this.runtimeStatus?.updateJob(context.summonJobId, '提炼新宠物外形');
     const finalModelPrompt = await this._makeFinalPrompt(context);
     if (!finalModelPrompt) throw new Error('GPT 未生成有效宠物外形描述');
 
+    this.runtimeStatus?.updateJob(context.summonJobId, 'AI 正在生成新宠物');
     const [{ modelJson }, petName, specialPrompt] = await Promise.all([
       generateModel(finalModelPrompt, 'gpt', 'standard'),
       this._makePetName(finalModelPrompt),
@@ -297,11 +317,13 @@ export class ForestTempleSystem {
       ['special', specialPrompt, 2.5, true],
     ];
     const animations = {};
+    this.runtimeStatus?.updateJob(context.summonJobId, '正在生成四种动作');
     for (const [name, prompt, duration, particles] of animationRequests) {
       const result = await generateAnimation(modelJson, prompt, duration, 'gpt', particles);
       animations[name] = result.plan;
     }
 
+    this.runtimeStatus?.updateJob(context.summonJobId, '正在保存宠物资产');
     const { assetId } = await saveGeneratedModel({
       name: petName,
       description: finalModelPrompt,
@@ -317,7 +339,7 @@ export class ForestTempleSystem {
       });
     }
 
-    this._spawnGeneratedPet({
+    const pet = this._spawnGeneratedPet({
       petName,
       modelJson,
       animations,
@@ -326,19 +348,33 @@ export class ForestTempleSystem {
       specialPrompt,
       assetId,
     });
+    recordAIWorldEvent({
+      id: `forest_pet:${assetId}`,
+      type: 'forest_pet',
+      assetId,
+      petName,
+      finalModelPrompt,
+      specialPrompt,
+      mood: cleanLine(context.playerMoodWish, 16),
+      position: pet.mesh.position.toArray(),
+      hasIntroduced: false,
+    });
     this._stopTrophyAnimation();
     this.trophyState = 'complete';
+    this.runtimeStatus?.completeJob(context.summonJobId, `${petName} 已经来到奇异岛`);
   }
 
-  _spawnGeneratedPet({ petName, modelJson, animations, finalModelPrompt, context, specialPrompt, assetId }) {
+  _spawnGeneratedPet({ petName, modelJson, animations, finalModelPrompt, context, specialPrompt, assetId, position = null, hasIntroduced = false }) {
     const pet = new ArchitectNPC();
-    const spawn = this.trophy.mesh.position.clone().add(new THREE.Vector3(-5.5, 0, 3.5));
+    const spawn = position
+      ? new THREE.Vector3(...position)
+      : this.trophy.mesh.position.clone().add(new THREE.Vector3(-5.5, 0, 3.5));
     pet.mesh.name = petName;
     pet._petId = assetId;
     pet._petName = petName;
     pet._generatedAssetId = assetId;
-    pet._hasIntroduced = false;
-    pet.hasIntroduced = false;
+    pet._hasIntroduced = hasIntroduced;
+    pet.hasIntroduced = hasIntroduced;
     pet._initialInteractionDone = true;
     pet.loadModelFromJson(modelJson);
     for (const [name, plan] of Object.entries(animations)) pet.loadAnimation(name, plan);
@@ -362,8 +398,8 @@ export class ForestTempleSystem {
       name: petName,
       profile,
       spawn: [spawn.x, 0, spawn.z],
-      initialState: 'idle',
-      region: 'forest_generated',
+      initialState: 'free_roam',
+      region: 'church_town',
       bounds: {
         minX: spawn.x - 10,
         maxX: spawn.x + 10,
@@ -372,6 +408,38 @@ export class ForestTempleSystem {
       },
     });
     this.generatedPets.push(pet);
+    this.onPetSpawned?.(pet);
+    return pet;
+  }
+
+  async restorePersistedPets() {
+    const events = getAIWorldEvents('forest_pet');
+    for (const event of events) {
+      if (this.generatedPets.some(pet => pet._generatedAssetId === event.assetId)) continue;
+      try {
+        const asset = await getGeneratedAsset(event.assetId);
+        if (!asset.modelJson) continue;
+        const animations = {};
+        for (const animation of asset.animations || []) {
+          const key = animation.name || animation.type;
+          if (key) animations[key] = animation.plan;
+        }
+        this._spawnGeneratedPet({
+          petName: event.petName || asset.modelJson.name || '新朋友',
+          modelJson: asset.modelJson,
+          animations,
+          finalModelPrompt: event.finalModelPrompt || asset.modelJson.name || '森林宠物',
+          context: { playerMoodWish: event.mood || '', companionProfile: {} },
+          specialPrompt: event.specialPrompt || '开心挥手',
+          assetId: event.assetId,
+          position: event.position,
+          hasIntroduced: !!event.hasIntroduced,
+        });
+        this.trophyState = 'complete';
+      } catch (error) {
+        console.warn('[ForestTemple] restore pet failed:', event.assetId, error.message);
+      }
+    }
   }
 
   async _interactTent(pet) {
@@ -392,13 +460,17 @@ export class ForestTempleSystem {
     const token = ++this.campingToken;
     pet.stopFollow?.();
     pet._petState = 'camping';
+    this.campingJobId = this.runtimeStatus?.startJob(`${pet._petName} 正在准备露营`, '走到帐篷旁');
     const campPoint = this.tent.mesh.position.clone().add(new THREE.Vector3(0, 0, 6));
     pet.walkTo?.(campPoint.x, campPoint.z, 4);
 
     if (!pet._animPlans?.camping) {
       this._prepareCampingAnimation(pet, token).catch(error => {
         console.warn('[ForestTemple] camping animation failed:', error.message);
+        this.runtimeStatus?.failJob(this.campingJobId, error);
       });
+    } else {
+      this.runtimeStatus?.completeJob(this.campingJobId, '露营舞会开始了');
     }
     return true;
   }
@@ -406,9 +478,11 @@ export class ForestTempleSystem {
   async _prepareCampingAnimation(pet, token) {
     const modelJson = pet._originalModelJson;
     if (!modelJson) throw new Error('宠物缺少模型数据');
+    this.runtimeStatus?.updateJob(this.campingJobId, 'AI 正在准备跳舞动作');
     const result = await generateAnimation(modelJson, '宠物在帐篷旁开心跳舞', 3, 'gpt', true);
     if (token !== this.campingToken) return;
     pet.loadAnimation('camping', result.plan);
+    this.runtimeStatus?.completeJob(this.campingJobId, '露营舞会开始了');
   }
 
   _startCampingDance() {
@@ -435,6 +509,7 @@ export class ForestTempleSystem {
       pet.followTarget?.(this.player.mesh, 3.2, 6);
     }
     this.campingPet = null;
+    this.campingJobId = null;
     this.tentState = 'idle';
   }
 

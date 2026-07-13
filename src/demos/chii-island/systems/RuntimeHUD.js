@@ -1,0 +1,93 @@
+export class RuntimeHUD {
+  constructor({ renderer, physics }) {
+    this.renderer = renderer;
+    this.physics = physics;
+    this.jobEl = document.getElementById('runtime-job');
+    this.jobTitleEl = document.getElementById('runtime-job-title');
+    this.jobStageEl = document.getElementById('runtime-job-stage');
+    this.regionEl = document.getElementById('runtime-region');
+    this.followerEl = document.getElementById('runtime-follower');
+    this.perfEl = document.getElementById('runtime-perf');
+    this.jobs = new Map();
+    this.jobSerial = 0;
+    this.perfVisible = false;
+    this.perfTimer = 0;
+    this.frameTime = 16.7;
+  }
+
+  startJob(label, stage = '准备中') {
+    const id = `job_${++this.jobSerial}`;
+    this.jobs.set(id, { label, stage, state: 'working' });
+    this._renderJob(id);
+    return id;
+  }
+
+  updateJob(id, stage) {
+    const job = this.jobs.get(id);
+    if (!job) return;
+    job.stage = stage;
+    this._renderJob(id);
+  }
+
+  completeJob(id, stage = '完成') {
+    this._finishJob(id, 'complete', stage, 2200);
+  }
+
+  failJob(id, error) {
+    const message = String(error?.message || error || '操作失败').slice(0, 80);
+    this._finishJob(id, 'error', message, 5200);
+  }
+
+  _finishJob(id, state, stage, delay) {
+    const job = this.jobs.get(id);
+    if (!job) return;
+    job.state = state;
+    job.stage = stage;
+    this._renderJob(id);
+    setTimeout(() => {
+      this.jobs.delete(id);
+      const latest = Array.from(this.jobs.keys()).pop();
+      if (latest) this._renderJob(latest);
+      else this.jobEl?.classList.remove('visible');
+    }, delay);
+  }
+
+  _renderJob(id) {
+    const job = this.jobs.get(id);
+    if (!job || !this.jobEl) return;
+    this.jobTitleEl.textContent = job.label;
+    this.jobStageEl.textContent = job.stage;
+    this.jobEl.dataset.state = job.state;
+    this.jobEl.classList.add('visible');
+  }
+
+  setWorldStatus(region, follower) {
+    if (this.regionEl) this.regionEl.textContent = region || '奇异岛';
+    if (this.followerEl) {
+      this.followerEl.textContent = follower ? `${follower} 跟随中` : '独自探索';
+    }
+  }
+
+  setPerformanceVisible(visible) {
+    this.perfVisible = !!visible;
+    this.perfEl?.classList.toggle('visible', this.perfVisible);
+  }
+
+  update(dt, { entities = 0, pets = 0 } = {}) {
+    this.frameTime += ((dt * 1000) - this.frameTime) * 0.08;
+    if (!this.perfVisible) return;
+    this.perfTimer += dt;
+    if (this.perfTimer < 0.35) return;
+    this.perfTimer = 0;
+    const render = this.renderer.info.render;
+    const colliders = this.physics.world?.colliders?.len?.() ?? 0;
+    const bodies = this.physics.world?.bodies?.len?.() ?? 0;
+    this.perfEl.textContent = [
+      `${Math.round(1000 / Math.max(this.frameTime, 1))} FPS  ${this.frameTime.toFixed(1)} ms`,
+      `${render.calls} calls  ${Math.round(render.triangles / 1000)}k tris`,
+      `${entities} entities  ${pets} pets`,
+      `${colliders} colliders  ${bodies} bodies`,
+    ].join('\n');
+  }
+}
+

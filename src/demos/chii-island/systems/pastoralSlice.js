@@ -1,9 +1,13 @@
 import * as THREE from 'three';
 import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
+import { applyAnimation } from '../../../engine/animation/player.js';
+import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { generateModel, mountModel, refineModel } from '../../../backend/voxelApi.js';
 import { callBackendChat } from '../../../backend/chatApi.js';
 import { getGridWorldPosition, worldToGridCoordinates } from '../../../engine/world/terrain.js';
+import { getGeneratedAsset, saveGeneratedModel } from '../data/generatedLibrary.js';
+import { getAIWorldEvents, recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 
 function dist2(a, b) {
   const dx = a.x - b.x;
@@ -41,6 +45,9 @@ export function createPastoralSlice({
   setDialogueLock = null,
   focusDialogueCamera = null,
   focusWorkCamera = null,
+  workScaffoldModelJson = null,
+  workScaffoldAnimationPlan = null,
+  runtimeStatus = null,
 }) {
   const _pets = pets.filter(Boolean);
   const _busyPets = new Set();
@@ -212,6 +219,38 @@ export function createPastoralSlice({
 
   function addWorkScaffold(points) {
     if (!points?.targetPos) return null;
+
+    if (workScaffoldModelJson) {
+      const group = buildModelFromJson(workScaffoldModelJson);
+      if (!group) return null;
+      group.name = 'PastoralWorkScaffold';
+      group.position.copy(points.targetPos);
+      group.frustumCulled = false;
+      const size = points.size || new THREE.Vector3(3, 3, 3);
+      const footprint = Math.max(size.x, size.z, 3.5);
+      const scaffoldScale = THREE.MathUtils.clamp((footprint + 2.0) / 6.4, 0.65, 1.8);
+      group.scale.setScalar(scaffoldScale);
+      scene.add(group);
+
+      const scaffoldPlan = workScaffoldAnimationPlan?.motionPlan
+        ? { ...workScaffoldAnimationPlan.motionPlan, _duration: workScaffoldAnimationPlan.duration || 2, _loop: true }
+        : workScaffoldAnimationPlan;
+      const particles = scaffoldPlan ? new ParticleSystem(scene) : null;
+      particles?.setup(scaffoldPlan, group);
+      const effect = {
+        type: 'scaffold',
+        group,
+        particles,
+        plan: scaffoldPlan,
+        poseMap: null,
+        timer: 0,
+        duration: Infinity,
+        fading: false,
+      };
+      _effects.push(effect);
+      return effect;
+    }
+
     const group = new THREE.Group();
     group.name = 'PastoralWorkScaffold';
     group.position.copy(points.targetPos);
@@ -328,14 +367,20 @@ export function createPastoralSlice({
           dust.material.opacity = 0.55 * (1 - t);
         }
       } else if (e.type === 'scaffold') {
+        if (e.plan) {
+          const duration = e.plan._duration || e.plan.duration || 2;
+          e.poseMap = applyAnimation(e.plan, duration, e.group, e.timer % duration, e.poseMap);
+          e.particles?.update(dt, e.group);
+        }
         const pulse = 0.82 + Math.sin(e.timer * 5) * 0.08;
-        e.group.position.y = Math.sin(e.timer * 2.8) * 0.03;
+        if (!e.plan) e.group.position.y = Math.sin(e.timer * 2.8) * 0.03;
         e.group.traverse((obj) => {
           if (!obj.material || !('opacity' in obj.material)) return;
-          obj.material.opacity = e.fading ? 0.9 * (1 - t) : pulse;
+          obj.material.opacity = e.fading ? 0.9 * (1 - t) : (e.plan ? 1 : pulse);
         });
       }
       if (t >= 1 && e.duration !== Infinity) {
+        e.particles?.dispose();
         disposeGroup(e.group);
         _effects.splice(i, 1);
       }
@@ -507,8 +552,8 @@ export function createPastoralSlice({
     else setState(pet, 'idle');
   }
 
-  function placeGeneratedObject(modelJson, position, name = '田园物件') {
-    const id = `pastoral_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+  function placeGeneratedObject(modelJson, position, name = '田园物件', options = {}) {
+    const id = options.id || `pastoral_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
     const entity = new StaticEntity({
       id,
       name: modelJson.name || name,
@@ -519,6 +564,8 @@ export function createPastoralSlice({
       modelJson,
     });
     entity.mesh.userData.pastoralObject = true;
+    entity.mesh.userData.aiEventId = options.eventId || null;
+    entity._generatedAssetId = options.assetId || null;
     _objects.push(entity);
     scene.add(entity.mesh);
     startReveal(entity.mesh);
@@ -531,12 +578,36 @@ export function createPastoralSlice({
       ? (options.workPoints || { targetPos, standPos: pet.mesh.position.clone(), effectPos: targetPos })
       : await beginWorkAtPosition(pet, targetPos, { focusCamera });
     const scaffold = addWorkScaffold(points);
+    const prompt = shortConcrete(description, '木制田园装饰');
+    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在创造`, '准备施工');
     try {
       await playWorkIntro(pet, points, { focusCamera });
-      const prompt = shortConcrete(description, '木制田园装饰');
+      runtimeStatus?.updateJob(jobId, 'AI 正在生成模型');
       const result = await generateModel(prompt, 'gpt', 'pro');
-      const entity = placeGeneratedObject(result.modelJson, targetPos, prompt);
+      runtimeStatus?.updateJob(jobId, '正在保存并放置');
+      const { assetId } = await saveGeneratedModel({
+        name: prompt,
+        description: prompt,
+        modelJson: result.modelJson,
+        tags: ['pastoral', 'object'],
+      });
+      const entityId = `pastoral_${assetId}`;
+      const eventId = `pastoral:create:${entityId}`;
+      const entity = placeGeneratedObject(result.modelJson, targetPos, prompt, { id: entityId, assetId, eventId });
+      recordAIWorldEvent({
+        id: eventId,
+        type: 'pastoral_create',
+        assetId,
+        entityId,
+        name: prompt,
+        prompt,
+        position: [targetPos.x, 0, targetPos.z],
+      });
+      runtimeStatus?.completeJob(jobId, '新物件已经放好');
       if (nextState === 'free_roam') await circleAround(pet, entity.mesh.position, 2);
+    } catch (error) {
+      runtimeStatus?.failJob(jobId, error);
+      throw error;
     } finally {
       removeWorkScaffold(scaffold);
       finishWork(pet, nextState);
@@ -551,15 +622,36 @@ export function createPastoralSlice({
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
     const scaffold = addWorkScaffold(points);
+    const prompt = shortConcrete(description, '变得更田园自然');
+    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在调整`, '准备施工');
     try {
       await playWorkIntro(pet, points, { focusCamera });
       const modelJson = getModelJson(target);
       if (!modelJson) throw new Error('目标没有可修改模型');
-      const prompt = shortConcrete(description, '变得更田园自然');
+      runtimeStatus?.updateJob(jobId, 'AI 正在修改模型');
       const result = await refineModel(modelJson, prompt, 'deepseek');
       replaceTargetModel(target, result.modelJson);
+      const { assetId } = await saveGeneratedModel({
+        name: target.name || prompt,
+        description: prompt,
+        modelJson: result.modelJson,
+        tags: ['pastoral', 'refine'],
+      });
+      const targetId = target.id || target._petId || target._petName;
+      recordAIWorldEvent({
+        id: `pastoral:target:${targetId}`,
+        type: 'pastoral_target',
+        action: 'refine',
+        targetId,
+        assetId,
+        prompt,
+      });
       startReveal(target._modelGroup || target.mesh);
+      runtimeStatus?.completeJob(jobId, '调整完成');
       if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
+    } catch (error) {
+      runtimeStatus?.failJob(jobId, error);
+      throw error;
     } finally {
       removeWorkScaffold(scaffold);
       finishWork(pet, nextState);
@@ -574,18 +666,38 @@ export function createPastoralSlice({
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
     const scaffold = addWorkScaffold(points);
+    const part = shortConcrete(partDescription, '一个小装饰');
+    const where = shortConcrete(positionDescription, '顶部');
+    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在装配`, '准备施工');
     try {
       await playWorkIntro(pet, points, { focusCamera });
       const modelJson = getModelJson(target);
       if (!modelJson) throw new Error('目标没有可装配模型');
-      const part = shortConcrete(partDescription, '一个小装饰');
-      const where = shortConcrete(positionDescription, '顶部');
-      const instruction = `把${part}加在${where}`;
-      const mountInstruction = `把${part}加在${where}`;
+      runtimeStatus?.updateJob(jobId, 'AI 正在装配部件');
       const result = await mountModel(modelJson, part, `\u628a${part}\u52a0\u5728${where}`, 'deepseek');
       replaceTargetModel(target, result.modelJson);
+      const prompt = `把${part}加在${where}`;
+      const { assetId } = await saveGeneratedModel({
+        name: target.name || part,
+        description: prompt,
+        modelJson: result.modelJson,
+        tags: ['pastoral', 'mount'],
+      });
+      const targetId = target.id || target._petId || target._petName;
+      recordAIWorldEvent({
+        id: `pastoral:target:${targetId}`,
+        type: 'pastoral_target',
+        action: 'mount',
+        targetId,
+        assetId,
+        prompt,
+      });
       startReveal(target._modelGroup || target.mesh);
+      runtimeStatus?.completeJob(jobId, '装配完成');
       if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
+    } catch (error) {
+      runtimeStatus?.failJob(jobId, error);
+      throw error;
     } finally {
       removeWorkScaffold(scaffold);
       finishWork(pet, nextState);
@@ -749,10 +861,37 @@ export function createPastoralSlice({
     }
   }
 
+  async function restorePersistedResults() {
+    const events = getAIWorldEvents().filter(event => event.type === 'pastoral_create' || event.type === 'pastoral_target');
+    for (const event of events) {
+      try {
+        const { modelJson } = await getGeneratedAsset(event.assetId);
+        if (!modelJson) continue;
+        if (event.type === 'pastoral_create') {
+          if (_objects.some(object => object.id === event.entityId)) continue;
+          const [x, y, z] = event.position || [0, 0, 0];
+          placeGeneratedObject(modelJson, new THREE.Vector3(x, y, z), event.name, {
+            id: event.entityId,
+            assetId: event.assetId,
+            eventId: event.id,
+          });
+          continue;
+        }
+        const target = [..._objects, ..._pets].find(object =>
+          object.id === event.targetId || object._petId === event.targetId || object._petName === event.targetId
+        );
+        if (target) replaceTargetModel(target, modelJson);
+      } catch (error) {
+        console.warn('[Pastoral] restore failed:', event.id, error.message);
+      }
+    }
+  }
+
   return {
     interact,
     update,
     startFollowing,
     startFreeRoam,
+    restorePersistedResults,
   };
 }

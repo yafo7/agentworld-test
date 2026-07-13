@@ -57,6 +57,13 @@ export class PetPartyEvent {
     return this.participants.includes(pet);
   }
 
+  addParticipant(pet) {
+    if (!pet || this.participants.includes(pet)) return false;
+    this.participants.push(pet);
+    this.data.participants = this.participants.map(participant => participant._petName);
+    return true;
+  }
+
   canInteract(pet) {
     return this.isTownPet(pet)
       && !this.active

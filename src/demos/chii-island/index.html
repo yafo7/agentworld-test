@@ -48,6 +48,35 @@
         font-weight: bold; font-size: 12px;
         box-shadow: 0 2px 0 #2a2330; flex-shrink: 0;
       }
+
+      #runtime-world {
+        position: fixed; top: 16px; left: 16px; z-index: 120;
+        color: #fff8e7; font-family: "Microsoft YaHei","PingFang SC",sans-serif;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.7); pointer-events: none;
+      }
+      #runtime-region { font-size: 15px; font-weight: 700; }
+      #runtime-follower { margin-top: 3px; color: rgba(255,248,231,0.78); font-size: 12px; }
+      #runtime-job {
+        position: fixed; top: 16px; left: 50%; transform: translate(-50%, -10px);
+        z-index: 170; min-width: 260px; max-width: min(460px, calc(100vw - 32px));
+        padding: 10px 14px; border-radius: 6px; opacity: 0; pointer-events: none;
+        background: rgba(30,27,34,0.9); color: #fff8e7; border: 1px solid rgba(255,255,255,0.12);
+        font-family: "Microsoft YaHei","PingFang SC",sans-serif;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+      }
+      #runtime-job.visible { opacity: 1; transform: translate(-50%, 0); }
+      #runtime-job[data-state="working"] { border-left: 3px solid #e9b44c; }
+      #runtime-job[data-state="complete"] { border-left: 3px solid #67c587; }
+      #runtime-job[data-state="error"] { border-left: 3px solid #e45d68; }
+      #runtime-job-title { font-size: 13px; font-weight: 700; }
+      #runtime-job-stage { margin-top: 3px; font-size: 12px; color: rgba(255,248,231,0.72); }
+      #runtime-perf {
+        position: fixed; top: 16px; right: 16px; z-index: 180; display: none;
+        padding: 8px 10px; border-radius: 6px; white-space: pre;
+        background: rgba(10,12,15,0.78); color: #b7f0c1;
+        font: 11px/1.5 Consolas, monospace; pointer-events: none;
+      }
+      #runtime-perf.visible { display: block; }
     </style>
   </head>
   <body>
@@ -62,6 +91,7 @@
       <div class="mgmt-card">
         <h2>管理面板</h2>
         <label><input type="checkbox" id="chk-collision" /> 显示碰撞体积</label>
+        <label><input type="checkbox" id="chk-performance" /> 显示性能数据</label>
         <div class="mgmt-hint">按 ESC 关闭面板 · 点击面板外关闭</div>
       </div>
     </div>
@@ -71,6 +101,15 @@
       <span class="keycap">E</span>
       <span id="interact-prompt-text"></span>
     </div>
+    <div id="runtime-world">
+      <div id="runtime-region">奇异岛</div>
+      <div id="runtime-follower">独自探索</div>
+    </div>
+    <div id="runtime-job" data-state="working">
+      <div id="runtime-job-title"></div>
+      <div id="runtime-job-stage"></div>
+    </div>
+    <div id="runtime-perf"></div>
 
     <script type="module" src="./main.js"></script>
   </body>

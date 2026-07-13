@@ -165,7 +165,7 @@ export async function refineModel(modelJson, description, provider = 'fireworks'
 
 /**
  * Mount a secondary object/description onto a primary model.
- * Prefer local Studio via /studio, then fall back to the proxied backend.
+ * Mount a secondary object/description onto a primary model through the backend.
  *
  * @param {object} primary - primary modelJson
  * @param {object|string} secondary - modelJson or short Chinese description
@@ -175,27 +175,16 @@ export async function refineModel(modelJson, description, provider = 'fireworks'
  */
 export async function mountModel(primary, secondary, description, provider = 'deepseek') {
   const body = { primary, secondary, description, provider };
-  const endpoints = ['/studio/api/mount', `${API_BASE}/api/mount`];
-  let lastError = null;
-
-  for (const endpoint of endpoints) {
-    try {
-      const resp = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: AbortSignal.timeout(300000),
-      });
-      const data = await resp.json().catch(() => ({}));
-      if (!resp.ok || !data.ok) {
-        throw new Error(data.message || data.error || `Mount failed: HTTP ${resp.status}`);
-      }
-      return { modelJson: data.modelJson, mountPlan: data.mountPlan };
-    } catch (err) {
-      lastError = err;
-      console.warn(`[Voxel] mount failed via ${endpoint}:`, err.message);
-    }
+  const endpoint = `${API_BASE}/api/mount`;
+  const resp = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(300000),
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok || !data.ok) {
+    throw new Error(data.message || data.error || `Mount failed: HTTP ${resp.status}`);
   }
-
-  throw lastError || new Error('Mount failed');
+  return { modelJson: data.modelJson, mountPlan: data.mountPlan };
 }

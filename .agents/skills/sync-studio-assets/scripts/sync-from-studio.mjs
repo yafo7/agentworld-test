@@ -368,7 +368,11 @@ function matchAnimation(anims, patterns) {
 
 function normalizePlan(anim) {
   if (!anim) return null;
-  return anim.plan || anim.animation || anim.motionPlan || anim;
+  const source = anim.plan || anim.animation || anim.motionPlan || anim;
+  const plan = { ...source };
+  if (plan._duration === undefined) plan._duration = Number(anim.duration) || 2;
+  if (plan._loop === undefined) plan._loop = anim.loop === undefined ? true : anim.loop !== false;
+  return plan;
 }
 
 async function writeJsonWithBackup(repoRoot, relPath, data, args) {

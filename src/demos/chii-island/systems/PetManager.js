@@ -23,6 +23,12 @@ const PET_CONFIGS = [
     commit: '2026-07-02_15-57-38',
     folder: '一只站立行走的鳄鱼，双手各拿着一把大斧子_2.5m',
     spawn: [38, 0, 18],
+    modelPath: 'generated/models/mok.json',
+    animationPaths: {
+      idle: 'generated/animations/mok_idle.json',
+      run: 'generated/animations/mok_run.json',
+      jump: 'generated/animations/mok_jump.json',
+    },
   },
   {
     id: 'peacock',
@@ -44,6 +50,12 @@ const PET_CONFIGS = [
     commit: '2026-07-02_15-09-45',
     folder: '一只天蓝色的小鸟_2.5m',
     spawn: [-30, 0, 30],
+    modelPath: 'generated/models/yafo.json',
+    animationPaths: {
+      idle: 'generated/animations/yafo_idle.json',
+      run: 'generated/animations/yafo_run.json',
+      jump: 'generated/animations/yafo_jump.json',
+    },
   },
 ];
 
@@ -123,7 +135,10 @@ export class PetManager {
         }
       }
 
-      const anims = await loadStudioAnimations(config.commit, config.folder);
+      const needsStudioAnimations = ['idle', 'run', 'jump'].some(name => !pet._animPlans[name]);
+      const anims = needsStudioAnimations
+        ? await loadStudioAnimations(config.commit, config.folder)
+        : [];
       const idle = matchAnimation(anims, [/呼吸|idle|待机/i]);
       const run = matchAnimation(anims, [/奔跑|run|行走|walk/i]);
       const jump = matchAnimation(anims, [/跳跃|飞跃|jump/i]);
@@ -198,10 +213,11 @@ export class PetManager {
     pet._nextPetActionAt = randomIn(1.4, 2.8);
   }
 
-  findNearest(position, range) {
+  findNearest(position, range, predicate = null) {
     let best = null;
     let bestDist = range;
     for (const pet of this.pets) {
+      if (predicate && !predicate(pet)) continue;
       const p = pet.getPosition();
       const dx = p.x - position.x;
       const dz = p.z - position.z;

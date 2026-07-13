@@ -3,6 +3,7 @@ import RAPIER from '@dimforge/rapier3d-compat';
 import { loadModel } from '../model/loader.js';
 import { loadAnimationPlan } from '../animation/planLoader.js';
 import { evaluateMotion, applyMotionDeltas } from '../animation/player.js';
+import { normalizeAnimationPlan } from '../animation/normalizePlan.js';
 import { getRuntime } from '../../backend/runtimeLoader.js';
 import { ParticleSystem } from '../animation/particles.js';
 import { worldToGridCoordinates } from '../world/terrain.js';
@@ -122,6 +123,8 @@ export class Player {
     this._controller = physicsWorld.world.createCharacterController(0.01);
     this._controller.setApplyImpulsesToDynamicBodies(true);
     this._controller.setCharacterMass(80);
+    this._controller.enableAutostep(0.45, 0.2, true);
+    this._controller.enableSnapToGround(0.3);
 
     // Sync mesh to initial body position
     this.mesh.position.set(spawnX, spawnY, spawnZ);
@@ -216,17 +219,11 @@ export class Player {
    * Runtime expects: { _duration: N, _loop: bool, boneKey: {...}, ... } at top level.
    */
   _normalizePlan(raw, defaults = {}) {
-    if (!raw) return null;
-    // Already in runtime format (top-level _duration or bone keys like "body"/"head")
-    if (raw._duration !== undefined || raw.body !== undefined || raw.head !== undefined) return raw;
-    // Studio wrapper format: { motionPlan: {...}, duration: N, ... }
-    if (raw.motionPlan) {
-      const plan = { ...raw.motionPlan };
-      plan._duration = raw.duration || defaults.duration || 2;
-      plan._loop = defaults.loop !== undefined ? defaults.loop : true;
-      return plan;
-    }
-    return raw; // unknown format, pass through
+    return normalizeAnimationPlan(raw, {
+      duration: defaults.duration || 2,
+      loop: defaults.loop !== undefined ? defaults.loop : true,
+      model: this._model,
+    });
   }
 
   /**

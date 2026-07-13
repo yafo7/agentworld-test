@@ -21,6 +21,7 @@ import { PetManager } from './systems/PetManager.js';
 import { createPastoralSlice } from './systems/pastoralSlice.js';
 import { PetPartyEvent } from './systems/PetPartyEvent.js';
 import { ForestTempleSystem } from './systems/ForestTempleSystem.js';
+import { RuntimeHUD } from './systems/RuntimeHUD.js';
 import { getPetProfile } from './data/petProfiles.js';
 
 // ---- bootstrap ----
@@ -67,13 +68,13 @@ async function init() {
 
   // ---- fetch studio models + generate scene layout ----
   const STUDIO_MODELS = [
-    { key: 'oak',      commit: '2026-07-01_18-40-24', folder: '一颗高大的橡树_4.3m' },
-    { key: 'normal',   commit: '2026-07-01_18-45-21', folder: '一颗树_1.5m' },
-    { key: 'apple',    commit: '2026-07-01_18-47-39', folder: '一颗苹果树_1.7m' },
-    { key: 'glowgrass',commit: '2026-07-01_18-50-19', folder: '一丛荧光草_1.9m' },
-    { key: 'windmill', commit: '2026-07-01_18-58-41', folder: '一个巨大的风车，底部长宽比是2/2_2.4m' },
-    { key: 'church',   commit: '2026-07-01_18-53-35', folder: '一个巨大的哥特教堂，底部长宽比是5/8_3.4m' },
-    { key: 'temple',   commit: '2026-07-02_14-42-30', folder: '一座西方的古老神殿，占地的长宽比是8/5_1.3m' },
+    { key: 'oak',      path: 'generated/models/oak.json', commit: '2026-07-01_18-40-24', folder: '一颗高大的橡树_4.3m' },
+    { key: 'normal',   path: 'generated/models/normal_tree.json', commit: '2026-07-01_18-45-21', folder: '一颗树_1.5m' },
+    { key: 'apple',    path: 'generated/models/apple_tree.json', commit: '2026-07-01_18-47-39', folder: '一颗苹果树_1.7m' },
+    { key: 'glowgrass',path: 'generated/models/glowgrass.json', commit: '2026-07-01_18-50-19', folder: '一丛荧光草_1.9m' },
+    { key: 'windmill', path: 'generated/models/windmill.json', commit: '2026-07-01_18-58-41', folder: '一个巨大的风车，底部长宽比是2/2_2.4m' },
+    { key: 'church',   path: 'generated/models/church.json', commit: '2026-07-01_18-53-35', folder: '一个巨大的哥特教堂，底部长宽比是5/8_3.4m' },
+    { key: 'temple',   path: 'generated/models/temple.json', commit: '2026-07-02_14-42-30', folder: '一座西方的古老神殿，占地的长宽比是8/5_1.3m' },
     { key: 'pinkFlower',    path: 'generated/models/pink_flower.json' },
     { key: 'grassClump',    path: 'generated/models/grass_clump.json' },
     { key: 'trumpetFlower', path: 'generated/models/trumpet_flower.json' },
@@ -84,6 +85,7 @@ async function init() {
     { key: 'campfire',      path: 'generated/models/campfire.json' },
     { key: 'forestTrophy',  path: 'generated/models/forest_temple_trophy.json' },
     { key: 'forestTent',    path: 'generated/models/forest_temple_tent.json' },
+    { key: 'pastoralWorkScaffold', path: 'generated/models/pastoral_work_scaffold.json' },
   ];
 
   async function fetchLocalModel(path) {
@@ -181,6 +183,9 @@ async function init() {
     if (extra.noCollider && entity.mesh) {
       entity.mesh.userData.noCollider = true;
     }
+    if (extra.collider && entity.mesh) {
+      entity.mesh.userData.collider = extra.collider;
+    }
     staticEntities.push(entity);
     scene.add(entity.mesh);
     return entity;
@@ -197,6 +202,11 @@ async function init() {
     const offZ = ((b.depth - 1) / 2) * SPACING;
     placeEntity(b.gridX, b.gridZ, modelJson, names[b.type], ['建筑', b.type], 'house', 3, {
       offsetX: offX, offsetZ: offZ,
+      collider: {
+        type: 'building',
+        width: b.width * SPACING * 0.88,
+        depth: b.depth * SPACING * 0.88,
+      },
     });
     console.log(`[Init] Placed ${names[b.type]} at (${b.gridX}, ${b.gridZ}) ${b.width}×${b.depth}`);
   }
@@ -217,7 +227,10 @@ async function init() {
     const modelJson = modelJsons[t.type];
     if (!modelJson) continue;
     const s = 0.7 + _vegRand() * 0.6;
-    placeEntity(t.gridX, t.gridZ, modelJson, '树', ['树木', '自然', t.type], 'tree', s, { randomRotate: true });
+    placeEntity(t.gridX, t.gridZ, modelJson, '树', ['树木', '自然', t.type], 'tree', s, {
+      randomRotate: true,
+      collider: { type: 'tree' },
+    });
   }
 
   // Glowing grass (random scale 0.5–1.0, random Y rotation, no shadows)
@@ -287,6 +300,8 @@ async function init() {
   let forestTrophy = null;
   let forestTent = null;
   let forestTrophyWaitPlan = null;
+  const pastoralWorkScaffoldModel = modelJsons.pastoralWorkScaffold || null;
+  const pastoralWorkScaffoldPlan = await fetchLocalModel('generated/animations/pastoral_work_scaffold_dust.json');
   const forestPlan = scenePlan.forestTemple;
   if (forestPlan?.trophy && modelJsons.forestTrophy) {
     forestTrophy = placeEntity(
@@ -326,6 +341,7 @@ async function init() {
 
   // ---- create Rapier static colliders from entity world-space AABBs ----
   let colliderCount = 0;
+  const staticBody = physics.createStaticBody();
   for (const e of staticEntities) {
     if (e.mesh?.userData?.noCollider) continue;
     const box = e.getWorldBBox();
@@ -336,7 +352,23 @@ async function init() {
     const cx = (box.min.x + box.max.x) / 2;
     const cy = (box.min.y + box.max.y) / 2;
     const cz = (box.min.z + box.max.z) / 2;
-    physics.addStaticBox(hx, hy, hz, cx, cy, cz);
+    const collider = e.mesh.userData.collider;
+    if (collider?.type === 'tree') {
+      const radius = THREE.MathUtils.clamp(Math.min(hx, hz) * 0.32, 0.45, 1.15);
+      physics.addStaticCylinderToBody(staticBody, hy, radius, cx, cy, cz);
+    } else if (collider?.type === 'building') {
+      physics.addStaticBoxToBody(
+        staticBody,
+        collider.width * 0.5,
+        hy,
+        collider.depth * 0.5,
+        e.mesh.position.x,
+        cy,
+        e.mesh.position.z
+      );
+    } else {
+      physics.addStaticBoxToBody(staticBody, hx, hy, hz, cx, cy, cz);
+    }
     colliderCount++;
   }
   console.log(`[Init] Physics colliders: ${colliderCount}`);
@@ -360,6 +392,7 @@ async function init() {
     demoSpawn = getGridWorldPosition(townDemoCell.gridX - 1, townDemoCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
   }
   player.initPhysics(physics, demoSpawn.x, 0, demoSpawn.z);
+  thirdPersonCamera.setCollisionWorld(physics.world, player._collider);
   window.__player = player;
   player._scene = scene; // for particle emitters
   scene.add(player.mesh);
@@ -417,7 +450,10 @@ async function init() {
       }
 
       // Studio remains a compatibility fallback for missing local animations.
-      const anims = await loadStudioAnimations(ARCHITECT_COMMIT, ARCHITECT_FOLDER);
+      const needsStudioAnimations = ['idle', 'run', 'construct'].some(name => !architect._animPlans[name]);
+      const anims = needsStudioAnimations
+        ? await loadStudioAnimations(ARCHITECT_COMMIT, ARCHITECT_FOLDER)
+        : [];
       for (const anim of anims) {
         const name = anim.name || '';
         if (!architect._animPlans.idle && /idle|待机/i.test(name)) architect.loadAnimation('idle', anim.plan || anim);
@@ -449,7 +485,8 @@ async function init() {
 
   (async () => {
     try {
-      const bearModel = await loadStudioModel(BEAR_COMMIT, BEAR_FOLDER);
+      const bearModel = await fetchLocalModel('generated/models/momo.json')
+        || await loadStudioModel(BEAR_COMMIT, BEAR_FOLDER);
       if (bearModel) {
         bear.loadModelFromJson(bearModel);
         if (bear._modelGroup) {
@@ -458,8 +495,24 @@ async function init() {
         }
         console.log('[Init] Bear model loaded from studio');
       }
-      // Load bear animations from studio
-      const bearAnims = await loadStudioAnimations(BEAR_COMMIT, BEAR_FOLDER);
+      const localBearAnimations = {
+        idle: 'generated/animations/momo_idle.json',
+        walk: 'generated/animations/momo_walk.json',
+        run: 'generated/animations/momo_run.json',
+        chop: 'generated/animations/momo_chop.json',
+        smash: 'generated/animations/momo_smash.json',
+        wave: 'generated/animations/momo_wave.json',
+        magic: 'generated/animations/momo_magic.json',
+      };
+      for (const [name, path] of Object.entries(localBearAnimations)) {
+        const plan = await fetchLocalModel(path);
+        if (plan) bear.loadAnimation(name, plan);
+      }
+
+      const missingBearAnimation = ['idle', 'run', 'chop'].some(name => !bear._animPlans[name]);
+      const bearAnims = missingBearAnimation
+        ? await loadStudioAnimations(BEAR_COMMIT, BEAR_FOLDER)
+        : [];
       for (const anim of bearAnims) {
         const name = anim.name || '';
         if (/呼吸|idle|待机/i.test(name)) bear.loadAnimation('idle', anim.plan || anim);
@@ -528,6 +581,8 @@ async function init() {
   // ---- ESC management panel ----
   const mgmtPanel = document.getElementById('mgmt-panel');
   const chkCollision = document.getElementById('chk-collision');
+  const chkPerformance = document.getElementById('chk-performance');
+  const runtimeHUD = new RuntimeHUD({ renderer, physics });
   let panelOpen = false;
 
   function setPanelOpen(open) {
@@ -542,6 +597,9 @@ async function init() {
 
   chkCollision.addEventListener('change', () => {
     debugRenderer.enabled = chkCollision.checked;
+  });
+  chkPerformance.addEventListener('change', () => {
+    runtimeHUD.setPerformanceVisible(chkPerformance.checked);
   });
 
   // Click outside card to close
@@ -638,6 +696,9 @@ async function init() {
     setDialogueLock: setPastoralDialogueLock,
     focusDialogueCamera: (pet) => framePastoralPair(pet, null, 9.5, 1.25, 54),
     focusWorkCamera: focusPastoralWorkCamera,
+    workScaffoldModelJson: pastoralWorkScaffoldModel,
+    workScaffoldAnimationPlan: pastoralWorkScaffoldPlan,
+    runtimeStatus: runtimeHUD,
   });
 
   const townCenterGrid = scenePlan.town?.center;
@@ -668,8 +729,19 @@ async function init() {
     tentEntity: forestTent,
     trophyWaitPlan: forestTrophyWaitPlan,
     getPets: () => [bear, ...petManager.pets],
+    onPetSpawned: (pet) => petPartyEvent.addParticipant(pet),
+    runtimeStatus: runtimeHUD,
   });
   window.__forestTempleSystem = forestTempleSystem;
+  await Promise.all([
+    pastoralSlice.restorePersistedResults(),
+    forestTempleSystem.restorePersistedPets(),
+  ]);
+  const runtimeRegionAnchors = [
+    ['风车田园', staticEntities.find(entity => entity.name === '风车')?.mesh.position],
+    ['教堂城镇', staticEntities.find(entity => entity.name === '哥特教堂')?.mesh.position],
+    ['森林神殿', staticEntities.find(entity => entity.name === '古老神殿')?.mesh.position],
+  ].filter(([, position]) => position);
   if (forestDemoEnabled) {
     const demoPet = petManager.pets.find(pet => pet._petName === 'yafo');
     if (demoPet) {
@@ -739,7 +811,10 @@ async function init() {
     dialogueSystem.setPetSpeakerName(npc._petName || '宠物');
     setPastoralDialogueLock(true, npc);
 
-    petPartyEvent.interact(npc, dialogueSystem)
+    const interaction = npc._hasIntroduced === false
+      ? forestTempleSystem.introducePet(npc)
+      : petPartyEvent.interact(npc, dialogueSystem);
+    interaction
       .catch((err) => console.warn('[ChurchTown] interaction failed:', err.message))
       .finally(() => {
         dialogueActive = false;
@@ -824,7 +899,8 @@ async function init() {
     // Load stump model from studio
     let stumpJson = null;
     try {
-      stumpJson = await loadStudioModel('2026-07-05_14-40-00', '一个树桩_2.6m');
+      stumpJson = await fetchLocalModel('generated/models/stump.json')
+        || await loadStudioModel('2026-07-05_14-40-00', '一个树桩_2.6m');
     } catch (_) {}
 
     // Create spark particles (ParticleSystem on tree)
@@ -1063,24 +1139,25 @@ async function init() {
       const bearDz = bearPos.z - playerPos.z;
       const bearDist = Math.sqrt(bearDx * bearDx + bearDz * bearDz);
       const forestHit = forestTempleSystem.findInteraction(playerPos, INTERACT_RANGE + 0.8);
-      const petHit = petManager.findNearest(playerPos, INTERACT_RANGE);
-      const townPetHit = petHit && petPartyEvent.canInteract(petHit.pet) ? petHit : null;
-      const regularPetHit = petHit && !petPartyEvent.isTownPet(petHit.pet) ? petHit : null;
-      const petDist = (townPetHit || regularPetHit)?.dist ?? Infinity;
-
-      // Pick closest NPC in range
-      let targetNpc = null;
-      if (forestHit) {
-        targetNpc = 'forest';
-      } else if (townPetHit && townPetHit.dist <= bearDist) {
-        targetNpc = 'town-pet';
-      } else if (!petPartyEvent.isTownPet(architect) && archDist <= INTERACT_RANGE && archDist <= bearDist && archDist <= petDist) {
-        targetNpc = 'architect';
-      } else if (bearDist <= INTERACT_RANGE && bearDist <= archDist && bearDist <= petDist) {
-        targetNpc = 'bear';
-      } else if (regularPetHit) {
-        targetNpc = 'pet';
-      }
+      const townPetHit = petManager.findNearest(playerPos, INTERACT_RANGE, pet => petPartyEvent.canInteract(pet));
+      const regularPetHit = petManager.findNearest(playerPos, INTERACT_RANGE, pet => !petPartyEvent.isTownPet(pet));
+      const interactionCandidates = [];
+      const addCandidate = (type, distance, position) => {
+        if (!position || distance > INTERACT_RANGE + 0.8) return;
+        const direction = new THREE.Vector3().subVectors(position, playerPos);
+        direction.y = 0;
+        const facing = direction.lengthSq() > 0.001
+          ? THREE.MathUtils.clamp(direction.normalize().dot(player.orientation), -1, 1)
+          : 1;
+        interactionCandidates.push({ type, score: distance + (1 - facing) * 1.4 });
+      };
+      if (forestHit) addCandidate('forest', forestHit.distance, forestHit.position);
+      if (townPetHit) addCandidate('town-pet', townPetHit.dist, townPetHit.position);
+      if (!petPartyEvent.isTownPet(architect)) addCandidate('architect', archDist, archPos);
+      addCandidate('bear', bearDist, bearPos);
+      if (regularPetHit) addCandidate('pet', regularPetHit.dist, regularPetHit.position);
+      interactionCandidates.sort((a, b) => a.score - b.score);
+      const targetNpc = interactionCandidates[0]?.type || null;
 
       // Pause momo wandering when player is near, unless it is working.
       if (bearDist <= INTERACT_RANGE + 2 && bear._wanderEnabled && !bear._pastoralBusy && bear._petState !== 'working') {
@@ -1198,6 +1275,19 @@ async function init() {
     pastoralSlice.update(dt);
     petPartyEvent.update(dt);
     forestTempleSystem.update(dt);
+
+    let nearestRegion = runtimeRegionAnchors[0];
+    let nearestRegionDistance = Infinity;
+    for (const region of runtimeRegionAnchors) {
+      const distance = player.mesh.position.distanceToSquared(region[1]);
+      if (distance < nearestRegionDistance) {
+        nearestRegion = region;
+        nearestRegionDistance = distance;
+      }
+    }
+    const followingPet = [bear, ...petManager.pets].find(pet => pet._petState === 'following' || pet._followEnabled);
+    runtimeHUD.setWorldStatus(nearestRegion?.[0] || '奇异岛', followingPet?._petName || null);
+    runtimeHUD.update(dt, { entities: staticEntities.length, pets: petManager.pets.length + 1 });
 
     // Particle systems + reveal animations
     _runDustPS.update(dt, bear.mesh);

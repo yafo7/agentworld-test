@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import RAPIER from '@dimforge/rapier3d-compat';
 
 /**
  * Third-person camera that follows a target (player).
@@ -43,6 +44,9 @@ export class ThirdPersonCamera {
     this._restoreFov = 75;
     this._restoreDistance = 8;
     this._restoreFollowLerp = 0.12;
+    this._collisionWorld = null;
+    this._collisionExclude = null;
+    this._collisionPadding = 0.45;
 
     this._setupInput();
   }
@@ -86,7 +90,8 @@ export class ThirdPersonCamera {
       }
 
       // Smooth position lerp toward lock target
-      this.camera.position.lerp(this._lockTarget.pos, 0.08);
+      const safePos = this._resolveCollision(this._lockTarget.lookAt, this._lockTarget.pos);
+      this.camera.position.lerp(safePos, 0.08);
       this.camera.lookAt(this._lockTarget.lookAt);
       return;
     }
@@ -109,7 +114,8 @@ export class ThirdPersonCamera {
     this._smoothedPos.lerp(this._targetPos, this.followLerp);
 
     const offset = this._computeOffset();
-    this.camera.position.copy(this._smoothedPos).add(offset);
+    const desiredPosition = this._targetPos.clone().add(offset);
+    this.camera.position.copy(this._resolveCollision(this._targetPos, desiredPosition));
 
     // Ground collision: never let camera go below ground level
     if (this.camera.position.y < 0.5) {
@@ -127,6 +133,37 @@ export class ThirdPersonCamera {
       yOffset,
       Math.cos(this.yaw) * this.distance
     );
+  }
+
+  setCollisionWorld(world, excludeCollider = null) {
+    this._collisionWorld = world || null;
+    this._collisionExclude = excludeCollider || null;
+  }
+
+  _resolveCollision(origin, desiredPosition) {
+    if (!this._collisionWorld) return desiredPosition;
+    const direction = new THREE.Vector3().subVectors(desiredPosition, origin);
+    const distance = direction.length();
+    if (distance < 0.01) return desiredPosition;
+    direction.multiplyScalar(1 / distance);
+
+    const ray = new RAPIER.Ray(
+      { x: origin.x, y: origin.y, z: origin.z },
+      { x: direction.x, y: direction.y, z: direction.z }
+    );
+    const hit = this._collisionWorld.castRay(
+      ray,
+      distance,
+      true,
+      undefined,
+      undefined,
+      this._collisionExclude,
+      undefined,
+      collider => collider.parent()?.isFixed?.() !== false
+    );
+    if (!hit) return desiredPosition;
+    const safeDistance = Math.max(1.0, hit.timeOfImpact - this._collisionPadding);
+    return origin.clone().addScaledVector(direction, safeDistance);
   }
 
   /** Returns the horizontal orbit angle (radians) aligned with camera look direction. */

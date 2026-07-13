@@ -428,15 +428,32 @@
     {
       "id": "forest-trophy",
       "label": "forest-trophy",
-      "assetId": "m_1783574625142_cbsm97",
-      "commit": "2026-07-09_13-22-45",
-      "folder": "一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s",
+      "assetId": "m_1783574540705_1274n8",
+      "commit": "2026-07-09_13-20-59",
+      "folder": "一个科隆major，cs2的冠军奖杯_1.3m",
       "modelOut": "public/generated/models/forest_temple_trophy.json",
       "animations": [
         {
           "name": "wait",
           "outPath": "public/generated/animations/forest_trophy_wait.json",
           "studioName": "召唤等待"
+        }
+      ],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "pastoral-work-scaffold",
+      "label": "pastoral-work-scaffold",
+      "assetId": "m_1783588744769_476o5y",
+      "commit": "2026-07-09_17-17-48",
+      "folder": "四条施工横幅围成一个正方形区域_1.3m",
+      "modelOut": "public/generated/models/pastoral_work_scaffold.json",
+      "animations": [
+        {
+          "name": "dust",
+          "outPath": "public/generated/animations/pastoral_work_scaffold_dust.json",
+          "studioName": "灰尘"
         }
       ],
       "source": "edit",

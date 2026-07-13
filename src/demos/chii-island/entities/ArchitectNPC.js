@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import RAPIER from '@dimforge/rapier3d-compat';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { evaluateMotion, applyMotionDeltas } from '../../../engine/animation/player.js';
+import { normalizeAnimationPlan } from '../../../engine/animation/normalizePlan.js';
 import { getRuntime } from '../../../backend/runtimeLoader.js';
 
 /**
@@ -52,6 +53,7 @@ export class ArchitectNPC {
     // Physics
     this._body = null;
     this._collider = null;
+    this._controller = null;
     this._physicsWorld = null;
 
     // Chop behavior
@@ -67,6 +69,10 @@ export class ArchitectNPC {
 
   setPosition(x, y, z) {
     this.mesh.position.set(x, y, z);
+    if (this._body) {
+      this._body.setTranslation({ x, y, z }, true);
+      this._body.setNextKinematicTranslation({ x, y, z });
+    }
   }
 
   setOrigin(x, y, z) {
@@ -91,6 +97,9 @@ export class ArchitectNPC {
     const colliderDesc = RAPIER.ColliderDesc.capsule(halfHeight, radius)
       .setTranslation(0, halfHeight + radius, 0);
     this._collider = physicsWorld.world.createCollider(colliderDesc, this._body);
+    this._controller = physicsWorld.world.createCharacterController(0.03);
+    this._controller.enableAutostep(0.45, 0.2, true);
+    this._controller.enableSnapToGround(0.25);
   }
 
   getPosition() {
@@ -178,17 +187,11 @@ export class ArchitectNPC {
   }
 
   _normalizePlan(raw) {
-    if (!raw) return null;
-    // Already runtime format (top-level _duration or bone keys)
-    if (raw._duration !== undefined || raw.body !== undefined || raw.head !== undefined) return raw;
-    // Studio wrapper format: { motionPlan: {...}, duration: N, ... }
-    if (raw.motionPlan) {
-      const plan = { ...raw.motionPlan };
-      plan._duration = raw.duration || 2;
-      plan._loop = true;
-      return plan;
-    }
-    return raw;
+    return normalizeAnimationPlan(raw, {
+      duration: 2,
+      loop: true,
+      model: this._modelGroup,
+    });
   }
 
   // ── Movement commands ──
@@ -353,7 +356,7 @@ export class ArchitectNPC {
         const dir = new THREE.Vector3().subVectors(tp, this.mesh.position);
         dir.y = 0;
         this.mesh.rotation.y = Math.atan2(dir.x, dir.z);
-        this.mesh.position.addScaledVector(dir.normalize(), this._followSpeed * dt);
+        this._moveBy(dir.normalize().multiplyScalar(this._followSpeed * dt));
         if (this._animState !== 'run') this._setAnimState('run');
       } else {
         if (this._animState !== 'idle') this._setAnimState('idle');
@@ -384,11 +387,28 @@ export class ArchitectNPC {
       this._setAnimState('idle');
     } else {
       const step = this._speed * dt;
-      this.mesh.position.addScaledVector(dir.normalize(), Math.min(step, dist));
+      this._moveBy(dir.normalize().multiplyScalar(Math.min(step, dist)));
       if (this._animState !== (this._animPlans.walk ? 'walk' : 'run')) {
         this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
       }
     }
+  }
+
+  _moveBy(delta) {
+    if (!delta || delta.lengthSq() < 0.000001) return;
+    if (this._controller && this._collider) {
+      this._controller.computeColliderMovement(this._collider, {
+        x: delta.x,
+        y: delta.y || 0,
+        z: delta.z,
+      });
+      const corrected = this._controller.computedMovement();
+      this.mesh.position.x += corrected.x;
+      this.mesh.position.y += corrected.y;
+      this.mesh.position.z += corrected.z;
+      return;
+    }
+    this.mesh.position.add(delta);
   }
 
   _updateFacing() {
