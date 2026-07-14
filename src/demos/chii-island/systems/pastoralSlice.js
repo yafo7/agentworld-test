@@ -3,11 +3,17 @@ import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { applyAnimation } from '../../../engine/animation/player.js';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
-import { generateModel, mountModel, refineModel } from '../../../backend/voxelApi.js';
-import { callBackendChat } from '../../../backend/chatApi.js';
+import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
+import { generatedAssets } from '../../../assets/repositories/GeneratedAssetRepository.js';
 import { getGridWorldPosition, worldToGridCoordinates } from '../../../engine/world/terrain.js';
-import { getGeneratedAsset, saveGeneratedModel } from '../data/generatedLibrary.js';
-import { getAIWorldEvents, recordAIWorldEvent } from '../../../storage/aiWorldState.js';
+import { recordAIWorldEvent } from '../../../storage/aiWorldState.js';
+import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
+import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
+import { PetWorkCoordinator } from '../../../gameplay/ai/PetWorkCoordinator.js';
+import {
+  collectMountWorkRequest,
+  collectRefineWorkRequest,
+} from './pastoralWorkDialogue.js';
 
 function dist2(a, b) {
   const dx = a.x - b.x;
@@ -37,6 +43,7 @@ export function createPastoralSlice({
   scene,
   player,
   staticEntities,
+  worldObjects = null,
   pets,
   dialogueSystem,
   center = [0, 0],
@@ -48,21 +55,23 @@ export function createPastoralSlice({
   workScaffoldModelJson = null,
   workScaffoldAnimationPlan = null,
   runtimeStatus = null,
+  contentPort = defaultContentGeneration,
+  generatedAssetRepository = generatedAssets,
 }) {
   const _pets = pets.filter(Boolean);
   const _busyPets = new Set();
-  const _objects = staticEntities;
+  const _objects = worldObjects?.items || staticEntities;
   const _effects = [];
   const _reveals = [];
 
   for (const pet of _pets) {
-    pet._petState = pet._petState || 'idle';
+    attachPetStateMachine(pet, pet._petState || 'idle');
     pet._initialInteractionDone = !!pet._initialInteractionDone;
     pet._pastoralAutonomousTimer = 20;
   }
 
   function setState(pet, state) {
-    pet._petState = state;
+    pet.petState.transition(state, { reason: 'pastoral-state-change' });
     if (state !== 'following') pet.stopFollow?.();
     if (state !== 'free_roam') pet.disableWander?.();
     if (state === 'idle') pet.playAnimation?.('idle');
@@ -70,7 +79,7 @@ export function createPastoralSlice({
 
   function startFollowing(pet) {
     pet._initialInteractionDone = true;
-    pet._petState = 'following';
+    pet.petState.transition('following', { reason: 'player-follow-command' });
     pet.disableWander?.();
     pet.unlockFacing?.();
     pet.followTarget(player.mesh, 3.2, 6.0);
@@ -80,7 +89,7 @@ export function createPastoralSlice({
     pet._initialInteractionDone = true;
     pet.stopFollow?.();
     pet.unlockFacing?.();
-    pet._petState = 'free_roam';
+    pet.petState.transition('free_roam', { reason: 'free-roam-command' });
     pet._pastoralAutonomousTimer = 20;
     pet._nextPetActionAt = 0.8;
     if (!pet._managedByPetManager && typeof pet.enableWander === 'function') {
@@ -91,6 +100,10 @@ export function createPastoralSlice({
 
   function getPetName(pet) {
     return pet?._petName || pet?.mesh?.name || '宠物';
+  }
+
+  function getTargetName(target) {
+    return target?.name || target?._petName || target?.mesh?.name || '这个模型';
   }
 
   async function askPetChoice(pet, text, options, focusTarget = null) {
@@ -439,7 +452,9 @@ export function createPastoralSlice({
       const tile = terrainLayout?.[grid.gridZ]?.[grid.gridX];
       if (tile === 'water') continue;
       const pos = getGridWorldPosition(grid.gridX, grid.gridZ, center[0], center[1], gridSize);
-      const occupied = _objects.some(e => dist2({ x: pos.x, z: pos.z }, e.mesh.position) < 9);
+      const occupied = worldObjects
+        ? worldObjects.isOccupied(pos, 3)
+        : _objects.some(e => dist2({ x: pos.x, z: pos.z }, e.mesh.position) < 9);
       if (!occupied) return new THREE.Vector3(pos.x, 0, pos.z);
     }
     return base.clone().addScaledVector(forward, 10);
@@ -474,8 +489,7 @@ export function createPastoralSlice({
 
   function forceWorkState(pet) {
     _busyPets.add(pet);
-    pet._pastoralBusy = true;
-    pet._petState = 'working';
+    pet.petState.enterWork({ autonomous: pet.petState.is('free_roam') });
     pet.stopFollow?.();
     pet.disableWander?.();
     pet.stopWalking?.();
@@ -545,12 +559,24 @@ export function createPastoralSlice({
 
   function finishWork(pet, nextState = 'idle') {
     _busyPets.delete(pet);
-    pet._pastoralBusy = false;
     pet.unlockFacing?.();
+    pet.petState.completeWork(nextState);
     if (nextState === 'following') startFollowing(pet);
     else if (nextState === 'free_roam') startFreeRoam(pet);
-    else setState(pet, 'idle');
+    else pet.playAnimation?.('idle');
   }
+
+  const aiActions = new AIWorldActionService({
+    contentPort,
+    assetRepository: generatedAssetRepository,
+  });
+  const workCoordinator = new PetWorkCoordinator({
+    runtimeStatus,
+    startPresentation: addWorkScaffold,
+    stopPresentation: removeWorkScaffold,
+    playIntro: playWorkIntro,
+    finishPet: finishWork,
+  });
 
   function placeGeneratedObject(modelJson, position, name = '田园物件', options = {}) {
     const id = options.id || `pastoral_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
@@ -566,7 +592,8 @@ export function createPastoralSlice({
     entity.mesh.userData.pastoralObject = true;
     entity.mesh.userData.aiEventId = options.eventId || null;
     entity._generatedAssetId = options.assetId || null;
-    _objects.push(entity);
+    if (worldObjects) worldObjects.add(entity);
+    else _objects.push(entity);
     scene.add(entity.mesh);
     startReveal(entity.mesh);
     return entity;
@@ -577,41 +604,41 @@ export function createPastoralSlice({
     const points = alreadyAtWork
       ? (options.workPoints || { targetPos, standPos: pet.mesh.position.clone(), effectPos: targetPos })
       : await beginWorkAtPosition(pet, targetPos, { focusCamera });
-    const scaffold = addWorkScaffold(points);
     const prompt = shortConcrete(description, '木制田园装饰');
-    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在创造`, '准备施工');
-    try {
-      await playWorkIntro(pet, points, { focusCamera });
-      runtimeStatus?.updateJob(jobId, 'AI 正在生成模型');
-      const result = await generateModel(prompt, 'gpt', 'pro');
-      runtimeStatus?.updateJob(jobId, '正在保存并放置');
-      const { assetId } = await saveGeneratedModel({
-        name: prompt,
+    return workCoordinator.run({
+      pet,
+      points,
+      nextState,
+      focusCamera,
+      status: {
+        title: `${getPetName(pet)} 正在创造`,
+        preparing: '准备施工',
+        requesting: 'AI 正在生成模型',
+        applying: '正在放置新物件',
+        complete: '新物件已经放好',
+      },
+      execute: () => aiActions.createObject({
         description: prompt,
-        modelJson: result.modelJson,
+        quality: 'voxel',
         tags: ['pastoral', 'object'],
-      });
-      const entityId = `pastoral_${assetId}`;
-      const eventId = `pastoral:create:${entityId}`;
-      const entity = placeGeneratedObject(result.modelJson, targetPos, prompt, { id: entityId, assetId, eventId });
-      recordAIWorldEvent({
-        id: eventId,
-        type: 'pastoral_create',
-        assetId,
-        entityId,
-        name: prompt,
-        prompt,
-        position: [targetPos.x, 0, targetPos.z],
-      });
-      runtimeStatus?.completeJob(jobId, '新物件已经放好');
-      if (nextState === 'free_roam') await circleAround(pet, entity.mesh.position, 2);
-    } catch (error) {
-      runtimeStatus?.failJob(jobId, error);
-      throw error;
-    } finally {
-      removeWorkScaffold(scaffold);
-      finishWork(pet, nextState);
-    }
+      }),
+      apply: async ({ modelJson, assetId }) => {
+        const entityId = `pastoral_${assetId}`;
+        const eventId = `pastoral:create:${entityId}`;
+        const entity = placeGeneratedObject(modelJson, targetPos, prompt, { id: entityId, assetId, eventId });
+        recordAIWorldEvent({
+          id: eventId,
+          type: 'pastoral_create',
+          assetId,
+          entityId,
+          name: prompt,
+          prompt,
+          position: [targetPos.x, 0, targetPos.z],
+        });
+        if (nextState === 'free_roam') await circleAround(pet, entity.mesh.position, 2);
+        return entity;
+      },
+    });
   }
 
   async function refineObject(pet, target, description, nextState = 'following', alreadyAtWork = false, options = {}) {
@@ -621,41 +648,45 @@ export function createPastoralSlice({
       ? (options.workPoints || getWorkPositionForTarget(pet, target))
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
-    const scaffold = addWorkScaffold(points);
     const prompt = shortConcrete(description, '变得更田园自然');
-    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在调整`, '准备施工');
-    try {
-      await playWorkIntro(pet, points, { focusCamera });
-      const modelJson = getModelJson(target);
-      if (!modelJson) throw new Error('目标没有可修改模型');
-      runtimeStatus?.updateJob(jobId, 'AI 正在修改模型');
-      const result = await refineModel(modelJson, prompt, 'deepseek');
-      replaceTargetModel(target, result.modelJson);
-      const { assetId } = await saveGeneratedModel({
-        name: target.name || prompt,
-        description: prompt,
-        modelJson: result.modelJson,
-        tags: ['pastoral', 'refine'],
-      });
-      const targetId = target.id || target._petId || target._petName;
-      recordAIWorldEvent({
-        id: `pastoral:target:${targetId}`,
-        type: 'pastoral_target',
-        action: 'refine',
-        targetId,
-        assetId,
-        prompt,
-      });
-      startReveal(target._modelGroup || target.mesh);
-      runtimeStatus?.completeJob(jobId, '调整完成');
-      if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
-    } catch (error) {
-      runtimeStatus?.failJob(jobId, error);
-      throw error;
-    } finally {
-      removeWorkScaffold(scaffold);
-      finishWork(pet, nextState);
-    }
+    return workCoordinator.run({
+      pet,
+      points,
+      nextState,
+      focusCamera,
+      status: {
+        title: `${getPetName(pet)} 正在调整`,
+        preparing: '准备施工',
+        requesting: 'AI 正在修改模型',
+        applying: '正在替换模型',
+        complete: '调整完成',
+      },
+      execute: () => {
+        const modelJson = getModelJson(target);
+        if (!modelJson) throw new Error('目标没有可修改模型');
+        return aiActions.refineObject({
+          modelJson,
+          description: prompt,
+          name: target.name || prompt,
+          tags: ['pastoral', 'refine'],
+        });
+      },
+      apply: async ({ modelJson, assetId }) => {
+        replaceTargetModel(target, modelJson);
+        const targetId = target.id || target._petId || target._petName;
+        recordAIWorldEvent({
+          id: `pastoral:target:${targetId}`,
+          type: 'pastoral_target',
+          action: 'refine',
+          targetId,
+          assetId,
+          prompt,
+        });
+        startReveal(target._modelGroup || target.mesh);
+        if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
+        return target;
+      },
+    });
   }
 
   async function mountObject(pet, target, partDescription, positionDescription, nextState = 'following', alreadyAtWork = false, options = {}) {
@@ -665,49 +696,53 @@ export function createPastoralSlice({
       ? (options.workPoints || getWorkPositionForTarget(pet, target))
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
-    const scaffold = addWorkScaffold(points);
     const part = shortConcrete(partDescription, '一个小装饰');
     const where = shortConcrete(positionDescription, '顶部');
-    const jobId = runtimeStatus?.startJob(`${getPetName(pet)} 正在装配`, '准备施工');
-    try {
-      await playWorkIntro(pet, points, { focusCamera });
-      const modelJson = getModelJson(target);
-      if (!modelJson) throw new Error('目标没有可装配模型');
-      runtimeStatus?.updateJob(jobId, 'AI 正在装配部件');
-      const result = await mountModel(modelJson, part, `\u628a${part}\u52a0\u5728${where}`, 'deepseek');
-      replaceTargetModel(target, result.modelJson);
-      const prompt = `把${part}加在${where}`;
-      const { assetId } = await saveGeneratedModel({
-        name: target.name || part,
-        description: prompt,
-        modelJson: result.modelJson,
-        tags: ['pastoral', 'mount'],
-      });
-      const targetId = target.id || target._petId || target._petName;
-      recordAIWorldEvent({
-        id: `pastoral:target:${targetId}`,
-        type: 'pastoral_target',
-        action: 'mount',
-        targetId,
-        assetId,
-        prompt,
-      });
-      startReveal(target._modelGroup || target.mesh);
-      runtimeStatus?.completeJob(jobId, '装配完成');
-      if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
-    } catch (error) {
-      runtimeStatus?.failJob(jobId, error);
-      throw error;
-    } finally {
-      removeWorkScaffold(scaffold);
-      finishWork(pet, nextState);
-    }
+    return workCoordinator.run({
+      pet,
+      points,
+      nextState,
+      focusCamera,
+      status: {
+        title: `${getPetName(pet)} 正在装配`,
+        preparing: '准备施工',
+        requesting: 'AI 正在装配部件',
+        applying: '正在更新模型',
+        complete: '装配完成',
+      },
+      execute: () => {
+        const modelJson = getModelJson(target);
+        if (!modelJson) throw new Error('目标没有可装配模型');
+        return aiActions.mountPart({
+          modelJson,
+          part,
+          placement: where,
+          name: target.name || part,
+          tags: ['pastoral', 'mount'],
+        });
+      },
+      apply: async ({ modelJson, assetId, description: prompt }) => {
+        replaceTargetModel(target, modelJson);
+        const targetId = target.id || target._petId || target._petName;
+        recordAIWorldEvent({
+          id: `pastoral:target:${targetId}`,
+          type: 'pastoral_target',
+          action: 'mount',
+          targetId,
+          assetId,
+          prompt,
+        });
+        startReveal(target._modelGroup || target.mesh);
+        if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
+        return target;
+      },
+    });
   }
 
   async function interact(pet) {
     if (!pet) return;
     const name = getPetName(pet);
-    if (_busyPets.has(pet) || pet._pastoralBusy || pet._petState === 'working') {
+    if (_busyPets.has(pet) || pet.petState.is('working')) {
       await askPetChoice(pet, '我正在忙呢，等会再来聊天吧。', [{ key: 'ok', label: '好，等你忙完。' }]);
       return;
     }
@@ -765,22 +800,36 @@ export function createPastoralSlice({
     const targetPos = getTargetPosition(target) || target.mesh?.position || target.getPosition?.();
 
     if (choice.key === 'refine') {
+      const request = await collectRefineWorkRequest({
+        targetName: getTargetName(target),
+        askChoice: (text, options) => askPetChoice(pet, text, options, targetPos),
+        askInput: (text, placeholder) => askPetInput(pet, text, placeholder, targetPos),
+      });
+      if (!request) return;
       const workPoints = await beginWorkAtTarget(pet, target, { focusCamera: true });
       if (!workPoints) return;
-      const desc = await askPetInput(pet, '你想要怎么调整呢？', '例如：变成发光森林树', targetPos);
-      if (!desc) { finishWork(pet, 'idle'); return; }
-      await refineObject(pet, target, desc, 'idle', true, { focusCamera: true, workPoints });
+      await refineObject(pet, target, request.description, 'idle', true, { focusCamera: true, workPoints });
       return;
     }
 
     if (choice.key === 'mount') {
+      const request = await collectMountWorkRequest({
+        targetName: getTargetName(target),
+        askChoice: (text, options) => askPetChoice(pet, text, options, targetPos),
+        askInput: (text, placeholder) => askPetInput(pet, text, placeholder, targetPos),
+      });
+      if (!request) return;
       const workPoints = await beginWorkAtTarget(pet, target, { focusCamera: true });
       if (!workPoints) return;
-      const part = await askPetInput(pet, '你想要增加什么装饰呢？', '例如：给它加一个灯', targetPos);
-      if (!part) { finishWork(pet, 'idle'); return; }
-      const where = await askPetInput(pet, '这个要加在哪里呢？', '例如：头部 / 屋顶 / 墙上', targetPos);
-      if (!where) { finishWork(pet, 'idle'); return; }
-      await mountObject(pet, target, part, where, 'idle', true, { focusCamera: true, workPoints });
+      await mountObject(
+        pet,
+        target,
+        request.part,
+        request.placement,
+        'idle',
+        true,
+        { focusCamera: true, workPoints },
+      );
     }
   }
 
@@ -816,10 +865,15 @@ export function createPastoralSlice({
     ].join('\n');
 
     try {
-      const text = await callBackendChat([
-        { role: 'system', content: system },
-        { role: 'user', content: user },
-      ], 'deepseek', 0.75, 220);
+      const text = await contentPort.chat({
+        messages: [
+          { role: 'system', content: system },
+          { role: 'user', content: user },
+        ],
+        profile: 'planner',
+        temperature: 0.75,
+        maxTokens: 220,
+      });
       return parseJsonLoose(text) || fallbackAutonomous(profile);
     } catch (err) {
       console.warn('[Pastoral] autonomous chat failed:', err.message);
@@ -852,37 +906,11 @@ export function createPastoralSlice({
   function update(dt) {
     updateEffects(dt);
     for (const pet of _pets) {
-      if (pet._petState !== 'free_roam' || pet._pastoralBusy) continue;
+      if (!pet.petState.is('free_roam') || pet.petState.isBusy()) continue;
       pet._pastoralAutonomousTimer = (pet._pastoralAutonomousTimer ?? 20) - dt;
       if (pet._pastoralAutonomousTimer <= 0) {
         pet._pastoralAutonomousTimer = 20;
         runAutonomous(pet);
-      }
-    }
-  }
-
-  async function restorePersistedResults() {
-    const events = getAIWorldEvents().filter(event => event.type === 'pastoral_create' || event.type === 'pastoral_target');
-    for (const event of events) {
-      try {
-        const { modelJson } = await getGeneratedAsset(event.assetId);
-        if (!modelJson) continue;
-        if (event.type === 'pastoral_create') {
-          if (_objects.some(object => object.id === event.entityId)) continue;
-          const [x, y, z] = event.position || [0, 0, 0];
-          placeGeneratedObject(modelJson, new THREE.Vector3(x, y, z), event.name, {
-            id: event.entityId,
-            assetId: event.assetId,
-            eventId: event.id,
-          });
-          continue;
-        }
-        const target = [..._objects, ..._pets].find(object =>
-          object.id === event.targetId || object._petId === event.targetId || object._petName === event.targetId
-        );
-        if (target) replaceTargetModel(target, modelJson);
-      } catch (error) {
-        console.warn('[Pastoral] restore failed:', event.id, error.message);
       }
     }
   }
@@ -892,6 +920,5 @@ export function createPastoralSlice({
     update,
     startFollowing,
     startFreeRoam,
-    restorePersistedResults,
   };
 }

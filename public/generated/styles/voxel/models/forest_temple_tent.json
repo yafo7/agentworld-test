@@ -1,0 +1,460 @@
+{
+  "name": "绿色三角露营帐篷",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "tent",
+      "name": "帐篷主体",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftFlap",
+      "name": "左门帘",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          -0.05,
+          1.75,
+          1.44
+        ]
+      }
+    },
+    {
+      "id": "rightFlap",
+      "name": "右门帘",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0.05,
+          1.75,
+          1.44
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          0.08,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.9,
+          "height": 0.08,
+          "depth": 2.8
+        },
+        "color": 1985835
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          -0.8,
+          1.3,
+          0
+        ],
+        "quat": [
+          0.32,
+          -0.63,
+          0.32,
+          0.63
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.8,
+          "height": 0.08,
+          "depth": 2.72
+        },
+        "color": 2650930
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0.8,
+          1.3,
+          0
+        ],
+        "quat": [
+          0.32,
+          0.63,
+          -0.32,
+          0.63
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.8,
+          "height": 0.08,
+          "depth": 2.72
+        },
+        "color": 3507514
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          0.55,
+          -1.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.85,
+          "height": 0.72,
+          "depth": 0.08
+        },
+        "color": 2979891
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          1.18,
+          -1.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.95,
+          "height": 0.72,
+          "depth": 0.08
+        },
+        "color": 2979891
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          1.82,
+          -1.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1,
+          "height": 0.72,
+          "depth": 0.08
+        },
+        "color": 2979891
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          2.05,
+          1.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.5,
+          "depth": 0.08
+        },
+        "color": 3112242
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          2.42,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.1,
+          "depth": 3.05
+        },
+        "color": 5915431
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          1.24,
+          1.98
+        ],
+        "quat": [
+          0.53,
+          0,
+          0,
+          0.85
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.025,
+          "depth": 2.59
+        },
+        "color": 13085290
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          1.24,
+          -1.97
+        ],
+        "quat": [
+          0,
+          0.85,
+          -0.53,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.025,
+          "depth": 2.59
+        },
+        "color": 13085290
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          -1.85,
+          0.22,
+          0
+        ],
+        "quat": [
+          0.11,
+          -0.7,
+          0.11,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.025,
+          "depth": 0.84
+        },
+        "color": 13085290
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          1.85,
+          0.22,
+          0
+        ],
+        "quat": [
+          0.11,
+          0.7,
+          -0.11,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.025,
+          "depth": 0.84
+        },
+        "color": 13085290
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          0.14,
+          2.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.28,
+          "depth": 0.09
+        },
+        "color": 6636321
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          0,
+          0.14,
+          -2.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.28,
+          "depth": 0.09
+        },
+        "color": 6636321
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          -2.25,
+          0.14,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.28,
+          "depth": 0.09
+        },
+        "color": 6636321
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "tent",
+      "transform": {
+        "pos": [
+          2.25,
+          0.14,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.28,
+          "depth": 0.09
+        },
+        "color": 6636321
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "leftFlap",
+      "transform": {
+        "pos": [
+          -0.38,
+          -0.78,
+          0.23
+        ],
+        "quat": [
+          0.35,
+          -0.35,
+          -0.61,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.57,
+          "height": 0.06,
+          "depth": 0.9
+        },
+        "color": 4494407
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "rightFlap",
+      "transform": {
+        "pos": [
+          0.39,
+          -0.78,
+          0.23
+        ],
+        "quat": [
+          0.35,
+          0.35,
+          0.61,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.57,
+          "height": 0.06,
+          "depth": 0.9
+        },
+        "color": 4033345
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784017489806,
+      "provider": "gpt",
+      "data": "ZdRHzUMYLuS4ItLJZa3wsRek5k9BVOWodKauolIZRiU1P8M2n1rrcZiLtdPcekO866dj4q1MayAv2mSiAzivBhsJDlQoCSORrFIvVpiEs9iAPOMFIo8zAvVbfX4mOThk0I00SjSGbq+Lkde6E6gH6PdMkVyE4kETlzA45EHWXmsPjFOC30jFedFJHsgWLZUn+lmqgmYJuzaaDQDvhyBtHIHxOtO/I6y/O4hA72FfYqcuDPKQ2XZGCL6iUnOhK/2BeUmibnhLwnWh+BNlNiDcJeIBGyWJznkern+eUamkM2DU+3oHS1G6ALhgyjf4K3zh9YSVZ4KueLfuJTJFtFApYpxNWE4vOoByyYAlrZO0gRLEaSWY+9fXopiF5pzXrV9CEQUrbd2irXnwitTyp7pewM8ibiN/VdVPlkSbFtey29EA59Oky5pMPTbfMD5WCWdU/390qwkUOo2gN0tKsaiceIMJS3Ppq2fPlnpdEbs7F5hE6OLbG1nT10I4YJISQBbO98Tf4+yG4hBYQwmsWA2VyrsPqsZk+1NlUnOHs7cHa/ZGH5Q9YtpQA3w8GMdZnaYDqwWskhTS6b+mQIXYDbdnNy9drvv9c1QXYjxXzvg2ulisG5UhcU1LQp2q84TvleSgJKPDlzy2eakNXnt48t6pPvAOCejli/Zjk/YMgDWxUvbeE6iVOkZ93xaEap7paq+aW+rvMYjY9Ql/aVKbalK5BFRHt831q3QGENOwGMREcH/cifWPtv8TapIIt7qPxVqTupvtm0gJjaKBCtJejdk5nCn6riAS/HU1Cam2i0DrmwuA2OBlbehBIVz79i+qviYF+wNGVtzH1QCZLqIOI19ksAlLGW8hshdRgPP//K7cVs0P4VMmVzhvmgA0ySiG0M/vcXje6JI4H1KswCuo9H1Ac04D/70IJSi2gSovwIm0tu+G1e+ZnVjsawcg36S+etfMmIqQVP4QtPjKZPfpaU5bR3w=",
+      "edits": ""
+    }
+  }
+}

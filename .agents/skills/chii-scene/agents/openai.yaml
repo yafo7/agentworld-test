@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·场景布置"
+  short_description: "Modify Chii terrain placement and collision safely"
+  default_prompt: "Use $chii-scene to modify a Chii Island region layout safely."

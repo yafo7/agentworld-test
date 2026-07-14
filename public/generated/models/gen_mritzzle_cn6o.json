@@ -1,0 +1,3070 @@
+{
+  "name": "圆木花盆",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "potBody",
+      "transform": {
+        "pos": [
+          0.0001,
+          1.8977,
+          0.0036
+        ]
+      }
+    },
+    {
+      "id": "soil",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0,
+          1.4723,
+          0
+        ]
+      }
+    },
+    {
+      "id": "plant1",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.4801,
+          0.11,
+          -0.0536
+        ]
+      }
+    },
+    {
+      "id": "plant2",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.4199,
+          0.11,
+          -0.1236
+        ]
+      }
+    },
+    {
+      "id": "plant3",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.1499,
+          0.11,
+          0.4764
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.0001,
+          -0.0477,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.43,
+          "radiusBottom": 1.62,
+          "height": 3,
+          "radialSegments": 10
+        },
+        "color": 9127187
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.0001,
+          -1.5077,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 1.62,
+          "tube": 0.16500000000000004,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.0001,
+          1.4623,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 1.44,
+          "tube": 0.11999999999999988,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.4799,
+          -0.0677,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.3899,
+          -0.0677,
+          0.5064
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.1299,
+          -0.0677,
+          0.9464
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.7399,
+          -0.0677,
+          1.2864
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.2599,
+          -0.0677,
+          1.4764
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.2601,
+          -0.0677,
+          1.4464
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.7201,
+          -0.0677,
+          1.2464
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.1201,
+          -0.0677,
+          0.9364
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.4101,
+          -0.0677,
+          0.5064
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.4901,
+          -0.0677,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.3901,
+          -0.0677,
+          -0.5136
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.1501,
+          -0.0677,
+          -0.9636
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.7401,
+          -0.0677,
+          -1.2936
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.2601,
+          -0.0677,
+          -1.4536
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.2599,
+          -0.0677,
+          -1.4736
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.7299,
+          -0.0677,
+          -1.2736
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.065,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.1199,
+          -0.0677,
+          -0.9436
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.077,
+          "radiusBottom": 0.077,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.3899,
+          -0.0677,
+          -0.5136
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.089,
+          "radiusBottom": 0.089,
+          "height": 2.7,
+          "radialSegments": 10
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.4199,
+          1.4723,
+          -0.0036
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.14,
+          "detail": 0
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.3472,
+          1.5049,
+          0.4454
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.165,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.136,
+          1.412,
+          -0.8555
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.19,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.8085,
+          1.4841,
+          1.1638
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.14,
+          "detail": 0
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.3978,
+          1.4538,
+          -1.3667
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.165,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.0535,
+          1.4723,
+          1.4154
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.19,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.4996,
+          1.5028,
+          -1.3329
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.14,
+          "detail": 0
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.8941,
+          1.4861,
+          1.0995
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.165,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.1971,
+          1.4475,
+          -0.7674
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.19,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.3771,
+          1.4723,
+          0.3425
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.14,
+          "detail": 0
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.416,
+          1.4723,
+          0.1035
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.165,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.3094,
+          1.4396,
+          -0.5529
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.19,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.0687,
+          1.5077,
+          0.9315
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.14,
+          "detail": 0
+        },
+        "color": 11033642
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.718,
+          1.4723,
+          -1.2286
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.165,
+          "detail": 0
+        },
+        "color": 12154946
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.5099,
+          -0.7477,
+          -0.0036
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.5,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.333,
+          -0.5677,
+          -1.4764
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.66,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.3631,
+          -0.3877,
+          -0.6534
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.8200000000000001,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.9345,
+          -0.2077,
+          1.1826
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.5,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          0.9507,
+          -0.0277,
+          1.1695
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.66,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          1.3538,
+          0.1523,
+          -0.6722
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.8200000000000001,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -0.3536,
+          0.3323,
+          -1.4716
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.5,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "potBody",
+      "transform": {
+        "pos": [
+          -1.5099,
+          0.5123,
+          0.0174
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.66,
+          "depth": 0.1
+        },
+        "color": 6106902
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.0001,
+          0,
+          -0.0036
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.24,
+          "radiusBottom": 1.31,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.2801,
+          0.05,
+          0.0164
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.72,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.3799,
+          0.06,
+          -0.1236
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.62,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.0499,
+          0.13,
+          0.4264
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.48,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 4538424
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.0001,
+          0.2635,
+          -0.0036
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 4538424
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.4204,
+          0.2388,
+          0.3814
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.098,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.0664,
+          0.2141,
+          -0.7607
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.11599999999999999,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m50",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.5297,
+          0.1894,
+          0.6874
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m51",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.9167,
+          0.1647,
+          -0.1657
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.098,
+          "detail": 0
+        },
+        "color": 4538424
+      }
+    },
+    {
+      "id": "m52",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.8015,
+          0.14,
+          -0.5135
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.11599999999999999,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m53",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.2417,
+          0.1647,
+          0.8953
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m54",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.4014,
+          0.1894,
+          -0.7763
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.098,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m55",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          0.7138,
+          0.2141,
+          0.2571
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.11599999999999999,
+          "detail": 0
+        },
+        "color": 4538424
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.5269,
+          0.2388,
+          0.2139
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.08,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "soil",
+      "transform": {
+        "pos": [
+          -0.0001,
+          0.2635,
+          -0.0036
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.098,
+          "detail": 0
+        },
+        "color": 3092271
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0,
+          1.31,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.055,
+          "radiusBottom": 0.1,
+          "height": 2.72,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.3,
+          0.8933,
+          0.0833
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.29999999999999993,
+            -0.2233333333333336,
+            -0.08333333333333334
+          ],
+          "b": [
+            0.12,
+            -0.09333333333333371,
+            0.03666666666666666
+          ],
+          "c": [
+            -0.42000000000000004,
+            0.31666666666666643,
+            0.04666666666666667
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.3,
+          0.8933,
+          0.0033
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.29999999999999993,
+            -0.2233333333333336,
+            -0.003333333333333341
+          ],
+          "b": [
+            -0.42000000000000004,
+            0.31666666666666643,
+            0.12666666666666665
+          ],
+          "c": [
+            0.12,
+            -0.09333333333333371,
+            -0.12333333333333332
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0.2883,
+          1.2933,
+          0.0433
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.28833333333333333,
+            -0.2233333333333336,
+            -0.043333333333333335
+          ],
+          "b": [
+            -0.10833333333333331,
+            -0.09333333333333371,
+            0.07666666666666666
+          ],
+          "c": [
+            0.3966666666666666,
+            0.31666666666666643,
+            -0.03333333333333333
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0.2883,
+          1.2933,
+          -0.0367
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.28833333333333333,
+            -0.2233333333333336,
+            0.03666666666666667
+          ],
+          "b": [
+            0.3966666666666666,
+            0.31666666666666643,
+            0.04666666666666667
+          ],
+          "c": [
+            -0.10833333333333334,
+            -0.09333333333333371,
+            -0.08333333333333331
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.2767,
+          1.6933,
+          0.01
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2766666666666665,
+            -0.2233333333333336,
+            -0.009999999999999995
+          ],
+          "b": [
+            0.09666666666666657,
+            -0.09333333333333371,
+            0.11
+          ],
+          "c": [
+            -0.3733333333333334,
+            0.31666666666666643,
+            -0.1
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.2767,
+          1.6933,
+          -0.07
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2766666666666665,
+            -0.2233333333333336,
+            0.06999999999999999
+          ],
+          "b": [
+            -0.3733333333333334,
+            0.31666666666666643,
+            -0.020000000000000018
+          ],
+          "c": [
+            0.09666666666666657,
+            -0.09333333333333371,
+            -0.04999999999999999
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0.265,
+          2.0633,
+          0.0967
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.265,
+            -0.22333333333333272,
+            -0.09666666666666666
+          ],
+          "b": [
+            -0.08499999999999999,
+            -0.09333333333333282,
+            0.02333333333333333
+          ],
+          "c": [
+            0.35,
+            0.3166666666666673,
+            0.07333333333333333
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0.265,
+          2.0633,
+          0.0167
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.265,
+            -0.22333333333333272,
+            -0.01666666666666667
+          ],
+          "b": [
+            0.35,
+            0.3166666666666673,
+            0.15333333333333332
+          ],
+          "c": [
+            -0.08499999999999999,
+            -0.09333333333333282,
+            -0.13666666666666666
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.2533,
+          2.3633,
+          0.0733
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2533333333333334,
+            -0.2233333333333336,
+            -0.07333333333333333
+          ],
+          "b": [
+            0.07333333333333347,
+            -0.09333333333333371,
+            0.04666666666666666
+          ],
+          "c": [
+            -0.32666666666666666,
+            0.31666666666666643,
+            0.026666666666666672
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          -0.2533,
+          2.3633,
+          -0.0067
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.2533333333333334,
+            -0.2233333333333336,
+            0.006666666666666661
+          ],
+          "b": [
+            -0.32666666666666666,
+            0.31666666666666643,
+            0.10666666666666666
+          ],
+          "c": [
+            0.07333333333333347,
+            -0.09333333333333371,
+            -0.11333333333333331
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "plant1",
+      "transform": {
+        "pos": [
+          0,
+          2.71,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.24,
+          "height": 0.73,
+          "radialSegments": 10
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.07,
+          0.11,
+          0
+        ],
+        "quat": [
+          -0.01,
+          0,
+          -0.21,
+          0.98
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.15,
+          0.42,
+          0
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.06,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.32,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.16,
+          0.74,
+          0.02
+        ],
+        "quat": [
+          0.04,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.32,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.11,
+          1.06,
+          0.05
+        ],
+        "quat": [
+          0.05,
+          0,
+          0.1,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.33,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.04,
+          1.39,
+          0.08
+        ],
+        "quat": [
+          0.05,
+          0,
+          0.1,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0,
+          1.72,
+          0.11
+        ],
+        "quat": [
+          0.04,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.33,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0,
+          2.05,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.06,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.33,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m77",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.09,
+          2.38,
+          0.14
+        ],
+        "quat": [
+          0,
+          0,
+          -0.2,
+          0.98
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.065,
+          "radiusBottom": 0.08,
+          "height": 0.36,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m78",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.5402,
+          0.7683,
+          0.0197
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.36749999999999994,
+            -0.1899999999999995,
+            -0.017500000000000016,
+            -0.027499999999999858,
+            0.23000000000000043,
+            0.2525,
+            0,
+            0,
+            0,
+            -0.027499999999999858,
+            0.23000000000000043,
+            0.2525,
+            0.4125000000000001,
+            0.13000000000000078,
+            0.03249999999999999,
+            0,
+            0,
+            0,
+            0.4125000000000001,
+            0.13000000000000078,
+            0.03249999999999999,
+            -0.01749999999999996,
+            -0.16999999999999993,
+            -0.2675,
+            0,
+            0,
+            0,
+            -0.01749999999999996,
+            -0.16999999999999993,
+            -0.2675,
+            -0.36749999999999994,
+            -0.1899999999999995,
+            -0.017500000000000016,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m79",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.56,
+          0.74,
+          0.03
+        ],
+        "quat": [
+          0.04,
+          0,
+          -0.56,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.84,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m80",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          -0.2263,
+          1.0904,
+          0.0035
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0.36750000000000005,
+            -0.1899999999999995,
+            0.024999999999999994,
+            0.027499999999999997,
+            0.23000000000000043,
+            0.29500000000000004,
+            0,
+            0,
+            0,
+            0.027499999999999997,
+            0.23000000000000043,
+            0.29500000000000004,
+            -0.4125,
+            0.13000000000000078,
+            -0.095,
+            0,
+            0,
+            0,
+            -0.4125,
+            0.13000000000000078,
+            -0.095,
+            0.017500000000000043,
+            -0.16999999999999993,
+            -0.22500000000000003,
+            0,
+            0,
+            0,
+            0.017500000000000043,
+            -0.16999999999999993,
+            -0.22500000000000003,
+            0.36750000000000005,
+            -0.1899999999999995,
+            0.024999999999999994,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m81",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          -0.25,
+          1.06,
+          -0.03
+        ],
+        "quat": [
+          -0.08,
+          0,
+          0.55,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m82",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.3793,
+          1.7444,
+          0.0825
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.3675,
+            -0.1900000000000004,
+            0.014999999999999986,
+            -0.02749999999999997,
+            0.22999999999999954,
+            0.28500000000000003,
+            0,
+            0,
+            0,
+            -0.02749999999999997,
+            0.22999999999999954,
+            0.28500000000000003,
+            0.4125000000000001,
+            0.1299999999999999,
+            -0.06500000000000002,
+            0,
+            0,
+            0,
+            0.4125000000000001,
+            0.1299999999999999,
+            -0.06500000000000002,
+            -0.01750000000000007,
+            -0.17000000000000082,
+            -0.235,
+            0,
+            0,
+            0,
+            -0.01750000000000007,
+            -0.17000000000000082,
+            -0.235,
+            -0.3675,
+            -0.1900000000000004,
+            0.014999999999999986,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m83",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.4,
+          1.71,
+          0.06
+        ],
+        "quat": [
+          -0.06,
+          0,
+          -0.55,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m84",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          -0.3858,
+          2.0736,
+          0.1616
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0.3675,
+            -0.1900000000000004,
+            -0.03500000000000002,
+            0.027499999999999983,
+            0.22999999999999954,
+            0.23500000000000001,
+            0,
+            0,
+            0,
+            0.027499999999999983,
+            0.22999999999999954,
+            0.23500000000000001,
+            -0.41250000000000003,
+            0.1299999999999999,
+            0.08499999999999996,
+            0,
+            0,
+            0,
+            -0.41250000000000003,
+            0.1299999999999999,
+            0.08499999999999996,
+            0.01750000000000003,
+            -0.17000000000000082,
+            -0.28500000000000003,
+            0,
+            0,
+            0,
+            0.01750000000000003,
+            -0.17000000000000082,
+            -0.28500000000000003,
+            0.3675,
+            -0.1900000000000004,
+            -0.03500000000000002,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m85",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          -0.41,
+          2.04,
+          0.19
+        ],
+        "quat": [
+          0.08,
+          0,
+          0.55,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m86",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.3873,
+          2.4026,
+          0.168
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.36750000000000005,
+            -0.1900000000000004,
+            -0.02500000000000001,
+            -0.02750000000000008,
+            0.22999999999999954,
+            0.245,
+            0,
+            0,
+            0,
+            -0.02750000000000008,
+            0.22999999999999954,
+            0.245,
+            0.41249999999999987,
+            0.1299999999999999,
+            0.05499999999999999,
+            0,
+            0,
+            0,
+            0.41249999999999987,
+            0.1299999999999999,
+            0.05499999999999999,
+            -0.01750000000000007,
+            -0.17000000000000082,
+            -0.275,
+            0,
+            0,
+            0,
+            -0.01750000000000007,
+            -0.17000000000000082,
+            -0.275,
+            -0.36750000000000005,
+            -0.1900000000000004,
+            -0.02500000000000001,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m87",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.41,
+          2.37,
+          0.18
+        ],
+        "quat": [
+          0.06,
+          0,
+          -0.55,
+          0.83
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.85,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m88",
+      "parent": "plant2",
+      "transform": {
+        "pos": [
+          0.16,
+          2.875,
+          0.14
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0,
+            -0.33499999999999996,
+            1.0408340855860843e-17,
+            -0.3,
+            -0.01499999999999968,
+            0.18,
+            0,
+            0,
+            0,
+            -0.3,
+            -0.01499999999999968,
+            0.18,
+            0,
+            0.3849999999999998,
+            1.0408340855860843e-17,
+            0,
+            0,
+            0,
+            0,
+            0.3849999999999998,
+            1.0408340855860843e-17,
+            0.29999999999999993,
+            -0.03500000000000014,
+            -0.18,
+            0,
+            0,
+            0,
+            0.29999999999999993,
+            -0.03500000000000014,
+            -0.18,
+            0,
+            -0.33499999999999996,
+            1.0408340855860843e-17,
+            0,
+            0,
+            0
+          ],
+          "d": 0.07
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m89",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0,
+          0.44,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.075,
+          "radiusBottom": 0.12,
+          "height": 1,
+          "radialSegments": 10
+        },
+        "color": 1534748
+      }
+    },
+    {
+      "id": "m90",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1666,
+          0.9267,
+          -0.0565
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.16658890741842944,
+            -0.18666666666666742,
+            0.05650430447022453
+          ],
+          "b": [
+            -0.3068221851631412,
+            0.013333333333332753,
+            -0.11300860894044912
+          ],
+          "c": [
+            0.4734110925815706,
+            0.1733333333333329,
+            0.05650430447022453
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m91",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1666,
+          0.9267,
+          0.0565
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.16658890741842944,
+            -0.18666666666666742,
+            -0.05650430447022459
+          ],
+          "b": [
+            0.4734110925815706,
+            0.1733333333333329,
+            -0.05650430447022459
+          ],
+          "c": [
+            -0.3068221851631412,
+            0.013333333333332753,
+            0.11300860894044906
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m92",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.1175,
+          0.9533,
+          -0.1713
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.11753717888593734,
+            -0.21333333333333382,
+            0.17130864061805168
+          ],
+          "b": [
+            0.0018438762277573698,
+            -0.013333333333333641,
+            0.3584317544229549
+          ],
+          "c": [
+            -0.11938105511369473,
+            0.22666666666666657,
+            -0.5297403950410067
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m93",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.0105,
+          0.9533,
+          -0.2075
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.010476940617189429,
+            -0.21333333333333293,
+            0.20748945150578985
+          ],
+          "b": [
+            -0.22644129338244265,
+            0.22666666666666746,
+            -0.49355958415326845
+          ],
+          "c": [
+            0.21596435276525322,
+            -0.013333333333332753,
+            0.28607013264747855
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m94",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.0982,
+          0.98,
+          0.146
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.09816103923122463,
+            -0.2400000000000002,
+            -0.14597606268007046
+          ],
+          "b": [
+            0.3124750006282633,
+            -0.040000000000000036,
+            -0.09628173754823444
+          ],
+          "c": [
+            -0.41063603985948793,
+            0.28000000000000025,
+            0.2422578002283049
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m95",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.1667,
+          0.98,
+          0.0561
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.16671380296693167,
+            -0.2400000000000002,
+            -0.056134734334750025
+          ],
+          "b": [
+            -0.3420832761237809,
+            0.28000000000000025,
+            0.33209912857362534
+          ],
+          "c": [
+            0.17536947315684925,
+            -0.040000000000000036,
+            -0.2759643942388753
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m96",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1974,
+          0.9267,
+          0.0649
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.19735998218508813,
+            -0.18666666666666742,
+            -0.06488972339878918
+          ],
+          "b": [
+            -0.21889609913677768,
+            0.013333333333332753,
+            -0.28383308517676853
+          ],
+          "c": [
+            0.41625608132186576,
+            0.1733333333333329,
+            0.3487228085755575
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m97",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1342,
+          0.9267,
+          0.1586
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.13419541883541516,
+            -0.18666666666666742,
+            -0.15859769334532314
+          ],
+          "b": [
+            0.4794206446715387,
+            0.1733333333333329,
+            0.2550148386290235
+          ],
+          "c": [
+            -0.34522522583612353,
+            0.013333333333332753,
+            -0.09641714528370038
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m98",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.0105,
+          0.9533,
+          -0.1756
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.010513751039192137,
+            -0.21333333333333382,
+            0.1755963027447212
+          ],
+          "b": [
+            -0.19001021361351184,
+            -0.013333333333333641,
+            0.2660956927976997
+          ],
+          "c": [
+            0.17949646257431973,
+            0.22666666666666657,
+            -0.44169199554242095
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m99",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.0985,
+          0.9533,
+          -0.1458
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.09848451756181878,
+            -0.21333333333333293,
+            0.14575801967351815
+          ],
+          "b": [
+            0.07049819397330881,
+            0.22666666666666746,
+            -0.471530278613624
+          ],
+          "c": [
+            0.027986323588509943,
+            -0.013333333333332753,
+            0.3257722589401059
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m100",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.1963,
+          0.98,
+          0.0681
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.19626339131771225,
+            -0.2400000000000002,
+            -0.06813457271708823
+          ],
+          "b": [
+            0.34619892335081587,
+            -0.040000000000000036,
+            0.09286026022468719
+          ],
+          "c": [
+            -0.5424623146685281,
+            0.28000000000000025,
+            -0.024725687507598737
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m101",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.2029,
+          0.98,
+          -0.0447
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.20289255041660423,
+            -0.2400000000000002,
+            0.04467943325866336
+          ],
+          "b": [
+            -0.5358331555696362,
+            0.28000000000000025,
+            0.08808831846815285
+          ],
+          "c": [
+            0.3329406051530319,
+            -0.040000000000000036,
+            -0.13276775172681649
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m102",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1149,
+          0.9267,
+          0.1332
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.11487780741568684,
+            -0.18666666666666742,
+            -0.1332204558688127
+          ],
+          "b": [
+            -0.010360495365897227,
+            0.013333333333332753,
+            -0.32680798512079445
+          ],
+          "c": [
+            0.12523830278158415,
+            0.1733333333333329,
+            0.46002844098960727
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m103",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.0101,
+          0.9267,
+          0.1756
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.01012431899470878,
+            -0.18666666666666742,
+            -0.1756191864900395
+          ],
+          "b": [
+            0.22999179120256222,
+            0.1733333333333329,
+            0.4176297103683805
+          ],
+          "c": [
+            -0.21986747220785346,
+            0.013333333333332753,
+            -0.2420105238783412
+          ],
+          "d": 0.065
+        },
+        "color": 3841330
+      }
+    },
+    {
+      "id": "m104",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1147,
+          0.9533,
+          -0.1732
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.11469701854894157,
+            -0.21333333333333382,
+            0.1732230720973777
+          ],
+          "b": [
+            -0.3315570289421122,
+            -0.013333333333333641,
+            0.13618611903325628
+          ],
+          "c": [
+            0.4462540474910538,
+            0.22666666666666657,
+            -0.309409191130634
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m105",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0.1884,
+          0.9533,
+          -0.0876
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.18840188435593916,
+            -0.21333333333333293,
+            0.08755780229083482
+          ],
+          "b": [
+            0.3725491816840562,
+            0.22666666666666746,
+            -0.39507446093717685
+          ],
+          "c": [
+            -0.18414729732811713,
+            -0.013333333333332753,
+            0.3075166586463421
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m106",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.1721,
+          0.98,
+          -0.0362
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.17214091416532906,
+            -0.2400000000000002,
+            0.03622300607148238
+          ],
+          "b": [
+            0.20648330667632858,
+            -0.040000000000000036,
+            0.25352602049286693
+          ],
+          "c": [
+            -0.37862422084165764,
+            0.28000000000000025,
+            -0.2897490265643493
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m107",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          -0.1146,
+          0.98,
+          -0.1335
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.11458209235022601,
+            -0.2400000000000002,
+            0.133474883821542
+          ],
+          "b": [
+            -0.4361830426567607,
+            0.28000000000000025,
+            -0.1924971488142897
+          ],
+          "c": [
+            0.3216009503065347,
+            -0.040000000000000036,
+            0.05902226499274793
+          ],
+          "d": 0.065
+        },
+        "color": 2263842
+      }
+    },
+    {
+      "id": "m108",
+      "parent": "plant3",
+      "transform": {
+        "pos": [
+          0,
+          0.82,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.16,
+          "detail": 0
+        },
+        "color": 1534748
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1783923477337,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  }
+}

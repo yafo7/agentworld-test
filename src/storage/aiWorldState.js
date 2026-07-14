@@ -1,26 +1,18 @@
 const STORAGE_KEY = 'chii-ai-world-state';
 const VERSION = 1;
+let state = { version: VERSION, events: [] };
+
+// AI-created scene state is session-only. Remove snapshots written by older builds.
+try {
+  globalThis.localStorage?.removeItem(STORAGE_KEY);
+} catch (_) {}
 
 function readState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { version: VERSION, events: [] };
-    const state = JSON.parse(raw);
-    if (state.version !== VERSION || !Array.isArray(state.events)) {
-      return { version: VERSION, events: [] };
-    }
-    return state;
-  } catch (_) {
-    return { version: VERSION, events: [] };
-  }
+  return state;
 }
 
-function writeState(state) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (error) {
-    console.warn('[AIWorldState] save failed:', error.message);
-  }
+function writeState(nextState) {
+  state = nextState;
 }
 
 export function recordAIWorldEvent(event) {
@@ -44,3 +36,6 @@ export function removeAIWorldEvent(id) {
   writeState(state);
 }
 
+export function clearAIWorldEvents() {
+  state = { version: VERSION, events: [] };
+}

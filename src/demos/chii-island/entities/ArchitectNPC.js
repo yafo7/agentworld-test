@@ -3,7 +3,7 @@ import RAPIER from '@dimforge/rapier3d-compat';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { evaluateMotion, applyMotionDeltas } from '../../../engine/animation/player.js';
 import { normalizeAnimationPlan } from '../../../engine/animation/normalizePlan.js';
-import { getRuntime } from '../../../backend/runtimeLoader.js';
+import { getRuntime } from '../../../engine/runtime/runtimeProvider.js';
 
 /**
  * Simple NPC entity — no AI, no autonomous behavior.

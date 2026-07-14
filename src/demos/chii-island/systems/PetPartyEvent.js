@@ -1,5 +1,9 @@
 import * as THREE from 'three';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
+import {
+  PET_STATES,
+  getPetStateMachine,
+} from '../../../gameplay/pets/PetStateMachine.js';
 
 const PARTY_DURATION = 10;
 const GATHER_TIMEOUT = 12;
@@ -65,16 +69,21 @@ export class PetPartyEvent {
   }
 
   canInteract(pet) {
+    const state = getPetStateMachine(pet);
     return this.isTownPet(pet)
       && !this.active
-      && (pet._petState === 'free_roam' || pet._petState === 'following');
+      && (state.is(PET_STATES.FREE_ROAM) || state.is(PET_STATES.FOLLOWING));
   }
 
   async interact(pet, dialogueSystem) {
     if (!this.canInteract(pet)) return false;
 
-    const wasFollowing = pet._petState === 'following' || pet._followEnabled;
-    pet._petState = 'interacting';
+    const petState = getPetStateMachine(pet);
+    const wasFollowing = petState.is(PET_STATES.FOLLOWING) || pet._followEnabled;
+    petState.enterTemporary(
+      PET_STATES.INTERACTING,
+      wasFollowing ? PET_STATES.FOLLOWING : PET_STATES.FREE_ROAM,
+    );
     pet.stopWalking?.();
     const options = [
       { key: 'party', label: '我们要一起办个派对吗？' },
@@ -95,8 +104,7 @@ export class PetPartyEvent {
         text: '好呀好呀，我去叫大家一起来！',
       });
       if (!confirmed) {
-        pet._petState = wasFollowing ? 'following' : 'free_roam';
-        if (!wasFollowing) this.petManager.resumePet(pet);
+        this._restoreAfterInteraction(pet, wasFollowing);
         return false;
       }
       this.start();
@@ -104,26 +112,29 @@ export class PetPartyEvent {
     }
 
     if (choice?.key === 'follow') {
-      pet._petState = 'following';
+      petState.transition(PET_STATES.FOLLOWING, { reason: 'player-requested-follow' });
       pet.followTarget?.(this.player.mesh, 3.0, 6.0);
       return true;
     }
 
     if (choice?.key === 'free_roam') {
-      pet.stopFollow?.();
-      pet._petState = 'free_roam';
+      petState.transition(PET_STATES.FREE_ROAM, { reason: 'player-requested-free-roam' });
       this.petManager.resumePet(pet);
       return true;
     }
 
-    if (wasFollowing) {
-      pet._petState = 'following';
-      return false;
-    }
-
-    pet._petState = 'free_roam';
-    this.petManager.resumePet(pet);
+    this._restoreAfterInteraction(pet, wasFollowing);
     return false;
+  }
+
+  _restoreAfterInteraction(pet, wasFollowing) {
+    const petState = getPetStateMachine(pet);
+    petState.resume('dialogue-closed');
+    if (wasFollowing) {
+      pet.followTarget?.(this.player.mesh, 3.0, 6.0);
+    } else {
+      this.petManager.resumePet(pet);
+    }
   }
 
   start() {
@@ -137,10 +148,8 @@ export class PetPartyEvent {
     });
 
     this.participants.forEach((pet, index) => {
-      pet.stopFollow?.();
-      pet.disableWander?.();
+      getPetStateMachine(pet).enterTemporary(PET_STATES.PERFORMING, PET_STATES.FREE_ROAM);
       pet.unlockFacing?.();
-      pet._petState = 'performing';
       pet.walkTo?.(this.slots[index].x, this.slots[index].z, 4.2);
     });
     return true;
@@ -206,7 +215,7 @@ export class PetPartyEvent {
     for (const pet of this.participants) {
       pet.stopWalking?.();
       pet.unlockFacing?.();
-      pet._petState = 'free_roam';
+      getPetStateMachine(pet).resume('party-ended');
       pet.playAnimation?.('idle');
       this.petManager.resumePet(pet);
     }

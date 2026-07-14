@@ -1,13 +1,10 @@
-// Unified LLM API client — supports both DeepSeek direct and backend /api/chat proxy.
-
-const DEEPSEEK_KEY = 'sk-4xxxxxx8';
-const DEEPSEEK_URL = 'https://api.deepseek.com/v1/chat/completions';
-const DEEPSEEK_MODEL = 'deepseek-chat';
+// Unified LLM API client. Browser code only talks to the backend proxy so API
+// credentials never ship in the client bundle.
 
 const BACKEND_CHAT_URL = '/api/voxel/api/chat';
 
 /**
- * Call DeepSeek API directly (OpenAI-compatible).
+ * Request DeepSeek through the backend proxy.
  * Returns parsed JSON from the response.
  *
  * @param {string} systemPrompt
@@ -17,34 +14,10 @@ const BACKEND_CHAT_URL = '/api/voxel/api/chat';
  * @returns {Promise<object>}
  */
 export async function callDeepSeek(systemPrompt, userPrompt, temperature = 0.8, maxTokens = 2048) {
-  const body = {
-    model: DEEPSEEK_MODEL,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userPrompt },
-    ],
-    response_format: { type: 'json_object' },
-    temperature,
-    max_tokens: maxTokens,
-  };
-
-  const res = await fetch(DEEPSEEK_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${DEEPSEEK_KEY}`,
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`AI API error ${res.status}: ${errText}`);
-  }
-
-  const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (!content) throw new Error('AI API returned empty response');
+  const content = await callBackendChat([
+    { role: 'system', content: systemPrompt },
+    { role: 'user', content: userPrompt },
+  ], 'deepseek', temperature, maxTokens);
 
   try {
     return JSON.parse(content);

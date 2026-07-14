@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
+import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
 
 /**
  * Construction visual effect — architect walks around building, dust particles,
@@ -11,7 +12,7 @@ import { buildModelFromJson } from '../../../engine/model/builder.js';
  *   ce.start(buildingEntity, playerDescription);
  *   ce.update(dt); // called each frame while active
  */
-export function createConstructionEffect({ scene, architect }) {
+export function createConstructionEffect({ scene, architect, contentPort = defaultContentGeneration }) {
   // --- state ---
   const STATE = {
     IDLE: 'idle',
@@ -451,12 +452,10 @@ export function createConstructionEffect({ scene, architect }) {
   }
 
   async function _doRefine() {
-    // Dynamic import to avoid circular dependency
     try {
-      const { refineModel } = await import('../../../backend/voxelApi.js');
       const modelJson = _building._originalModelJson;
       if (!modelJson) throw new Error('No original model JSON on building');
-      const result = await refineModel(modelJson, _description);
+      const result = await contentPort.refineModel({ modelJson, description: _description });
       return result;
     } catch (e) {
       console.warn('[ConstructionEffect] API refine failed, using fallback:', e.message);

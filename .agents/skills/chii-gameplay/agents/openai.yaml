@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·玩法切片"
+  short_description: "Implement scoped Chii pet and region gameplay slices"
+  default_prompt: "Use $chii-gameplay to implement a scoped Chii Island gameplay slice."

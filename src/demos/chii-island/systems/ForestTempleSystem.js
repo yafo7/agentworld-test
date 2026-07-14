@@ -2,9 +2,8 @@ import * as THREE from 'three';
 import { ArchitectNPC } from '../entities/ArchitectNPC.js';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { applyAnimation } from '../../../engine/animation/player.js';
-import { generateAnimation, generateModel } from '../../../backend/voxelApi.js';
-import { callBackendChat } from '../../../backend/chatApi.js';
-import { getGeneratedAsset, saveAnimationForModel, saveGeneratedModel } from '../data/generatedLibrary.js';
+import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
+import { generatedAssets } from '../../../assets/repositories/GeneratedAssetRepository.js';
 import { getAIWorldEvents, recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 
 const INTERACT_RANGE = 6;
@@ -58,6 +57,8 @@ export class ForestTempleSystem {
     getPets,
     onPetSpawned = null,
     runtimeStatus = null,
+    contentPort = defaultContentGeneration,
+    generatedAssetRepository = generatedAssets,
   }) {
     this.scene = scene;
     this.physics = physics;
@@ -70,6 +71,8 @@ export class ForestTempleSystem {
     this.getPets = getPets;
     this.onPetSpawned = onPetSpawned;
     this.runtimeStatus = runtimeStatus;
+    this.contentPort = contentPort;
+    this.generatedAssetRepository = generatedAssetRepository;
 
     this.trophyState = 'idle';
     this.tentState = 'idle';
@@ -83,7 +86,7 @@ export class ForestTempleSystem {
   }
 
   getFollowingPet() {
-    return this.getPets().find(pet => pet._petState === 'following' || pet._followEnabled) || null;
+    return this.getPets().find(pet => pet.petState?.is('following') || pet._followEnabled) || null;
   }
 
   findInteraction(playerPosition, range = INTERACT_RANGE) {
@@ -147,7 +150,7 @@ export class ForestTempleSystem {
     if (!companion || this.trophyState !== 'idle') return false;
     this.trophyState = 'dialogue';
     companion.stopFollow?.();
-    companion._petState = 'summoning_participant';
+    companion.petState.enterTemporary('summoning_participant', 'following');
 
     try {
       const playerPetWish = await this.dialogueSystem.askInput({
@@ -189,7 +192,7 @@ export class ForestTempleSystem {
       if (!accepted) return this._cancelSummon(companion);
 
       companion.unlockFacing?.();
-      companion._petState = 'following';
+      companion.petState.resume('summon-request-complete');
       companion.followTarget?.(this.player.mesh, 3.2, 6);
       this.trophyState = 'summoning';
       this.trophyAnimTime = 0;
@@ -215,7 +218,7 @@ export class ForestTempleSystem {
 
   _cancelSummon(companion) {
     companion.unlockFacing?.();
-    companion._petState = 'following';
+    companion.petState.transition('following', { reason: 'summon-cancelled' });
     companion.followTarget?.(this.player.mesh, 3.2, 6);
     this.trophyState = 'idle';
     return false;
@@ -225,22 +228,27 @@ export class ForestTempleSystem {
     const profile = pet._profile || {};
     const fallback = `我希望新朋友能和我一样喜欢${profile.favoriteActions?.[0] || '一起玩'}！`;
     try {
-      const content = await callBackendChat([
-        {
-          role: 'system',
-          content: '你是奇异岛宠物。根据资料只说一句简短中文愿望，使用第一人称，不解释。',
-        },
-        {
-          role: 'user',
-          content: [
-            `名字:${pet._petName}`,
-            `性格:${(profile.personalityTags || []).join('、')}`,
-            `特点:${(profile.featureTags || []).join('、')}`,
-            `能力:${(profile.abilityTags || []).join('、')}`,
-            `喜欢:${(profile.favoriteActions || []).join('、')}`,
-          ].join('\n'),
-        },
-      ], 'gpt', 0.6, 100);
+      const content = await this.contentPort.chat({
+        messages: [
+          {
+            role: 'system',
+            content: '你是奇异岛宠物。根据资料只说一句简短中文愿望，使用第一人称，不解释。',
+          },
+          {
+            role: 'user',
+            content: [
+              `名字:${pet._petName}`,
+              `性格:${(profile.personalityTags || []).join('、')}`,
+              `特点:${(profile.featureTags || []).join('、')}`,
+              `能力:${(profile.abilityTags || []).join('、')}`,
+              `喜欢:${(profile.favoriteActions || []).join('、')}`,
+            ].join('\n'),
+          },
+        ],
+        profile: 'pro',
+        temperature: 0.6,
+        maxTokens: 100,
+      });
       return cleanLine(content, 34) || fallback;
     } catch (_) {
       return fallback;
@@ -249,37 +257,47 @@ export class ForestTempleSystem {
 
   async _makeFinalPrompt(context) {
     const profile = context.companionProfile || {};
-    const content = await callBackendChat([
-      {
-        role: 'system',
-        content: [
-          '你是体素宠物外形提炼器。',
-          '只输出一句简短、具体、可视化的中文宠物外形描述。',
-          '必须包含动物原型或身体形态，以及1到3个明显视觉特征。',
-          '不要解释、故事、分析、世界观或抽象氛围词。',
-        ].join(''),
-      },
-      {
-        role: 'user',
-        content: [
-          `玩家想邂逅:${context.playerPetWish}`,
-          `玩家心情与性格期待:${context.playerMoodWish}`,
-          `伙伴愿望:${context.companionWish}`,
-          `伙伴性格:${(profile.personalityTags || []).join('、')}`,
-          `伙伴特点:${(profile.featureTags || []).join('、')}`,
-          `伙伴能力:${(profile.abilityTags || []).join('、')}`,
-        ].join('\n'),
-      },
-    ], 'gpt', 0.3, 120);
+    const content = await this.contentPort.chat({
+      messages: [
+        {
+          role: 'system',
+          content: [
+            '你是体素宠物外形提炼器。',
+            '只输出一句简短、具体、可视化的中文宠物外形描述。',
+            '必须包含动物原型或身体形态，以及1到3个明显视觉特征。',
+            '不要解释、故事、分析、世界观或抽象氛围词。',
+          ].join(''),
+        },
+        {
+          role: 'user',
+          content: [
+            `玩家想邂逅:${context.playerPetWish}`,
+            `玩家心情与性格期待:${context.playerMoodWish}`,
+            `伙伴愿望:${context.companionWish}`,
+            `伙伴性格:${(profile.personalityTags || []).join('、')}`,
+            `伙伴特点:${(profile.featureTags || []).join('、')}`,
+            `伙伴能力:${(profile.abilityTags || []).join('、')}`,
+          ].join('\n'),
+        },
+      ],
+      profile: 'pro',
+      temperature: 0.3,
+      maxTokens: 120,
+    });
     return cleanLine(content, 32);
   }
 
   async _makePetName(finalModelPrompt) {
     try {
-      const content = await callBackendChat([
-        { role: 'system', content: '只输出一个2到4个汉字的宠物名字，不解释。' },
-        { role: 'user', content: finalModelPrompt },
-      ], 'gpt', 0.7, 30);
+      const content = await this.contentPort.chat({
+        messages: [
+          { role: 'system', content: '只输出一个2到4个汉字的宠物名字，不解释。' },
+          { role: 'user', content: finalModelPrompt },
+        ],
+        profile: 'pro',
+        temperature: 0.7,
+        maxTokens: 30,
+      });
       return cleanLine(content, 4) || '新朋友';
     } catch (_) {
       return '新朋友';
@@ -288,10 +306,15 @@ export class ForestTempleSystem {
 
   async _makeSpecialPrompt(finalModelPrompt) {
     try {
-      const content = await callBackendChat([
-        { role: 'system', content: '只输出一个5到10字的具体宠物动作，不解释，不写氛围。' },
-        { role: 'user', content: `宠物外形:${finalModelPrompt}\n动作要体现其可见特征。` },
-      ], 'gpt', 0.4, 40);
+      const content = await this.contentPort.chat({
+        messages: [
+          { role: 'system', content: '只输出一个5到10字的具体宠物动作，不解释，不写氛围。' },
+          { role: 'user', content: `宠物外形:${finalModelPrompt}\n动作要体现其可见特征。` },
+        ],
+        profile: 'pro',
+        temperature: 0.4,
+        maxTokens: 40,
+      });
       return cleanLine(content, 10) || '开心挥舞双手';
     } catch (_) {
       return '开心挥舞双手';
@@ -305,7 +328,7 @@ export class ForestTempleSystem {
 
     this.runtimeStatus?.updateJob(context.summonJobId, 'AI 正在生成新宠物');
     const [{ modelJson }, petName, specialPrompt] = await Promise.all([
-      generateModel(finalModelPrompt, 'gpt', 'standard'),
+      this.contentPort.generateModel({ description: finalModelPrompt, quality: 'voxel' }),
       this._makePetName(finalModelPrompt),
       this._makeSpecialPrompt(finalModelPrompt),
     ]);
@@ -319,19 +342,24 @@ export class ForestTempleSystem {
     const animations = {};
     this.runtimeStatus?.updateJob(context.summonJobId, '正在生成四种动作');
     for (const [name, prompt, duration, particles] of animationRequests) {
-      const result = await generateAnimation(modelJson, prompt, duration, 'gpt', particles);
+      const result = await this.contentPort.generateAnimation({
+        modelJson,
+        description: prompt,
+        duration,
+        emitParticles: particles,
+      });
       animations[name] = result.plan;
     }
 
     this.runtimeStatus?.updateJob(context.summonJobId, '正在保存宠物资产');
-    const { assetId } = await saveGeneratedModel({
+    const { assetId } = await this.generatedAssetRepository.saveModel({
       name: petName,
       description: finalModelPrompt,
       modelJson,
       tags: ['pet', 'forest_summon'],
     });
     for (const [name, plan] of Object.entries(animations)) {
-      await saveAnimationForModel({
+      await this.generatedAssetRepository.saveAnimation({
         modelId: assetId,
         name,
         plan,
@@ -412,36 +440,6 @@ export class ForestTempleSystem {
     return pet;
   }
 
-  async restorePersistedPets() {
-    const events = getAIWorldEvents('forest_pet');
-    for (const event of events) {
-      if (this.generatedPets.some(pet => pet._generatedAssetId === event.assetId)) continue;
-      try {
-        const asset = await getGeneratedAsset(event.assetId);
-        if (!asset.modelJson) continue;
-        const animations = {};
-        for (const animation of asset.animations || []) {
-          const key = animation.name || animation.type;
-          if (key) animations[key] = animation.plan;
-        }
-        this._spawnGeneratedPet({
-          petName: event.petName || asset.modelJson.name || '新朋友',
-          modelJson: asset.modelJson,
-          animations,
-          finalModelPrompt: event.finalModelPrompt || asset.modelJson.name || '森林宠物',
-          context: { playerMoodWish: event.mood || '', companionProfile: {} },
-          specialPrompt: event.specialPrompt || '开心挥手',
-          assetId: event.assetId,
-          position: event.position,
-          hasIntroduced: !!event.hasIntroduced,
-        });
-        this.trophyState = 'complete';
-      } catch (error) {
-        console.warn('[ForestTemple] restore pet failed:', event.assetId, error.message);
-      }
-    }
-  }
-
   async _interactTent(pet) {
     if (!pet) return false;
     if (this.tentState === 'camping') {
@@ -454,12 +452,12 @@ export class ForestTempleSystem {
       return true;
     }
 
-    if (this.tentState !== 'idle' || (pet._petState !== 'following' && !pet._followEnabled)) return false;
+    if (this.tentState !== 'idle' || (!pet.petState?.is('following') && !pet._followEnabled)) return false;
     this.tentState = 'camping';
     this.campingPet = pet;
     const token = ++this.campingToken;
     pet.stopFollow?.();
-    pet._petState = 'camping';
+    pet.petState.enterTemporary('camping', 'following');
     this.campingJobId = this.runtimeStatus?.startJob(`${pet._petName} 正在准备露营`, '走到帐篷旁');
     const campPoint = this.tent.mesh.position.clone().add(new THREE.Vector3(0, 0, 6));
     pet.walkTo?.(campPoint.x, campPoint.z, 4);
@@ -479,7 +477,12 @@ export class ForestTempleSystem {
     const modelJson = pet._originalModelJson;
     if (!modelJson) throw new Error('宠物缺少模型数据');
     this.runtimeStatus?.updateJob(this.campingJobId, 'AI 正在准备跳舞动作');
-    const result = await generateAnimation(modelJson, '宠物在帐篷旁开心跳舞', 3, 'gpt', true);
+    const result = await this.contentPort.generateAnimation({
+      modelJson,
+      description: '宠物在帐篷旁开心跳舞',
+      duration: 3,
+      emitParticles: true,
+    });
     if (token !== this.campingToken) return;
     pet.loadAnimation('camping', result.plan);
     this.runtimeStatus?.completeJob(this.campingJobId, '露营舞会开始了');
@@ -504,7 +507,7 @@ export class ForestTempleSystem {
     }
     if (pet) {
       pet.stopWalking?.();
-      pet._petState = 'following';
+      pet.petState.resume('camping-ended');
       pet.playAnimation?.('idle');
       pet.followTarget?.(this.player.mesh, 3.2, 6);
     }

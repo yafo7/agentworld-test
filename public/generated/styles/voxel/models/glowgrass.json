@@ -1,0 +1,644 @@
+{
+  "name": "青绿荧光草丛",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "root",
+      "name": "草丛根部",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "blade_0",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          -0.42,
+          0.24,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "blade_1",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          -0.18,
+          0.25,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "blade_2",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0.06,
+          0.25,
+          0.26
+        ]
+      }
+    },
+    {
+      "id": "blade_3",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0.3,
+          0.24,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "blade_4",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0.46,
+          0.23,
+          -0.1
+        ]
+      }
+    },
+    {
+      "id": "blade_5",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          -0.48,
+          0.23,
+          -0.2
+        ]
+      }
+    },
+    {
+      "id": "blade_6",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          -0.16,
+          0.24,
+          -0.32
+        ]
+      }
+    },
+    {
+      "id": "blade_7",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0.18,
+          0.24,
+          -0.28
+        ]
+      }
+    },
+    {
+      "id": "blade_8",
+      "name": "荧光草叶",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0,
+          0.25,
+          0.02
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0,
+          0.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.18,
+          "depth": 1.25
+        },
+        "color": 1523512
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "root",
+      "transform": {
+        "pos": [
+          0.12,
+          0.2,
+          -0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.16,
+          "depth": 0.85
+        },
+        "color": 2452312
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "blade_0",
+      "transform": {
+        "pos": [
+          -0.09,
+          0.64,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.1,
+          "depth": 1.28
+        },
+        "color": 2330482
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "blade_0",
+      "transform": {
+        "pos": [
+          -0.2,
+          1.41,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.12,
+          "depth": 0.28
+        },
+        "color": 8257488
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "blade_1",
+      "transform": {
+        "pos": [
+          0.04,
+          0.8,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.17,
+          "height": 0.1,
+          "depth": 1.6
+        },
+        "color": 3257739
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "blade_1",
+      "transform": {
+        "pos": [
+          0.09,
+          1.77,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.17,
+          "height": 0.12,
+          "depth": 0.35
+        },
+        "color": 10944483
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "blade_2",
+      "transform": {
+        "pos": [
+          -0.03,
+          0.96,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.01,
+          0.01,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.1,
+          "depth": 1.93
+        },
+        "color": 1930847
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "blade_2",
+      "transform": {
+        "pos": [
+          -0.07,
+          2.14,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.01,
+          0.01,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.12,
+          "depth": 0.42
+        },
+        "color": 8257488
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "blade_3",
+      "transform": {
+        "pos": [
+          0.12,
+          0.72,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.1,
+          "depth": 1.46
+        },
+        "color": 2330482
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "blade_3",
+      "transform": {
+        "pos": [
+          0.27,
+          1.59,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.12,
+          "depth": 0.32
+        },
+        "color": 10944483
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "blade_4",
+      "transform": {
+        "pos": [
+          0.14,
+          0.53,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.1,
+          "depth": 1.1
+        },
+        "color": 3257739
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "blade_4",
+      "transform": {
+        "pos": [
+          0.31,
+          1.18,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.12,
+          "depth": 0.24
+        },
+        "color": 8257488
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "blade_5",
+      "transform": {
+        "pos": [
+          -0.11,
+          0.47,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.1,
+          "depth": 0.97
+        },
+        "color": 1930847
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "blade_5",
+      "transform": {
+        "pos": [
+          -0.25,
+          1.05,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.12,
+          "depth": 0.21
+        },
+        "color": 10944483
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "blade_6",
+      "transform": {
+        "pos": [
+          -0.05,
+          0.68,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.03,
+          0.03,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.1,
+          "depth": 1.36
+        },
+        "color": 2330482
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "blade_6",
+      "transform": {
+        "pos": [
+          -0.11,
+          1.5,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.03,
+          0.03,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.12,
+          "depth": 0.3
+        },
+        "color": 8257488
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "blade_7",
+      "transform": {
+        "pos": [
+          0.07,
+          0.59,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.04,
+          -0.04,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.1,
+          "depth": 1.2
+        },
+        "color": 3257739
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "blade_7",
+      "transform": {
+        "pos": [
+          0.16,
+          1.32,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.04,
+          -0.04,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 0.12,
+          "depth": 0.26
+        },
+        "color": 10944483
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "blade_8",
+      "transform": {
+        "pos": [
+          0.17,
+          0.76,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.1,
+          "depth": 1.56
+        },
+        "color": 1930847
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "blade_8",
+      "transform": {
+        "pos": [
+          0.38,
+          1.68,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.12,
+          "depth": 0.34
+        },
+        "color": 8257488
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016600747,
+      "provider": "gpt",
+      "data": "tafpWq1T2voxlo1YcmNBjBJpSRo8+p3NVsPETBAJR28DU10MKpvQYk2KwXRw9RDHB+hHfbORHfNeYGE+iCDWjMHvLULRtDjlzbdWLNhd1h8ytwQWERdv2T7NbIbxYkTjcG9J5Y9udbBHxzW+QJ7eh0NEvSa+xm2363I+C1AzeKGKJ2LSXwdeQgWQfigHHIE3aKhwaVrgL2Vl6MGXilGXnmG1ASKW3E5NOO8nxSxa62eCsnRcGv+/z45+eW+AaO2IsQRHaz4zBixM9LmjDTGYYSYH+jo89ck/qgLrBp5idwcaGVwjBJXaIZfVP1nvmQTS+0hj8chKSrgRLPCKdBHs16LFwpLRmywvvhVZHg7q08mepirJr9nOAcV7hJP2+HxvkGWTs0Erx/fhjjRNRM9Fp8oBsHOF8XyrpcpxKTdpD3JTr8l1AsQh74Fa6hfbfg2v7qcQmpQ8uLS2+tx+bjr6wAJRA5FrYX8yVRO7wvM4MTRtHNuQQWC8KRkvY4RKhgwTFa72KWCsCjLOmsa3nSGXOWJGIywwsSe5s8DYLiu9PJT+Hr4JyC7N9jKeJ22+1FARiw0wVhumozLEKnd/o28eX7PPxVpVPAxNicuDaT+4xmcPWa7HmyrB2n1nF0pSlD6sne3qLZxXJU3eSNlQ+rakwFsH59UtXFJtRETvP3Ez3GIA5ggaUE/FyA8s2Vqoeo4UaBtm+f41OnU2T+03ZK19vT6AKTf3VHS5UY38Kp1EUqpPnqMVpGVSgT+hParynjOPt55OVVroto6gSlKQNK3CziJvIO89yWR0nPMF8s8stFh3fF4LY1RzUTB8Bh5gyvX3nxgQhWIcJJQYBvK4uDQq5GciA6r7prkMxWrI1/XZqWKxVtgax6myHI0MmaGfakn3Wzvogra2spZf0kngpcAYWBaCetpRPaZEZdiXJ0CPaMoiTt0nrUdewGDpwetX7p+Hlgo7+o1n+U20orlYD9Tg5wlkG5i25bOQn+fDLxTL1k1Wj1Qm7hWbdzK7oGm8qApCymSwayVtvz0AoULQTYXD0c2FRHS5POC/cFjPiWs2CNQIEMk0kfCGTNMX3GdmCA/BiMZrNPq+xrBQmdDe1XMX4L4=",
+      "edits": ""
+    }
+  }
+}

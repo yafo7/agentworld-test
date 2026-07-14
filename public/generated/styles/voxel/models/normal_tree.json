@@ -1,0 +1,160 @@
+{
+  "name": "层叠方块树",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "canopy",
+      "name": "树冠",
+      "transform": {
+        "pos": [
+          0,
+          4.45,
+          0.025
+        ]
+      }
+    },
+    {
+      "id": "trunk",
+      "name": "树干",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -2.75,
+          -0.025
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 3.4,
+          "depth": 0.8
+        },
+        "color": 8014632
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          -1.475,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.45,
+          "depth": 1.05
+        },
+        "color": 6832162
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0,
+          -1.1,
+          -0.025
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.8,
+          "height": 1.1,
+          "depth": 3.2
+        },
+        "color": 4161334
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.15,
+          -0.3,
+          -0.075
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.1,
+          "height": 1.05,
+          "depth": 3.5
+        },
+        "color": 4952383
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          -0.15,
+          0.45,
+          0.075
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 0.95,
+          "depth": 2.7
+        },
+        "color": 5809737
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "canopy",
+      "transform": {
+        "pos": [
+          0.1,
+          1.1,
+          -0.025
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.55,
+          "height": 0.75,
+          "depth": 1.65
+        },
+        "color": 6731347
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016493590,
+      "provider": "gpt",
+      "data": "XU0OtgsSLI9DrGEIP3F10am+wUZBqBi4j1hUSwaTHNcvrRrlt1KaOXuuiFwPi1YnkqW75JqckII3YQQpwS4nBfI7qeww9W7XiH+pI563VonsjyAe86SyWFVPuorkL8tChP1rKBIr129+Ksy/xpPbeEU0Fi40r/AO8vj44x11T4f+uZN0QcNA9G/l60pdJmEYFtaRnGPJm9t2ny6uLk/ZCNGh51PAbgBRJiOrc1hWJB1Q/qYLDbK/KkHyCc8vgT6+XkfWkgGOw1QlX6nspcEZYJkU3PYlBU3lsrr9yYSGQW8lQv7xozVg6lakEivOaS/5dR3QSRIuDMxHt7BuggRSmai6B5wSfwB/Sw41E9sbAEu18pORxnKf5gq4VJAHkDrGyo6RGanP90anVQfG6Zij9c5Qg+S82Em7fLZugkdecUCY83deWva2NnJcGd1nrMxWXNszqwrYbif0PJcfrYNlulDFyWs3I1OefQXkup6lB6CpxmsxSySvnFLVZHQkGUQk+CoP+tj1RF19VOV+qc54jcK+QBxWYqLWPKweckZaZWfPXl7D",
+      "edits": ""
+    }
+  }
+}

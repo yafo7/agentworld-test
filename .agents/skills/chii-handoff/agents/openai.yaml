@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·进度总结"
+  short_description: "Create concise Chii meeting and handoff summaries"
+  default_prompt: "Use $chii-handoff to produce a concise Chii Island project handoff."

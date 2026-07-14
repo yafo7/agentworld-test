@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·问题诊断"
+  short_description: "Diagnose Chii bugs from the first differing state"
+  default_prompt: "Use $chii-debug to diagnose a Chii Island bug from the first differing data."

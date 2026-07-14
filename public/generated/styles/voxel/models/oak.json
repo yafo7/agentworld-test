@@ -1,0 +1,220 @@
+{
+  "name": "高大深棕树干橡树",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "trunk",
+      "name": "主树干",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "crown",
+      "name": "方块树冠",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          7,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          3.75,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 7.5,
+          "depth": 1.5
+        },
+        "color": 4860696
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.1,
+          "height": 0.7,
+          "depth": 1.9
+        },
+        "color": 3809556
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          6.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.8,
+          "height": 0.8,
+          "depth": 0.8
+        },
+        "color": 4860696
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "trunk",
+      "transform": {
+        "pos": [
+          0,
+          6.7,
+          0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.8,
+          "depth": 3.4
+        },
+        "color": 4860696
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "crown",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 7.5,
+          "height": 2.4,
+          "depth": 6.8
+        },
+        "color": 1527591
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "crown",
+      "transform": {
+        "pos": [
+          0,
+          2.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 2.1,
+          "depth": 5.8
+        },
+        "color": 1924396
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "crown",
+      "transform": {
+        "pos": [
+          0,
+          4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.2,
+          "height": 1.2,
+          "depth": 4
+        },
+        "color": 2320946
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "crown",
+      "transform": {
+        "pos": [
+          -3.6,
+          1.2,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 1.3,
+          "depth": 2.8
+        },
+        "color": 1460515
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "crown",
+      "transform": {
+        "pos": [
+          3.5,
+          1.5,
+          -0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.2,
+          "height": 1.5,
+          "depth": 2.5
+        },
+        "color": 1460515
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016479114,
+      "provider": "gpt",
+      "data": "sP1OqhCCs+rbIZm2aihZpXDLonkHqOXR9eQ30yBSdM+vYSR7ddGTInoVzebM3udkQQfcZMr4U3C41Jm2kzM8vBXo6c5CT29tVzz6q9CcQQ4toGnI4BZmkjD3oQ8RQbHGRWqud56YmNjmz5X4CDi5ZoqK6Dy/5Za72YR0ocLI0dHnZy91i/8MBm7kqr2iiQCO0i7Xt6PHwjo6lf34LXdtMPQapjHsz66myWRT04nGffWkA9Swdqqg8DgJSIR6AcJYSVA0DKWe30GWdSyNEnLjRiZeOvasatnfzWxd2QrRMzCD4ZAIuIdbyBkdXTmb6BEazMPV/di5TfsKv5Ikpk5Dg1YChNo5LTOjRFzgQFIW6MU0fTfMRX5D9EnHHAkYJeUa/Np9EMLP7+CUaByOKvjCV/EQra70mJMHiL4pOzfJtmdMZLPirc7wMqzycbzUJQyMvNuF24pH/a83Jwnmntjy+MctMiOrFH3aGVzTmbbynHyHPIyVIjwd1aANeIv2Rntyd9i0S6uIFuv6xBhgmBlbWKOO2OJkgWOJla4VDmnNm6O3NYi5B5PSfRFthEnn22qshiIpTP7Pyj/MPyxGWfQrkBV1xuOuadiDSUYwqh21opoTqdnFvDr54Cnl2MWWgVTXPGY/VH9I+R97JGKhYIyfJYI=",
+      "edits": ""
+    }
+  }
+}

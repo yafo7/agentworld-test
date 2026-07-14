@@ -4,7 +4,7 @@ import { loadModel } from '../model/loader.js';
 import { loadAnimationPlan } from '../animation/planLoader.js';
 import { evaluateMotion, applyMotionDeltas } from '../animation/player.js';
 import { normalizeAnimationPlan } from '../animation/normalizePlan.js';
-import { getRuntime } from '../../backend/runtimeLoader.js';
+import { getRuntime } from '../runtime/runtimeProvider.js';
 import { ParticleSystem } from '../animation/particles.js';
 import { worldToGridCoordinates } from '../world/terrain.js';
 import {

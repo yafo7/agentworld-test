@@ -27,6 +27,16 @@
       .mgmt-card h2 { margin: 0 0 16px; font-size: 18px; color: #fff; }
       .mgmt-card label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; padding: 4px 0; }
       .mgmt-card input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+      .mgmt-section { margin-top: 16px; padding-top: 14px; border-top: 1px solid #333; }
+      .mgmt-section-title { margin-bottom: 8px; color: #fff; font-size: 13px; font-weight: 700; }
+      .scene-style-toggle { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+      .scene-style-toggle button {
+        min-height: 34px; border: 1px solid #555; background: #252535; color: #bbb;
+        font: 13px "Microsoft YaHei","PingFang SC",sans-serif; cursor: pointer;
+      }
+      .scene-style-toggle button:first-child { border-radius: 4px 0 0 4px; }
+      .scene-style-toggle button:last-child { border-left: 0; border-radius: 0 4px 4px 0; }
+      .scene-style-toggle button.active { background: #f0b44d; border-color: #f0b44d; color: #241b10; font-weight: 700; }
       .mgmt-hint { margin-top: 12px; font-size: 11px; color: #666; }
 
       /* E-key interaction prompt */
@@ -92,6 +102,13 @@
         <h2>管理面板</h2>
         <label><input type="checkbox" id="chk-collision" /> 显示碰撞体积</label>
         <label><input type="checkbox" id="chk-performance" /> 显示性能数据</label>
+        <div class="mgmt-section">
+          <div class="mgmt-section-title">场景风格</div>
+          <div class="scene-style-toggle" role="group" aria-label="场景风格">
+            <button type="button" data-scene-style="pro">Pro 场景</button>
+            <button type="button" data-scene-style="voxel">Voxel 场景</button>
+          </div>
+        </div>
         <div class="mgmt-hint">按 ESC 关闭面板 · 点击面板外关闭</div>
       </div>
     </div>

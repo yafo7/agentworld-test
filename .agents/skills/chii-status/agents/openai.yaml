@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·项目状态"
+  short_description: "Summarize Chii project services assets and Git state"
+  default_prompt: "Use $chii-status to summarize the current Chii Island project state."

@@ -1,0 +1,141 @@
+{
+  "style": "voxel",
+  "generatedAt": "2026-07-14T08:32:27.197Z",
+  "assets": [
+    {
+      "id": "oak",
+      "prompt": "高大深棕树干橡树，方块深绿树冠",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/oak.json",
+      "animation": null,
+      "meshCount": 9
+    },
+    {
+      "id": "normal",
+      "prompt": "中等棕色树干，层叠方块绿色树冠",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/normal_tree.json",
+      "animation": null,
+      "meshCount": 6
+    },
+    {
+      "id": "apple",
+      "prompt": "棕色树干苹果树，方块绿叶和红苹果",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/apple_tree.json",
+      "animation": null,
+      "meshCount": 12
+    },
+    {
+      "id": "glowgrass",
+      "prompt": "一丛青绿色方块荧光草，叶尖发亮",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/glowgrass.json",
+      "animation": null,
+      "meshCount": 20
+    },
+    {
+      "id": "pinkFlower",
+      "prompt": "一株粉色方块花，绿色短茎和双叶",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/pink_flower.json",
+      "animation": null,
+      "meshCount": 8
+    },
+    {
+      "id": "grassClump",
+      "prompt": "一丛鲜绿色方块小草，叶片向外散开",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/grass_clump.json",
+      "animation": null,
+      "meshCount": 10
+    },
+    {
+      "id": "trumpetFlower",
+      "prompt": "一株紫色喇叭花，绿色方块茎叶",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/trumpet_flower.json",
+      "animation": null,
+      "meshCount": 13
+    },
+    {
+      "id": "blueTulips",
+      "prompt": "一丛蓝色郁金香，绿色方块茎叶",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/blue_tulips.json",
+      "animation": null,
+      "meshCount": 25
+    },
+    {
+      "id": "wheatField",
+      "prompt": "一小簇金色成熟小麦，方块麦穗整齐",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/wheat_field.json",
+      "animation": null,
+      "meshCount": 25
+    },
+    {
+      "id": "flowerPot",
+      "prompt": "红陶方块花盆，盛开彩色小花和绿叶",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/flower_pot.json",
+      "animation": null,
+      "meshCount": 23
+    },
+    {
+      "id": "giantCarrot",
+      "prompt": "巨大橙色方块胡萝卜，顶部绿色叶簇",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/giant_carrot.json",
+      "animation": null,
+      "meshCount": 12
+    },
+    {
+      "id": "campfire",
+      "prompt": "圆形灰石篝火，棕色木柴和方块火焰",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/campfire.json",
+      "animation": "public/generated/styles/voxel/animations/campfire_burn.json",
+      "meshCount": 17
+    },
+    {
+      "id": "forestTrophy",
+      "prompt": "银金色CS2冠军奖杯，黑色方块底座",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/forest_temple_trophy.json",
+      "animation": "public/generated/styles/voxel/animations/forest_trophy_wait.json",
+      "meshCount": 17
+    },
+    {
+      "id": "forestTent",
+      "prompt": "绿色三角露营帐篷，门帘和固定绳",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/forest_temple_tent.json",
+      "animation": null,
+      "meshCount": 18
+    },
+    {
+      "id": "pastoralWorkScaffold",
+      "prompt": "north和south分组施工横幅围成方形",
+      "provider": "gpt",
+      "mode": "voxel",
+      "model": "public/generated/styles/voxel/models/pastoral_work_scaffold.json",
+      "animation": "public/generated/styles/voxel/animations/pastoral_work_scaffold_dust.json",
+      "meshCount": 29
+    }
+  ]
+}

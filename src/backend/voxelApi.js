@@ -1,7 +1,7 @@
 // Voxel Studio Backend — API client for 3D model + animation generation.
 
-// Proxied through Vite dev server to avoid CORS issues
-import { saveModelToStudio } from './studioSync.js';
+// Proxied through Vite dev server to avoid CORS issues.
+// Manual Studio editing/sync is intentionally separate from autonomous gameplay.
 
 const API_BASE = '/api/voxel';
 const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
@@ -9,7 +9,6 @@ const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
 /**
  * Generate a single 3D model via SSE streaming.
  * Tries providers in fallback order on failure.
- * On success, also syncs the model to the local 3d-generate studio (localhost:8000).
  *
  * @param {string} description — text description of the model
  * @param {string} [provider='fireworks']
@@ -55,10 +54,6 @@ export async function generateModel(description, provider = 'fireworks', mode = 
       }
 
       if (!modelJson) throw new Error('No modelJson in response');
-
-      // Sync to local studio so it appears in the 8000 viewer
-      const modelName = modelJson.name || description.slice(0, 40);
-      saveModelToStudio(modelJson, modelName, description).catch(() => {});
 
       return { modelJson, rawCode };
     } catch (err) {

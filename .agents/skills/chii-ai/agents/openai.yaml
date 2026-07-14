@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·AI内容"
+  short_description: "Create and modify Chii content through backend AI"
+  default_prompt: "Use $chii-ai for autonomous Chii Island content generation workflows."

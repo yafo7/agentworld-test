@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { getRuntime } from '../../backend/runtimeLoader.js';
+import { getRuntime } from '../runtime/runtimeProvider.js';
 import { fallbackBuildGeometry } from './fallback.js';
 import { VoxelModel } from './VoxelData.js';
 

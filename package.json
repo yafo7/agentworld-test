@@ -8,6 +8,7 @@
     "dev:game": "vite",
     "dev:all": "concurrently --names \"game,studio,voxel\" --prefix-colors \"cyan,magenta,green\" \"vite --host\" \"cd ../3d-generate && C:\\\\Users\\\\yafo777\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe server.py\" \"cd ../voxel-game && npx vite --port 5174 --host\"",
     "build": "vite build",
+    "test": "node --test \"tests/**/*.test.js\"",
     "preview": "vite preview",
     "sync-studio": "node scripts/sync-to-studio.mjs"
   },

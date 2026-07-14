@@ -3,7 +3,6 @@ import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { loadModel } from '../model/loader.js';
 import { buildModelFromJson, mergeMeshGroup } from '../model/builder.js';
 import { applyAnimation } from '../animation/player.js';
-import { generateAnimation } from '../../backend/voxelApi.js';
 import { generateInstanceId } from '../../storage/sceneSnapshot.js';
 
 /**

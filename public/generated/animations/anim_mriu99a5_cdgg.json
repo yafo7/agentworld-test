@@ -1,0 +1,38 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.4
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.04,
+      "frequency": 0.4
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.04,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.4,
+      "phase": 0.5
+    }
+  },
+  "_name": "idle",
+  "_type": "idle",
+  "_modelId": "gen_mriu999r_sgoa"
+}

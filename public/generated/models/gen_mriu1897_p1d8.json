@@ -1,0 +1,1888 @@
+{
+  "name": "灯塔",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "tower",
+      "transform": {
+        "pos": [
+          0.005,
+          4.595,
+          0
+        ]
+      }
+    },
+    {
+      "id": "base",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0,
+          -3.735,
+          0
+        ]
+      }
+    },
+    {
+      "id": "lanternRoom",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0,
+          2.775,
+          0
+        ]
+      }
+    },
+    {
+      "id": "beacon",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0,
+          3.345,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.005,
+          -0.44,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 2.25,
+          "radiusBottom": 2.55,
+          "height": 0.6,
+          "radialSegments": 10
+        },
+        "color": 3100495
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.005,
+          -0.01,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.55,
+          "radiusBottom": 1.9,
+          "height": 0.34,
+          "radialSegments": 10
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.745,
+          -0.41,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.5717,
+          -0.41,
+          0.7593
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.1217,
+          -0.41,
+          1.4129
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.3773,
+          -0.41,
+          1.6749
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.3787,
+          -0.41,
+          1.6375
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.1429,
+          -0.41,
+          1.4268
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.5942,
+          -0.41,
+          0.7653
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.7847,
+          -0.41,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.604,
+          -0.41,
+          -0.77
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.0491,
+          -0.41,
+          -1.3093
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.3944,
+          -0.41,
+          -1.7061
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.3844,
+          -0.41,
+          -1.7061
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.1217,
+          -0.41,
+          -1.4129
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.5449,
+          -0.41,
+          -0.7464
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.38,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.0608,
+          0,
+          0.2721
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.4467,
+          0,
+          1.003
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.5075,
+          0,
+          0.9785
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.0833,
+          0,
+          0.2172
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.8472,
+          0,
+          -0.7076
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 8886181
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.0232,
+          0,
+          -1.0996
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 7372944
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.8723,
+          0,
+          -0.6636
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.3,
+          "detail": 0
+        },
+        "color": 5859960
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -3.255,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.0050000000000001,
+          "radiusBottom": 1.06,
+          "height": 0.77,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -2.505,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.9500000000000001,
+          "radiusBottom": 1.0050000000000001,
+          "height": 0.78,
+          "radialSegments": 10
+        },
+        "color": 13458524
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -1.755,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.895,
+          "radiusBottom": 0.9500000000000001,
+          "height": 0.77,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -1.005,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.8400000000000001,
+          "radiusBottom": 0.895,
+          "height": 0.77,
+          "radialSegments": 10
+        },
+        "color": 13458524
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -0.255,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.785,
+          "radiusBottom": 0.8400000000000001,
+          "height": 0.78,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.495,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.73,
+          "radiusBottom": 0.785,
+          "height": 0.78,
+          "radialSegments": 10
+        },
+        "color": 13458524
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.245,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.675,
+          "radiusBottom": 0.73,
+          "height": 0.78,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.995,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.6200000000000001,
+          "radiusBottom": 0.675,
+          "height": 0.78,
+          "radialSegments": 10
+        },
+        "color": 13458524
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          2.445,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.42,
+          "radiusBottom": 1.42,
+          "height": 0.21,
+          "radialSegments": 10
+        },
+        "color": 3100495
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          2.595,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.25,
+          "radiusBottom": 1.35,
+          "height": 0.13,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          1.175,
+          2.945,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -1.175,
+          2.945,
+          -0.17
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          1.125,
+          2.945,
+          0.34
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -1.075,
+          2.945,
+          -0.51
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.975,
+          2.945,
+          0.66
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.875,
+          2.945,
+          -0.8
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.735,
+          2.945,
+          0.92
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.605,
+          2.945,
+          -1.02
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.435,
+          2.945,
+          1.09
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.285,
+          2.945,
+          -1.15
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.095,
+          2.945,
+          1.18
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.065,
+          2.945,
+          -1.18
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.64,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          3.255,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 1.18,
+          "tube": 0.050000000000000266,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          2.935,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 1.18,
+          "tube": 0.040000000000000036,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -3.015,
+          1.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 1.18,
+          "depth": 0.09
+        },
+        "color": 11093060
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -2.975,
+          1.065
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.46,
+          "height": 0.82,
+          "depth": 0.055
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          0.145,
+          -2.975,
+          1.11
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.09,
+          "detail": 0
+        },
+        "color": 14071884
+      }
+    },
+    {
+      "id": "m50",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -1.345,
+          0.9
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.7,
+          "depth": 0.08
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m51",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -1.345,
+          0.955
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.39,
+          "height": 0.52,
+          "depth": 0.055
+        },
+        "color": 7911116
+      }
+    },
+    {
+      "id": "m52",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          -1.345,
+          0.995
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.045,
+          "height": 0.55,
+          "depth": 0.045
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m53",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.825,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.7,
+          "depth": 0.08
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m54",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.825,
+          0.805
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.39,
+          "height": 0.52,
+          "depth": 0.055
+        },
+        "color": 7911116
+      }
+    },
+    {
+      "id": "m55",
+      "parent": "tower",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.825,
+          0.845
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.045,
+          "height": 0.55,
+          "depth": 0.045
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          0,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.88,
+          "height": 0.19,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.56,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.74,
+          "radiusBottom": 0.74,
+          "height": 0.99,
+          "radialSegments": 10
+        },
+        "color": 11393254
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          0.755,
+          0.56,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          0.165,
+          0.56,
+          -0.74
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.695,
+          0.56,
+          -0.33
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.475,
+          0.56,
+          0.6
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          0.475,
+          0.56,
+          0.59
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          0.675,
+          0.56,
+          -0.34
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.185,
+          0.56,
+          -0.74
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.765,
+          0.56,
+          0.01
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.07,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.08,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.78,
+          "tube": 0.04999999999999982,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.06,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.78,
+          "tube": 0.04999999999999982,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.13,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.86,
+          "height": 0.15,
+          "radialSegments": 10
+        },
+        "color": 4082250
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.49,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.88,
+          "height": 0.65,
+          "radialSegments": 10
+        },
+        "color": 4082250
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          1.86,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.12,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "lanternRoom",
+      "transform": {
+        "pos": [
+          -0.005,
+          2.04,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.07,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "beacon",
+      "transform": {
+        "pos": [
+          -0.005,
+          0,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.13,
+          "radiusBottom": 0.13,
+          "height": 0.47,
+          "radialSegments": 10
+        },
+        "color": 1710618
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "beacon",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.26,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.32,
+          "detail": 0
+        },
+        "color": 16776960
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "beacon",
+      "transform": {
+        "pos": [
+          -0.005,
+          0.3,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "torus",
+        "params": {
+          "radius": 0.34,
+          "tube": 0.04999999999999982,
+          "radialSegments": 10,
+          "tubularSegments": 12
+        },
+        "color": 16766720
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "beacon",
+      "transform": {
+        "pos": [
+          2.395,
+          0.26,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.71,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.72,
+          "height": 4.8,
+          "radialSegments": 10
+        },
+        "color": 16777184
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "beacon",
+      "transform": {
+        "pos": [
+          -2.405,
+          0.26,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.71,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.72,
+          "height": 4.8,
+          "radialSegments": 10
+        },
+        "color": 16777184
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1783923533317,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    }
+  }
+}

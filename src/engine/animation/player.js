@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { getRuntime } from '../../backend/runtimeLoader.js';
+import { getRuntime } from '../runtime/runtimeProvider.js';
 
 /**
  * Evaluate a motion plan at time t — mirrors 3d-generate MotionExpander.evaluateAt.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·资产同步"
+  short_description: "Sync and audit Chii runtime models and animations"
+  default_prompt: "Use $chii-assets to sync the runtime assets used by Chii Island."

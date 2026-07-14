@@ -1,5 +1,140 @@
 [
   {
+    "assetId": "gen_mrkh89ew_xxyu",
+    "name": "巨无霸汉堡包",
+    "description": "一个巨大的汉堡包",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrkh89ew_xxyu.json",
+    "createdAt": 1784022995938
+  },
+  {
+    "assetId": "gen_mrkh6f9x_gy1o",
+    "name": "巨大风车 + 红灯笼",
+    "description": "把红灯笼加在沿着底座摆一圈",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrkh6f9x_gy1o.json",
+    "createdAt": 1784022910227
+  },
+  {
+    "assetId": "gen_mrkh3ya3_psmv",
+    "name": "巨大风车",
+    "description": "加一个底座",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrkh3ya3_psmv.json",
+    "createdAt": 1784022794582
+  },
+  {
+    "assetId": "gen_mrkgf8st_i1fj",
+    "name": "农田边的小木箱",
+    "description": "农田边的小木箱",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrkgf8st_i1fj.json",
+    "createdAt": 1784021642130
+  },
+  {
+    "assetId": "gen_mriu999r_sgoa",
+    "name": "霓虹彩鳞巨鳄",
+    "description": "一只体格健壮的鳄鱼，露出锯齿尖牙，背覆亮片彩鳞，尾端扬着霓虹羽饰",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": true,
+    "animations": [
+      {
+        "animId": "anim_mriu99b2_vh2r",
+        "name": "special",
+        "type": "special",
+        "path": "generated/animations/anim_mriu99b2_vh2r.json"
+      },
+      {
+        "animId": "anim_mriu99as_xk09",
+        "name": "jump",
+        "type": "jump",
+        "path": "generated/animations/anim_mriu99as_xk09.json"
+      },
+      {
+        "animId": "anim_mriu99ag_i8ox",
+        "name": "run",
+        "type": "run",
+        "path": "generated/animations/anim_mriu99ag_i8ox.json"
+      },
+      {
+        "animId": "anim_mriu99a5_cdgg",
+        "name": "idle",
+        "type": "idle",
+        "path": "generated/animations/anim_mriu99a5_cdgg.json"
+      }
+    ],
+    "path": "generated/models/gen_mriu999r_sgoa.json",
+    "createdAt": 1783923944760
+  },
+  {
+    "assetId": "gen_mriu6tgr_8630",
+    "name": "亮蓝色小花丛",
+    "description": "亮蓝色小花丛",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mriu6tgr_8630.json",
+    "createdAt": 1783923830964
+  },
+  {
+    "assetId": "gen_mriu4zza_yfmt",
+    "name": "圆木花盆",
+    "description": "圆木花盆",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mriu4zza_yfmt.json",
+    "createdAt": 1783923746092
+  },
+  {
+    "assetId": "gen_mriu28uf_1q83",
+    "name": "彩色风铃花",
+    "description": "彩色风铃花",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mriu28uf_1q83.json",
+    "createdAt": 1783923617618
+  },
+  {
+    "assetId": "gen_mriu1897_p1d8",
+    "name": "灯塔",
+    "description": "一个灯塔",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mriu1897_p1d8.json",
+    "createdAt": 1783923570195
+  },
+  {
+    "assetId": "gen_mritzzle_cn6o",
+    "name": "圆木花盆",
+    "description": "圆木花盆",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mritzzle_cn6o.json",
+    "createdAt": 1783923512317
+  },
+  {
     "assetId": "gen_mrd4tqv6_zwc8",
     "name": "蓝白条纹10号球衣方块宠物",
     "description": "蓝白条纹10号球衣的方块人形宠物，短方腿配足球鞋，头顶亮片发带",

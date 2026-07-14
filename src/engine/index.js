@@ -29,7 +29,6 @@ export { createUnitEnvironment, getGridWorldPosition, worldToGridCoordinates, pa
 
 // ---- Entity (re-export from legacy src/entities/; Phase 2 will physically move) ----
 export { Player } from './entity/Player.js';
-export { Pet } from './entity/Pet.js';
 export { Environment } from './entity/Environment.js';
 export { Item } from './entity/Item.js';
 export { StaticEntity } from './entity/StaticEntity.js';
@@ -44,4 +43,3 @@ export { consumeKeyPress, isKeyDown } from './input/keyboard.js';
 export { Input } from './input/Input.js';
 export { createInteractionHint } from './interaction/interactionHint.js';
 export { setupRaycast } from './interaction/raycast.js';
-export { createInteractionPrompt } from './interaction/InteractionPrompt.js';

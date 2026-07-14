@@ -1,4 +1,0 @@
-interface:
-  display_name: "Sync Studio Assets"
-  short_description: "Sync Chii Island runtime assets from local Voxel Studio."
-  default_prompt: "Sync all Chii Island models and animations from the local Voxel Studio into agentworld-test."

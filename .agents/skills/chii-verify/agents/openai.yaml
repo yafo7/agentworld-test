@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·验证"
+  short_description: "Run tests builds and browser checks for Chii"
+  default_prompt: "Use $chii-verify to validate Chii Island after changes."

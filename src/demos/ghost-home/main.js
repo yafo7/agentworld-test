@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import { initRuntime } from '../../backend/runtimeLoader.js';
+import { initRuntime } from '../../engine/runtime/runtimeProvider.js';
 import { installGlobalSync } from '../../backend/index.js';
 import { createScene, createRenderer, createLights, ThirdPersonCamera } from '../../engine';
 import { Player, StaticEntity } from '../../engine';
 import { createUnitEnvironment, getGridWorldPosition, paintUnitArea, worldToGridCoordinates } from '../../engine';
 import { createInteractionHint, Input } from '../../engine';
-import { setupInteract } from '../../engine/interaction/interact.js';
+import { setupInteract } from '../../legacy/interaction/interact.js';
 import { setupRaycast } from '../../engine';
 import { createGenerateSystem } from '../chii-island/systems/generateSystem.js';
 import { entityRegistry } from '../../storage';

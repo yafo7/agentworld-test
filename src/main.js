@@ -4,18 +4,18 @@ import * as THREE from 'three';
 // ★ Runtime 依赖全局 THREE
 window.THREE = THREE;
 
-import { initRuntime } from './backend/runtimeLoader.js';
+import { initRuntime } from './engine/runtime/runtimeProvider.js';
 import { ThirdPersonCamera } from './engine/core/camera.js';
 import { createLights } from './engine/core/lights.js';
 import { createRenderer } from './engine/core/renderer.js';
 import { createScene } from './engine/core/scene.js';
 import { Environment } from './engine/entity/Environment.js';
 import { Item } from './engine/entity/Item.js';
-import { Pet } from './engine/entity/Pet.js';
+import { Pet } from './legacy/chii/Pet.js';
 import { Player } from './engine/entity/Player.js';
 import { StaticEntity } from './engine/entity/StaticEntity.js';
 import { ITEM_CONFIGS, HOUSE_PET_CONFIGS } from './demos/chii-island/data/gameData.js';
-import { setupInteract } from './engine/interaction/interact.js';
+import { setupInteract } from './legacy/interaction/interact.js';
 import { createInteractionHint } from './engine/interaction/interactionHint.js';
 import { setupPetDialogue } from './demos/chii-island/systems/petDialogue.js';
 import { setupRaycast } from './engine/interaction/raycast.js';

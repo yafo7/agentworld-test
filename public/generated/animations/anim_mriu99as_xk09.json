@@ -1,0 +1,93 @@
+{
+  "_duration": 1.8,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.48,
+      "frequency": 0.7
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -15
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.4
+    }
+  },
+  "leftArm": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -22
+      },
+      {
+        "axis": "z",
+        "angle": -24
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.3
+    }
+  },
+  "rightArm": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -22
+      },
+      {
+        "axis": "z",
+        "angle": 24
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.3
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 24
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.34,
+      "frequency": 1.2
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 24
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.34,
+      "frequency": 1.2,
+      "phase": 0.25
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.42,
+      "frequency": 1.8
+    }
+  },
+  "_name": "jump",
+  "_type": "jump",
+  "_modelId": "gen_mriu999r_sgoa"
+}
