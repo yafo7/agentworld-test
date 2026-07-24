@@ -1,0 +1,530 @@
+{
+  "name": "木桌上的彩色生日蛋糕",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "table",
+      "name": "木桌",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "cake",
+      "name": "彩色蛋糕",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          3.33,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_0",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          -0.58,
+          1.46,
+          0.12
+        ]
+      }
+    },
+    {
+      "id": "flame_0",
+      "name": "火焰",
+      "parent": "candle_0",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_1",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.46,
+          -0.18
+        ]
+      }
+    },
+    {
+      "id": "flame_1",
+      "name": "火焰",
+      "parent": "candle_1",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_2",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0.58,
+          1.46,
+          0.12
+        ]
+      }
+    },
+    {
+      "id": "flame_2",
+      "name": "火焰",
+      "parent": "candle_2",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          3.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6,
+          "height": 0.35,
+          "depth": 4
+        },
+        "color": 9131818
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.4,
+          1.5,
+          -1.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 3,
+          "depth": 0.45
+        },
+        "color": 7028512
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.4,
+          1.5,
+          -1.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 3,
+          "depth": 0.45
+        },
+        "color": 7028512
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.4,
+          1.5,
+          1.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 3,
+          "depth": 0.45
+        },
+        "color": 7028512
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.4,
+          1.5,
+          1.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 3,
+          "depth": 0.45
+        },
+        "color": 7028512
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 0.16,
+          "depth": 2.6
+        },
+        "color": 15067115
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.47,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 0.62,
+          "depth": 2.1
+        },
+        "color": 15891109
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.79,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.16,
+          "depth": 2.25
+        },
+        "color": 16773304
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.85,
+          "height": 0.5,
+          "depth": 1.55
+        },
+        "color": 6735833
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.38,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.16,
+          "depth": 1.7
+        },
+        "color": 16766044
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          -0.75,
+          0.49,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.22,
+          "depth": 0.12
+        },
+        "color": 6254312
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          -0.25,
+          0.49,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.22,
+          "depth": 0.12
+        },
+        "color": 5621880
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0.25,
+          0.49,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.22,
+          "depth": 0.12
+        },
+        "color": 16765503
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0.75,
+          0.49,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.22,
+          "depth": 0.12
+        },
+        "color": 9329625
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "candle_0",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.65,
+          "depth": 0.16
+        },
+        "color": 15224141
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "flame_0",
+      "transform": {
+        "pos": [
+          0,
+          0.12,
+          0
+        ],
+        "quat": [
+          0.54,
+          0.46,
+          0.46,
+          0.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 16753434
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "candle_1",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.65,
+          "depth": 0.16
+        },
+        "color": 8084705
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "flame_1",
+      "transform": {
+        "pos": [
+          0,
+          0.12,
+          0
+        ],
+        "quat": [
+          0.54,
+          0.46,
+          0.46,
+          0.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 16753434
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "candle_2",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.65,
+          "depth": 0.16
+        },
+        "color": 4569451
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "flame_2",
+      "transform": {
+        "pos": [
+          0,
+          0.12,
+          0
+        ],
+        "quat": [
+          0.54,
+          0.46,
+          0.46,
+          0.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 16753434
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784190774250,
+      "provider": "gpt",
+      "data": "5NwAahs3c58o2y7Hgg/Nv7rSzW961+2B3afXLCPQ5qDrYKh8aIDnBAD2xlaDY0gmZCwRUy+VBG3oBOgUzz0mrcEjpB5WTgxsIzVB77D8qbDev+wtR/YxpemsvjMhf/Kq+tDkxWU52wikRrjmvVb57sDnaQA4apBuzgSWI8QicoZw3UqcN8sKLmvl2uUW7cv/eZG3v/5blaWjNOHciUZ1B066li5Raiy0Rlz689louMmvHidlXBm55nQYpAsoufuMzopnQzMhWqtVb7WQUtfM3+7qhYgx3GJE0Zo1GIHVxxNbQL8gSNayzlCI/DpkraoIpc99DJFIoiVJKQ0NVhbdooe9B8k0NYDudyUag8guihcvZ7Pa+cW3FbeFkWU6fg7kgiE111avQJ5LBbOpC+VTrA0CV1bXiE7kEeGPBs3dTJWSxj7gEtzwEjs4K7PRuEpOgI/aV/UmqG91SkrI/ZayqaVV8VyzblgDIaSGLOyvsyvOSDCWGa3yL3Sa1fBachkjDppnUCuBhcTpHtv1OqVFLPFI3RjbJ8E1Lfa1VaroGR1K4GafHEEg67iylNADsACpmNM/AbwsatQy9MNlqABxvb/n0uW4dh1DZORdyqTNJP258FEMVqJhz1uGMdAiLKWcOhcWvMXqxJeFcKT1lgLT9yTVhZ2u7bFevowaT8LPhQ6XGiN1ZwkhBtjBa1Pmpel64gwDtIz0OaLXU1H3OjRNrE1VAg/PJh9dJfJuikNE75cahfDOnNXinKDPk5j9gIF+7qVCkq7l52CRHHVoqHWUn6JcWk/VFvGnUFvh/NdfBdASGwTEUT1JdUMB2QCUk9Mtj4NldeQ5IcOZHq+gHhPGs0O1L6PGID++/yQ3ZiC5WP2bPkHhcp4Mjqrcq0vuBes2BLdlGa4trieZoqkloPQql4E+e7+RjemVBm0jpbtRy7MMgqKAgl8wmHFyhs+VPE4/PxX/KLlR5jqX3LBk4ACMwc7KQpv1scefs6QHLoiQeEU7RtaaRYThx6O811BDvrhnScAWTQcabH1dyY6IHelMF8ZroCjNthpbsF8Y7enyscZuWQllZW64iSWTdl4+NqJWEDny21iMn0D1Ej8Aw9sqYZGTE1E40XKqPIinf2n07TpRsAntxiTAB2p6Z3qmiBkG07rwDmbB4Tmp+J9PPfEDeK3OFRc/og==",
+      "edits": ""
+    }
+  }
+}

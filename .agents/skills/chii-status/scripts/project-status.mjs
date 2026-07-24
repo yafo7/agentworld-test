@@ -3,6 +3,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { runAssetSync } from '../../chii-assets/scripts/sync-from-studio.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 
@@ -39,6 +40,23 @@ export async function collectStatus() {
   const generatedChanges = dirtyLines.filter(line => line.includes('public/generated/')).length;
   const manifestPath = path.join(repoRoot, 'public/generated/chii-runtime-manifest.json');
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8').catch(() => '{}'));
+  const [game5173, studio8000] = await Promise.all([portOpen(5173), portOpen(8000)]);
+  let assetAudit = { status: studio8000 ? 'failed' : 'studio-down' };
+  if (studio8000) {
+    const silentLogger = { log() {}, warn() {}, error() {} };
+    try {
+      const result = await runAssetSync({
+        studio: 'http://localhost:8000',
+        dryRun: true,
+        source: 'edit',
+        only: null,
+        all: true,
+      }, { logger: silentLogger });
+      assetAudit = { status: 'complete', ...result.audit, warnings: result.warnings.length };
+    } catch (error) {
+      assetAudit = { status: 'failed', error: error.message };
+    }
+  }
   return {
     branch: git(['branch', '--show-current']) || '(detached)',
     commit: git(['log', '-1', '--format=%h %s']) || 'unknown',
@@ -46,13 +64,14 @@ export async function collectStatus() {
     generatedChanges,
     codeChanges: dirtyLines.length - generatedChanges,
     services: {
-      game5173: await portOpen(5173),
-      studio8000: await portOpen(8000),
+      game5173,
+      studio8000,
     },
     assets: {
       syncedAt: manifest.syncedAt || null,
       source: manifest.source || null,
       count: Array.isArray(manifest.assets) ? manifest.assets.length : 0,
+      audit: assetAudit,
     },
     testFiles: await countTests(path.join(repoRoot, 'tests')),
     architecture: 'P0-P6 complete; engine isolated; current Chii must not import legacy',
@@ -71,6 +90,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       `worktree: ${status.dirtyChanges} changes (${status.codeChanges} code, ${status.generatedChanges} generated)`,
       `services: game=${status.services.game5173 ? 'up' : 'down'} studio=${status.services.studio8000 ? 'up' : 'down'}`,
       `assets: ${status.assets.count} synced, source=${status.assets.source || 'unknown'}, at=${status.assets.syncedAt || 'unknown'}`,
+      status.assets.audit.status === 'complete'
+        ? `asset diff: same=${status.assets.audit.same} changed=${status.assets.audit.changed} missing=${status.assets.audit.missing} ambiguous=${status.assets.audit.ambiguous}`
+        : `asset diff: ${status.assets.audit.status}${status.assets.audit.error ? ` (${status.assets.audit.error})` : ''}`,
       `tests: ${status.testFiles} files`,
       `architecture: ${status.architecture}`,
     ].join('\n'));

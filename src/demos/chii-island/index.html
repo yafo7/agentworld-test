@@ -20,24 +20,74 @@
       }
       #mgmt-panel.visible { display: flex; }
       .mgmt-card {
-        background: #1a1a2e; border: 1px solid #333; border-radius: 12px;
-        padding: 24px 32px; min-width: 280px; color: #ccc;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        position: relative; background: #fff9df; border: 3px solid #6d4b2f; border-radius: 8px;
+        box-sizing: border-box; width: min(360px, calc(100vw - 32px)); padding: 24px 32px;
+        max-height: calc(100vh - 48px); overflow-y: auto; color: #4d3727;
+        box-shadow: 0 10px 0 rgba(109,75,47,0.18), 0 18px 38px rgba(35,23,15,0.34);
       }
-      .mgmt-card h2 { margin: 0 0 16px; font-size: 18px; color: #fff; }
-      .mgmt-card label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; padding: 4px 0; }
-      .mgmt-card input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
-      .mgmt-section { margin-top: 16px; padding-top: 14px; border-top: 1px solid #333; }
-      .mgmt-section-title { margin-bottom: 8px; color: #fff; font-size: 13px; font-weight: 700; }
+      .mgmt-card::after {
+        content: ""; position: absolute; left: 46px; bottom: -17px; width: 24px; height: 24px;
+        background: #fff9df; border-right: 3px solid #6d4b2f; border-bottom: 3px solid #6d4b2f;
+        transform: rotate(45deg);
+      }
+      .mgmt-card h2 { margin: 0 0 16px; font-size: 19px; color: #4d3727; letter-spacing: 0; }
+      .mgmt-card h2::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 9px; border-radius: 50%; background: #ff8b69; box-shadow: 17px 7px 0 #70c9b0; vertical-align: 3px; }
+      .mgmt-card label { display: flex; align-items: center; gap: 8px; color: #5b402c; cursor: pointer; font-size: 14px; padding: 4px 0; }
+      .mgmt-card input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #f2b642; }
+      .mgmt-section { margin-top: 16px; padding-top: 14px; border-top: 2px dashed #d9bd91; }
+      .mgmt-section-title { margin-bottom: 8px; color: #4d3727; font-size: 13px; font-weight: 700; }
       .scene-style-toggle { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
       .scene-style-toggle button {
-        min-height: 34px; border: 1px solid #555; background: #252535; color: #bbb;
+        min-height: 34px; border: 2px solid #9b7658; background: #fffdf4; color: #6d4b2f;
         font: 13px "Microsoft YaHei","PingFang SC",sans-serif; cursor: pointer;
       }
       .scene-style-toggle button:first-child { border-radius: 4px 0 0 4px; }
       .scene-style-toggle button:last-child { border-left: 0; border-radius: 0 4px 4px 0; }
-      .scene-style-toggle button.active { background: #f0b44d; border-color: #f0b44d; color: #241b10; font-weight: 700; }
-      .mgmt-hint { margin-top: 12px; font-size: 11px; color: #666; }
+      .scene-style-toggle button:hover { background: #fff3c4; }
+      .scene-style-toggle button.active { background: #ffe36d; border-color: #6d4b2f; color: #4d3727; font-weight: 700; }
+      .render-quality-toggle { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .render-quality-toggle button { min-width: 0; padding: 0 4px; font-size: 12px; }
+      .render-quality-toggle button + button { border-left: 0; }
+      .render-post-toggle { margin-top: 8px; padding: 7px 9px !important; border-left: 4px solid #70c9b0; background: rgba(112,201,176,0.13); }
+      .climate-controls { display: grid; gap: 10px; }
+      .climate-mode-toggle { margin-bottom: 2px; }
+      .climate-panel[hidden] { display: none !important; }
+      .climate-panel { display: grid; gap: 10px; }
+      .climate-control-row {
+        display: grid !important; grid-template-columns: 58px minmax(130px, 1fr) 48px;
+        gap: 10px !important; min-height: 30px; padding: 0 !important; cursor: default !important;
+      }
+      .climate-control-row select {
+        grid-column: 2 / 4; min-height: 32px; padding: 0 8px; border: 2px solid #9b7658; border-radius: 4px;
+        background: #fffdf4; color: #4d3727; font: 13px "Microsoft YaHei","PingFang SC",sans-serif;
+      }
+      .climate-control-row input[type="range"] { width: 100%; margin: 0; accent-color: #f2b642; cursor: pointer; }
+      .climate-control-row output { color: #9d573f; font-size: 12px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+      .climate-realtime-head { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: center; }
+      #climate-realtime-date { font-size: 14px; font-weight: 700; color: #4d3727; }
+      #climate-realtime-weather { font-size: 13px; color: #9d573f; }
+      #climate-realtime-location { grid-column: 1; color: #5f7651; font-size: 12px; font-weight: 700; }
+      #climate-realtime-timezone { grid-column: 1; color: #85664e; font-size: 11px; overflow-wrap: anywhere; }
+      #climate-source-badge {
+        grid-column: 2; grid-row: 1 / 3; align-self: center; padding: 4px 7px; border: 1px solid #9b7658;
+        border-radius: 4px; background: #fffdf4; color: #6d4b2f; font-size: 11px; white-space: nowrap;
+      }
+      #climate-source-badge::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: #f2b642; }
+      #climate-source-badge[data-status="live"]::before { background: #70c9b0; }
+      #climate-source-badge[data-status="denied"]::before,
+      #climate-source-badge[data-status="error"]::before { background: #ff8b69; }
+      #climate-sync-weather {
+        min-height: 36px; border: 2px solid #6d4b2f; border-radius: 4px; background: #ffe36d; color: #4d3727;
+        font: 700 13px "Microsoft YaHei","PingFang SC",sans-serif; cursor: pointer;
+      }
+      #climate-sync-weather:hover { background: #ffd54f; }
+      #climate-sync-weather:disabled { opacity: 0.58; cursor: wait; }
+      #climate-sync-status { padding: 8px 9px; border-left: 4px solid #70c9b0; background: rgba(112,201,176,0.13); color: #5b402c; font-size: 12px; line-height: 1.55; }
+      #climate-sync-status[data-status="denied"],
+      #climate-sync-status[data-status="error"] { border-left-color: #ff8b69; background: rgba(255,139,105,0.12); }
+      .climate-privacy { margin: 0; color: #85664e; font-size: 10px; line-height: 1.5; }
+      .climate-privacy a { color: #6b8060; text-underline-offset: 2px; }
+      .mgmt-hint { margin-top: 12px; font-size: 11px; color: #8d715a; }
 
       /* E-key interaction prompt */
       #interact-prompt {
@@ -66,6 +116,14 @@
       }
       #runtime-region { font-size: 15px; font-weight: 700; }
       #runtime-follower { margin-top: 3px; color: rgba(255,248,231,0.78); font-size: 12px; }
+      #runtime-activity {
+        display: none; margin-top: 8px; max-width: min(320px, calc(100vw - 32px));
+        padding: 7px 9px; border-left: 3px solid #e9b44c; border-radius: 4px;
+        background: rgba(30,27,34,0.78); text-shadow: none;
+      }
+      #runtime-activity.visible { display: block; }
+      #runtime-activity-title { font-size: 12px; font-weight: 700; }
+      #runtime-activity-stage { margin-top: 2px; color: rgba(255,248,231,0.76); font-size: 11px; }
       #runtime-job {
         position: fixed; top: 16px; left: 50%; transform: translate(-50%, -10px);
         z-index: 170; min-width: 260px; max-width: min(460px, calc(100vw - 32px));
@@ -87,6 +145,46 @@
         font: 11px/1.5 Consolas, monospace; pointer-events: none;
       }
       #runtime-perf.visible { display: block; }
+      #object-editor {
+        position: fixed; left: 50%; bottom: 18px; z-index: 210;
+        width: min(620px, calc(100vw - 24px)); transform: translate(-50%, 18px);
+        padding: 12px 14px; display: none; color: #f7f1e4;
+        background: rgba(24,25,29,0.94); border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 6px; font-family: "Microsoft YaHei","PingFang SC",sans-serif;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.42);
+      }
+      #object-editor.visible { display: block; transform: translate(-50%, 0); }
+      .object-editor-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+      #object-editor-title { font-size: 14px; font-weight: 700; }
+      .object-footprint { color: rgba(247,241,228,0.64); font-size: 12px; white-space: nowrap; }
+      .object-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+      .object-actions button, .object-editor-commit button, #object-delete-confirm button, #object-undo button {
+        min-height: 34px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
+        background: #30323a; color: #f7f1e4; cursor: pointer; font: inherit;
+      }
+      .object-actions button:hover, .object-editor-commit button:hover, #object-delete-confirm button:hover { background: #3b3e47; }
+      .object-actions button.active { background: #e9b44c; border-color: #e9b44c; color: #241b10; font-weight: 700; }
+      .object-actions button[data-object-action="delete"] { color: #ffadb4; }
+      #object-scale-row { display: none; grid-template-columns: auto 1fr 48px; gap: 10px; align-items: center; margin-top: 10px; }
+      #object-scale-row.visible { display: grid; }
+      #object-scale { width: 100%; accent-color: #e9b44c; }
+      #object-scale-value { text-align: right; font-size: 12px; }
+      #object-editor-status { min-height: 18px; margin-top: 8px; color: #9ee0ae; font-size: 12px; }
+      #object-editor-status[data-valid="false"] { color: #ff9099; }
+      .object-editor-commit { display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+      .object-editor-commit button { min-width: 80px; }
+      .object-editor-commit button:disabled { opacity: 0.4; cursor: not-allowed; }
+      #object-delete-confirm { display: none; align-items: center; gap: 8px; margin-top: 10px; color: #ffbdc2; font-size: 12px; }
+      #object-delete-confirm.visible { display: flex; }
+      #object-delete-confirm button { min-width: 66px; min-height: 30px; }
+      #object-undo {
+        position: fixed; left: 50%; bottom: 18px; z-index: 220; display: none;
+        align-items: center; gap: 12px; transform: translateX(-50%); padding: 8px 10px;
+        background: rgba(20,21,24,0.94); color: #f7f1e4; border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 4px; font: 12px "Microsoft YaHei","PingFang SC",sans-serif;
+      }
+      #object-undo.visible { display: flex; }
+      #object-undo button { min-height: 28px; padding: 0 10px; }
     </style>
   </head>
   <body>
@@ -103,10 +201,73 @@
         <label><input type="checkbox" id="chk-collision" /> 显示碰撞体积</label>
         <label><input type="checkbox" id="chk-performance" /> 显示性能数据</label>
         <div class="mgmt-section">
+          <div class="mgmt-section-title">碰撞方案</div>
+          <div class="scene-style-toggle" role="group" aria-label="碰撞方案">
+            <button type="button" data-collider-strategy="voxel-aabb">重点块 AABB</button>
+            <button type="button" data-collider-strategy="legacy-bounds">整体包围盒</button>
+          </div>
+        </div>
+        <div class="mgmt-section">
           <div class="mgmt-section-title">场景风格</div>
           <div class="scene-style-toggle" role="group" aria-label="场景风格">
             <button type="button" data-scene-style="pro">Pro 场景</button>
             <button type="button" data-scene-style="voxel">Voxel 场景</button>
+          </div>
+        </div>
+        <div class="mgmt-section">
+          <div class="mgmt-section-title">画面表现</div>
+          <div class="scene-style-toggle" role="group" aria-label="画面风格">
+            <button type="button" data-render-style="current">当前画风</button>
+            <button type="button" data-render-style="cel">卡通光影</button>
+          </div>
+          <div class="mgmt-section-title" style="margin-top: 10px;">性能档位</div>
+          <div class="scene-style-toggle render-quality-toggle" role="group" aria-label="性能档位">
+            <button type="button" data-render-quality="low">省电</button>
+            <button type="button" data-render-quality="medium">均衡</button>
+            <button type="button" data-render-quality="high">精细</button>
+            <button type="button" data-render-quality="ultra">极致</button>
+          </div>
+          <label class="render-post-toggle"><input type="checkbox" id="chk-post-processing" /> 柔和色彩</label>
+        </div>
+        <div class="mgmt-section climate-controls">
+          <div class="mgmt-section-title">岛屿气候</div>
+          <div class="scene-style-toggle climate-mode-toggle" role="group" aria-label="气候模式">
+            <button type="button" data-climate-mode="manual">手动安排</button>
+            <button type="button" data-climate-mode="realtime">现实同步</button>
+          </div>
+          <div id="climate-manual-controls" class="climate-panel">
+            <label class="climate-control-row" for="climate-weather">
+              <span>天气</span>
+              <select id="climate-weather">
+                <option value="clear">晴天</option>
+                <option value="cloudy">多云</option>
+                <option value="rain">下雨</option>
+                <option value="snow">下雪</option>
+                <option value="fog">雾天</option>
+              </select>
+            </label>
+            <label class="climate-control-row" for="climate-hour">
+              <span>时间</span>
+              <input id="climate-hour" type="range" min="0" max="23" step="1" value="12" />
+              <output id="climate-hour-value" for="climate-hour">12:00</output>
+            </label>
+            <label class="climate-control-row" for="climate-month">
+              <span>月份</span>
+              <input id="climate-month" type="range" min="1" max="12" step="1" value="7" />
+              <output id="climate-month-value" for="climate-month">7月</output>
+            </label>
+          </div>
+          <div id="climate-realtime-controls" class="climate-panel" hidden>
+            <div class="climate-realtime-head">
+              <div id="climate-realtime-date">正在读取设备时间</div>
+              <div id="climate-realtime-weather">晴天</div>
+              <div id="climate-realtime-location">所在地 点击同步后显示城市</div>
+              <div id="climate-realtime-timezone">时区 local</div>
+              <div id="climate-source-badge">设备时间</div>
+            </div>
+            <button id="climate-sync-weather" type="button">同步所在地天气</button>
+            <div id="climate-sync-status" role="status">设备时间已对好，点一下再同步所在地天气。</div>
+            <p class="climate-privacy">点击同步后才会请求定位；约 1 公里精度的位置只用于查询天气和城市，不保存坐标，也不会发给 AI 或模型后端。城市查询由 <a href="https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api" target="_blank" rel="noopener noreferrer">BigDataCloud</a> 提供。</p>
           </div>
         </div>
         <div class="mgmt-hint">按 ESC 关闭面板 · 点击面板外关闭</div>
@@ -121,12 +282,47 @@
     <div id="runtime-world">
       <div id="runtime-region">奇异岛</div>
       <div id="runtime-follower">独自探索</div>
+      <div id="runtime-activity">
+        <div id="runtime-activity-title"></div>
+        <div id="runtime-activity-stage"></div>
+      </div>
     </div>
     <div id="runtime-job" data-state="working">
       <div id="runtime-job-title"></div>
       <div id="runtime-job-stage"></div>
     </div>
     <div id="runtime-perf"></div>
+    <div id="object-editor">
+      <div class="object-editor-head">
+        <div id="object-editor-title">物件</div>
+        <div class="object-footprint">占地 <span id="object-editor-footprint">1 × 1</span></div>
+      </div>
+      <div class="object-actions">
+        <button type="button" data-object-action="move">移动</button>
+        <button type="button" data-object-action="scale">缩放</button>
+        <button type="button" data-object-action="rotate">旋转</button>
+        <button type="button" data-object-action="delete">移除</button>
+      </div>
+      <div id="object-scale-row">
+        <span>尺寸</span>
+        <input id="object-scale" type="range" min="50" max="200" step="10" value="100" />
+        <span id="object-scale-value">100%</span>
+      </div>
+      <div id="object-editor-status" data-valid="true"></div>
+      <div id="object-delete-confirm">
+        <span>确定移除这个物件？</span>
+        <button type="button" data-object-action="delete-confirm">移除</button>
+        <button type="button" data-object-action="delete-cancel">保留</button>
+      </div>
+      <div class="object-editor-commit">
+        <button type="button" data-object-action="cancel">取消</button>
+        <button type="button" data-object-action="confirm">确认</button>
+      </div>
+    </div>
+    <div id="object-undo">
+      <span id="object-undo-label"></span>
+      <button type="button" data-object-action="undo">撤销</button>
+    </div>
 
     <script type="module" src="./main.js"></script>
   </body>

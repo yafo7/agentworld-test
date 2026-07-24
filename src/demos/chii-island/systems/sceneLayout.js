@@ -355,6 +355,7 @@ function makeChurchTown(buildings, gridSize) {
       fangk: { gridX: center.x - 3, gridZ: center.z - 2 },
       lingq: { gridX: center.x + 3, gridZ: center.z - 2 },
       mako: { gridX: center.x, gridZ: center.z + 3 },
+      crab: { gridX: center.x - 3, gridZ: center.z + 2 },
     },
   };
 }

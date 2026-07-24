@@ -1,5 +1,71 @@
 [
   {
+    "assetId": "gen_mrq6fxgp_a39u",
+    "name": "红色方块苹果",
+    "description": "一个红色方块苹果带绿色小叶子",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrq6fxgp_a39u.json",
+    "createdAt": 1784367674990
+  },
+  {
+    "assetId": "gen_mrq6fndm_envq",
+    "name": "红顶木头小屋",
+    "description": "红色屋顶的木头小屋，底部长宽比3比4",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrq6fndm_envq.json",
+    "createdAt": 1784367661910
+  },
+  {
+    "assetId": "gen_mrpzysmm_et8b",
+    "name": "巨大风车",
+    "description": "把门向外移动一些",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrpzysmm_et8b.json",
+    "createdAt": 1784356797871
+  },
+  {
+    "assetId": "gen_mrn94cj2_s0ld",
+    "name": "木桌上的彩色生日蛋糕",
+    "description": "木桌上放着彩色生日蛋糕和点亮蜡烛",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrn94cj2_s0ld.json",
+    "createdAt": 1784190774959
+  },
+  {
+    "assetId": "gen_mrn92uhn_ux7e",
+    "name": "棕色7号球衣马 + 彩色生日礼帽",
+    "description": "把一顶彩色生日礼帽带金色小星星加在头顶",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrn92uhn_ux7e.json",
+    "createdAt": 1784190704925
+  },
+  {
+    "assetId": "gen_mrn8w9zw_e6yg",
+    "name": "红色方块苹果",
+    "description": "一个红色方块苹果带绿色小叶子",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mrn8w9zw_e6yg.json",
+    "createdAt": 1784190398122
+  },
+  {
     "assetId": "gen_mrkh89ew_xxyu",
     "name": "巨无霸汉堡包",
     "description": "一个巨大的汉堡包",

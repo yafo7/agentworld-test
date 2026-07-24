@@ -59,6 +59,7 @@ export class ForestTempleSystem {
     runtimeStatus = null,
     contentPort = defaultContentGeneration,
     generatedAssetRepository = generatedAssets,
+    vfxService = null,
   }) {
     this.scene = scene;
     this.physics = physics;
@@ -73,6 +74,7 @@ export class ForestTempleSystem {
     this.runtimeStatus = runtimeStatus;
     this.contentPort = contentPort;
     this.generatedAssetRepository = generatedAssetRepository;
+    this.vfxService = vfxService;
 
     this.trophyState = 'idle';
     this.tentState = 'idle';
@@ -196,6 +198,10 @@ export class ForestTempleSystem {
       companion.followTarget?.(this.player.mesh, 3.2, 6);
       this.trophyState = 'summoning';
       this.trophyAnimTime = 0;
+      this.vfxService?.playPreset('summon', {
+        target: this.trophy.mesh,
+        key: 'forest-temple-summon',
+      });
       const summonJobId = this.runtimeStatus?.startJob('森林神殿正在召唤', '整理你们的愿望');
       this._runSummon({
         playerPetWish,
@@ -206,6 +212,7 @@ export class ForestTempleSystem {
       }).catch(error => {
         console.warn('[ForestTemple] summon failed:', error.message);
         this.runtimeStatus?.failJob(summonJobId, error);
+        this.vfxService?.stop('forest-temple-summon');
         this._stopTrophyAnimation();
         this.trophyState = 'idle';
       });
@@ -388,6 +395,7 @@ export class ForestTempleSystem {
       hasIntroduced: false,
     });
     this._stopTrophyAnimation();
+    this.vfxService?.stop('forest-temple-summon');
     this.trophyState = 'complete';
     this.runtimeStatus?.completeJob(context.summonJobId, `${petName} 已经来到奇异岛`);
   }

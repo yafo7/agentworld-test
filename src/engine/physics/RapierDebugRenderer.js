@@ -54,6 +54,8 @@ export class RapierDebugRenderer {
     if (needed > this._positions.length) {
       this._positions = new Float32Array(needed);
       this._colors = new Float32Array(needed);
+      this._geom.setAttribute('position', new THREE.BufferAttribute(this._positions, 3));
+      this._geom.setAttribute('color', new THREE.BufferAttribute(this._colors, 3));
     }
 
     // Zero out the buffer region we'll use (avoids stale data from previous frames)
@@ -63,9 +65,7 @@ export class RapierDebugRenderer {
     this._positions.set(vertices, 0);
     this._colors.set(colors, 0);
 
-    this._geom.attributes.position.array = this._positions;
     this._geom.attributes.position.needsUpdate = true;
-    this._geom.attributes.color.array = this._colors;
     this._geom.attributes.color.needsUpdate = true;
     this._geom.setDrawRange(0, vertices.length / 3);
   }

@@ -37,9 +37,9 @@ test('static collider builder translates entity metadata into physics calls', ()
 
   const result = buildStaticColliders(physics, [tree, building]);
   assert.equal(result.colliderCount, 2);
-  assert.equal(calls[0][0], 'cylinder');
+  assert.equal(result.summary.strategy, 'voxel-aabb');
+  assert.equal(calls[0][0], 'box');
   assert.equal(calls[1][0], 'box');
   assert.equal(calls[1][2], 3);
   assert.equal(calls[1][4], 5);
 });
-

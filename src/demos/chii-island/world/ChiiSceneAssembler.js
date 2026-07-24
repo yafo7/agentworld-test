@@ -7,13 +7,13 @@ import { WorldObjectRegistry } from '../../../world/WorldObjectRegistry.js';
 const SPACING = 4;
 
 const DECOR_META = Object.freeze({
-  pinkFlower: { name: 'pink flower', scale: 0.58, tags: ['plant', 'flower', 'garden'] },
-  grassClump: { name: 'grass clump', scale: 0.42, tags: ['plant', 'grass'] },
-  trumpetFlower: { name: 'trumpet flower', scale: 0.48, tags: ['plant', 'flower', 'garden'] },
-  blueTulips: { name: 'blue tulips', scale: 0.55, tags: ['plant', 'flower', 'garden'] },
-  wheatField: { name: 'wheat field', scale: 0.38, tags: ['plant', 'wheat', 'farm'] },
-  flowerPot: { name: 'flower pot', scale: 0.52, tags: ['decor', 'garden'] },
-  giantCarrot: { name: 'giant carrot', scale: 0.34, tags: ['crop', 'farm'] },
+  pinkFlower: { name: 'pink flower', scale: 0.58, tags: ['plant', 'flower', 'garden'], footprint: { width: 2, depth: 2 } },
+  grassClump: { name: 'grass clump', scale: 0.42, tags: ['plant', 'grass'], footprint: { width: 2, depth: 2 } },
+  trumpetFlower: { name: 'trumpet flower', scale: 0.48, tags: ['plant', 'flower', 'garden'], footprint: { width: 2, depth: 2 } },
+  blueTulips: { name: 'blue tulips', scale: 0.55, tags: ['plant', 'flower', 'garden'], footprint: { width: 2, depth: 2 } },
+  wheatField: { name: 'wheat field', scale: 0.38, tags: ['plant', 'wheat', 'farm'], footprint: { width: 2, depth: 2 } },
+  flowerPot: { name: 'flower pot', scale: 0.52, tags: ['decor', 'garden'], footprint: { width: 1, depth: 1 } },
+  giantCarrot: { name: 'giant carrot', scale: 0.34, tags: ['crop', 'farm'], footprint: { width: 2, depth: 2 } },
 });
 
 function seededRandom(seed) {
@@ -64,7 +64,17 @@ export async function assembleChiiScene({
     if (extra.rotation !== undefined) entity.mesh.rotation.y = extra.rotation;
     if (extra.noCollider) entity.mesh.userData.noCollider = true;
     if (extra.collider) entity.mesh.userData.collider = extra.collider;
-    registry.add(entity);
+    entity.mesh.userData.placementEditable = extra.editable !== false;
+    registry.add(entity, {
+      modelJson,
+      operation: 'original',
+      assetId: extra.assetId || entity.id,
+      placement: {
+        editable: extra.editable !== false,
+        footprint: extra.footprint || null,
+        source: 'curated',
+      },
+    });
     scene.add(entity.mesh);
     return entity;
   }
@@ -81,10 +91,14 @@ export async function assembleChiiScene({
         width: building.width * SPACING * 0.88,
         depth: building.depth * SPACING * 0.88,
       },
+      footprint: { width: building.width * 2, depth: building.depth * 2 },
     });
   }
 
   const buildingClearance = new Set();
+  const decorationCells = new Set(
+    (scenePlan.decorations || []).map(decoration => `${decoration.gridX},${decoration.gridZ}`),
+  );
   for (const building of scenePlan.buildings) {
     for (let dz = -3; dz < building.depth + 3; dz += 1) {
       for (let dx = -3; dx < building.width + 3; dx += 1) {
@@ -95,16 +109,20 @@ export async function assembleChiiScene({
 
   for (const tree of scenePlan.trees) {
     if (buildingClearance.has(`${tree.gridX},${tree.gridZ}`)) continue;
+    if (decorationCells.has(`${tree.gridX},${tree.gridZ}`)) continue;
     const modelJson = modelJsons[tree.type];
     if (!modelJson) continue;
     placeEntity(tree.gridX, tree.gridZ, modelJson, '树', ['树木', '自然', tree.type], 'tree', 0.7 + random() * 0.6, {
       randomRotate: true,
       collider: { type: 'tree' },
+      editable: false,
+      footprint: { width: 2, depth: 2 },
     });
   }
 
   for (const grass of scenePlan.grasses) {
     if (buildingClearance.has(`${grass.gridX},${grass.gridZ}`)) continue;
+    if (decorationCells.has(`${grass.gridX},${grass.gridZ}`)) continue;
     const roll = random();
     const modelKey = roll < 0.58 ? 'glowgrass' : roll < 0.82 ? 'grassClump' : 'pinkFlower';
     const modelJson = modelJsons[modelKey] || modelJsons.glowgrass;
@@ -113,6 +131,8 @@ export async function assembleChiiScene({
     const entity = placeEntity(grass.gridX, grass.gridZ, modelJson, '荧光草', ['植物', '发光'], 'decor', scale, {
       randomRotate: true,
       noCollider: true,
+      editable: false,
+      footprint: { width: 1, depth: 1 },
     });
     disableShadows(entity);
   }
@@ -136,6 +156,8 @@ export async function assembleChiiScene({
         offsetZ: decoration.offsetZ || 0,
         rotation: decoration.rotation,
         noCollider: true,
+        editable: meta.tags.includes('decor') && !meta.tags.some(tag => ['plant', 'grass', 'flower', 'crop'].includes(tag)),
+        footprint: meta.footprint,
       }
     );
     disableShadows(entity);
@@ -152,7 +174,7 @@ export async function assembleChiiScene({
       ['城镇', '篝火', '聚会'],
       'decor',
       1.6,
-      { mergeGeometry: false }
+      { mergeGeometry: false, editable: false, footprint: { width: 4, depth: 4 } }
     );
     const rawPlan = await assetRepository.getAnimation('campfire', 'burn').catch(() => null);
     if (rawPlan) {
@@ -180,7 +202,7 @@ export async function assembleChiiScene({
       ['森林神殿', '召唤装置'],
       'decor',
       0.4,
-      { id: 'forest_temple_trophy', mergeGeometry: false }
+      { id: 'forest_temple_trophy', mergeGeometry: false, editable: false, footprint: { width: 2, depth: 2 } }
     );
     forestTrophy.mesh.userData.interactionType = 'summon_pet_device';
     forestTrophyWaitPlan = await assetRepository.getAnimation('forestTrophy', 'wait').catch(() => null);
@@ -194,7 +216,7 @@ export async function assembleChiiScene({
       ['森林神殿', '露营'],
       'decor',
       0.9,
-      { id: 'forest_temple_tent', mergeGeometry: false }
+      { id: 'forest_temple_tent', mergeGeometry: false, editable: false, footprint: { width: 4, depth: 3 } }
     );
     forestTent.mesh.userData.interactionType = 'camping_tent';
   }
@@ -210,4 +232,3 @@ export async function assembleChiiScene({
     pastoralWorkScaffoldPlan: await assetRepository.getAnimation('pastoralWorkScaffold', 'dust').catch(() => null),
   };
 }
-

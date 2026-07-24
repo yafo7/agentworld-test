@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
+import { replaceStaticEntityModel } from '../../../world/model/replaceStaticEntityModel.js';
 
 /**
  * Construction visual effect — architect walks around building, dust particles,
@@ -12,7 +13,13 @@ import { defaultContentGeneration } from '../../../integrations/content/VoxelCon
  *   ce.start(buildingEntity, playerDescription);
  *   ce.update(dt); // called each frame while active
  */
-export function createConstructionEffect({ scene, architect, contentPort = defaultContentGeneration }) {
+export function createConstructionEffect({
+  scene,
+  architect,
+  contentPort = defaultContentGeneration,
+  colliderRegistry = null,
+  vfxService = null,
+}) {
   // --- state ---
   const STATE = {
     IDLE: 'idle',
@@ -302,7 +309,13 @@ export function createConstructionEffect({ scene, architect, contentPort = defau
       if (_newModelGroup && _building) {
         _newModelGroup.scale.setScalar(1);
         _newModelGroup.rotation.y = 0;
-        _building.replaceModel(_newModelGroup, _newModelJson);
+        replaceStaticEntityModel({
+          entity: _building,
+          modelJson: _newModelJson,
+          nextMesh: _newModelGroup,
+          colliderRegistry,
+          operation: 'refine',
+        });
         _newModelGroup = null;
       }
       _state = STATE.IDLE;
@@ -334,7 +347,15 @@ export function createConstructionEffect({ scene, architect, contentPort = defau
     architect.walkTo(_waypoints[0].x, _waypoints[0].z, 3.0);
 
     // Create dust + scaffold immediately
-    _createDust();
+    if (vfxService) {
+      vfxService.playPreset('dust', {
+        position: worldCenter,
+        key: 'legacy-construction-dust',
+        duration: 1.4,
+      });
+    } else {
+      _createDust();
+    }
     _createScaffold();
 
     console.log('[ConstructionEffect] Started for:', buildingEntity.name);

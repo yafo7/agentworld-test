@@ -5,6 +5,7 @@ import { loadModel } from '../model/loader.js';
 import { loadAnimationPlan } from '../animation/planLoader.js';
 import { applyAnimation } from '../animation/player.js';
 import { buildModelFromJson } from '../model/builder.js';
+import { detachMaterialTagPresentation } from '../model/MaterialTagPresentation.js';
 
 export class Environment {
   constructor(config) {
@@ -178,6 +179,7 @@ export class Environment {
       if (!newModel) throw new Error('Failed to build model from JSON');
 
       if (this._modelGroup) {
+        detachMaterialTagPresentation(this._modelGroup);
         this.mesh.remove(this._modelGroup);
         this._modelGroup = null;
       } else {

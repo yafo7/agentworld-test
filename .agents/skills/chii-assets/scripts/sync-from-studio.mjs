@@ -2,10 +2,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 const DEFAULT_STUDIO = 'http://localhost:8000';
 
-const ASSETS = [
+export const ASSETS = [
   {
     id: 'nailong',
     label: 'nailong',
@@ -132,12 +133,15 @@ const ASSETS = [
   {
     id: 'forest-trophy',
     label: 'forest-trophy',
-    assetId: 'm_1783574625142_cbsm97',
-    commit: '2026-07-09_13-22-45',
-    folder: '一个圆形的科隆major，cs2的冠军奖杯，不要有把手_59.3s',
+    assetId: 'm_1783574540705_1274n8',
+    commit: '2026-07-09_13-20-59',
+    folder: '一个科隆major，cs2的冠军奖杯_1.3m',
     modelOut: 'public/generated/models/forest_temple_trophy.json',
     animations: [
-      ['wait', 'public/generated/animations/forest_trophy_wait.json', ['召唤等待', '上下跳动', 'wait']],
+      ['wait', 'public/generated/animations/forest_trophy_wait.json', ['召唤等待', '上下跳动', 'wait'], {
+        exact: ['底座保持不动，奖杯上方上下跳动，同时出现星光特效'],
+        requireExact: true,
+      }],
     ],
   },
   {
@@ -250,6 +254,22 @@ const ASSETS = [
     modelOut: 'public/generated/models/yafo.json',
     animations: petAnimations('yafo'),
   },
+  {
+    id: 'crab',
+    label: 'crab',
+    assetId: 'm_1784020657837_93vxun',
+    commit: '2026-07-14_17-16-35',
+    folder: '一只橙色的螃蟹_1.0m',
+    modelOut: 'public/generated/models/crab.json',
+    animations: [
+      ['idle', 'public/generated/animations/crab_idle.json', ['呼吸摇摆', 'idle']],
+      ['walk', 'public/generated/animations/crab_walk.json', ['缓慢行走', 'walk']],
+      ['run', 'public/generated/animations/crab_run.json', ['快速奔跑', 'run']],
+      ['jump', 'public/generated/animations/crab_jump.json', ['开心跳跃', 'jump']],
+      ['construct', 'public/generated/animations/crab_construct.json', ['敲打施工', 'construct']],
+      ['dance', 'public/generated/animations/crab_dance.json', ['摇摆跳舞', 'dance']],
+    ],
+  },
 ];
 
 ASSETS.find(asset => asset.id === 'fangk')?.animations?.push(
@@ -264,19 +284,17 @@ function petAnimations(prefix) {
   ];
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const args = {
     studio: DEFAULT_STUDIO,
     dryRun: false,
-    publish: false,
-    source: 'runtime',
+    source: 'edit',
     only: null,
     all: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--dry-run') args.dryRun = true;
-    else if (a === '--publish') args.publish = true;
     else if (a === '--all') args.all = true;
     else if (a === '--studio') args.studio = argv[++i];
     else if (a.startsWith('--studio=')) args.studio = a.slice('--studio='.length);
@@ -292,14 +310,12 @@ function parseArgs(argv) {
 function usage() {
   return `Usage:
   node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all
-  node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --dry-run
-  node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all --publish
+  node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all --dry-run
   node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --only nailong,mako,yafo
 
 Options:
   --studio URL       Voxel Studio URL, default ${DEFAULT_STUDIO}
-  --source SOURCE    runtime | edit | original, default runtime only
-  --publish          POST /api/assets/:assetId/publish before copying
+  --source SOURCE    edit | original, default edit (falls back to original when no edit exists)
   --dry-run          Check sources without writing files
 `;
 }
@@ -338,20 +354,12 @@ async function tryFetchJson(url, opts = {}) {
 
 async function loadStudioModel(asset, args) {
   const base = args.studio.replace(/\/$/, '');
-  const assetId = encodeURIComponent(asset.assetId);
-  if (args.publish) {
-    await fetchJson(`${base}/api/assets/${assetId}/publish`, { method: 'POST' });
-  }
-
-  const runtimeUrl = `${base}/api/assets/${assetId}/runtime`;
-  const editUrl = `${base}/api/assets/${assetId}/edit?commit=${encodeURIComponent(asset.commit)}&folder=${encodeURIComponent(asset.folder)}`;
   const legacyEditUrl = `${base}/api/load-edited/${encodeURIComponent(asset.commit)}/${encodeURIComponent(asset.folder)}`;
   const originalUrl = `${base}/api/model/${encodeURIComponent(asset.commit)}/${encodeURIComponent(asset.folder)}`;
 
   const order =
-    args.source === 'edit' ? [['edit', editUrl], ['legacy-edit', legacyEditUrl]] :
     args.source === 'original' ? [['original', originalUrl]] :
-    [['runtime', runtimeUrl]];
+    [['edit', legacyEditUrl], ['original', originalUrl]];
 
   for (const [source, url] of order) {
     const data = await tryFetchJson(url);
@@ -369,12 +377,40 @@ async function loadStudioAnimations(asset, args) {
   return data.animations || [];
 }
 
-function matchAnimation(anims, patterns) {
-  const lowerPatterns = patterns.map(p => String(p).toLowerCase());
-  return anims.find(anim => {
-    const text = `${anim.name || ''} ${anim.description || ''} ${anim._name || ''}`.toLowerCase();
-    return lowerPatterns.some(p => text.includes(p.toLowerCase()));
-  });
+function animationFields(animation) {
+  return [animation?.name, animation?._name, animation?.description]
+    .filter(Boolean)
+    .map(value => String(value).trim().toLowerCase());
+}
+
+export function matchAnimation(anims, patterns, { exact = [], requireExact = false } = {}) {
+  const normalizedExact = exact.map(value => String(value).trim().toLowerCase());
+  if (normalizedExact.length) {
+    const exactMatches = anims.filter(animation => {
+      const fields = animationFields(animation);
+      return normalizedExact.some(candidate => fields.includes(candidate));
+    });
+    if (exactMatches.length === 1) return { animation: exactMatches[0], status: 'matched', candidates: exactMatches };
+    if (exactMatches.length > 1) return { animation: null, status: 'ambiguous', candidates: exactMatches };
+    if (requireExact) return { animation: null, status: 'missing', candidates: [] };
+  }
+
+  const normalizedPatterns = patterns.map(value => String(value).trim().toLowerCase());
+  const ranked = anims.map(animation => {
+    const fields = animationFields(animation);
+    let score = -1;
+    normalizedPatterns.forEach((pattern, index) => {
+      if (fields.includes(pattern)) score = Math.max(score, 1000 - index);
+      else if (fields.some(field => field.includes(pattern))) score = Math.max(score, 100 - index);
+    });
+    return { animation, score };
+  }).filter(candidate => candidate.score >= 0);
+
+  if (!ranked.length) return { animation: null, status: 'missing', candidates: [] };
+  const bestScore = Math.max(...ranked.map(candidate => candidate.score));
+  const best = ranked.filter(candidate => candidate.score === bestScore);
+  if (best.length > 1) return { animation: null, status: 'ambiguous', candidates: best.map(candidate => candidate.animation) };
+  return { animation: best[0].animation, status: 'matched', candidates: [best[0].animation] };
 }
 
 function normalizePlan(anim) {
@@ -386,34 +422,63 @@ function normalizePlan(anim) {
   return plan;
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.keys(value).sort().map(key => [key, canonicalize(value[key])]));
+}
+
+export function semanticJsonEqual(left, right) {
+  return JSON.stringify(canonicalize(left)) === JSON.stringify(canonicalize(right));
+}
+
+async function inspectLocalJson(repoRoot, relPath, data) {
+  const outPath = path.join(repoRoot, relPath);
+  try {
+    const existing = JSON.parse(await fs.readFile(outPath, 'utf8'));
+    return { path: relPath, status: semanticJsonEqual(existing, data) ? 'same' : 'changed', existing };
+  } catch (error) {
+    if (error?.code === 'ENOENT') return { path: relPath, status: 'missing', existing: null };
+    return { path: relPath, status: 'changed', existing: null, error: error.message };
+  }
+}
+
 async function writeJsonWithBackup(repoRoot, relPath, data, args) {
   const outPath = path.join(repoRoot, relPath);
   const json = JSON.stringify(data, null, 2);
-  if (args.dryRun) return { path: relPath, wrote: false };
+  const inspection = await inspectLocalJson(repoRoot, relPath, data);
+  if (args.dryRun || inspection.status === 'same') return { ...inspection, wrote: false };
 
-  try {
+  if (inspection.existing) {
     const old = await fs.readFile(outPath, 'utf8');
-    if (old !== json) {
-      const backupPath = path.join(repoRoot, 'public', 'generated', '_sync-backup', `${Date.now()}_${relPath.replace(/[\\/]/g, '__')}`);
-      await fs.mkdir(path.dirname(backupPath), { recursive: true });
-      await fs.writeFile(backupPath, old, 'utf8');
-    }
-  } catch {}
+    const backupPath = path.join(repoRoot, 'public', 'generated', '_sync-backup', `${Date.now()}_${relPath.replace(/[\\/]/g, '__')}`);
+    await fs.mkdir(path.dirname(backupPath), { recursive: true });
+    await fs.writeFile(backupPath, old, 'utf8');
+  }
 
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(outPath, json, 'utf8');
-  return { path: relPath, wrote: true };
+  return { ...inspection, wrote: true };
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+function statusLine(kind, id, result, relPath) {
+  return `  ${kind.padEnd(5)} ${id.padEnd(28)} ${result.status.padEnd(9)} ${relPath}`;
+}
+
+export async function runAssetSync(inputArgs, { logger = console } = {}) {
+  const args = { ...inputArgs };
   if (args.help) {
-    console.log(usage());
-    return;
+    logger.log(usage());
+    return null;
   }
+  if (args.all && args.only) throw new Error('Use either --all or --only, not both.');
+  if (!args.all && !args.only) throw new Error('Asset scope is required. Use --all or --only <ids>.');
+  if (!['edit', 'original'].includes(args.source)) throw new Error('--source must be edit or original.');
 
   const repoRoot = await findRepoRoot(process.cwd());
-  const selected = ASSETS.filter(asset => !args.only || args.only.includes(asset.id) || args.only.includes(asset.label));
+  const selected = args.all
+    ? ASSETS
+    : ASSETS.filter(asset => args.only.includes(asset.id) || args.only.includes(asset.label));
   if (!selected.length) throw new Error('No assets selected. Use --all or --only <ids>.');
 
   let preservedAssets = [];
@@ -429,14 +494,14 @@ async function main() {
     syncedAt: new Date().toISOString(),
     studio: args.studio,
     source: args.source,
-    publish: args.publish,
     assets: preservedAssets,
   };
   const warnings = [];
   let models = 0;
   let animations = 0;
+  const audit = { same: 0, changed: 0, missing: 0, ambiguous: 0, written: 0 };
 
-  console.log(`[chii-assets] ${args.dryRun ? 'dry-run ' : ''}syncing ${selected.length} Chii assets from ${args.studio}`);
+  logger.log(`[chii-assets] ${args.dryRun ? 'dry-run ' : ''}syncing ${selected.length} Chii assets from ${args.studio}`);
 
   for (const asset of selected) {
     const entry = {
@@ -453,13 +518,21 @@ async function main() {
       const { modelJson, source, manifest: studioManifest } = await loadStudioModel(asset, args);
       entry.source = source;
       entry.runtimeVersion = studioManifest?.runtimeVersion || null;
-      await writeJsonWithBackup(repoRoot, asset.modelOut, modelJson, args);
-      for (const alias of asset.aliases || []) await writeJsonWithBackup(repoRoot, alias, modelJson, args);
+      const result = await writeJsonWithBackup(repoRoot, asset.modelOut, modelJson, args);
+      audit[result.status]++;
+      if (result.wrote) audit.written++;
+      logger.log(statusLine('model', asset.id, result, asset.modelOut));
+      for (const alias of asset.aliases || []) {
+        const aliasResult = await writeJsonWithBackup(repoRoot, alias, modelJson, args);
+        audit[aliasResult.status]++;
+        if (aliasResult.wrote) audit.written++;
+        logger.log(statusLine('alias', asset.id, aliasResult, alias));
+      }
       models++;
-      console.log(`  model ${asset.id} <= ${source} -> ${asset.modelOut}`);
     } catch (err) {
       warnings.push(`${asset.id}: model sync failed: ${err.message}`);
-      console.warn(`  warn ${asset.id}: ${err.message}`);
+      audit.missing++;
+      logger.warn(`  warn ${asset.id}: ${err.message}`);
       manifest.assets.push(entry);
       continue;
     }
@@ -472,33 +545,51 @@ async function main() {
         warnings.push(`${asset.id}: animation list failed: ${err.message}`);
       }
 
-      for (const [name, outPath, patterns] of asset.animations) {
-        const anim = matchAnimation(anims, patterns);
+      for (const [name, outPath, patterns, matchOptions] of asset.animations) {
+        const match = matchAnimation(anims, patterns, matchOptions);
+        if (match.status === 'ambiguous') {
+          const names = match.candidates.map(candidate => candidate.name || candidate._name || '(unnamed)');
+          warnings.push(`${asset.id}: ambiguous animation ${name}: ${names.join(' | ')}`);
+          audit.ambiguous++;
+          logger.warn(`  anim  ${asset.id}.${name} ambiguous ${names.join(' | ')}`);
+          continue;
+        }
+        const anim = match.animation;
         if (!anim) {
           warnings.push(`${asset.id}: missing animation ${name} (${patterns.join('|')})`);
+          audit.missing++;
           continue;
         }
         const plan = normalizePlan(anim);
-        await writeJsonWithBackup(repoRoot, outPath, plan, args);
+        const result = await writeJsonWithBackup(repoRoot, outPath, plan, args);
+        audit[result.status]++;
+        if (result.wrote) audit.written++;
         entry.animations.push({ name, outPath, studioName: anim.name || anim._name || null });
         animations++;
-        console.log(`  anim  ${asset.id}.${name} <= ${anim.name || '(unnamed)'} -> ${outPath}`);
+        logger.log(statusLine('anim', `${asset.id}.${name}`, result, outPath));
       }
     }
 
     manifest.assets.push(entry);
   }
 
-  await writeJsonWithBackup(repoRoot, 'public/generated/chii-runtime-manifest.json', manifest, args);
+  if (!args.dryRun) await writeJsonWithBackup(repoRoot, 'public/generated/chii-runtime-manifest.json', manifest, args);
 
-  console.log(`[chii-assets] models=${models} animations=${animations} warnings=${warnings.length}`);
+  logger.log(`[chii-assets] models=${models} animations=${animations} same=${audit.same} changed=${audit.changed} missing=${audit.missing} ambiguous=${audit.ambiguous} written=${audit.written} warnings=${warnings.length}`);
   if (warnings.length) {
-    console.log('[chii-assets] warnings:');
-    for (const w of warnings) console.log(`  - ${w}`);
+    logger.log('[chii-assets] warnings:');
+    for (const w of warnings) logger.log(`  - ${w}`);
   }
+  return { models, animations, warnings, audit, manifest };
 }
 
-main().catch(err => {
-  console.error(`[chii-assets] fatal: ${err.message}`);
-  process.exit(1);
-});
+async function main() {
+  await runAssetSync(parseArgs(process.argv.slice(2)));
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch(err => {
+    console.error(`[chii-assets] fatal: ${err.message}`);
+    process.exit(1);
+  });
+}

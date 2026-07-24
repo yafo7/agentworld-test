@@ -1,60 +1,55 @@
 {
-  "id": "mp_1783574791330_ym0x",
-  "name": "底座保持不动，奖杯上方上下跳动，同时出现星光特效",
-  "description": "底座保持不动，奖杯上方上下跳动，同时出现星光特效",
-  "motionPlan": {
-    "top": {
-      "bounce": {
-        "axis": "y",
-        "amplitude": 0.32,
-        "frequency": 1.6
-      },
-      "swing": {
-        "axis": "y",
-        "amplitude": 0.12,
-        "frequency": 0.8
-      },
-      "emit": {
-        "emitMode": "volume",
-        "mesh": "sphere",
-        "meshSize": 0.42,
-        "rate": 32,
-        "lifetime": [
-          0.5,
-          1.1
-        ],
-        "velocity": {
-          "dir": [
-            0,
-            1,
-            0
-          ],
-          "speed": [
-            0.7,
-            1.8
-          ],
-          "spread": 0.85
-        },
-        "acceleration": [
+  "top": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.32,
+      "frequency": 1.6
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 0.8
+    },
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "sphere",
+      "meshSize": 0.42,
+      "rate": 32,
+      "lifetime": [
+        0.5,
+        1.1
+      ],
+      "velocity": {
+        "dir": [
           0,
-          -0.4,
+          1,
           0
         ],
-        "colorStart": [
-          1,
-          0.92,
-          0.25
+        "speed": [
+          0.7,
+          1.8
         ],
-        "colorEnd": [
-          0.45,
-          0.75,
-          1
-        ],
-        "scaleStart": 1.2,
-        "scaleEnd": 0.45
-      }
+        "spread": 0.85
+      },
+      "acceleration": [
+        0,
+        -0.4,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.92,
+        0.25
+      ],
+      "colorEnd": [
+        0.45,
+        0.75,
+        1
+      ],
+      "scaleStart": 1.2,
+      "scaleEnd": 0.45
     }
   },
-  "duration": 2,
-  "timestamp": 1783574791330
+  "_duration": 2,
+  "_loop": true
 }

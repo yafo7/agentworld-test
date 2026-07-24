@@ -4,6 +4,7 @@ import {
   collectMountWorkRequest,
   collectRefineWorkRequest,
 } from '../src/demos/chii-island/systems/pastoralWorkDialogue.js';
+import { describePastoralIdea } from '../src/demos/chii-island/systems/pastoralSlice.js';
 
 function scriptedDialogue({ choices = [], inputs = [] } = {}) {
   const events = [];
@@ -83,4 +84,19 @@ test('mount request does not return work data when final confirmation is rejecte
 
   assert.equal(result, null);
   assert.deepEqual(dialogue.events.map(([type]) => type), ['choice', 'input', 'input', 'choice']);
+});
+
+test('pastoral autonomous ideas describe the exact work before player approval', () => {
+  assert.equal(
+    describePastoralIdea({ action: 'create', description: '木制田园工具架' }),
+    '我想在附近做一个木制田园工具架。可以吗？',
+  );
+  assert.equal(
+    describePastoralIdea({ action: 'refine', targetName: '苹果树', description: '挂满红色小苹果' }),
+    '我想把“苹果树”调整成挂满红色小苹果。可以试试吗？',
+  );
+  assert.equal(
+    describePastoralIdea({ action: 'mount', targetName: '风车', position: '门口', part: '一盏黄色小灯' }),
+    '我想在“风车”的门口加上一盏黄色小灯。可以吗？',
+  );
 });

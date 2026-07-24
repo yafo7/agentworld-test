@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { getRuntime } from '../runtime/runtimeProvider.js';
 import { fallbackBuildGeometry } from './fallback.js';
 import { VoxelModel } from './VoxelData.js';
+import { applyMaterialTagPresentation } from './MaterialTagPresentation.js';
 
 // ---- material cache: key → shared material ----
 const _materialCache = new Map();
@@ -99,6 +100,10 @@ export function buildModelFromJson(modelJson) {
   // (offset, rotation, quaternion, scale — not just position)
   root._voxelModel = voxelModel;
   root.userData.modelJson = modelJson;
+  applyMaterialTagPresentation(root, voxelModel.parts, {
+    model: voxelModel,
+    modelJson,
+  });
 
   return root;
 }

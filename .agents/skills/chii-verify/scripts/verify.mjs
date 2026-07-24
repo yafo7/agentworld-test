@@ -72,11 +72,23 @@ if (full) {
       };
     });
 
+    await page.waitForSelector('#interact-prompt.visible', { timeout: 5000 });
+    await page.keyboard.press('KeyE');
+    await page.waitForTimeout(400);
+    const dialogueOpened = await page.locator('#dialogue-root').evaluate(element => element.classList.contains('active'));
+
     await page.keyboard.press('Escape');
     await page.waitForTimeout(400);
-    const panelOpened = await page.locator('#mgmt-panel').evaluate(element => element.classList.contains('visible'));
-    await page.keyboard.press('Escape');
-    await page.waitForTimeout(400);
+    let panelOpened = await page.locator('#mgmt-panel').evaluate(element => element.classList.contains('visible'));
+    if (!panelOpened) {
+      await page.keyboard.press('Escape');
+      await page.waitForTimeout(400);
+      panelOpened = await page.locator('#mgmt-panel').evaluate(element => element.classList.contains('visible'));
+    }
+    if (panelOpened) {
+      await page.keyboard.press('Escape');
+      await page.waitForTimeout(400);
+    }
 
     const before = await page.evaluate(() => window.__player.mesh.position.toArray());
     await page.keyboard.down('KeyW');
@@ -85,11 +97,6 @@ if (full) {
     await page.waitForTimeout(150);
     const after = await page.evaluate(() => window.__player.mesh.position.toArray());
     const moved = Math.hypot(after[0] - before[0], after[2] - before[2]);
-
-    await page.waitForSelector('#interact-prompt.visible', { timeout: 5000 });
-    await page.keyboard.press('KeyE');
-    await page.waitForTimeout(400);
-    const dialogueOpened = await page.locator('#dialogue-root').evaluate(element => element.classList.contains('active'));
 
     const runtimeDir = path.join(repoRoot, '.agents/runtime');
     await mkdir(runtimeDir, { recursive: true });

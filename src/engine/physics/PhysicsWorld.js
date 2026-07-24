@@ -57,9 +57,10 @@ export class PhysicsWorld {
     return this.world.createRigidBody(RAPIER.RigidBodyDesc.fixed());
   }
 
-  addStaticBoxToBody(body, hx, hy, hz, x, y, z) {
+  addStaticBoxToBody(body, hx, hy, hz, x, y, z, rotation = null) {
     const colliderDesc = RAPIER.ColliderDesc.cuboid(hx, hy, hz)
       .setTranslation(x, y, z);
+    if (rotation) colliderDesc.setRotation(rotation);
     return this.world.createCollider(colliderDesc, body);
   }
 
@@ -67,6 +68,10 @@ export class PhysicsWorld {
     const colliderDesc = RAPIER.ColliderDesc.cylinder(halfHeight, radius)
       .setTranslation(x, y, z);
     return this.world.createCollider(colliderDesc, body);
+  }
+
+  removeRigidBody(body) {
+    if (body) this.world.removeRigidBody(body);
   }
 
   /**

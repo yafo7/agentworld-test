@@ -26,4 +26,6 @@ export function createLights(scene) {
   sunLight.shadow.normalBias = 0.02;
 
   scene.add(sunLight);
+
+  return { hemiLight, sunLight };
 }

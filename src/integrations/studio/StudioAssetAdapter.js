@@ -12,35 +12,27 @@ export class StudioAssetAdapter {
     this.fetch = fetchImpl;
   }
 
-  async loadRuntime(assetId) {
-    const response = await this.fetch(`${this.baseUrl}/api/assets/${encodeURIComponent(assetId)}/runtime`);
+  async loadOriginal(commit, folder) {
+    const response = await this.fetch(`${this.baseUrl}/api/model/${encodeURIComponent(commit)}/${encodeURIComponent(folder)}`);
     return readJson(response);
   }
 
-  async loadEdit(assetId) {
-    const response = await this.fetch(`${this.baseUrl}/api/assets/${encodeURIComponent(assetId)}/edit`);
+  async loadEdit(commit, folder) {
+    const response = await this.fetch(`${this.baseUrl}/api/load-edited/${encodeURIComponent(commit)}/${encodeURIComponent(folder)}`);
     return readJson(response);
   }
 
-  async saveEdit(assetId, modelJson) {
-    const response = await this.fetch(`${this.baseUrl}/api/assets/${encodeURIComponent(assetId)}/edit`, {
+  async saveEdit(commit, folder, modelJson, undoStack) {
+    const response = await this.fetch(`${this.baseUrl}/api/save-edited`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ modelJson }),
+      body: JSON.stringify({ commit, folder, modelJson, undoStack }),
     });
     return readJson(response);
   }
 
-  async publish(assetId) {
-    const response = await this.fetch(`${this.baseUrl}/api/assets/${encodeURIComponent(assetId)}/publish`, {
-      method: 'POST',
-    });
-    return readJson(response);
-  }
-
-  async history(assetId) {
-    const response = await this.fetch(`${this.baseUrl}/api/assets/${encodeURIComponent(assetId)}/history`);
+  async loadAnimations(commit, folder) {
+    const response = await this.fetch(`${this.baseUrl}/api/animations/${encodeURIComponent(commit)}/${encodeURIComponent(folder)}`);
     return readJson(response);
   }
 }
-

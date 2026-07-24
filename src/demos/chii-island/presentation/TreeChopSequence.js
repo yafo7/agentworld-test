@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
+import { replaceStaticEntityModel } from '../../../world/model/replaceStaticEntityModel.js';
 
 const RUN_DUST_PLAN = {
   _bearFeet: {
@@ -57,11 +58,12 @@ const STUMP_BURST_PLAN = {
 };
 
 export class TreeChopSequence {
-  constructor({ scene, bear, player, assetRepository }) {
+  constructor({ scene, bear, player, assetRepository, colliderRegistry = null }) {
     this.scene = scene;
     this.bear = bear;
     this.player = player;
     this.assetRepository = assetRepository;
+    this.colliderRegistry = colliderRegistry;
     this.chopParticles = null;
     this.chopEmitter = null;
     this.reveals = [];
@@ -136,7 +138,14 @@ export class TreeChopSequence {
       if (progress < 1) continue;
       reveal.group.scale.setScalar(1);
       reveal.group.rotation.y = 0;
-      reveal.tree.replaceModel(reveal.group, reveal.stumpJson);
+      replaceStaticEntityModel({
+        entity: reveal.tree,
+        modelJson: reveal.stumpJson,
+        nextMesh: reveal.group,
+        colliderRegistry: this.colliderRegistry,
+        operation: 'refine',
+        assetId: 'stump',
+      });
       this.reveals.splice(i, 1);
     }
   }
@@ -182,4 +191,3 @@ export class TreeChopSequence {
     this.reveals = [];
   }
 }
-

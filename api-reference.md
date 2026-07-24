@@ -1,5 +1,12 @@
 适用场景：用 AI 生成低多边形 3D 模型和动画。本指南面向第三方前端集成——涵盖所有需要正确渲染的信息。
 
+Chii 当前兼容基线（2026-07-23）：
+- 自主 Voxel 生成固定发送 `provider: "gpt"`、`model: "gpt-5.6-sol-high"`、`mode: "voxel"`。
+- Refine、Mount、Quick Animation 走同一 api-reference 后端，不经过 Voxel Studio 读写接口。
+- 客户端只发送一次指定 provider 请求，不做跨 provider 静默降级；统一保留 `errorCode`、`errorDetail`、HTTP status 与 `timing`。
+- 当前后端动画模板没有 `tilt`；历史计划应在播放前兼容转换为参数相同的 `pointTo`。
+- 模型 parser 必须保留 `nodes[].tags`、显式 `locked`、`mesh.boneFrom/boneTo`、`_meta.mounts` 和未知扩展元数据。
+
 ---
 目录
 1. 快速开始
@@ -53,6 +60,10 @@ JSON
 POST
 JSON
 AI 修改已有模型
+/api/mount
+POST
+JSON
+在主模型身份不变时增加局部部件
 /api/chat
 POST
 JSON
@@ -99,10 +110,17 @@ curve
 wire
 金属铁丝勾线风格（极细 cyl + 极少 tri，抽象符号化）
 
+voxel-pro
+更精细的体素模式；Chii 当前不默认使用
+
+math
+数学结构模式；Chii 当前不默认使用
+
 请求
 {
   "description": "a lowpoly knight with a sword and shield",
-  "provider": "glm",
+  "provider": "gpt",
+  "model": "gpt-5.6-sol-high",
   "mode": "standard"
 }
 返回：SSE 流
@@ -207,6 +225,9 @@ object
 mesh.boneFrom / mesh.boneTo
 string
 chain/connect 圆柱的骨骼端点（动画链检测用；静态渲染可忽略）
+nodes[].tags
+string[]
+Material Tags v2 的部件级渲染语义；必须保留，是否启用效果由 runtime 决定
 顶层字段
 字段
 说明
@@ -218,6 +239,8 @@ _meta.skipAutoCenter
 渲染端忽略
 _meta.ai
 渲染端忽略
+_meta.mounts
+装配历史/挂载元数据；模型往返时必须保留
 3.3 批量生成 — POST /api/generate/batch
 请求
 {
@@ -269,6 +292,22 @@ no_metadata
 metadata_corrupted
 元数据损坏，需重新生成模型
 非流式。Refine 一次返回完整结果，不像模型生成那样走 SSE。
+
+3.5 装配部件 — POST /api/mount
+在主模型身份不变时增加一个局部部件。`secondary` 可以是完整 modelJson，也可以是简短、具体的部件描述。
+请求
+{
+  "primary": { ... },
+  "secondary": "一顶黄色小花帽",
+  "description": "装在头顶正中央",
+  "provider": "gpt"
+}
+返回
+{
+  "ok": true,
+  "modelJson": { ... },
+  "mountPlan": { ... }
+}
 
 ---
 5. 动画生成 (Motion Plan)
@@ -357,9 +396,9 @@ axis(轴), speed(速度)
 slash
 挥砍
 axis(轴), amplitude(幅度), speed(速度)
-tilt
-倾斜
-axis(轴), angle(角度)
+pointTo
+固定角度/指向
+axis(轴), angle(角度), lockWorldRot(可选)
 shift
 位移
 axis(轴), distance(距离)
@@ -369,6 +408,9 @@ axis(轴), amount(缩放量)
 flow
 流动
 axis(轴), speed(速度), distance(距离)
+lockWorldRot
+锁定世界朝向
+rotX, rotY, rotZ（弧度，可只提供需要覆盖的轴）
 emit
 粒子发射
 见 §6 粒子系统
@@ -407,7 +449,7 @@ rt.listAnimationTemplates()
 
 // 评估完整 Motion Plan（每帧播放用）— v2: (plan, duration, t, lookups?)
 //   lookups = { getPart(id), getChildren(id) }，解耦具体 model 表示；
-//   wave/flow/tilt 等需要结构信息的模板从 lookups 取，无则安全降级。
+//   wave/flow/pointTo/lockWorldRot 等需要结构信息的模板从 lookups 取，无则安全降级。
 rt.evaluateMotion(plan, duration, t, lookups)
 // → { groupId: { position:[dx,dy,dz], rotation:[rx,ry,rz], scale:[sx,sy,sz]|null } }
 //   ⚠️ 返回值是增量（delta），需叠加到基础姿态

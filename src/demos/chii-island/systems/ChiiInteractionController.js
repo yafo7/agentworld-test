@@ -7,8 +7,12 @@ export class ChiiInteractionController {
     architect,
     bear,
     petManager,
-    petPartyEvent,
+    townSocialSystem = null,
+    townBuilderSystem = null,
+    petPartyEvent = null,
+    pastoralSlice = null,
     forestTempleSystem,
+    objectPlacement = null,
     bearHome,
     handlers,
     interactionRange = 5.2,
@@ -18,8 +22,11 @@ export class ChiiInteractionController {
     this.architect = architect;
     this.bear = bear;
     this.petManager = petManager;
-    this.petPartyEvent = petPartyEvent;
+    this.townSocialSystem = townSocialSystem || petPartyEvent;
+    this.townBuilderSystem = townBuilderSystem;
+    this.pastoralSlice = pastoralSlice;
     this.forestTempleSystem = forestTempleSystem;
+    this.objectPlacement = objectPlacement;
     this.bearHome = bearHome;
     this.handlers = handlers;
     this.interactionRange = interactionRange;
@@ -45,13 +52,14 @@ export class ChiiInteractionController {
     const townPetHit = this.petManager.findNearest(
       playerPosition,
       this.interactionRange,
-      pet => this.petPartyEvent.canInteract(pet),
+      pet => this._canInteractWithTownPet(pet),
     );
     const regularPetHit = this.petManager.findNearest(
       playerPosition,
       this.interactionRange,
-      pet => !this.petPartyEvent.isTownPet(pet),
+      pet => !this._isTownPet(pet),
     );
+    const objectHit = this.objectPlacement?.findNearestEditable(playerPosition, this.interactionRange) || null;
 
     const candidates = [];
     const addCandidate = (type, distance, position) => {
@@ -66,11 +74,12 @@ export class ChiiInteractionController {
 
     if (forestHit) addCandidate('forest', forestHit.distance, forestHit.position);
     if (townPetHit) addCandidate('town-pet', townPetHit.dist, townPetHit.position);
-    if (!this.petPartyEvent.isTownPet(this.architect)) {
+    if (!this._isTownPet(this.architect)) {
       addCandidate('architect', architectOffset.distance, architectPosition);
     }
     addCandidate('bear', bearOffset.distance, bearPosition);
     if (regularPetHit) addCandidate('pet', regularPetHit.dist, regularPetHit.position);
+    if (objectHit) addCandidate('object', objectHit.distance, objectHit.position);
     candidates.sort((a, b) => a.score - b.score);
 
     this._updateNearbyPetFacing(playerPosition, bearOffset.distance);
@@ -89,7 +98,10 @@ export class ChiiInteractionController {
 
     if (target === 'town-pet') {
       const pet = townPetHit.pet;
-      this._show(`与${pet._petName || '宠物'}对话`);
+      const label = this.townBuilderSystem?.isBuilder(pet)
+        ? this.townBuilderSystem.getInteractionLabel(pet)
+        : this.townSocialSystem.getInteractionLabel?.(pet);
+      this._show(label || `与${pet._petName || '宠物'}对话`);
       pet.stopWalking?.();
       pet.lockFacing?.(playerPosition.x, playerPosition.z);
       if (this.input.justPressed('KeyE')) this.handlers.onTownPet(pet);
@@ -109,8 +121,14 @@ export class ChiiInteractionController {
       return;
     }
 
+    if (target === 'object') {
+      this._show(`管理“${objectHit.entity.name || '物件'}”`);
+      if (this.input.justPressed('KeyE')) this.handlers.onObject?.(objectHit.entity);
+      return;
+    }
+
     if (target === 'bear') {
-      this._show('与momo对话');
+      this._show(this.pastoralSlice?.getInteractionLabel(this.bear) || '与momo对话');
       if (!this.bear.petState.isBusy()) {
         if (!this.bear._followEnabled && !this.bear.petState.is('free_roam')) this.bear.stopWalking();
         this.bear.lockFacing(playerPosition.x, playerPosition.z);
@@ -128,7 +146,10 @@ export class ChiiInteractionController {
     }
 
     const pet = regularPetHit.pet;
-    this._show(`与${pet._petName || '宠物'}对话`);
+    this._show(
+      this.pastoralSlice?.getInteractionLabel(pet)
+      || `与${pet._petName || '宠物'}对话`,
+    );
     if (!pet.petState?.isBusy()) {
       pet.stopWalking?.();
       pet.lockFacing?.(playerPosition.x, playerPosition.z);
@@ -174,6 +195,14 @@ export class ChiiInteractionController {
     return { dx, dz, distance: Math.sqrt(dx * dx + dz * dz) };
   }
 
+  _isTownPet(pet) {
+    return !!this.townBuilderSystem?.isBuilder(pet) || this.townSocialSystem.isTownPet(pet);
+  }
+
+  _canInteractWithTownPet(pet) {
+    return !!this.townBuilderSystem?.canInteract(pet) || this.townSocialSystem.canInteract(pet);
+  }
+
   _show(label) {
     this.prompt?.classList.add('visible');
     if (this.promptText) this.promptText.textContent = label;
@@ -183,4 +212,3 @@ export class ChiiInteractionController {
     this.prompt?.classList.remove('visible');
   }
 }
-

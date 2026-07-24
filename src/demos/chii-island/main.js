@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { initRuntime } from '../../engine/runtime/runtimeProvider.js';
+import { getRuntimeStatus, initRuntime } from '../../engine/runtime/runtimeProvider.js';
 import { installGlobalSync } from '../../backend/index.js';
-import { createScene, createRenderer, createLights, ThirdPersonCamera } from '../../engine';
+import { createScene, createRenderer, createLights, ThirdPersonCamera, setMaterialTagPresenter } from '../../engine';
 import { Player } from '../../engine';
 import { createUnitEnvironment, getGridWorldPosition, preloadBlocks, generateTerrainLayout } from '../../engine';
 import { Input } from '../../engine';
@@ -16,6 +16,7 @@ import { defaultContentGeneration } from '../../integrations/content/VoxelConten
 import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
 import { assembleChiiScene } from './world/ChiiSceneAssembler.js';
 import { buildStaticColliders } from '../../world/physics/buildStaticColliders.js';
+import { COLLIDER_STRATEGIES } from '../../world/physics/ColliderStrategy.js';
 import { attachPetStateMachine } from '../../gameplay/pets/PetStateMachine.js';
 import { ArchitectNPC } from './entities/ArchitectNPC.js';
 import { createDialogueSystem } from './systems/DialogueSystem.js';
@@ -27,6 +28,21 @@ import { DialogueCameraDirector } from './presentation/DialogueCameraDirector.js
 import { TreeChopSequence } from './presentation/TreeChopSequence.js';
 import { createChiiRegionGameplay } from './gameplay/createChiiRegionGameplay.js';
 import { ChiiInteractionController } from './systems/ChiiInteractionController.js';
+import { PlacementGrid } from '../../world/placement/PlacementGrid.js';
+import { ObjectPlacementService } from '../../world/placement/ObjectPlacementService.js';
+import { ObjectEditorController } from './systems/ObjectEditorController.js';
+import { createAssetSemanticAudit } from './systems/AssetSemanticAudit.js';
+import { WorldClimatePresenter } from './presentation/WorldClimatePresenter.js';
+import { WorldClimateSystem } from './systems/WorldClimateSystem.js';
+import { BrowserClockAdapter } from '../../integrations/climate/BrowserClockAdapter.js';
+import { BrowserLocationAdapter } from '../../integrations/climate/BrowserLocationAdapter.js';
+import { OpenMeteoWeatherAdapter } from '../../integrations/climate/OpenMeteoWeatherAdapter.js';
+import { BigDataCloudPlaceNameAdapter } from '../../integrations/climate/BigDataCloudPlaceNameAdapter.js';
+import { ClimateCache } from '../../storage/ClimateCache.js';
+import { VoxelStudioModelVisualAdapter } from '../../integrations/rendering/VoxelStudioModelVisualAdapter.js';
+import { WorldModelVisualLifecycle } from '../../world/model/WorldModelVisualLifecycle.js';
+import { ChiiSkyVisualAdapter } from '../../integrations/rendering/ChiiSkyVisualAdapter.js';
+import { VoxelStudioRenderPresentationAdapter } from '../../integrations/rendering/VoxelStudioRenderPresentationAdapter.js';
 
 // ---- bootstrap ----
 async function init() {
@@ -58,7 +74,21 @@ async function init() {
   const input = new Input(renderer.domElement);
   const thirdPersonCamera = new ThirdPersonCamera();
   const camera = thirdPersonCamera.camera;
-  createLights(scene);
+  const lightRig = createLights(scene);
+  const renderPresentation = new VoxelStudioRenderPresentationAdapter({
+    renderer,
+    scene,
+    camera,
+    lightRig,
+  });
+  const modelVisuals = new VoxelStudioModelVisualAdapter({
+    scene,
+    camera,
+    modelStyleRegistry: renderPresentation,
+  });
+  setMaterialTagPresenter(modelVisuals);
+  window.__chiiModelVisuals = modelVisuals;
+  window.__chiiRenderPresentation = renderPresentation;
 
   // ---- terrain grid (50×50, procedural forest biome) ----
   const GRID_SIZE = 50;
@@ -78,6 +108,12 @@ async function init() {
   console.log(`[Init] Loading local runtime assets (${sceneStyle})...`);
   const modelJsons = await assetRepository.getModels(CHII_SCENE_ASSET_IDS);
   console.log('[Init] Runtime assets loaded:', Object.keys(modelJsons).join(', '));
+  const assetAudit = createAssetSemanticAudit({
+    models: modelJsons,
+    renderer,
+    runtime: getRuntimeStatus(),
+  });
+  window.__chiiAssetAudit = assetAudit;
 
   const scenePlan = generateSceneLayout(layout, GRID_SIZE, 99);
   console.log('[SceneLayout]', `${scenePlan.buildings.length} buildings, ${scenePlan.trees.length} trees, ${scenePlan.grasses.length} grasses`);
@@ -126,11 +162,17 @@ async function init() {
     pastoralWorkScaffoldModel,
     pastoralWorkScaffoldPlan,
   } = assembledScene;
+  const modelVisualLifecycle = new WorldModelVisualLifecycle({ worldObjects });
+  window.__chiiModelVisualLifecycle = modelVisualLifecycle;
+  assetAudit.recordAnimations('forestTrophy', { wait: forestTrophyWaitPlan });
+  assetAudit.recordAnimations('pastoralWorkScaffold', { dust: pastoralWorkScaffoldPlan });
 
   console.log(`[Init] Created ${staticEntities.length} static entities`);
 
-  const { colliderCount } = buildStaticColliders(physics, staticEntities);
-  console.log(`[Init] Physics colliders: ${colliderCount}`);
+  const { registry: colliderRegistry, colliderCount, summary: colliderSummary } = buildStaticColliders(physics, staticEntities);
+  colliderRegistry.bindWorldObjects(worldObjects);
+  window.__chiiColliderRegistry = colliderRegistry;
+  console.log(`[Init] Physics colliders: ${colliderCount}`, colliderSummary);
 
   // ---- Rapier debug renderer (wireframe, hidden by default) ----
   const debugRenderer = new RapierDebugRenderer(physics.world);
@@ -166,13 +208,30 @@ async function init() {
   // Special one-shot animations
   player.loadAnimation('wave_left', 'generated/animations/nailong_wave_left.json');   // H: 挥舞左手
   player.loadAnimation('fan_spark', 'generated/animations/nailong_fan_spark.json');   // J: 挥舞扇子+特效
+  const skyVisual = new ChiiSkyVisualAdapter({ scene, followTarget: player.mesh });
+  const climatePresenter = new WorldClimatePresenter({
+    scene,
+    lightRig,
+    followTarget: player.mesh,
+    skyVisual,
+  });
+  const worldClimate = new WorldClimateSystem({
+    presenter: climatePresenter,
+    clock: new BrowserClockAdapter(),
+    location: new BrowserLocationAdapter(),
+    weatherPort: new OpenMeteoWeatherAdapter(),
+    placeNamePort: new BigDataCloudPlaceNameAdapter(),
+    cache: new ClimateCache(),
+  });
+  window.__chiiClimate = worldClimate;
+  window.__chiiEnvironmentVisuals = climatePresenter;
 
   // ---- architect NPC ----
   const architect = new ArchitectNPC();
   architect.mesh.name = 'fangk';
-  architect._petName = 'fangke';
+  architect._petName = 'fangk';
   architect._petId = 'fangk';
-  architect._profile = getPetProfile('fangke');
+  architect._profile = getPetProfile('fangk');
   attachPetStateMachine(architect, 'free_roam');
   architect._petRegion = 'church_town';
   const architectSpawn = townGridSpawn('fangk', [0, 0, 30]);
@@ -187,6 +246,7 @@ async function init() {
         assetRepository.getModel(assetId),
         assetRepository.getAnimations(assetId),
       ]);
+      assetAudit.recordAnimations(assetId, animations);
       character.loadModelFromJson(modelJson);
       if (character._modelGroup) {
         character._modelGroup.userData._baseScale = character._modelGroup.scale.x;
@@ -231,15 +291,20 @@ async function init() {
       mok: gridSpawn('mok', [38, 0, 18]),
       mako: townGridSpawn('mako', [-38, 0, -18]),
       lingq: townGridSpawn('lingq', [26, 0, -24]),
+      crab: townGridSpawn('crab', [14, 0, -34]),
     },
     petBehaviors: {
       mako: { initialState: 'free_roam', region: 'church_town', bounds: townPetBounds },
       lingq: { initialState: 'free_roam', region: 'church_town', bounds: townPetBounds },
+      crab: { initialState: 'free_roam', region: 'church_town', bounds: townPetBounds },
     },
   });
   await petManager.load();
+  for (const pet of petManager.pets) {
+    assetAudit.recordAnimations(pet._petId || pet._petName || pet.mesh.name, pet._animPlans);
+  }
   petManager.registerPet(architect, {
-    name: 'fangke',
+    name: 'fangk',
     spawn: architectSpawn,
     initialState: 'free_roam',
     region: 'church_town',
@@ -264,8 +329,13 @@ async function init() {
   const mgmtPanel = document.getElementById('mgmt-panel');
   const chkCollision = document.getElementById('chk-collision');
   const chkPerformance = document.getElementById('chk-performance');
+  const colliderStrategyButtons = [...document.querySelectorAll('[data-collider-strategy]')];
   const sceneStyleButtons = [...document.querySelectorAll('[data-scene-style]')];
+  const renderStyleButtons = [...document.querySelectorAll('[data-render-style]')];
+  const renderQualityButtons = [...document.querySelectorAll('[data-render-quality]')];
+  const chkPostProcessing = document.getElementById('chk-post-processing');
   const runtimeHUD = new RuntimeHUD({ renderer, physics });
+  assetAudit.print();
   let panelOpen = false;
 
   function setPanelOpen(open) {
@@ -284,6 +354,24 @@ async function init() {
   chkPerformance.addEventListener('change', () => {
     runtimeHUD.setPerformanceVisible(chkPerformance.checked);
   });
+  function updateColliderStrategyButtons() {
+    for (const button of colliderStrategyButtons) {
+      const active = button.dataset.colliderStrategy === colliderRegistry.strategy;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    }
+  }
+  updateColliderStrategyButtons();
+  for (const button of colliderStrategyButtons) {
+    button.addEventListener('click', () => {
+      const strategy = button.dataset.colliderStrategy;
+      if (!Object.values(COLLIDER_STRATEGIES).includes(strategy)) return;
+      const summary = colliderRegistry.setStrategy(strategy);
+      debugRenderer.update();
+      updateColliderStrategyButtons();
+      console.log('[Physics] Collider strategy changed:', summary);
+    });
+  }
   for (const button of sceneStyleButtons) {
     const active = button.dataset.sceneStyle === sceneStyle;
     button.classList.toggle('active', active);
@@ -293,6 +381,37 @@ async function init() {
       if (nextStyle !== sceneStyle) window.location.reload();
     });
   }
+  function syncRenderPresentationControls() {
+    const settings = renderPresentation.getSettings();
+    for (const button of renderStyleButtons) {
+      const active = button.dataset.renderStyle === settings.style;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    }
+    for (const button of renderQualityButtons) {
+      const active = button.dataset.renderQuality === settings.quality;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    }
+    if (chkPostProcessing) chkPostProcessing.checked = settings.postProcessing;
+  }
+  syncRenderPresentationControls();
+  for (const button of renderStyleButtons) {
+    button.addEventListener('click', () => {
+      renderPresentation.setStyle(button.dataset.renderStyle);
+      syncRenderPresentationControls();
+    });
+  }
+  for (const button of renderQualityButtons) {
+    button.addEventListener('click', () => {
+      renderPresentation.setQuality(button.dataset.renderQuality);
+      syncRenderPresentationControls();
+    });
+  }
+  chkPostProcessing?.addEventListener('change', () => {
+    renderPresentation.setPostProcessing(chkPostProcessing.checked);
+    syncRenderPresentationControls();
+  });
 
   // Click outside card to close
   mgmtPanel.addEventListener('click', (e) => {
@@ -309,10 +428,54 @@ async function init() {
   // ---- dialogue system ----
   const dialogueSystem = createDialogueSystem();
   const dialogueCamera = new DialogueCameraDirector({ player, thirdPersonCamera, dialogueSystem });
+  const placementGrid = new PlacementGrid({
+    center: [centerCfg.center[0], centerCfg.center[1]],
+    terrainSize: GRID_SIZE,
+    terrainLayout: scenePlan.modifiedLayout,
+  });
+  const objectPlacement = new ObjectPlacementService({
+    grid: placementGrid,
+    worldObjects,
+    scene,
+    colliderRegistry,
+  });
+  const objectEditor = new ObjectEditorController({
+    placement: objectPlacement,
+    scene,
+    camera,
+    cameraController: thirdPersonCamera,
+    canvas: renderer.domElement,
+    input,
+  });
+  const placementAudit = objectPlacement.audit();
+  window.__chiiPlacement = objectPlacement;
+  console.log('[Placement] Initial audit:', JSON.stringify({
+    entities: placementAudit.entities,
+    occupiedCells: placementAudit.occupiedCells,
+    overlapCells: placementAudit.overlaps.length,
+    invalidTerrainEntities: placementAudit.invalidTerrain.length,
+  }));
+  if (placementAudit.overlaps.length > 0) {
+    const overlapDetails = placementAudit.overlaps.map(overlap => ({
+      cell: overlap.cell,
+      entities: overlap.entities.map(instanceId => {
+        const record = placementGrid.records.get(instanceId);
+        return {
+          instanceId,
+          id: record?.entity?.id,
+          name: record?.entity?.name,
+          category: record?.entity?.category,
+          footprint: record?.footprint,
+        };
+      }),
+    }));
+    console.warn('[Placement] Existing overlap cells:', JSON.stringify(overlapDetails));
+  }
   const regionGameplay = await createChiiRegionGameplay({
     scene,
     physics,
     player,
+    camera,
     petManager,
     architect,
     bear,
@@ -335,9 +498,15 @@ async function init() {
     runtimeStatus: runtimeHUD,
     contentPort: defaultContentGeneration,
     generatedAssetRepository: generatedAssets,
+    colliderRegistry,
+    objectPlacement,
+    objectEditor,
+    onGeneratedObject: entity => objectEditor.openGenerated(entity),
   });
-  const { pastoralSlice, petPartyEvent, forestTempleSystem } = regionGameplay;
-  window.__petPartyEvent = petPartyEvent;
+  const { pastoralSlice, townSocialSystem, townBuilderSystem, forestTempleSystem } = regionGameplay;
+  window.__townSocialSystem = townSocialSystem;
+  window.__townBuilderSystem = townBuilderSystem;
+  window.__petPartyEvent = townSocialSystem;
   window.__forestTempleSystem = forestTempleSystem;
   if (forestDemoEnabled) {
     const demoPet = petManager.pets.find(pet => pet._petName === 'yafo');
@@ -403,7 +572,7 @@ async function init() {
 
     const interaction = npc._hasIntroduced === false
       ? forestTempleSystem.introducePet(npc)
-      : petPartyEvent.interact(npc, dialogueSystem);
+      : regionGameplay.interactTownPet(npc, dialogueSystem);
     interaction
       .catch((err) => console.warn('[ChurchTown] interaction failed:', err.message))
       .finally(() => {
@@ -453,6 +622,7 @@ async function init() {
     bear,
     player,
     assetRepository,
+    colliderRegistry,
   });
 
   dialogueSystem.setOnConstructionTrigger((buildingEntity, description) => {
@@ -505,7 +675,13 @@ async function init() {
   });
 
   // ---- construction effect ----
-  const constructionEffect = createConstructionEffect({ scene, architect, contentPort: defaultContentGeneration });
+  const constructionEffect = createConstructionEffect({
+    scene,
+    architect,
+    contentPort: defaultContentGeneration,
+    colliderRegistry,
+    vfxService: regionGameplay.vfxService,
+  });
   constructionEffect.onComplete = () => {
     architectGraphState = 'followup';
     constructionActive = false;
@@ -543,13 +719,17 @@ async function init() {
     architect,
     bear,
     petManager,
-    petPartyEvent,
+    townSocialSystem,
+    townBuilderSystem,
+    pastoralSlice,
     forestTempleSystem,
+    objectPlacement,
     bearHome: { x: bearSpawnX, z: bearSpawnZ },
     handlers: {
       onForest: beginForestInteraction,
       onTownPet: beginTownPetDialogue,
       onArchitect: beginArchitectDialogue,
+      onObject: entity => objectEditor.open(entity),
       onBear: ({ pet, petPosition, playerPosition, dx, dz }) => {
         beginPastoralPetDialogue(pet, petPosition, playerPosition, dx, dz);
       },
@@ -571,7 +751,7 @@ async function init() {
     const dt = Math.min(clock.getDelta(), 0.1);
 
     // Pointer-lock camera (skip when dialogue or panel are active)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen) {
+    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive()) {
       const { dx, dy } = input.consumeMouseDelta();
       if (dx !== 0 || dy !== 0) {
         thirdPersonCamera.applyMouseDelta(dx, dy);
@@ -580,7 +760,9 @@ async function init() {
 
     // ESC: close dialogue first, then toggle management panel
     if (input.justPressed('Escape')) {
-      if (dialogueSystem.isActive()) {
+      if (objectEditor.isActive()) {
+        objectEditor.cancel();
+      } else if (dialogueSystem.isActive()) {
         dialogueSystem.hide();
       } else if (dialogueActive) {
         dialogueSystem.hide(); // onDialogueEnd callback handles unlock
@@ -594,15 +776,16 @@ async function init() {
       && !dialogueCamera.locked
       && !dialogueSystem.isActive()
       && !panelOpen
-      && !constructionActive,
+      && !constructionActive
+      && !objectEditor.isActive(),
     );
 
     // H key: 挥舞左手 (one-shot)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && input.justPressed('KeyH')) {
+    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive() && input.justPressed('KeyH')) {
       player.playOneShot('wave_left', 2.0);
     }
     // J key: 挥舞扇子+特效 (one-shot)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && input.justPressed('KeyJ')) {
+    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive() && input.justPressed('KeyJ')) {
       player.playOneShot('fan_spark', 2.0);
     }
 
@@ -613,7 +796,7 @@ async function init() {
     }
 
     // Player update: fully freeze movement while any dialogue/input UI is active.
-    if (!panelOpen && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive()) {
+    if (!panelOpen && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !objectEditor.isActive()) {
       player.update(dt, input, thirdPersonCamera);
     }
 
@@ -624,6 +807,8 @@ async function init() {
     bear.update(dt);
     petManager.update(dt);
     regionGameplay.update(dt);
+    worldClimate.update(dt);
+    modelVisuals.update(dt);
 
     const nearestRegionName = regionGameplay.getNearestRegionName(player.mesh.position);
     const followingPet = [bear, ...petManager.pets].find(pet => pet.petState?.is('following') || pet._followEnabled);
@@ -652,7 +837,7 @@ async function init() {
     debugRenderer.update();
 
     input.endFrame();
-    renderer.render(scene, camera);
+    renderPresentation.render(dt);
   }
   animate();
 
@@ -664,6 +849,7 @@ async function init() {
         if (width > 0 && height > 0) {
           thirdPersonCamera.resize(width / height);
           renderer.setSize(width, height);
+          renderPresentation.resize(width, height);
         }
       }
     });

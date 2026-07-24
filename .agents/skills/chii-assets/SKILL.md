@@ -1,6 +1,6 @@
 ---
 name: chii-assets
-description: Sync, audit, or selectively refresh only the runtime voxel models and animations used by Chii Island from local Voxel Studio on port 8000. Use after Studio edits, when runtime assets are stale or mismatched, or when the user asks to update, inspect, publish, or synchronize Chii assets.
+description: Sync, audit, or selectively refresh only the saved voxel models and animations used by Chii Island from local Voxel Studio on port 8000. Use after Studio edits, when local game assets are stale or mismatched, or when the user asks to update, inspect, or synchronize Chii assets.
 ---
 
 # Chii Runtime Assets
@@ -8,7 +8,7 @@ description: Sync, audit, or selectively refresh only the runtime voxel models a
 Default safe workflow:
 
 ```powershell
-node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --dry-run
+node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all --dry-run
 node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all
 ```
 
@@ -16,17 +16,19 @@ Useful explicit operations:
 
 ```powershell
 node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --only nailong,mako,yafo
-node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --all --publish
-node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --only forest-trophy --source edit
+node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --only forest-trophy
+node .agents/skills/chii-assets/scripts/sync-from-studio.mjs --only forest-trophy --source original
 ```
 
 Rules:
 
-- Default source is Runtime JSON only.
-- Use `--source edit` only for an explicit unpublished preview.
+- Default source is the latest JSON saved by Studio through `/api/load-edited`; models without an edited save fall back to their original JSON.
 - Use `--source original` only for migration or diagnosis.
 - Never generate a missing configured animation during sync.
 - Never pull the whole Studio library; sync only Chii's allowlist.
+- Always select a scope with `--all` or `--only`; a bare command is rejected.
+- Dry-run performs semantic JSON comparison and reports `same`, `changed`, `missing`, and `ambiguous` without touching the manifest.
+- A real sync skips semantically unchanged JSON instead of rewriting it.
 - Run `$chii-verify` after writing assets.
 
 Read `references/pipeline.md` only when changing source policy, adding an asset, or diagnosing JSON provenance.

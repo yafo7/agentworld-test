@@ -6,15 +6,19 @@ import {
 } from '../../backend/voxelApi.js';
 import { callBackendChat } from '../../backend/chatApi.js';
 import { ContentGenerationPort } from '../../ports/ContentGenerationPort.js';
+import { getChiiMaterialTagVocabulary } from './chiiMaterialTagVocabulary.js';
+
+const GPT_VOXEL_MODEL = 'gpt-5.6-sol-high';
+const CONTENT_TIMEOUT_MS = 300000;
 
 const DEFAULT_POLICY = Object.freeze({
   model: {
-    standard: { provider: 'fireworks', mode: 'standard' },
-    voxel: { provider: 'gpt', mode: 'voxel' },
+    standard: { provider: 'fireworks', mode: 'standard', timeoutMs: CONTENT_TIMEOUT_MS },
+    voxel: { provider: 'gpt', model: GPT_VOXEL_MODEL, mode: 'voxel', timeoutMs: CONTENT_TIMEOUT_MS, materialTags: true },
   },
-  refine: { provider: 'gpt' },
-  mount: { provider: 'gpt' },
-  animation: { provider: 'gpt' },
+  refine: { provider: 'gpt', timeoutMs: CONTENT_TIMEOUT_MS, materialTags: true },
+  mount: { provider: 'gpt', timeoutMs: CONTENT_TIMEOUT_MS },
+  animation: { provider: 'gpt', timeoutMs: CONTENT_TIMEOUT_MS },
   chat: {
     standard: { provider: 'fireworks' },
     pro: { provider: 'gpt' },
@@ -23,7 +27,12 @@ const DEFAULT_POLICY = Object.freeze({
 });
 
 export class VoxelContentAdapter extends ContentGenerationPort {
-  constructor({ api = {}, chat = callBackendChat, policy = DEFAULT_POLICY } = {}) {
+  constructor({
+    api = {},
+    chat = callBackendChat,
+    policy = DEFAULT_POLICY,
+    materialTagVocabulary = getChiiMaterialTagVocabulary,
+  } = {}) {
     super();
     this.api = {
       generateModel: api.generateModel || requestModel,
@@ -33,25 +42,47 @@ export class VoxelContentAdapter extends ContentGenerationPort {
     };
     this.chatClient = chat;
     this.policy = policy;
+    this.materialTagVocabulary = materialTagVocabulary;
+  }
+
+  async _materialTags(enabled) {
+    if (!enabled) return null;
+    try {
+      return await this.materialTagVocabulary?.();
+    } catch (error) {
+      console.warn('[VoxelContentAdapter] Material Tags unavailable:', error.message);
+      return null;
+    }
   }
 
   async generateModel({ description, quality = 'standard' }) {
     if (!description?.trim()) throw new TypeError('Model description is required');
     const selection = this.policy.model[quality] || this.policy.model.standard;
-    return this.api.generateModel(description.trim(), selection.provider, selection.mode);
+    const materialTags = await this._materialTags(selection.materialTags);
+    return this.api.generateModel(description.trim(), selection.provider, selection.mode, {
+      model: selection.model || null,
+      timeoutMs: selection.timeoutMs,
+      ...(materialTags ? { materialTags } : {}),
+    });
   }
 
   async refineModel({ modelJson, description }) {
     if (!modelJson) throw new TypeError('Refine modelJson is required');
     if (!description?.trim()) throw new TypeError('Refine description is required');
-    return this.api.refineModel(modelJson, description.trim(), this.policy.refine.provider);
+    const materialTags = await this._materialTags(this.policy.refine.materialTags);
+    return this.api.refineModel(modelJson, description.trim(), this.policy.refine.provider, {
+      timeoutMs: this.policy.refine.timeoutMs,
+      ...(materialTags ? { materialTags } : {}),
+    });
   }
 
   async mountPart({ primaryModelJson, part, placement }) {
     if (!primaryModelJson) throw new TypeError('Mount primaryModelJson is required');
     if (!part) throw new TypeError('Mount part is required');
     const instruction = placement ? `把${part}加在${placement}` : '';
-    return this.api.mountModel(primaryModelJson, part, instruction, this.policy.mount.provider);
+    return this.api.mountModel(primaryModelJson, part, instruction, this.policy.mount.provider, {
+      timeoutMs: this.policy.mount.timeoutMs,
+    });
   }
 
   async generateAnimation({ modelJson, description, duration = 2, emitParticles = false }) {
@@ -62,7 +93,8 @@ export class VoxelContentAdapter extends ContentGenerationPort {
       description.trim(),
       duration,
       this.policy.animation.provider,
-      emitParticles
+      emitParticles,
+      { timeoutMs: this.policy.animation.timeoutMs }
     );
   }
 

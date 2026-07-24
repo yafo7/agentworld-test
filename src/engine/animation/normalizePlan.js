@@ -6,12 +6,32 @@ function getVoxelModel(model) {
   return model?._voxelModel || model || null;
 }
 
+function asArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+
+export function normalizeAnimationTemplateAliases(plan) {
+  for (const [groupId, rawMotions] of Object.entries(plan)) {
+    if (groupId.startsWith('_') || !rawMotions || typeof rawMotions !== 'object') continue;
+    const motions = { ...rawMotions };
+    if (motions.tilt !== undefined) {
+      const pointTo = motions.pointTo === undefined
+        ? []
+        : asArray(motions.pointTo);
+      motions.pointTo = [...pointTo, ...asArray(motions.tilt)];
+      delete motions.tilt;
+    }
+    plan[groupId] = motions;
+  }
+  return plan;
+}
+
 export function normalizeAnimationPlan(raw, { duration = 2, loop = true, model = null } = {}) {
   if (!raw || typeof raw !== 'object') return null;
   const source = raw.plan || raw.animation || raw.motionPlan || raw;
   if (!source || typeof source !== 'object') return null;
 
-  const plan = { ...source };
+  const plan = normalizeAnimationTemplateAliases({ ...source });
   if (plan._duration === undefined) plan._duration = Number(raw.duration) || duration;
   if (plan._loop === undefined) plan._loop = raw.loop === undefined ? loop : raw.loop !== false;
 

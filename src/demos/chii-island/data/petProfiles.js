@@ -49,7 +49,7 @@ export const PET_PROFILES = {
   },
   fangk: {
     id: 'fangk',
-    name: 'fangke',
+    name: 'fangk',
     species: 'architect',
     personalityTags: ['认真', '可靠'],
     featureTags: ['喜欢组织', '擅长集体活动'],
@@ -59,7 +59,7 @@ export const PET_PROFILES = {
   },
   fangke: {
     id: 'fangk',
-    name: 'fangke',
+    name: 'fangk',
     species: 'architect',
     personalityTags: ['认真', '可靠'],
     featureTags: ['喜欢组织', '擅长集体活动'],
@@ -86,6 +86,16 @@ export const PET_PROFILES = {
     favoriteActions: ['run', 'party'],
     preferredObjects: ['道路', '广场', '热闹活动'],
     autonomousBehavior: ['idle', 'run', 'party'],
+  },
+  crab: {
+    id: 'crab',
+    name: '螃蟹',
+    species: 'crab',
+    personalityTags: ['认真', '爽快', '有点横着来'],
+    featureTags: ['擅长施工', '双螯有力'],
+    favoriteActions: ['walk', 'construct', 'party'],
+    preferredObjects: ['空地', '建筑', '石头', '木头'],
+    autonomousBehavior: ['idle', 'run'],
   },
 };
 

@@ -4,6 +4,7 @@ import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { evaluateMotion, applyMotionDeltas } from '../../../engine/animation/player.js';
 import { normalizeAnimationPlan } from '../../../engine/animation/normalizePlan.js';
 import { getRuntime } from '../../../engine/runtime/runtimeProvider.js';
+import { detachMaterialTagPresentation } from '../../../engine/model/MaterialTagPresentation.js';
 
 /**
  * Simple NPC entity — no AI, no autonomous behavior.
@@ -153,6 +154,7 @@ export class ArchitectNPC {
       model.position.y = -box.min.y * scale;
 
       if (this._modelGroup) {
+        detachMaterialTagPresentation(this._modelGroup);
         this.mesh.remove(this._modelGroup);
       } else {
         this.mesh.remove(this._placeholder);

@@ -11,6 +11,17 @@ $StudioRoot = [IO.Path]::GetFullPath((Join-Path $RepoRoot '..\3d-generate'))
 $RuntimeDir = Join-Path $RepoRoot '.agents\runtime'
 New-Item -ItemType Directory -Force -Path $RuntimeDir | Out-Null
 
+function Normalize-ProcessPathEnvironment {
+  $variables = [Environment]::GetEnvironmentVariables('Process')
+  $pathValue = [string]$variables['Path']
+  if (-not $pathValue) { $pathValue = [string]$variables['PATH'] }
+  [Environment]::SetEnvironmentVariable('PATH', $null, 'Process')
+  [Environment]::SetEnvironmentVariable('Path', $null, 'Process')
+  [Environment]::SetEnvironmentVariable('Path', $pathValue, 'Process')
+}
+
+Normalize-ProcessPathEnvironment
+
 function Get-ServiceProcess([int]$Port) {
   $connection = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
   if (-not $connection) { return $null }

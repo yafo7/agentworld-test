@@ -1,0 +1,126 @@
+{
+  "name": "红色方块苹果",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "apple",
+      "name": "苹果主体",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leaf",
+      "name": "绿色小叶子",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          2.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.2,
+          "height": 2.1,
+          "depth": 2
+        },
+        "color": 14233391
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          2.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.25,
+          "depth": 1.5
+        },
+        "color": 12066854
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          2.72,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.3
+        },
+        "color": 7356965
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "leaf",
+      "transform": {
+        "pos": [
+          0.4,
+          0.3,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.16,
+          "depth": 0.41
+        },
+        "color": 4168517
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784190398942,
+      "provider": "gpt",
+      "data": "gNMy3mI+f5AHmD/fjFntONfAJF3E8pjM6ARJUK9ZRAIKXs+q+ihGEaHNs1VDtw3cHmTOhErGOPUq1DQj9Wn0IywOUsOBFKxO/jnR6GiUis13q7uTa83OqdcPjfF+IoSrvcH1J8aAnuWIOQady2iuOBf/21en/+GJjiLAPIp0dYlkHq1M23wzi3Hb3QxbDJQPyLNTb2TqXQZKbYtzo7mclTDg5izg9dm6ia7HGeneyFrDgBC/QI6xiT4h3WbnA/tl1FYQ/paZsLZYWQYabz9Bz+vU9ztSXISAPeW0P0Kbxrso+IB9kcFiMUsIeDadzO3mdDWZlonrOBYJ9FY8zjEsPLAyHkVqhJYTQinPws10aajpSamlH3jEYq0wEiXo9ajcvljjGVQl0KwKUwV2fC0GE6Qy1GsXc3aLh9dIek0FvGquC89vDJS3AMkmf8Uu9pEGpClqobQRjZ557kyBM326MCYFmGyMokvxxLMyjphl0G07qBCf0MTRayyWivVNYtvC27/1a1F+AkleeOEDPoUFIR+aCbhgUywqNbNKW8TpigD8hq4MQ8biIT4YkCoy/vdMh/QUKS1NpyI=",
+      "edits": ""
+    }
+  }
+}

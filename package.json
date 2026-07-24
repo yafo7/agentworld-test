@@ -9,6 +9,7 @@
     "dev:all": "concurrently --names \"game,studio,voxel\" --prefix-colors \"cyan,magenta,green\" \"vite --host\" \"cd ../3d-generate && C:\\\\Users\\\\yafo777\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe server.py\" \"cd ../voxel-game && npx vite --port 5174 --host\"",
     "build": "vite build",
     "test": "node --test \"tests/**/*.test.js\"",
+    "test:render-compat": "node scripts/verify-render-runtime-compat.mjs",
     "preview": "vite preview",
     "sync-studio": "node scripts/sync-to-studio.mjs"
   },
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.3",
+    "@voxel-studio/render-runtime": "file:vendor/voxel-studio-render-runtime-0.1.0-de51c7d.tgz",
     "three": "^0.184.0"
   }
 }

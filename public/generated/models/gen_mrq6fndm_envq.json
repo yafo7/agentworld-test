@@ -1,0 +1,432 @@
+{
+  "name": "红顶木头小屋",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "house",
+      "name": "小屋主体",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "door",
+      "name": "木门",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          -1.12,
+          0.3,
+          1.58
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          0,
+          0.125,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.4,
+          "height": 0.25,
+          "depth": 3.3
+        },
+        "color": 7037525
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          0,
+          1.45,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4,
+          "height": 2.4,
+          "depth": 3
+        },
+        "color": 11038525
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          -1.88,
+          1.5,
+          -1.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 2.5,
+          "depth": 0.24
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          -1.88,
+          1.5,
+          1.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 2.5,
+          "depth": 0.24
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          1.88,
+          1.5,
+          -1.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 2.5,
+          "depth": 0.24
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          1.88,
+          1.5,
+          1.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 2.5,
+          "depth": 0.24
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          -1.15,
+          3.03,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.19,
+          0.98
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.49,
+          "height": 0.18,
+          "depth": 3.5
+        },
+        "color": 11085607
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          1.15,
+          3.03,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.19,
+          0.98
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.49,
+          "height": 0.18,
+          "depth": 3.5
+        },
+        "color": 12923439
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          1.15,
+          3.45,
+          -0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 1.35,
+          "depth": 0.52
+        },
+        "color": 7358523
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          1.15,
+          4.12,
+          -0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.18,
+          "depth": 0.66
+        },
+        "color": 4666415
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          0.88,
+          1.5,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 0.85,
+          "depth": 0.08
+        },
+        "color": 9160404
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          0.88,
+          1.5,
+          1.59
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.9,
+          "depth": 0.11
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          0.88,
+          1.5,
+          1.59
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1,
+          "height": 0.1,
+          "depth": 0.11
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          2.04,
+          1.5,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.85,
+          "depth": 0.95
+        },
+        "color": 9160404
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          2.09,
+          1.5,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.11,
+          "height": 0.1,
+          "depth": 1
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          2.09,
+          1.5,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.11,
+          "height": 0.9,
+          "depth": 0.1
+        },
+        "color": 5977375
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "house",
+      "transform": {
+        "pos": [
+          -0.62,
+          0.22,
+          1.78
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.35,
+          "height": 0.18,
+          "depth": 0.55
+        },
+        "color": 7950904
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "door",
+      "transform": {
+        "pos": [
+          0.475,
+          0.9,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 1.8,
+          "depth": 0.12
+        },
+        "color": 6502175
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "door",
+      "transform": {
+        "pos": [
+          0.8,
+          0.9,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 14002237
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784367657945,
+      "provider": "gpt",
+      "data": "+vf+QBNrkftqSSAt9mXQAhji/j13mAQRRb+R4BCoJYMUsrqTS+4K6IAEu6Y9pHf5yt1WaNUPrBlVLj5tTYulxm/svjS04/vP8n6J35TMARzK99viZROo2T90ED5vCaOrFoDwm2tixAQ18Nyvxi2tM0eDhcjgzwFT4bD12IULBlCDaFMgG62Ft83PM0Djm6OnzD/GY80cOaAoA6gty3vkuWrmeFJwvcCLWG+UDQgxjBT1qW15UrHm0NE8AJg8om2wEMvwPe5tTtXyExBaxbPszbbAhAjbGT1BeLSXzcfP1R5/b+GWzTAlinhxOKglW8wEp9YoaEt3sJdLNWoOhUOWZE5rAOjyD8YxYQiMLG0MbK2zjBrOZ5XDD+cnAXO+wzvL37YGN3W+wKmfMu+W53Y+niJt1NuACqkBMCGi2Y4Em0B6QdLgokc/IlF/66k1g9QhV+q0Oy248V+C31J542G2lKvZ97CUSEgz6KNdyn/yPObZlyV5/9Cfp1tpB34FvfhgScBQ6E9zMimctkG64cuFICi/NNqS3jV/Uf3zdCbyT+1mBLHlBL1xIgeSW4CWHBufDMOW7iM4YP7oqtEei+n7eY80w6fty1MpYCnDZHD1UKSTkrs20LZkh8b/7r3pVkuUIxXfcm4b0PFTmSROeA49bMeHkwB54306A23sf5uLFaioz+082kloefoijLpt2Wx8EF2wpTcuY/iOBDzJyw2EaKtKbnDMGgWqu0Lbh6RShWh/DX1Wf+kx6ecqiKIIJvFCv2rhLfvhIxP7qJIDVtN+N0EO4Dmf2C0g+LHarhifBeqjtNXGPwdtPOUPmNtALV0jf6CfntcjzsOaWNJ+kVJyMYDOGLt/JrCR+J9jvm/+x/AiblfyW8b8emqJjNVbKAzWCSE5VU1v+2CybUe4hnhKC+hL9Qla10RnXfp7cckCIloupmRA8YUoiMIiq9njc7/tE7+8vqr1qbkidLUMyWcJ",
+      "edits": ""
+    }
+  }
+}

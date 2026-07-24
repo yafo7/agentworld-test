@@ -1,0 +1,166 @@
+{
+  "name": "红色方块苹果",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "apple",
+      "name": "苹果",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leaf",
+      "name": "绿色小叶子",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0.08,
+          2.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          1.05,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 1.7,
+          "depth": 1.7
+        },
+        "color": 14233391
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          -0.5,
+          1.95,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 0.5,
+          "depth": 1.55
+        },
+        "color": 15022389
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0.5,
+          1.95,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 0.5,
+          "depth": 1.55
+        },
+        "color": 13182253
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0,
+          0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.45,
+          "height": 0.25,
+          "depth": 1.5
+        },
+        "color": 12000292
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "apple",
+      "transform": {
+        "pos": [
+          0.08,
+          2.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.65,
+          "depth": 0.22
+        },
+        "color": 7160358
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "leaf",
+      "transform": {
+        "pos": [
+          0.32,
+          0.3,
+          0.02
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.14,
+          "depth": 0.41
+        },
+        "color": 4431943
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784367672618,
+      "provider": "gpt",
+      "data": "lYgunNu9RC6x7FNCYBMuTEqLkkc+l92ISSZNs0RYzBqLWCweQLlCPQZ99ixJyRLt6g0SaCn/fbmPHzalajRfc+WMTMbRqQEPdY+sqYpXe1yUINs0eEBY24yKmZEpGGOXAm4jSyFJa/3naubmAyUZaB5lmiJqoiMNogCjJtQeDlB1ZRndmXbel356bk5URYTRxQosIiq5o4FxTO+fbEceMJMKUIxrT+NXH/IwZaGGhT1d9HDwgMs5SUnmKFbOlOUPbJzJ5QY+LR1o6uTLt4TyP7uKzL0/WTVP899Ric7I7E+3DYYmdV6/B6WEdzmYfmDX94rMqzknZYE2x64M5bVS0QN9IR6EYWk9JwmFlHGpQPq5zEaAgkUjRWv+F8rSeKsiIg/mIYAf1tYpRg0YDlhu4kxqEDUmmYq+4+Fpqo6fxd2xIc6mh4woLGhTxSjQF+6rnsvinOS/rY0JJmdemSr1K985lM6yFUP+UMFij6g5vmc6w4fMDGDq1GzH9WJx4fCf+uTKdyPAZ2tQ7DbZJbLPls0Y/feruRif61G8OFn/PYF+8yrx7q7vU8X2L1JVCWLUSBQgHp/f1W+IG1t3ssOBaRFNnv+h+FuE3yAPvACnQOsPUHYlAo1W1g==",
+      "edits": ""
+    }
+  }
+}

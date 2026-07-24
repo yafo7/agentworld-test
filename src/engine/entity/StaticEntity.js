@@ -4,6 +4,7 @@ import { loadModel } from '../model/loader.js';
 import { buildModelFromJson, mergeMeshGroup } from '../model/builder.js';
 import { applyAnimation } from '../animation/player.js';
 import { generateInstanceId } from '../../storage/sceneSnapshot.js';
+import { detachMaterialTagPresentation, hasMaterialTags } from '../model/MaterialTagPresentation.js';
 
 /**
  * Static entity — an immovable decoration or tree that displays a name + tag label.
@@ -76,12 +77,15 @@ export class StaticEntity {
         : await loadModel(`generated/models/${modelName}.json`, null);
       if (model && model !== this._fallback) {
         // Guard against race: if already replaced while async load was in flight, skip.
-        if (this._modelGroup) return;
+        if (this._modelGroup) {
+          detachMaterialTagPresentation(model);
+          return;
+        }
 
         // Merge sub-meshes into single geometry (N draw calls → 1)
         // Must run BEFORE bounding-box / positioning, so all vertices are
         // baked into group-local space while the group is still at origin.
-        if (this._mergeGeometry) {
+        if (this._mergeGeometry && !hasMaterialTags(model.userData?.modelJson || modelJson)) {
           mergeMeshGroup(model);
         }
 
@@ -175,6 +179,7 @@ export class StaticEntity {
 
       // Remove old model or fallback
       if (this._modelGroup) {
+        detachMaterialTagPresentation(this._modelGroup);
         this._content.remove(this._modelGroup);
         this._modelGroup = null;
       } else {
@@ -213,6 +218,7 @@ export class StaticEntity {
   replaceModel(mesh, modelJson) {
     // Remove old model or fallback
     if (this._modelGroup) {
+      detachMaterialTagPresentation(this._modelGroup);
       this._content.remove(this._modelGroup);
       this._modelGroup = null;
     } else {

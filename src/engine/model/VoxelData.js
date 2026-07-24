@@ -34,6 +34,18 @@ function boundsFromPoints(points, expand = 0) {
   };
 }
 
+function cloneJson(value, fallback = null) {
+  if (value === undefined) return fallback;
+  return JSON.parse(JSON.stringify(value));
+}
+
+function omitKeys(source, keys) {
+  const blocked = new Set(keys);
+  return Object.fromEntries(Object.entries(source || {})
+    .filter(([key]) => !blocked.has(key))
+    .map(([key, value]) => [key, cloneJson(value)]));
+}
+
 function boundsFromTriangleParams(g = {}) {
   return boundsFromPoints([
     Array.isArray(g.a) ? g.a : [0, 0, 0],
@@ -62,6 +74,10 @@ export class VoxelPart {
     this.mirrorOf = data.mirrorOf || null;
     this.isGroup = data.isGroup || data.group || false;
     this.locked = data.locked || false;
+    this._lockedSpecified = data._lockedSpecified ?? Object.prototype.hasOwnProperty.call(data, 'locked');
+    this.tags = Array.isArray(data.tags) ? cloneJson(data.tags, []) : [];
+    this._nodeExtras = cloneJson(data._nodeExtras, {});
+    this._meshExtras = cloneJson(data._meshExtras, {});
 
     this.offset = { x: 0, y: 0, z: 0, ...(data.offset || {}) };
     this.rotation = { x: 0, y: 0, z: 0, ...(data.rotation || {}) };
@@ -152,6 +168,10 @@ export class VoxelPart {
       isGroup: this.isGroup, locked: this.locked,
       offset: { ...this.offset }, rotation: { ...this.rotation }, quaternion: this.quaternion ? { ...this.quaternion } : null, scale: this.scale ? { ...this.scale } : null, attach: this.attach,
       pivotTarget: this.pivotTarget,
+      _lockedSpecified: this._lockedSpecified,
+      tags: cloneJson(this.tags, []),
+      _nodeExtras: cloneJson(this._nodeExtras, {}),
+      _meshExtras: cloneJson(this._meshExtras, {}),
       mesh: this.mesh ? JSON.parse(JSON.stringify(this.mesh)) : null,
       shapes: this.shapes.map(s => ({ ...s })),
       voxels: this.voxels.map(v => ({ ...v })),
@@ -178,6 +198,11 @@ export class VoxelModel {
     this._animOverrides = data._animOverrides || {};
     this.meta = data.meta || { version: '3.0', created: Date.now() };
     this._aiMeta = data._aiMeta || data._meta?.ai || null;
+    this._meta = cloneJson(data._meta, {});
+    this._topLevelExtras = omitKeys(data, [
+      'name', 'type', 'format', 'rigType', 'nodes', 'meshes', 'parts',
+      'animations', '_animOverrides', 'meta', '_meta', '_aiMeta',
+    ]);
 
     if (data.nodes && Array.isArray(data.nodes)) {
       // v2 format: flat nodes (group = no `mesh`, mesh = has `mesh`). All transforms
@@ -202,6 +227,11 @@ export class VoxelModel {
             rotation: { x: 0, y: 0, z: 0 },
             quaternion: quat,
             scale,
+            locked: node.locked === true,
+            _lockedSpecified: Object.prototype.hasOwnProperty.call(node, 'locked'),
+            tags: node.tags,
+            _nodeExtras: omitKeys(node, ['id', 'name', 'parent', 'transform', 'mesh', 'locked', 'tags']),
+            _meshExtras: omitKeys(m, ['type', 'params', 'geometry', 'material', 'color']),
             mesh: { type: m.type, geometry: { ...(m.params || m.geometry || {}) }, material },
           }));
         } else {
@@ -215,12 +245,16 @@ export class VoxelModel {
             rotation: { x: 0, y: 0, z: 0 },
             quaternion: quat,
             scale,
+            locked: node.locked === true,
+            _lockedSpecified: Object.prototype.hasOwnProperty.call(node, 'locked'),
+            tags: node.tags,
+            _nodeExtras: omitKeys(node, ['id', 'name', 'parent', 'transform', 'mesh', 'locked', 'tags']),
           }));
         }
       }
       // Auto-lock children of groups (matches v1 behavior)
       for (const part of this.parts) {
-        if (!part.isGroup && part.parent && groupIds.has(part.parent)) part.locked = true;
+        if (!part.isGroup && part.parent && groupIds.has(part.parent) && !part._lockedSpecified) part.locked = true;
       }
     } else if (data.meshes && Array.isArray(data.meshes)) {
       // v1 legacy: flat meshes[] with group:true / parent. Kept for transition (old saved models).
@@ -440,7 +474,11 @@ export class VoxelModel {
       name: this.name + ' Copy', type: this.type, rigType: this.rigType,
       parts: this.parts.map(p => p.clone()),
       animations: JSON.parse(JSON.stringify(this.animations)),
-      meta: { ...this.meta }
+      _animOverrides: cloneJson(this._animOverrides, {}),
+      meta: { ...this.meta },
+      _meta: cloneJson(this._meta, {}),
+      _aiMeta: cloneJson(this._aiMeta),
+      ...cloneJson(this._topLevelExtras, {}),
     });
   }
 
@@ -493,17 +531,22 @@ export class VoxelModel {
                  z: c1 * c2 * s3 + s1 * s2 * c3, w: c1 * c2 * c3 - s1 * s2 * s3 };
       };
       const nodes = this.parts.map(p => {
-        const node = { id: p.id };
+        const node = { ...cloneJson(p._nodeExtras, {}), id: p.id };
         if (p.isGroup) {
           if (p.name && p.name !== p.id) node.name = p.name;
         } else {
-          node.mesh = { type: p.mesh?.type || 'box', params: { ...(p.mesh?.geometry || {}) } };
+          node.mesh = {
+            ...cloneJson(p._meshExtras, {}),
+            type: p.mesh?.type || 'box',
+            params: { ...(p.mesh?.geometry || {}) },
+          };
           const mat = p.mesh?.material;
           const hasExtra = mat && (mat.roughness !== undefined || mat.metalness !== undefined
             || mat.transparent || mat.flatShading === false);
           if (hasExtra) node.mesh.material = { ...mat };
           else node.mesh.color = mat?.color ?? p.material?.color ?? 0xcccccc;
         }
+        if (p.tags?.length) node.tags = cloneJson(p.tags, []);
         if (p.parent) node.parent = p.parent;
         const transform = { pos: [r2(p.offset.x), r2(p.offset.y), r2(p.offset.z)] };
         if (p.quaternion) {
@@ -514,13 +557,20 @@ export class VoxelModel {
         }
         if (p.scale) transform.scale = [r2(p.scale.x), r2(p.scale.y), r2(p.scale.z)];
         node.transform = transform;
-        if (p.locked) node.locked = true;
+        if (p.locked || p._lockedSpecified) node.locked = !!p.locked;
         return node;
       });
-      const out = { name: this.name, type: 'lowpoly', format: 2, nodes, _meta: { skipAutoCenter: true } };
+      const out = {
+        ...cloneJson(this._topLevelExtras, {}),
+        name: this.name,
+        type: 'lowpoly',
+        format: 2,
+        nodes,
+        _meta: { ...cloneJson(this._meta, {}), skipAutoCenter: true },
+      };
       if (this.animations && Object.keys(this.animations).length > 0) out.animations = this.animations;
       if (this._animOverrides && Object.keys(this._animOverrides).length > 0) out._animOverrides = this._animOverrides;
-      if (this._aiMeta) out._meta.ai = this._aiMeta;
+      if (this._aiMeta) out._meta.ai = cloneJson(this._aiMeta);
       return out;
     }
     return {

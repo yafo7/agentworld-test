@@ -10,10 +10,12 @@ import { recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
 import { PetWorkCoordinator } from '../../../gameplay/ai/PetWorkCoordinator.js';
+import { replaceStaticEntityModel } from '../../../world/model/replaceStaticEntityModel.js';
 import {
   collectMountWorkRequest,
   collectRefineWorkRequest,
 } from './pastoralWorkDialogue.js';
+import { PetBubblePresenter } from '../presentation/PetBubblePresenter.js';
 
 function dist2(a, b) {
   const dx = a.x - b.x;
@@ -39,6 +41,17 @@ function parseJsonLoose(text) {
   try { return JSON.parse(match[0]); } catch (_) { return null; }
 }
 
+export function describePastoralIdea(idea) {
+  if (!idea) return '我刚才的想法被风吹跑了。';
+  if (idea.action === 'refine') {
+    return `我想把“${idea.targetName}”调整成${idea.description}。可以试试吗？`;
+  }
+  if (idea.action === 'mount') {
+    return `我想在“${idea.targetName}”的${idea.position}加上${idea.part}。可以吗？`;
+  }
+  return `我想在附近做一个${idea.description}。可以吗？`;
+}
+
 export function createPastoralSlice({
   scene,
   player,
@@ -57,12 +70,21 @@ export function createPastoralSlice({
   runtimeStatus = null,
   contentPort = defaultContentGeneration,
   generatedAssetRepository = generatedAssets,
+  colliderRegistry = null,
+  objectPlacement = null,
+  onGeneratedObject = null,
+  bubblePresenter = null,
+  camera = null,
+  vfxService = null,
 }) {
   const _pets = pets.filter(Boolean);
   const _busyPets = new Set();
+  const _planningPets = new Set();
+  const _pendingIdeas = new Map();
   const _objects = worldObjects?.items || staticEntities;
   const _effects = [];
   const _reveals = [];
+  const _ideaBubbles = bubblePresenter || new PetBubblePresenter({ camera, vfxService });
 
   for (const pet of _pets) {
     attachPetStateMachine(pet, pet._petState || 'idle');
@@ -78,6 +100,7 @@ export function createPastoralSlice({
   }
 
   function startFollowing(pet) {
+    clearPendingIdea(pet, { resume: false });
     pet._initialInteractionDone = true;
     pet.petState.transition('following', { reason: 'player-follow-command' });
     pet.disableWander?.();
@@ -86,6 +109,7 @@ export function createPastoralSlice({
   }
 
   function startFreeRoam(pet) {
+    clearPendingIdea(pet, { resume: false });
     pet._initialInteractionDone = true;
     pet.stopFollow?.();
     pet.unlockFacing?.();
@@ -170,13 +194,26 @@ export function createPastoralSlice({
     };
   }
 
-  function replaceTargetModel(target, modelJson) {
+  function replaceTargetModel(target, modelJson, { operation = 'refine', assetId = null } = {}) {
     if (!target || !modelJson) return false;
     if (target instanceof StaticEntity) {
-      const mesh = buildModelFromJson(modelJson);
-      if (!mesh) return false;
-      target.replaceModel(mesh, modelJson);
-      return true;
+      const replaced = replaceStaticEntityModel({
+        entity: target,
+        modelJson,
+        colliderRegistry,
+        operation,
+        assetId,
+      });
+      if (replaced) {
+        const metadata = worldObjects?.getMetadata(target) || {};
+        worldObjects?.updateMetadata(target, {
+          modelJson,
+          operation,
+          assetId: assetId || metadata.assetId || target.id,
+        });
+        objectPlacement?.reconcileModel(target);
+      }
+      return replaced;
     }
     if (typeof target.replaceModelFromJson === 'function') {
       return target.replaceModelFromJson(modelJson);
@@ -189,6 +226,14 @@ export function createPastoralSlice({
   }
 
   function addStarBurst(pet, duration = 2.0) {
+    if (vfxService) {
+      vfxService.playPreset('workStart', {
+        target: pet.mesh,
+        duration,
+        key: `pastoral-work-start:${pet._petId || pet._petName}`,
+      });
+      return;
+    }
     const group = new THREE.Group();
     group.name = 'PastoralStarBurst';
     const geo = new THREE.OctahedronGeometry(0.2, 0);
@@ -211,6 +256,13 @@ export function createPastoralSlice({
   }
 
   function addDustBurst(position, duration = 1.1) {
+    if (vfxService) {
+      vfxService.playPreset('dust', {
+        position,
+        duration,
+      });
+      return;
+    }
     const group = new THREE.Group();
     group.name = 'PastoralDustBurst';
     group.position.copy(position);
@@ -592,8 +644,25 @@ export function createPastoralSlice({
     entity.mesh.userData.pastoralObject = true;
     entity.mesh.userData.aiEventId = options.eventId || null;
     entity._generatedAssetId = options.assetId || null;
-    if (worldObjects) worldObjects.add(entity);
-    else _objects.push(entity);
+    const placement = objectPlacement?.prepareGeneratedEntity(entity, position) || {
+      editable: true,
+      source: 'generated',
+    };
+    if (worldObjects) {
+      worldObjects.add(entity, {
+        modelJson,
+        operation: 'generate',
+        assetId: options.assetId || id,
+        placement,
+      });
+    } else {
+      _objects.push(entity);
+      colliderRegistry?.registerEntity(entity, {
+        modelJson,
+        operation: 'generate',
+        assetId: options.assetId || id,
+      });
+    }
     scene.add(entity.mesh);
     startReveal(entity.mesh);
     return entity;
@@ -605,7 +674,7 @@ export function createPastoralSlice({
       ? (options.workPoints || { targetPos, standPos: pet.mesh.position.clone(), effectPos: targetPos })
       : await beginWorkAtPosition(pet, targetPos, { focusCamera });
     const prompt = shortConcrete(description, '木制田园装饰');
-    return workCoordinator.run({
+    const result = await workCoordinator.run({
       pet,
       points,
       nextState,
@@ -633,12 +702,16 @@ export function createPastoralSlice({
           entityId,
           name: prompt,
           prompt,
-          position: [targetPos.x, 0, targetPos.z],
+          position: [entity.mesh.position.x, 0, entity.mesh.position.z],
         });
         if (nextState === 'free_roam') await circleAround(pet, entity.mesh.position, 2);
         return entity;
       },
     });
+    if (result && nextState !== 'free_roam') {
+      setTimeout(() => onGeneratedObject?.(result), 0);
+    }
+    return result;
   }
 
   async function refineObject(pet, target, description, nextState = 'following', alreadyAtWork = false, options = {}) {
@@ -672,7 +745,7 @@ export function createPastoralSlice({
         });
       },
       apply: async ({ modelJson, assetId }) => {
-        replaceTargetModel(target, modelJson);
+        replaceTargetModel(target, modelJson, { operation: 'refine', assetId });
         const targetId = target.id || target._petId || target._petName;
         recordAIWorldEvent({
           id: `pastoral:target:${targetId}`,
@@ -722,7 +795,7 @@ export function createPastoralSlice({
         });
       },
       apply: async ({ modelJson, assetId, description: prompt }) => {
-        replaceTargetModel(target, modelJson);
+        replaceTargetModel(target, modelJson, { operation: 'mount', assetId });
         const targetId = target.id || target._petId || target._petName;
         recordAIWorldEvent({
           id: `pastoral:target:${targetId}`,
@@ -747,6 +820,12 @@ export function createPastoralSlice({
       return;
     }
 
+    const pendingIdea = _pendingIdeas.get(pet);
+    if (pendingIdea) {
+      await reviewAutonomousIdea(pet, pendingIdea);
+      return;
+    }
+
     if (!pet._initialInteractionDone) {
       const choice = await askPetChoice(
         pet,
@@ -754,11 +833,12 @@ export function createPastoralSlice({
         [
           { key: 'follow', label: '和我一起玩吧！' },
           { key: 'free_roam', label: '今天随便做点自己喜欢的吧！' },
+          { key: 'nothing', label: '没什么。' },
         ],
       );
       if (!choice) return;
       if (choice.key === 'follow') startFollowing(pet);
-      else startFreeRoam(pet);
+      if (choice.key === 'free_roam') startFreeRoam(pet);
       return;
     }
 
@@ -772,6 +852,7 @@ export function createPastoralSlice({
         pet._petState === 'following' || pet._followEnabled
           ? { key: 'free_roam', label: '还是随便做点自己喜欢的吧！' }
           : { key: 'follow', label: '和我一起玩吧！' },
+        { key: 'nothing', label: '没什么。' },
       ],
     );
     if (!choice) return;
@@ -785,6 +866,8 @@ export function createPastoralSlice({
       startFreeRoam(pet);
       return;
     }
+
+    if (choice.key === 'nothing') return;
 
     if (choice.key === 'create') {
       const targetPos = getForwardPlacement(true);
@@ -881,36 +964,148 @@ export function createPastoralSlice({
     }
   }
 
-  async function runAutonomous(pet) {
-    if (!pet || pet._petState !== 'free_roam' || _busyPets.has(pet)) return;
-    const plan = await planAutonomous(pet);
-    const action = plan.action;
+  function resolveAutonomousIdea(pet, plan) {
+    const requestedAction = ['create', 'refine', 'mount'].includes(plan?.action)
+      ? plan.action
+      : 'create';
+    const target = requestedAction === 'create'
+      ? null
+      : findNearestObject(pet.mesh.position, pet, 16);
+    if (!target) {
+      return {
+        action: 'create',
+        description: shortConcrete(plan?.description, pet._profile?.examples?.create?.[0] || '木制田园装饰'),
+        target: null,
+        targetName: null,
+      };
+    }
+    return {
+      action: requestedAction,
+      description: shortConcrete(plan?.description, '变得更田园自然'),
+      part: shortConcrete(plan?.part || plan?.description, '一个小装饰'),
+      position: shortConcrete(plan?.position, '顶部'),
+      target,
+      targetName: getTargetName(target),
+    };
+  }
+
+  function clearPendingIdea(pet, { resume = true } = {}) {
+    if (!pet) return;
+    _pendingIdeas.delete(pet);
+    pet._pastoralIdeaPending = false;
+    _ideaBubbles.clearHint(pet);
+    if (!resume || !pet.petState?.is('free_roam')) return;
+    pet.unlockFacing?.();
+    pet._pastoralAutonomousTimer = 20;
+    pet._nextPetActionAt = 0.8;
+    if (!pet._managedByPetManager && typeof pet.enableWander === 'function') {
+      const p = pet.mesh.position;
+      pet.enableWander(2.0, {
+        minX: p.x - 10,
+        maxX: p.x + 10,
+        minZ: p.z - 10,
+        maxZ: p.z + 10,
+      });
+    } else {
+      pet.playAnimation?.('idle');
+    }
+  }
+
+  async function prepareAutonomousIdea(pet) {
+    if (
+      !pet
+      || !pet.petState?.is('free_roam')
+      || pet.petState.isBusy()
+      || _busyPets.has(pet)
+      || _planningPets.has(pet)
+      || _pendingIdeas.has(pet)
+    ) return;
+    _planningPets.add(pet);
     try {
-      if (action === 'refine') {
-        const target = findNearestObject(pet.mesh.position, pet, 16);
-        if (target) await refineObject(pet, target, plan.description, 'free_roam', false, { focusCamera: false });
+      const plan = await planAutonomous(pet);
+      if (!pet.petState?.is('free_roam') || pet.petState.isBusy()) return;
+      const idea = resolveAutonomousIdea(pet, plan || {});
+      _pendingIdeas.set(pet, idea);
+      pet._pastoralIdeaPending = true;
+      pet.stopWalking?.();
+      pet.disableWander?.();
+      pet.playAnimation?.('idle');
+      _ideaBubbles.setHint(pet, '我有个想法！', { exclusive: false });
+    } catch (err) {
+      console.warn('[Pastoral] idea preparation failed:', err.message);
+      pet._pastoralAutonomousTimer = 20;
+    } finally {
+      _planningPets.delete(pet);
+    }
+  }
+
+  async function executeAutonomousIdea(pet, idea) {
+    if (!pet || !idea || !pet.petState?.is('free_roam') || _busyPets.has(pet)) return;
+    try {
+      if (idea.action === 'refine') {
+        await refineObject(pet, idea.target, idea.description, 'free_roam', false, { focusCamera: false });
         return;
       }
-      if (action === 'mount') {
-        const target = findNearestObject(pet.mesh.position, pet, 16);
-        if (target) await mountObject(pet, target, plan.part || plan.description, plan.position, 'free_roam', false, { focusCamera: false });
+      if (idea.action === 'mount') {
+        await mountObject(
+          pet,
+          idea.target,
+          idea.part || idea.description,
+          idea.position,
+          'free_roam',
+          false,
+          { focusCamera: false },
+        );
         return;
       }
-      await generateObjectAt(pet, plan.description, pet.mesh.position.clone().add(new THREE.Vector3(Math.random() * 6 - 3, 0, Math.random() * 6 - 3)), 'free_roam', false, { focusCamera: false });
+      await generateObjectAt(
+        pet,
+        idea.description,
+        pet.mesh.position.clone().add(new THREE.Vector3(Math.random() * 6 - 3, 0, Math.random() * 6 - 3)),
+        'free_roam',
+        false,
+        { focusCamera: false },
+      );
     } catch (err) {
       console.warn('[Pastoral] autonomous behavior failed:', err.message);
       startFreeRoam(pet);
     }
   }
 
+  async function reviewAutonomousIdea(pet, idea) {
+    const choice = await askPetChoice(
+      pet,
+      describePastoralIdea(idea),
+      [
+        { key: 'approve', label: '好啊，就这么做吧！' },
+        { key: 'later', label: '先等等，我们再看看。' },
+      ],
+    );
+    if (choice?.key !== 'approve') {
+      clearPendingIdea(pet);
+      return false;
+    }
+    clearPendingIdea(pet, { resume: false });
+    executeAutonomousIdea(pet, idea).catch(err => {
+      console.warn('[Pastoral] approved idea failed:', err.message);
+      startFreeRoam(pet);
+    });
+    return true;
+  }
+
   function update(dt) {
     updateEffects(dt);
+    _ideaBubbles.update(dt);
     for (const pet of _pets) {
+      if (_pendingIdeas.has(pet)) {
+        if (!pet.petState.is('free_roam')) clearPendingIdea(pet, { resume: false });
+        continue;
+      }
       if (!pet.petState.is('free_roam') || pet.petState.isBusy()) continue;
       pet._pastoralAutonomousTimer = (pet._pastoralAutonomousTimer ?? 20) - dt;
       if (pet._pastoralAutonomousTimer <= 0) {
         pet._pastoralAutonomousTimer = 20;
-        runAutonomous(pet);
+        prepareAutonomousIdea(pet);
       }
     }
   }
@@ -920,5 +1115,10 @@ export function createPastoralSlice({
     update,
     startFollowing,
     startFreeRoam,
+    hasPendingIdea: pet => _pendingIdeas.has(pet),
+    getInteractionLabel: pet => _pendingIdeas.has(pet)
+      ? `听听${getPetName(pet)}的想法`
+      : `与${getPetName(pet)}对话`,
+    dispose: () => _ideaBubbles.dispose(),
   };
 }

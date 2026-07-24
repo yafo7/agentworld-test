@@ -28,6 +28,13 @@ const PET_CONFIGS = [
     assetId: 'yafo',
     spawn: [-30, 0, 30],
   },
+  {
+    id: 'builder_crab',
+    name: 'crab',
+    displayName: '螃蟹',
+    assetId: 'crab',
+    spawn: [14, 0, -34],
+  },
 ];
 
 function makeBounds(x, z, range = 10) {
@@ -55,8 +62,8 @@ export class PetManager {
       const spawn = this.petSpawns[config.name] || config.spawn;
       pet.mesh.name = config.name;
       pet._petId = config.id;
-      pet._petName = config.name;
-      pet._profile = getPetProfile(config.name);
+      pet._petName = config.displayName || config.name;
+      pet._profile = getPetProfile(config.profileId || config.name);
       pet._managedByPetManager = true;
       this._configurePet(pet, config.name, spawn);
       pet._initialInteractionDone = false;
@@ -122,7 +129,12 @@ export class PetManager {
 
   update(dt) {
     for (const pet of this.pets) {
-      if (pet.petState?.is('free_roam') && !pet._followEnabled && !pet.petState.isBusy()) {
+      if (
+        pet.petState?.is('free_roam')
+        && !pet._followEnabled
+        && !pet.petState.isBusy()
+        && !pet._pastoralIdeaPending
+      ) {
         this._updateRandomAction(pet, dt);
       }
       if (!pet._petManagerExternalUpdate) pet.update(dt);

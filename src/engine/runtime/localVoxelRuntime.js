@@ -1,6 +1,13 @@
 import * as THREE from 'three';
 import { fallbackBuildGeometry } from '../model/fallback.js';
 
+export const LOCAL_RUNTIME_VERSION = 'chii-local-2026-07-23';
+export const LOCAL_ANIMATION_TEMPLATES = Object.freeze([
+  'bounce', 'slide', 'swing', 'sway', 'breathe', 'wave', 'drop', 'impulse',
+  'launch', 'dash', 'slash', 'spin', 'pointTo', 'shift', 'squash', 'flow',
+  'emit', 'lockWorldRot',
+]);
+
 function axisIndex(axis) {
   return axis === 'x' ? 0 : axis === 'y' ? 1 : 2;
 }
@@ -72,7 +79,18 @@ function evaluateTemplate(name, params, t, duration, groupId, model) {
     case 'launch': {
       const safeDuration = Math.max(duration, 0.01);
       const clampedTime = Math.min(t, safeDuration);
-      return { position: axisVector(p.axis || 'z', (p.speed || 8) * clampedTime * (1 - clampedTime / (2 * safeDuration))) };
+      const deceleration = p.decel ?? 1.5;
+      const progress = clampedTime / safeDuration;
+      const exponent = deceleration + 1;
+      const distance = (p.speed || 8) * safeDuration * (1 - Math.pow(1 - progress, exponent)) / exponent;
+      return { position: axisVector(p.axis || 'z', distance) };
+    }
+    case 'dash':
+      return { position: axisVector(p.axis || 'z', (p.speed || 8) * Math.min(t, Math.max(duration, 0.01))) };
+    case 'slash': {
+      const progress = Math.min(t * (p.speed || 4), 1);
+      const angle = (p.amplitude || 0.8) * (Math.PI / 3) * (1 - Math.cos(Math.PI / 2 * progress));
+      return { rotation: axisVector(p.axis || 'x', angle) };
     }
     case 'spin': {
       const direction = p.direction === 'ccw' ? -1 : 1;
@@ -106,6 +124,8 @@ function evaluateTemplate(name, params, t, duration, groupId, model) {
       const stagger = offset % range;
       return { position: axisVector(axis, ((stagger + negativeDistance + t * (p.speed || 2)) % range) - negativeDistance - stagger) };
     }
+    case 'lockWorldRot':
+      return {};
     default:
       return {};
   }
@@ -145,6 +165,12 @@ function chainWorldQuaternion(model, groupId, motionResult = null) {
 
 export function createLocalVoxelRuntime() {
   return {
+    runtimeVersion: LOCAL_RUNTIME_VERSION,
+
+    listAnimationTemplates() {
+      return LOCAL_ANIMATION_TEMPLATES.map(key => ({ key }));
+    },
+
     buildGeometry(type, params) {
       return fallbackBuildGeometry(type, params);
     },
@@ -190,6 +216,33 @@ export function createLocalVoxelRuntime() {
           const targetEuler = new THREE.Euler().setFromQuaternion(restWorld, 'YXZ');
           const target = [targetEuler.x, targetEuler.y, targetEuler.z];
           target[axis] = (params.angle || 0) * Math.PI / 180;
+          const targetWorld = new THREE.Quaternion().setFromEuler(new THREE.Euler(...target, 'XYZ'));
+          const local = chainWorldQuaternion(model, groupId, result).invert().multiply(targetWorld);
+          const localEuler = new THREE.Euler().setFromQuaternion(local, 'YXZ');
+          result[groupId] ||= { position: [0, 0, 0], rotation: [0, 0, 0], scale: null };
+          result[groupId].rotation = [
+            localEuler.x - baseRotation[0],
+            localEuler.y - baseRotation[1],
+            localEuler.z - baseRotation[2],
+          ];
+        }
+      }
+
+      for (const [groupId, motions] of Object.entries(plan || {})) {
+        const lockWorldRot = motions?.lockWorldRot;
+        if (!lockWorldRot) continue;
+        for (const params of Array.isArray(lockWorldRot) ? lockWorldRot : [lockWorldRot]) {
+          const part = model?.getPart?.(groupId);
+          if (!part) continue;
+          const baseRotation = [part.rotation?.x || 0, part.rotation?.y || 0, part.rotation?.z || 0];
+          const restWorld = chainWorldQuaternion(model, groupId)
+            .multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(...baseRotation, 'XYZ')));
+          const restEuler = new THREE.Euler().setFromQuaternion(restWorld, 'YXZ');
+          const target = [
+            params.rotX !== undefined ? (params.rotX || 0) : restEuler.x,
+            params.rotY !== undefined ? (params.rotY || 0) : restEuler.y,
+            params.rotZ !== undefined ? (params.rotZ || 0) : restEuler.z,
+          ];
           const targetWorld = new THREE.Quaternion().setFromEuler(new THREE.Euler(...target, 'XYZ'));
           const local = chainWorldQuaternion(model, groupId, result).invert().multiply(targetWorld);
           const localEuler = new THREE.Euler().setFromQuaternion(local, 'YXZ');

@@ -7,6 +7,12 @@
 export { fallbackBuildGeometry } from './model/fallback.js';
 export { buildModelFromJson } from './model/builder.js';
 export { loadModel } from './model/loader.js';
+export {
+  setMaterialTagPresenter,
+  getMaterialTagPresenter,
+  detachMaterialTagPresentation,
+  reattachMaterialTagPresentation,
+} from './model/MaterialTagPresentation.js';
 
 // ---- Animation ----
 export { loadAnimationPlan } from './animation/planLoader.js';

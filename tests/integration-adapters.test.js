@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { VoxelContentAdapter } from '../src/integrations/content/VoxelContentAdapter.js';
+import { StudioAssetAdapter } from '../src/integrations/studio/StudioAssetAdapter.js';
 import { LocalRuntimeAssetRepository } from '../src/assets/repositories/LocalRuntimeAssetRepository.js';
 
 test('content adapter hides provider selection behind semantic profiles', async () => {
@@ -13,6 +14,7 @@ test('content adapter hides provider selection behind semantic profiles', async 
       generateAnimation: async (...args) => { calls.push(['animation', ...args]); return { plan: {} }; },
     },
     chat: async (...args) => { calls.push(['chat', ...args]); return 'ok'; },
+    materialTagVocabulary: () => ({ version: 'test-tags' }),
   });
 
   await adapter.generateModel({ description: '木制工具箱', quality: 'voxel' });
@@ -21,10 +23,15 @@ test('content adapter hides provider selection behind semantic profiles', async 
   await adapter.generateAnimation({ modelJson: {}, description: '开心挥手', emitParticles: true });
   await adapter.chat({ messages: [{ role: 'user', content: '你好' }], profile: 'planner' });
 
-  assert.deepEqual(calls[0].slice(1), ['木制工具箱', 'gpt', 'voxel']);
+  assert.deepEqual(calls[0].slice(1), ['木制工具箱', 'gpt', 'voxel', {
+    model: 'gpt-5.6-sol-high', timeoutMs: 300000, materialTags: { version: 'test-tags' },
+  }]);
   assert.equal(calls[1][3], 'gpt');
-  assert.deepEqual(calls[2].slice(2), ['花环', '把花环加在头部', 'gpt']);
+  assert.deepEqual(calls[1][4], { timeoutMs: 300000, materialTags: { version: 'test-tags' } });
+  assert.deepEqual(calls[2].slice(2, 5), ['花环', '把花环加在头部', 'gpt']);
+  assert.deepEqual(calls[2][5], { timeoutMs: 300000 });
   assert.equal(calls[3][4], 'gpt');
+  assert.deepEqual(calls[3][6], { timeoutMs: 300000 });
   assert.equal(calls[4][2], 'deepseek');
 });
 
@@ -54,4 +61,31 @@ test('local runtime repository invokes browser fetch with the global receiver', 
   const repository = new LocalRuntimeAssetRepository({ catalog, fetchImpl });
   const model = await repository.getModel('receiverAsset');
   assert.equal(model.name, 'receiver-ok');
+});
+
+test('studio adapter uses the upstream edited-model and animation endpoints', async () => {
+  const calls = [];
+  const adapter = new StudioAssetAdapter({
+    baseUrl: '/studio',
+    fetchImpl: async (url, options = {}) => {
+      calls.push([url, options]);
+      return { ok: true, json: async () => ({ ok: true }) };
+    },
+  });
+
+  await adapter.loadOriginal('batch 1', 'model/a');
+  await adapter.loadEdit('batch 1', 'model/a');
+  await adapter.saveEdit('batch 1', 'model/a', { nodes: [] }, ['undo']);
+  await adapter.loadAnimations('batch 1', 'model/a');
+
+  assert.equal(calls[0][0], '/studio/api/model/batch%201/model%2Fa');
+  assert.equal(calls[1][0], '/studio/api/load-edited/batch%201/model%2Fa');
+  assert.equal(calls[2][0], '/studio/api/save-edited');
+  assert.deepEqual(JSON.parse(calls[2][1].body), {
+    commit: 'batch 1',
+    folder: 'model/a',
+    modelJson: { nodes: [] },
+    undoStack: ['undo'],
+  });
+  assert.equal(calls[3][0], '/studio/api/animations/batch%201/model%2Fa');
 });

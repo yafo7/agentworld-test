@@ -6,18 +6,51 @@ function horizontalDistanceSquared(a, b) {
 
 export class WorldObjectRegistry {
   constructor(initial = []) {
-    this.items = initial;
+    this.items = [];
+    this.listeners = new Set();
+    this.metadata = new WeakMap();
+    for (const entity of initial) this.add(entity);
   }
 
-  add(entity) {
-    if (entity && !this.items.includes(entity)) this.items.push(entity);
+  add(entity, metadata = {}) {
+    if (entity && !this.items.includes(entity)) {
+      this.items.push(entity);
+      this.metadata.set(entity, metadata);
+      this._emit({ type: 'added', entity, metadata });
+    } else if (entity) {
+      this.updateMetadata(entity, metadata);
+    }
     return entity;
   }
 
   remove(entity) {
     const index = this.items.indexOf(entity);
-    if (index >= 0) this.items.splice(index, 1);
+    if (index >= 0) {
+      const metadata = this.getMetadata(entity);
+      this.items.splice(index, 1);
+      this.metadata.delete(entity);
+      this._emit({ type: 'removed', entity, metadata });
+    }
     return index >= 0;
+  }
+
+  getMetadata(entity) {
+    return this.metadata.get(entity) || {};
+  }
+
+  updateMetadata(entity, patch = {}) {
+    const metadata = { ...this.getMetadata(entity), ...patch };
+    if (entity) this.metadata.set(entity, metadata);
+    return metadata;
+  }
+
+  onChange(listener) {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  }
+
+  _emit(event) {
+    for (const listener of this.listeners) listener(event);
   }
 
   findById(id) {
@@ -52,4 +85,3 @@ export class WorldObjectRegistry {
     return !!this.nearest(position, { range: minDistance, predicate });
   }
 }
-

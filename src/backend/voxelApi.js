@@ -1,185 +1,204 @@
-// Voxel Studio Backend — API client for 3D model + animation generation.
-
-// Proxied through Vite dev server to avoid CORS issues.
-// Manual Studio editing/sync is intentionally separate from autonomous gameplay.
+// Voxel backend API client. Manual Studio sync is intentionally separate.
 
 const API_BASE = '/api/voxel';
-const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
+export const DEFAULT_VOXEL_TIMEOUT_MS = 300000;
 
-/**
- * Generate a single 3D model via SSE streaming.
- * Tries providers in fallback order on failure.
- *
- * @param {string} description — text description of the model
- * @param {string} [provider='fireworks']
- * @param {string} [mode='standard'] — 'standard' | 'lite' | 'voxel' | 'curve' | 'wire'
- * @returns {Promise<{modelJson: object, rawCode: string}>}
- */
-export async function generateModel(description, provider = 'fireworks', mode = 'standard') {
-  const fallback = [...PROVIDERS];
-  if (fallback[0] !== provider) fallback.unshift(provider);
+export class VoxelApiError extends Error {
+  constructor(message, {
+    code = 'VOXEL_API_ERROR',
+    status = null,
+    detail = null,
+    timing = null,
+    operation = null,
+    cause = null,
+  } = {}) {
+    super(message, cause ? { cause } : undefined);
+    this.name = 'VoxelApiError';
+    this.code = code;
+    this.status = status;
+    this.detail = detail;
+    this.timing = timing;
+    this.operation = operation;
+  }
+}
 
-  let lastError = null;
-  for (const p of fallback) {
-    try {
-      const resp = await fetch(`${API_BASE}/api/generate/model`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description, provider: p, mode }),
-      });
+function timeoutSignal(timeoutMs) {
+  return AbortSignal.timeout(Math.max(1, Number(timeoutMs) || DEFAULT_VOXEL_TIMEOUT_MS));
+}
 
-      if (resp.status === 429) {
-        console.warn(`[Voxel] ${p} rate limited, trying next...`);
-        continue;
-      }
-      if (!resp.ok) {
-        const errText = await resp.text();
-        throw new Error(`HTTP ${resp.status}: ${errText}`);
-      }
+function errorFromData(data, { status = null, operation, fallback }) {
+  const code = data?.errorCode || data?.error || fallback;
+  const message = data?.message || data?.errorDetail?.message || code;
+  return new VoxelApiError(message, {
+    code,
+    status,
+    detail: data?.errorDetail || null,
+    timing: data?.timing || data?.errorDetail?.timing || null,
+    operation,
+  });
+}
 
-      const text = await resp.text();
-      let modelJson = null;
-      let rawCode = '';
+async function responseError(response, operation, fallback) {
+  const text = await response.text().catch(() => '');
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch {}
+  if (data) return errorFromData(data, { status: response.status, operation, fallback });
+  return new VoxelApiError(
+    `HTTP ${response.status}${text ? `: ${text.slice(0, 240)}` : ''}`,
+    { code: fallback, status: response.status, operation }
+  );
+}
 
-      for (const line of text.split(/\r?\n/)) {
-        if (!line.startsWith('data:')) continue;
-        const event = JSON.parse(line.slice(5).trim());
-        if (event.stage === 'error' || event.error) {
-          throw new Error(event.error || 'Unknown generation error');
-        }
-        if (event.done || event.stage === 'result') {
-          modelJson = event.modelJson;
-          rawCode = event.rawCode || '';
-        }
-      }
+async function request(url, init, operation) {
+  try {
+    return await fetch(url, init);
+  } catch (error) {
+    if (error instanceof VoxelApiError) throw error;
+    const timedOut = error?.name === 'TimeoutError' || error?.name === 'AbortError';
+    throw new VoxelApiError(
+      timedOut ? `${operation} timed out` : `${operation} request failed: ${error?.message || error}`,
+      { code: timedOut ? 'VOXEL_API_TIMEOUT' : 'VOXEL_API_NETWORK_ERROR', operation, cause: error }
+    );
+  }
+}
 
-      if (!modelJson) throw new Error('No modelJson in response');
+function jsonBody(value) {
+  return { 'Content-Type': 'application/json', body: JSON.stringify(value) };
+}
 
-      return { modelJson, rawCode };
-    } catch (err) {
-      lastError = err;
-      if (err.message.includes('rate') || err.message.includes('429')) continue;
-      console.warn(`[Voxel] ${p} failed: ${err.message}, trying next...`);
+/** Generate one model via the backend SSE endpoint. */
+export async function generateModel(
+  description,
+  provider = 'fireworks',
+  mode = 'standard',
+  { model = null, materialTags = null, timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
+) {
+  const operation = 'generateModel';
+  const body = { description, provider, mode };
+  if (model) body.model = model;
+  if (materialTags) body.materialTags = materialTags;
+  const payload = jsonBody(body);
+  const response = await request(`${API_BASE}/api/generate/model`, {
+    method: 'POST',
+    headers: payload['Content-Type'] ? { 'Content-Type': payload['Content-Type'] } : {},
+    body: payload.body,
+    signal: timeoutSignal(timeoutMs),
+  }, operation);
+  if (!response.ok) throw await responseError(response, operation, 'MODEL_GENERATION_FAILED');
+
+  const text = await response.text();
+  let modelJson = null;
+  let rawCode = '';
+  let timing = null;
+  for (const line of text.split(/\r?\n/)) {
+    if (!line.trim().startsWith('data:')) continue;
+    let event;
+    try { event = JSON.parse(line.trim().replace(/^data:\s*/, '')); } catch { continue; }
+    if (event.stage === 'error' || event.error || event.errorCode) {
+      throw errorFromData(event, { operation, fallback: 'MODEL_GENERATION_FAILED' });
+    }
+    if (event.done || event.stage === 'result') {
+      modelJson = event.modelJson;
+      rawCode = event.rawCode || '';
+      timing = event.timing || null;
     }
   }
-
-  throw lastError || new Error('All providers failed');
-}
-
-/**
- * Generate an animation motion plan for a model.
- *
- * @param {object} modelJson
- * @param {string} description — animation description
- * @param {number} [duration=2.0]
- * @param {string} [provider='fireworks']
- * @param {boolean} [emitParticles=false]
- * @returns {Promise<{plan: object}>}
- */
-export async function generateAnimation(modelJson, description, duration = 2.0, provider = 'fireworks', emitParticles = false) {
-  const fallback = [...PROVIDERS];
-  if (fallback[0] !== provider) fallback.unshift(provider);
-
-  let lastError = null;
-  for (const p of fallback) {
-    try {
-      const resp = await fetch(`${API_BASE}/api/generate/animation`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'quick', modelJson, description, duration, provider: p, emitParticles }),
-      });
-
-      if (resp.status === 429) {
-        console.warn(`[Voxel] ${p} anim rate limited, trying next...`);
-        continue;
-      }
-      if (!resp.ok) {
-        const errText = await resp.text();
-        throw new Error(`HTTP ${resp.status}: ${errText}`);
-      }
-
-      const data = await resp.json();
-      if (!data.ok || !data.plan) {
-        throw new Error('No plan in animation response');
-      }
-      return { plan: data.plan };
-    } catch (err) {
-      lastError = err;
-      if (err.message.includes('rate') || err.message.includes('429')) continue;
-      console.warn(`[Voxel] ${p} anim failed: ${err.message}, trying next...`);
-    }
+  if (!modelJson) {
+    throw new VoxelApiError('No modelJson in response', { code: 'MODEL_RESULT_MISSING', operation, timing });
   }
-
-  throw lastError || new Error('All animation providers failed');
+  return { modelJson, rawCode, metadata: { provider, model, mode, timing } };
 }
 
-/**
- * Batch generate multiple models (JSON, not SSE).
- */
-export async function generateBatch(descriptions, provider = 'fireworks', mode = 'standard') {
-  const resp = await fetch(`${API_BASE}/api/generate/batch`, {
+/** Generate an animation motion plan for a model. */
+export async function generateAnimation(
+  modelJson,
+  description,
+  duration = 2,
+  provider = 'fireworks',
+  emitParticles = false,
+  { timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
+) {
+  const operation = 'generateAnimation';
+  const response = await request(`${API_BASE}/api/generate/animation`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ descriptions, provider, mode }),
-  });
-
-  if (!resp.ok) {
-    throw new Error(`Batch generation failed: HTTP ${resp.status}`);
-  }
-
-  const data = await resp.json();
-  return data;
+    body: JSON.stringify({ mode: 'quick', modelJson, description, duration, provider, emitParticles }),
+    signal: timeoutSignal(timeoutMs),
+  }, operation);
+  if (!response.ok) throw await responseError(response, operation, 'ANIMATION_GENERATION_FAILED');
+  const data = await response.json();
+  if (!data.ok || !data.plan) throw errorFromData(data, { operation, fallback: 'ANIMATION_RESULT_MISSING' });
+  return { plan: data.plan, timing: data.timing || null };
 }
 
-/**
- * Refine an existing model via backend /api/refine/model.
- * Requires the modelJson to contain _meta.ai metadata.
- *
- * @param {object} modelJson — original model with _meta.ai
- * @param {string} description — modification description
- * @param {string} [provider='fireworks']
- * @returns {Promise<{modelJson: object}>}
- */
-export async function refineModel(modelJson, description, provider = 'fireworks') {
-  const resp = await fetch(`${API_BASE}/api/refine/model`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ modelJson, description, provider }),
-  });
-
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    if (err.error === 'no_metadata') throw new Error('Model lacks AI metadata — cannot refine');
-    if (err.error === 'metadata_corrupted') throw new Error('Model metadata corrupted — regenerate instead');
-    throw new Error(`Refine failed: ${err.error || resp.status}`);
-  }
-
-  const data = await resp.json();
-  return data;
-}
-
-/**
- * Mount a secondary object/description onto a primary model.
- * Mount a secondary object/description onto a primary model through the backend.
- *
- * @param {object} primary - primary modelJson
- * @param {object|string} secondary - modelJson or short Chinese description
- * @param {string} description - concrete placement instruction
- * @param {string} [provider='deepseek']
- * @returns {Promise<{modelJson: object, mountPlan?: object}>}
- */
-export async function mountModel(primary, secondary, description, provider = 'deepseek') {
-  const body = { primary, secondary, description, provider };
-  const endpoint = `${API_BASE}/api/mount`;
-  const resp = await fetch(endpoint, {
+/** Batch model generation. Kept for legacy tools; gameplay uses semantic adapters. */
+export async function generateBatch(
+  descriptions,
+  provider = 'fireworks',
+  mode = 'standard',
+  { model = null, timeoutMs = 600000 } = {}
+) {
+  const operation = 'generateBatch';
+  const body = { descriptions, provider, mode };
+  if (model) body.model = model;
+  const response = await request(`${API_BASE}/api/generate/batch`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
-    signal: AbortSignal.timeout(300000),
+    signal: timeoutSignal(timeoutMs),
+  }, operation);
+  if (!response.ok) throw await responseError(response, operation, 'BATCH_GENERATION_FAILED');
+  return response.json();
+}
+
+/** Refine an AI-generated model through /api/refine/model. */
+export async function refineModel(
+  modelJson,
+  description,
+  provider = 'fireworks',
+  { refModelJson = null, materialTags = null, timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
+) {
+  const operation = 'refineModel';
+  const body = { modelJson, description, provider };
+  if (refModelJson) body.refModelJson = refModelJson;
+  if (materialTags) body.materialTags = materialTags;
+  const response = await request(`${API_BASE}/api/refine/model`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: timeoutSignal(timeoutMs),
+  }, operation);
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || !data.ok) throw errorFromData(data, {
+    status: response.status,
+    operation,
+    fallback: 'REFINE_FAILED',
   });
-  const data = await resp.json().catch(() => ({}));
-  if (!resp.ok || !data.ok) {
-    throw new Error(data.message || data.error || `Mount failed: HTTP ${resp.status}`);
-  }
-  return { modelJson: data.modelJson, mountPlan: data.mountPlan };
+  return { modelJson: data.modelJson, rawCode: data.rawCode, timing: data.timing || null };
+}
+
+/** Mount a generated or existing part through /api/mount. */
+export async function mountModel(
+  primary,
+  secondary,
+  description,
+  provider = 'deepseek',
+  { timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
+) {
+  const operation = 'mountModel';
+  const body = { primary, secondary, provider };
+  if (description != null && description !== '') body.description = description;
+  const response = await request(`${API_BASE}/api/mount`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: timeoutSignal(timeoutMs),
+  }, operation);
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || !data.ok) throw errorFromData(data, {
+    status: response.status,
+    operation,
+    fallback: 'MOUNT_FAILED',
+  });
+  return { modelJson: data.modelJson, mountPlan: data.mountPlan, timing: data.timing || null };
 }

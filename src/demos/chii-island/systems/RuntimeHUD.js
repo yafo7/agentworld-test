@@ -7,6 +7,9 @@ export class RuntimeHUD {
     this.jobStageEl = document.getElementById('runtime-job-stage');
     this.regionEl = document.getElementById('runtime-region');
     this.followerEl = document.getElementById('runtime-follower');
+    this.activityEl = document.getElementById('runtime-activity');
+    this.activityTitleEl = document.getElementById('runtime-activity-title');
+    this.activityStageEl = document.getElementById('runtime-activity-stage');
     this.perfEl = document.getElementById('runtime-perf');
     this.jobs = new Map();
     this.jobSerial = 0;
@@ -68,6 +71,17 @@ export class RuntimeHUD {
     }
   }
 
+  setActivityStatus(title = null, stage = '') {
+    if (!this.activityEl) return;
+    if (!title) {
+      this.activityEl.classList.remove('visible');
+      return;
+    }
+    this.activityTitleEl.textContent = title;
+    this.activityStageEl.textContent = stage;
+    this.activityEl.classList.add('visible');
+  }
+
   setPerformanceVisible(visible) {
     this.perfVisible = !!visible;
     this.perfEl?.classList.toggle('visible', this.perfVisible);
@@ -90,4 +104,3 @@ export class RuntimeHUD {
     ].join('\n');
   }
 }
-

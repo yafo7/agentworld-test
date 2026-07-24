@@ -52,6 +52,10 @@ export const CHII_ASSET_CATALOG = Object.freeze({
   yafo: { model: model('yafo'), animations: {
     idle: animation('yafo_idle'), run: animation('yafo_run'), jump: animation('yafo_jump'),
   } },
+  crab: { model: model('crab'), animations: {
+    idle: animation('crab_idle'), walk: animation('crab_walk'), run: animation('crab_run'),
+    jump: animation('crab_jump'), construct: animation('crab_construct'), dance: animation('crab_dance'),
+  } },
 });
 
 export const CHII_SCENE_ASSET_IDS = Object.freeze([

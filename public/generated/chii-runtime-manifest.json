@@ -1,8 +1,7 @@
 {
-  "syncedAt": "2026-07-09T06:14:04.021Z",
+  "syncedAt": "2026-07-23T08:45:00.956Z",
   "studio": "http://localhost:8000",
-  "source": "runtime",
-  "publish": false,
+  "source": "edit",
   "assets": [
     {
       "id": "nailong",
@@ -426,6 +425,59 @@
       "runtimeVersion": "v001"
     },
     {
+      "id": "forest-tent",
+      "label": "forest-tent",
+      "assetId": "m_1783574993844_zexjyw",
+      "commit": "2026-07-09_13-28-22",
+      "folder": "一个野外的露营帐篷_1.5m",
+      "modelOut": "public/generated/models/forest_temple_tent.json",
+      "animations": [],
+      "source": "edit",
+      "runtimeVersion": null
+    },
+    {
+      "id": "crab",
+      "label": "crab",
+      "assetId": "m_1784020657837_93vxun",
+      "commit": "2026-07-14_17-16-35",
+      "folder": "一只橙色的螃蟹_1.0m",
+      "modelOut": "public/generated/models/crab.json",
+      "animations": [
+        {
+          "name": "idle",
+          "outPath": "public/generated/animations/crab_idle.json",
+          "studioName": "呼吸摇摆 idle"
+        },
+        {
+          "name": "walk",
+          "outPath": "public/generated/animations/crab_walk.json",
+          "studioName": "缓慢行走 walk"
+        },
+        {
+          "name": "run",
+          "outPath": "public/generated/animations/crab_run.json",
+          "studioName": "快速奔跑 run"
+        },
+        {
+          "name": "jump",
+          "outPath": "public/generated/animations/crab_jump.json",
+          "studioName": "开心跳跃 jump"
+        },
+        {
+          "name": "construct",
+          "outPath": "public/generated/animations/crab_construct.json",
+          "studioName": "敲打施工 construct"
+        },
+        {
+          "name": "dance",
+          "outPath": "public/generated/animations/crab_dance.json",
+          "studioName": "摇摆跳舞 dance"
+        }
+      ],
+      "source": "runtime",
+      "runtimeVersion": "v001"
+    },
+    {
       "id": "forest-trophy",
       "label": "forest-trophy",
       "assetId": "m_1783574540705_1274n8",
@@ -436,7 +488,7 @@
         {
           "name": "wait",
           "outPath": "public/generated/animations/forest_trophy_wait.json",
-          "studioName": "召唤等待"
+          "studioName": "底座保持不动，奖杯上方上下跳动，同时出现星光特效"
         }
       ],
       "source": "edit",
@@ -453,20 +505,9 @@
         {
           "name": "dust",
           "outPath": "public/generated/animations/pastoral_work_scaffold_dust.json",
-          "studioName": "灰尘"
+          "studioName": "横幅条的上方和四周出现大量灰尘特效"
         }
       ],
-      "source": "edit",
-      "runtimeVersion": null
-    },
-    {
-      "id": "forest-tent",
-      "label": "forest-tent",
-      "assetId": "m_1783574993844_zexjyw",
-      "commit": "2026-07-09_13-28-22",
-      "folder": "一个野外的露营帐篷_1.5m",
-      "modelOut": "public/generated/models/forest_temple_tent.json",
-      "animations": [],
       "source": "edit",
       "runtimeVersion": null
     }

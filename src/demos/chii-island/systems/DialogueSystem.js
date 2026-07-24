@@ -226,6 +226,7 @@ export function createDialogueSystem() {
         }
         .dialogue-choices {
           display: flex; flex-direction: column; gap: 8px;
+          max-height: min(42vh, 360px); overflow-y: auto; padding-right: 4px;
         }
         .dialogue-choice-btn {
           padding: 10px 16px; border: 2px solid #2a2330; border-radius: 10px;
@@ -508,6 +509,7 @@ export function createDialogueSystem() {
     if (!_choicesEl) return;
     const btns = _choicesEl.querySelectorAll('.dialogue-choice-btn');
     btns.forEach((b, i) => b.classList.toggle('focused', i === _choiceIndex));
+    btns[_choiceIndex]?.scrollIntoView({ block: 'nearest' });
   }
 
   function show(graphName, buildingEntity) {
