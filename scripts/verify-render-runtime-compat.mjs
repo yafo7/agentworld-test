@@ -13,6 +13,7 @@ const UPSTREAM_ROOT = resolve(
 );
 const RUNTIME_PACKAGE = join(UPSTREAM_ROOT, 'packages', 'voxel-render-runtime');
 const VOCABULARY_PATH = join(RUNTIME_PACKAGE, 'model', 'material-tags-v1.json');
+const VFX_VOCABULARY_PATH = join(RUNTIME_PACKAGE, 'model', 'vfx-tags-v1.json');
 const VITE_BIN = join(ROOT, 'node_modules', 'vite', 'bin', 'vite.js');
 
 function run(command, args, options = {}) {
@@ -97,6 +98,7 @@ import {
   RuntimeIndex,
   createEffectRuntime,
 } from '@voxel-studio/render-runtime';
+import { validateVfxVocabulary } from '@voxel-studio/render-runtime/effects/VfxTagCatalog.js';
 
 const result = {
   ok: false,
@@ -105,6 +107,7 @@ const result = {
   apply: null,
   style: null,
   materials: {},
+  vfx: null,
   programs: [],
   pixelEnergy: 0,
   errors: [],
@@ -116,6 +119,11 @@ try {
     if (!response.ok) throw new Error('material vocabulary HTTP ' + response.status);
     return response.json();
   });
+  const vfxVocabulary = await fetch('/vfx-tags-v1.json').then(response => {
+    if (!response.ok) throw new Error('vfx vocabulary HTTP ' + response.status);
+    return response.json();
+  });
+  result.vfx = validateVfxVocabulary(vfxVocabulary);
   const canvas = document.querySelector('canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true });
   renderer.setSize(480, 320, false);
@@ -139,17 +147,20 @@ try {
   scene.add(modelRoot);
 
   const specs = [
-    ['wood', -3.0, [{ tag: 'base', value: 'wood' }]],
-    ['stone', -1.5, [{ tag: 'base', value: 'stone', variant: 'cobblestone' }]],
-    ['glass', 0, [{ tag: 'base', value: 'glass' }]],
-    ['emissive', 1.5, [{ tag: 'emissive', value: 0.75 }]],
-    ['fire', 3.0, [{ tag: 'fire', value: 0.75, variant: 'blue' }]],
+    ['wood', -3.6, [{ tag: 'base', value: 'wood' }]],
+    ['stone', -2.4, [{ tag: 'base', value: 'stone', variant: 'cobblestone' }]],
+    ['fur', -1.2, [{ tag: 'base', value: 'fur', variant: 'pink' }]],
+    ['foliage', 0, [{ tag: 'foliage', value: 'leaf' }]],
+    ['glass', 1.2, [{ tag: 'base', value: 'glass' }]],
+    ['emissive', 2.4, [{ tag: 'emissive', value: 0.75 }]],
+    ['fire', 3.6, [{ tag: 'fire', value: 0.75, variant: 'blue' }]],
   ];
   const parts = [];
   const meshes = new Map();
   for (const [id, x, tags] of specs) {
-    const material = new THREE.MeshLambertMaterial({
+    const material = new THREE.MeshStandardMaterial({
       color: id === 'emissive' ? 0x66d9ff : id === 'fire' ? 0x4678ff : 0xb58b62,
+      roughness: 0.8,
     });
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(1.05, 1.05, 1.05), material);
     mesh.name = id;
@@ -237,7 +248,8 @@ try {
   }));
   const failedPrograms = result.programs.filter(program => !program.runnable || program.log);
   if (result.threeRevision !== '184') throw new Error('expected Three r184, got r' + result.threeRevision);
-  if (result.apply.appliedParts < 4) throw new Error('material runtime applied too few parts');
+  if (result.apply.appliedParts < 6) throw new Error('material runtime applied too few parts');
+  if (!result.vfx.valid || result.vfx.presetCount < 8) throw new Error('vfx vocabulary contract failed');
   if (result.style.mode !== 'cel' || !result.style.ramp || !result.style.patchKeys.includes('renderStyle:cel')) {
     throw new Error('cel style did not initialize');
   }
@@ -275,6 +287,7 @@ async function main() {
     };
     await writeFile(join(tempRoot, 'package.json'), JSON.stringify(tempPackage, null, 2));
     await writeFile(join(tempRoot, 'material-tags-v1.json'), await readFile(VOCABULARY_PATH));
+    await writeFile(join(tempRoot, 'vfx-tags-v1.json'), await readFile(VFX_VOCABULARY_PATH));
     await writeFile(join(tempRoot, 'index.html'), '<canvas width="480" height="320"></canvas><pre></pre><script type="module" src="/compat-browser.mjs"></script>');
     await writeFile(join(tempRoot, 'compat-browser.mjs'), browserFixture());
     await runNpm(

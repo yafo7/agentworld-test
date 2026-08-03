@@ -1,11 +1,16 @@
-适用场景：用 AI 生成低多边形 3D 模型和动画。本指南面向第三方前端集成——涵盖所有需要正确渲染的信息。
+# Chii Island Backend API Reference
 
-Chii 当前兼容基线（2026-07-23）：
-- 自主 Voxel 生成固定发送 `provider: "gpt"`、`model: "gpt-5.6-sol-high"`、`mode: "voxel"`。
-- Refine、Mount、Quick Animation 走同一 api-reference 后端，不经过 Voxel Studio 读写接口。
-- 客户端只发送一次指定 provider 请求，不做跨 provider 静默降级；统一保留 `errorCode`、`errorDetail`、HTTP status 与 `timing`。
-- 当前后端动画模板没有 `tilt`；历史计划应在播放前兼容转换为参数相同的 `pointTo`。
-- 模型 parser 必须保留 `nodes[].tags`、显式 `locked`、`mesh.boneFrom/boneTo`、`_meta.mounts` 和未知扩展元数据。
+> 本文件正文来自 2026-07-24 提供的最新第三方集成指南。以下 Chii 兼容规则优先于正文中的通用示例：
+>
+> - 自主 Voxel 生成由 `VoxelContentAdapter` 固定发送 `provider: "gpt"`、`model: "gpt-5.6-sol-high"`、`mode: "voxel"`。
+> - Refine、Mount、Quick Animation 使用同一 api-reference 后端，不经过 Voxel Studio 的读取或保存接口。
+> - 客户端只发送一次指定 provider 请求，不做跨 provider 静默降级；保留 `errorCode`、`errorDetail`、HTTP status 与 `timing`。
+> - 当前 Chii 动画调用使用 Quick Motion Plan。历史 `tilt` 轨道在播放前兼容转换为参数相同的 `pointTo`。
+> - 模型解析与保存必须保留 `nodes[].tags`、显式 `locked`、`mesh.boneFrom/boneTo`、`_meta.mounts` 和未知扩展元数据。
+> - 提示词统一由 `$chii-prompts` 编写或校验；实际请求、provider 与持久化由 `$chii-ai` 负责。
+
+---
+适用场景：用 AI 生成低多边形 3D 模型和动画。本指南面向第三方前端集成——涵盖所有需要正确渲染的信息。
 
 ---
 目录
@@ -13,13 +18,14 @@ Chii 当前兼容基线（2026-07-23）：
 2. 端点总览
 3. 模型生成
 4. 修改模型 (Refine)
-5. 动画生成 (Motion Plan)
-6. 模板模块 (Runtime)
-7. 粒子系统
-8. 简单 LLM 对话
-9. 完整集成示例
-10. 错误处理
-11. 注意事项
+5. 装载配件 (Mount)
+6. 动画生成 (Motion Plan)
+7. 模板模块 (Runtime)
+8. 粒子系统
+9. 简单 LLM 对话
+10. 完整集成示例
+11. 错误处理
+12. 注意事项
 
 ---
 1. 快速开始
@@ -29,7 +35,7 @@ const API = 'https://voxel-studio-backend.zeabur.app';
 const resp = await fetch(`${API}/api/generate/model`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ description: 'a lowpoly knight', provider: 'fireworks' }),
+  body: JSON.stringify({ description: 'a lowpoly knight', provider: 'fireworks', mode: 'standard' }),
 });
 const text = await resp.text();
 // 解析 SSE 取 modelJson
@@ -50,12 +56,20 @@ SSE 流
 生成单个模型
 /api/generate/batch
 POST
-JSON
+SSE 流；stream:false 时为 JSON
 批量生成多个模型
-/api/generate/animation
+/api/generate/animation-quick
 POST
 JSON
-生成 Motion Plan 动画
+Quick 动画（Motion Plan 参数驱动）
+/api/generate/animation-pro
+POST
+JSON
+Pro 动画（代码驱动，单阶段）
+/api/generate/animation-pro-multiphase
+POST
+JSON
+Pro 动画（代码驱动，多阶段）
 /api/refine/model
 POST
 JSON
@@ -63,7 +77,7 @@ AI 修改已有模型
 /api/mount
 POST
 JSON
-在主模型身份不变时增加局部部件
+装载配件（武器/穿戴/配饰）到已有模型
 /api/chat
 POST
 JSON
@@ -91,7 +105,7 @@ fireworks
 Fireworks 模型
 deepseek
 DeepSeek 模型
-mode（可选，默认 standard）：
+mode（必填；旧字段 promptMode 仍兼容）：
 值
 说明
 
@@ -102,7 +116,10 @@ lite
 快速生成，适合简单模型
 
 voxel
-体素风格（仅 box + group）
+体素风格（仅 box + group，~20 box 抽象）
+
+voxel-pro
+体素高细节（仅 box，60-100 mesh，整体感优先）。默认 provider=gpt
 
 curve
 曲线风格（sphere/cyl/torus，偏符号感）
@@ -110,18 +127,15 @@ curve
 wire
 金属铁丝勾线风格（极细 cyl + 极少 tri，抽象符号化）
 
-voxel-pro
-更精细的体素模式；Chii 当前不默认使用
-
-math
-数学结构模式；Chii 当前不默认使用
-
+voxel-pro 默认 provider：当 mode: "voxel-pro" 且请求未显式传 provider 时，后端自动选 gpt。其他 mode 不传 provider 时默认 glm。
+voxel-pro mesh 限制：所有几何节点 mesh.type 均为 box，前端按 box 参数（width/height/depth）渲染即可。返回格式与其他 mode 完全一致，无需特殊处理。
+materialTags（可选，材质标签系统）：传入材质词表 JSON 对象时启用材质语义标签。后端把词表的 README 规则 + 各 tag 描述注入 AI 提示词，AI 在代码里给部件打标签，返回的 nodes[].tags 携带标签（见 §3.2）。省略或空对象 → 不启用，prompt 与输出均无任何材质相关字段。与 mode 正交，所有 mode 都支持。词表格式参考 material-tags-v1.json。
 请求
 {
   "description": "a lowpoly knight with a sword and shield",
-  "provider": "gpt",
-  "model": "gpt-5.6-sol-high",
-  "mode": "standard"
+  "provider": "glm",
+  "mode": "standard",
+  "materialTags": { "README": { "...": "词表 README" }, "tags": { "base": { "...": "..." } } }
 }
 返回：SSE 流
 event: blockout
@@ -140,26 +154,26 @@ event: result
 data: {"stage":"result","done":true,"modelJson":{...},"timing":{...}}
 
 event: error
-data: {"stage":"error","error":"Generation failed","errorDetail":{"phase":"...","error":"...","hint":"...","httpStatus":...}}
+data: {"stage":"error","errorCode":"GENERATION_FAILED"}
 SSE 事件类型：
 - blockout — 结构分析阶段
 - thinking_start / thinking_done — AI 思考中，可用于 UI 加载动画
 - code — 代码生成中，text 字段是增量代码
 - result — 完成，modelJson 是渲染就绪的模型数据
-- error — 错误。error 是简短原因；errorDetail 含 phase、hint（人话解读）、httpStatus
+- error — 生成失败，读取 errorCode；当前值为 GENERATION_FAILED。
 前端解析示例：
 async function generateModel(description) {
   const resp = await fetch(`${API}/api/generate/model`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description, provider: 'fireworks' }),
+    body: JSON.stringify({ description, provider: 'fireworks', mode: 'standard' }),
   });
   const text = await resp.text();
   let modelJson = null;
   for (const line of text.split(/\r?\n/)) {
     if (!line.startsWith('data:')) continue;
     const event = JSON.parse(line.slice(5).trim());
-    if (event.stage === 'error') throw new Error(event.error);
+    if (event.stage === 'error') throw new Error(event.errorCode || 'GENERATION_FAILED');
     if (event.done || event.stage === 'result') {
       modelJson = event.modelJson;
     }
@@ -181,7 +195,11 @@ async function generateModel(description) {
       "transform": { "pos": [0.19, -0.32, 0.16], "quat": [0.61, 0, -0.73, 0.33] },
       "mesh": { "type": "cylinder",
                 "params": { "radiusTop": 0.18, "radiusBottom": 0.2, "height": 0.9, "radialSegments": 8 },
-                "color": 9055202, "boneFrom": "upperArmR_wp0", "boneTo": "upperArmR_wp1" } }
+                "color": 9055202, "boneFrom": "upperArmR_wp0", "boneTo": "upperArmR_wp1" } },
+    { "id": "torch_head", "parent": "body",
+      "transform": { "pos": [0, 4, 0] },
+      "mesh": { "type": "sphere", "params": { "radius": 0.3 }, "color": 16753920 },
+      "tags": [ { "tag": "fire", "value": 0.75, "variant": "normal" } ] }
   ],
   "_meta": { "skipAutoCenter": true, "ai": { "v": 1, "data": "<encrypted>", "edits": "" } }
 }
@@ -225,9 +243,9 @@ object
 mesh.boneFrom / mesh.boneTo
 string
 chain/connect 圆柱的骨骼端点（动画链检测用；静态渲染可忽略）
-nodes[].tags
-string[]
-Material Tags v2 的部件级渲染语义；必须保留，是否启用效果由 runtime 决定
+tags
+array?
+可选。材质语义标签，仅当请求启用 materialTags 时出现。见下方「材质标签渲染约定」
 顶层字段
 字段
 说明
@@ -239,33 +257,57 @@ _meta.skipAutoCenter
 渲染端忽略
 _meta.ai
 渲染端忽略
-_meta.mounts
-装配历史/挂载元数据；模型往返时必须保留
+材质标签渲染约定
+当请求传入非空 materialTags 时，nodes[] 的任意节点（group 或 mesh）可能携带可选 tags 数组，每条形如：
+{ "tag": "base", "value": "gold" }                    // enum 模式:每部件至多一个
+{ "tag": "fire", "value": 0.75, "variant": "green" }  // blend 模式:value ∈ {0,0.25,0.5,0.75,1};variant 仅部分 tag 支持
+渲染端约定：
+- 继承：group 节点的 tags 沿 parent 链向下传播给所有后代 mesh；mesh 节点重新声明同名 tag 覆盖继承值。收集一个 mesh 的有效 tags = 沿父链向上取所有 group tags，再用 mesh 自身 tags 覆盖同名项。
+- 编译：渲染端用有效 tags 查词表（material-tags-v1.json）编译成分层材质（effect layers）+ 可选粒子（companion），完全覆盖节点 mesh.color / mesh.material 的基础着色。同一个 (tag, value, variant) 组合的部件 batch key 相同，可合批。
+- 未实现的 tag：词表中 status: notImplemented 的 tag（如 electric/poison/ice/wet 等）渲染端先落默认材质；数据格式已冻结，渲染层补齐后存量模型自动生效，前端不应因遇到未知 tag 报错。
+- 无 tags 字段：请求未传 materialTags 时，所有节点都没有 tags 字段（不是空数组），渲染端走常规 mesh.color / mesh.material。
 3.3 批量生成 — POST /api/generate/batch
 请求
 {
   "descriptions": ["a knight", "a dragon", "a castle"],
   "provider": "glm",
-  "mode": "standard"
+  "mode": "standard",
+  "materialTags": { "README": {}, "tags": {} }
 }
-返回：JSON
+materialTags 可选，语义同 §3.1。若提供，则应用到批量内的每一个 description。
+返回：SSE 流（默认）
+event: start
+data: {"stage":"start","total":3}
+
+event: item
+data: {"stage":"item","completed":1,"total":3,"result":{"success":true,"index":0,"modelJson":{...},"name":"Knight","meshCount":85}}
+
+event: item
+data: {"stage":"item","completed":2,"total":3,"result":{"success":false,"index":2,"errorCode":"GENERATION_FAILED"}}
+
+event: done
+data: {"stage":"done","total":3,"succeeded":2,"failed":1,"results":[...]}
+默认返回 text/event-stream，后端仍按现有并发策略启动任务，但每个模型完成后立即发送一个 item 事件，失败项不阻塞其他项。
+兼容 JSON 返回
+请求体传入 "stream": false 时，返回旧版普通 JSON：
 {
   "total": 3,
   "succeeded": 3,
   "failed": 0,
   "results": [
     { "success": true, "index": 0, "modelJson": {...}, "name": "Knight", "meshCount": 85 },
-    { "success": false, "index": 2, "error": "Generation failed" }
+    { "success": false, "index": 2, "errorCode": "GENERATION_FAILED" }
   ]
 }
-一次请求，失败项不阻塞其他项。
 3.4 修改已有模型 — POST /api/refine/model
 对已生成的模型进行 AI 修改。需要模型保留 _meta.ai 元数据（仅限通过 /api/generate/model 生成的模型）。
 请求
 {
   "modelJson": { ... },
   "description": "make the sword bigger, add a cape",
-  "provider": "fireworks"
+  "provider": "fireworks",
+  "refModelJson": { ... },
+  "materialTags": { "README": {}, "tags": {} }
 }
 字段
 类型
@@ -279,6 +321,12 @@ string
 provider
 string
 AI provider，同模型生成
+refModelJson
+object?
+可选参考模型。LLM 会参考其设计/样式/结构实现 description 中的需求（如"穿上 ref 这件衣服"）。原模型 mode 优先——不强制采用 ref 的 mode 约束
+materialTags
+object?
+可选材质词表，语义同 §3.1。提供时 AI 会在修改后的代码里给部件打/改 tags，返回的 nodes[].tags 反映新标签；省略则不启用材质系统
 返回：JSON
 {
   "ok": true,
@@ -292,27 +340,55 @@ no_metadata
 metadata_corrupted
 元数据损坏，需重新生成模型
 非流式。Refine 一次返回完整结果，不像模型生成那样走 SSE。
-
-3.5 装配部件 — POST /api/mount
-在主模型身份不变时增加一个局部部件。`secondary` 可以是完整 modelJson，也可以是简短、具体的部件描述。
+3.5 装载配件 — POST /api/mount
+将配件（武器/穿戴/配饰）装到已有模型上。需要 primary 和 secondary 都保留 _meta.ai 元数据。
 请求
 {
   "primary": { ... },
-  "secondary": "一顶黄色小花帽",
-  "description": "装在头顶正中央",
+  "secondary": "文字描述",
+  "description": "右手持枪，枪口朝上",
   "provider": "gpt"
 }
-返回
+字段
+类型
+说明
+primary
+object
+完整模型数据（须含 _meta.ai）
+secondary
+object | string
+配件模型数据（须含 _meta.ai）或文字描述（AI 自动生成）
+description
+string
+装配说明，如"戴在头上"、"右手持枪"
+provider
+string
+AI provider，同模型生成
+返回：JSON
 {
   "ok": true,
   "modelJson": { ... },
-  "mountPlan": { ... }
+  "mountedGroupId": "mount01"
 }
 
+**错误**
+
+| error | 含义 |
+|-------|------|
+| `no_metadata` | primary 或 secondary 缺少 AI 元数据 |
+| `metadata_corrupted` | 元数据损坏 |
+| `invalid plan` | AI 输出无法解析 |
+
+> **非流式**。返回的 `modelJson` 中，配件 mesh 位于 `mounted: true` 的 group 下，前端可据此识别可拆卸部件。
+
 ---
-5. 动画生成 (Motion Plan)
-POST /api/generate/animation
-请求
+
+## 5. Quick 动画 (Motion Plan)
+
+### `POST /api/generate/animation-quick`
+
+**请求**
+```json
 {
   "modelJson": { ... },
   "description": "running cycle, arms swinging",
@@ -396,9 +472,9 @@ axis(轴), speed(速度)
 slash
 挥砍
 axis(轴), amplitude(幅度), speed(速度)
-pointTo
-固定角度/指向
-axis(轴), angle(角度), lockWorldRot(可选)
+tilt
+倾斜
+axis(轴), angle(角度)
 shift
 位移
 axis(轴), distance(距离)
@@ -408,9 +484,6 @@ axis(轴), amount(缩放量)
 flow
 流动
 axis(轴), speed(速度), distance(距离)
-lockWorldRot
-锁定世界朝向
-rotX, rotY, rotZ（弧度，可只提供需要覆盖的轴）
 emit
 粒子发射
 见 §6 粒子系统
@@ -449,7 +522,7 @@ rt.listAnimationTemplates()
 
 // 评估完整 Motion Plan（每帧播放用）— v2: (plan, duration, t, lookups?)
 //   lookups = { getPart(id), getChildren(id) }，解耦具体 model 表示；
-//   wave/flow/pointTo/lockWorldRot 等需要结构信息的模板从 lookups 取，无则安全降级。
+//   wave/flow/tilt 等需要结构信息的模板从 lookups 取，无则安全降级。
 rt.evaluateMotion(plan, duration, t, lookups)
 // → { groupId: { position:[dx,dy,dz], rotation:[rx,ry,rz], scale:[sx,sy,sz]|null } }
 //   ⚠️ 返回值是增量（delta），需叠加到基础姿态
@@ -717,7 +790,7 @@ async function genModel(desc) {
   const resp = await fetch(`${API}/api/generate/model`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: desc, provider: 'fireworks' }),
+    body: JSON.stringify({ description: desc, provider: 'fireworks', mode: 'standard' }),
   });
   const text = await resp.text();
   let modelJson = null;
@@ -788,7 +861,7 @@ function saveBasePose(objs) {
 
 // 5. 生成动画
 async function genAnimation(modelJson, desc, emitParticles = false) {
-  const resp = await fetch(`${API}/api/generate/animation`, {
+  const resp = await fetch(`${API}/api/generate/animation-quick`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ modelJson, description: desc, duration: 2.0, provider: 'fireworks', emitParticles }),
@@ -873,15 +946,15 @@ playAnimation(plan, objs, plan._duration);
 HTTP 状态
 含义
 处理
-200 SSE 含 error
+200 SSE 含 errorCode=GENERATION_FAILED
 AI 生成失败
-展示 event.errorDetail.hint
+展示通用失败提示，可安全重试
 429
 该 provider 被限速
 换一个 provider 重试
 500
-服务器内部错误
-检查 error 字段
+请求未完成
+展示通用失败提示
 Provider 可用列表：
 const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
 建议实现 fallback chain：fireworks → glm → gpt → deepseek。
@@ -893,7 +966,7 @@ const PROVIDERS = ['fireworks', 'glm', 'gpt', 'deepseek'];
 3. 播放动画必须叠加增量。runtime.evaluateMotion 返回的是增量（delta），不是绝对位姿。必须叠加到基础姿态上——见 §8 完整示例的 playAnimation 函数。
 4. 动画 Canvas 预览用 runtime.evaluateTemplate。传入单个模板名、参数、时间、duration，得到单个模板的增量。
 5. 模型生成是 SSE 流式。POST /api/generate/model 返回 text/event-stream，按 \n\n 分隔事件。
-6. 批量生成是 JSON。POST /api/generate/batch 返回普通 JSON，成功和失败项都在 results 数组中。
+6. 批量生成默认是 SSE 流式。POST /api/generate/batch 会先返回 start，随后逐条返回 item，最后返回 done；需要旧版普通 JSON 时传 stream:false。
 7. 粒子需独立渲染。emit track 不产生 transform 增量（evaluateMotion 会跳过它）。前端需自行实现 InstancedMesh 粒子系统——见 §6 完整指南。
 8. 粒子 slider UI 需要 flat ↔ nested 转换。listAnimationTemplates() 中 emit 的 params 是扁平 key。从 plan 读取 emit 参数时用 rt.flattenEmitConfig()，写回时用 rt.unflattenEmitConfig()。
 9. Health check：GET /health 返回 {"ok":true}，可用于启动时验证后端可用。

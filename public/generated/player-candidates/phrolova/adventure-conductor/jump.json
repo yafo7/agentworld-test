@@ -1,0 +1,74 @@
+{
+  "_duration": 1.2,
+  "_loop": false,
+  "body": {
+    "drop": {
+      "axis": "y",
+      "amplitude": 0.16,
+      "bounce": 0.38
+    },
+    "squash": {
+      "axis": "y",
+      "amount": 0.94
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.38,
+      "frequency": 0.85
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.38,
+      "frequency": 0.85
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.3,
+      "frequency": 0.85
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.3,
+      "frequency": 0.85
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.08,
+      "frequency": 0.85
+    }
+  },
+  "_name": "方案 C · 轻装冒险版_jump",
+  "_type": "jump",
+  "_modelId": "phrolova_c",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "屈膝起跳轻盈落地",
+    "emitParticles": false
+  }
+}

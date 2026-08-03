@@ -68,6 +68,13 @@ test('controller applies climate to a Three scene and owns weather particles', (
   assert.ok(lightRig.sunLight.intensity < 1);
   assert.match(values.get('chii-manual-climate-v1'), /"weather":"rain"/);
 
+  const rainMesh = controller.weatherParticles.emitters[0].instancedMesh;
+  controller.setWeatherEffectsVisible(false);
+  assert.equal(rainMesh.visible, false);
+  assert.equal(rainMesh.count, 0);
+  controller.setWeatherEffectsVisible(true);
+  assert.equal(rainMesh.visible, true);
+
   controller.setState({ weather: 'clear' });
   assert.equal(controller.weatherParticles, null);
   controller.dispose();

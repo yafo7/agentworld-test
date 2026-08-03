@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "奇异岛·剧情演出"
+  short_description: "设计奇异岛剧情节拍、角色调度、镜头语言、对白与场景转场演出"
+  default_prompt: "Use $chii-story to design and implement a Chii Island story performance."

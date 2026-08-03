@@ -1,0 +1,200 @@
+{
+  "name": "指挥棒",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "baton",
+      "name": "指挥棒",
+      "transform": {
+        "pos": [
+          -0.55,
+          0.18,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          0.13,
+          0.46,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 0.22,
+          "depth": 0.26
+        },
+        "color": 16053486
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          0.28,
+          0.97,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.16,
+          "depth": 0.16
+        },
+        "color": 12567752
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          0.46,
+          1.59,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.075,
+          "depth": 0.07
+        },
+        "color": 1381912
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          0.78,
+          2.69,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.05,
+          "depth": 0.05
+        },
+        "color": 1052947
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          1.05,
+          3.6,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.028,
+          "depth": 0.03
+        },
+        "color": 592395
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "baton",
+      "transform": {
+        "pos": [
+          1.19,
+          4.08,
+          0
+        ],
+        "quat": [
+          -0.57,
+          -0.42,
+          0.42,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.014,
+          "depth": 0.01
+        },
+        "color": 197379
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785061691264,
+      "provider": "gpt",
+      "data": "1Q6g9UMNQao0TZBEIuuDjbYUNk4msUY2JsTA3sZpgfX1+Kgj2C9ur+qQ6iCvputlNpFW8HmsfHPwrkR7LZv3ADkaz6+o94SpZJpo1TfhKEeBj4NU3EFs0RU7LJllCzeCxp6HZAsAR+Kt6murgu5ZWgHf8XQq7o/hfvTAIoL0coV8EQeQowcBx9fKCm1yYdxSUlPUDxrbnDi4QokOzQOO+xYAs8W0uhNQXqHgCIglGoOpZ88ipPT19oouOsH3uwWSSiNztT2FKhm9UIF4rUOl9+Z2LzirUrGO9BkdH5FBvF+PQMu5chAc28+/QS0pUWPyLAsv5FA2wuCV2lILmWOmRs9rEJOJYJVPotFTekUic8EGpflmiK2oIIgV9qFO71sz7JotQxcuMFfGzmsYsmkYgafzZsUAyvYFo++csGB4/Jo/HgNR9I6Uoq2GdW1ZUl0IVUaIKN3E3MfejAe9i9jVSg3JXu9jl6dLrISFDA7umOUy9rsiWD5BuT25bHDamTNqbMmkGYsGkYvmKICpgPWYxWp/LlXZzA1AizlXjlGen/IgpIVIk30297s/PjQbzLdJxDXF0JXDohP2Ea9XWCLtUSQ1y5Azge6kef+i2JMtNsNVFaaX5gM6PV1k1cw0Y9CqPjvACYZ3Bag/Wc1KxhRJP+FSE3Y8k9rd5WneyYU0rtejWwb9qOWInT7lhC3E8/o18arbRjOlP9HiB0hP5wSzvNqtpwRYMG4AA3Q1NeGFMvjJKMZv3xTfqVlVFJHyNcLHjoNwqEyB/Xuo/89nTTrQ6MwItzotfpLVYMDbA4x5k4jpF1dnjGFx0uLxGNWt3ebbMrmeZSzSXzXCYrua/YpXVh581eT5gIx2FyB0a3ogQIA5qnVE2XeUQiSX",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipment_prop",
+    "chiiEquipmentId": "conductor-baton",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

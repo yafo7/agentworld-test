@@ -21,3 +21,16 @@ test('temporary VFX presets share one lifecycle service', () => {
   assert.equal(service.effects.size, 0);
   service.dispose();
 });
+
+test('temporary VFX scales within bounds for a large visual target', () => {
+  const scene = new THREE.Scene();
+  const target = new THREE.Group();
+  const visual = new THREE.Mesh(new THREE.BoxGeometry(2, 9, 2));
+  visual.position.y = 4.5;
+  target.add(visual);
+  scene.add(target);
+  const service = new TemporaryVfxService({ scene });
+  const key = service.playPreset('workStart', { target });
+  assert.equal(service.effects.get(key).visualScale, 1.8);
+  service.dispose();
+});

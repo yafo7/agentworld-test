@@ -15,6 +15,7 @@ test('content adapter hides provider selection behind semantic profiles', async 
     },
     chat: async (...args) => { calls.push(['chat', ...args]); return 'ok'; },
     materialTagVocabulary: () => ({ version: 'test-tags' }),
+    vfxTagVocabulary: () => ({ version: 'test-vfx', README: {}, presets: {} }),
   });
 
   await adapter.generateModel({ description: '木制工具箱', quality: 'voxel' });
@@ -31,8 +32,55 @@ test('content adapter hides provider selection behind semantic profiles', async 
   assert.deepEqual(calls[2].slice(2, 5), ['花环', '把花环加在头部', 'gpt']);
   assert.deepEqual(calls[2][5], { timeoutMs: 300000 });
   assert.equal(calls[3][4], 'gpt');
-  assert.deepEqual(calls[3][6], { timeoutMs: 300000 });
+  assert.deepEqual(calls[3][6], {
+    timeoutMs: 300000,
+    vfxTags: { version: 'test-vfx', README: {}, presets: {} },
+  });
   assert.equal(calls[4][2], 'deepseek');
+});
+
+test('content adapter passes model-library parts to mount without stringifying JSON', async () => {
+  const calls = [];
+  const partModel = { name: '锄头', _meta: { ai: { v: 1 } } };
+  const adapter = new VoxelContentAdapter({
+    api: {
+      mountModel: async (...args) => {
+        calls.push(args);
+        return { modelJson: {} };
+      },
+    },
+  });
+
+  await adapter.mountPart({
+    primaryModelJson: { _meta: { ai: { v: 1 } } },
+    part: partModel,
+    placement: '将木柄固定在右手掌心，锄刃朝前',
+  });
+
+  assert.equal(calls[0][1], partModel);
+  assert.equal(calls[0][2], '将木柄固定在右手掌心，锄刃朝前');
+  assert.equal(calls[0][3], 'gpt');
+});
+
+test('content adapter maps GPT Pro to the explicit voxel-pro backend mode', async () => {
+  const calls = [];
+  const adapter = new VoxelContentAdapter({
+    api: {
+      generateModel: async (...args) => {
+        calls.push(args);
+        return { modelJson: {} };
+      },
+    },
+    materialTagVocabulary: () => ({ version: 'test-tags' }),
+  });
+
+  await adapter.generateModel({ description: '双眼灰绿双辫少女', quality: 'voxel-pro' });
+
+  assert.deepEqual(calls[0], ['双眼灰绿双辫少女', 'gpt', 'voxel-pro', {
+    model: 'gpt-5.6-sol-high',
+    timeoutMs: 300000,
+    materialTags: { version: 'test-tags' },
+  }]);
 });
 
 test('local runtime repository resolves aliases without Studio metadata', async () => {

@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import fs from 'node:fs';
+
+const html = fs.readFileSync(
+  new URL('../src/demos/chii-island/index.html', import.meta.url),
+  'utf8',
+);
+const main = fs.readFileSync(
+  new URL('../src/demos/chii-island/main.js', import.meta.url),
+  'utf8',
+);
+
+test('ESC management panel exposes an accessible close button using the shared close state', () => {
+  assert.match(html, /id="btn-close-mgmt"/);
+  assert.match(html, /aria-label="关闭管理面板"/);
+  assert.match(main, /btnCloseMgmt\?\.addEventListener\('click', \(\) => setPanelOpen\(false\)\)/);
+});
+
+test('ESC management panel can replay the completed Act Zero prologue', () => {
+  assert.match(html, /id="btn-replay-act-zero"/);
+  assert.match(html, /重播第0幕：落难/);
+  assert.match(main, /actZeroDirector\.replay\(\)/);
+});
+
+test('ESC management panel opens the character showcase through the shared page transition', () => {
+  assert.match(html, /id="btn-open-character-showcase"/);
+  assert.match(html, /href="\.\/player-candidates\.html"/);
+  assert.match(html, /data-chii-navigation/);
+  assert.doesNotMatch(html, /id="btn-open-character-showcase"[\s\S]*?target="_blank"/);
+  assert.match(main, /createChiiPageLoadingScreen/);
+});
+
+test('ESC scene switcher presents Original first', () => {
+  const original = html.indexOf('data-scene-style="original">Original');
+  const pro = html.indexOf('data-scene-style="pro">Pro 场景');
+  const voxel = html.indexOf('data-scene-style="voxel">Voxel 场景');
+  assert.ok(original >= 0 && original < pro && pro < voxel);
+  assert.doesNotMatch(html, /初版场景/);
+});

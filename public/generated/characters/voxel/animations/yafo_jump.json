@@ -1,0 +1,67 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.45,
+      "frequency": 1
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    }
+  },
+  "leftWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.18,
+      "frequency": 1.5
+    }
+  },
+  "rightWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.18,
+      "frequency": 1.5
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 25
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.2,
+      "frequency": 1.5
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 25
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.2,
+      "frequency": 1.5,
+      "phase": 0.25
+    }
+  },
+  "_name": "yafo-jump",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "yafo",
+    "quality": "voxel",
+    "prompt": "张开翅膀向上跳跃"
+  }
+}

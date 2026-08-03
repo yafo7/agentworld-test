@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "baseline": "1203a1e",
+  "defaultVariant": "pro",
+  "characters": [
+    {
+      "id": "momo",
+      "variants": {
+        "pro": "generated/models/momo.json",
+        "voxel": "generated/characters/voxel/models/momo.json"
+      }
+    },
+    {
+      "id": "mako",
+      "variants": {
+        "pro": "generated/models/mako.json",
+        "voxel": "generated/characters/voxel/models/mako.json"
+      }
+    },
+    {
+      "id": "yafo",
+      "variants": {
+        "pro": "generated/models/yafo.json",
+        "voxel": "generated/characters/voxel/models/yafo.json"
+      }
+    },
+    {
+      "id": "lingq",
+      "variants": {
+        "pro": "generated/models/lingq.json",
+        "voxel": "generated/characters/voxel/models/lingq.json"
+      }
+    },
+    {
+      "id": "fangk",
+      "variants": {
+        "pro": "generated/models/fangk.json",
+        "voxel": "generated/characters/voxel/models/fangk.json"
+      }
+    },
+    {
+      "id": "mok",
+      "variants": {
+        "pro": "generated/models/mok.json",
+        "voxel": "generated/characters/voxel/models/mok.json"
+      }
+    },
+    {
+      "id": "crab",
+      "variants": {
+        "pro": "generated/models/crab.json",
+        "voxel": "generated/characters/voxel/models/crab.json"
+      }
+    }
+  ]
+}

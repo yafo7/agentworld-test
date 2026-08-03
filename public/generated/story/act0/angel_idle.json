@@ -1,0 +1,31 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.8
+    },
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.8
+    }
+  },
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.35,
+      "frequency": 0.8
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.35,
+      "frequency": 0.8
+    }
+  },
+  "_name": "第0幕天使_idle",
+  "_type": "idle",
+  "_modelId": "act0_angel"
+}

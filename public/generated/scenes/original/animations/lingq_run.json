@@ -1,0 +1,82 @@
+{
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    },
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.5
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 1.5,
+      "phase": 0.25
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.18,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.18,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "tail": {
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.14,
+        "frequency": 1.5,
+        "phase": 0.25
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.08,
+        "frequency": 1.5,
+        "phase": 0.5
+      }
+    ]
+  },
+  "neck_base": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  }
+}

@@ -5,12 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chii Island — 奇异岛</title>
+    <link rel="stylesheet" href="./presentation/chii-page-loading.css" />
+    <link rel="stylesheet" href="./presentation/inventory.css" />
     <style>
       html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
-      #app { display: flex; width: 100%; height: 100%; }
-      #game-wrap { flex: 1; position: relative; overflow: hidden; }
-      #resizer { width: 6px; cursor: col-resize; background: #333; z-index: 10; flex-shrink: 0; }
-      #editor-wrap { width: 380px; min-width: 200px; max-width: 600px; background: #0f0f1a; display: flex; flex-direction: column; flex-shrink: 0; }
+      #app { width: 100%; height: 100%; }
+      #game-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
 
       /* ESC management panel */
       #mgmt-panel {
@@ -30,6 +30,14 @@
         background: #fff9df; border-right: 3px solid #6d4b2f; border-bottom: 3px solid #6d4b2f;
         transform: rotate(45deg);
       }
+      .mgmt-close {
+        position: absolute; top: 12px; right: 12px; z-index: 2;
+        width: 32px; height: 32px; padding: 0; border: 2px solid #9b7658; border-radius: 50%;
+        background: #fffdf4; color: #6d4b2f; cursor: pointer;
+        font: 700 24px/26px Arial,sans-serif;
+      }
+      .mgmt-close:hover { background: #ffe36d; transform: rotate(5deg); }
+      .mgmt-close:focus-visible { outline: 3px solid rgba(112,201,176,0.7); outline-offset: 2px; }
       .mgmt-card h2 { margin: 0 0 16px; font-size: 19px; color: #4d3727; letter-spacing: 0; }
       .mgmt-card h2::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 9px; border-radius: 50%; background: #ff8b69; box-shadow: 17px 7px 0 #70c9b0; vertical-align: 3px; }
       .mgmt-card label { display: flex; align-items: center; gap: 8px; color: #5b402c; cursor: pointer; font-size: 14px; padding: 4px 0; }
@@ -45,10 +53,57 @@
       .scene-style-toggle button:last-child { border-left: 0; border-radius: 0 4px 4px 0; }
       .scene-style-toggle button:hover { background: #fff3c4; }
       .scene-style-toggle button.active { background: #ffe36d; border-color: #6d4b2f; color: #4d3727; font-weight: 700; }
+      .scene-version-toggle { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .scene-version-toggle button { min-width: 0; padding: 0 4px; font-size: 12px; }
+      .scene-version-toggle button + button { border-left: 0; }
+      .scene-save-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+      .scene-save-slot {
+        display: grid; gap: 2px; min-width: 0; min-height: 48px; padding: 6px 4px;
+        border: 2px solid #9b7658; border-radius: 6px; background: #fffdf4; color: #6d4b2f;
+        font-family: "Microsoft YaHei","PingFang SC",sans-serif; cursor: pointer;
+      }
+      .scene-save-slot:hover { background: #fff3c4; }
+      .scene-save-slot.active { background: #ffe36d; border-color: #6d4b2f; color: #4d3727; }
+      .scene-save-slot strong { font-size: 12px; }
+      .scene-save-slot small { overflow: hidden; color: #85664e; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+      .scene-save-slot[data-state="empty"] small { opacity: 0.65; }
+      .scene-save-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+      .scene-save-actions button {
+        min-height: 36px; border: 2px solid #6d4b2f; border-radius: 6px;
+        font: 700 12px "Microsoft YaHei","PingFang SC",sans-serif; cursor: pointer;
+      }
+      #btn-scene-record { background: #ffe36d; color: #4d3727; }
+      #btn-scene-reset { background: #fffdf4; color: #9d573f; }
+      #btn-scene-reset.is-confirming { background: #ffb39d; color: #643525; }
+      .scene-save-actions button:hover:not(:disabled) { transform: translateY(-1px); }
+      .scene-save-actions button:disabled { cursor: default; opacity: 0.42; }
+      #scene-save-status {
+        min-height: 30px; margin-top: 8px; padding: 7px 9px; border-left: 4px solid #70c9b0;
+        border-radius: 0 5px 5px 0; background: rgba(112,201,176,0.13);
+        color: #5b402c; font-size: 10px; line-height: 1.5;
+      }
+      #scene-save-status[data-state="warning"] { border-left-color: #ff8b69; background: rgba(255,139,105,0.12); }
+      #scene-save-status[data-state="error"] { border-left-color: #d65c5c; background: rgba(214,92,92,0.12); }
       .render-quality-toggle { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .render-quality-toggle button { min-width: 0; padding: 0 4px; font-size: 12px; }
       .render-quality-toggle button + button { border-left: 0; }
       .render-post-toggle { margin-top: 8px; padding: 7px 9px !important; border-left: 4px solid #70c9b0; background: rgba(112,201,176,0.13); }
+      .world-audit-button {
+        width: 100%; min-height: 34px; margin-top: 10px; border: 2px solid #9b7658;
+        border-radius: 4px; background: #fffdf4; color: #5e402c; cursor: pointer;
+        font: 700 13px "Microsoft YaHei","PingFang SC",sans-serif;
+      }
+      .world-audit-button:hover { background: #fff3c4; }
+      .world-audit-status { min-height: 18px; margin-top: 6px; color: #76583f; font-size: 12px; text-align: center; }
+      .mgmt-feature-link {
+        display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: center;
+        min-height: 48px; padding: 8px 10px; border: 2px solid #9b7658; border-radius: 6px;
+        background: #fffdf4; color: #4d3727; text-decoration: none;
+      }
+      .mgmt-feature-link:hover { background: #fff3c4; }
+      .mgmt-feature-link strong { font-size: 13px; }
+      .mgmt-feature-link small { grid-column: 1; color: #85664e; font-size: 10px; }
+      .mgmt-feature-link span { grid-column: 2; grid-row: 1 / 3; color: #9d573f; font-size: 18px; font-weight: 700; }
       .climate-controls { display: grid; gap: 10px; }
       .climate-mode-toggle { margin-bottom: 2px; }
       .climate-panel[hidden] { display: none !important; }
@@ -89,18 +144,27 @@
       .climate-privacy a { color: #6b8060; text-underline-offset: 2px; }
       .mgmt-hint { margin-top: 12px; font-size: 11px; color: #8d715a; }
 
-      /* E-key interaction prompt */
+      /* Context interaction prompt */
       #interact-prompt {
         position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
         padding: 8px 14px; border-radius: 8px;
         background: rgba(0,0,0,0.65); color: #f5ead0;
         font-family: "Microsoft YaHei","PingFang SC",sans-serif;
-        font-size: 14px; display: flex; align-items: center; gap: 8px;
+        font-size: 14px; display: flex; align-items: center; gap: 12px;
+        justify-content: center; flex-wrap: wrap;
+        max-width: calc(100vw - 32px); box-sizing: border-box;
         pointer-events: none; opacity: 0;
         transition: opacity 0.15s ease; z-index: 150;
         backdrop-filter: blur(4px);
       }
       #interact-prompt.visible { opacity: 1; }
+      .interact-action { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+      .interact-action > span:last-child { overflow-wrap: anywhere; }
+      .interact-action + .interact-action {
+        padding-left: 12px;
+        border-left: 1px solid rgba(245,234,208,0.3);
+      }
+      .interact-action[hidden] { display: none; }
       .keycap {
         display: inline-flex; align-items: center; justify-content: center;
         width: 22px; height: 22px; border-radius: 4px;
@@ -117,13 +181,42 @@
       #runtime-region { font-size: 15px; font-weight: 700; }
       #runtime-follower { margin-top: 3px; color: rgba(255,248,231,0.78); font-size: 12px; }
       #runtime-activity {
-        display: none; margin-top: 8px; max-width: min(320px, calc(100vw - 32px));
-        padding: 7px 9px; border-left: 3px solid #e9b44c; border-radius: 4px;
-        background: rgba(30,27,34,0.78); text-shadow: none;
+        position: fixed; top: 16px; right: 16px; z-index: 125; display: none;
+        width: min(310px, calc(100vw - 32px)); padding: 12px 13px 11px;
+        border: 2px solid rgba(255,255,255,0.9); border-radius: 8px;
+        background: rgba(255,249,230,0.96); color: #4f4038; text-shadow: none;
+        box-shadow: 0 7px 0 rgba(76,64,53,0.14), 0 12px 28px rgba(54,45,38,0.2);
+        box-sizing: border-box; overflow: hidden;
       }
       #runtime-activity.visible { display: block; }
-      #runtime-activity-title { font-size: 12px; font-weight: 700; }
-      #runtime-activity-stage { margin-top: 2px; color: rgba(255,248,231,0.76); font-size: 11px; }
+      .runtime-activity-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .runtime-activity-kicker { color: #2f7968; font-size: 11px; font-weight: 700; }
+      #runtime-activity-phase {
+        flex: 0 0 auto; padding: 3px 7px; border-radius: 6px;
+        background: #75bda9; color: #173e36; font-size: 10px; font-weight: 800;
+      }
+      #runtime-activity-title { margin-top: 6px; color: #49372f; font-size: 15px; font-weight: 800; }
+      #runtime-activity-stage { margin-top: 2px; color: #735f52; font-size: 12px; line-height: 1.45; }
+      #runtime-activity-progress {
+        height: 5px; margin-top: 8px; overflow: hidden; border-radius: 3px; background: #e9dfc8;
+      }
+      #runtime-activity-progress-value {
+        display: block; width: 25%; height: 100%; border-radius: 3px; background: #f0a866;
+        transition: width 0.25s ease;
+      }
+      #runtime-activity-task {
+        display: none; align-items: flex-start; gap: 7px; margin-top: 9px; padding: 7px 8px;
+        border: 1px solid #ead7a8; border-radius: 7px; background: #fff3c9;
+        color: #66513e; font-size: 11px; line-height: 1.45;
+      }
+      #runtime-activity-task.visible { display: flex; }
+      #runtime-activity-task::before {
+        content: ''; flex: 0 0 9px; width: 9px; height: 9px; margin-top: 3px;
+        border: 2px solid #e49a55; border-radius: 50%; background: #fff9e6;
+      }
+      #runtime-activity-task[data-state="complete"] { color: #33705f; background: #e4f4df; border-color: #abd2b1; }
+      #runtime-activity-task[data-state="complete"]::before { border-color: #4d9a7f; background: #4d9a7f; }
+      #runtime-activity-helper { margin-top: 7px; color: #887568; font-size: 10px; }
       #runtime-job {
         position: fixed; top: 16px; left: 50%; transform: translate(-50%, -10px);
         z-index: 170; min-width: 260px; max-width: min(460px, calc(100vw - 32px));
@@ -139,7 +232,7 @@
       #runtime-job-title { font-size: 13px; font-weight: 700; }
       #runtime-job-stage { margin-top: 3px; font-size: 12px; color: rgba(255,248,231,0.72); }
       #runtime-perf {
-        position: fixed; top: 16px; right: 16px; z-index: 180; display: none;
+        position: fixed; right: 16px; bottom: 16px; z-index: 180; display: none;
         padding: 8px 10px; border-radius: 6px; white-space: pre;
         background: rgba(10,12,15,0.78); color: #b7f0c1;
         font: 11px/1.5 Consolas, monospace; pointer-events: none;
@@ -188,15 +281,66 @@
     </style>
   </head>
   <body>
+    <div id="chii-page-loader" class="chii-page-loader" role="status" aria-live="polite" aria-busy="true">
+      <div class="chii-loader-scenery" aria-hidden="true">
+        <span class="chii-loader-sun"></span>
+        <span class="chii-loader-cloud chii-loader-cloud-a"></span>
+        <span class="chii-loader-cloud chii-loader-cloud-b"></span>
+        <span class="chii-loader-ground"></span>
+        <span class="chii-loader-tile chii-loader-tile-a"></span>
+        <span class="chii-loader-tile chii-loader-tile-b"></span>
+        <span class="chii-loader-tile chii-loader-tile-c"></span>
+      </div>
+      <section class="chii-loader-bubble">
+        <div class="chii-loader-heading">
+          <span class="chii-loader-face" aria-hidden="true"><i></i><i></i></span>
+          <div>
+            <span class="chii-loader-badge">CHII ISLAND</span>
+            <strong data-chii-loader-title>奇异岛正在醒来</strong>
+          </div>
+        </div>
+        <p data-chii-loader-detail>宠物们正在把今天的路牌摆正。</p>
+        <div class="chii-loader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <button class="chii-loader-retry" type="button" hidden>再试一次</button>
+      </section>
+    </div>
     <div id="app">
       <div id="game-wrap"></div>
-      <div id="resizer"></div>
-      <div id="editor-wrap"></div>
+    </div>
+
+    <div id="chii-inventory" hidden aria-hidden="true">
+      <section class="inventory-bubble" role="dialog" aria-modal="true" aria-labelledby="inventory-title">
+        <header class="inventory-head">
+          <div class="inventory-title-wrap">
+            <span class="inventory-pocket-mark" aria-hidden="true">B</span>
+            <div>
+              <h2 id="inventory-title">我的小口袋</h2>
+              <p>今天带什么出门？慢慢挑。</p>
+            </div>
+          </div>
+          <button class="inventory-close" type="button" data-inventory-close aria-label="关闭背包" title="关闭">×</button>
+        </header>
+        <div class="inventory-body">
+          <div class="inventory-grid" data-inventory-grid aria-label="背包物品"></div>
+          <aside class="inventory-detail">
+            <div class="inventory-detail-label">现在选中</div>
+            <h3 data-inventory-name>道具</h3>
+            <span class="inventory-category" data-inventory-category>岛上物件</span>
+            <p class="inventory-status" data-inventory-status data-state="ready"></p>
+            <div class="inventory-actions">
+              <button type="button" data-inventory-equip>拿在右手</button>
+              <button class="secondary" type="button" data-inventory-clear>放回口袋</button>
+            </div>
+          </aside>
+        </div>
+        <p class="inventory-key-hint">再次按 <kbd>B</kbd> 也可以合上口袋</p>
+      </section>
     </div>
 
     <!-- ESC management panel -->
     <div id="mgmt-panel">
       <div class="mgmt-card">
+        <button id="btn-close-mgmt" class="mgmt-close" type="button" aria-label="关闭管理面板" title="关闭">×</button>
         <h2>管理面板</h2>
         <label><input type="checkbox" id="chk-collision" /> 显示碰撞体积</label>
         <label><input type="checkbox" id="chk-performance" /> 显示性能数据</label>
@@ -208,11 +352,34 @@
           </div>
         </div>
         <div class="mgmt-section">
-          <div class="mgmt-section-title">场景风格</div>
-          <div class="scene-style-toggle" role="group" aria-label="场景风格">
+          <div class="mgmt-section-title">场景版本</div>
+          <div class="scene-style-toggle scene-version-toggle" role="group" aria-label="场景版本">
+            <button type="button" data-scene-style="original">Original</button>
             <button type="button" data-scene-style="pro">Pro 场景</button>
             <button type="button" data-scene-style="voxel">Voxel 场景</button>
           </div>
+        </div>
+        <div class="mgmt-section">
+          <div class="mgmt-section-title">岛屿记录</div>
+          <div class="scene-save-slots" role="group" aria-label="岛屿记录槽位">
+            <button class="scene-save-slot" type="button" data-scene-save-slot="0">
+              <strong>记录 1</strong>
+              <small data-scene-save-time>空记录</small>
+            </button>
+            <button class="scene-save-slot" type="button" data-scene-save-slot="1">
+              <strong>记录 2</strong>
+              <small data-scene-save-time>空记录</small>
+            </button>
+            <button class="scene-save-slot" type="button" data-scene-save-slot="2">
+              <strong>记录 3</strong>
+              <small data-scene-save-time>空记录</small>
+            </button>
+          </div>
+          <div class="scene-save-actions">
+            <button id="btn-scene-record" type="button">Record 记住现在</button>
+            <button id="btn-scene-reset" type="button">Reset 恢复</button>
+          </div>
+          <div id="scene-save-status" role="status" aria-live="polite"></div>
         </div>
         <div class="mgmt-section">
           <div class="mgmt-section-title">画面表现</div>
@@ -228,6 +395,8 @@
             <button type="button" data-render-quality="ultra">极致</button>
           </div>
           <label class="render-post-toggle"><input type="checkbox" id="chk-post-processing" /> 柔和色彩</label>
+          <button id="btn-world-tuning-audit" class="world-audit-button" type="button">检查世界比例</button>
+          <div id="world-tuning-audit-status" class="world-audit-status" role="status"></div>
         </div>
         <div class="mgmt-section climate-controls">
           <div class="mgmt-section-title">岛屿气候</div>
@@ -270,22 +439,54 @@
             <p class="climate-privacy">点击同步后才会请求定位；约 1 公里精度的位置只用于查询天气和城市，不保存坐标，也不会发给 AI 或模型后端。城市查询由 <a href="https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api" target="_blank" rel="noopener noreferrer">BigDataCloud</a> 提供。</p>
           </div>
         </div>
+        <div class="mgmt-section">
+          <div class="mgmt-section-title">岛屿故事</div>
+          <button id="btn-replay-act-zero" class="world-audit-button" type="button">重播第0幕：落难</button>
+        </div>
+        <div class="mgmt-section">
+          <div class="mgmt-section-title">岛上角色</div>
+          <a
+            id="btn-open-character-showcase"
+            class="mgmt-feature-link"
+            href="./player-candidates.html"
+            data-chii-navigation
+            data-loading-title="正在前往角色展柜"
+            data-loading-detail="大家听见脚步声，已经站好啦。"
+          >
+            <strong>打开角色展柜</strong>
+            <small>主角候选与全体岛上居民</small>
+            <span aria-hidden="true">›</span>
+          </a>
+        </div>
         <div class="mgmt-hint">按 ESC 关闭面板 · 点击面板外关闭</div>
       </div>
     </div>
 
-    <!-- E-key interaction prompt -->
+    <!-- Context interaction prompt -->
     <div id="interact-prompt">
-      <span class="keycap">E</span>
-      <span id="interact-prompt-text"></span>
+      <span class="interact-action">
+        <span id="interact-prompt-key" class="keycap">E</span>
+        <span id="interact-prompt-text"></span>
+      </span>
+      <span id="interact-prompt-secondary" class="interact-action" hidden>
+        <span id="interact-prompt-secondary-key" class="keycap">F</span>
+        <span id="interact-prompt-secondary-text"></span>
+      </span>
     </div>
     <div id="runtime-world">
       <div id="runtime-region">奇异岛</div>
       <div id="runtime-follower">独自探索</div>
-      <div id="runtime-activity">
-        <div id="runtime-activity-title"></div>
-        <div id="runtime-activity-stage"></div>
+    </div>
+    <div id="runtime-activity" role="status" aria-live="polite">
+      <div class="runtime-activity-head">
+        <span class="runtime-activity-kicker">城镇小活动</span>
+        <span id="runtime-activity-phase">准备 1/4</span>
       </div>
+      <div id="runtime-activity-title"></div>
+      <div id="runtime-activity-stage"></div>
+      <div id="runtime-activity-progress"><span id="runtime-activity-progress-value"></span></div>
+      <div id="runtime-activity-task" data-state="open"><span id="runtime-activity-task-text"></span></div>
+      <div id="runtime-activity-helper"></div>
     </div>
     <div id="runtime-job" data-state="working">
       <div id="runtime-job-title"></div>

@@ -1,0 +1,28 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "claw_0": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 1,
+      "phase": 0
+    }
+  },
+  "claw_1": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  }
+}

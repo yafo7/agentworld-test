@@ -1,0 +1,706 @@
+{
+  "name": "fangk",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "西装躯干",
+      "transform": {
+        "pos": [
+          0,
+          1.25,
+          0
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "name": "头部",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "glasses",
+      "name": "圆框眼镜",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.59,
+          0.425
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "armL",
+      "name": "左臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.68,
+          1.23,
+          0
+        ]
+      }
+    },
+    {
+      "id": "armR",
+      "name": "右臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.68,
+          1.23,
+          0
+        ]
+      }
+    },
+    {
+      "id": "legL",
+      "name": "左腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.3,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "legR",
+      "name": "右腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.3,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.15,
+          "height": 1.45,
+          "depth": 0.58
+        },
+        "color": 1513757
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.93,
+          0.31
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.86,
+          "depth": 0.04
+        },
+        "color": 15790312
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.83,
+          0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.58,
+          "depth": 0.06
+        },
+        "color": 9185577
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.22,
+          "depth": 0.3
+        },
+        "color": 14262385
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.5,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.94,
+          "depth": 0.72
+        },
+        "color": 14262385
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.59,
+          0.402
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.065,
+          "height": 0.07,
+          "depth": 0.025
+        },
+        "color": 3158064
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.23,
+          0.59,
+          0.402
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.065,
+          "height": 0.07,
+          "depth": 0.025
+        },
+        "color": 3158064
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.28,
+          0.41
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.055,
+          "depth": 0.035
+        },
+        "color": 7685178
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          1.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.03,
+          "height": 0.42,
+          "depth": 0.82
+        },
+        "color": 15909403
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.94,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.2,
+          "height": 0.12,
+          "depth": 0.94
+        },
+        "color": 16766251
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          -0.13,
+          0.09,
+          0.005
+        ],
+        "quat": [
+          0.66,
+          -0.25,
+          -0.25,
+          0.66
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          -0.13,
+          -0.08,
+          0.005
+        ],
+        "quat": [
+          -0.25,
+          0.66,
+          0.66,
+          -0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          -0.32,
+          -0.08,
+          0.005
+        ],
+        "quat": [
+          0.25,
+          0.66,
+          0.66,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          -0.32,
+          0.09,
+          0.005
+        ],
+        "quat": [
+          0.66,
+          0.25,
+          0.25,
+          0.66
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          0.33,
+          0.09,
+          0.005
+        ],
+        "quat": [
+          0.66,
+          -0.25,
+          -0.25,
+          0.66
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          0.33,
+          -0.08,
+          0.005
+        ],
+        "quat": [
+          -0.25,
+          0.66,
+          0.66,
+          -0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          0.14,
+          -0.08,
+          0.005
+        ],
+        "quat": [
+          0.25,
+          0.66,
+          0.66,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          0.14,
+          0.09,
+          0.005
+        ],
+        "quat": [
+          0.66,
+          0.25,
+          0.25,
+          0.66
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.035,
+          "depth": 0.03
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "glasses",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.035,
+          "depth": 0.035
+        },
+        "color": 2435115
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "armL",
+      "transform": {
+        "pos": [
+          -0.06,
+          -0.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 1.18,
+          "depth": 0.42
+        },
+        "color": 1513757
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "armL",
+      "transform": {
+        "pos": [
+          -0.06,
+          -1.35,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.32,
+          "depth": 0.36
+        },
+        "color": 14262385
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "armR",
+      "transform": {
+        "pos": [
+          0.06,
+          -0.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 1.18,
+          "depth": 0.42
+        },
+        "color": 1513757
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "armR",
+      "transform": {
+        "pos": [
+          0.06,
+          -1.35,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.32,
+          "depth": 0.36
+        },
+        "color": 14262385
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "legL",
+      "transform": {
+        "pos": [
+          0,
+          -0.57,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 1.15,
+          "depth": 0.5
+        },
+        "color": 1776929
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "legL",
+      "transform": {
+        "pos": [
+          0,
+          -1.14,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.22,
+          "depth": 0.68
+        },
+        "color": 723982
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "legR",
+      "transform": {
+        "pos": [
+          0,
+          -0.57,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 1.15,
+          "depth": 0.5
+        },
+        "color": 1776929
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "legR",
+      "transform": {
+        "pos": [
+          0,
+          -1.14,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.22,
+          "depth": 0.68
+        },
+        "color": 723982
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785206188158,
+      "provider": "gpt",
+      "data": "P3xrKXoerDoIz+Y/z7BuZ10zUS9XUSOZjLI1EChoYaFUg7FlG9R04Vg7D0tJcxx4EL8sXqcwYTCmzMoBqBAGNhUbjxY/ZCL9ub1pqJgSyenYCmYND2ArD9FmZ4sEooCZxTkZBHx8OB+qdBhTWlGVwiG5o3isTKTDnPu2EfOdQAmLR0zsieAzTngo/16+Precg6ihEe7s9fYDlOoOqHNS5KgHV4YiuP+S69BvjOTMWiMvkiwTrTnnBWKVOTQDmp/pootVPmKYIqJPPdrWO68DdsQsT5K9Cp/TDPTUhrQHmQGOJuXDAITbufHyiZM0RmAqELV4LrmtuyX//auxxR8twS6xBlhqpjd2fBiJAb3H44oACozUUWBLjot4KFin3WF3i2wdbeO2i2sTGSUETd9shEwdUeJz3qf4JMe78cT1sjhsxRooE2t3hDR9flMiTkDKOcomducWH9gUbFFrvZclz0nO407XnrydKHM6jQVsfc5nie1XEm0riGZHOo1v1eFaRW7IeCcqLYU9CFctnI/44xV6AU5/57SJJ8s14eb6035KlbJ7Bh9PUoZR5tcIbOay3NzRcz97narKCaQX4i9hm3kL773kE93kyCtHj+U1DzpGwqWgSWN2yc0YRbrTf/TwFbjZEFaHbch87NvWEoZvV1zmEJP7T848ojJp1jybTs1pTB12r4DBlT3Q4AOOKCdozss/SRE7i8+mIRvML/HLwDWGYM9D0SoTmbKfbMbRi6CMnxSC4TvVj6b4dOQSGc9E9nq0Z/W0mHvv73Y06H9mua8SoDerWcYSTPqXw9wXqFOdNtNRyokiiBaJM5Y0D8HlGXHOm5lW2kG8cJV3943sevLgCM3BwUFaJgY+dieNfDKkbpoK6jdNrPkqRXD5EedVe7gPjr/e6s2E0mal8VKIW7U+v1lZWOfTs8PubTdVPyPprw5DAIRCmnnGH3chCrdBL36UFbbUzExNtAsFxt1lvfGkO6YZnlNTicEegwzvSNIIIhH7s/SmEObCiItJIvOTUZwlp7jWbOI4VNVNP15zvECHVsSXJtUHVKQlPiwzFAetPcniF+WMmxlh5AMLdd4mzJu8Mp6z6JS50vQdP0RmGmOxVIatRLwssG4G4cc5O21p3DzRWbRSXRzmn+U1D3b0579jaqdSMsGaoHbuySnpcAHsvpY7kOKuq7SBagYsgothYGoqBxJSZGWrfZBax4ddrOqcXAWLJOQTQJTPxDfGeDN5Or2EW8svfri6cG15FwiTlFt5lt/blV9+Z8KBpqfMmNoahZwuwIZGlCXsObk8N30uQ2G2LP7PwCBwj5QBOCeoGGL+oACuY0Y3qp6y6QJGCIwFF2/wCGfjfA==",
+      "edits": ""
+    },
+    "chiiAssetRole": "pet",
+    "chiiAssetId": "fangk",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "和蔼方块人工程师，黑色西装，黄色安全帽，圆框眼镜，双手空置"
+  }
+}

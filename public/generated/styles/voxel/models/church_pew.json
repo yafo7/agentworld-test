@@ -1,0 +1,357 @@
+{
+  "name": "哥特教堂长椅",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "pew",
+      "name": "哥特教堂长椅",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          0,
+          1.02,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.2,
+          "height": 0.32,
+          "depth": 1.25
+        },
+        "color": 3283984
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          0,
+          0.78,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.8,
+          "height": 0.34,
+          "depth": 0.18
+        },
+        "color": 2429707
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          -2.08,
+          0.43,
+          -0.32
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.86,
+          "depth": 0.42
+        },
+        "color": 2692620
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          -2.08,
+          0.43,
+          0.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.86,
+          "depth": 0.42
+        },
+        "color": 2692620
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          2.08,
+          0.43,
+          -0.32
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.86,
+          "depth": 0.42
+        },
+        "color": 2692620
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          2.08,
+          0.43,
+          0.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.86,
+          "depth": 0.42
+        },
+        "color": 2692620
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          0,
+          1.8,
+          -0.53
+        ],
+        "quat": [
+          -0.76,
+          0,
+          0,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.56,
+          "height": 0.24,
+          "depth": 1.29
+        },
+        "color": 3678228
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          0,
+          2.49,
+          -0.64
+        ],
+        "quat": [
+          -0.76,
+          0,
+          0,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5,
+          "height": 0.34,
+          "depth": 0.26
+        },
+        "color": 2363913
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          -2.38,
+          1.78,
+          -0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 1.76,
+          "depth": 0.38
+        },
+        "color": 2692363
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          -2.38,
+          1.38,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.22,
+          "depth": 1.18
+        },
+        "color": 3809555
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          -2.38,
+          2.8,
+          -0.5
+        ],
+        "quat": [
+          -0.65,
+          -0.27,
+          0.27,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.34,
+          "depth": 0.25
+        },
+        "color": 2363913
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          2.38,
+          1.78,
+          -0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 1.76,
+          "depth": 0.38
+        },
+        "color": 2692363
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          2.38,
+          1.38,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.22,
+          "depth": 1.18
+        },
+        "color": 3809555
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "pew",
+      "transform": {
+        "pos": [
+          2.38,
+          2.8,
+          -0.5
+        ],
+        "quat": [
+          -0.65,
+          -0.27,
+          0.27,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.34,
+          "depth": 0.25
+        },
+        "color": 2363913
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785218230011,
+      "provider": "gpt",
+      "data": "BjdP4kXgMRlt2nxAC71CKC1QH9J6KEFTeVewjLjHGiA5Naiv7Is0JHao3ghixHwwunEy9PBZzIHdOVyEeTidS90Dcd6Ef5CwHJjbSbLROhMidERNkeveBD27oQl7xm9qBJ6AjUxN762ejFFczUyYTWfNtPD48k3zhGgvmSgFb8zkcZJ8/LbPm58uh3jAWij/+z4hVB8SbpDQwfGStqg2Zo+S6d7+mGwY/+RvL1+1XtUxO9Kb3pUYhk0WTMASKpn6QuBQ1T53fdMvVQGH4iG+pTj2B0ArKId1N9O+c7sFAa/pXUw4za0/cNXJEKSjixHFcwd9ejaDxzzStO9vyPT6xrtaLdZ5uza6sWMydSVuPgd5aoI8IshtzbC3/vkVCeavdv7Kex01Lg03heQLscxVj8ySToZiIGdpAdhp5SM0tWR098vZvXhC6xVE4x/Snwgmtgcg5+j3tIe7oldi87zwtRYDLIo7+xShTKjf47WeOWdnudHdF0wTvcSUo5732yjRcYsFOTHPZRnV32rT31HDgb44DRPyUDvGowYE9obApf5onpy6OhmssIHaCMtKIgyLY/r3X4b/boaIxa+qWjZViUkNbuB3m74yCS1XLbIlZwy0MyxP06EyvQELaHuCJDHiBMziZ6tFyAsZu7oKruzzZy+jXQLDaE/85CwDD9DTRdLMw2kNJCQn0gIPUgJETh4eZfVhJynLcrFSh09lIaG+VgoxTP2Z3tBXtBP/h/zfmChzk+AdLHVWusxZJo/hZ0sTv8RMhpDn3p+lSUiyu1Qhrl2wzlvfgJM+NFftvQs6noOT5YfLk4YiwDsV43kvLS2p88RQgwJnFv0Vgvm3hTtkfNVFTWgD/63BH7Q2AwJho3D1NevbnukM3FTC",
+      "edits": ""
+    },
+    "chiiAssetRole": "churchPew",
+    "chiiAssetId": "church_pew",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "深棕木制哥特教堂长椅，高直靠背、尖拱扶手、四条短腿",
+    "chiiAssetCategory": "furniture",
+    "chiiTargetSize": {
+      "width": 5.6,
+      "height": 1.35,
+      "depth": 1.5
+    }
+  }
+}

@@ -1,0 +1,638 @@
+{
+  "name": "森林瀑布",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "rock_base",
+      "name": "完整灰岩底座",
+      "transform": {
+        "pos": [
+          -0.05,
+          1.85,
+          -0.475
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone"
+        }
+      ]
+    },
+    {
+      "id": "water_runs",
+      "name": "层间浅溪",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          1.01,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "pool"
+        }
+      ]
+    },
+    {
+      "id": "upper_fall",
+      "name": "上层宽水帘",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          3.39,
+          -1.655
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "fall"
+        }
+      ]
+    },
+    {
+      "id": "middle_fall",
+      "name": "中层宽水帘",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          1.79,
+          0.375
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "fall"
+        }
+      ]
+    },
+    {
+      "id": "lower_fall",
+      "name": "下层宽水帘",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          0.03,
+          2.555
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "fall"
+        }
+      ]
+    },
+    {
+      "id": "pool",
+      "name": "底部浅水潭",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          -1.03,
+          3.625
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "pool"
+        }
+      ]
+    },
+    {
+      "id": "tree_trunks",
+      "name": "森林树干",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0,
+          3.45,
+          -0.675
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "pine"
+        }
+      ]
+    },
+    {
+      "id": "tree_canopies",
+      "name": "方块森林树冠",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0,
+          4.7,
+          -0.675
+        ]
+      },
+      "tags": [
+        {
+          "tag": "foliage",
+          "value": "leaf"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          -1.5,
+          0.475
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 12,
+          "height": 0.7,
+          "depth": 9
+        },
+        "color": 5593951
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          1.5,
+          -2.675
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 8.6,
+          "height": 5.3,
+          "depth": 1.9
+        },
+        "color": 6449259
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          0.7,
+          -0.675
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 9.6,
+          "height": 3.7,
+          "depth": 2.1
+        },
+        "color": 7172981
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          0.05,
+          -0.1,
+          1.475
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 10.6,
+          "height": 2.1,
+          "depth": 2.2
+        },
+        "color": 7633532
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          -4.6,
+          0,
+          2.675
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.1,
+          "height": 2.5,
+          "depth": 2.2
+        },
+        "color": 6120294
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          4.7,
+          -0.1,
+          2.675
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.1,
+          "height": 2.3,
+          "depth": 2.2
+        },
+        "color": 6120294
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          -5.05,
+          -0.6,
+          -0.525
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 1.1,
+          "depth": 1.8
+        },
+        "color": 6844016
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "rock_base",
+      "transform": {
+        "pos": [
+          5.05,
+          -0.5,
+          -0.725
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.7,
+          "height": 1.3,
+          "depth": 1.7
+        },
+        "color": 6844016
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "water_runs",
+      "transform": {
+        "pos": [
+          0,
+          3.2,
+          -2.575
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.8,
+          "height": 0.14,
+          "depth": 1.35
+        },
+        "color": 4627409
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "water_runs",
+      "transform": {
+        "pos": [
+          0,
+          1.6,
+          -0.675
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 0.14,
+          "depth": 1.75
+        },
+        "color": 4232653
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "water_runs",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          1.425
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.7,
+          "height": 0.14,
+          "depth": 1.8
+        },
+        "color": 3771334
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "upper_fall",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.8,
+          "height": 1.65,
+          "depth": 0.18
+        },
+        "color": 4892124
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "middle_fall",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 1.65,
+          "depth": 0.18
+        },
+        "color": 4300248
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "lower_fall",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.7,
+          "height": 2,
+          "depth": 0.2
+        },
+        "color": 3642578
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "pool",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 8.8,
+          "height": 0.18,
+          "depth": 3.2
+        },
+        "color": 4427714
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "tree_trunks",
+      "transform": {
+        "pos": [
+          -3.3,
+          1.75,
+          -2.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 2.1,
+          "depth": 0.48
+        },
+        "color": 5850936
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "tree_trunks",
+      "transform": {
+        "pos": [
+          3.4,
+          1.7,
+          -2.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 2,
+          "depth": 0.48
+        },
+        "color": 5850936
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "tree_trunks",
+      "transform": {
+        "pos": [
+          -3.95,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 1.8,
+          "depth": 0.44
+        },
+        "color": 6310456
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "tree_trunks",
+      "transform": {
+        "pos": [
+          4.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 1.8,
+          "depth": 0.44
+        },
+        "color": 6310456
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "tree_canopies",
+      "transform": {
+        "pos": [
+          -3.3,
+          2,
+          -2.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 1.8,
+          "depth": 2
+        },
+        "color": 3234875
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "tree_canopies",
+      "transform": {
+        "pos": [
+          3.4,
+          1.9,
+          -2.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 1.8,
+          "depth": 2
+        },
+        "color": 2971448
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "tree_canopies",
+      "transform": {
+        "pos": [
+          -3.95,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 1.6,
+          "depth": 1.8
+        },
+        "color": 3630915
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "tree_canopies",
+      "transform": {
+        "pos": [
+          4.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.8,
+          "height": 1.6,
+          "depth": 1.8
+        },
+        "color": 3630915
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785220129760,
+      "provider": "gpt",
+      "data": "qho+vilMqrEeMPhJqij9CZffFs2HGE1ym2k/onWW6YHmQiypTN1fHulezx1Pob5zSqboxiHy3mOdgS9+G/rN+6r+FDVZIlS2LVfohjMTtX4jN1IEwf7csD5F25qmEa6oWpObowzaWV5i61kRXr/6wxnRaoXZojXXWGxKnIrlD5Ufr2Q7DtE+h/KTrnl8BhSIOoyY5QJtJ6x0YQ7rtwU8kooV12nvwYQ09zRg4u5gWXr5wd1Il+Domjp3/VeU0ETEActdOGgvhS1e0MMVVxa3hGsTv8tmYeL1HaTch/oxTRCofFMshfciNbgK98rriU5BBSrPpdOGWWL8nEWgWVLeV1Id34Wga7XONWyIsE4vUUwjtq21mEU86PYoPeHquCDnZ4fkEN2eBoO3kuE84r3GP3D0wvOe29m5D89VYW/fBAyWkAV7BYgjJRMGH2YPJLcOLC3asNwRsEOF3I3kgv/e+KpRpgvh91OzXac8nVDvsnMB/iZID6VVpvXTmqdc0MiLsNqdTH5UBQN8wjUIpIl4fH/KSiDHU6I7D5cDRkU12BLKmXYoiKVv07QoLkBnMT6QqQYXAuyYzWTaQij+656VgK/NTlkFmNHFGfi71TfjOj2ofZAdHtrQroJJy+YP2iv35MIK9q0ONwEZVFuk+fVnVU/JYWNLxTncGRhrOUIXnhXyjIiMrHGR7ooNhm823qjC3wWsBqzWSvQgIx+3FwsJgBFLr+Bt/iLRCJl5EmQaImBrbL2PPxOjl6cxfK5q5tTRK17oiAXtOk49euggBgw76CJkDyivQOKUYG/GZ8qGjhVLPx/0+EVIHgyROzm/NNtWDMHoW+4oJ6Wk5Wv1gD57d5c64nTqeiqgiQs7VUTt5iCPdQz1gcFaLX+7x17LVhF78PqHJflcaCHpZGL5veJ9CDRJ2ud7i3ziHa+YcDu/Um8hvVZGdUVlDNBIK1Mu24XIqi+PUbRKKkvLBCxOAE7KLjc0Tr/xJNVJgfZS4v5LMdOx/6vXaDfdQVl9bH2kV4DW/FtE1S+hk/Zx+PAyuO3KKSfKZKOjVNyFTUtWrV5cc8wPxUOt38NqwjWigP89/SoQ0Fz6wfpU/7FygE3sTrfItXeW2idEEUQRsh9bwc2x7D3CEvSmc6FfGwi6aBcaYdBWInrPhhcD9QCdbD5XFJc/ypWi9wg8lXWcGQ08aC3E7SOiNyJCirL7ppHB3JiB6SRCErG1uhVREBUd6MmX0UKqTMgsIY6H",
+      "edits": ""
+    },
+    "chiiAssetRole": "water_landmark",
+    "chiiAssetId": "island_waterfall",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiResetBaseline": "1203a1e",
+    "chiiPrompt": "三层灰岩森林瀑布，宽蓝色水帘，底部浅水潭，完整岩石底座",
+    "chiiWorldFootprint": {
+      "width": 3,
+      "depth": 2,
+      "unit": "terrain_tile"
+    },
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

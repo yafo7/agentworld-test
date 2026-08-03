@@ -8,7 +8,8 @@ const BLOCK_COLORS = {
   grass: 0x6b8e4a,
   dirt:  0x9b7b3c,
   rock:  0x7a7a7a,
-  water: 0x4488bb,
+  water: 0x315d68,
+  sand: 0xd8bd79,
   farmland: 0x8f5f2f,
   brick: 0xa4513f,
 };
@@ -30,7 +31,7 @@ function _buildBlockGeos() {
   const geo = new THREE.BoxGeometry(UNIT_SIZE, H, UNIT_SIZE);
   geo.translate(0, -H / 2, 0); // top face at Y=0, block extends downward
 
-  for (const type of ['grass', 'dirt', 'rock', 'water', 'farmland', 'brick']) {
+  for (const type of ['grass', 'dirt', 'rock', 'water', 'sand', 'farmland', 'brick']) {
     _blockGeos[type] = { geo, plainColor: BLOCK_COLORS[type] };
   }
 
@@ -165,13 +166,14 @@ export function createUnitEnvironment(centerX = 0, centerZ = 0, size = 10, layou
 
     for (let i = 0; i < positions.length; i++) {
       const p = positions[i];
-      dummy.position.set(p.wx, 0, p.wz);
+      dummy.position.set(p.wx, type === 'water' ? -0.55 : 0, p.wz);
       dummy.scale.set(1, 1, 1);
       dummy.rotation.set(0, p.rotY, 0);
       dummy.updateMatrix();
       im.setMatrixAt(i, dummy.matrix);
     }
     im.instanceMatrix.needsUpdate = true;
+    im.userData.terrainType = type;
     root.add(im);
   }
 
@@ -188,6 +190,7 @@ export function createUnitEnvironment(centerX = 0, centerZ = 0, size = 10, layou
   const outlineMat = new THREE.LineBasicMaterial({ color: 0x3a2a1a, transparent: true, opacity: 0.15 });
 
   for (const [type, positions] of Object.entries(groups)) {
+    if (type === 'water') continue;
     if (positions.length === 0) continue;
     const verts = [];
     for (const p of positions) {

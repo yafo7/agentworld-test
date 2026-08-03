@@ -1,667 +1,575 @@
 {
-  "name": "蓝色郁金香花丛",
+  "name": "蓝色郁金香",
   "type": "lowpoly",
   "format": 2,
   "nodes": [
     {
-      "id": "clump",
-      "name": "花丛",
+      "id": "tulip_0",
+      "name": "郁金香1",
       "transform": {
         "pos": [
+          -0.62,
           0,
-          0,
-          0
+          0.08
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": 0.75
+        }
+      ]
     },
     {
-      "id": "stem_0",
-      "name": "茎叶1",
-      "parent": "clump",
+      "id": "tulip_1",
+      "name": "郁金香2",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
+          0.7,
           0,
-          0,
-          0
+          -0.24
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": 0.75
+        }
+      ]
     },
     {
-      "id": "flower_0",
-      "name": "蓝色花朵1",
-      "parent": "stem_0",
+      "id": "tulip_2",
+      "name": "郁金香3",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
+          1.3,
           0,
-          2.45,
-          0
+          0.1
         ]
-      }
-    },
-    {
-      "id": "stem_1",
-      "name": "茎叶2",
-      "parent": "clump",
-      "transform": {
-        "pos": [
-          -0.72,
-          0,
-          0.18
-        ]
-      }
-    },
-    {
-      "id": "flower_1",
-      "name": "蓝色花朵2",
-      "parent": "stem_1",
-      "transform": {
-        "pos": [
-          0,
-          2.05,
-          0
-        ]
-      }
-    },
-    {
-      "id": "stem_2",
-      "name": "茎叶3",
-      "parent": "clump",
-      "transform": {
-        "pos": [
-          0.72,
-          0,
-          0.28
-        ]
-      }
-    },
-    {
-      "id": "flower_2",
-      "name": "蓝色花朵3",
-      "parent": "stem_2",
-      "transform": {
-        "pos": [
-          0,
-          2.18,
-          0
-        ]
-      }
-    },
-    {
-      "id": "stem_3",
-      "name": "茎叶4",
-      "parent": "clump",
-      "transform": {
-        "pos": [
-          -0.38,
-          0,
-          -0.62
-        ]
-      }
-    },
-    {
-      "id": "flower_3",
-      "name": "蓝色花朵4",
-      "parent": "stem_3",
-      "transform": {
-        "pos": [
-          0,
-          2.28,
-          0
-        ]
-      }
-    },
-    {
-      "id": "stem_4",
-      "name": "茎叶5",
-      "parent": "clump",
-      "transform": {
-        "pos": [
-          0.48,
-          0,
-          -0.58
-        ]
-      }
-    },
-    {
-      "id": "flower_4",
-      "name": "蓝色花朵5",
-      "parent": "stem_4",
-      "transform": {
-        "pos": [
-          0,
-          1.92,
-          0
-        ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": 0.75
+        }
+      ]
     },
     {
       "id": "m0",
-      "parent": "stem_0",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
           0,
-          1.225,
+          1.075,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.13,
-          "height": 2.45,
-          "depth": 0.13
+          "width": 0.12,
+          "height": 2.15,
+          "depth": 0.12
         },
         "color": 3115589
       }
     },
     {
       "id": "m1",
-      "parent": "stem_0",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          0.23,
-          0.77,
+          -0.24,
+          0.89,
           0.08
         ],
         "quat": [
-          0.48,
+          -0.49,
           0.44,
-          0.69,
-          -0.31
+          0.68,
+          0.32
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.24,
+          "width": 0.2,
           "height": 0.07,
-          "depth": 1.15
+          "depth": 1.25
         },
-        "color": 3974739
+        "color": 4169552
       }
     },
     {
       "id": "m2",
-      "parent": "flower_0",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          0,
-          0.16,
-          0
+          0.22,
+          1.06,
+          -0.1
+        ],
+        "quat": [
+          0.7,
+          0.3,
+          0.45,
+          -0.47
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.34,
-          "depth": 0.58
+          "width": 0.18,
+          "height": 0.07,
+          "depth": 1.25
         },
-        "color": 2652368
+        "color": 3444551
       }
     },
     {
       "id": "m3",
-      "parent": "flower_0",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          -0.19,
-          0.42,
+          0,
+          2.15,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
+          "width": 0.384192,
+          "height": 0.18400000000000002,
+          "depth": 0.384192
         },
-        "color": 4233448
+        "color": 1594020
       }
     },
     {
       "id": "m4",
-      "parent": "flower_0",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          0.19,
-          0.42,
-          0
+          0,
+          2.3001,
+          0.1814
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
+          "width": 0.5336,
+          "height": 0.4416,
+          "depth": 0.1472
         },
-        "color": 4233448
+        "color": 2652372
       }
     },
     {
       "id": "m5",
-      "parent": "stem_1",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
           0,
-          1.025,
-          0
+          2.2781,
+          -0.1814
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.13,
-          "height": 2.05,
-          "depth": 0.13
+          "width": 0.5336,
+          "height": 0.388608,
+          "depth": 0.1472
         },
-        "color": 3115589
+        "color": 2121661
       }
     },
     {
       "id": "m6",
-      "parent": "stem_1",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          -0.02,
-          0.73,
-          -0.24
-        ],
-        "quat": [
-          -0.85,
-          0.02,
-          0.03,
-          0.53
+          -0.1814,
+          2.2869,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.24,
-          "height": 0.07,
-          "depth": 1.09
+          "width": 0.1472,
+          "height": 0.415104,
+          "depth": 0.394864
         },
-        "color": 3444552
+        "color": 2979282
       }
     },
     {
       "id": "m7",
-      "parent": "flower_1",
+      "parent": "tulip_0",
       "transform": {
         "pos": [
-          0,
-          0.16,
+          0.1814,
+          2.3001,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.34,
-          "depth": 0.58
+          "width": 0.1472,
+          "height": 0.4416,
+          "depth": 0.394864
         },
-        "color": 2320565
+        "color": 3902693
       }
     },
     {
       "id": "m8",
-      "parent": "flower_1",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
           0,
-          0.42,
-          -0.19
+          1.275,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.5,
-          "height": 0.48,
-          "depth": 0.23
+          "width": 0.12,
+          "height": 2.55,
+          "depth": 0.12
         },
-        "color": 3770840
+        "color": 3115589
       }
     },
     {
       "id": "m9",
-      "parent": "flower_1",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
-          0,
-          0.42,
-          0.19
+          -0.27,
+          1.03,
+          0.09
+        ],
+        "quat": [
+          -0.48,
+          0.45,
+          0.68,
+          0.32
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.5,
-          "height": 0.48,
-          "depth": 0.23
+          "width": 0.23,
+          "height": 0.07,
+          "depth": 1.53
         },
-        "color": 3770840
+        "color": 4169552
       }
     },
     {
       "id": "m10",
-      "parent": "stem_2",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
-          0,
-          1.09,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.13,
-          "height": 2.18,
-          "depth": 0.13
-        },
-        "color": 3115589
-      }
-    },
-    {
-      "id": "m11",
-      "parent": "stem_2",
-      "transform": {
-        "pos": [
-          0.1,
-          0.76,
-          0.22
+          0.25,
+          1.21,
+          -0.12
         ],
         "quat": [
-          0.18,
-          0.53,
-          0.82,
-          -0.11
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.24,
-          "height": 0.07,
-          "depth": 1.15
-        },
-        "color": 3974739
-      }
-    },
-    {
-      "id": "m12",
-      "parent": "flower_2",
-      "transform": {
-        "pos": [
-          0,
-          0.16,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.58,
-          "height": 0.34,
-          "depth": 0.58
-        },
-        "color": 2979012
-      }
-    },
-    {
-      "id": "m13",
-      "parent": "flower_2",
-      "transform": {
-        "pos": [
-          -0.19,
-          0.42,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
-        },
-        "color": 4888543
-      }
-    },
-    {
-      "id": "m14",
-      "parent": "flower_2",
-      "transform": {
-        "pos": [
-          0.19,
-          0.42,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
-        },
-        "color": 4888543
-      }
-    },
-    {
-      "id": "m15",
-      "parent": "stem_3",
-      "transform": {
-        "pos": [
-          0,
-          1.14,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.13,
-          "height": 2.28,
-          "depth": 0.13
-        },
-        "color": 3115589
-      }
-    },
-    {
-      "id": "m16",
-      "parent": "stem_3",
-      "transform": {
-        "pos": [
-          -0.2,
-          0.77,
-          -0.13
-        ],
-        "quat": [
-          0.74,
-          -0.25,
-          -0.4,
+          0.69,
+          0.31,
+          0.44,
           -0.48
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.24,
+          "width": 0.21,
           "height": 0.07,
-          "depth": 1.15
+          "depth": 1.56
         },
-        "color": 3444552
+        "color": 3444551
       }
     },
     {
-      "id": "m17",
-      "parent": "flower_3",
+      "id": "m11",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
           0,
-          0.16,
+          2.55,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.34,
-          "depth": 0.58
+          "width": 0.43848,
+          "height": 0.21000000000000002,
+          "depth": 0.43848
         },
-        "color": 2383790
+        "color": 1594020
       }
     },
     {
-      "id": "m18",
-      "parent": "flower_3",
+      "id": "m12",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
           0,
-          0.42,
-          -0.19
+          2.7214,
+          0.2071
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.5,
-          "height": 0.48,
-          "depth": 0.23
+          "width": 0.609,
+          "height": 0.504,
+          "depth": 0.168
         },
-        "color": 4162254
+        "color": 2385863
       }
     },
     {
-      "id": "m19",
-      "parent": "flower_3",
+      "id": "m13",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
           0,
-          0.42,
-          0.19
+          2.6962,
+          -0.2071
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.5,
-          "height": 0.48,
-          "depth": 0.23
+          "width": 0.609,
+          "height": 0.44352,
+          "depth": 0.168
         },
-        "color": 4162254
+        "color": 2121661
       }
     },
     {
-      "id": "m20",
-      "parent": "stem_4",
+      "id": "m14",
+      "parent": "tulip_1",
       "transform": {
         "pos": [
-          0,
-          0.96,
+          -0.2071,
+          2.7062,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.13,
-          "height": 1.92,
-          "depth": 0.13
+          "width": 0.168,
+          "height": 0.47375999999999996,
+          "depth": 0.45066
+        },
+        "color": 2979282
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "tulip_1",
+      "transform": {
+        "pos": [
+          0.2071,
+          2.7214,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.168,
+          "height": 0.504,
+          "depth": 0.45066
+        },
+        "color": 3902693
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "tulip_2",
+      "transform": {
+        "pos": [
+          0,
+          0.975,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 1.95,
+          "depth": 0.12
         },
         "color": 3115589
       }
     },
     {
-      "id": "m21",
-      "parent": "stem_4",
+      "id": "m17",
+      "parent": "tulip_2",
       "transform": {
         "pos": [
-          -0.18,
-          0.7,
-          0.15
+          -0.23,
+          0.82,
+          0.08
         ],
         "quat": [
-          -0.36,
-          0.47,
-          0.77,
-          0.22
+          -0.49,
+          0.43,
+          0.69,
+          0.31
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.24,
+          "width": 0.19,
           "height": 0.07,
-          "depth": 1.04
+          "depth": 1.12
         },
-        "color": 3974739
+        "color": 4169552
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "tulip_2",
+      "transform": {
+        "pos": [
+          0.21,
+          0.98,
+          -0.1
+        ],
+        "quat": [
+          0.71,
+          0.29,
+          0.46,
+          -0.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.07,
+          "depth": 1.1
+        },
+        "color": 3444551
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "tulip_2",
+      "transform": {
+        "pos": [
+          0,
+          1.95,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.367488,
+          "height": 0.17600000000000002,
+          "depth": 0.367488
+        },
+        "color": 1594020
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "tulip_2",
+      "transform": {
+        "pos": [
+          0,
+          2.0936,
+          0.1735
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5104,
+          "height": 0.4224,
+          "depth": 0.1408
+        },
+        "color": 3771616
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "tulip_2",
+      "transform": {
+        "pos": [
+          0,
+          2.0725,
+          -0.1735
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5104,
+          "height": 0.371712,
+          "depth": 0.1408
+        },
+        "color": 2121661
       }
     },
     {
       "id": "m22",
-      "parent": "flower_4",
+      "parent": "tulip_2",
       "transform": {
         "pos": [
-          0,
-          0.16,
+          -0.1735,
+          2.0809,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.34,
-          "depth": 0.58
+          "width": 0.1408,
+          "height": 0.39705599999999996,
+          "depth": 0.377696
         },
-        "color": 3309521
+        "color": 2979282
       }
     },
     {
       "id": "m23",
-      "parent": "flower_4",
+      "parent": "tulip_2",
       "transform": {
         "pos": [
-          -0.19,
-          0.42,
+          0.1735,
+          2.0936,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
+          "width": 0.1408,
+          "height": 0.4224,
+          "depth": 0.377696
         },
-        "color": 5611749
-      }
-    },
-    {
-      "id": "m24",
-      "parent": "flower_4",
-      "transform": {
-        "pos": [
-          0.19,
-          0.42,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.23,
-          "height": 0.48,
-          "depth": 0.5
-        },
-        "color": 5611749
+        "color": 3902693
       }
     }
   ],
@@ -669,10 +577,23 @@
     "skipAutoCenter": true,
     "ai": {
       "v": 1,
-      "ts": 1784016947824,
+      "ts": 1785217778733,
       "provider": "gpt",
-      "data": "66vpMnzF6DlLF7f1S8mskzUCz2ByNVSZeUerX7saS0aUX51qp52o5CyC+JP+koCaTuKrDS9lG1w4DbtkfRK1xv5zoTAck7TQHm3V79tE8ytWPWJCxKy2TUqmWn/r8BoppgOBLuIHxbFIOQdyYacWyuUHtj5bwVaAWNmSGmMkLMhj2WHpCMP5qeiUY2qZBf4NdmMzDcqTT3l43slKcJuutALr637JmGg0/4513paNzx4laQTMadhPo4KzEVKQwCNJN5RMXArc5FPXhh034yWyoj4IrOOKzItUIvSoroDk1Egx1tF+0BmHzYfF9xmm6E2hW8Doe4s4SZalxHgtee5bGz6OTrRjjWBrnoXJn0SJIEQ3llBxpoX1v9zEz019DYloMeJJTftzLDCj9u8kNeXQNd4sIyhixXex/94SmbCk8glzME/K4lwPflFmbyL2txk0F5YvCQ2+JE4jKNZcpbu5XUcclEF02tv7BvuXzQRmgLCYhxTFrqnXD5NdJ59MZSYxXK62Gwn0o/8SC+aTd1VtIGQ/FT4HXTQUn/DoszBtbu7QE97qp4Co1m7jzB7zg/iIbGaGNrZvqhD11AaEgQKnP5WTChYynU88x9gpmSQ5pHX5VfmY9ios/F+5BIUIXtFtRjr5zVEVy2AJLJdQ0AfXUiFN/ijkMKqulJrYF04ir71FEKa7EeQa+m5t27Y3J05JJYhwckhbmrtExjv7JNVXGoog749JPCbGCw/juvSBgpafmg39rf985B2cIHiycvvyB88D7HL4QDr6onhq6EY/zjY09sysnJfzO9m5Er+u5/KfAIMlk8I+Z6k6cl42laRyUS5XcEVtQVOzB1GHzOrMrQsWQ8+1ZMa6NJgYwmJD6qTQG58gM71EtN0bKrYk7Z27rYHO+NZ8nSH86geJ9UoArd/agXjRbEi9GnQaxhPcBMkdFH0jVmkpVqx0vuVV3ugqAoM04c0oH6OH1Mfo9mfPM1IumxkBlkhj8IPNSEGm83IjqfkGVhAA+ZZXeXoTtzzWW7kVbngvHg98/7QQaxpUNHYE9OYbA/2A5Z9sNG1O3dDicQZBUEVKZaDf4lNc9Wmg2K+9wwK/7BRns8n53qjWGfYLv4C1m8/ayvS2oAUXOhW+h52M2oT9ruALjyuxuF0Ph0UmGt0BKSQ/UzLiBqNqek31c28ueaXYrff0tJu/bvL9F3hpCSmLHMwe0XUIRNZvsj/IWu0VZGzl0J6wPpNbIaSVAeq+yof2kF22CoOUObvvaQ==",
+      "data": "EftEAN4VUkKQ+/NNrm9TA/G3hRPkY293CT9G17I5QjdtZjlu4jGqUDUF+BpbVdhNff7qJaqu2cBJoglFy6/Iy+s2QaGYVLpX86HOZDHjOHR6GA5ioZ2rwCC5OV45aF7eFf4Y7+j1GIWEUNlIQCFBSVvBfZbGq661DKqSp512w64bYpR2Bv8b1mv7+S/4mDQtdR1LGcRqGr1bQIQ7k3H5rmGle5LTf3XUuEE6yULfsAU92tfpjQ/+BGiSvEn28YElApMWcj8t/wiKTtv3YVkyVOVRYqRWj0/CTxhOXeW+PpFHydP2ZtMr6MSy5bAPeFzI+hzPFpPGkmmolHRVOqEdF/VgjYtbh+96L21ZNSWhWrA6z3UvTHoz1ag3ok17QvA5htfsP52y1oUBX4fiWaNn8D6pQ2yKp8ZJvDnl/EF7PmPDcxQ8WZmmxC19psMW7Ox8CGItxcZleygJpQbWw38nuAAnQ7tTJWwTLE1ng3vYLT8e9fSJK/h95KCEM32zLlZ1ZD0v7MoVqtUKFKABYKmJXzvvlufNlxl/ryonRexCYa+g4YPvPypD6xfgno9ZKDQmgTcXu4Y0wQpEXwjYW9N35hcGyCQrmXuc4+L4RyywZ3/vqb4VJNhdK4Dy9dBd9veMc6nzm/eHia6rUNlFSfb4JHgns4WfGaZdP+zHpudnbYUfxoeq47+sXIgEJfTiQgrbIrf8H6ygQMSQf/UO0NSj7qLRvqwZ6KL4wuUs6eLcEBLuB9ubDxojAD6mPucMThOCypnAVvhJNl73FqOCriioGUmYptsNijJ+8okc4tDRAyBoi3JYiQQceIGlGwBZECSOZJaKn19ooRt0I9jjMBq0DX3j3/+yyZSd4OJ+N8r7nNvOs6br+7kAHmq925axxNO4R1Q26/IemDMKNqrCUW1Ru15zQgpsGD/zPh5M6TtNWOk1fLW1je8Zu7WAUjuzO6R5+Muu4Eh18EhU6NKftzlTbvJfTO4uLJx89sgNuMl6u4dvkMJoKbwXMv1u7vg+3cX8ACsDtfGrciTl+ZO/INRAIzDFRS0jRYmltNfWu/Fmt9qkokxs1Rl32UbIJb2LIoR9hGid6XRiNdI6k0d5nBYCrme8NokjKs2gXtKyTWFm7PwqWLSdsf6/hO410GIYCq+BaKTp52X6gcr75n83MKA9H2T2eTs8qa28ywi4xORfwrGlLDVtaJt4GSx4",
       "edits": ""
-    }
+    },
+    "chiiAssetRole": "plant",
+    "chiiAssetId": "blue_tulips",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "一丛三株蓝色郁金香，杯形花朵，直立绿茎，长叶片",
+    "chiiAssetCategory": "plant"
   }
 }

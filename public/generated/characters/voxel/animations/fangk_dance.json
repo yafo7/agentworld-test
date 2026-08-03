@@ -1,0 +1,80 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 2.2
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 1.1
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -5
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 1.1
+    }
+  },
+  "armL": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.38,
+      "frequency": 2.2
+    }
+  },
+  "armR": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.38,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "legL": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.42,
+      "frequency": 2.2
+    }
+  },
+  "legR": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.42,
+      "frequency": 2.2,
+      "phase": 0.25
+    }
+  },
+  "_name": "fangk-dance",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "fangk",
+    "quality": "voxel",
+    "prompt": "左右踏步挥手跳舞"
+  }
+}

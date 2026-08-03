@@ -1,0 +1,115 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.8
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 1.8,
+      "phase": 0.25
+    }
+  },
+  "leftArm": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": -18
+      },
+      {
+        "axis": "x",
+        "angle": 8
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "rightArm": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": 18
+      },
+      {
+        "axis": "x",
+        "angle": -8
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.1,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.1,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "tailBase": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "tailTip": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.8,
+      "phase": 0.65
+    }
+  },
+  "_name": "mok-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mok",
+    "quality": "voxel",
+    "prompt": "提着双斧快速奔跑"
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "name": "方形施工横幅围栏",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "site",
+      "name": "施工区域",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "north",
+      "name": "North施工横幅",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          0,
+          0.85,
+          -2
+        ]
+      }
+    },
+    {
+      "id": "south",
+      "name": "South施工横幅",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          0,
+          0.85,
+          2
+        ]
+      }
+    },
+    {
+      "id": "east",
+      "name": "东侧施工横幅",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          2,
+          0.85,
+          0
+        ]
+      }
+    },
+    {
+      "id": "west",
+      "name": "西侧施工横幅",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          -2,
+          0.85,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          0,
+          0.04,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.6,
+          "height": 0.08,
+          "depth": 4.6
+        },
+        "color": 6842472
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          -2,
+          1.1,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 2.2,
+          "depth": 0.22
+        },
+        "color": 3421236
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          -2,
+          0.06,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.12,
+          "depth": 0.55
+        },
+        "color": 15895592
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          -2,
+          1.1,
+          2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 2.2,
+          "depth": 0.22
+        },
+        "color": 3421236
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          -2,
+          0.06,
+          2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.12,
+          "depth": 0.55
+        },
+        "color": 15895592
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          2,
+          1.1,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 2.2,
+          "depth": 0.22
+        },
+        "color": 3421236
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          2,
+          0.06,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.12,
+          "depth": 0.55
+        },
+        "color": 15895592
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          2,
+          1.1,
+          2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 2.2,
+          "depth": 0.22
+        },
+        "color": 3421236
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "site",
+      "transform": {
+        "pos": [
+          2,
+          0.06,
+          2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.12,
+          "depth": 0.55
+        },
+        "color": 15895592
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "north",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.65,
+          "height": 0.78,
+          "depth": 0.12
+        },
+        "color": 16022560
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "north",
+      "transform": {
+        "pos": [
+          -1.15,
+          0.4,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "north",
+      "transform": {
+        "pos": [
+          -0.38,
+          0.4,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "north",
+      "transform": {
+        "pos": [
+          0.38,
+          0.4,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "north",
+      "transform": {
+        "pos": [
+          1.15,
+          0.4,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "south",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.65,
+          "height": 0.78,
+          "depth": 0.12
+        },
+        "color": 16022560
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "south",
+      "transform": {
+        "pos": [
+          -1.15,
+          0.4,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "south",
+      "transform": {
+        "pos": [
+          -0.38,
+          0.4,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "south",
+      "transform": {
+        "pos": [
+          0.38,
+          0.4,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "south",
+      "transform": {
+        "pos": [
+          1.15,
+          0.4,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.58,
+          "depth": 0.04
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "east",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.78,
+          "depth": 3.65
+        },
+        "color": 16022560
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "east",
+      "transform": {
+        "pos": [
+          0.08,
+          0.4,
+          -1.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "east",
+      "transform": {
+        "pos": [
+          0.08,
+          0.4,
+          -0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "east",
+      "transform": {
+        "pos": [
+          0.08,
+          0.4,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "east",
+      "transform": {
+        "pos": [
+          0.08,
+          0.4,
+          1.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "west",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.78,
+          "depth": 3.65
+        },
+        "color": 16022560
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "west",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.4,
+          -1.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "west",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.4,
+          -0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "west",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.4,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "west",
+      "transform": {
+        "pos": [
+          -0.08,
+          0.4,
+          1.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.04,
+          "height": 0.58,
+          "depth": 0.32
+        },
+        "color": 16052447
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784017843553,
+      "provider": "gpt",
+      "data": "enrDv/9HOR4esgQTPF8hDbqI9IlDLRSPGku8sj6yX/ZrfuxeFzc34mGR67Q+6LuIRU7cEHkrK6sWcFGkRuNlvZa8Sl7m0j6GhlvPBBExN1zBQU+OvMykhwJcUGyLtSUWOd1DRwMKWft9wJ+xmL+8i9iHw37K9HQiKaDZNHFyIpWL4vge3FulHuv7jdn2cpRk+ycS6g9eDmVYBx/WayC83RteidaVOwimE+pJo3mM9cT61LtIJv8RsGpIlzYnm4lSraviWphgRhwinmyeFunPiYZdeLFf3bnhi+nPiRIw98OEBZDHuODR0bq1iJcnyS4yVyPWsFbeWEDj3BV3RSwUBfMrtPsi9D+8vv0aDgkGoMvXQucV8pHwsGlo02IVZI66GEVAVd2HLxHswGawkSGRCELD/VxUfQNv6+6UJp7RxFMZsznEdmxcOorY4hcfalh2S52rV5x0J9AZTmi1foyOnEXtqRTxRRzf/g0ZfLMjYOXbI6vscUUtGec6IN7wm5ZkO954Um07M9MbY1txhBOZGe91ZX1XS4s6tS/CfMjdCFQ2wRBsitlbHasKqTi/DlUjZq0ZkqtwFcAuNIZTxbPKt84EXMxig/v4HCCjXjnizWGX6UXazbr4qSKDqkQG7FXAq09xuBlECJzyEEmL7FGbo/ts4vXnVa6WRBbpWLee5vYmfnAVEweZO2cqYWyIaquzAdDs9qFIBaJR5wUXvABeff1a4W8ytqcKPlUTq9O4ap1t3H0NAP6Zkj7aeu8vUqXVk2PSU24q4cG23r2a",
+      "edits": ""
+    }
+  }
+}

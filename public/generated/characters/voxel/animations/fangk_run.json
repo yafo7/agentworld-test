@@ -1,0 +1,75 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 1.6
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    }
+  },
+  "armL": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "armR": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.05,
+      "frequency": 1.6,
+      "phase": 0
+    }
+  },
+  "legL": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.6,
+      "phase": 0
+    }
+  },
+  "legR": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 1.6,
+      "phase": 0.5
+    }
+  },
+  "_name": "fangk-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "fangk",
+    "quality": "voxel",
+    "prompt": "摆动双臂向前奔跑"
+  }
+}

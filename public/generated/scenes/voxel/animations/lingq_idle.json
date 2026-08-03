@@ -1,0 +1,25 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.4
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.1
+    }
+  },
+  "_name": "lingq-idle",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "lingq",
+    "quality": "voxel",
+    "prompt": "轻轻呼吸摆尾"
+  }
+}

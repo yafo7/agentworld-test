@@ -35,6 +35,16 @@ async function countTests(directory) {
   return count;
 }
 
+async function countSkills(directory) {
+  let count = 0;
+  for (const entry of await readdir(directory, { withFileTypes: true }).catch(() => [])) {
+    if (!entry.isDirectory()) continue;
+    const files = await readdir(path.join(directory, entry.name)).catch(() => []);
+    if (files.includes('SKILL.md')) count++;
+  }
+  return count;
+}
+
 export async function collectStatus() {
   const dirtyLines = git(['status', '--short']).split(/\r?\n/).filter(Boolean);
   const generatedChanges = dirtyLines.filter(line => line.includes('public/generated/')).length;
@@ -57,6 +67,10 @@ export async function collectStatus() {
       assetAudit = { status: 'failed', error: error.message };
     }
   }
+  const [testFiles, skillCount] = await Promise.all([
+    countTests(path.join(repoRoot, 'tests')),
+    countSkills(path.join(repoRoot, '.agents/skills')),
+  ]);
   return {
     branch: git(['branch', '--show-current']) || '(detached)',
     commit: git(['log', '-1', '--format=%h %s']) || 'unknown',
@@ -73,8 +87,11 @@ export async function collectStatus() {
       count: Array.isArray(manifest.assets) ? manifest.assets.length : 0,
       audit: assetAudit,
     },
-    testFiles: await countTests(path.join(repoRoot, 'tests')),
-    architecture: 'P0-P6 complete; engine isolated; current Chii must not import legacy',
+    testFiles,
+    skills: {
+      count: skillCount,
+    },
+    architecture: 'ports/adapters isolated; gameplay, UI, story, scene, and visuals have explicit owners; current Chii must not import legacy',
   };
 }
 
@@ -94,6 +111,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
         ? `asset diff: same=${status.assets.audit.same} changed=${status.assets.audit.changed} missing=${status.assets.audit.missing} ambiguous=${status.assets.audit.ambiguous}`
         : `asset diff: ${status.assets.audit.status}${status.assets.audit.error ? ` (${status.assets.audit.error})` : ''}`,
       `tests: ${status.testFiles} files`,
+      `skills: ${status.skills.count}`,
       `architecture: ${status.architecture}`,
     ].join('\n'));
   }

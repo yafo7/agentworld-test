@@ -1,0 +1,576 @@
+{
+  "name": "NS",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "扁平机身",
+      "transform": {
+        "pos": [
+          0,
+          1.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "left_handle",
+      "name": "蓝色左手柄",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -2.1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "left_stick",
+      "name": "左摇杆",
+      "parent": "left_handle",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.35,
+          0.33
+        ]
+      }
+    },
+    {
+      "id": "dpad",
+      "name": "十字方向键",
+      "parent": "left_handle",
+      "transform": {
+        "pos": [
+          -0.45,
+          -0.4,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "left_shoulder",
+      "name": "左肩键",
+      "parent": "left_handle",
+      "transform": {
+        "pos": [
+          -0.45,
+          1.17,
+          0
+        ]
+      }
+    },
+    {
+      "id": "right_handle",
+      "name": "红色右手柄",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          2.1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "right_stick",
+      "name": "右摇杆",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          -0.43,
+          0.33
+        ]
+      }
+    },
+    {
+      "id": "face_button_0",
+      "name": "功能按键",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          0.63,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "face_button_1",
+      "name": "功能按键",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          0.15,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "face_button_2",
+      "name": "功能按键",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.21,
+          0.39,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "face_button_3",
+      "name": "功能按键",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.69,
+          0.39,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "right_shoulder",
+      "name": "右肩键",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          1.17,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.2,
+          "height": 2.35,
+          "depth": 0.42
+        },
+        "color": 2106410
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.07,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.25,
+          "height": 1.72,
+          "depth": 0.12
+        },
+        "color": 592654
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.07,
+          0.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.9,
+          "height": 1.42,
+          "depth": 0.06
+        },
+        "color": 329740
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "glass"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          -0.93,
+          0.26
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.12,
+          "depth": 0.05
+        },
+        "color": 6121072
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "left_handle",
+      "transform": {
+        "pos": [
+          -0.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 2.35,
+          "depth": 0.55
+        },
+        "color": 1477586
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "left_handle",
+      "transform": {
+        "pos": [
+          -0.45,
+          -0.93,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.5,
+          "depth": 0.65
+        },
+        "color": 1143986
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "left_stick",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.5,
+          "depth": 0.18
+        },
+        "color": 2435632
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "left_stick",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.34,
+          "depth": 0.08
+        },
+        "color": 1119256
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "dpad",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 2106666
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "dpad",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.62,
+          "depth": 0.16
+        },
+        "color": 2106666
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "left_shoulder",
+      "transform": {
+        "pos": [
+          0,
+          0.05,
+          -0.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.18,
+          "depth": 0.5
+        },
+        "color": 1142695
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 2.35,
+          "depth": 0.55
+        },
+        "color": 14697541
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "right_handle",
+      "transform": {
+        "pos": [
+          0.45,
+          -0.93,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.5,
+          "depth": 0.65
+        },
+        "color": 12136248
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "right_stick",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.5,
+          "depth": 0.18
+        },
+        "color": 2435632
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "right_stick",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.34,
+          "depth": 0.08
+        },
+        "color": 1119256
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "face_button_0",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.16
+        },
+        "color": 2369582
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "face_button_1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.16
+        },
+        "color": 2369582
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "face_button_2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.16
+        },
+        "color": 2369582
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "face_button_3",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.16
+        },
+        "color": 2369582
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "right_shoulder",
+      "transform": {
+        "pos": [
+          0,
+          0.05,
+          -0.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.18,
+          "depth": 0.5
+        },
+        "color": 11151666
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785061584974,
+      "provider": "gpt",
+      "data": "MFBAKBnU8c8C/AgSOzgNMiz5ah3e0PN8kPRM+9m5aVHNzpkDGTAO1C5FfNMaiLAwSVbKs8FwiU+efes7sl4NqrIuwnD7OJ9KhyOUql2vzYiGbQXb8UoA34ZUuKsRdQbN/8PYD08YfibRQK4pVwWchaOloEJLNJn0VmTtADs8zE34eqMBDeDtHWopcDmc2yZ7TbJHM+OJT5+d6H1BcSiPFUnOT5ag3xonFIeLPOVqyE9U5z/X9l8E3GPKAkhbivD3oiRwz48p1q0sKKGcPCQcdlxl0lWk6MSt70DNXFJVOlnI9Ktnvbx//sFVAQIFKVf+FrHrT1e+MSAxV88es8+SQg/vNOCInULt+LoadxE6/L9ykYaxr3MNHMHH+g6kgG8uXgXNujFGiUzNGtr75eZDKY7OTvuNZnI0Rld5MqaL6jwOpxzSmPXkQ8NdixgSScoFHIr/5VbKWhuFudCtlnw7pI4l77aAeLri2SOq/eAkIVMy2BsKe5HP1gDbVvH2Qb2Pw6KGkrLuedZFyP9yKZTpRcCohqXTnQ39GFHX9O0LU71z/PDOOGSGrwpGlXIHLMRvAI/7TFhlBKdG6s+nVZN1lx9KvFm1ZlYZGrh3nFOtTy4JdswBO0/6xqvZcSxveICccdFEUgh3e0DNCDQ8BjfmcMU7/EQsUzA98yig2C6CplBvwVzS6kAGZh5k7dDSNa4PZX/IvI869F0iVxiZhOVNF7EsZKSyFYF/INvDHSse0I3hMONOQYm4lli4dLY7E0gvkC1TRxjm99KszCvQ1f/WwAButQgLhtCwvk/h602FHytI/vxYPJvwALDn6VSGyOwi6Yql+ye2Ba8SoEIwz96B0a6cEIQg7xCntbY1tWMsYWQXpk+NXgl5/pOtp7bT1CkGRt+Ko6UlZNghuaSx4QvhTIa9tGbz00w49bOcHDKVYvxn80Jweds75PmEstWDShmJKRDACL1PbadB+6TVmSVLqidrEQNC0Blu3pCJnh5pRm34gYtgj9QDmxyohTfT1kYZ6DsfQp82XFwpdyBRnm8tC1ZFbNp8CvNq38wDwW0nD3fRA7QkvevjQ3F+P6R70wbQh5hiyBvCZPrmHH0IWBFI+SAGv6SHQNYFsPmK2Iit/8erLb1napLRJ4Zi56h7shIegYr8M+NXswDBIge3KnFa7KULGE0XNrPU8o6PCBWACI0IdL5mH3rqzSVZ4xZD/011fU0RKUyHqvVEApTN0t8yUXosQjGDuQ==",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipment_prop",
+    "chiiEquipmentId": "ns-handheld",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

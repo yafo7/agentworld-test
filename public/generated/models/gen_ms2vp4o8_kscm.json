@@ -1,0 +1,651 @@
+{
+  "name": "木桌上的生日蛋糕",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "table",
+      "name": "木桌",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "cake",
+      "name": "彩色生日蛋糕",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          2.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_0",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          -0.65,
+          1.73,
+          0
+        ]
+      }
+    },
+    {
+      "id": "flame_0",
+      "name": "烛火",
+      "parent": "candle_0",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_1",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.73,
+          0
+        ]
+      }
+    },
+    {
+      "id": "flame_1",
+      "name": "烛火",
+      "parent": "candle_1",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_2",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0.65,
+          1.73,
+          0
+        ]
+      }
+    },
+    {
+      "id": "flame_2",
+      "name": "烛火",
+      "parent": "candle_2",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_3",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          -0.35,
+          1.73,
+          0.48
+        ]
+      }
+    },
+    {
+      "id": "flame_3",
+      "name": "烛火",
+      "parent": "candle_3",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candle_4",
+      "name": "蜡烛",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0.35,
+          1.73,
+          0.48
+        ]
+      }
+    },
+    {
+      "id": "flame_4",
+      "name": "烛火",
+      "parent": "candle_4",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          2.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.4,
+          "height": 0.28,
+          "depth": 3.8
+        },
+        "color": 9131818
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.15,
+          1.25,
+          -1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 2.5,
+          "depth": 0.42
+        },
+        "color": 6832159
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.15,
+          1.25,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 2.5,
+          "depth": 0.42
+        },
+        "color": 6832159
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.15,
+          1.25,
+          -1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 2.5,
+          "depth": 0.42
+        },
+        "color": 6832159
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.15,
+          1.25,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 2.5,
+          "depth": 0.42
+        },
+        "color": 6832159
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.07,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.25,
+          "height": 0.14,
+          "depth": 2.65
+        },
+        "color": 13226196
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m6",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.85,
+          "height": 0.72,
+          "depth": 2.25
+        },
+        "color": 16740241
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          0.9,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.9,
+          "height": 0.18,
+          "depth": 2.3
+        },
+        "color": 16765286
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.28,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.05,
+          "height": 0.58,
+          "depth": 1.55
+        },
+        "color": 6674116
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "cake",
+      "transform": {
+        "pos": [
+          0,
+          1.65,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.1,
+          "height": 0.16,
+          "depth": 1.6
+        },
+        "color": 16380636
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "candle_0",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.62,
+          "depth": 0.18
+        },
+        "color": 16731501
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "flame_0",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.34,
+          "depth": 0.14
+        },
+        "color": 16753434
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "parent": "candle_1",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.62,
+          "depth": 0.18
+        },
+        "color": 5090295
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "flame_1",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.34,
+          "depth": 0.14
+        },
+        "color": 16753434
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "parent": "candle_2",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.62,
+          "depth": 0.18
+        },
+        "color": 10182117
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "flame_2",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.34,
+          "depth": 0.14
+        },
+        "color": 16753434
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m16",
+      "parent": "candle_3",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.62,
+          "depth": 0.18
+        },
+        "color": 8117349
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "flame_3",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.34,
+          "depth": 0.14
+        },
+        "color": 16753434
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "parent": "candle_4",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.62,
+          "depth": 0.18
+        },
+        "color": 16752412
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "flame_4",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.34,
+          "depth": 0.14
+        },
+        "color": 16753434
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785135685089,
+      "provider": "gpt",
+      "data": "5Yee+C1vsWUDntIwOnRFmHHCUxj5hIaXEbG2QXQLNO7p8j02NYyc5kLUM/DnNkQHM3Qusmx7xcMLtjJeNPXTx96+8OY85dbC7aO8R3q437bNPRzdATRInLCPifCeQHkazz8Mqw0Gsj5LTtz4Povc1nDA0m6EC3Kj19kD9pNU6vBnkt+miJaYNOxMDBIYp4MCv+zd2IDdUom1NgMOiR8J2ViQIVAog9sXoFMw/jrcife8dlO2m+5wiePDUBY4Z5bQbszW0RY4T67MQX3y17qGi8pyfel+mCcCGXfC+DpfFM3sUqDOUpL7U3wHUI5H7nrfxqkAF+sWuOaKYOG/pbVPuYpFwAVjaxE2tVu0urJSrhUFFXAUoF4fDBZXv5PeKAf5u0jeCamlBCNFu3nvw14/ZY65mjn0ZRdmTFpOhs7GsRzWWA6iNG5pEZ5iDLMPfQEq70+r2Tt743LXcW2H6uZSlN3QotgqCVW97iIYXaJmcdwFnP9j8Ytp0z6ywnVAYaRnqDKMHqnMyEHem209mufAnK2/gn1fFgfIhMrPDKzpOJrANqQJ/MVo5ltTW+Ljd2kru10tTBS1Gps3MQpd0Oxg1w6TuKrHPwR5B156fjrYG6iI5dubhwIREwEu5oiIvIr5pZWQhPdJWl73JFYBfF9eRXA4I1krYP09FOC8aE+19rn/t7RcWVXLqrac0UgLF3B6Zy2Lm2cSQdO13iNqkQKNxhHbnd3Nsy6C923C9qCaR7wQuVBbwX8cAGZ1yZR4drBfOruZk/hQMsUabB+I+H6DDS01ysCpEWv6Jr0BOmP5djwCLRXVwWtxBCB25JNhVIpSFvPlJEx6qb69WXmckeJ5to8bA6xNBZWBVzZ/GG/AZ3j494QuMU79w3a5B6/VUZJr6Qdj8Cc/mhxFMZCFV2jnV/p1lA3OjWR2HDN1q0ibYaDSgd42HyLvKQ6+/Rn1AqYQUjYoOXXCGXeEBJ3j7zDRBl2Pufs+MJy9i9vEnd85lJvJ2mr6kYN2GGo2RQ+hEwVa84VwqBTO3DsOBwN6y4LPWm0fKy7cDvmPBrxqeM1j92I3H779Op+DNxKNTmroF2DWspUSYjd5wGzg3VLy1xJkw5aeFQFqxwgri0gTJxMt7ug94rQEsmgcSJx8f3w+d6YmYd7JbNu1v4UhprJA3A==",
+      "edits": ""
+    }
+  }
+}

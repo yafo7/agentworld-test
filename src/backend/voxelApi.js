@@ -116,13 +116,15 @@ export async function generateAnimation(
   duration = 2,
   provider = 'fireworks',
   emitParticles = false,
-  { timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
+  { vfxTags = null, timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
 ) {
   const operation = 'generateAnimation';
+  const body = { mode: 'quick', modelJson, description, duration, provider, emitParticles };
+  if (vfxTags) body.vfxTags = vfxTags;
   const response = await request(`${API_BASE}/api/generate/animation`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ mode: 'quick', modelJson, description, duration, provider, emitParticles }),
+    body: JSON.stringify(body),
     signal: timeoutSignal(timeoutMs),
   }, operation);
   if (!response.ok) throw await responseError(response, operation, 'ANIMATION_GENERATION_FAILED');

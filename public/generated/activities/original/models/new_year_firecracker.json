@@ -1,0 +1,618 @@
+{
+  "name": "新年鞭炮架",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "rack",
+      "name": "木架",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
+    },
+    {
+      "id": "firecracker_string",
+      "name": "悬挂鞭炮串",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          0,
+          3.25,
+          0
+        ]
+      }
+    },
+    {
+      "id": "confetti",
+      "name": "散落金色纸屑",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0,
+          -3.21,
+          0.06
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          -1.45,
+          1.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 3.2,
+          "depth": 0.32
+        },
+        "color": 9131818
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          1.45,
+          1.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 3.2,
+          "depth": 0.32
+        },
+        "color": 9131818
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          0,
+          3.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.25,
+          "height": 0.3,
+          "depth": 0.38
+        },
+        "color": 10906162
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          -1.45,
+          0.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.85,
+          "height": 0.18,
+          "depth": 0.75
+        },
+        "color": 7356447
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "rack",
+      "transform": {
+        "pos": [
+          1.45,
+          0.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.85,
+          "height": 0.18,
+          "depth": 0.75
+        },
+        "color": 7356447
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0,
+          -1.05,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 2.25,
+          "depth": 0.07
+        },
+        "color": 14066743
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0,
+          -0.17,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.18
+        },
+        "color": 14265661
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          -0.18,
+          -0.43,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 14034984
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0.18,
+          -0.68,
+          0.075
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 12129828
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          -0.18,
+          -0.93,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 14034984
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0.18,
+          -1.18,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 12129828
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          -0.18,
+          -1.43,
+          0.075
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 14034984
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0.18,
+          -1.68,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 12129828
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          -0.18,
+          -1.93,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 14034984
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0.18,
+          -2.18,
+          0.075
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.32,
+          "height": 0.4,
+          "depth": 0.28
+        },
+        "color": 12129828
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0,
+          -2.37,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.34,
+          "depth": 0.24
+        },
+        "color": 14758959
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "firecracker_string",
+      "transform": {
+        "pos": [
+          0,
+          -2.67,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.06,
+          "height": 0.28,
+          "depth": 0.06
+        },
+        "color": 6109728
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          -1.05,
+          0,
+          0.6
+        ],
+        "quat": [
+          0,
+          -0.12,
+          0,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.025,
+          "depth": 0.1
+        },
+        "color": 16041282
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          -0.52,
+          0,
+          0.87
+        ],
+        "quat": [
+          0,
+          0.27,
+          0,
+          0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.025,
+          "depth": 0.09
+        },
+        "color": 14263572
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          0.18,
+          0,
+          0.66
+        ],
+        "quat": [
+          0,
+          -0.39,
+          0,
+          0.92
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.025,
+          "depth": 0.08
+        },
+        "color": 16041282
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          0.72,
+          0,
+          0.92
+        ],
+        "quat": [
+          0,
+          0.1,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.025,
+          "depth": 0.11
+        },
+        "color": 14263572
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          1.16,
+          0,
+          0.47
+        ],
+        "quat": [
+          0,
+          -0.27,
+          0,
+          0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.025,
+          "depth": 0.08
+        },
+        "color": 16041282
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          -0.78,
+          0,
+          -0.48
+        ],
+        "quat": [
+          0,
+          -0.5,
+          0,
+          0.87
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.21,
+          "height": 0.025,
+          "depth": 0.1
+        },
+        "color": 14263572
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          0.46,
+          0,
+          -0.61
+        ],
+        "quat": [
+          0,
+          0.38,
+          0,
+          0.92
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.025,
+          "depth": 0.09
+        },
+        "color": 16041282
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "confetti",
+      "transform": {
+        "pos": [
+          1.05,
+          0,
+          -0.41
+        ],
+        "quat": [
+          0,
+          -0.06,
+          0,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.025,
+          "depth": 0.12
+        },
+        "color": 14263572
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785403166599,
+      "provider": "gpt",
+      "data": "wOY64Zs1f2v1zsmciDahdeoOkOH1LcDWRXhHHFVch0Jn9CqbG/TdNJ/CaEhO3mp5NpfSboil4U0C47T97TwoGwjF4fc6fMEgAhHkVhbcs+eBEeSxI9774y6gn+Jx98UV5iatWFdk1obQFMS0x65AkvrEO4Px3viocwRt1uXmPW7P8L7XPl8CT/tdHD8npPYBa8IpZ+Bzn3+jRlkQ+0BHmsq/Xi5UtERQPVEGVNflOUgeJMbaONbcrMfK8FPgRn7lQGQM8OWZ06Yq1X9olqwCLUybd48ohmlDKMPwo1ALSxMVu4ySay89PkJ5OA8Syva7AkXDrGzOJ9Oi8kvxSL7n2z1pcp0iQuXgCrA+hRiNmLiOgI7CXIcWZN/OaBtgyHR3MIw/YTe1oJOWF+0QmY1bd5O/M4RRyY2lkXHBPnqjEh58HEYtjLxFJ+p+kL0Phf/eIkDbjYiVze+TxSjjkMYoih3/6GW6gMIXBlZO58/LoQZcybTxMiLuZNdqJxaKRIu4oC9EY0lmP2GIbEgzAKN8AN//d5LKma15oNzs+79C3y7vmZYj7q+VjdV42gb3uJ6YsBBNzW1Tgt52lWLtjdFVQ478Q7OBi4+5V7fYzoLhFLv85/oa3ZzV01ra9slDvw72mkTIbd97dc9hNolgpN1R/EZ/317xZC4A0ZtktOF7s6bPxw9PEHVh3luHWIoPx0WzHD/76i/+umQ7fbLfkh94uQXqoekqNmNAT+YWz7IZ54xzwa5kFWJdB6EOBSHDfPBbBqOAWT+4/OYWFq9s4HArbBv02Ou5g7ZlVWrn+SlHMJgdou3T0rLBfKBBpVkwOvOzWRdsoBW0XMZfuVabCme+GKKVkIwQariACQOgJnm6lFlmGTyuFrpwaP7OSPnwnwe7hkI4Q15cI7k4eRls4Ti0BIYYsQwX6AaHr6plBwf5KRNIEp+It8FXqC6UL+NiZkK9mpNd3IS3KSc+bohkAmIlxxemKmLsbkO6Y4Qy+xnET2DE/3tIMUlGO1XF/+0ceIhF/PaR99CH+HhBX7rIQ/7cfv44hKAQjJi4RWEJl9Qr4Bhil56exZ023Sxce6s5oIBPpOmbRdjQ0Xn3WqTOQwmT9OwewxNQm7ByNj2ztKGqGYXMv3XRJGLO0snPLxBiCw8V8gcnlvwSiUSDk42GRiJ92TYcb4i7nDYtm4OGIBSoxlXX11IL20M/eG+E+QswZzsy9R+wWak9CC2TlMYBBkjeKjLJCUaqazTqtrGUPpSSo5VJkuXeZiTgPCHrpYUiFEVjWB0sRenDwQZ+ja56wNl44uHWdBJ287zJQ7M=",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_firecracker",
+    "chiiActivityOperation": "generate",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "红色鞭炮串挂木架，散落金色纸屑"
+  }
+}

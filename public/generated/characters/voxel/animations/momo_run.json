@@ -1,0 +1,67 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 2.4
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    }
+  },
+  "leg_l": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.3,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "leg_r": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.3,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "arm_l": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "arm_r": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.85,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "_name": "momo-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "momo",
+    "quality": "voxel",
+    "prompt": "短腿快速奔跑"
+  }
+}

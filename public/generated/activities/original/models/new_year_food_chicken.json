@@ -1,0 +1,507 @@
+{
+  "name": "汤圆春卷烧鸡拼盘",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "platter",
+      "name": "金边大盘",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "gold_rim",
+      "name": "金色盘边",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.46,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "tangyuan",
+      "name": "整齐汤圆",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          -2.35,
+          0.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "spring_rolls",
+      "name": "平行春卷",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          -0.25,
+          0.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "roast_chicken",
+      "name": "烧鸡",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          2.35,
+          0.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 8,
+          "height": 0.28,
+          "depth": 5.5
+        },
+        "color": 15919829
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.38,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 7.5,
+          "height": 0.16,
+          "depth": 5
+        },
+        "color": 16776171
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0.02,
+          2.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 8,
+          "height": 0.18,
+          "depth": 0.2
+        },
+        "color": 14133544
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0.02,
+          -2.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 8,
+          "height": 0.18,
+          "depth": 0.2
+        },
+        "color": 14133544
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "gold_rim",
+      "transform": {
+        "pos": [
+          3.9,
+          0.02,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.18,
+          "depth": 5.1
+        },
+        "color": 14133544
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "gold_rim",
+      "transform": {
+        "pos": [
+          -3.9,
+          0.02,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.18,
+          "depth": 5.1
+        },
+        "color": 14133544
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.32,
+          -0.82
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.32,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.32,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          0.37,
+          0.32,
+          -0.82
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          0.37,
+          0.32,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "tangyuan",
+      "transform": {
+        "pos": [
+          0.37,
+          0.32,
+          0.82
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.62,
+          "depth": 0.62
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "spring_rolls",
+      "transform": {
+        "pos": [
+          -0.6,
+          0.21,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 2.15
+        },
+        "color": 14256935
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "spring_rolls",
+      "transform": {
+        "pos": [
+          0.05,
+          0.21,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 2.15
+        },
+        "color": 15049531
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "spring_rolls",
+      "transform": {
+        "pos": [
+          0.7,
+          0.21,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 2.15
+        },
+        "color": 13203488
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          0,
+          0.46,
+          -0.12
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.45,
+          "height": 0.88,
+          "depth": 1.65
+        },
+        "color": 10309149
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          0,
+          0.93,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.02,
+          "height": 0.16,
+          "depth": 1.18
+        },
+        "color": 13793836
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          -0.97,
+          0.3,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 8863769
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          0.97,
+          0.3,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 8863769
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          -0.33,
+          0.27,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.44,
+          "depth": 0.92
+        },
+        "color": 12082720
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "roast_chicken",
+      "transform": {
+        "pos": [
+          0.33,
+          0.27,
+          1.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.44,
+          "depth": 0.92
+        },
+        "color": 12082720
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785403528634,
+      "provider": "gpt",
+      "data": "TA0PicDFhfF3HdPuTW2MrnOcdngtwUZiiCTDacZwgjGAhd6B+XQtI+z4+w4qVH26A7C8HXuyGvih4QXm2lAMFdJAbZX0WKC+zwWiNdOykRQhM2ltHTh47yBXEGHN7cUfE8mCqGCyWbKe/app9aosYngiLkHABySBiyFJQPGg5O009M2LrG2MsVu87PUSvT8NEHxVYFx1nRZ+VyO96/E+oUGnRGXw3azVwg2hzkjQY5rEnJZloJjur0W4yaR3dUpKggd1aPxFfQCu4mV74XseE4ZF/CZASE9r3PehfB99Vz/mZTXREf8sqwi/aqBTCK+tpNZBC5MBqaUN7DL2hQ2COrO471hE8Qrj8YXquGReAhHgTx4hOmSssyXcV5P/IIXn7fDjUld6Ymo+q7yaIFy4kj+pVubaJCTMLButb1jbCunxtYTYVYZGuXnvnigLRFlEf5hHzAsLZrCJBqglValy96jJg5nHCNKf+rbwNz1CzQA5A9JCtghW3U+3lQbOoOCQI2AKmY+4vkZFO98hEyx0PD+Frjo/PymH5Y4ogD76UmXnALxKGO+Ui4BagaoR3hYRKqeKZ1vQ14wnhvVPum1KcFhP061VjnBdJK+WJbNQ9xvu27EtUpn4+OQzHXFWp/sTSwc+J55Vfd/KQtnwEdKK07GTbA7A5Ro4cho+MJXnKyI4HEh8zX4gDrXofb10DsOjZVt2UKz9kxO9a9iF9VYeRxwQrgp+PTMpJIJ0TtBRAdbZtG9KE86h8oJBng2XkmNdYFjg4ILF4SyJsttwsRw22iQj3sWR/hLwzot88zjP267SHiEprouvojP1JlpBa3EzF5C8l7uYQUftQwXiEONKNSfgq4rQVwWyRw24gjleoltnVR2FFAjl3CCg9ZUIPcfqhlZALZD+EadzXDGfKH48dAIX4UlREvdYxZ++/b96/+dgI74pLjal2H1zJU4Quk2De9is0OJ/K8v04os2zQ6X0qktFOuBZutDazgbvEAdFwym0Lcek4h258NTj9kl1ZSiTonzOW7Yo0YtXRLT+H6OHPJpqq1ddR9xGZvH6aWkP24w4eUpIi5iLpNMMV0r/3t9M2GflpyDh3/aX+UdbgxV3+1FG77MrhYAGYrR9nstuG0=",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_food_chicken",
+    "chiiActivityOperation": "generate",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "金边盘装汤圆春卷烧鸡，摆放整齐"
+  }
+}

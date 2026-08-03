@@ -1,0 +1,46 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.42
+    },
+    "bounce": {
+      "amplitude": 0.035,
+      "frequency": 0.42
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.025,
+      "frequency": 0.42,
+      "phase": 0.1
+    }
+  },
+  "leftBraid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.05,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "rightBraid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "_name": "方案 B · 奇异岛短身版_idle",
+  "_type": "idle",
+  "_modelId": "phrolova_b",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "自然站立轻轻呼吸",
+    "emitParticles": false
+  }
+}

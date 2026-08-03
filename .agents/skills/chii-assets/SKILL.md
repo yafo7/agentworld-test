@@ -29,6 +29,7 @@ Rules:
 - Always select a scope with `--all` or `--only`; a bare command is rejected.
 - Dry-run performs semantic JSON comparison and reports `same`, `changed`, `missing`, and `ambiguous` without touching the manifest.
 - A real sync skips semantically unchanged JSON instead of rewriting it.
+- Studio sync updates the normal staging assets under `public/generated/`; it does not silently replace the independent Pro, Voxel, or Original scene snapshots. Publishing into one scene must be explicit and must update only that scene's manifest.
 - Run `$chii-verify` after writing assets.
 
 Read `references/pipeline.md` only when changing source policy, adding an asset, or diagnosing JSON provenance.

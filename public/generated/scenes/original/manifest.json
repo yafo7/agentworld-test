@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 2,
+  "sceneId": "original",
+  "label": "Original",
+  "freezeBoundary": "before-2026-07-28-large-iteration",
+  "boundaryTimestamp": "2026-07-28T09:24:23+08:00",
+  "sourceSnapshot": "public/generated/history/2026-07-28-gpt56-reset",
+  "sourcePolicy": "pre-reset default Voxel environment with pre-reset shared residents and buildings",
+  "features": {
+    "worldWater": false,
+    "waterLandmarks": false,
+    "forestBeach": false
+  },
+  "knownFallbacks": {
+    "town_stone_bridge": "The pre-iteration bridge was overwritten before the reset backup ran; retain the current validated bridge while all recoverable scene assets use the exact backup."
+  },
+  "assets": [
+    {
+      "kind": "models",
+      "name": "nailong",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/models/nailong.json",
+      "sourceSha256": "7d2baee8404cf2dd687fc842ec6b09070ddeac868ebd1d42a0c9b74c479366ac",
+      "target": "public/generated/scenes/original/models/nailong.json"
+    },
+    {
+      "kind": "models",
+      "name": "oak",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/styles/voxel/models/oak.json",
+      "sourceSha256": "2b5a14c9c8aa3253eb8537a50eda996218b3a2c3dafd4db71803ab27a2717eb4",
+      "target": "public/generated/scenes/original/models/oak.json"
+    },
+    {
+      "kind": "models",
+      "name": "normal_tree",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/styles/voxel/models/normal_tree.json",
+      "sourceSha256": "4b7a493cd5f48ed3962469256c3d705823bf978c4d21223c599911d7419449f7",
+      "target": "public/generated/scenes/original/models/normal_tree.json"
+    },
+    {
+      "kind": "models",
+      "name": "apple_tree",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/styles/voxel/models/apple_tree.json",
+      "sourceSha256": "b917f06897385d7eb1af1f098aa1d92428e1bf1fe92015546a7ef23bbdf99680",
+      "target": "public/generated/scenes/original/models/apple_tree.json"
+    },
+    {
+      "kind": "models",
+      "name": "glowgrass",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/glowgrass.json",
+      "sourceSha256": "e87fe6f30d74aa4a2e16f5e22dcccb3de2bb652873d3dadf18da40d251933937",
+      "target": "public/generated/scenes/original/models/glowgrass.json"
+    },
+    {
+      "kind": "models",
+      "name": "pink_flower",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/pink_flower.json",
+      "sourceSha256": "96c831510b4aa92c1ea1a952db33d3dcbb65c51531355d508827e6518c69dc6e",
+      "target": "public/generated/scenes/original/models/pink_flower.json"
+    },
+    {
+      "kind": "models",
+      "name": "grass_clump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/grass_clump.json",
+      "sourceSha256": "65952826f7277dc15f77db72e13a98724f5d11138892876983fa060b082bf8cb",
+      "target": "public/generated/scenes/original/models/grass_clump.json"
+    },
+    {
+      "kind": "models",
+      "name": "trumpet_flower",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/trumpet_flower.json",
+      "sourceSha256": "24e3069566d9e0c35dec02dd19ac9df7de22881241ef55f9ac7483ce14b0a82a",
+      "target": "public/generated/scenes/original/models/trumpet_flower.json"
+    },
+    {
+      "kind": "models",
+      "name": "blue_tulips",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/blue_tulips.json",
+      "sourceSha256": "2527be5e48a4e702204b9c9252933231e7a653d76e81a9be8444b3d768ca6fe2",
+      "target": "public/generated/scenes/original/models/blue_tulips.json"
+    },
+    {
+      "kind": "models",
+      "name": "wheat_field",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/wheat_field.json",
+      "sourceSha256": "f8fa55ef4d3d4d1cd2e81c05c2331107a460f683c669d537430c5eecf293311a",
+      "target": "public/generated/scenes/original/models/wheat_field.json"
+    },
+    {
+      "kind": "models",
+      "name": "flower_pot",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/flower_pot.json",
+      "sourceSha256": "311df6d094798c1ad0484bcc356ab356447d64bd8ad5e2f350dfe277e54ee176",
+      "target": "public/generated/scenes/original/models/flower_pot.json"
+    },
+    {
+      "kind": "models",
+      "name": "giant_carrot",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/giant_carrot.json",
+      "sourceSha256": "3f094a171b7af94df37bac4b7e08453f8570b26babac0772fd7d28fa14bcce12",
+      "target": "public/generated/scenes/original/models/giant_carrot.json"
+    },
+    {
+      "kind": "models",
+      "name": "windmill",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/windmill.json",
+      "sourceSha256": "f67fa67ae4af2862974e701f587a6ca68d3c41402de3c4dfa8a96a01af74a1d6",
+      "target": "public/generated/scenes/original/models/windmill.json"
+    },
+    {
+      "kind": "models",
+      "name": "church",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/church.json",
+      "sourceSha256": "aa6cbc3deb373125b1225d6b8169eccf1af9727cef140e804ef51450c08fd52b",
+      "target": "public/generated/scenes/original/models/church.json"
+    },
+    {
+      "kind": "models",
+      "name": "temple",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/temple.json",
+      "sourceSha256": "c53e584e059721770d0a2d427eb0ff8e7e31dd9873b777a5e1cece75be6337ad",
+      "target": "public/generated/scenes/original/models/temple.json"
+    },
+    {
+      "kind": "models",
+      "name": "town_stone_bridge",
+      "provenance": "compatibility-fallback",
+      "source": "public/generated/models/town_stone_bridge.json",
+      "sourceSha256": "cbfc0728fb759d1dd1f013293ac385b1feddcc69b25dd630d1a5dc1c08eb1cfc",
+      "target": "public/generated/scenes/original/models/town_stone_bridge.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_pew",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/church_pew.json",
+      "sourceSha256": "35e6c86a5226f1bc5613892a2b40a23a264ad1c13ce56411f86aad0f9eef0cd7",
+      "target": "public/generated/scenes/original/models/church_pew.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_altar",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/church_altar.json",
+      "sourceSha256": "5c74b90dc29ce413f0ff7fa02c836ca60b260888860f46867543380c57d579aa",
+      "target": "public/generated/scenes/original/models/church_altar.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_angel_statue",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/church_angel_statue.json",
+      "sourceSha256": "43fb481fa99329984494b47e0eb68a72f5716f9d46d12aa01ffbe60454afebf1",
+      "target": "public/generated/scenes/original/models/church_angel_statue.json"
+    },
+    {
+      "kind": "models",
+      "name": "stump",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/models/stump.json",
+      "sourceSha256": "8a9a088c093ecda7495df17cce9a07deaae27aae25d6546595693597ae5e7d37",
+      "target": "public/generated/scenes/original/models/stump.json"
+    },
+    {
+      "kind": "models",
+      "name": "campfire",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/campfire.json",
+      "sourceSha256": "b32c541f1188e573593bc99261a118625e32fd78bdd57289bda522b23cad9e4e",
+      "target": "public/generated/scenes/original/models/campfire.json"
+    },
+    {
+      "kind": "models",
+      "name": "forest_temple_trophy",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/forest_temple_trophy.json",
+      "sourceSha256": "2bebd24b9576dd1d209b14f5950a2fc92d0de87c692885d80d152c1f383cbe82",
+      "target": "public/generated/scenes/original/models/forest_temple_trophy.json"
+    },
+    {
+      "kind": "models",
+      "name": "forest_temple_tent",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/forest_temple_tent.json",
+      "sourceSha256": "2c25cde6975e00c5dbbd028e15bd44885bbf34ed0eb7bfd047fd3cf9f619e5ad",
+      "target": "public/generated/scenes/original/models/forest_temple_tent.json"
+    },
+    {
+      "kind": "models",
+      "name": "pastoral_work_scaffold",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/models/pastoral_work_scaffold.json",
+      "sourceSha256": "88b7fdcda12adcfa786fff02dff75aa207b7fba94d8830c8c83b917ea6272fd3",
+      "target": "public/generated/scenes/original/models/pastoral_work_scaffold.json"
+    },
+    {
+      "kind": "models",
+      "name": "fangk",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/fangk.json",
+      "sourceSha256": "5b051ee6473505ee9aeb98f525c70742705c9eeacb4f7e41f75e5e7b68f3016f",
+      "target": "public/generated/scenes/original/models/fangk.json"
+    },
+    {
+      "kind": "models",
+      "name": "momo",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/momo.json",
+      "sourceSha256": "dda5ea8371453d7eb177a68dd9fb36d541f28a8dd5049021578ad1f168e0cb5b",
+      "target": "public/generated/scenes/original/models/momo.json"
+    },
+    {
+      "kind": "models",
+      "name": "mako",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/mako.json",
+      "sourceSha256": "3d9854aedf28abbe5280fd94e95ac2891a55847e3dd2c3b04d0dee28072796c4",
+      "target": "public/generated/scenes/original/models/mako.json"
+    },
+    {
+      "kind": "models",
+      "name": "mok",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/mok.json",
+      "sourceSha256": "9da8446bfacac8dee6d67e1725753031a1df92969a8f84d78970fec7babb2e48",
+      "target": "public/generated/scenes/original/models/mok.json"
+    },
+    {
+      "kind": "models",
+      "name": "lingq",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/lingq.json",
+      "sourceSha256": "28f410653dcdb86db414defbc3d99e8ff910162ec53bea3c58c23abb1ec7f490",
+      "target": "public/generated/scenes/original/models/lingq.json"
+    },
+    {
+      "kind": "models",
+      "name": "yafo",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/yafo.json",
+      "sourceSha256": "67ce2ac3f10c1d360991a7b30745c9e1c452ee9e4540d2de2d741f60a36a16f6",
+      "target": "public/generated/scenes/original/models/yafo.json"
+    },
+    {
+      "kind": "models",
+      "name": "crab",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/models/crab.json",
+      "sourceSha256": "5b4a3f42c10c2a0f5c540273453fba21ab903929f7b411e007e37ac09f09c412",
+      "target": "public/generated/scenes/original/models/crab.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_idle",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_idle.json",
+      "sourceSha256": "86a3187dfe089e785807444a7dff1684f1c9459b18f9bfee3ec37fc55967dab9",
+      "target": "public/generated/scenes/original/animations/nailong_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_walk",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_walk.json",
+      "sourceSha256": "00f821bed1abc2d68e5782d77a6d7e18936372ef53298641cd441f4381afd89d",
+      "target": "public/generated/scenes/original/animations/nailong_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_run",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_run.json",
+      "sourceSha256": "e79c9ca0a18b4d4eb3e6b33167a67588f48410b52bfc037d199946591d05bd38",
+      "target": "public/generated/scenes/original/animations/nailong_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_jump",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_jump.json",
+      "sourceSha256": "7fb1b6b9ee5c64338d7c002688e767393224d7c5c5e1194ff2fe369a67252bf0",
+      "target": "public/generated/scenes/original/animations/nailong_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_wave_left",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_wave_left.json",
+      "sourceSha256": "b6c445193f9bf3d2162d16dcb6341c7d80f881426dd7f955b2151e15856a8471",
+      "target": "public/generated/scenes/original/animations/nailong_wave_left.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_fan_spark",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/nailong_fan_spark.json",
+      "sourceSha256": "036ce195d472e1314f4ada5be62bfe35733e347e16e7d71df6e0a3c31ab58d7a",
+      "target": "public/generated/scenes/original/animations/nailong_fan_spark.json"
+    },
+    {
+      "kind": "animations",
+      "name": "campfire_burn",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/animations/campfire_burn.json",
+      "sourceSha256": "0549a7cec5d5df6ea9d9780d0c557e70095869cccf86390e13ac6150aa2c9132",
+      "target": "public/generated/scenes/original/animations/campfire_burn.json"
+    },
+    {
+      "kind": "animations",
+      "name": "forest_trophy_wait",
+      "provenance": "unchanged-by-reset",
+      "source": "public/generated/animations/forest_trophy_wait.json",
+      "sourceSha256": "b843e85fb34eabc536cca4d3e4a01c8ef471655a438b667c7c20446dd64455e0",
+      "target": "public/generated/scenes/original/animations/forest_trophy_wait.json"
+    },
+    {
+      "kind": "animations",
+      "name": "pastoral_work_scaffold_dust",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/styles/voxel/animations/pastoral_work_scaffold_dust.json",
+      "sourceSha256": "c1141c822445ac8b6fc6d6859185fb8ceb187f601b324f42c83431a03ae14ecf",
+      "target": "public/generated/scenes/original/animations/pastoral_work_scaffold_dust.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/fangk_idle.json",
+      "sourceSha256": "6fdbfe94667ccba2c6dee9360d7975e654bfdf30339e4346cc8b01ece0e7a52a",
+      "target": "public/generated/scenes/original/animations/fangk_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/fangk_run.json",
+      "sourceSha256": "5ea6954bcd2ace18e5f0af788835781b8b322258cbc0cd9d6d7047477c5550fb",
+      "target": "public/generated/scenes/original/animations/fangk_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_construct",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/fangk_construct.json",
+      "sourceSha256": "a0eeb5a388bdb6ebdd6c73ffacdf5654ad82ff47b54aee4b00567003336694be",
+      "target": "public/generated/scenes/original/animations/fangk_construct.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_dance",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/fangk_dance.json",
+      "sourceSha256": "81b7e8612ea6024be7c94787f9c8cc861ba09488a68d948ac0aff1a83da991b3",
+      "target": "public/generated/scenes/original/animations/fangk_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_idle.json",
+      "sourceSha256": "6fdbfe94667ccba2c6dee9360d7975e654bfdf30339e4346cc8b01ece0e7a52a",
+      "target": "public/generated/scenes/original/animations/momo_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_walk",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_walk.json",
+      "sourceSha256": "5ea6954bcd2ace18e5f0af788835781b8b322258cbc0cd9d6d7047477c5550fb",
+      "target": "public/generated/scenes/original/animations/momo_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_run.json",
+      "sourceSha256": "5ea6954bcd2ace18e5f0af788835781b8b322258cbc0cd9d6d7047477c5550fb",
+      "target": "public/generated/scenes/original/animations/momo_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_chop",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_chop.json",
+      "sourceSha256": "a0eeb5a388bdb6ebdd6c73ffacdf5654ad82ff47b54aee4b00567003336694be",
+      "target": "public/generated/scenes/original/animations/momo_chop.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_smash",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_smash.json",
+      "sourceSha256": "d7705b75ea8792de67cf07a3a7ee9bf763041878a3401353b0a54d472a184cb5",
+      "target": "public/generated/scenes/original/animations/momo_smash.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_wave",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_wave.json",
+      "sourceSha256": "c3ebe5eeb4a704e8339e6f36fe40cf9efd2d192a2b621a7712fe78c3f274c229",
+      "target": "public/generated/scenes/original/animations/momo_wave.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_magic",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/momo_magic.json",
+      "sourceSha256": "8ae23156214162bfd1d508f438a8842bd49886d588b6778730102324444ca098",
+      "target": "public/generated/scenes/original/animations/momo_magic.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mako_idle.json",
+      "sourceSha256": "ff88fd8fda97a78d6c93628e40c2aedb8db7d7b1a4d5f26d1ba62161301031ef",
+      "target": "public/generated/scenes/original/animations/mako_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mako_run.json",
+      "sourceSha256": "15db6bd40a4237afa70740daedccfb0dab8997b4df5f3bdc5d5f7fefc5983ccb",
+      "target": "public/generated/scenes/original/animations/mako_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_jump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mako_jump.json",
+      "sourceSha256": "990dfdbccb03e1f0ccbd78717e5e340e18f232abd26059ee1c787795b0eaa94c",
+      "target": "public/generated/scenes/original/animations/mako_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_dance",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mako_dance.json",
+      "sourceSha256": "1c3a909439eb394de63b3ad99ee3edc9097f373fa0401bf197bd7cb0be887010",
+      "target": "public/generated/scenes/original/animations/mako_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mok_idle.json",
+      "sourceSha256": "05bef4a7a33d42e24b608132fae2ea68e22b63818479208dc15f341154360d06",
+      "target": "public/generated/scenes/original/animations/mok_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mok_run.json",
+      "sourceSha256": "e96e9bd5593b6846ffbeff488bd4d421ccf399dad022c1da6c89c6294c012b5a",
+      "target": "public/generated/scenes/original/animations/mok_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_jump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/mok_jump.json",
+      "sourceSha256": "754ac12dd32bee51f0cb43542f175c0a3d58c86b0ab916d295700fd20f89f2f5",
+      "target": "public/generated/scenes/original/animations/mok_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/lingq_idle.json",
+      "sourceSha256": "137ead04ee6b36cfd80f6334afcbaa19fd086fc9c8e1cc5f38482beed542cd0d",
+      "target": "public/generated/scenes/original/animations/lingq_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/lingq_run.json",
+      "sourceSha256": "1b0bf4f8f0632cd0b43212cd2bff7e1fda8b16d08e3c8d7a73f9ee900577a062",
+      "target": "public/generated/scenes/original/animations/lingq_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_jump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/lingq_jump.json",
+      "sourceSha256": "fb9409f0706a88bcabcdc774369296c6ea251bc85ab1bddb9fe454493316fd2c",
+      "target": "public/generated/scenes/original/animations/lingq_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_dance",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/lingq_dance.json",
+      "sourceSha256": "cd73fe3e6cc66ed3279094401d1ae17dc4b618f9865e3584250bef3a73954911",
+      "target": "public/generated/scenes/original/animations/lingq_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/yafo_idle.json",
+      "sourceSha256": "94ac54d9bc3ec967c7831491ff3e5f7654a64238987b1504408887dfb29c15ba",
+      "target": "public/generated/scenes/original/animations/yafo_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/yafo_run.json",
+      "sourceSha256": "12ffb9dc68c1b0ea44b0126c03c3106128e2d254e1df57b5f8e82aa0f5bccb22",
+      "target": "public/generated/scenes/original/animations/yafo_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_jump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/yafo_jump.json",
+      "sourceSha256": "4760f5b737131a333e76f5e0ac5157fdcc94b641a0bc220a3a6ee35c9f689a90",
+      "target": "public/generated/scenes/original/animations/yafo_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_idle",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_idle.json",
+      "sourceSha256": "5b2e8b1b2d6fd174c473072574eae84d393dc9e63be0534f71332c8976ba0b02",
+      "target": "public/generated/scenes/original/animations/crab_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_walk",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_walk.json",
+      "sourceSha256": "ca9c92477310e983a5f00bc472db2ba10913047cae332ef32599c37ce1a489d8",
+      "target": "public/generated/scenes/original/animations/crab_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_run",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_run.json",
+      "sourceSha256": "4c37ca805e2db183fc581df8f63ba7b63dcb5cc6fe4d6580a0bfc540574ff81a",
+      "target": "public/generated/scenes/original/animations/crab_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_jump",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_jump.json",
+      "sourceSha256": "b51dfe7c07be4266517cf6832961d1a7c637ece1057326efe2749d00fef011a9",
+      "target": "public/generated/scenes/original/animations/crab_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_construct",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_construct.json",
+      "sourceSha256": "8be68ed28bb2b54d4308c72a70d559ba730dd0296264a894e8c7d61009a5ee6e",
+      "target": "public/generated/scenes/original/animations/crab_construct.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_dance",
+      "provenance": "pre-iteration-backup",
+      "source": "public/generated/history/2026-07-28-gpt56-reset/animations/crab_dance.json",
+      "sourceSha256": "7b7acecd57da2b474f39e53fe8b149a64710ecb328b157467b699e9d8e4dac78",
+      "target": "public/generated/scenes/original/animations/crab_dance.json"
+    }
+  ]
+}

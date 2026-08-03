@@ -68,7 +68,7 @@ test('town building lots convert terrain tiles into placement-grid cells', () =>
 test('town building prompt preserves the request and includes the confirmed lot ratio', () => {
   assert.equal(
     createBuildingPrompt('红瓦木墙的小型宠物工坊', { width: 3, depth: 4 }),
-    '红瓦木墙的小型宠物工坊，底部长宽比3比4',
+    '红瓦木墙的小型宠物工坊，底部长宽比3比4，门高约一只宠物，主体按占地完整展开',
   );
 });
 

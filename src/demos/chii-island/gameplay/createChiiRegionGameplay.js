@@ -4,14 +4,18 @@ import { createPastoralSlice } from '../systems/pastoralSlice.js';
 import { TownSocialSystem } from '../systems/TownSocialSystem.js';
 import { TownBuilderSystem } from '../systems/TownBuilderSystem.js';
 import { ForestTempleSystem } from '../systems/ForestTempleSystem.js';
-import { clearAIWorldEvents } from '../../../storage/aiWorldState.js';
 import { TemporaryVfxService } from '../presentation/TemporaryVfxService.js';
+import { TownActivityPresentationDirector } from '../presentation/TownActivityPresentationDirector.js';
+import { ActivityRegistry } from '../../../gameplay/social/ActivityRegistry.js';
+import { TownActivityRegistryStore } from '../../../storage/TownActivityRegistryStore.js';
+import { createTownActivityRegistrySeed } from '../data/townActivityRegistry.js';
 
 export async function createChiiRegionGameplay({
   scene,
   physics,
   player,
   camera = null,
+  cameraController = null,
   petManager,
   architect,
   bear,
@@ -30,9 +34,10 @@ export async function createChiiRegionGameplay({
   colliderRegistry,
   objectPlacement,
   objectEditor,
+  equipmentService = null,
+  sceneStyle = 'original',
   onGeneratedObject,
 }) {
-  clearAIWorldEvents();
   const vfxService = new TemporaryVfxService({ scene });
 
   const pastoralSlice = createPastoralSlice({
@@ -58,6 +63,8 @@ export async function createChiiRegionGameplay({
     onGeneratedObject,
     camera,
     vfxService,
+    equipmentService,
+    sceneStyle,
   });
 
   const townCenterGrid = scenePlan.town?.center;
@@ -70,6 +77,16 @@ export async function createChiiRegionGameplay({
     petManager.pets.find(pet => pet._petName === 'mako'),
     petManager.pets.find(pet => pet._petId === 'builder_crab'),
   ].filter(Boolean);
+  const townPresentation = new TownActivityPresentationDirector({
+    player,
+    cameraController: cameraController || dialogueCamera.thirdPersonCamera,
+    dialogueSystem,
+  });
+  const townActivityRegistry = new ActivityRegistry({
+    seed: createTownActivityRegistrySeed(),
+    store: new TownActivityRegistryStore(),
+    sceneStyle,
+  });
   const townSocialSystem = new TownSocialSystem({
     scene,
     player,
@@ -83,6 +100,10 @@ export async function createChiiRegionGameplay({
     runtimeStatus,
     camera,
     vfxService,
+    presentationDirector: townPresentation,
+    equipmentService,
+    sceneStyle,
+    activityRegistry: townActivityRegistry,
   });
   const townBuilderSystem = new TownBuilderSystem({
     scene,
@@ -134,12 +155,13 @@ export async function createChiiRegionGameplay({
     update(dt) {
       pastoralSlice.update(dt);
       townSocialSystem.update(dt);
+      townPresentation.update(dt);
       townBuilderSystem.update(dt);
       forestTempleSystem.update(dt);
       vfxService.update(dt);
     },
     interactTownPet(pet, dialogue) {
-      return townBuilderSystem.isBuilder(pet)
+      return townBuilderSystem.isBuilder(pet) && !townSocialSystem.isHandlingActivePet(pet)
         ? townBuilderSystem.interact(pet, dialogue)
         : townSocialSystem.interact(pet, dialogue);
     },
@@ -154,6 +176,9 @@ export async function createChiiRegionGameplay({
         }
       }
       return nearest?.[0] || '奇异岛';
+    },
+    dispose() {
+      townPresentation.dispose();
     },
   };
 }

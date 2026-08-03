@@ -1,0 +1,123 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "slide": {
+      "axis": "x",
+      "distance": 2.5,
+      "frequency": 0.5,
+      "phase": 0
+    },
+    "bounce": {
+      "amplitude": 0.15,
+      "frequency": 2.4
+    },
+    "squash": {
+      "axis": "y",
+      "amount": 0.94
+    }
+  },
+  "leg0": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.1,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "leg1": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.1,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "leg2": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.1,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "leg3": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.1,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "leg4": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.1,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "leg5": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.1,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "leg6": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.1,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "leg7": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.1,
+      "frequency": 2.4,
+      "phase": 0
+    }
+  },
+  "_name": "螃蟹-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "crab",
+    "quality": "voxel",
+    "prompt": "八条腿快速横跑"
+  }
+}

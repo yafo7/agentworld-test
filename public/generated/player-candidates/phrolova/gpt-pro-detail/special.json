@@ -1,0 +1,111 @@
+{
+  "_duration": 2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 1
+    },
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 1,
+      "phase": 0.1
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 55
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.48,
+        "frequency": 1.5
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.28,
+        "frequency": 3,
+        "phase": 0.25
+      }
+    ]
+  },
+  "RARM_wrist": {
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.4,
+      "rate": 24,
+      "lifetime": [
+        0.7,
+        1.3
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0.4
+        ],
+        "speed": [
+          0.8,
+          1.8
+        ],
+        "spread": 0.65
+      },
+      "acceleration": [
+        0,
+        0.25,
+        0
+      ],
+      "offset": [
+        0,
+        0.15,
+        0.15
+      ],
+      "colorStart": [
+        1,
+        0.08,
+        0.12
+      ],
+      "colorEnd": [
+        0.45,
+        0,
+        0.05
+      ],
+      "scaleStart": 1.2,
+      "scaleEnd": 0.45
+    }
+  },
+  "leftBraid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.1,
+      "frequency": 1,
+      "phase": 0.15
+    }
+  },
+  "rightBraid": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 1,
+      "phase": 0.15
+    }
+  },
+  "_name": "方案 D · GPT Pro 精细版_special",
+  "_type": "special",
+  "_modelId": "phrolova_d",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "挥花指挥红色音符",
+    "emitParticles": true
+  }
+}

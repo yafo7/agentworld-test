@@ -1,0 +1,32 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.4
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.4
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 4
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.6
+    }
+  },
+  "_name": "fangk-idle",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "fangk",
+    "quality": "voxel",
+    "prompt": "站立呼吸点头"
+  }
+}

@@ -183,6 +183,7 @@ export class ManualClimateController {
     this.target = resolveClimateAppearance(this.state);
     this.weatherRoot = this._createWeatherRoot();
     this.weatherParticles = null;
+    this.weatherEffectsVisible = true;
     this._targetColor = new THREE.Color();
     this._targetPosition = new THREE.Vector3();
     if (bindControls) this._bindControls();
@@ -213,7 +214,17 @@ export class ManualClimateController {
       this.weatherRoot.position.set(position.x, position.y + 18, position.z);
     }
     this.skyVisual?.update?.(dt);
-    this.weatherParticles?.update(dt, this.weatherRoot);
+    if (this.weatherEffectsVisible) {
+      this.weatherParticles?.update(dt, this.weatherRoot);
+    }
+  }
+
+  setWeatherEffectsVisible(visible) {
+    this.weatherEffectsVisible = Boolean(visible);
+    for (const emitter of this.weatherParticles?.emitters || []) {
+      emitter.instancedMesh.visible = this.weatherEffectsVisible;
+      if (!this.weatherEffectsVisible) emitter.instancedMesh.count = 0;
+    }
   }
 
   dispose() {
@@ -295,6 +306,7 @@ export class ManualClimateController {
     if (!plan) return;
     this.weatherParticles = new ParticleSystem(this.scene);
     this.weatherParticles.setup(plan, this.weatherRoot);
+    this.setWeatherEffectsVisible(this.weatherEffectsVisible);
   }
 
   _applyAppearance(alpha) {

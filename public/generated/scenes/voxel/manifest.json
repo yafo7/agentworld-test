@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "voxel",
+  "label": "Voxel ??",
+  "frozenAt": "2026-07-29",
+  "sourceCommit": null,
+  "features": {
+    "worldWater": true,
+    "waterLandmarks": true
+  },
+  "assets": [
+    {
+      "kind": "models",
+      "name": "nailong",
+      "source": "public/generated/models/nailong.json",
+      "target": "public/generated/scenes/voxel/models/nailong.json"
+    },
+    {
+      "kind": "models",
+      "name": "oak",
+      "source": "public/generated/styles/voxel/models/oak.json",
+      "target": "public/generated/scenes/voxel/models/oak.json"
+    },
+    {
+      "kind": "models",
+      "name": "normal_tree",
+      "source": "public/generated/styles/voxel/models/normal_tree.json",
+      "target": "public/generated/scenes/voxel/models/normal_tree.json"
+    },
+    {
+      "kind": "models",
+      "name": "apple_tree",
+      "source": "public/generated/styles/voxel/models/apple_tree.json",
+      "target": "public/generated/scenes/voxel/models/apple_tree.json"
+    },
+    {
+      "kind": "models",
+      "name": "glowgrass",
+      "source": "public/generated/styles/voxel/models/glowgrass.json",
+      "target": "public/generated/scenes/voxel/models/glowgrass.json"
+    },
+    {
+      "kind": "models",
+      "name": "pink_flower",
+      "source": "public/generated/styles/voxel/models/pink_flower.json",
+      "target": "public/generated/scenes/voxel/models/pink_flower.json"
+    },
+    {
+      "kind": "models",
+      "name": "grass_clump",
+      "source": "public/generated/styles/voxel/models/grass_clump.json",
+      "target": "public/generated/scenes/voxel/models/grass_clump.json"
+    },
+    {
+      "kind": "models",
+      "name": "trumpet_flower",
+      "source": "public/generated/styles/voxel/models/trumpet_flower.json",
+      "target": "public/generated/scenes/voxel/models/trumpet_flower.json"
+    },
+    {
+      "kind": "models",
+      "name": "blue_tulips",
+      "source": "public/generated/styles/voxel/models/blue_tulips.json",
+      "target": "public/generated/scenes/voxel/models/blue_tulips.json"
+    },
+    {
+      "kind": "models",
+      "name": "wheat_field",
+      "source": "public/generated/styles/voxel/models/wheat_field.json",
+      "target": "public/generated/scenes/voxel/models/wheat_field.json"
+    },
+    {
+      "kind": "models",
+      "name": "flower_pot",
+      "source": "public/generated/styles/voxel/models/flower_pot.json",
+      "target": "public/generated/scenes/voxel/models/flower_pot.json"
+    },
+    {
+      "kind": "models",
+      "name": "giant_carrot",
+      "source": "public/generated/styles/voxel/models/giant_carrot.json",
+      "target": "public/generated/scenes/voxel/models/giant_carrot.json"
+    },
+    {
+      "kind": "models",
+      "name": "windmill",
+      "source": "public/generated/models/windmill.json",
+      "target": "public/generated/scenes/voxel/models/windmill.json"
+    },
+    {
+      "kind": "models",
+      "name": "church",
+      "source": "public/generated/models/church.json",
+      "target": "public/generated/scenes/voxel/models/church.json"
+    },
+    {
+      "kind": "models",
+      "name": "temple",
+      "source": "public/generated/models/temple.json",
+      "target": "public/generated/scenes/voxel/models/temple.json"
+    },
+    {
+      "kind": "models",
+      "name": "town_stone_bridge",
+      "source": "public/generated/styles/voxel/models/town_stone_bridge.json",
+      "target": "public/generated/scenes/voxel/models/town_stone_bridge.json"
+    },
+    {
+      "kind": "models",
+      "name": "island_waterfall",
+      "source": "public/generated/models/island_waterfall.json",
+      "target": "public/generated/scenes/voxel/models/island_waterfall.json"
+    },
+    {
+      "kind": "models",
+      "name": "town_fountain",
+      "source": "public/generated/models/town_fountain.json",
+      "target": "public/generated/scenes/voxel/models/town_fountain.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_pew",
+      "source": "public/generated/models/church_pew.json",
+      "target": "public/generated/scenes/voxel/models/church_pew.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_altar",
+      "source": "public/generated/models/church_altar.json",
+      "target": "public/generated/scenes/voxel/models/church_altar.json"
+    },
+    {
+      "kind": "models",
+      "name": "church_angel_statue",
+      "source": "public/generated/models/church_angel_statue.json",
+      "target": "public/generated/scenes/voxel/models/church_angel_statue.json"
+    },
+    {
+      "kind": "models",
+      "name": "stump",
+      "source": "public/generated/models/stump.json",
+      "target": "public/generated/scenes/voxel/models/stump.json"
+    },
+    {
+      "kind": "models",
+      "name": "campfire",
+      "source": "public/generated/styles/voxel/models/campfire.json",
+      "target": "public/generated/scenes/voxel/models/campfire.json"
+    },
+    {
+      "kind": "models",
+      "name": "forest_temple_trophy",
+      "source": "public/generated/models/forest_temple_trophy.json",
+      "target": "public/generated/scenes/voxel/models/forest_temple_trophy.json"
+    },
+    {
+      "kind": "models",
+      "name": "forest_temple_tent",
+      "source": "public/generated/models/forest_temple_tent.json",
+      "target": "public/generated/scenes/voxel/models/forest_temple_tent.json"
+    },
+    {
+      "kind": "models",
+      "name": "pastoral_work_scaffold",
+      "source": "public/generated/styles/voxel/models/pastoral_work_scaffold.json",
+      "target": "public/generated/scenes/voxel/models/pastoral_work_scaffold.json"
+    },
+    {
+      "kind": "models",
+      "name": "fangk",
+      "source": "public/generated/characters/voxel/models/fangk.json",
+      "target": "public/generated/scenes/voxel/models/fangk.json"
+    },
+    {
+      "kind": "models",
+      "name": "momo",
+      "source": "public/generated/characters/voxel/models/momo.json",
+      "target": "public/generated/scenes/voxel/models/momo.json"
+    },
+    {
+      "kind": "models",
+      "name": "mako",
+      "source": "public/generated/characters/voxel/models/mako.json",
+      "target": "public/generated/scenes/voxel/models/mako.json"
+    },
+    {
+      "kind": "models",
+      "name": "mok",
+      "source": "public/generated/characters/voxel/models/mok.json",
+      "target": "public/generated/scenes/voxel/models/mok.json"
+    },
+    {
+      "kind": "models",
+      "name": "lingq",
+      "source": "public/generated/characters/voxel/models/lingq.json",
+      "target": "public/generated/scenes/voxel/models/lingq.json"
+    },
+    {
+      "kind": "models",
+      "name": "yafo",
+      "source": "public/generated/characters/voxel/models/yafo.json",
+      "target": "public/generated/scenes/voxel/models/yafo.json"
+    },
+    {
+      "kind": "models",
+      "name": "crab",
+      "source": "public/generated/characters/voxel/models/crab.json",
+      "target": "public/generated/scenes/voxel/models/crab.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_idle",
+      "source": "public/generated/animations/nailong_idle.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_walk",
+      "source": "public/generated/animations/nailong_walk.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_run",
+      "source": "public/generated/animations/nailong_run.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_jump",
+      "source": "public/generated/animations/nailong_jump.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_wave_left",
+      "source": "public/generated/animations/nailong_wave_left.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_wave_left.json"
+    },
+    {
+      "kind": "animations",
+      "name": "nailong_fan_spark",
+      "source": "public/generated/animations/nailong_fan_spark.json",
+      "target": "public/generated/scenes/voxel/animations/nailong_fan_spark.json"
+    },
+    {
+      "kind": "animations",
+      "name": "campfire_burn",
+      "source": "public/generated/styles/voxel/animations/campfire_burn.json",
+      "target": "public/generated/scenes/voxel/animations/campfire_burn.json"
+    },
+    {
+      "kind": "animations",
+      "name": "forest_trophy_wait",
+      "source": "public/generated/animations/forest_trophy_wait.json",
+      "target": "public/generated/scenes/voxel/animations/forest_trophy_wait.json"
+    },
+    {
+      "kind": "animations",
+      "name": "pastoral_work_scaffold_dust",
+      "source": "public/generated/styles/voxel/animations/pastoral_work_scaffold_dust.json",
+      "target": "public/generated/scenes/voxel/animations/pastoral_work_scaffold_dust.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_idle",
+      "source": "public/generated/characters/voxel/animations/fangk_idle.json",
+      "target": "public/generated/scenes/voxel/animations/fangk_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_run",
+      "source": "public/generated/characters/voxel/animations/fangk_run.json",
+      "target": "public/generated/scenes/voxel/animations/fangk_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_construct",
+      "source": "public/generated/characters/voxel/animations/fangk_construct.json",
+      "target": "public/generated/scenes/voxel/animations/fangk_construct.json"
+    },
+    {
+      "kind": "animations",
+      "name": "fangk_dance",
+      "source": "public/generated/characters/voxel/animations/fangk_dance.json",
+      "target": "public/generated/scenes/voxel/animations/fangk_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_idle",
+      "source": "public/generated/characters/voxel/animations/momo_idle.json",
+      "target": "public/generated/scenes/voxel/animations/momo_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_walk",
+      "source": "public/generated/characters/voxel/animations/momo_walk.json",
+      "target": "public/generated/scenes/voxel/animations/momo_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_run",
+      "source": "public/generated/characters/voxel/animations/momo_run.json",
+      "target": "public/generated/scenes/voxel/animations/momo_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_chop",
+      "source": "public/generated/characters/voxel/animations/momo_chop.json",
+      "target": "public/generated/scenes/voxel/animations/momo_chop.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_smash",
+      "source": "public/generated/characters/voxel/animations/momo_smash.json",
+      "target": "public/generated/scenes/voxel/animations/momo_smash.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_wave",
+      "source": "public/generated/characters/voxel/animations/momo_wave.json",
+      "target": "public/generated/scenes/voxel/animations/momo_wave.json"
+    },
+    {
+      "kind": "animations",
+      "name": "momo_magic",
+      "source": "public/generated/characters/voxel/animations/momo_magic.json",
+      "target": "public/generated/scenes/voxel/animations/momo_magic.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_idle",
+      "source": "public/generated/characters/voxel/animations/mako_idle.json",
+      "target": "public/generated/scenes/voxel/animations/mako_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_run",
+      "source": "public/generated/characters/voxel/animations/mako_run.json",
+      "target": "public/generated/scenes/voxel/animations/mako_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_jump",
+      "source": "public/generated/characters/voxel/animations/mako_jump.json",
+      "target": "public/generated/scenes/voxel/animations/mako_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mako_dance",
+      "source": "public/generated/characters/voxel/animations/mako_dance.json",
+      "target": "public/generated/scenes/voxel/animations/mako_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_idle",
+      "source": "public/generated/characters/voxel/animations/mok_idle.json",
+      "target": "public/generated/scenes/voxel/animations/mok_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_run",
+      "source": "public/generated/characters/voxel/animations/mok_run.json",
+      "target": "public/generated/scenes/voxel/animations/mok_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "mok_jump",
+      "source": "public/generated/characters/voxel/animations/mok_jump.json",
+      "target": "public/generated/scenes/voxel/animations/mok_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_idle",
+      "source": "public/generated/characters/voxel/animations/lingq_idle.json",
+      "target": "public/generated/scenes/voxel/animations/lingq_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_run",
+      "source": "public/generated/characters/voxel/animations/lingq_run.json",
+      "target": "public/generated/scenes/voxel/animations/lingq_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_jump",
+      "source": "public/generated/characters/voxel/animations/lingq_jump.json",
+      "target": "public/generated/scenes/voxel/animations/lingq_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "lingq_dance",
+      "source": "public/generated/characters/voxel/animations/lingq_dance.json",
+      "target": "public/generated/scenes/voxel/animations/lingq_dance.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_idle",
+      "source": "public/generated/characters/voxel/animations/yafo_idle.json",
+      "target": "public/generated/scenes/voxel/animations/yafo_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_run",
+      "source": "public/generated/characters/voxel/animations/yafo_run.json",
+      "target": "public/generated/scenes/voxel/animations/yafo_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "yafo_jump",
+      "source": "public/generated/characters/voxel/animations/yafo_jump.json",
+      "target": "public/generated/scenes/voxel/animations/yafo_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_idle",
+      "source": "public/generated/characters/voxel/animations/crab_idle.json",
+      "target": "public/generated/scenes/voxel/animations/crab_idle.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_walk",
+      "source": "public/generated/characters/voxel/animations/crab_walk.json",
+      "target": "public/generated/scenes/voxel/animations/crab_walk.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_run",
+      "source": "public/generated/characters/voxel/animations/crab_run.json",
+      "target": "public/generated/scenes/voxel/animations/crab_run.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_jump",
+      "source": "public/generated/characters/voxel/animations/crab_jump.json",
+      "target": "public/generated/scenes/voxel/animations/crab_jump.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_construct",
+      "source": "public/generated/characters/voxel/animations/crab_construct.json",
+      "target": "public/generated/scenes/voxel/animations/crab_construct.json"
+    },
+    {
+      "kind": "animations",
+      "name": "crab_dance",
+      "source": "public/generated/characters/voxel/animations/crab_dance.json",
+      "target": "public/generated/scenes/voxel/animations/crab_dance.json"
+    }
+  ]
+}

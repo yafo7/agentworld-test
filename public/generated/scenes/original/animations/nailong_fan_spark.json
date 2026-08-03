@@ -1,0 +1,137 @@
+{
+  "body": {
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1.5
+    }
+  },
+  "chest": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.1,
+      "frequency": 1.5
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "y",
+      "amplitude": -0.08,
+      "frequency": 1.5
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -20
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 130
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.8,
+      "frequency": 1.5
+    }
+  },
+  "foldingFan": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 0,
+      "lockWorldRot": true
+    },
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "sphere",
+      "meshSize": 0.5,
+      "rate": 40,
+      "lifetime": [
+        0.3,
+        0.6
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0.5
+        ],
+        "speed": [
+          2,
+          4
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        -1,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.9,
+        0.4
+      ],
+      "colorEnd": [
+        1,
+        0.2,
+        0.1
+      ],
+      "scaleStart": 1.2,
+      "scaleEnd": 0.4
+    }
+  },
+  "wings": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.5
+    }
+  },
+  "rightWing_root": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.4,
+      "frequency": 1.5
+    }
+  },
+  "leftWing_root": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.4,
+      "frequency": 1.5
+    }
+  },
+  "tail_root": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1.5
+    }
+  },
+  "tail_mid1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.5,
+      "phase": 0.1
+    }
+  },
+  "tail_mid2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.14,
+      "frequency": 1.5,
+      "phase": 0.2
+    }
+  },
+  "tail_tip": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.15,
+      "frequency": 1.5,
+      "phase": 0.3
+    }
+  }
+}

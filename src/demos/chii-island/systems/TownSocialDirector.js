@@ -80,9 +80,23 @@ export class TownSocialDirector {
     return this.participants.filter(pet => ids.has(normalizedPetId(pet)));
   }
 
-  targetsFor(definition) {
+  targetsFor(definition, initiator = null) {
+    const sourcePet = initiator
+      || this.participants.find(pet => normalizedPetId(pet) === definition.initiatorId)
+      || null;
     const tags = definition.targetObjectTags || [];
-    return tags.flatMap(tag => this.worldObjects.query(entity => entity.tags?.includes(tag)).slice(0, 1));
+    const selected = [];
+    for (const tag of tags) {
+      const candidates = this.worldObjects
+        .query(entity => entity.tags?.includes(tag))
+        .map(entity => ({ entity, distance: this._reachableDistance(sourcePet, entity) }))
+        .filter(candidate => Number.isFinite(candidate.distance))
+        .sort((a, b) => a.distance - b.distance);
+      if (candidates[0] && !selected.includes(candidates[0].entity)) {
+        selected.push(candidates[0].entity);
+      }
+    }
+    return selected;
   }
 
   _hasRequiredContext(definition) {
@@ -91,9 +105,26 @@ export class TownSocialDirector {
       ? definition.defaultParticipantIds || []
       : [definition.initiatorId];
     if (requiredPets.some(id => !availableIds.has(id))) return false;
-    return (definition.targetObjectTags || []).every(tag => (
-      this.worldObjects.query(entity => entity.tags?.includes(tag)).length > 0
-    ));
+    const initiator = this.participants.find(pet => normalizedPetId(pet) === definition.initiatorId);
+    return this.targetsFor(definition, initiator).length === (definition.targetObjectTags || []).length;
+  }
+
+  _reachableDistance(pet, entity) {
+    const from = pet?.getPosition?.() || pet?.mesh?.position;
+    const to = entity?.mesh?.position || entity?.position;
+    if (!from || !to) return Number.POSITIVE_INFINITY;
+    const direct = Math.hypot(to.x - from.x, to.z - from.z);
+    const navigation = pet?._navigation;
+    if (!navigation?.findPath) return direct;
+    const path = navigation.findPath(from, to);
+    if (path.length === 0) return direct <= 0.3 ? direct : Number.POSITIVE_INFINITY;
+    let distance = 0;
+    let cursor = from;
+    for (const point of path) {
+      distance += Math.hypot(point.x - cursor.x, point.z - cursor.z);
+      cursor = point;
+    }
+    return distance;
   }
 }
 

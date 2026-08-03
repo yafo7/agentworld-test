@@ -1,0 +1,125 @@
+{
+  "id": "chii_character_outfits_v2",
+  "generatedAt": "2026-07-29T11:10:58.969Z",
+  "source": "autonomous_backend_refine",
+  "promptProfile": "chii-v1",
+  "defaultVariant": "original",
+  "generatedVariant": "original",
+  "outfits": [
+    {
+      "id": "birthday",
+      "characterId": "mako",
+      "name": "生日套装",
+      "loadout": {
+        "hat": "mako-birthday-hat",
+        "top": "mako-birthday-top",
+        "pants": "mako-birthday-pants",
+        "shoes": "mako-birthday-shoes"
+      },
+      "presets": [
+        {
+          "loadout": {
+            "hat": "mako-birthday-hat",
+            "top": "mako-birthday-top",
+            "pants": "mako-birthday-pants",
+            "shoes": "mako-birthday-shoes"
+          },
+          "model": "generated/equipment/outfits/mako/birthday/original/full.json",
+          "baseVariantId": "original"
+        }
+      ]
+    },
+    {
+      "id": "new-year",
+      "characterId": "mako",
+      "name": "新春套装",
+      "loadout": {
+        "hat": "mako-new-year-hat",
+        "top": "mako-new-year-top",
+        "pants": "mako-new-year-pants",
+        "shoes": "mako-new-year-shoes"
+      },
+      "presets": [
+        {
+          "loadout": {
+            "hat": "mako-new-year-hat",
+            "top": "mako-new-year-top",
+            "pants": "mako-new-year-pants",
+            "shoes": "mako-new-year-shoes"
+          },
+          "model": "generated/equipment/outfits/mako/new-year/original/full.json",
+          "baseVariantId": "original"
+        }
+      ]
+    },
+    {
+      "id": "new-year",
+      "characterId": "fangk",
+      "name": "新春套装",
+      "loadout": {
+        "hat": "fangk-new-year-hat",
+        "top": "fangk-new-year-top",
+        "pants": "fangk-new-year-pants",
+        "shoes": "fangk-new-year-shoes"
+      },
+      "presets": [
+        {
+          "loadout": {
+            "hat": "fangk-new-year-hat",
+            "top": "fangk-new-year-top",
+            "pants": "fangk-new-year-pants",
+            "shoes": "fangk-new-year-shoes"
+          },
+          "model": "generated/equipment/outfits/fangk/new-year/original/full.json",
+          "baseVariantId": "original"
+        }
+      ]
+    },
+    {
+      "id": "new-year",
+      "characterId": "lingq",
+      "name": "新春套装",
+      "loadout": {
+        "hat": "lingq-new-year-hat",
+        "top": "lingq-new-year-top",
+        "pants": "lingq-new-year-pants",
+        "shoes": "lingq-new-year-shoes"
+      },
+      "presets": [
+        {
+          "loadout": {
+            "hat": "lingq-new-year-hat",
+            "top": "lingq-new-year-top",
+            "pants": "lingq-new-year-pants",
+            "shoes": "lingq-new-year-shoes"
+          },
+          "model": "generated/equipment/outfits/lingq/new-year/original/full.json",
+          "baseVariantId": "original"
+        }
+      ]
+    },
+    {
+      "id": "new-year",
+      "characterId": "crab",
+      "name": "新春套装",
+      "loadout": {
+        "hat": "crab-new-year-hat",
+        "top": "crab-new-year-top",
+        "pants": "crab-new-year-pants",
+        "shoes": "crab-new-year-shoes"
+      },
+      "presets": [
+        {
+          "loadout": {
+            "hat": "crab-new-year-hat",
+            "top": "crab-new-year-top",
+            "pants": "crab-new-year-pants",
+            "shoes": "crab-new-year-shoes"
+          },
+          "model": "generated/equipment/outfits/crab/new-year/original/full.json",
+          "baseVariantId": "original"
+        }
+      ]
+    }
+  ]
+}

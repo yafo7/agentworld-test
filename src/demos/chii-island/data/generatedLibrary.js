@@ -1,10 +1,9 @@
 // Generated asset library for Chii Island.
 // Keeps AI-generated/refined voxel models and their animations so they can be
-// re-selected later from the right-side model editor.
+// reused by the autonomous gameplay repositories without repeating backend work.
 //
 // Animation library is keyed by model: each generated model entry can hold
-// multiple animations (idle / interaction). The editor can preview, switch,
-// and apply any stored animation to the entity.
+// multiple animations (idle / interaction) for later gameplay actions.
 //
 // Persistence strategy:
 // 1. Try to save to the local Vite dev server, which writes files into

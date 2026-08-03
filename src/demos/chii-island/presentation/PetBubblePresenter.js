@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createSpeechBubble } from '../../../engine/ui/SpeechBubble.js';
+import { CHII_PRESENTATION_TUNING } from '../data/worldTuningProfile.js';
 
 export const PET_BUBBLE_VARIANTS = Object.freeze({
   idea: 'idea',
@@ -19,6 +20,27 @@ function findHead(pet) {
 function popScale(t) {
   const clamped = Math.min(Math.max(t, 0), 1);
   return 1 - Math.pow(1 - clamped, 3) + Math.sin(clamped * Math.PI) * 0.12;
+}
+
+function bubbleMetrics(pet) {
+  const tuning = CHII_PRESENTATION_TUNING.bubble;
+  const visual = pet?._modelGroup;
+  if (!visual || !pet?.mesh) {
+    return { y: 3.48, scale: 1 };
+  }
+  pet.mesh.updateWorldMatrix?.(true, true);
+  const box = new THREE.Box3().setFromObject(visual);
+  if (box.isEmpty()) return { y: 3.48, scale: 1 };
+  const origin = pet.mesh.getWorldPosition(new THREE.Vector3());
+  const height = box.max.y - box.min.y;
+  return {
+    y: THREE.MathUtils.clamp(
+      box.max.y - origin.y + tuning.topPadding,
+      tuning.minimumY,
+      tuning.maximumY,
+    ),
+    scale: THREE.MathUtils.clamp(Math.sqrt(height / 3), 0.86, 1.16),
+  };
 }
 
 export class PetBubblePresenter {
@@ -121,9 +143,14 @@ export class PetBubblePresenter {
     if (!this.enabled || !pet?.mesh) return null;
     let entry = this.bubbles.get(pet);
     if (!entry) {
+      const metrics = bubbleMetrics(pet);
       const bubble = this.bubbleFactory(pet.mesh, { variant: PET_BUBBLE_VARIANTS.speech });
-      bubble.sprite.position.y = 3.48;
-      bubble.sprite.scale.set(2.7, 0.84, 1);
+      bubble.sprite.position.y = metrics.y;
+      bubble.sprite.scale.set(
+        CHII_PRESENTATION_TUNING.bubble.width * metrics.scale,
+        CHII_PRESENTATION_TUNING.bubble.height * metrics.scale,
+        1,
+      );
       entry = {
         pet,
         bubble,

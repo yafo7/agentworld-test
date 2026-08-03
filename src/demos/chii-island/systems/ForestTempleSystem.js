@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { ArchitectNPC } from '../entities/ArchitectNPC.js';
+import { CHII_PET_HEIGHTS } from '../data/worldTuningProfile.js';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { applyAnimation } from '../../../engine/animation/player.js';
 import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
@@ -146,6 +147,40 @@ export class ForestTempleSystem {
     const event = getAIWorldEvents('forest_pet').find(item => item.assetId === pet._generatedAssetId);
     if (event) recordAIWorldEvent({ ...event, hasIntroduced: true });
     return true;
+  }
+
+  async restoreSavedPets(events = getAIWorldEvents('forest_pet')) {
+    const restored = [];
+    for (const event of events) {
+      if (!event?.assetId || this.petManager.pets.some(pet => pet._generatedAssetId === event.assetId)) {
+        continue;
+      }
+      try {
+        const asset = await this.generatedAssetRepository.get(event.assetId);
+        if (!asset?.modelJson) throw new Error('saved pet model is unavailable');
+        const animations = Object.fromEntries((asset.animations || [])
+          .filter(entry => entry?.plan)
+          .map(entry => [entry.type || entry.name, entry.plan]));
+        const pet = this._spawnGeneratedPet({
+          petName: event.petName || asset.modelJson.name || 'New friend',
+          modelJson: asset.modelJson,
+          animations,
+          finalModelPrompt: event.finalModelPrompt || asset.modelJson.name || 'forest pet',
+          context: {
+            playerMoodWish: event.mood || '',
+          },
+          specialPrompt: event.specialPrompt || '开心挥手',
+          assetId: event.assetId,
+          position: event.position || null,
+          hasIntroduced: event.hasIntroduced === true,
+        });
+        restored.push(pet);
+      } catch (error) {
+        console.warn(`[ForestTemple] Saved pet ${event.assetId} skipped:`, error.message);
+      }
+    }
+    if (restored.length > 0) this.trophyState = 'complete';
+    return restored;
   }
 
   async _interactTrophy(companion) {
@@ -412,7 +447,7 @@ export class ForestTempleSystem {
     pet._hasIntroduced = hasIntroduced;
     pet.hasIntroduced = hasIntroduced;
     pet._initialInteractionDone = true;
-    pet.loadModelFromJson(modelJson);
+    pet.loadModelFromJson(modelJson, { targetHeight: CHII_PET_HEIGHTS.generated });
     for (const [name, plan] of Object.entries(animations)) pet.loadAnimation(name, plan);
     pet.setPosition(spawn.x, 0, spawn.z);
     pet.setOrigin(spawn.x, 0, spawn.z);

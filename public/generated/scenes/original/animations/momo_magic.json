@@ -1,0 +1,116 @@
+{
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 90
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.8
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -90
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.06,
+      "frequency": 0.8
+    }
+  },
+  "rightArm_hand": {
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.5,
+      "rate": 24,
+      "lifetime": [
+        0.8,
+        1.5
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          0.7,
+          0.6
+        ],
+        "speed": [
+          0.4,
+          1
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        0.8,
+        0
+      ],
+      "offset": [
+        0,
+        0,
+        0.45
+      ],
+      "colorStart": [
+        0.85,
+        0.82,
+        0.86
+      ],
+      "colorEnd": [
+        0.45,
+        0.43,
+        0.48
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 1.4
+    }
+  },
+  "leftArm_hand": {
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.5,
+      "rate": 24,
+      "lifetime": [
+        0.8,
+        1.5
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          0.7,
+          0.6
+        ],
+        "speed": [
+          0.4,
+          1
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        0.8,
+        0
+      ],
+      "offset": [
+        0,
+        0,
+        0.45
+      ],
+      "colorStart": [
+        0.85,
+        0.82,
+        0.86
+      ],
+      "colorEnd": [
+        0.45,
+        0.43,
+        0.48
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 1.4
+    }
+  }
+}

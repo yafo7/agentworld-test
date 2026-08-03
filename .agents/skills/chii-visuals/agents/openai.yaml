@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "奇异岛·技术美术"
+  short_description: "接入并验证奇异岛材质、水体、天空、特效、后处理与渲染风格"
+  default_prompt: "Use $chii-visuals to integrate and validate a Chii Island visual presentation feature."

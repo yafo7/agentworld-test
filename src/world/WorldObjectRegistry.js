@@ -40,7 +40,10 @@ export class WorldObjectRegistry {
 
   updateMetadata(entity, patch = {}) {
     const metadata = { ...this.getMetadata(entity), ...patch };
-    if (entity) this.metadata.set(entity, metadata);
+    if (entity) {
+      this.metadata.set(entity, metadata);
+      this._emit({ type: 'updated', entity, metadata, patch });
+    }
     return metadata;
   }
 

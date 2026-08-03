@@ -1,0 +1,65 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.45
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.35,
+      "phase": 0
+    }
+  },
+  "armL": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -55
+      },
+      {
+        "axis": "z",
+        "angle": -35
+      }
+    ],
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.22,
+      "frequency": 0.55,
+      "phase": 0
+    }
+  },
+  "armR": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -55
+      },
+      {
+        "axis": "z",
+        "angle": 35
+      }
+    ],
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.22,
+      "frequency": 0.55,
+      "phase": 0
+    }
+  },
+  "_name": "fangk-construct",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "fangk",
+    "quality": "voxel",
+    "prompt": "展开图纸认真施工"
+  }
+}

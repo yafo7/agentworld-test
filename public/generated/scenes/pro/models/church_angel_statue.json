@@ -1,0 +1,625 @@
+{
+  "name": "石雕天使神像",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "base",
+      "name": "方形石座",
+      "transform": {
+        "pos": [
+          0,
+          0.69,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "name": "长袍躯干",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          0.14,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "name": "天使头部",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          2.33,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "wingL",
+      "name": "左侧收拢羽翼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.45,
+          2.15,
+          -0.25
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "wingR",
+      "name": "右侧收拢羽翼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.45,
+          2.15,
+          -0.25
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "upperArmL",
+      "name": "左上臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.5,
+          2.05,
+          0.08
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "forearmL",
+      "name": "左前臂与手",
+      "parent": "upperArmL",
+      "transform": {
+        "pos": [
+          -0.09,
+          -0.56,
+          0.23
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "upperArmR",
+      "name": "右上臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.5,
+          2.05,
+          0.08
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "forearmR",
+      "name": "右前臂与手",
+      "parent": "upperArmR",
+      "transform": {
+        "pos": [
+          0.09,
+          -0.56,
+          0.23
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          -0.415,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.15,
+          "height": 0.55,
+          "depth": 1.65
+        },
+        "color": 14211025
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.75,
+          "height": 0.28,
+          "depth": 1.3
+        },
+        "color": 15460833
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.72,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.42,
+          "height": 1.48,
+          "depth": 0.78
+        },
+        "color": 15000283
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.72,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.08,
+          "height": 1.3,
+          "depth": 0.68
+        },
+        "color": 15789799
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.42,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.76,
+          "height": 0.82,
+          "depth": 0.7
+        },
+        "color": 15921385
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.37,
+          0.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.2,
+          "depth": 0.14
+        },
+        "color": 14605525
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "wingL",
+      "transform": {
+        "pos": [
+          -0.43,
+          0.18,
+          -0.13
+        ],
+        "quat": [
+          0.15,
+          0.69,
+          0.69,
+          0.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.03,
+          "height": 0.24,
+          "depth": 0.55
+        },
+        "color": 15987178
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "wingL",
+      "transform": {
+        "pos": [
+          -0.75,
+          -0.73,
+          -0.15
+        ],
+        "quat": [
+          0.53,
+          -0.47,
+          -0.47,
+          0.53
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.04,
+          "height": 0.26,
+          "depth": 0.68
+        },
+        "color": 15197662
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "wingL",
+      "transform": {
+        "pos": [
+          -0.3,
+          -0.81,
+          0
+        ],
+        "quat": [
+          0.53,
+          -0.47,
+          -0.47,
+          0.53
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.22,
+          "depth": 0.42
+        },
+        "color": 16118764
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "wingR",
+      "transform": {
+        "pos": [
+          0.44,
+          0.18,
+          -0.13
+        ],
+        "quat": [
+          0.69,
+          0.15,
+          0.15,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.03,
+          "height": 0.24,
+          "depth": 0.55
+        },
+        "color": 15987178
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "wingR",
+      "transform": {
+        "pos": [
+          0.76,
+          -0.73,
+          -0.15
+        ],
+        "quat": [
+          -0.47,
+          0.53,
+          0.53,
+          -0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.04,
+          "height": 0.26,
+          "depth": 0.68
+        },
+        "color": 15197662
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "wingR",
+      "transform": {
+        "pos": [
+          0.3,
+          -0.81,
+          0
+        ],
+        "quat": [
+          -0.47,
+          0.53,
+          0.53,
+          -0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.22,
+          "depth": 0.42
+        },
+        "color": 16118764
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "upperArmL",
+      "transform": {
+        "pos": [
+          -0.04,
+          -0.28,
+          0.23
+        ],
+        "quat": [
+          -0.46,
+          0.54,
+          0.54,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.3,
+          "depth": 0.3
+        },
+        "color": 15329248
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "forearmL",
+      "transform": {
+        "pos": [
+          0.23,
+          0.15,
+          0.04
+        ],
+        "quat": [
+          0.68,
+          0.2,
+          0.2,
+          0.68
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 0.27
+        },
+        "color": 15789799
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "forearmL",
+      "transform": {
+        "pos": [
+          0.5,
+          0.37,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.17,
+          "height": 0.43,
+          "depth": 0.28
+        },
+        "color": 16052971
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "upperArmR",
+      "transform": {
+        "pos": [
+          0.04,
+          -0.28,
+          0.23
+        ],
+        "quat": [
+          0.54,
+          -0.46,
+          -0.46,
+          0.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.3,
+          "depth": 0.3
+        },
+        "color": 15329248
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "forearmR",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.15,
+          0.04
+        ],
+        "quat": [
+          0.2,
+          0.68,
+          0.68,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 0.27
+        },
+        "color": 15789799
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "forearmR",
+      "transform": {
+        "pos": [
+          -0.5,
+          0.37,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.17,
+          "height": 0.43,
+          "depth": 0.28
+        },
+        "color": 16052971
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785218336909,
+      "provider": "gpt",
+      "data": "MEWflhvIGTA+AzRaF/DSEG6UgSrPSEvonJYlqLO7qWKcQnO8PEKIBlnxOvos5PgWlWCTxA/QxmJFMC4LGmthWkJj/Tk5OxheVxlyk4xpRAzSEk1zPQHlPOGJE7ZLg83osoR3gFx9ZQrVtRfl+YKzfY4/4ALHxSHmVOLUGcF7HrVFCegp/aG4ePJRV5ytn+0Ac4syoQtcji7ha2vUQm9X4nWTYQh2LcBFJhVH3jw2EHGfftSJs6MTZml0t7WXuLVqERq0JbTyepLIj3pscw7xi2d/ZqSkfCeCOkbKnZLJlGjon4G0+T5/E8zFakpzsz5wwY0qbeBU04Q8ppSFOaxBCZDelHZMu8MbnM6qSagdAEcovJRLJPyQ+jiYdmVrJOuy9JpzewpDehbRzXsK++IxruFqNBy5yvWy8dzPpj7cZDpowEl6di5hDVb8vjf3OnmqQ0sC1ksWDfuDZeWsJPlT/d3oO0o4uZYwB7uUttg0plIRrxxlxMeE4Zlq6OJsu+OzlnoIYwnqhyFqtir3U8DwjV3uvv06X7YeCEnd+m4/CiKnhU57VdX5oUzba5OjFRP3TFduoimpjphAChb6aLPOFzebskdAh4qSqHfyU4wL8RBG+CD3llRC35ZmerdPPVTkcu7CbDNFVWiy+U5BwqpH8MwndcS2RkaeDf+UW9sb1P+L5uW83jn5YqLie1Km1MajXnLeFZAJW873isJU6mOP9lY6XlubXEh2Yu3qx1PAJgP1BU/rUiRdicoHUvf3mA6nakYSmCW+n6M5dGYIZgLq6kZL8DDRfe4wj/+F166SJqFOAycfBI21gOQ5KJrQGhkQAhZDFXNJzVhTlFfXrcwodu2h2CHAfRCNVlyAjaBHRINmtojHuhMmaeQAdlgz/zPMhf9b/FufTuhUjuH/Wc2soy2qCoQFfBGvGCMnnRN16hdqpQhKbnxS6pCe+ev4zD48ovyrLL/nZl265VjtqBDekrBcfBf1E8PtOtClNPwkdahEtRvuNxRYBhuPYDs6dGznzZuxt1XVkXDl663+FznjAXd/zDAIak6hxJMgSynrjDir0p5hEkFUXINypKwWFDKkSgSMeB649tY8mbnK/C/Ym129BsencZk5MckYgA1xij55iA5jv5kBkDk80lz5EDDF/cMqwcXNHrqcVJSX+iXGc1aLuN3mJLbpQMHZxgEgHazhpgAjQfjWN+zrNjjr8cGS4h80g26T1HjJGxNOZG7iwECiay6qy8b/5eLjC9c+yiEEHQRLFfgD7/x/1xiOBQl+McArXNSn4pZdYMmyYo8sNd10mVgYRIfERrm85/H2sSE2M74EqMCxTEJPBKg9RHUoP7eYql2GSnsHIHog8F32JEd3Ak3nNMeRlOJdLx5kPzlV",
+      "edits": ""
+    },
+    "chiiAssetRole": "churchStatue",
+    "chiiAssetId": "church_angel_statue",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "灰白石雕天使神像，合拢双翼、双手祈祷、八角底座",
+    "chiiAssetCategory": "decor",
+    "chiiTargetSize": {
+      "width": 2.4,
+      "height": 4.6,
+      "depth": 2.2
+    }
+  }
+}

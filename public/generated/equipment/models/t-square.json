@@ -1,0 +1,212 @@
+{
+  "name": "丁字尺",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "tsquare",
+      "name": "丁字尺",
+      "transform": {
+        "pos": [
+          0,
+          0.1,
+          -2.8
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          0,
+          0.02,
+          2.95
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.16,
+          "depth": 5.8
+        },
+        "color": 15255669
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "birch"
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          0,
+          0.04,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.2,
+          "depth": 0.82
+        },
+        "color": 15783046
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "birch"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          0,
+          0.155,
+          0.32
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 0.025,
+          "depth": 0.06
+        },
+        "color": 10187059
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.115,
+          1.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.025,
+          "depth": 0.045
+        },
+        "color": 7754022
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.115,
+          2.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.025,
+          "depth": 0.045
+        },
+        "color": 7754022
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.115,
+          3.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.025,
+          "depth": 0.045
+        },
+        "color": 7754022
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.115,
+          4.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.025,
+          "depth": 0.045
+        },
+        "color": 7754022
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "tsquare",
+      "transform": {
+        "pos": [
+          -0.23,
+          0.115,
+          5.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.025,
+          "depth": 0.045
+        },
+        "color": 7754022
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785061717121,
+      "provider": "gpt",
+      "data": "27BFdhR9DrEyuO6MTirl2n7/ZmsG0F1v29B1cq9Humfowu4ZfCcLtYbyuAw11CXq7cCUuYOnCrdX3NxS2LSUpsjfr56lUs+VZCMicw1/F1/hoBr/n6dd1QVYWYKjzBlLtWdDiivb8u+Ul5Sjf8PS5ndXRxMXIPIpOBUldLYGScJJfFXZ8LxWaBAiyLNtEdLtmtlwZK2PsksZuFp+qRi53YWY/AzbMK9x1dKi4rEzdBMIiCsmwyAJXJyvMne53op68y56kpouaCyh3M4w1NVlqkC1ImFEHngvIBeYklj++FaB+gsABnVAeX1PPf5zzMupFQ0cbPq4bbWVGBLHPl3P3/LJl77+LnjTo23FXz8wmPBgoyQ+3Nx2RTe35KmiQenrK7+xAGG7R6NYYnN5hCx0LtkNH2yuZj9lXq1YB95QnpEqEGSUuybxancNVtoan3xNk72YhT8BHrf54NVqcK9XSePwzbTLxEPJ6fCluqHtoKBV6lxe6ttIxA+DReUJEk/eYtSVT/iCKvJGd+PnUDN4Io2wGVjM8ZcxBAHdjOZ2HbqPVqfsuZTqsyrI9iCWtWV3SV3o+v0F1ZS2RA11g/GRtAgx/lGvYwV9D8s227P0nA0RNXgF6/CoZUvHbKduwRs6ZLcTmTDXVn9jGL4DZrTt0zIuJFrOFoxe88xwQUhOqDDR",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipment_prop",
+    "chiiEquipmentId": "t-square",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

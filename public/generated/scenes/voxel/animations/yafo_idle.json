@@ -1,0 +1,24 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.4
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 0.4
+    }
+  },
+  "_name": "yafo-idle",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "yafo",
+    "quality": "voxel",
+    "prompt": "轻轻呼吸点头"
+  }
+}

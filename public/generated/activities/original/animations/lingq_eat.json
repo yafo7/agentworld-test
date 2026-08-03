@@ -1,0 +1,68 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    },
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 1.2
+    }
+  },
+  "neck_base": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 55
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.2
+    }
+  },
+  "head": {
+    "shift": [
+      {
+        "axis": "y",
+        "distance": -1.5
+      },
+      {
+        "axis": "z",
+        "distance": 0.8
+      }
+    ],
+    "pointTo": {
+      "axis": "x",
+      "angle": 40
+    },
+    "bounce": {
+      "amplitude": 0.12,
+      "frequency": 1.2
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1.2
+    }
+  },
+  "tail": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.6,
+      "phase": 0.25
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "lingq_eat",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "低头拿起食物品尝"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "_duration": 1.2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.38,
+      "frequency": 0.85
+    },
+    "squash": {
+      "axis": "y",
+      "amount": 0.92
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.32,
+      "frequency": 0.85
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.32,
+      "frequency": 0.85,
+      "phase": 0.25
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.18,
+      "frequency": 0.85
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.18,
+      "frequency": 0.85,
+      "phase": 0.08
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.08,
+      "frequency": 0.85,
+      "phase": 0.12
+    }
+  },
+  "leftBraidRoot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.18,
+      "frequency": 1.15,
+      "phase": 0.12
+    }
+  },
+  "rightBraidRoot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.18,
+      "frequency": 1.15,
+      "phase": 0.18
+    }
+  },
+  "redSpiderLily": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.12,
+      "frequency": 1.1,
+      "phase": 0.16
+    }
+  },
+  "_name": "方案 E · AI Q版电子女儿_jump",
+  "_type": "jump",
+  "_modelId": "phrolova_e",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "屈膝起跳轻盈落地",
+    "emitParticles": false
+  }
+}

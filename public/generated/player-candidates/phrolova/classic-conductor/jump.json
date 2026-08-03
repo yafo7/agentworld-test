@@ -1,0 +1,80 @@
+{
+  "_duration": 1.2,
+  "_loop": false,
+  "body": {
+    "drop": {
+      "axis": "y",
+      "amplitude": 0.18,
+      "bounce": 0.42
+    }
+  },
+  "arm_l": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.22,
+      "frequency": 1.4
+    }
+  },
+  "arm_r": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.18,
+      "frequency": 1.4
+    }
+  },
+  "leg_l": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 14
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.2,
+      "frequency": 1.7
+    }
+  },
+  "leg_r": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 14
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.2,
+      "frequency": 1.7,
+      "phase": 0.25
+    }
+  },
+  "braid_l": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.16,
+      "frequency": 1.3,
+      "phase": 0.12
+    }
+  },
+  "braid_r": {
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.16,
+      "frequency": 1.3,
+      "phase": 0.18
+    }
+  },
+  "_name": "方案 A · 彼岸花指挥家_jump",
+  "_type": "jump",
+  "_modelId": "phrolova_a",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "屈膝起跳轻盈落地",
+    "emitParticles": false
+  }
+}

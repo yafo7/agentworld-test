@@ -20,7 +20,10 @@ function makePet(id, profile = {}) {
 
 function makeObjects(items) {
   return {
-    items,
+    items: items.map((item, index) => ({
+      ...item,
+      mesh: item.mesh || { position: new THREE.Vector3(index * 2, 0, 0) },
+    })),
     query(predicate) { return this.items.filter(predicate); },
   };
 }
@@ -47,9 +50,30 @@ test('town opportunities require context and rotate away from recent activities'
   memory.recordCompleted('campfire', { initiatorId: 'fangk', outcome: 'auto-completed' });
   assert.equal(director.getOpportunity(fangk).type, 'party');
 
-  objects.items.push({ id: 'tree', tags: ['apple'] });
+  objects.items.push({ id: 'tree', tags: ['apple'], mesh: { position: new THREE.Vector3(3, 0, 0) } });
   assert.equal(director.getOpportunity(mako).type, 'apple_pick');
 
   lingq.petState.enterTemporary(PET_STATES.PERFORMING);
   assert.equal(director.getOpportunity(lingq), null);
+});
+
+test('town target selection prefers the nearest reachable apple tree', () => {
+  const mako = makePet('mako');
+  mako.mesh.position.set(0, 0, 0);
+  mako._navigation = {
+    findPath(from, to) {
+      if (to.x === 4) return [];
+      return [{ x: to.x, y: 0, z: to.z }];
+    },
+  };
+  const blockedNearTree = { id: 'blocked', tags: ['apple'], mesh: { position: new THREE.Vector3(4, 0, 0) } };
+  const reachableTree = { id: 'reachable', tags: ['apple'], mesh: { position: new THREE.Vector3(8, 0, 0) } };
+  const director = new TownSocialDirector({
+    participants: [mako],
+    worldObjects: makeObjects([blockedNearTree, reachableTree]),
+  });
+
+  const opportunity = director.getOpportunity(mako);
+  assert.equal(opportunity.type, 'apple_pick');
+  assert.deepEqual(director.targetsFor(opportunity.definition, mako), [reachableTree]);
 });

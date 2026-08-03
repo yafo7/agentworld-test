@@ -1,0 +1,107 @@
+{
+  "_duration": 3,
+  "_loop": false,
+  "body": {
+    "spin": {
+      "axis": "y",
+      "frequency": 1,
+      "direction": "ccw"
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "claw_0": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -15
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.12,
+      "frequency": 1
+    }
+  },
+  "claw_1": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 15
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 1
+    }
+  },
+  "leg_0_0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "leg_0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "leg_0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "leg_0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "leg_1_0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "leg_1_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "leg_1_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "leg_1_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "crab_outfit_turn",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "原地转身展示新衣"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "leftClaw": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.12,
+      "frequency": 0.6,
+      "phase": 0
+    }
+  },
+  "rightClaw": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.6,
+      "phase": 0
+    }
+  },
+  "_name": "螃蟹-idle",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "crab",
+    "quality": "voxel",
+    "prompt": "左右轻晃两只蟹钳"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "_duration": 3,
+  "_loop": false,
+  "body": {
+    "spin": {
+      "axis": "y",
+      "frequency": 0.333,
+      "direction": "ccw"
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.35,
+      "frequency": 1,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.35,
+      "frequency": 1,
+      "phase": 0.5
+    }
+  },
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.7,
+      "phase": 0
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.12,
+      "frequency": 0.7,
+      "phase": 0
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.15
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.25
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "lingq_outfit_turn",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "原地转身展示新衣"
+  }
+}

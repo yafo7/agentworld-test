@@ -1,0 +1,267 @@
+{
+  "name": "单拱体素石桥",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "bridge",
+      "name": "石桥",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "masonry",
+      "name": "石砌结构",
+      "parent": "bridge",
+      "transform": {
+        "pos": [
+          0,
+          1.9625,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "cobblestone"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -4.25,
+          -1.0625,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 1.8,
+          "depth": 2.4
+        },
+        "color": 6907745
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          4.25,
+          -1.0625,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 1.8,
+          "depth": 2.4
+        },
+        "color": 6907745
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -2.625,
+          -0.5125,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.7,
+          "depth": 2.4
+        },
+        "color": 7368295
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -1.875,
+          -0.3375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.35,
+          "depth": 2.4
+        },
+        "color": 7828589
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          2.625,
+          -0.5125,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.7,
+          "depth": 2.4
+        },
+        "color": 7368295
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          1.875,
+          -0.3375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.35,
+          "depth": 2.4
+        },
+        "color": 7828589
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          -0.2875,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.6,
+          "height": 0.25,
+          "depth": 2.4
+        },
+        "color": 9012603
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          0.1375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 11,
+          "height": 0.6,
+          "depth": 2.4
+        },
+        "color": 7631210
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          0.6375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 11,
+          "height": 0.4,
+          "depth": 3
+        },
+        "color": 6446937
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          1.0625,
+          -1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 11,
+          "height": 0.45,
+          "depth": 0.25
+        },
+        "color": 7828589
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          1.0625,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 11,
+          "height": 0.45,
+          "depth": 0.25
+        },
+        "color": 7828589
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785314213340,
+      "provider": "gpt",
+      "data": "StP3Kq7xVmRn9yb6b7RWsARNkpDythb7Uzn1gQdUwCNSMUdvQeFpkNibv6lBzwmaDizh0OoqfU9sCixSnIWlR3L/Rff0yxf/iP6LVPkJIKlDJe33njukc5bV5RDq8a6BednIXNx+io3WJnWNh7j5G3HkK/BLQfm9H3q3uejGvb3zAQKH3UGRd/xbe/D83dosA7kGGgCt84PRr2gZvUQAWbS4qQj8askz+hpp6KXBZdojXvfNxsIkzFXBPrOGjS21ujCLQtVlvKVqyx2W6gBwJYgimdQ/zNTrrTa0eAdhdcBZnaP2lLjjegbFAzFFcEEAUhdt8/hUkzmG5tx+wJSQF5bxNOsFqOlj6AJr0CE4wnSjzMv0SbKs5WSF7IKgLsDsx9TpUocfqzWNwDGekxqhPw9WEc9DBqYzIXH+DDQfvXZCDE6faEQn7ElE265K5EmkZ/SsGYduduhMm9UCOX7YF2IgzJTjCoBSHbgXSEvx+68ev+6k+D7bX0Hm1kO04zD90KNcju/ciuJb7ZTWsSXSvWcg2tXHBliTWlfqyeHYynC0yVdUKXSX+dKIp0xbvumNevKJTQJrdBt/yY9Cl1COgBB2aBZEEStmD3RN8L5pcdPeBlv4MNVvpouFHVyGTQRTz7ZlnhkSnfqYHwHv1PS5RwEnqMOUEcRBwPL3pXko5Qro0y4G8rMXTrFBAouAmrMjwbvp/SwjcpFyuaAZKc85aL3yrtIieH6Yig1XLBr9MeqkQ3QG",
+      "edits": ""
+    }
+  }
+}

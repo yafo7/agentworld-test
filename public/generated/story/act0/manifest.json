@@ -1,0 +1,49 @@
+{
+  "id": "act0_angel",
+  "source": "autonomous_backend",
+  "promptPacket": {
+    "operation": "pet_generate",
+    "prompt_profile": "chii-v1",
+    "endpoint": "/api/generate/model",
+    "prompt": "一个白金色小天使，圆脸短身，发光双翼，头顶金色光环",
+    "request_hints": {
+      "quality": "voxel",
+      "emitParticles": false
+    }
+  },
+  "animationPackets": {
+    "idle": {
+      "description": "悬空轻扇双翼",
+      "duration": 2.4,
+      "emitParticles": false
+    },
+    "talk": {
+      "description": "挥手认真点头",
+      "duration": 2,
+      "emitParticles": false
+    },
+    "generating": {
+      "description": "张开双翼快速转圈",
+      "duration": 2.8,
+      "emitParticles": true
+    },
+    "falling": {
+      "description": "双翼持续快速扇动",
+      "duration": 2.4,
+      "emitParticles": false
+    },
+    "panic": {
+      "description": "慌张快速挥动双翼",
+      "duration": 2,
+      "emitParticles": false
+    }
+  },
+  "model": "generated/story/act0/angel.json",
+  "animations": {
+    "idle": "generated/story/act0/angel_idle.json",
+    "talk": "generated/story/act0/angel_talk.json",
+    "generating": "generated/story/act0/angel_generating.json",
+    "falling": "generated/story/act0/angel_falling.json",
+    "panic": "generated/story/act0/angel_panic.json"
+  }
+}

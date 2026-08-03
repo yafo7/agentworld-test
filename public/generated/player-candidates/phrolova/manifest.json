@@ -1,0 +1,167 @@
+{
+  "id": "phrolova_player_candidates",
+  "generatedAt": "2026-07-25T15:30:36.528Z",
+  "sourceReferences": [
+    "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+    "https://www.kurobbs.com/mc/post/1395809059164573696",
+    "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+    "https://news.qq.com/rain/a/20260620A08POE00"
+  ],
+  "candidates": [
+    {
+      "id": "a",
+      "slug": "classic-conductor",
+      "title": "方案 A · 彼岸花指挥家",
+      "intent": "保留最强角色识别度，适合剧情演出和近景。",
+      "source": "autonomous_backend",
+      "sourceReferences": [
+        "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+        "https://www.kurobbs.com/mc/post/1395809059164573696",
+        "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+        "https://news.qq.com/rain/a/20260620A08POE00"
+      ],
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "灰绿长双辫少女，露出双眼，红白黑指挥礼裙，手持红色彼岸花",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/player-candidates/phrolova/classic-conductor/model.json",
+      "animations": {
+        "idle": "generated/player-candidates/phrolova/classic-conductor/idle.json",
+        "walk": "generated/player-candidates/phrolova/classic-conductor/walk.json",
+        "run": "generated/player-candidates/phrolova/classic-conductor/run.json",
+        "jump": "generated/player-candidates/phrolova/classic-conductor/jump.json",
+        "special": "generated/player-candidates/phrolova/classic-conductor/special.json"
+      }
+    },
+    {
+      "id": "b",
+      "slug": "chii-chibi",
+      "title": "方案 B · 奇异岛短身版",
+      "intent": "缩短四肢并放大头部，和岛上宠物的可爱比例更协调。",
+      "source": "autonomous_backend",
+      "sourceReferences": [
+        "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+        "https://www.kurobbs.com/mc/post/1395809059164573696",
+        "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+        "https://news.qq.com/rain/a/20260620A08POE00"
+      ],
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "圆脸短身少女，露出双眼，银绿双辫，红白短礼裙，手持彼岸花",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/player-candidates/phrolova/chii-chibi/model.json",
+      "animations": {
+        "idle": "generated/player-candidates/phrolova/chii-chibi/idle.json",
+        "walk": "generated/player-candidates/phrolova/chii-chibi/walk.json",
+        "run": "generated/player-candidates/phrolova/chii-chibi/run.json",
+        "jump": "generated/player-candidates/phrolova/chii-chibi/jump.json",
+        "special": "generated/player-candidates/phrolova/chii-chibi/special.json"
+      }
+    },
+    {
+      "id": "c",
+      "slug": "adventure-conductor",
+      "title": "方案 C · 轻装冒险版",
+      "intent": "减少长裙遮挡，强化跑、跳和探索时的动作轮廓。",
+      "source": "autonomous_backend",
+      "sourceReferences": [
+        "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+        "https://www.kurobbs.com/mc/post/1395809059164573696",
+        "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+        "https://news.qq.com/rain/a/20260620A08POE00"
+      ],
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "修长银绿发少女，露出双眼，红黑燕尾短裙，黑长靴，手持金色指挥杖",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/player-candidates/phrolova/adventure-conductor/model.json",
+      "animations": {
+        "idle": "generated/player-candidates/phrolova/adventure-conductor/idle.json",
+        "walk": "generated/player-candidates/phrolova/adventure-conductor/walk.json",
+        "run": "generated/player-candidates/phrolova/adventure-conductor/run.json",
+        "jump": "generated/player-candidates/phrolova/adventure-conductor/jump.json",
+        "special": "generated/player-candidates/phrolova/adventure-conductor/special.json"
+      }
+    },
+    {
+      "id": "d",
+      "slug": "gpt-pro-detail",
+      "title": "方案 D · GPT Pro 精细版",
+      "intent": "使用 GPT Voxel Pro 增加服装层次和角色细节。",
+      "source": "autonomous_backend",
+      "sourceReferences": [
+        "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+        "https://www.kurobbs.com/mc/post/1395809059164573696",
+        "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+        "https://news.qq.com/rain/a/20260620A08POE00"
+      ],
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "修长灰绿双辫少女，露出双眼，红白黑指挥礼裙，手持红色彼岸花",
+        "request_hints": {
+          "quality": "voxel-pro",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/player-candidates/phrolova/gpt-pro-detail/model.json",
+      "animations": {
+        "idle": "generated/player-candidates/phrolova/gpt-pro-detail/idle.json",
+        "walk": "generated/player-candidates/phrolova/gpt-pro-detail/walk.json",
+        "run": "generated/player-candidates/phrolova/gpt-pro-detail/run.json",
+        "jump": "generated/player-candidates/phrolova/gpt-pro-detail/jump.json",
+        "special": "generated/player-candidates/phrolova/gpt-pro-detail/special.json"
+      }
+    },
+    {
+      "id": "e",
+      "slug": "gpt-pro-ai-chibi",
+      "title": "方案 E · AI Q版电子女儿",
+      "intent": "使用热门 AI Q 版的大头短身电子女儿比例。",
+      "source": "autonomous_backend",
+      "sourceReferences": [
+        "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+        "https://www.kurobbs.com/mc/post/1395809059164573696",
+        "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+        "https://news.qq.com/rain/a/20260620A08POE00"
+      ],
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "大头短身圆脸少女，露出粉红双眼，灰绿双辫，红白蓬裙，抱彼岸花",
+        "request_hints": {
+          "quality": "voxel-pro",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/model.json",
+      "animations": {
+        "idle": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/idle.json",
+        "walk": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/walk.json",
+        "run": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/run.json",
+        "jump": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/jump.json",
+        "special": "generated/player-candidates/phrolova/gpt-pro-ai-chibi/special.json"
+      }
+    }
+  ]
+}

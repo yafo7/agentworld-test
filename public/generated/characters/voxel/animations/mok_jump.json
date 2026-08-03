@@ -1,0 +1,93 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.48,
+      "frequency": 0.75
+    }
+  },
+  "leftArm": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": -32
+      },
+      {
+        "axis": "x",
+        "angle": -28
+      }
+    ],
+    "slash": {
+      "axis": "x",
+      "amplitude": -0.45,
+      "speed": 3.2
+    }
+  },
+  "rightArm": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": 32
+      },
+      {
+        "axis": "x",
+        "angle": -28
+      }
+    ],
+    "slash": {
+      "axis": "x",
+      "amplitude": -0.45,
+      "speed": 3.2
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 24
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 0.75
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.55,
+      "frequency": 0.75,
+      "phase": 0.25
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    }
+  },
+  "tailBase": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.38,
+      "frequency": 0.8,
+      "phase": 0.15
+    }
+  },
+  "_name": "mok-jump",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mok",
+    "quality": "voxel",
+    "prompt": "握住双斧用力跳跃"
+  }
+}

@@ -37,6 +37,12 @@ export class ArchitectNPC {
     this._targetPosition = null;
     this._lockedFacing = null;
     this._originPosition = new THREE.Vector3();
+    this._navigation = null;
+    this._navigationPath = [];
+    this._navigationBlocked = false;
+    this._navigationTargetCell = null;
+    this._followRepathTimer = 0;
+    this._movementTarget = null;
 
     // Wander behavior
     this._wanderEnabled = false;
@@ -113,7 +119,7 @@ export class ArchitectNPC {
    * Build model from JSON and replace placeholder.
    * @param {object} modelJson - voxel model JSON
    */
-  loadModelFromJson(modelJson) {
+  loadModelFromJson(modelJson, { targetHeight = this._targetHeight || 3 } = {}) {
     if (this._modelGroup) return;
     try {
       const model = buildModelFromJson(modelJson);
@@ -122,7 +128,6 @@ export class ArchitectNPC {
       // Scale to target height ~3.0m
       const box = new THREE.Box3().setFromObject(model);
       const h = box.max.y - box.min.y;
-      const targetHeight = 3.0;
       const scale = targetHeight / Math.max(h, 0.01);
       model.scale.setScalar(scale);
 
@@ -135,21 +140,29 @@ export class ArchitectNPC {
       this.mesh.add(model);
       this._modelGroup = model;
       this._originalModelJson = modelJson;
+      this._targetHeight = targetHeight;
+      this.mesh.userData.scaleCategory = 'pet';
+      this.mesh.userData.sizeProfile = 'resident';
+      this.mesh.userData.targetHeight = targetHeight;
       console.log('[ArchitectNPC] Model loaded');
     } catch (e) {
       console.warn('[ArchitectNPC] Model build failed:', e.message);
     }
   }
 
-  replaceModelFromJson(modelJson) {
+  replaceModelFromJson(modelJson, {
+    targetHeight = this._targetHeight || 3,
+    preserveCurrentScale = false,
+  } = {}) {
     try {
       const model = buildModelFromJson(modelJson);
       if (!model) return false;
 
       const box = new THREE.Box3().setFromObject(model);
       const h = box.max.y - box.min.y;
-      const targetHeight = 3.0;
-      const scale = targetHeight / Math.max(h, 0.01);
+      const scale = preserveCurrentScale && this._modelGroup
+        ? this._modelGroup.scale.x
+        : targetHeight / Math.max(h, 0.01);
       model.scale.setScalar(scale);
       model.position.y = -box.min.y * scale;
 
@@ -163,6 +176,10 @@ export class ArchitectNPC {
       this.mesh.add(model);
       this._modelGroup = model;
       this._originalModelJson = modelJson;
+      this._targetHeight = targetHeight;
+      this.mesh.userData.scaleCategory = 'pet';
+      this.mesh.userData.sizeProfile = 'resident';
+      this.mesh.userData.targetHeight = targetHeight;
       this._basePoseMap = null;
       if (this._modelGroup) {
         this._modelGroup.userData._baseScale = this._modelGroup.scale.x;
@@ -198,14 +215,21 @@ export class ArchitectNPC {
 
   // ── Movement commands ──
 
+  setNavigation(navigation) {
+    this._navigation = navigation || null;
+    this._clearNavigationPath();
+  }
+
   walkTo(targetX, targetZ, speed = 3.5) {
     this._speed = speed;
     this._targetPosition = new THREE.Vector3(targetX, 0, targetZ);
+    this._planNavigation(this._targetPosition);
     this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
   }
 
   stopWalking() {
     this._targetPosition = null;
+    this._clearNavigationPath();
     if (this._animState === 'run' || this._animState === 'walk') this._setAnimState('idle');
   }
 
@@ -255,12 +279,15 @@ export class ArchitectNPC {
     this._followDistance = distance;
     this._followSpeed = speed;
     this._targetPosition = null;
+    this._followRepathTimer = 0;
+    this._clearNavigationPath();
   }
 
   stopFollow() {
     this._followEnabled = false;
     this._followTarget = null;
     this._targetPosition = null;
+    this._clearNavigationPath();
     this._setAnimState('idle');
   }
 
@@ -327,6 +354,8 @@ export class ArchitectNPC {
   }
 
   _updateMovement(dt) {
+    this._movementTarget = null;
+
     // Chop behavior: walk to tree, then play chop animation
     if (this._chopTreeEntity) {
       if (this._targetPosition) {
@@ -350,12 +379,32 @@ export class ArchitectNPC {
       }
     }
 
-    // Follow behavior: direct chase pattern (same as Pet.js)
+    // Follow behavior uses the terrain path when one is configured.
     if (this._followEnabled && this._followTarget) {
       const tp = this._followTarget.position;
-      const dist = this.mesh.position.distanceTo(tp);
+      const dist = Math.hypot(tp.x - this.mesh.position.x, tp.z - this.mesh.position.z);
       if (dist > this._followDistance) {
-        const dir = new THREE.Vector3().subVectors(tp, this.mesh.position);
+        if (this._navigation) {
+          this._followRepathTimer -= dt;
+          const targetCell = this._navigation.cellKeyForWorld(tp);
+          if (
+            targetCell !== this._navigationTargetCell
+            || (this._navigationBlocked && this._followRepathTimer <= 0)
+          ) {
+            this._planNavigation(tp);
+            this._navigationTargetCell = targetCell;
+            this._followRepathTimer = 0.35;
+          } else if (this._navigationPath.length) {
+            this._navigationPath[this._navigationPath.length - 1].set(tp.x, 0, tp.z);
+          }
+        }
+        if (this._navigationBlocked) {
+          if (this._animState !== 'idle') this._setAnimState('idle');
+          return;
+        }
+        const movementTarget = this._nextNavigationTarget(tp);
+        this._movementTarget = movementTarget;
+        const dir = new THREE.Vector3().subVectors(movementTarget, this.mesh.position);
         dir.y = 0;
         this.mesh.rotation.y = Math.atan2(dir.x, dir.z);
         this._moveBy(dir.normalize().multiplyScalar(this._followSpeed * dt));
@@ -386,10 +435,22 @@ export class ArchitectNPC {
       this.mesh.position.x = this._targetPosition.x;
       this.mesh.position.z = this._targetPosition.z;
       this._targetPosition = null;
+      this._clearNavigationPath();
       this._setAnimState('idle');
     } else {
+      if (this._navigationBlocked) {
+        this._targetPosition = null;
+        this._clearNavigationPath();
+        this._setAnimState('idle');
+        return;
+      }
+      const movementTarget = this._nextNavigationTarget(this._targetPosition);
+      this._movementTarget = movementTarget;
+      dir.subVectors(movementTarget, this.mesh.position);
+      dir.y = 0;
+      const movementDistance = dir.length();
       const step = this._speed * dt;
-      this._moveBy(dir.normalize().multiplyScalar(Math.min(step, dist)));
+      this._moveBy(dir.normalize().multiplyScalar(Math.min(step, movementDistance)));
       if (this._animState !== (this._animPlans.walk ? 'walk' : 'run')) {
         this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
       }
@@ -398,6 +459,16 @@ export class ArchitectNPC {
 
   _moveBy(delta) {
     if (!delta || delta.lengthSq() < 0.000001) return;
+    if (this._navigation) {
+      const candidate = this.mesh.position.clone().add(delta);
+      if (!this._navigation.isWalkableWorld(candidate)) {
+        const destination = this._followEnabled
+          ? this._followTarget?.position
+          : this._targetPosition;
+        if (destination) this._planNavigation(destination);
+        return;
+      }
+    }
     if (this._controller && this._collider) {
       this._controller.computeColliderMovement(this._collider, {
         x: delta.x,
@@ -417,6 +488,8 @@ export class ArchitectNPC {
     let target = null;
     if (this._lockedFacing) {
       target = this._lockedFacing;
+    } else if (this._movementTarget) {
+      target = this._movementTarget;
     } else if (this._targetPosition) {
       target = this._targetPosition;
     }
@@ -434,6 +507,34 @@ export class ArchitectNPC {
     this.mesh.rotation.y += diff * 0.25;
     this.mesh.rotation.x = 0;
     this.mesh.rotation.z = 0;
+  }
+
+  _planNavigation(target) {
+    if (!this._navigation || !target) {
+      this._navigationPath = [];
+      this._navigationBlocked = false;
+      return;
+    }
+    const path = this._navigation.findPath(this.mesh.position, target);
+    this._navigationPath = path.map(point => new THREE.Vector3(point.x, 0, point.z));
+    this._navigationBlocked = this._navigationPath.length === 0
+      && Math.hypot(target.x - this.mesh.position.x, target.z - this.mesh.position.z) > 0.2;
+  }
+
+  _nextNavigationTarget(fallback) {
+    while (this._navigationPath.length) {
+      const next = this._navigationPath[0];
+      if (Math.hypot(next.x - this.mesh.position.x, next.z - this.mesh.position.z) > 0.3) return next;
+      this._navigationPath.shift();
+    }
+    return fallback;
+  }
+
+  _clearNavigationPath() {
+    this._navigationPath = [];
+    this._navigationBlocked = false;
+    this._navigationTargetCell = null;
+    this._movementTarget = null;
   }
 
   _updateAnimation(dt) {

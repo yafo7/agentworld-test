@@ -1,0 +1,142 @@
+{
+  "name": "锄头",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "handle",
+      "name": "笔直木柄",
+      "transform": {
+        "pos": [
+          0,
+          0.12,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "name": "深灰铁锄头",
+      "parent": "handle",
+      "transform": {
+        "pos": [
+          0,
+          3.03,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "handle",
+      "transform": {
+        "pos": [
+          0,
+          1.505,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 3.05,
+          "depth": 0.22
+        },
+        "color": 9132587
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.34,
+          "depth": 0.38
+        },
+        "color": 5593180
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.22,
+          "depth": 0.32
+        },
+        "color": 4145991
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          -0.11,
+          0.12
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.48,
+          "depth": 0.14
+        },
+        "color": 3488061
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785061615634,
+      "provider": "gpt",
+      "data": "919NJUA2s1MsI3L1jap4tCRVLt8vd6WMSGOpZ0yVBh571l2q6QSNB2NjrC1EVdtCKbN67u/Bc2FD5EliC5G2ctmEDRZi5ZeMnIghFfbvsT0zG00cMibqag4u3YvIh2VSZp3H4+3Oy0/rP07Eu8gKW4U1eUnTzfzWk/r2lEMsKNKFExH/AvW4wf6BPvi4LcoODnoM4YgK8IwTjZRacgPKGtDQN/tOz86VPoUynrdXVbXl5oTsuST0yvcw6sXIKxR4ya8xMZ8A54rLcYgnZEcheEaZ/aU8y6QslGcfYnCWY4gWQICUw9WTUid9OPHSvWfOoRV0whpl8wghBtbs9owaaEMf6i7GNZ6jYS/GkXaBG/pq9rPthQSZ7yRPGkWG3TaPJ0DGhlFMJLiwIbtHHy4bCT+AwNtcjmhbpC0w52IX2pAlc/h/nC9NmzrEjLAo6VyPwG7Rij/2SRfu1zjT6+J00BtcTKdWPdKHH188c1Z2mTGcfE7fPazpIWv4lI5g86gNMqBIfBMyhS48bV6uTeI8pnyaiIMoBS71Mn6mabhuKgRbQOFZ5XkhEgiO/VK62artJA3yWlRB3D2kj+M6jTAw5Z3z",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipment_prop",
+    "chiiEquipmentId": "hoe",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

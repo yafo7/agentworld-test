@@ -10,6 +10,16 @@ function readManifest(storage) {
   }
 }
 
+function copyMetadata(metadata = {}) {
+  return {
+    kind: String(metadata.kind || '').trim() || null,
+    activityType: String(metadata.activityType || '').trim() || null,
+    subjectId: String(metadata.subjectId || '').trim() || null,
+    name: String(metadata.name || '').trim() || null,
+    prompt: String(metadata.prompt || '').trim() || null,
+  };
+}
+
 export class TownActivityAssetCache {
   constructor({ assetRepository = null, storage = globalThis.localStorage } = {}) {
     this.assetRepository = assetRepository;
@@ -20,19 +30,19 @@ export class TownActivityAssetCache {
     this.pending = new Map();
   }
 
-  async getOrCreateModel(key, create) {
-    const cached = await this._getModel(key);
+  async getOrCreateModel(key, create, metadata = {}) {
+    const cached = await this.getModel(key);
     if (cached) return cached;
     return this._once(`model:${key}`, async () => {
-      const secondCheck = await this._getModel(key);
+      const secondCheck = await this.getModel(key);
       if (secondCheck) return secondCheck;
       const value = await create();
-      if (value?.modelJson && value?.assetId) this._setModel(key, value);
+      if (value?.modelJson && value?.assetId) this._setModel(key, value, metadata);
       return value;
     });
   }
 
-  async getOrCreateAnimation(key, create) {
+  async getOrCreateAnimation(key, create, metadata = {}) {
     const cached = this.animations.get(key) || this.manifest[key]?.value;
     if (cached) {
       this.animations.set(key, cached);
@@ -44,14 +54,14 @@ export class TownActivityAssetCache {
       const value = await create();
       if (value?.plan) {
         this.animations.set(key, value);
-        this.manifest[key] = { type: 'animation', value };
+        this.manifest[key] = { type: 'animation', value, metadata: copyMetadata(metadata) };
         this._persist();
       }
       return value;
     });
   }
 
-  async _getModel(key) {
+  async getModel(key) {
     const memoryValue = this.models.get(key);
     if (memoryValue) return memoryValue;
 
@@ -71,10 +81,30 @@ export class TownActivityAssetCache {
     }
   }
 
-  _setModel(key, value) {
+  getAnimation(key) {
+    const value = this.animations.get(key) || this.manifest[key]?.value || null;
+    if (value) this.animations.set(key, value);
+    return value;
+  }
+
+  list({ type = null, kind = null, activityType = null, subjectId = null } = {}) {
+    return Object.entries(this.manifest)
+      .map(([key, entry]) => ({
+        key,
+        type: entry?.type || null,
+        assetId: entry?.assetId || null,
+        ...copyMetadata(entry?.metadata),
+      }))
+      .filter(entry => !type || entry.type === type)
+      .filter(entry => !kind || entry.kind === kind)
+      .filter(entry => !activityType || entry.activityType === activityType)
+      .filter(entry => !subjectId || entry.subjectId === subjectId);
+  }
+
+  _setModel(key, value, metadata = {}) {
     const cached = { modelJson: value.modelJson, assetId: value.assetId };
     this.models.set(key, cached);
-    this.manifest[key] = { type: 'model', assetId: value.assetId };
+    this.manifest[key] = { type: 'model', assetId: value.assetId, metadata: copyMetadata(metadata) };
     this._persist();
   }
 

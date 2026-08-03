@@ -1,0 +1,63 @@
+{
+  "id": "b",
+  "slug": "chii-chibi",
+  "title": "方案 B · 奇异岛短身版",
+  "intent": "缩短四肢并放大头部，和岛上宠物的可爱比例更协调。",
+  "source": "autonomous_backend",
+  "sourceReferences": [
+    "https://wutheringwaves.kurogames.com/en/main/news/detail/2907",
+    "https://www.kurobbs.com/mc/post/1395809059164573696",
+    "https://www.douyin.com/search/%E9%B8%A3%E6%BD%AE%E5%BC%97%E6%B4%9B%E6%B4%9Bq%E7%89%88%E4%BA%8C%E5%88%9B%E5%9B%BE",
+    "https://news.qq.com/rain/a/20260620A08POE00"
+  ],
+  "promptPacket": {
+    "operation": "model_generate",
+    "prompt_profile": "chii-v1",
+    "endpoint": "/api/generate/model",
+    "prompt": "圆脸短身少女，露出双眼，银绿双辫，红白短礼裙，手持彼岸花",
+    "request_hints": {
+      "quality": "voxel",
+      "emitParticles": false
+    }
+  },
+  "model": "generated/player-candidates/phrolova/chii-chibi/model.json",
+  "animations": {
+    "idle": "generated/player-candidates/phrolova/chii-chibi/idle.json",
+    "walk": "generated/player-candidates/phrolova/chii-chibi/walk.json",
+    "run": "generated/player-candidates/phrolova/chii-chibi/run.json",
+    "jump": "generated/player-candidates/phrolova/chii-chibi/jump.json",
+    "special": "generated/player-candidates/phrolova/chii-chibi/special.json"
+  },
+  "animationPackets": {
+    "idle": {
+      "description": "自然站立轻轻呼吸",
+      "duration": 2.4,
+      "emitParticles": false,
+      "loop": true
+    },
+    "walk": {
+      "description": "双腿交替向前行走",
+      "duration": 1.2,
+      "emitParticles": false,
+      "loop": true
+    },
+    "run": {
+      "description": "双腿快速向前奔跑",
+      "duration": 0.9,
+      "emitParticles": false,
+      "loop": true
+    },
+    "jump": {
+      "description": "屈膝起跳轻盈落地",
+      "duration": 1.2,
+      "emitParticles": false,
+      "loop": false
+    },
+    "special": {
+      "description": "挥花转圈冒出音符",
+      "duration": 2,
+      "emitParticles": true,
+      "loop": false
+    }
+  }
+}

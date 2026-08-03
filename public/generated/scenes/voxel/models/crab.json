@@ -1,0 +1,692 @@
+{
+  "name": "螃蟹",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "圆厚蟹壳",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leg0",
+      "name": "短步足1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.25,
+          0.9,
+          -0.58
+        ]
+      }
+    },
+    {
+      "id": "leg1",
+      "name": "短步足2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.42,
+          0.88,
+          -0.22
+        ]
+      }
+    },
+    {
+      "id": "leg2",
+      "name": "短步足3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.42,
+          0.86,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "leg3",
+      "name": "短步足4",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.3,
+          0.84,
+          0.52
+        ]
+      }
+    },
+    {
+      "id": "leg4",
+      "name": "短步足5",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.25,
+          0.9,
+          -0.58
+        ]
+      }
+    },
+    {
+      "id": "leg5",
+      "name": "短步足6",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.42,
+          0.88,
+          -0.22
+        ]
+      }
+    },
+    {
+      "id": "leg6",
+      "name": "短步足7",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.42,
+          0.86,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "leg7",
+      "name": "短步足8",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.3,
+          0.84,
+          0.52
+        ]
+      }
+    },
+    {
+      "id": "leftClaw",
+      "name": "左大蟹钳",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.35,
+          1.02,
+          0.42
+        ]
+      }
+    },
+    {
+      "id": "rightClaw",
+      "name": "右大蟹钳",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.35,
+          1.02,
+          0.42
+        ]
+      }
+    },
+    {
+      "id": "leftEye",
+      "name": "左眼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.62,
+          1.45,
+          0.38
+        ]
+      }
+    },
+    {
+      "id": "rightEye",
+      "name": "右眼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.62,
+          1.45,
+          0.38
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.92,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.5,
+          "depth": 1.45
+        },
+        "color": 14240292
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.03,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.75,
+          "height": 0.72,
+          "depth": 1.72
+        },
+        "color": 15754286
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.48,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.15,
+          "height": 0.28,
+          "depth": 1.42
+        },
+        "color": 16742464
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "leg0",
+      "transform": {
+        "pos": [
+          -0.45,
+          -0.33,
+          -0.32
+        ],
+        "quat": [
+          -0.25,
+          0.92,
+          -0.08,
+          0.29
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.28,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "leg1",
+      "transform": {
+        "pos": [
+          -0.47,
+          -0.32,
+          -0.2
+        ],
+        "quat": [
+          -0.28,
+          0.94,
+          -0.06,
+          0.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.2,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "leg2",
+      "transform": {
+        "pos": [
+          -0.48,
+          -0.31,
+          -0.08
+        ],
+        "quat": [
+          -0.28,
+          0.96,
+          -0.02,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.16,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "leg3",
+      "transform": {
+        "pos": [
+          -0.44,
+          -0.3,
+          0.03
+        ],
+        "quat": [
+          -0.29,
+          0.96,
+          0.01,
+          -0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.06,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leg4",
+      "transform": {
+        "pos": [
+          0.45,
+          -0.33,
+          -0.32
+        ],
+        "quat": [
+          -0.08,
+          0.29,
+          -0.25,
+          0.92
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.28,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "leg5",
+      "transform": {
+        "pos": [
+          0.46,
+          -0.32,
+          -0.2
+        ],
+        "quat": [
+          -0.06,
+          0.19,
+          -0.28,
+          0.94
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.2,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "leg6",
+      "transform": {
+        "pos": [
+          0.48,
+          -0.31,
+          -0.08
+        ],
+        "quat": [
+          -0.02,
+          0.08,
+          -0.28,
+          0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.16,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "leg7",
+      "transform": {
+        "pos": [
+          0.44,
+          -0.3,
+          0.03
+        ],
+        "quat": [
+          0.01,
+          -0.03,
+          -0.29,
+          0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.06,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 13189925
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "leftClaw",
+      "transform": {
+        "pos": [
+          -0.48,
+          0,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.52,
+          "depth": 0.72
+        },
+        "color": 15751723
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "leftClaw",
+      "transform": {
+        "pos": [
+          -0.29,
+          0.03,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.38,
+          "depth": 0.86
+        },
+        "color": 16740416
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "leftClaw",
+      "transform": {
+        "pos": [
+          -0.71,
+          0.03,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.38,
+          "depth": 0.86
+        },
+        "color": 15223592
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "rightClaw",
+      "transform": {
+        "pos": [
+          0.48,
+          0,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.52,
+          "depth": 0.72
+        },
+        "color": 15751723
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "rightClaw",
+      "transform": {
+        "pos": [
+          0.29,
+          0.03,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.38,
+          "depth": 0.86
+        },
+        "color": 16740416
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "rightClaw",
+      "transform": {
+        "pos": [
+          0.71,
+          0.03,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.38,
+          "depth": 0.86
+        },
+        "color": 15223592
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "leftEye",
+      "transform": {
+        "pos": [
+          0,
+          0.18,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.38,
+          "depth": 0.18
+        },
+        "color": 13189410
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "leftEye",
+      "transform": {
+        "pos": [
+          0,
+          0.44,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.48,
+          "depth": 0.44
+        },
+        "color": 16774365
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "leftEye",
+      "transform": {
+        "pos": [
+          0.035,
+          0.43,
+          0.36
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.19,
+          "height": 0.22,
+          "depth": 0.08
+        },
+        "color": 2826527
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "rightEye",
+      "transform": {
+        "pos": [
+          0,
+          0.18,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.38,
+          "depth": 0.18
+        },
+        "color": 13189410
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "rightEye",
+      "transform": {
+        "pos": [
+          0,
+          0.44,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.48,
+          "depth": 0.44
+        },
+        "color": 16774365
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "rightEye",
+      "transform": {
+        "pos": [
+          -0.035,
+          0.43,
+          0.36
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.19,
+          "height": 0.22,
+          "depth": 0.08
+        },
+        "color": 2826527
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785206908658,
+      "provider": "gpt",
+      "data": "Y63rL69DSi70JXnweb/f0eTnbixcrvcdT53ChWZgaz/dgmkCMqtRpmIFfTizoWtLUfopXgFRzSHivG7YvOZyC5CyOOdE1Dluaf8IarogltNttohV9sp66qUscZCflHwxn5p2rsvNpWODHwbeLXg1uWfdLDRboUr3V0imoBG0C8A8ei/2XRiCZURaYV/Umjh1c3lAvG0brisosi/IqxdPBPU1vsrGuatvB97qd8I2QsD+DUctns9Hh8+k8DaJPOHDSLC5PrvryqK24+swKxq/OeLysrf275pyAmbZQNFi28QOD+p+LaZaMU9cblRIDuCW5k/VULFPV7f+VS3wAwQLtcs5jvyh9TedLehqLkSIM/pc9tSJTKxIVeBwMDTzEzP7OfjcUNletF71eVu2Z4YXe8d+TesUf0CCQS7iyw/uoLalrGAUVrbp0CnGvOftB1VqGDOj6qy2Ue11wZwStX46mdaHOM4V1CNcNqboSdtL9LTdb9oxvevkqBBP02oAjsxi1ilslpKzqkwpHdZ9n350lojs5x9viz4do7svdqTxPyx/h1oCo8u57raKUNVnsm1soG4rEu4n2t4qZVIGs7Qr8OBlsf/NtcQUyRRNzAqtUSHGunssaLAucip9EFpasW3vAGOuB3+mRwyzFQK5KkAlL/GnyJVWGYeaXrNi0CnK+wWvs0Z+7YG3UVZXByGmYnedmZJYLBHw9AY4A+Ef8ph0HWjJWK+kovZopYWGpbyJFmqnY4//jvtEFjLA8pIp2tlg4Xua9ACjiePfxKb/RkxO4qQtA3YpbjSjmr38BVraMblCG0ttpf7qJEpq5g8xPR53jFBFJYNBqkabWPrLL5Nwti6p6rzVwAKhgajIM/1h48dNt4X9tpahZ8CWznA/kClZoF+rVHI5HFK10K+7Mlbrxk2R3l4sgWOK0gA5tbDK24gnxB85RHtxBU1m/YuyTrbjof77Sn8Gf8UE2i1dvsp0Ro/w2TmhWHA2tYDvyre5fe8vpzyJ7PYJe3vRpzwcr18BbWaPgI6fd1t6k7uegDyTVP4eMEO9Bl+sJEFjxm+z5TAEKVkUcxHYiRFuU5FYqkoB5ZvIACbYPABksZ8ICgnWVoP3KGgBxDiSCLbp97ZSW5SQAgpwKP4dB6ZT1Ad0AAz3k8FEDV3ggX9WnsAkSAfuu/ZCungNrMoKwrntOWtW8NJjpPo0kqFe6u/smJL5yQSV+WAv/iAoEvD3dO0LnAsj2N+n6t5TitV4JqOrBO/7MSgj13S/vp7eLXVzMo0El3h9K0bBQpoqY0zvKg6MMW4vENM6+G9lQ9ntRbrTIsjipp8UhMqeZUM=",
+      "edits": ""
+    },
+    "chiiAssetRole": "pet",
+    "chiiAssetId": "crab",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "橙红色方块螃蟹，圆厚蟹壳，两只大蟹钳，八条短步足，友好眼睛"
+  }
+}

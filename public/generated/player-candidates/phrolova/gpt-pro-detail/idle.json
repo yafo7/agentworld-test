@@ -1,0 +1,60 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.42
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.42
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.42,
+      "phase": 0.08
+    }
+  },
+  "leftArm": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.05,
+      "frequency": 0.42
+    }
+  },
+  "rightArm": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.42
+    }
+  },
+  "leftBraid": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.42,
+      "phase": 0.08
+    }
+  },
+  "rightBraid": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.42,
+      "phase": 0.08
+    }
+  },
+  "_name": "方案 D · GPT Pro 精细版_idle",
+  "_type": "idle",
+  "_modelId": "phrolova_d",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "自然站立轻轻呼吸",
+    "emitParticles": false
+  }
+}

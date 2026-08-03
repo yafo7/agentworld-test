@@ -12,23 +12,24 @@ function findMesh(root, partId) {
   return mesh;
 }
 
-function createWaterMaterial(kind) {
+export function createWaterMaterial(kind) {
   const isFall = kind === 'fall';
+  const isRiver = kind === 'river';
   const uniforms = THREE.UniformsUtils.merge([
     THREE.UniformsLib.fog,
     {
       uTime: { value: 0 },
-      uTopColor: { value: new THREE.Color(isFall ? 0x9de8ff : 0x76d5e8) },
-      uBottomColor: { value: new THREE.Color(isFall ? 0x3d91c5 : 0x328bad) },
+      uTopColor: { value: new THREE.Color(isFall ? 0x9de8ff : isRiver ? 0x72cfd7 : 0x76d5e8) },
+      uBottomColor: { value: new THREE.Color(isFall ? 0x3d91c5 : isRiver ? 0x286f83 : 0x328bad) },
       uFoamColor: { value: new THREE.Color(0xe9fcff) },
-      uOpacity: { value: isFall ? 0.68 : 0.74 },
+      uOpacity: { value: isFall ? 0.68 : isRiver ? 0.82 : 0.74 },
     },
   ]);
   const material = new THREE.ShaderMaterial({
     name: `ChiiModelWater:${kind}`,
     uniforms,
     transparent: true,
-    opacity: isFall ? 0.68 : 0.74,
+    opacity: isFall ? 0.68 : isRiver ? 0.82 : 0.74,
     depthWrite: false,
     side: THREE.DoubleSide,
     fog: true,
@@ -37,6 +38,7 @@ function createWaterMaterial(kind) {
       uniform float uTime;
       varying vec3 vWaterPosition;
       varying float vWaterWave;
+      varying vec2 vWaterUv;
       void main() {
         vec3 transformed = position;
         ${isFall
@@ -44,6 +46,7 @@ function createWaterMaterial(kind) {
     : 'float wave = sin((position.x + position.z) * 3.8 + uTime * 1.7) * 0.025 + cos(position.x * 6.0 - uTime * 1.2) * 0.012; transformed.y += wave;'}
         vWaterPosition = position;
         vWaterWave = wave;
+        vWaterUv = uv;
         vec4 mvPosition = modelViewMatrix * vec4(transformed, 1.0);
         gl_Position = projectionMatrix * mvPosition;
         #include <fog_vertex>
@@ -58,12 +61,15 @@ function createWaterMaterial(kind) {
       uniform float uOpacity;
       varying vec3 vWaterPosition;
       varying float vWaterWave;
+      varying vec2 vWaterUv;
       void main() {
         ${isFall
     ? 'float flow = fract(vWaterPosition.y * 1.8 - uTime * 0.7); float foam = smoothstep(0.72, 0.96, flow); float band = 0.5 + 0.5 * sin(vWaterPosition.x * 8.0 + uTime * 1.8);'
-    : 'float flow = 0.5 + 0.5 * sin((vWaterPosition.x - vWaterPosition.z) * 4.0 + uTime * 1.3); float foam = smoothstep(0.82, 1.0, flow + abs(vWaterWave) * 3.0); float band = flow;'}
+    : isRiver
+      ? 'float flow = 0.5 + 0.5 * sin(vWaterPosition.z * 0.42 - uTime * 1.45 + sin(vWaterPosition.x * 0.35)); float shore = 1.0 - smoothstep(0.0, 0.14, min(vWaterUv.x, 1.0 - vWaterUv.x)); float broken = 0.55 + 0.45 * sin(vWaterPosition.z * 1.7 + uTime * 1.1); float foam = shore * broken; float band = flow;'
+      : 'float flow = 0.5 + 0.5 * sin((vWaterPosition.x - vWaterPosition.z) * 4.0 + uTime * 1.3); float foam = smoothstep(0.82, 1.0, flow + abs(vWaterWave) * 3.0); float band = flow;'}
         vec3 color = mix(uBottomColor, uTopColor, 0.35 + band * 0.4);
-        color = mix(color, uFoamColor, foam * ${isFall ? '0.55' : '0.32'});
+        color = mix(color, uFoamColor, foam * ${isFall ? '0.55' : isRiver ? '0.68' : '0.32'});
         gl_FragColor = vec4(color, uOpacity);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>

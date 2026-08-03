@@ -1,0 +1,4163 @@
+{
+  "name": "西方古老神殿",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "roof",
+      "transform": {
+        "pos": [
+          0,
+          4.235,
+          0
+        ]
+      }
+    },
+    {
+      "id": "base",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -3.225,
+          0
+        ]
+      }
+    },
+    {
+      "id": "columns_front",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.575,
+          3.55
+        ]
+      }
+    },
+    {
+      "id": "columns_side",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.575,
+          0
+        ]
+      }
+    },
+    {
+      "id": "columns_back",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.575,
+          -3.55
+        ]
+      }
+    },
+    {
+      "id": "interior",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -2.035,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          -0.835,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.4,
+          "height": 0.35,
+          "depth": 10.2
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          -0.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.8,
+          "height": 0.32,
+          "depth": 9.4
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0,
+          -0.19,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.2,
+          "height": 0.3,
+          "depth": 8.6
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -2.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -1.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          -0.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          0.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          1.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "base",
+      "transform": {
+        "pos": [
+          2.5,
+          0,
+          4.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.08,
+          "depth": 0.35
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.75,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.75,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.75,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.75,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.05,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.05,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -0.35,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -0.35,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -0.35,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          -0.35,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          0.35,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          0.35,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          0.35,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          0.35,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.05,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.05,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.75,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.75,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.75,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          1.75,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "columns_front",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m50",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m51",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m52",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m53",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m54",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m55",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          2.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          1.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          -1.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m77",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m78",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m79",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m80",
+      "parent": "columns_side",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          -2.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m81",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -2.45,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m82",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -2.45,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m83",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -2.45,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m84",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -2.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m85",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.75,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m86",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.75,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m87",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.75,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m88",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.75,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m89",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.05,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m90",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.05,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m91",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m92",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m93",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -0.35,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m94",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -0.35,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m95",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -0.35,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m96",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          -0.35,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m97",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          0.35,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m98",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          0.35,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m99",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          0.35,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m100",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          0.35,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m101",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.05,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m102",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.05,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m103",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m104",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m105",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.75,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m106",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.75,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m107",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.75,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m108",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          1.75,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m109",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          2.45,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.18,
+          "radiusBottom": 0.18,
+          "height": 2.35,
+          "radialSegments": 12
+        },
+        "color": 16119285
+      }
+    },
+    {
+      "id": "m110",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          2.45,
+          -2.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.18,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m111",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          2.45,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.27,
+          "radiusBottom": 0.27,
+          "height": 0.22,
+          "radialSegments": 12
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m112",
+      "parent": "columns_back",
+      "transform": {
+        "pos": [
+          2.45,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.14,
+          "depth": 0.52
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m113",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.8,
+          "height": 0.28,
+          "depth": 8.3
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m114",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.525,
+          0.19,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -1.525,
+            -0.47500000000000053,
+            4.15,
+            1.525,
+            0.47499999999999964,
+            4.15,
+            0,
+            0,
+            0,
+            1.525,
+            0.47499999999999964,
+            4.15,
+            1.525,
+            0.47499999999999964,
+            -4.15,
+            0,
+            0,
+            0,
+            1.525,
+            0.47499999999999964,
+            -4.15,
+            -1.525,
+            -0.47500000000000053,
+            -4.15,
+            0,
+            0,
+            0,
+            -1.525,
+            -0.47500000000000053,
+            -4.15,
+            -1.525,
+            -0.47500000000000053,
+            4.15,
+            0,
+            0,
+            0
+          ],
+          "d": 0.1
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m115",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.525,
+          0.19,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            1.525,
+            -0.47500000000000053,
+            4.15,
+            -1.525,
+            0.47499999999999964,
+            4.15,
+            0,
+            0,
+            0,
+            -1.525,
+            0.47499999999999964,
+            4.15,
+            -1.525,
+            0.47499999999999964,
+            -4.15,
+            0,
+            0,
+            0,
+            -1.525,
+            0.47499999999999964,
+            -4.15,
+            1.525,
+            -0.47500000000000053,
+            -4.15,
+            0,
+            0,
+            0,
+            1.525,
+            -0.47500000000000053,
+            -4.15,
+            1.525,
+            -0.47500000000000053,
+            4.15,
+            0,
+            0,
+            0
+          ],
+          "d": 0.1
+        },
+        "color": 14474460
+      }
+    },
+    {
+      "id": "m116",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          0.685,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0,
+          0,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.08,
+          "radiusBottom": 0.08,
+          "height": 8.4,
+          "radialSegments": 10
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m117",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.015,
+          4.25
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -2.85,
+            -0.2999999999999998,
+            0
+          ],
+          "b": [
+            2.85,
+            -0.2999999999999998,
+            0
+          ],
+          "c": [
+            0,
+            0.6000000000000005,
+            0
+          ],
+          "d": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m118",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.015,
+          -4.25
+        ]
+      },
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -2.85,
+            -0.2999999999999998,
+            0
+          ],
+          "b": [
+            2.85,
+            -0.2999999999999998,
+            0
+          ],
+          "c": [
+            0,
+            0.6000000000000005,
+            0
+          ],
+          "d": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m119",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          0.045,
+          4.38
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.22,
+          "detail": 0
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m120",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          0.015,
+          -4.38
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.18,
+          "detail": 0
+        },
+        "color": 14329120
+      }
+    },
+    {
+      "id": "m121",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.475,
+          4.24
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.1,
+          "height": 0.16,
+          "depth": 0.22
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m122",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0,
+          -0.475,
+          -4.24
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.1,
+          "height": 0.16,
+          "depth": 0.22
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m123",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.02,
+          -0.475,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.16,
+          "depth": 8.25
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m124",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.02,
+          -0.475,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.16,
+          "depth": 8.25
+        },
+        "color": 12105912
+      }
+    },
+    {
+      "id": "m125",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.8,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m126",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.8,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m127",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.47,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m128",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.47,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m129",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.14,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m130",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -2.14,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m131",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.81,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m132",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.81,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m133",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.48,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m134",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.48,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m135",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.15,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m136",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -1.15,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m137",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.82,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m138",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.82,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m139",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.49,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m140",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.49,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m141",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.16,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m142",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -0.16,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m143",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.17,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m144",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.17,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m145",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.5,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m146",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.5,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m147",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.83,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m148",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          0.83,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m149",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.16,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m150",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.16,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m151",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.49,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m152",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.49,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m153",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.82,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m154",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          1.82,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m155",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.15,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m156",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.15,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m157",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.48,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m158",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.48,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m159",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.81,
+          -0.685,
+          4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m160",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          2.81,
+          -0.685,
+          -4.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m161",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -3.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m162",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -3.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m163",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -2.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m164",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m165",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m166",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -0.9
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m167",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m168",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m169",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m170",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          1.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m171",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          1.85
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m172",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          2.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m173",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          2.95
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m174",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          3.05,
+          -0.685,
+          3.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m175",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -3.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m176",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -3.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m177",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -2.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m178",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m179",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -1.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m180",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -0.9
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m181",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m182",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          0.2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m183",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m184",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          1.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m185",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          1.85
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m186",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          2.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m187",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          2.95
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m188",
+      "parent": "roof",
+      "transform": {
+        "pos": [
+          -3.05,
+          -0.685,
+          3.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.22,
+          "depth": 0.16
+        },
+        "color": 15790320
+      }
+    },
+    {
+      "id": "m189",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          -0.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.6,
+          "height": 2.1,
+          "depth": 5
+        },
+        "color": 4868682
+      }
+    },
+    {
+      "id": "m190",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          -0.05,
+          0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.15,
+          "height": 1.9,
+          "depth": 4.55
+        },
+        "color": 5921370
+      }
+    },
+    {
+      "id": "m191",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          2.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.6,
+          "height": 1.75,
+          "depth": 0.22
+        },
+        "color": 4868682
+      }
+    },
+    {
+      "id": "m192",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          -0.85,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.95,
+          "height": 0.45,
+          "depth": 0.95
+        },
+        "color": 4868682
+      }
+    },
+    {
+      "id": "m193",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          -0.52,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.25,
+          "height": 0.18,
+          "depth": 1.25
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m194",
+      "parent": "interior",
+      "transform": {
+        "pos": [
+          0,
+          -0.3,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.16,
+          "detail": 0
+        },
+        "color": 14329120
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782974626737,
+      "provider": "gpt",
+      "data": "M3g1VdvHu9TYRk8f/FKndncrXQj9joZ5ZbM13rHuRkL/IhkQ9flk0mUZLz8awpjo/ikAxdGTrOx6OGqfDKtqDXu8mM8XPje5vVF75vbqh5BnVU5xhTEBdhNJH81nY0tLeCINAatlyh/WLZMTzoGR8ow8dVffM7rXd2yg8swDbpb7nxCVMj2Tcz5sQ0GtLM+lnQ2YsKcm1q8gAhEH7uzZLa/nKVhJkUPz5bNBiMyCD93iph65C7ZuV3hB9xKMr5U5PU5DVVQ3/SY7qdLCCNKTFUjnmLye4kkK+SpNPBb0pDq5MLfRP0eQi13yOVfTpOsuIIFsGRMvbqIKhT/ftX8l1whEiuKJqr8aWI24VQ++KykJWnQCLoMXg4pgSR/ddVC/1KKfvRB/bWG+6JPxIpqVjzjxAQy1zbMxxgB9KL4V7K/XtK3s9gflGTv3v6J5u6w0XbKOsTVxpp6OYXqM2HdGcH3IScdrk4HOaUx38K/ir3pASFHgWCKDsVsTN+ldTHFlCxglUf/i8/bBchpZp5pzMqZWMVQGDPQNt83OVs5a60oQcrjihMybkrtdhtuRc1zM/8vbojIHaivgUA5zDfmZhO84BQ3jOpvAgNXm3z8UULobPSghf5QxQDvAzzWDidrn69rCoHCuTX7HhOo7Y6fiixqUFrLAa8ZvYzYlpxSsvgQNHJroqTf5ZwpYwkAUdlBYfBqPOjwGsj9BKJADRaTGLmoRzw948ndNN6b6wV7uOl7ks1fR544HidJZB6t4xBiccMgS5/jw1S6Dd28tYCTysEJaUno/v1c+9jh7n3utMWDtsNaY7hGNy1x+iDX/p8JQi9XpUV0YRpzRa200PtrfyB3qOWoLdK+vJXu3XIXWsoIFsHYwQfCnwy9k4ubZjpKfLF4O+brRwWAbKJglAZKVXqY1P61DgXVi4ogi53QbLVztVfn8NLI5WuRNF4szGBEQLfyWuExng0tyqncLHZUn/9n0lc0/deMYTQpP3E3SD+FSlV6H2+d0wgjSavGUYdkqV/2TTcVVzE/tOu6ISWx88tCWd9ex52BCpxbnNbmSEMp/7yy3rlm7z3+kCs8o1U8wwA1X81y2OcCB7D4hbXNytMmrL8PloVWFxvGGKzL7UqfaZ9VvRa2C8l5IBWMdkUJqj3t37Kvv/0VuSl9hZoFPyY2GIzhkvYXwlJsh2cma8S0lGRQTb+UkFCsEra0/UCm4yF8GVo8vjJ/Ntz2ep2NivxPEydHqB39q1BBlb9A2gAnmCfwRjmz8Ts5/NPh7dTWmCsTfcWkXSEIyOfMmcxwTZRJpNHMohizghu+M/E6QakKzWSBK20R3sDZrrmXy+SUhBmwo/grrH7YD+VBU5OeQGTeXwr6J9xWEPL2jqkEE9B4wyzG6QDZ9iT6h4MMhjHmJ9GwNK7XkGyp7CW8sKYRcbleWYUOV6bMF2iw4QQ/956Jj7B+/d38/gea4JiJdnTko4BcIVR5YFH1Zxlxg65GTPQ+7pZhQxHcata6a+NybhJ8/6WHmrQ9/K1VZuZvokplpLT4dO7qLf9PunlAJWz5H1QuNd7VZaSlmFCFZA0ClpbudoRP2mQ04CDW1YM22OgczOBRh+Q1D+w0FHki7rHn0RdxxTJE+OqQNBwFxR9zYFYKwtk41ZbyhSX5/SNjscommndh1t/hyz4fzD3t2qr7TVf2Kpna/LoUmGOTxwYZTuN3U5e0nd9eXBwQuowR7BQSrHs9OiZL8JBOlRmhjhvRky9yoDisvRJlRrWZleAVD/fvS1wG+1NliwClLKNPfIkWXmszLT/NSeZxhNGpmmSAo5cMigOlD3L3mHjPvOINs9a3YsoETBtZsWeOPwV7ZK0sexJyW18VWux3zeO34NgzkKrR+aYOVXqhZsN5cEcc4g2C6fIb65S0LGpqcvonfuMLFjciC4/onw65ll5vSXGI0UcTVm1KpkmiPQYJbuAiVeMK/kFkFzE4GkOKGUQIaWlMmGeNbAfq/0AlhEObao5M4qZZ+I4bjoOSDsEucvHf0dqI7p9CHre9H9sSOFqgECSJlh0xCcK0hMzZWdQv1",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1782974628699_589hom"
+}

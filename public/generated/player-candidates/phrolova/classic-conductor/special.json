@@ -1,0 +1,127 @@
+{
+  "_duration": 2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 1
+    },
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "y",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1,
+      "phase": 0.1
+    }
+  },
+  "arm_r": {
+    "pointTo": [
+      {
+        "axis": "z",
+        "angle": 75
+      },
+      {
+        "axis": "x",
+        "angle": -20
+      }
+    ],
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.5,
+        "frequency": 1
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.32,
+        "frequency": 2,
+        "phase": 0.25
+      }
+    ]
+  },
+  "flower": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 2,
+      "phase": 0.25
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.4,
+      "rate": 24,
+      "lifetime": [
+        0.7,
+        1.2
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          0.7,
+          1
+        ],
+        "speed": [
+          0.8,
+          1.8
+        ],
+        "spread": 0.65
+      },
+      "acceleration": [
+        0,
+        -0.5,
+        0
+      ],
+      "offset": [
+        0.1,
+        1.4,
+        0.2
+      ],
+      "colorStart": [
+        1,
+        0.05,
+        0.12
+      ],
+      "colorEnd": [
+        0.45,
+        0,
+        0.08
+      ],
+      "scaleStart": 1.2,
+      "scaleEnd": 0.5
+    }
+  },
+  "braid_l": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.1,
+      "frequency": 1,
+      "phase": 0.1
+    }
+  },
+  "braid_r": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 1,
+      "phase": 0.1
+    }
+  },
+  "_name": "方案 A · 彼岸花指挥家_special",
+  "_type": "special",
+  "_modelId": "phrolova_a",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "挥花指挥红色音符",
+    "emitParticles": true
+  }
+}

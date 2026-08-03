@@ -1,0 +1,38 @@
+{
+  "_duration": 0.9,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    },
+    "bounce": {
+      "amplitude": 0.15,
+      "frequency": 1.8
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.1,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.1,
+      "frequency": 1.8,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 B · 奇异岛短身版_run",
+  "_type": "run",
+  "_modelId": "phrolova_b",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿快速向前奔跑",
+    "emitParticles": false
+  }
+}

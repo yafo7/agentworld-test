@@ -1,4 +1,28 @@
 import * as THREE from 'three';
+import { PARTICLE_PRESETS } from '@voxel-studio/render-runtime/effects/particles/ParticlePresets.js';
+
+const VFX_PRESET_ALIASES = Object.freeze({
+  flame_jet: 'flame',
+});
+
+export function resolveVfxEmitterConfig(vfx) {
+  if (!vfx || typeof vfx !== 'object') return null;
+  const presetName = VFX_PRESET_ALIASES[vfx.preset] || vfx.preset;
+  const preset = PARTICLE_PRESETS[presetName];
+  if (!preset?.config) return null;
+  const scale = Math.max(0.3, Math.min(2, Number(vfx.params?.scale) || 1));
+  const config = {
+    ...preset.config,
+    velocity: preset.config.velocity ? { ...preset.config.velocity } : undefined,
+    meshSize: (preset.config.meshSize || 0.1) * scale,
+  };
+  if (Array.isArray(preset.config.shapeSize)) {
+    config.shapeSize = preset.config.shapeSize.map(value => value * scale);
+  }
+  if (Array.isArray(vfx.anchor?.offset)) config.offset = vfx.anchor.offset.slice(0, 3);
+  if (Array.isArray(vfx.dir) && config.velocity) config.velocity.dir = vfx.dir.slice(0, 3);
+  return config;
+}
 
 /**
  * ParticleSystem — InstancedMesh-based particle emitter driven by motion plan `emit` tracks.
@@ -29,23 +53,24 @@ export class ParticleSystem {
     let emitCount = 0;
     for (const [groupId, tracks] of Object.entries(motionPlan)) {
       if (groupId.startsWith('_')) continue;
-      if (!tracks || !tracks.emit) continue;
+      const emitterConfig = tracks?.emit || resolveVfxEmitterConfig(tracks?.vfx);
+      if (!emitterConfig) continue;
 
       const boneObj = modelRoot.getObjectByName(groupId);
       if (!boneObj) {
         console.warn('[Particles] bone not found in model:', groupId);
         continue;
       }
-      this._createEmitter(groupId, tracks.emit, boneObj);
+      this._createEmitter(groupId, emitterConfig, boneObj);
       emitCount++;
     }
     if (emitCount > 0) console.log('[Particles] setup:', emitCount, 'emitters');
   }
 
   _createEmitter(groupId, config, boneObj) {
-    const rate = config.rate || 15;
+    const rate = config.rate ?? 15;
     const maxLife = (config.lifetime || [0.5, 1.0])[1] || 1;
-    const maxCount = Math.min(500, Math.ceil(rate * maxLife + 5));
+    const maxCount = Math.min(500, config.maxCount || Math.ceil(rate * maxLife + 5));
 
     const geometry = config.mesh === 'box'
       ? new THREE.BoxGeometry(1, 1, 1)
@@ -104,7 +129,7 @@ export class ParticleSystem {
       }
 
       // 2. Spawn new particles (rate-based)
-      em.accumulator += (em.config.rate || 15) * dt;
+      em.accumulator += (em.config.rate ?? 15) * dt;
       while (em.accumulator >= 1) {
         em.accumulator -= 1;
         if (em.particles.length < em.maxCount) this._spawn(em);

@@ -1,0 +1,559 @@
+{
+  "name": "蒸鱼饺子年糕拼盘",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "platter",
+      "name": "红色餐盘",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "fish",
+      "name": "蒸鱼",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.5,
+          -0.72
+        ]
+      }
+    },
+    {
+      "id": "steam",
+      "name": "蒸汽",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          0,
+          0.55,
+          0
+        ]
+      }
+    },
+    {
+      "id": "dumpling1",
+      "name": "饺子一",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          -1.72,
+          0.5,
+          1.12
+        ]
+      }
+    },
+    {
+      "id": "dumpling2",
+      "name": "饺子二",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          -0.58,
+          0.5,
+          1.12
+        ]
+      }
+    },
+    {
+      "id": "dumpling3",
+      "name": "饺子三",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0.56,
+          0.5,
+          1.12
+        ]
+      }
+    },
+    {
+      "id": "ricecakes",
+      "name": "年糕",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          1.85,
+          0.5,
+          1.12
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.4,
+          "height": 0.22,
+          "depth": 4.6
+        },
+        "color": 11869998
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.43,
+          -2.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.4,
+          "height": 0.35,
+          "depth": 0.22
+        },
+        "color": 13904700
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          0,
+          0.43,
+          2.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.4,
+          "height": 0.35,
+          "depth": 0.22
+        },
+        "color": 13904700
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          -3.09,
+          0.43,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.35,
+          "depth": 4.16
+        },
+        "color": 13904700
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "platter",
+      "transform": {
+        "pos": [
+          3.09,
+          0.43,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.35,
+          "depth": 4.16
+        },
+        "color": 13904700
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          0,
+          0.26,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.8,
+          "height": 0.48,
+          "depth": 0.82
+        },
+        "color": 15180636
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          1.63,
+          0.28,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.56,
+          "depth": 0.76
+        },
+        "color": 14190920
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          -1.72,
+          0.21,
+          -0.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.22,
+          "depth": 0.5
+        },
+        "color": 13138239
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          -1.72,
+          0.21,
+          0.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.22,
+          "depth": 0.5
+        },
+        "color": 13138239
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "fish",
+      "transform": {
+        "pos": [
+          1.78,
+          0.6,
+          0.23
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.1,
+          "depth": 0.14
+        },
+        "color": 2365203
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "dumpling1",
+      "transform": {
+        "pos": [
+          0,
+          0.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.42,
+          "depth": 0.68
+        },
+        "color": 15916989
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "dumpling1",
+      "transform": {
+        "pos": [
+          0,
+          0.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 16772554
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "dumpling2",
+      "transform": {
+        "pos": [
+          0,
+          0.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.42,
+          "depth": 0.68
+        },
+        "color": 15916989
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "dumpling2",
+      "transform": {
+        "pos": [
+          0,
+          0.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 16772554
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "dumpling3",
+      "transform": {
+        "pos": [
+          0,
+          0.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.42,
+          "depth": 0.68
+        },
+        "color": 15916989
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "dumpling3",
+      "transform": {
+        "pos": [
+          0,
+          0.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 16772554
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "ricecakes",
+      "transform": {
+        "pos": [
+          -0.37,
+          0.2,
+          -0.24
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.25,
+          "depth": 0.46
+        },
+        "color": 16773842
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "ricecakes",
+      "transform": {
+        "pos": [
+          0.43,
+          0.2,
+          -0.24
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.25,
+          "depth": 0.46
+        },
+        "color": 16773842
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "ricecakes",
+      "transform": {
+        "pos": [
+          -0.37,
+          0.2,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.25,
+          "depth": 0.46
+        },
+        "color": 16180673
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "ricecakes",
+      "transform": {
+        "pos": [
+          0.43,
+          0.2,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.25,
+          "depth": 0.46
+        },
+        "color": 16180673
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "steam",
+      "transform": {
+        "pos": [
+          -0.45,
+          0.43,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.5,
+          "depth": 0.12
+        },
+        "color": 15331822
+      },
+      "tags": [
+        {
+          "tag": "smoke",
+          "value": 0.5,
+          "variant": "steam"
+        }
+      ]
+    },
+    {
+      "id": "m21",
+      "parent": "steam",
+      "transform": {
+        "pos": [
+          0.38,
+          0.59,
+          0.06
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.55,
+          "depth": 0.12
+        },
+        "color": 16054261
+      },
+      "tags": [
+        {
+          "tag": "smoke",
+          "value": 0.5,
+          "variant": "steam"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785403277064,
+      "provider": "gpt",
+      "data": "HQKkPB6vtd/rGw/3RLGHUX0R9QcTtpMrR1TSF7TJou/eZ1D7qZzZupT3wuScN0GNBucuFLmTXSpe33/nOTrb0t2Hxc54x7D+SahG+84Wi3RtH7WGovQbYPpmfBYF+9H08qfO07hQm8SpojyHp8no7ksDLDhXs26JDNcbPj1fZdMHaHXnh6s212hJilhZjHzZLD+3j8cFok+QIcqAzETSiCOgdRPhZ3GX4hvFnNb5QD5TMpjBiNof4tnnmmbQEtbJ6C+SmVi+0dYBTxdn7+B1yzjcSvt0SE5O3DJwChCJ56QNQ8Bem7rM0RcAGH72X5Bt+zaz81hT8UX43PY08wU7dn1oJdnfI7k0xBvqfVKDsgrTcuJFFIjrvLKy9cuEr/oh/iQOKjxx/bniFwmxsS7Jc7HQti8RtbXizzkoZNkjkSFQI6NeJUJkubCZNy0CgeSqV/f6lMeBz1PINfVXwzGT3cD2xoYB8Ck8Et9tI0RmKgsqNjOcZ4aZemwoTBNcYFIov4scCestEP9bM7RaWIoaSYybTD5eZHX2G/o6jH6DGvSkzeLHV3uIic+9bPwFQhlngmw/Vu4CnW7JC/lvjmYjqkDXinOUFTESDqRGF9kpXWPI9jbWx1H33lqAoD8/R59Xsw3EQbZ0M4ZlX+2IXmMi8cyJnBgopZKV7cEctJi0/boxOpQEBBcalwMn0oONkfmtyOIHVLl1HzT0TrsfY7d/D2T6M1qs9U7EhQQsJ4SL/1ZTvZRwRAj7aMRAgOL9kY3BvIfGmCfgrFjLxK0jNs4XcnMvhZknO5nPfPZGn+1cABNcORTIvLS7fjItcHb7aOWtI+70RYbj/ihvl0dw898sBRuthsfKPxi0MDcoZ4GMIOS/krNJ9ATJzg/q63w8YPIZryvRCIlVx6LZZglfEvLjByp19v0vN8728mbiurJ7MouIE7Ns1EtpO4Am2yzo4cmodnA//2Ibdq6Cx+LPKFe7o/SmmQ1pi1F8Knvi5H7e0/cIuI46DosLFBhS90Xt5B7e",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_food_fish",
+    "chiiActivityOperation": "generate",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "红盘装蒸鱼饺子年糕，摆放整齐"
+  }
+}

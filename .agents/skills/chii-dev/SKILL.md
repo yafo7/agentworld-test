@@ -25,5 +25,6 @@ Rules:
 URLs:
 
 - Chii Island: `http://localhost:5173/src/demos/chii-island/`
-- Ghost Home: `http://localhost:5173/src/demos/ghost-home/`
+- Agentland Friends: `http://localhost:5173/src/demos/agentland-friends/`
+- Ghost Home compatibility redirect: `http://localhost:5173/src/demos/ghost-home/`
 - Voxel Studio: `http://localhost:8000/`

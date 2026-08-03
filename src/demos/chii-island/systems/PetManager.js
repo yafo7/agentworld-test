@@ -1,7 +1,9 @@
+import * as THREE from 'three';
 import { ArchitectNPC } from '../entities/ArchitectNPC.js';
 import { getPetProfile } from '../data/petProfiles.js';
 import { createChiiAssetRepository } from '../data/assetCatalog.js';
 import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
+import { CHII_PET_HEIGHTS } from '../data/worldTuningProfile.js';
 
 const PET_CONFIGS = [
   {
@@ -46,13 +48,26 @@ function randomIn(min, max) {
 }
 
 export class PetManager {
-  constructor({ scene, physics, petSpawns = {}, petBehaviors = {}, assetRepository = createChiiAssetRepository() }) {
+  constructor({
+    scene,
+    physics,
+    petSpawns = {},
+    petBehaviors = {},
+    assetRepository = createChiiAssetRepository(),
+    navigation = null,
+  }) {
     this.scene = scene;
     this.physics = physics;
     this.petSpawns = petSpawns;
     this.petBehaviors = petBehaviors;
     this.assetRepository = assetRepository;
+    this.navigation = navigation;
+    this.placementGrid = null;
     this.pets = [];
+  }
+
+  setPlacementGrid(grid) {
+    this.placementGrid = grid || null;
   }
 
   async load() {
@@ -86,7 +101,9 @@ export class PetManager {
         this.assetRepository.getAnimations(config.assetId),
       ]);
       if (modelJson) {
-        pet.loadModelFromJson(modelJson);
+        pet.loadModelFromJson(modelJson, {
+          targetHeight: CHII_PET_HEIGHTS[config.name] || CHII_PET_HEIGHTS.generated,
+        });
         if (pet._modelGroup) {
           pet._modelGroup.userData._baseScale = pet._modelGroup.scale.x;
           pet._modelGroup.userData._baseY = pet._modelGroup.position.y;
@@ -109,6 +126,7 @@ export class PetManager {
     pet._petRegion = behavior.region || 'pastoral';
     pet._petBounds = behavior.bounds || makeBounds(spawn[0], spawn[2], 10);
     pet._nextPetActionAt = randomIn(1.0, 3.0);
+    pet.setNavigation?.(this.navigation);
   }
 
   registerPet(pet, { name, profile = null, spawn, initialState = 'idle', region = 'pastoral', bounds = null, updateExternally = false } = {}) {
@@ -123,6 +141,7 @@ export class PetManager {
     pet._petBounds = bounds || makeBounds(origin[0], origin[2], 10);
     pet._nextPetActionAt = randomIn(1.0, 3.0);
     pet._petManagerExternalUpdate = updateExternally;
+    pet.setNavigation?.(this.navigation);
     this.pets.push(pet);
     return pet;
   }
@@ -156,7 +175,24 @@ export class PetManager {
 
     if (pet._petRegion === 'church_town' || roll < 0.78) {
       const b = pet._petBounds;
-      pet.walkTo(randomIn(b.minX, b.maxX), randomIn(b.minZ, b.maxZ), randomIn(2.5, 4.2));
+      let destination = null;
+      for (let attempt = 0; attempt < 8; attempt += 1) {
+        const candidate = {
+          x: randomIn(b.minX, b.maxX),
+          y: 0,
+          z: randomIn(b.minZ, b.maxZ),
+        };
+        if (!this.placementGrid || this.placementGrid.isWorldPositionAvailable(candidate)) {
+          destination = candidate;
+          break;
+        }
+      }
+      if (destination) {
+        pet.walkTo(destination.x, destination.z, randomIn(2.5, 4.2));
+      } else {
+        pet.stopWalking();
+        pet.playAnimation('idle');
+      }
       pet._nextPetActionAt = randomIn(2.0, 4.0);
       return;
     }
@@ -172,8 +208,17 @@ export class PetManager {
     for (const pet of this.pets) {
       if (predicate && !predicate(pet)) continue;
       const p = pet.getPosition();
-      const dx = p.x - position.x;
-      const dz = p.z - position.z;
+      const bounds = pet._modelGroup
+        ? new THREE.Box3().setFromObject(pet._modelGroup)
+        : null;
+      const nearestX = bounds && !bounds.isEmpty()
+        ? THREE.MathUtils.clamp(position.x, bounds.min.x, bounds.max.x)
+        : p.x;
+      const nearestZ = bounds && !bounds.isEmpty()
+        ? THREE.MathUtils.clamp(position.z, bounds.min.z, bounds.max.z)
+        : p.z;
+      const dx = nearestX - position.x;
+      const dz = nearestZ - position.z;
       const dist = Math.sqrt(dx * dx + dz * dz);
       if (dist <= bestDist) {
         best = { pet, dist, position: p, dx, dz };

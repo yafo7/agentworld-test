@@ -10,6 +10,11 @@ export class RuntimeHUD {
     this.activityEl = document.getElementById('runtime-activity');
     this.activityTitleEl = document.getElementById('runtime-activity-title');
     this.activityStageEl = document.getElementById('runtime-activity-stage');
+    this.activityPhaseEl = document.getElementById('runtime-activity-phase');
+    this.activityProgressEl = document.getElementById('runtime-activity-progress-value');
+    this.activityTaskEl = document.getElementById('runtime-activity-task');
+    this.activityTaskTextEl = document.getElementById('runtime-activity-task-text');
+    this.activityHelperEl = document.getElementById('runtime-activity-helper');
     this.perfEl = document.getElementById('runtime-perf');
     this.jobs = new Map();
     this.jobSerial = 0;
@@ -71,7 +76,7 @@ export class RuntimeHUD {
     }
   }
 
-  setActivityStatus(title = null, stage = '') {
+  setActivityStatus(title = null, stage = '', details = {}) {
     if (!this.activityEl) return;
     if (!title) {
       this.activityEl.classList.remove('visible');
@@ -79,6 +84,22 @@ export class RuntimeHUD {
     }
     this.activityTitleEl.textContent = title;
     this.activityStageEl.textContent = stage;
+    const phaseIndex = Math.max(1, Number(details.phaseIndex) || 1);
+    const phaseCount = Math.max(phaseIndex, Number(details.phaseCount) || 4);
+    if (this.activityPhaseEl) {
+      this.activityPhaseEl.textContent = `${details.phaseLabel || '准备'} ${phaseIndex}/${phaseCount}`;
+    }
+    if (this.activityProgressEl) {
+      this.activityProgressEl.style.width = `${Math.min(100, (phaseIndex / phaseCount) * 100)}%`;
+    }
+    if (this.activityTaskEl) {
+      const task = details.task || null;
+      this.activityTaskEl.classList.toggle('visible', !!task);
+      this.activityTaskEl.dataset.state = task?.complete ? 'complete' : 'open';
+      if (this.activityTaskTextEl) this.activityTaskTextEl.textContent = task?.label || '';
+    }
+    if (this.activityHelperEl) this.activityHelperEl.textContent = details.helper || '';
+    this.activityEl.dataset.phase = details.phase || 'preparing';
     this.activityEl.classList.add('visible');
   }
 

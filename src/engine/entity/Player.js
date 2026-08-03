@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import RAPIER from '@dimforge/rapier3d-compat';
 import { loadModel } from '../model/loader.js';
+import { buildModelFromJson } from '../model/builder.js';
 import { loadAnimationPlan } from '../animation/planLoader.js';
 import { evaluateMotion, applyMotionDeltas } from '../animation/player.js';
 import { normalizeAnimationPlan } from '../animation/normalizePlan.js';
@@ -17,7 +18,7 @@ import {
 
 /**
  * Player entity — loads a 3D model asynchronously, falling back to a blue cone placeholder.
- * Supports idle / run / flight animations. Space toggles flight mode.
+ * Supports idle / run / jump / flight animations.
  *
  * Movement is aligned with voxel-game/Character:
  * - W always moves in the camera's look direction.
@@ -56,10 +57,12 @@ export class Player {
     this._oneShotDuration = 0;
     this._oneShotLoop = false;
 
-    // Flight mode (toggle with Space)
+    // Locomotion actions: H toggles flight, Space jumps while grounded.
     this._isFlying = false;
+    this._flightAllowed = true;
     this._flySpeed = 8;
     this._flySpeedVertical = 5;
+    this._jumpSpeed = 6.4;
     this._groundY = 0;
 
     // Spring-based movement / rotation (voxel-game style)
@@ -94,6 +97,7 @@ export class Player {
     this._terrainCz = 0;
     this._terrainSize = 0;
     this._terrainLayout = null;
+    this._terrainConstraintEnabled = true;
   }
 
   /**
@@ -145,6 +149,63 @@ export class Player {
     this._terrainLayout = layout;
   }
 
+  setWaterTraversalCells(cells = []) {
+    this._waterTraversalCells = new Set(
+      [...cells].map(cell => typeof cell === 'string' ? cell : `${cell.gridX},${cell.gridZ}`),
+    );
+  }
+
+  setTerrainConstraintEnabled(enabled) {
+    this._terrainConstraintEnabled = Boolean(enabled);
+  }
+
+  setFlightAllowed(allowed) {
+    this._flightAllowed = Boolean(allowed);
+    if (!this._flightAllowed && this._isFlying) this._setFlightMode(false);
+  }
+
+  teleport(position, {
+    orientation = null,
+    groundY = position?.y ?? this._groundY,
+  } = {}) {
+    if (!position) return false;
+    this._groundY = Number.isFinite(groundY) ? groundY : 0;
+    this._isFlying = false;
+    this._verticalVel = 0;
+    this._grounded = true;
+    this.velocity.set(0, 0, 0);
+    this.velocityTarget.set(0, 0, 0);
+    this.velocitySimulator.position.set(0, 0, 0);
+    this.velocitySimulator.velocity.set(0, 0, 0);
+    this.velocitySimulator.target.set(0, 0, 0);
+    this.rotationSimulator.position = 0;
+    this.rotationSimulator.velocity = 0;
+    this.rotationSimulator.target = 0;
+
+    this.mesh.position.set(position.x, this._groundY, position.z);
+    if (orientation) {
+      this.orientation.set(orientation.x, 0, orientation.z);
+      if (this.orientation.lengthSq() < 0.001) this.orientation.set(0, 0, 1);
+      this.orientation.normalize();
+      this.orientationTarget.copy(this.orientation);
+      this.mesh.lookAt(
+        this.mesh.position.x + this.orientation.x,
+        this.mesh.position.y,
+        this.mesh.position.z + this.orientation.z,
+      );
+    }
+
+    const next = {
+      x: this.mesh.position.x,
+      y: this.mesh.position.y,
+      z: this.mesh.position.z,
+    };
+    this._body?.setTranslation(next, true);
+    this._body?.setNextKinematicTranslation(next);
+    this._setAnimState('idle');
+    return true;
+  }
+
   /**
    * Check if a world position falls on a water cell.
    * @param {number} worldX
@@ -152,9 +213,10 @@ export class Player {
    * @returns {boolean}
    */
   _isInWater(worldX, worldZ) {
-    if (!this._terrainLayout) return false;
+    if (!this._terrainConstraintEnabled || !this._terrainLayout) return false;
     const g = worldToGridCoordinates(worldX, worldZ, this._terrainCx, this._terrainCz, this._terrainSize);
     if (g.gridX < 0 || g.gridX >= this._terrainSize || g.gridZ < 0 || g.gridZ >= this._terrainSize) return true;
+    if (this._waterTraversalCells?.has(`${g.gridX},${g.gridZ}`)) return false;
     return this._terrainLayout[g.gridZ]?.[g.gridX] === 'water';
   }
 
@@ -186,31 +248,87 @@ export class Player {
       return;
     }
 
-    // Remove placeholder
-    this.mesh.remove(this._placeholder);
-    this._placeholder.geometry.dispose();
-    this._placeholder.material.dispose();
+    this._installModel(model, {
+      targetHeight: 3,
+      modelJson: model.userData?.modelJson || null,
+    });
+    console.log('[Player] Model loaded:', modelPath);
+  }
 
-    // Scale model to target height (~6.0, quadruple the original placeholder)
-    const box = new THREE.Box3().setFromObject(model);
-    const size = new THREE.Vector3();
-    box.getSize(size);
-    const targetHeight = 3.0;
-    const scale = targetHeight / Math.max(size.y, 0.01);
-    model.scale.setScalar(scale);
+  /**
+   * Replace the visible player with a model built from runtime JSON.
+   * Animation plans remain attached to the player and continue targeting the
+   * primary model's preserved node names after refine or mount.
+   */
+  replaceModelFromJson(modelJson, {
+    targetHeight = 3,
+    preserveCurrentTransform = true,
+  } = {}) {
+    try {
+      const model = buildModelFromJson(modelJson);
+      this._installModel(model, {
+        targetHeight,
+        preserveCurrentTransform,
+        modelJson,
+      });
+      return true;
+    } catch (error) {
+      console.warn('[Player] Model replacement failed:', error.message);
+      return false;
+    }
+  }
 
-    // Shift so bottom touches ground
-    const minY = box.min.y * scale;
-    model.position.y = -minY;
+  getModelJson() {
+    return this._currentModelJson || this._model?.userData?.modelJson || null;
+  }
 
+  _installModel(model, {
+    targetHeight = 3,
+    preserveCurrentTransform = false,
+    modelJson = null,
+  } = {}) {
+    if (!model) return false;
+
+    const previousModel = this._model;
+    const previousTransform = previousModel
+      ? {
+          scale: previousModel.userData?._baseScale || previousModel.scale.x,
+          y: previousModel.userData?._baseY ?? previousModel.position.y,
+        }
+      : null;
+
+    this._cleanupEmitters();
+    this._oneShotPlan = null;
+    this._oneShotTime = 0;
+    this._oneShotDuration = 0;
+    if (previousModel) this.mesh.remove(previousModel);
+
+    if (this._placeholder?.parent === this.mesh) {
+      this.mesh.remove(this._placeholder);
+      this._placeholder.geometry.dispose();
+      this._placeholder.material.dispose();
+    }
+
+    if (preserveCurrentTransform && previousTransform) {
+      model.scale.setScalar(previousTransform.scale);
+      model.position.y = previousTransform.y;
+    } else {
+      const box = new THREE.Box3().setFromObject(model);
+      const size = box.getSize(new THREE.Vector3());
+      const scale = targetHeight / Math.max(size.y, 0.01);
+      model.scale.setScalar(scale);
+      model.position.y = -box.min.y * scale;
+    }
+
+    model.userData._baseScale = model.scale.x;
+    model.userData._baseY = model.position.y;
     this.mesh.add(model);
     this._model = model;
     this._modelLoaded = true;
+    this._currentModelJson = modelJson || model.userData?.modelJson || null;
     this._basePoseMap = null;
-    // Store base transform for fallback animation
-    this._model.userData._baseScale = model.scale.x;
-    this._model.userData._baseY = model.position.y;
-    console.log('[Player] Model loaded:', modelPath);
+    this._animTime = 0;
+    return true;
   }
 
   /**
@@ -318,8 +436,12 @@ export class Player {
           this.mesh.position.z + dir.z
         );
       }
-      if (this._animState !== 'idle') this._setAnimState('idle');
-      this._updateAnimation(dt);
+      if (this._oneShotPlan) {
+        this._updateOneShot(dt);
+      } else {
+        if (this._animState !== 'idle') this._setAnimState('idle');
+        this._updateAnimation(dt);
+      }
       return;
     }
 
@@ -328,6 +450,15 @@ export class Player {
     const left = input.isDown('KeyA');
     const right = input.isDown('KeyD');
     const run = input.isDown('ShiftLeft') || input.isDown('ShiftRight');
+
+    if (this._flightAllowed && input.justPressed('KeyH')) {
+      this._setFlightMode(!this._isFlying);
+    }
+    if (!this._isFlying && input.justPressed('Space') && this._grounded) {
+      this._verticalVel = this._jumpSpeed;
+      this._grounded = false;
+      this._setAnimState('jump');
+    }
 
     // Camera view vector on the horizontal plane
     this._flatView.set(-Math.sin(camera.yaw), 0, -Math.cos(camera.yaw));
@@ -401,19 +532,6 @@ export class Player {
       this.mesh.position.z + this.orientation.z
     );
 
-    // Space: toggle flight mode
-    if (input.justPressed('Space')) {
-      this._isFlying = !this._isFlying;
-      if (this._isFlying) {
-        this._setAnimState('jump');
-        console.log('[Player] Flight mode ON');
-      } else {
-        this.mesh.position.y = this._groundY;
-        this._setAnimState('idle');
-        console.log('[Player] Flight mode OFF');
-      }
-    }
-
     // Flight vertical movement
     if (this._isFlying) {
       // Vertical: Q=up, E=down
@@ -440,6 +558,8 @@ export class Player {
       this._updateOneShot(dt);
     } else if (this._isFlying) {
       if (this._animState !== 'jump') this._setAnimState('jump');
+    } else if (!this._grounded || Math.abs(this._verticalVel) > 0.05) {
+      if (this._animState !== 'jump') this._setAnimState('jump');
     } else {
       if (this.velocity.z > 0.01) {
         if (this._animState !== 'run') this._setAnimState('run');
@@ -456,6 +576,30 @@ export class Player {
       const offset = new THREE.Vector3(0, 0.8, 0);
       this.heldItem.mesh.position.copy(this.mesh.position).add(offset);
     }
+  }
+
+  _setFlightMode(enabled) {
+    this._isFlying = Boolean(enabled);
+    this._verticalVel = 0;
+    if (this._isFlying) {
+      this._setAnimState('jump');
+      console.log('[Player] Flight mode ON');
+      return;
+    }
+
+    this.mesh.position.y = this._groundY;
+    this._grounded = true;
+    this._setAnimState('idle');
+    if (this._body) {
+      const position = {
+        x: this.mesh.position.x,
+        y: this.mesh.position.y,
+        z: this.mesh.position.z,
+      };
+      this._body.setTranslation(position, true);
+      this._body.setNextKinematicTranslation(position);
+    }
+    console.log('[Player] Flight mode OFF');
   }
 
   _updateOneShot(dt) {

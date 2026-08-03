@@ -14,6 +14,7 @@ import {
   createParticleEffectForObject,
   tickParticleEffects,
 } from '@voxel-studio/render-runtime/effects/particles/ParticleCompanion.js';
+import { MeshStandardMaterial } from 'three';
 
 import { applyBasicMaterialTagPresentation } from '../../engine/model/MaterialTagPresentation.js';
 import { ModelVisualPort } from '../../ports/ModelVisualPort.js';
@@ -33,6 +34,93 @@ function findRenderObject(root, partId) {
   return mesh;
 }
 
+function copyTextureProperties(source, target) {
+  const properties = [
+    'map', 'alphaMap', 'aoMap', 'bumpMap', 'displacementMap', 'emissiveMap',
+    'envMap', 'lightMap', 'normalMap',
+  ];
+  for (const property of properties) {
+    if (source[property] !== undefined) target[property] = source[property];
+  }
+}
+
+/**
+ * Latest Studio layers target the PBR shader anchors used by Standard/Physical materials.
+ * Chii's voxel renderer still emits Lambert materials, so compatibility stays here at the
+ * replaceable integration boundary instead of leaking into the parser or renderer.
+ */
+export function promoteMaterialForVoxelRuntime(material) {
+  if (!material || material.isMeshStandardMaterial || material.isMeshPhysicalMaterial) return material;
+  if (!material.isMeshLambertMaterial && !material.isMeshPhongMaterial) return material;
+
+  const promoted = new MeshStandardMaterial({
+    color: material.color?.clone?.() || 0xffffff,
+    emissive: material.emissive?.clone?.() || 0x000000,
+    emissiveIntensity: Number.isFinite(material.emissiveIntensity) ? material.emissiveIntensity : 1,
+    metalness: 0,
+    roughness: material.isMeshPhongMaterial
+      ? Math.max(0.2, Math.min(1, 1 - (Number(material.shininess) || 30) / 140))
+      : 0.82,
+    flatShading: material.flatShading === true,
+    vertexColors: material.vertexColors === true,
+    transparent: material.transparent === true,
+    opacity: material.opacity,
+    alphaTest: material.alphaTest,
+    side: material.side,
+    shadowSide: material.shadowSide,
+    depthTest: material.depthTest,
+    depthWrite: material.depthWrite,
+    colorWrite: material.colorWrite,
+    blending: material.blending,
+    blendSrc: material.blendSrc,
+    blendDst: material.blendDst,
+    blendEquation: material.blendEquation,
+    polygonOffset: material.polygonOffset,
+    polygonOffsetFactor: material.polygonOffsetFactor,
+    polygonOffsetUnits: material.polygonOffsetUnits,
+    visible: material.visible,
+    toneMapped: material.toneMapped,
+    fog: material.fog,
+  });
+  promoted.name = material.name;
+  promoted.alphaHash = material.alphaHash === true;
+  promoted.dithering = material.dithering === true;
+  promoted.premultipliedAlpha = material.premultipliedAlpha === true;
+  if (material.normalScale) promoted.normalScale?.copy?.(material.normalScale);
+  promoted.bumpScale = Number.isFinite(material.bumpScale) ? material.bumpScale : promoted.bumpScale;
+  promoted.displacementScale = Number.isFinite(material.displacementScale)
+    ? material.displacementScale
+    : promoted.displacementScale;
+  promoted.displacementBias = Number.isFinite(material.displacementBias)
+    ? material.displacementBias
+    : promoted.displacementBias;
+  promoted.userData = {
+    ...(material.userData || {}),
+    chiiVoxelRuntimeMaterial: {
+      sourceType: material.type,
+      runtimeCommit: '1203a1e',
+    },
+  };
+  copyTextureProperties(material, promoted);
+  promoted.needsUpdate = true;
+  return promoted;
+}
+
+export function promoteMeshForVoxelRuntime(object, cache = new WeakMap()) {
+  if (!object?.isMesh || !object.material) return 0;
+  const materials = Array.isArray(object.material) ? object.material : [object.material];
+  let promotedCount = 0;
+  const next = materials.map(material => {
+    if (cache.has(material)) return cache.get(material);
+    const promoted = promoteMaterialForVoxelRuntime(material);
+    cache.set(material, promoted);
+    if (promoted !== material) promotedCount += 1;
+    return promoted;
+  });
+  object.material = Array.isArray(object.material) ? next : next[0];
+  return promotedCount;
+}
+
 export class VoxelStudioModelVisualAdapter extends ModelVisualPort {
   constructor({ scene, camera = null, vocabulary = null, modelStyleRegistry = null, logger = console } = {}) {
     super();
@@ -46,6 +134,7 @@ export class VoxelStudioModelVisualAdapter extends ModelVisualPort {
     this.pending = new Map();
     this.settling = new Map();
     this.attachmentSequence = 0;
+    this.promotedMaterialCache = new WeakMap();
     this.modelWater = new ModelWaterTagPresenter();
     this.runtimeIndex = new RuntimeIndex();
     this.effectRuntime = createEffectRuntime().runtime;
@@ -109,6 +198,7 @@ export class VoxelStudioModelVisualAdapter extends ModelVisualPort {
       if (part?.isGroup || !part?.mesh) continue;
       const object = findRenderObject(root, part.id);
       if (!object) continue;
+      promoteMeshForVoxelRuntime(object, this.promotedMaterialCache);
       const globalPartId = `${instanceModelId}:${part.id}`;
       this.runtimeIndex.registerMesh(globalPartId, object, {
         modelId: instanceModelId,
@@ -127,7 +217,15 @@ export class VoxelStudioModelVisualAdapter extends ModelVisualPort {
       } catch (error) {
         if (this.pending.get(root) === pending) this.pending.delete(root);
         this._releaseRecord(pending);
-        throw error;
+        this.modelStyleRegistry?.registerModel?.(root);
+        const message = error?.message || String(error);
+        this.logger?.warn?.('[VoxelStudioModelVisualAdapter] Runtime failed; using basic presentation:', message);
+        root.userData.modelVisualRuntime = {
+          source: 'basic-fallback',
+          modelId: instanceModelId,
+          error: message,
+        };
+        return { ok: true, source: 'basic-fallback', runtimeError: message, basicBindings };
       }
       if (this.pending.get(root) !== pending) {
         this._releaseRecord(pending);
@@ -203,6 +301,9 @@ export class VoxelStudioModelVisualAdapter extends ModelVisualPort {
       source: 'voxel-studio-render-runtime',
       materialTags: true,
       triplanarWoodStone: true,
+      fur: true,
+      foliage: true,
+      vegetationSway: true,
       glass: true,
       emissive: true,
       shaderFire: true,

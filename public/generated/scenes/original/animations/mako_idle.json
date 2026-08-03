@@ -1,0 +1,67 @@
+{
+  "body": {
+    "breathe": {
+      "amplitude": 0.025,
+      "frequency": 0.5
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.045,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.055,
+      "frequency": 0.5,
+      "phase": 0.1
+    },
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.035,
+      "frequency": 0.5,
+      "phase": 0.15
+    }
+  },
+  "neck_base": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.045,
+      "frequency": 0.5,
+      "phase": 0.05
+    }
+  },
+  "neck_low": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.035,
+      "frequency": 0.5,
+      "phase": 0.12
+    }
+  },
+  "tail_root": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.5,
+      "phase": 0.3
+    }
+  },
+  "tail_1": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.5,
+      "phase": 0.4
+    }
+  },
+  "tail_2": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.5
+    }
+  }
+}

@@ -1,0 +1,1027 @@
+{
+  "name": "哥特石制祭坛桌",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "frontApron",
+      "description": "桌面下方宽厚横向围板，正面排列三个附着式尖拱装饰-浅灰[e2e2dc]，中央尖拱略高",
+      "transform": {
+        "pos": [
+          0,
+          4.36,
+          1.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "tabletop",
+      "description": "宽阔厚重桌面、两侧略外伸，主体-灰白石色[d0d0c8]",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          -1.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "backApron",
+      "description": "桌面下方横向围板，宽度与正面围板一致、结构简洁-灰白石色",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          -0.11,
+          -2.67
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "leftFrontColumn",
+      "description": "左前方短粗支柱，上下端略宽，中段收窄-灰白石色",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -2.2,
+          -0.58,
+          -0.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "rightFrontColumn",
+      "description": "右前方短粗支柱，与左前柱对称，上下端略宽，中段收窄-灰白石色",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          2.2,
+          -0.58,
+          -0.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "leftBackColumn",
+      "description": "左后方短粗支柱，支撑桌面后角-灰白石色",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -2.2,
+          -0.58,
+          -2.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "rightBackColumn",
+      "description": "右后方短粗支柱，支撑桌面后角-灰白石色",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          2.2,
+          -0.58,
+          -2.4
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "tabletop",
+      "transform": {
+        "pos": [
+          0,
+          0.37,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 0.65,
+          "depth": 2.9
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "tabletop",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.55,
+          "height": 0.22,
+          "depth": 3.15
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "tabletop",
+      "transform": {
+        "pos": [
+          -3.18,
+          0.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.48,
+          "depth": 2.9
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "tabletop",
+      "transform": {
+        "pos": [
+          3.18,
+          0.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.48,
+          "depth": 2.9
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          -0.11,
+          -0.12
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.35,
+          "height": 1.3,
+          "depth": 0.38
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          -0.79,
+          -0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.55,
+          "height": 0.18,
+          "depth": 0.48
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -2.05,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -0.95,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -1.5,
+          0.21,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.24,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -1.5,
+          0.48,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.3,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -1.5,
+          0.7,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          -0.55,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0.55,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          0.21,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.84,
+          "height": 0.24,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          0.52,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.3,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0,
+          0.79,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.2,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          0.95,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          2.05,
+          -0.28,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.72,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          1.5,
+          0.21,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.24,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          1.5,
+          0.48,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.3,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "frontApron",
+      "transform": {
+        "pos": [
+          1.5,
+          0.7,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.16
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "backApron",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.35,
+          "height": 1.3,
+          "depth": 0.38
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "backApron",
+      "transform": {
+        "pos": [
+          0,
+          -0.68,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5.55,
+          "height": 0.18,
+          "depth": 0.48
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "leftFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "leftFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.35,
+          "depth": 0.8
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "leftFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -1.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 2.65,
+          "depth": 0.72
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "leftFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.86,
+          "height": 0.25,
+          "depth": 0.86
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "leftFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.38,
+          "depth": 1.1
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "rightFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "rightFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.35,
+          "depth": 0.8
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "rightFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -1.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 2.65,
+          "depth": 0.72
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "rightFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          -0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.86,
+          "height": 0.25,
+          "depth": 0.86
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "rightFrontColumn",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.38,
+          "depth": 1.1
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "leftBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "leftBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.35,
+          "depth": 0.8
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "leftBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -1.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 2.65,
+          "depth": 0.72
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "leftBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.86,
+          "height": 0.25,
+          "depth": 0.86
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "leftBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.38,
+          "depth": 1.1
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "rightBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.38,
+          "depth": 1.05
+        },
+        "color": 14869212
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "rightBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -3.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.35,
+          "depth": 0.8
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "rightBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -1.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 2.65,
+          "depth": 0.72
+        },
+        "color": 13684936
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "rightBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          -0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.86,
+          "height": 0.25,
+          "depth": 0.86
+        },
+        "color": 12105904
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "rightBackColumn",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.38,
+          "depth": 1.1
+        },
+        "color": 14869212
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785074506670,
+      "provider": "gpt",
+      "data": "6N1Z0Rfvc73rHOmQAITFJ6Q1mmksmF0v/1v1x6rGYkXvyMd0SRhNG++7yT+myQ4DBvdv/SCXfwg24vCjVYEiv06X5yv4q2oh0U97vNdGMstCDAk4RZoHfVfTy7UM+XCDy1Jnx7xcOKMK3hb0D4W2NuUteYfTZozEECp+INvqbqCBScLwdx4WeC6YMmSjoNAFI37oynNg5VM85iGTG5O33nJMU3jP5ivHMOp68a7bW8gE/RmN4dwMl/yktDvpX7ufdc1cvoy/c3jPhcUDbm07Lip7WpquzYLyK8ipR1WtIQuNAbPv5W6SCjtYKo+hk8qnOcheZnu7EyvKYJr8YIxHNvzewfam11MgaTJmZLacf4MJC7jxrwhkNfFkq1nYYcQtUM5ZPjl5oLiPz+z0zAw+m85TQuBXB/kmMGq+8FQ1n/qXCrSM7RDwPX4c+Zsvl2hCdlOthrpHxuoIuN0Pum/G5M2yb1c93B3HOSdbNst5efZndCdCzlFZk2uimofOiKIsMafb4pKq+fObVVwkRepIa+5aIvksPPZcdepddlX2KzqoKNYng4cf3JSomiVHMjyckeLXrVdFiFletDnV0MBIEL2f+VVJ1A2ahdKkyMQNbwbad5heY3kEiBTlrEUFFBw3UTx/4tllP5fdr3w32dhQ/2EDTJ04PBJNZmHRLTH5OFDxffWrDbWqJde/DHtcNbZalG9PGdYv2hlXkjPeYqD32CXletsH7CgG8MQNq5SIDr/zuZb86lIC5mcfOkPe20i92vYOhaFR08df8DOSdqrO0qVAJ35FQjlpxS05L31DmwhHHUWBxq21TsKfa9GWwRdmmT950Y99w53HKQAZlOXEdDmY6LRz9A+RYkcgNl6OHEYQ5Bnc61qQijIgyAfmWAewkED4EkUGigfueLLKQzM3DtTJlCfxiQLwoyT01SSC74XsihTy2BAfrtMRnJYANM8mDJQfVKx8qH/HSM7kqyDlyNVo4ejsIHSR+1hD+fHJk7faYInhCOHqVDTFQ1v8+sgCDuAmMMghZWpHDuK8PHcq8rR1gLVbch4ARA3+RYvub0BLmw/pudWrgBjorsIiYg8Gi+ACige8hb6CKtpV1CMX5mwx7P5aC9WH8mkcJkt5U1phu6KbyKusSO/tEBn5FCK57VypYZjudmWJ93vXNS684hsOVyKNnpF+4lwZhoLUiDk2cezEjw2NXCVqV0NlLMZnMZLe1Kaw17RzG6cdfTriu2wq6MfBm3bpYUWFDwZtR43g5JVU10IkioKcmNaqzaaDU53y2gaUkFBE1l/dWVTs0hey19zEdv7F+ZCMkrBHJb6q7FR5e6JKXX0bCd8jbYV8/956FfBw1n5ETcWxZkiAnc6fqN4xHTXT6nbMNjl8vnM89KqYt8pRP3THR00IkL0pZ9C+Fnzai7yvw/9NezU0MEowCPLxyhKXS7rWomsCsXF8MD5od4xuxwWj6J/vb9+zskyNU2xMtdE10NCuRntwlr6cHSdjUENCjHAYXiIFMpTQihdhlGdVbBTUpkEdiLQM7B+RCZ/PTzpEUdCsOAWImbV1Hkp36d+K9cmd5eEbNLZfE8VKNpY3beig4FPCPA==",
+      "edits": ""
+    },
+    "chiiAssetRole": "churchAltar",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel-pro",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel-pro",
+      "timing": null
+    },
+    "chiiSourceReferences": [
+      "https://www.cologne-tourism.com/arts-culture/sights/cologne-cathedral/interior",
+      "https://cathedral.org/discover/art-architecture/gothic-architecture-101/"
+    ],
+    "chiiTargetSize": {
+      "width": 4.2,
+      "height": 1.5,
+      "depth": 1.9
+    }
+  }
+}

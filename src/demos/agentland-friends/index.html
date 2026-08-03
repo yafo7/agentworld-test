@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="../chii-island/presentation/chii-page-loading.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Agentland Friends</title>
+  </head>
+  <body>
+    <div id="friends-app">
+      <canvas id="friends-canvas" aria-label="Agentland 朋友庭院三维场景"></canvas>
+
+      <header class="friends-topbar">
+        <div class="friends-brand">
+          <span class="friends-brand-mark" aria-hidden="true">AF</span>
+          <div>
+            <strong>Agentland Friends</strong>
+            <small>朋友庭院 · 初步 Demo</small>
+          </div>
+        </div>
+        <a href="../chii-island/" data-chii-navigation data-loading-title="正在回到奇异岛" data-loading-detail="朋友们帮你把回程路牌转正。">返回奇异岛</a>
+      </header>
+
+      <aside class="reference-desk" aria-label="美术参考台">
+        <div class="panel-heading">
+          <div>
+            <span>REFERENCE DESK</span>
+            <h1>美术参考台</h1>
+          </div>
+          <button id="reference-toggle" type="button" aria-expanded="true" aria-label="收起美术参考台" title="收起">‹</button>
+        </div>
+
+        <section class="reference-section">
+          <div class="section-heading">
+            <strong>场景参考图</strong>
+            <label class="file-command">
+              <span>添加</span>
+              <input id="scene-reference-input" type="file" accept="image/*" />
+            </label>
+          </div>
+          <div id="scene-reference-list" class="reference-list">
+            <p class="reference-empty">等待第一张庭院、房间或街道参考图</p>
+          </div>
+        </section>
+
+        <section class="reference-section">
+          <div class="section-heading">
+            <strong>朋友设定图</strong>
+            <label class="file-command">
+              <span>添加</span>
+              <input id="friend-reference-input" type="file" accept="image/*" multiple />
+            </label>
+          </div>
+          <div id="friend-reference-list" class="reference-list">
+            <p class="reference-empty">等待角色正面、侧面或三视图</p>
+          </div>
+        </section>
+
+        <div class="reference-session-note">本页只在当前浏览器预览图片，不会上传。</div>
+      </aside>
+
+      <section id="story-panel" class="story-panel" data-phase="idle" aria-live="polite">
+        <div class="story-stage-head">
+          <span id="story-phase">日常</span>
+          <span id="story-progress">0/4</span>
+        </div>
+        <h2 id="story-title">朋友们正在庭院里闲逛</h2>
+        <p id="story-detail">点击下方按钮，看看一件小事怎样变成一段故事。</p>
+        <div class="story-progress-track"><span id="story-progress-value"></span></div>
+        <ol id="story-log" class="story-log"></ol>
+      </section>
+
+      <div id="speech-layer" class="speech-layer" aria-live="polite"></div>
+
+      <footer class="friends-toolbar">
+        <div id="friend-roster" class="friend-roster" aria-label="朋友名册"></div>
+        <button id="start-story" class="start-story" type="button">演一段庭院小故事</button>
+      </footer>
+
+      <section id="friend-detail" class="friend-detail" hidden>
+        <span id="friend-detail-role"></span>
+        <h2 id="friend-detail-name"></h2>
+        <p id="friend-detail-personality"></p>
+        <small id="friend-detail-reference"></small>
+      </section>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

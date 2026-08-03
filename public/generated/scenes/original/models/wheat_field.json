@@ -1,0 +1,588 @@
+{
+  "name": "金色成熟小麦簇",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "wheat_cluster",
+      "name": "小麦簇",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "stalk_0",
+      "name": "麦秆1",
+      "parent": "wheat_cluster",
+      "transform": {
+        "pos": [
+          -0.42,
+          0,
+          0.02
+        ]
+      }
+    },
+    {
+      "id": "stalk_1",
+      "name": "麦秆2",
+      "parent": "wheat_cluster",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "stalk_2",
+      "name": "麦秆3",
+      "parent": "wheat_cluster",
+      "transform": {
+        "pos": [
+          0.42,
+          0,
+          0.02
+        ]
+      }
+    },
+    {
+      "id": "stalk_3",
+      "name": "麦秆4",
+      "parent": "wheat_cluster",
+      "transform": {
+        "pos": [
+          -0.22,
+          0,
+          0.28
+        ]
+      }
+    },
+    {
+      "id": "stalk_4",
+      "name": "麦秆5",
+      "parent": "wheat_cluster",
+      "transform": {
+        "pos": [
+          0.22,
+          0,
+          0.28
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0,
+          0.685,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 1.37,
+          "depth": 0.09
+        },
+        "color": 13211439
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.28,
+          "depth": 0.18
+        },
+        "color": 14724402
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0,
+          1.75,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.25,
+          "depth": 0.2
+        },
+        "color": 15777086
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0,
+          2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 14460205
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0,
+          2.235,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.22,
+          "depth": 0.07
+        },
+        "color": 15911244
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          0.785,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 1.5699999999999998,
+          "depth": 0.09
+        },
+        "color": 13211439
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          1.7,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.28,
+          "depth": 0.18
+        },
+        "color": 14724402
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          1.95,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.25,
+          "depth": 0.2
+        },
+        "color": 15777086
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          2.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 14460205
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          2.435,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.22,
+          "depth": 0.07
+        },
+        "color": 15911244
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "stalk_2",
+      "transform": {
+        "pos": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 1.4,
+          "depth": 0.09
+        },
+        "color": 13211439
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "stalk_2",
+      "transform": {
+        "pos": [
+          0,
+          1.53,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.28,
+          "depth": 0.18
+        },
+        "color": 14724402
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "stalk_2",
+      "transform": {
+        "pos": [
+          0,
+          1.78,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.25,
+          "depth": 0.2
+        },
+        "color": 15777086
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "stalk_2",
+      "transform": {
+        "pos": [
+          0,
+          2.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 14460205
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "stalk_2",
+      "transform": {
+        "pos": [
+          0,
+          2.265,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.22,
+          "depth": 0.07
+        },
+        "color": 15911244
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "stalk_3",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 1.2400000000000002,
+          "depth": 0.09
+        },
+        "color": 13211439
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "stalk_3",
+      "transform": {
+        "pos": [
+          0,
+          1.37,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.28,
+          "depth": 0.18
+        },
+        "color": 14724402
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "stalk_3",
+      "transform": {
+        "pos": [
+          0,
+          1.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.25,
+          "depth": 0.2
+        },
+        "color": 15777086
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "stalk_3",
+      "transform": {
+        "pos": [
+          0,
+          1.87,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 14460205
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "stalk_3",
+      "transform": {
+        "pos": [
+          0,
+          2.105,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.22,
+          "depth": 0.07
+        },
+        "color": 15911244
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "stalk_4",
+      "transform": {
+        "pos": [
+          0,
+          0.65,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 1.2999999999999998,
+          "depth": 0.09
+        },
+        "color": 13211439
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "stalk_4",
+      "transform": {
+        "pos": [
+          0,
+          1.43,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.28,
+          "depth": 0.18
+        },
+        "color": 14724402
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "stalk_4",
+      "transform": {
+        "pos": [
+          0,
+          1.68,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.25,
+          "depth": 0.2
+        },
+        "color": 15777086
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "stalk_4",
+      "transform": {
+        "pos": [
+          0,
+          1.93,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.25,
+          "depth": 0.18
+        },
+        "color": 14460205
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "stalk_4",
+      "transform": {
+        "pos": [
+          0,
+          2.165,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.22,
+          "depth": 0.07
+        },
+        "color": 15911244
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016992949,
+      "provider": "gpt",
+      "data": "SX6a2fR2XWVrlS43r3xcgy69LZi2bZ/0jVYr++nafJAJM5+Ng9ydp7YQGfQ+NZ0QfMcd1VgLJvtmwzSDVQZpw5J8W9xCXrWDY2CSW4xYb5ggAOkB35eXDeGgIk2DMJN2yw1lSmVEkSab2+Mq5RR28Td2quvdWVhFg9auDsttsEIuziqCkefe/aibO8z++tPQ4Ut6nlt2kCyyVfoJBG8TAC0fA/QvJlgWvrviXVPkI5oAixFzgTjUiQKsMAv3KPQ6EXiRQRXyLOtBb6aC7A6QaYpja6fT9X9snOaw7VwYV6XtzAHkCllFmhw2lDV47paXUrOwpITUAbI08ijeeyuk2TOudOrGJJkMIx9gqXpGFKpCFdJrCBgmGwQMFutrl1H04m3CvwXMqDOTRVlt8l/824Ks4T08Gy4IUY321JbpMLQf5V5aY3h70sFLPVLfrv8oHAoHv7Q+YEpytNDpO7JpnAd0/UMg2OlHQCqOPn5YJ7WJT7Wx09YPjgLSok0MAd9E8vwEzYhR98Ea+buOryS+VN5ChX3OjjTu4e5CZ7OwR+FGsZOXn3D1BqzICmcyXQ8UCes/AkDp3h39emikrJL0anwkSzav6IJi2dln1su4OSNZwX4Hw1x9G6hARcKKMrqjqRaDNd7O3WK68gsJhuBRwrJAs9ocjCHdIT+x8aDgUcUzMdWTGLfYbKK6zYQzkLMM+iKfuZlKFTzKDJyfUZXZW1gech/3cqp1mx13xXPuq2FRDZv21swatv4qOXPAXQ==",
+      "edits": ""
+    }
+  }
+}

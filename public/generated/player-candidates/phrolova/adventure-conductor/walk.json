@@ -1,0 +1,46 @@
+{
+  "_duration": 1.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.5,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 C · 轻装冒险版_walk",
+  "_type": "walk",
+  "_modelId": "phrolova_c",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿交替向前行走",
+    "emitParticles": false
+  }
+}

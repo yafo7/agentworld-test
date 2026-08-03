@@ -1,0 +1,285 @@
+{
+  "name": "罐装可乐",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "m0",
+      "transform": {
+        "pos": [
+          0,
+          1.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.4,
+          "height": 2.2,
+          "depth": 1.4
+        },
+        "color": 13180710
+      }
+    },
+    {
+      "id": "m1",
+      "transform": {
+        "pos": [
+          0,
+          2.42,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.28,
+          "height": 0.12,
+          "depth": 1.28
+        },
+        "color": 10426141
+      }
+    },
+    {
+      "id": "m2",
+      "transform": {
+        "pos": [
+          0,
+          0.19,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.3,
+          "height": 0.08,
+          "depth": 1.3
+        },
+        "color": 10426141
+      }
+    },
+    {
+      "id": "m3",
+      "transform": {
+        "pos": [
+          0,
+          1.35,
+          0.73
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 0.56,
+          "depth": 0.06
+        },
+        "color": 16777215
+      }
+    },
+    {
+      "id": "m4",
+      "transform": {
+        "pos": [
+          -0.38,
+          1.48,
+          0.77
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.46,
+          "height": 0.18,
+          "depth": 0.07
+        },
+        "color": 15263976
+      }
+    },
+    {
+      "id": "m5",
+      "transform": {
+        "pos": [
+          0.08,
+          1.3,
+          0.77
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.18,
+          "depth": 0.07
+        },
+        "color": 15263976
+      }
+    },
+    {
+      "id": "m6",
+      "transform": {
+        "pos": [
+          0.43,
+          1.48,
+          0.77
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.18,
+          "depth": 0.07
+        },
+        "color": 15263976
+      }
+    },
+    {
+      "id": "m7",
+      "transform": {
+        "pos": [
+          0,
+          2.51,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.12,
+          "height": 0.07,
+          "depth": 1.12
+        },
+        "color": 12567495
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m8",
+      "transform": {
+        "pos": [
+          0,
+          2.59,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.06,
+          "depth": 0.48
+        },
+        "color": 9870240
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m9",
+      "transform": {
+        "pos": [
+          0,
+          2.59,
+          0.23
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 0.06,
+          "depth": 0.15
+        },
+        "color": 14146269
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "transform": {
+        "pos": [
+          0,
+          2.59,
+          -0.16
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 0.06,
+          "depth": 0.15
+        },
+        "color": 14146269
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "transform": {
+        "pos": [
+          0,
+          2.59,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.06,
+          "depth": 0.28
+        },
+        "color": 6251625
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785061472359,
+      "provider": "gpt",
+      "data": "/Tzu0XysT8xqgaUhy+gyyheNb6GKmcTNZVITvp6HvqPMyqW/aOD7PpEYtpmy/B49QALdAwAlaH+WhkdFbbGUXo17AGDwZg9OK8RniXzh+TiwU4qGakcQhowNa14IDPDWdBsMovBhsdiFfTxy89vbmWIj+CSEKgdl+VfnamHzIf7nRiOktY38Mptw2HnRaz7h2ccU0qwet1eksiKZfRy6G5PazK4v6yIiRM3uGg+KvpBOWn5AXuWTjLtXAP4mM8b1tMufXpFZSx6hFZ1hnS144grZ1w2SXWeT8Tq/mSyCecAi6Gqo5YQ2zTrwxmwHIYOTGcS9geRlMWKJ73tLw8I2HVk8d6B/n77SDAcrvVjVWqvQznVEPqw/X935ahnK2Cy7T/O9ZH1S/WRLPQ1RtANr2EdhUzD5zqES3B5HT4U3NYHhitVAD/4FJnDRiisO3YH4+OROwo7ixFRRwyZVst3vCpry1ByIUfNWHe5Pri19ig8K7F+OZH8KtE22COBWIx1nsma71W59PNQ2ed1b1R0WoKjsMuz3j/UWxM4BKkGZuNXojFGtVjqH7aaQ/zYYPSCaMklvF9CCYSPUyfnOO/fGVELd6tMW0RXVNFn3bjyrJCyeG1TjJtWMXJlU37vW1S+71l66V7q1dn75XV84XWmLah9iAmoTEWo=",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipment_prop",
+    "chiiEquipmentId": "canned-cola",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

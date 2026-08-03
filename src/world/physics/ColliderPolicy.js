@@ -52,6 +52,11 @@ const PROFILES = Object.freeze({
     rankBy: 'volume',
     fallbackToBounds: true,
   }),
+  bridge: Object.freeze({
+    key: `bridge:v${PROFILE_VERSION}`,
+    mode: 'bridge',
+    fallbackToBounds: false,
+  }),
 });
 
 const NON_SOLID_CATEGORIES = new Set(['plant', 'grass', 'flower', 'crop']);
@@ -62,6 +67,7 @@ export function colliderProfileForEntity(entity, strategy) {
 
   const normalizedStrategy = normalizeColliderStrategy(strategy);
   const explicitType = entity.mesh.userData?.collider?.type;
+  if (explicitType === 'bridge') return PROFILES.bridge;
   if (normalizedStrategy === COLLIDER_STRATEGIES.LEGACY_BOUNDS) {
     if (explicitType === 'tree' || entity.category === 'tree') return PROFILES.legacyTree;
     if (explicitType === 'building' || entity.category === 'house' || entity.category === 'building') {

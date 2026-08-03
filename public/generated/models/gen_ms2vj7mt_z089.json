@@ -1,0 +1,804 @@
+{
+  "name": "黑魔法堡垒",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "fortress",
+      "name": "黑魔法堡垒",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "masonry",
+      "name": "黑石主体",
+      "parent": "fortress",
+      "transform": {
+        "pos": [
+          0,
+          3.7375,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "brick"
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "name": "低矮魔门",
+      "parent": "fortress",
+      "transform": {
+        "pos": [
+          -0.7,
+          0.6,
+          6.02
+        ]
+      }
+    },
+    {
+      "id": "sigils",
+      "name": "魔法符印",
+      "parent": "fortress",
+      "transform": {
+        "pos": [
+          0,
+          4.55,
+          3.535
+        ]
+      }
+    },
+    {
+      "id": "braziers",
+      "name": "门前火盆",
+      "parent": "fortress",
+      "transform": {
+        "pos": [
+          0,
+          0.78,
+          6.18
+        ]
+      }
+    },
+    {
+      "id": "effects",
+      "name": "蓝色魔焰",
+      "parent": "fortress",
+      "transform": {
+        "pos": [
+          0,
+          1.22,
+          6.18
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          -3.4375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 9,
+          "height": 0.6,
+          "depth": 12
+        },
+        "color": 1512223
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -4.1,
+          -1.5375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 3.8,
+          "depth": 10.3
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          4.1,
+          -1.5375,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 3.8,
+          "depth": 10.3
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          -1.5375,
+          -5.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 7.4,
+          "height": 3.8,
+          "depth": 0.8
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -2.2,
+          -1.5375,
+          5.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 3.8,
+          "depth": 0.8
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          2.2,
+          -1.5375,
+          5.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 3.8,
+          "depth": 0.8
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          -0.4875,
+          5.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.4,
+          "height": 1.7,
+          "depth": 0.8
+        },
+        "color": 2169643
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -3.65,
+          -1.0375,
+          -5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.7,
+          "height": 4.8,
+          "depth": 1.7
+        },
+        "color": 1578016
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -3.65,
+          1.4875,
+          -5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.65,
+          "depth": 2
+        },
+        "color": 2695221
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -3.65,
+          -1.0375,
+          5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.7,
+          "height": 4.8,
+          "depth": 1.7
+        },
+        "color": 1578016
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          -3.65,
+          1.4875,
+          5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.65,
+          "depth": 2
+        },
+        "color": 2695221
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          3.65,
+          -1.0375,
+          -5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.7,
+          "height": 4.8,
+          "depth": 1.7
+        },
+        "color": 1578016
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          3.65,
+          1.4875,
+          -5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.65,
+          "depth": 2
+        },
+        "color": 2695221
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          3.65,
+          -1.0375,
+          5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.7,
+          "height": 4.8,
+          "depth": 1.7
+        },
+        "color": 1578016
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          3.65,
+          1.4875,
+          5.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.65,
+          "depth": 2
+        },
+        "color": 2695221
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          -1.1875,
+          -0.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.8,
+          "height": 4.5,
+          "depth": 4.8
+        },
+        "color": 1840933
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          2.0625,
+          -0.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3,
+          "height": 2.4,
+          "depth": 3.2
+        },
+        "color": 2431793
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "masonry",
+      "transform": {
+        "pos": [
+          0,
+          3.4375,
+          -0.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.5,
+          "height": 0.45,
+          "depth": 3.7
+        },
+        "color": 1183513
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "gate",
+      "transform": {
+        "pos": [
+          0.7,
+          0.9,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.4,
+          "height": 1.8,
+          "depth": 0.18
+        },
+        "color": 2364189
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "default"
+        }
+      ]
+    },
+    {
+      "id": "m19",
+      "parent": "gate",
+      "transform": {
+        "pos": [
+          0.28,
+          0.9,
+          0.11
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 1.65,
+          "depth": 0.08
+        },
+        "color": 6444902
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m20",
+      "parent": "gate",
+      "transform": {
+        "pos": [
+          1.12,
+          0.9,
+          0.11
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 1.65,
+          "depth": 0.08
+        },
+        "color": 6444902
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m21",
+      "parent": "gate",
+      "transform": {
+        "pos": [
+          0.7,
+          0.95,
+          0.11
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.25,
+          "height": 0.12,
+          "depth": 0.08
+        },
+        "color": 6444902
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m22",
+      "parent": "sigils",
+      "transform": {
+        "pos": [
+          0,
+          -1.5,
+          2.495
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.65,
+          "depth": 0.08
+        },
+        "color": 10172671
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m23",
+      "parent": "sigils",
+      "transform": {
+        "pos": [
+          0,
+          -1.5,
+          2.505
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.16,
+          "depth": 0.08
+        },
+        "color": 10172671
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m24",
+      "parent": "sigils",
+      "transform": {
+        "pos": [
+          -0.75,
+          1.5,
+          -2.505
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.08
+        },
+        "color": 7418060
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m25",
+      "parent": "sigils",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          -2.505
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.08
+        },
+        "color": 7418060
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m26",
+      "parent": "sigils",
+      "transform": {
+        "pos": [
+          0.75,
+          1.5,
+          -2.505
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.08
+        },
+        "color": 7418060
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m27",
+      "parent": "braziers",
+      "transform": {
+        "pos": [
+          -1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 0.55
+        },
+        "color": 4866127
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m28",
+      "parent": "braziers",
+      "transform": {
+        "pos": [
+          1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 0.55
+        },
+        "color": 4866127
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m29",
+      "parent": "effects",
+      "transform": {
+        "pos": [
+          -1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.3
+        },
+        "color": 3767807
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 1,
+          "variant": "blue"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m30",
+      "parent": "effects",
+      "transform": {
+        "pos": [
+          1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.65,
+          "depth": 0.3
+        },
+        "color": 3767807
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 1,
+          "variant": "blue"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785135405547,
+      "provider": "gpt",
+      "data": "nLbmq6cbIl2jGvLXorHeN8+DzFII/bnrWZWaSbVScxrDd+52z+hTZT07NlKfM6hoaTpRLHlfjBMlPUnoQE8f5dCvP8LX/ZzrGVqos5O10gzrTDEJQLPnk2b5Iy3BA8Pzyp1ObxfddeJ3l6+7LXleOD+65RU4zEe1XDDQL+ao51DPcCVbyXb1iXfiOxOYk3HCGZPCe05bpTa6tb2Mfsaa+YJtu1MWcej4gbUQeC2Vmf1yMwO2x7Ijv2eIzMUjhyBfexyzYzadT25i8Kij968SaaK2pk+6TIS3sk4ERCI+ooRs806a82fhEusnWCRk9yd82v0yAZW8Nvb5wGFmb+8u1mJnJ6GleNcnYRdvPST8KekuQkQzG2xgsEP6mkn3kVbdWbEskv6z8f35UVgMV1AG7Fpc8Lxzwau9m2qahFLi3scyNak+jMdXG7zBpjbOVWU7mqN7TrdTNgu6kE6cWOOmMEcDot+19VnnW8aDvn3VFzKhwqidAyRkohYEc5dTkmOfMpYkdMzODX1SUxAKTxKqzhhOOrscwkFuO4QO6tieVsztpFBU8qPMx6H3lhJjdRdI+cTOML2BOaRaUbJ/EVTLo7CIIusgkGIkLye0zrf96SFOQW51h0FKkg3MaLC2/OByzFvYXIdkhX/NbwWbEvUHqReUSqXb/O5V9kYMjlMeoGDnD3+ug+IZRiCdaq91qpC1lMfUMalCoOOwRpUAqP1XEFCv3CRhxdfm3sJr0Yg41aQzQ+XOEFWGEpKGQ3KUcUyIwF5ZCq7XJvOnrzGAKKkwADHDLElLYPeAFj+ovKszGpiuKkkq2y7l0ECW/QqwCC9f7w+I3fCKaSI0ti59LmOs72EFGWqavj5WQP0h31udK7jZG+IUHkDaj6Z4mTcKJmbMiGp5GsbjKUiIjExcYOkH2bG0V358iESXKl8rkVmnF2vVQNO/TdhnaJchW0j1DM5ME8G3h+3B0IVYarTxMu26r2UkwrptAqPgLd7ehg3Yh1knDo4J8kODbIVsMxdPwXCt3Cnu2vRBAwKkUH+HXF9B4TrWq+JxqsbrLg/sXWrV6l6ijlxVOe2nUhlmKrj1noZ6fIPmagdilK4av7hLPJ1bbMQN1FpwfQzn4pWCKghKi8JzrQkrIRQsZzTUX9HdVW5b8aobx6bs8fNNxrj9KpeAKk6qnCvTX1vJWAXefD/nHz95DjnpQy0mdM/5dA4mK3SUtgc7nrXNWQsTQKKRE0wovqnrFLxbd3veyI79NDX1OGYAqrxA/A1NpxD+HI9NrBMB+8UBcK2pqFfYigWTJWpUZ+/835ddGG8CUK/aGO6oHH9aXg==",
+      "edits": ""
+    }
+  }
+}

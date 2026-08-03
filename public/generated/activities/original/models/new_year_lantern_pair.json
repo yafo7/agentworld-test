@@ -1,0 +1,408 @@
+{
+  "name": "新年灯笼对",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "beam",
+      "name": "悬挂横梁",
+      "transform": {
+        "pos": [
+          0,
+          3.9,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLantern",
+      "name": "左灯笼",
+      "parent": "beam",
+      "transform": {
+        "pos": [
+          -1.45,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLanternTassel",
+      "name": "金色短流苏",
+      "parent": "leftLantern",
+      "transform": {
+        "pos": [
+          0,
+          -2.2,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLantern",
+      "name": "右灯笼",
+      "parent": "beam",
+      "transform": {
+        "pos": [
+          1.45,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLanternTassel",
+      "name": "金色短流苏",
+      "parent": "rightLantern",
+      "transform": {
+        "pos": [
+          0,
+          -2.2,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "beam",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.8,
+          "height": 0.18,
+          "depth": 0.22
+        },
+        "color": 7025951
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "walnut"
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "parent": "leftLantern",
+      "transform": {
+        "pos": [
+          0,
+          -0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.62,
+          "depth": 0.08
+        },
+        "color": 9377559
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "leftLantern",
+      "transform": {
+        "pos": [
+          0,
+          -0.76,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.16,
+          "depth": 1.05
+        },
+        "color": 14066974
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "parent": "leftLantern",
+      "transform": {
+        "pos": [
+          0,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 1.2,
+          "depth": 1.18
+        },
+        "color": 14230821
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "parent": "leftLantern",
+      "transform": {
+        "pos": [
+          0,
+          -2.12,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.16,
+          "depth": 1.05
+        },
+        "color": 14066974
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "parent": "leftLanternTassel",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.18
+        },
+        "color": 15778620
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m6",
+      "parent": "leftLanternTassel",
+      "transform": {
+        "pos": [
+          0,
+          -0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.42,
+          "depth": 0.16
+        },
+        "color": 14724388
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m7",
+      "parent": "rightLantern",
+      "transform": {
+        "pos": [
+          0,
+          -0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.08,
+          "height": 0.62,
+          "depth": 0.08
+        },
+        "color": 9377559
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "rightLantern",
+      "transform": {
+        "pos": [
+          0,
+          -0.76,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.16,
+          "depth": 1.05
+        },
+        "color": 14066974
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m9",
+      "parent": "rightLantern",
+      "transform": {
+        "pos": [
+          0,
+          -1.44,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.18,
+          "height": 1.2,
+          "depth": 1.18
+        },
+        "color": 14230821
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "parent": "rightLantern",
+      "transform": {
+        "pos": [
+          0,
+          -2.12,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.16,
+          "depth": 1.05
+        },
+        "color": 14066974
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "parent": "rightLanternTassel",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.18
+        },
+        "color": 15778620
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "parent": "rightLanternTassel",
+      "transform": {
+        "pos": [
+          0,
+          -0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.42,
+          "depth": 0.16
+        },
+        "color": 14724388
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785404089558,
+      "provider": "gpt",
+      "data": "ZT3jVzRuuWrRwtNOIhRtVSeqjrgNoHnMnOvE5R8nWIUXrP/NZiO9gpL84f35yyVkUywsPRSLe7E1J0gWERjoavkC9E/uDhvt/kJ0AXOSiVKt7a2tcgLxY5coODSvh1nUpqBMqhQvydCzrUgWDMQs0HVQNUU7NFWBTZDLRAq2QdsOCnST4pttw4rVPO4tTaSxxAnSciXhMKJw4U8kfPwLJHdQV3qouVorHmcqByv+auw5FjXNl9r/xyuQd10Xy3ZI+qTyX6cYk+5zXBEJ43RXJueTKsKEdyx2JPm63KB63WY2u1/PCMDhuGNBeKH3nZPIw+DHzKkcROzz3SEKIF6BNcdDu5igp8NbOWlAt6dupwRBfAKKks4FyDlNJhkdHnFVIBV839nfkG4KaUFZLz8MmCDf3yXKno1ROaGUqx+EY8XwCqwxDZ7kbi4VtsEgVoze+54+Un4JGzhH0bpk6qPDKgSQ4Miqd6oRWqKqkPLvVRMEOxmyV5exmDJAVZf71I4TNN9HlPBrHJ2tL1jEvImynGuz0IcAgF6oB9FXduciZOFjSQnaACp4hf//VS8HzqURj5ZrWJuoKWa3SYylNQfBRx63gCImqtCHJ0OVvdB/XX/nhn3NPE4OQNvMt57T+AJO4ZUHpWARHlz0mLv4f2yv6VqfytyxcZrKAgVBcT/Ia25+0wGQ4xNNf3eUwmG/17hQRZcbc3+9jevPPb771XKo6d0MxyCTcowPqIUlgOdc4hSFspzBUhP0JT3KXxGgqDBeUFI90WZKfOaDReXpElEofenON+ef45NdQIwLnF/GwUWuF+0+cuoFv2gAw55XdgB1gAOSOg5CauTFcm/1iZwyhRaPFXi5MIQAyJ8gd1BO4gImdXH3t6Qi99Zid8ym19t6TCBTNhJJxsf18w==",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_lantern_pair",
+    "chiiActivityOperation": "generate",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "一对红色方形灯笼，金色短流苏"
+  }
+}

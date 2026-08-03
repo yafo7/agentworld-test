@@ -1,0 +1,71 @@
+{
+  "_duration": 2.5,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.035,
+      "frequency": 0.4
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.06,
+      "frequency": 0.4,
+      "phase": 0
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -15
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.08,
+      "frequency": 0.4,
+      "phase": 0
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 15
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.4,
+      "phase": 0
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.04,
+      "frequency": 0.4,
+      "phase": 0
+    }
+  },
+  "tailBase": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.4,
+      "phase": 0.15
+    }
+  },
+  "tailTip": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.1,
+      "frequency": 0.4,
+      "phase": 0.25
+    }
+  },
+  "_name": "mok-idle",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mok",
+    "quality": "voxel",
+    "prompt": "握住双斧呼吸摇摆"
+  }
+}

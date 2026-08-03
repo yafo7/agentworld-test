@@ -1,0 +1,27 @@
+export const CHII_STORY_DEVELOPMENT_BASELINE = Object.freeze({
+  id: 'chii-story-preproduction-v1',
+  sceneStyle: 'original',
+  sceneSnapshotId: 'before-2026-07-28-large-iteration',
+  entryEventId: 'act0_crash',
+  initialChapter: 'prologue',
+  initialIslandDay: 1,
+  initialDevelopmentStage: 'stranded',
+  residentIds: Object.freeze(['momo', 'yafo', 'mok', 'fangk', 'lingq', 'mako', 'crab']),
+  regionIds: Object.freeze(['windmill_pastoral', 'forest_temple', 'church_town']),
+  protectedRuntimeBoundaries: Object.freeze([
+    'renderer',
+    'model_parser',
+    'animation_runtime',
+    'physics_step',
+    'scene_profiles',
+    'world_persistence',
+  ]),
+  verifiedVerticalSlices: Object.freeze([
+    'act_zero_performance',
+    'pastoral_pet_work',
+    'forest_pet_summon_and_camping',
+    'town_social_activity',
+    'town_building',
+    'building_interiors',
+  ]),
+});

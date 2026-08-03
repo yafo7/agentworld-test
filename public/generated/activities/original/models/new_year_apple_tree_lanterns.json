@@ -1,0 +1,414 @@
+{
+  "name": "方块苹果树",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "m0",
+      "transform": {
+        "pos": [
+          0,
+          2.1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.2,
+          "height": 4.2,
+          "depth": 1.2
+        },
+        "color": 8013094
+      }
+    },
+    {
+      "id": "m1",
+      "transform": {
+        "pos": [
+          0,
+          3.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.7,
+          "depth": 0.7
+        },
+        "color": 7027488
+      }
+    },
+    {
+      "id": "m2",
+      "transform": {
+        "pos": [
+          0.9,
+          4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.7,
+          "height": 1.8,
+          "depth": 0.7
+        },
+        "color": 7027488
+      }
+    },
+    {
+      "id": "m3",
+      "transform": {
+        "pos": [
+          0,
+          5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.4,
+          "height": 2.4,
+          "depth": 3.4
+        },
+        "color": 4165434
+      }
+    },
+    {
+      "id": "m4",
+      "transform": {
+        "pos": [
+          -1.8,
+          4.8,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 2,
+          "depth": 2.7
+        },
+        "color": 4890432
+      }
+    },
+    {
+      "id": "m5",
+      "transform": {
+        "pos": [
+          1.8,
+          4.9,
+          -0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 2.1,
+          "depth": 2.7
+        },
+        "color": 3506741
+      }
+    },
+    {
+      "id": "m6",
+      "transform": {
+        "pos": [
+          0,
+          6.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.8,
+          "height": 1.8,
+          "depth": 2.6
+        },
+        "color": 4561726
+      }
+    },
+    {
+      "id": "m7",
+      "transform": {
+        "pos": [
+          -1.5,
+          4.5,
+          1.55
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.55,
+          "depth": 0.55
+        },
+        "color": 14235179
+      }
+    },
+    {
+      "id": "m8",
+      "transform": {
+        "pos": [
+          0.2,
+          5.2,
+          1.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.55,
+          "depth": 0.55
+        },
+        "color": 14891823
+      }
+    },
+    {
+      "id": "m9",
+      "transform": {
+        "pos": [
+          1.7,
+          4.8,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.55,
+          "depth": 0.55
+        },
+        "color": 13184806
+      }
+    },
+    {
+      "id": "m10",
+      "transform": {
+        "pos": [
+          -0.8,
+          6.25,
+          1.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.55,
+          "depth": 0.55
+        },
+        "color": 14894130
+      }
+    },
+    {
+      "id": "m11",
+      "transform": {
+        "pos": [
+          2.1,
+          5.35,
+          0.75
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.55,
+          "depth": 0.55
+        },
+        "color": 14037544
+      }
+    },
+    {
+      "id": "m12",
+      "transform": {
+        "pos": [
+          -1.35,
+          3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.8,
+          "depth": 0.1
+        },
+        "color": 7027488
+      }
+    },
+    {
+      "id": "m13",
+      "transform": {
+        "pos": [
+          -1.35,
+          2.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.9,
+          "depth": 0.75
+        },
+        "color": 14235179
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "transform": {
+        "pos": [
+          -1.35,
+          1.79,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.12,
+          "depth": 0.45
+        },
+        "color": 8013094
+      }
+    },
+    {
+      "id": "m15",
+      "transform": {
+        "pos": [
+          -1.35,
+          1.53,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.4,
+          "depth": 0.1
+        },
+        "color": 14235179
+      }
+    },
+    {
+      "id": "m16",
+      "transform": {
+        "pos": [
+          1.35,
+          3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.8,
+          "depth": 0.1
+        },
+        "color": 7027488
+      }
+    },
+    {
+      "id": "m17",
+      "transform": {
+        "pos": [
+          1.35,
+          2.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.9,
+          "depth": 0.75
+        },
+        "color": 14235179
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "transform": {
+        "pos": [
+          1.35,
+          1.79,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.12,
+          "depth": 0.45
+        },
+        "color": 8013094
+      }
+    },
+    {
+      "id": "m19",
+      "transform": {
+        "pos": [
+          1.35,
+          1.53,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.4,
+          "depth": 0.1
+        },
+        "color": 14235179
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785404235903,
+      "provider": "gpt",
+      "data": "pTqRp0pySSG42aIsmiMG3mcWrLudsbkKzZqac969hIwaQitA23E8+6minFuIPMvFzBk0wY1w0iCr+EP1gCnacayaGRdgug+CV9ecpCYIjPPx+hzhET5x6cLOPnfK9qGn0Vu4aBzAWPfDyCWpldrMTRgWR+kT6odZesYHdfcRZnI1NNphhxAJFwGRSLX52Ev8pPaUSwgScrT8xjDu5pip8KFSbXIThMli5EXwOsNLdzfWCOvyosoz7SXeIIytg734s99Gt8xglNZjcOB3njJYZhUnXRuHw7L/MrYcZ7SBYfyOn7R7lmHiPGnODjlZBg3JHBhhw6XCcMiSddXskSINOHvCP5RFp6ULTQfHOA8PSffAIJDSjFVvLTofL4uPoWwVb+1I1ldRLa02OP/k6hrwkU9ZfwWRfsrzzp3eYWKf1T3PsINiydP56NmEgyjcmVlaGVnkJvoyVDX0dCpM3G2rY4+OlG8URA1pQ5kK7gfjcGAAK9GkqEqCqaEi1E2aEqGDMyn0Jsgg1iu7ciUeMQXX4X8HkRu4qJ20fYx2hZnJswCVaQBG3nSiqEnYlDql6YcYmVPP5oKph1OIrnY3HePoirPNzf04WitA85tUG52/+xBb25/iCh30CZRF8Lj+y7Y6Ekl4rZ9QcM+PJj3/K3Bv0BaaU/ufk8YyBeTPOfh3yMK58g9+pVrdFnfYWyn2RqnrhJrMYX/z8bx47lky9X+0YAgo9h8TiXsnBFrz8AG50gJUpFk=",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_apple_tree_lanterns",
+    "chiiActivityOperation": "mount-refine-fallback",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "保持苹果树不变，在外侧树枝挂一对红灯笼"
+  }
+}

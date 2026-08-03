@@ -1,0 +1,50 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.42
+    },
+    "bounce": {
+      "amplitude": 0.025,
+      "frequency": 0.42
+    }
+  },
+  "head": {
+    "tilt": {
+      "axis": "x",
+      "angle": 8
+    },
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.04,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "left_arm": {
+    "tilt": {
+      "axis": "z",
+      "angle": -10
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.025,
+      "frequency": 0.42,
+      "phase": 0.1
+    }
+  },
+  "right_arm": {
+    "tilt": {
+      "axis": "z",
+      "angle": 8
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.02,
+      "frequency": 0.42,
+      "phase": 0.25
+    }
+  }
+}

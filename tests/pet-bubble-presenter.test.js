@@ -62,3 +62,21 @@ test('idea hints retain the lightbulb variant in the same presenter', () => {
     globalThis.document = previousDocument;
   }
 });
+
+test('pet bubble height follows the visible pet bounds', () => {
+  const previousDocument = globalThis.document;
+  globalThis.document = {};
+  try {
+    const model = new THREE.Mesh(new THREE.BoxGeometry(1, 5, 1));
+    model.position.y = 2.5;
+    const mesh = new THREE.Group();
+    mesh.add(model);
+    const pet = { mesh, _modelGroup: model, _petName: 'tall-pet' };
+    const presenter = new PetBubblePresenter({ bubbleFactory: fakeBubbleFactory([]) });
+    presenter.showLine(pet, '你好');
+    assert.ok(presenter.bubbles.get(pet).baseY > 5);
+    presenter.dispose();
+  } finally {
+    globalThis.document = previousDocument;
+  }
+});

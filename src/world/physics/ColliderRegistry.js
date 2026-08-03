@@ -178,7 +178,67 @@ export class ColliderRegistry {
     const body = this.physics.createStaticBody();
 
     try {
-      if (profile.mode === 'legacy-tree') {
+      if (profile.mode === 'bridge') {
+        const bridge = entity.mesh.userData?.collider || {};
+        const length = Math.max(0.1, Number(bridge.length) || 0.1);
+        const width = Math.max(0.1, Number(bridge.width) || 0.1);
+        const deckY = Number(bridge.deckY) || 0;
+        const deckThickness = Math.max(0.05, Number(bridge.deckThickness) || 0.2);
+        const railHeight = Math.max(0.2, Number(bridge.railHeight) || 1.2);
+        const railThickness = Math.max(0.1, Number(bridge.railThickness) || 0.4);
+        const deckSegments = Array.isArray(bridge.deckSegments) ? bridge.deckSegments : [];
+        const railSegments = Array.isArray(bridge.railSegments) ? bridge.railSegments : [];
+        const rootPosition = entity.mesh.getWorldPosition(new THREE.Vector3());
+        const rootRotation = entity.mesh.getWorldQuaternion(new THREE.Quaternion());
+        const addLocalBox = (halfExtents, localCenter, localRotation = null) => {
+          const center = localCenter.clone().applyQuaternion(rootRotation).add(rootPosition);
+          const rotation = localRotation
+            ? rootRotation.clone().multiply(localRotation)
+            : rootRotation;
+          colliders.push(this.physics.addStaticBoxToBody(
+            body,
+            halfExtents.x,
+            halfExtents.y,
+            halfExtents.z,
+            center.x,
+            center.y,
+            center.z,
+            { x: rotation.x, y: rotation.y, z: rotation.z, w: rotation.w },
+          ));
+        };
+        const addSegment = (segment) => {
+          const halfExtents = new THREE.Vector3().fromArray(segment.halfExtents || []);
+          const center = new THREE.Vector3().fromArray(segment.center || []);
+          const rotation = new THREE.Quaternion().fromArray(segment.rotation || [0, 0, 0, 1]);
+          if (
+            !Number.isFinite(halfExtents.x)
+            || !Number.isFinite(halfExtents.y)
+            || !Number.isFinite(halfExtents.z)
+            || Math.min(halfExtents.x, halfExtents.y, halfExtents.z) <= 0
+          ) return;
+          addLocalBox(halfExtents, center, rotation);
+        };
+
+        if (deckSegments.length > 0) {
+          deckSegments.forEach(addSegment);
+        } else {
+          addLocalBox(
+            new THREE.Vector3(length * 0.5, deckThickness * 0.5, width * 0.5),
+            new THREE.Vector3(0, deckY - deckThickness * 0.5, 0),
+          );
+        }
+        if (railSegments.length > 0) {
+          railSegments.forEach(addSegment);
+        } else {
+          const railOffset = width * 0.5 - railThickness * 0.5;
+          for (const side of [-1, 1]) {
+            addLocalBox(
+              new THREE.Vector3(length * 0.5, railHeight * 0.5, railThickness * 0.5),
+              new THREE.Vector3(0, deckY + railHeight * 0.5, railOffset * side),
+            );
+          }
+        }
+      } else if (profile.mode === 'legacy-tree') {
         const worldBounds = plan?.bounds
           ? transformBounds(plan.bounds, instanceMatrix)
           : entity.getWorldBBox?.();

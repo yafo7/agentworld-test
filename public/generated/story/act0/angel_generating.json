@@ -1,0 +1,125 @@
+{
+  "_duration": 2.8,
+  "_loop": true,
+  "body": {
+    "spin": {
+      "axis": "y",
+      "frequency": 1.5,
+      "direction": "ccw"
+    },
+    "bounce": {
+      "amplitude": 0.12,
+      "frequency": 1.5
+    }
+  },
+  "leftWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -35
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.45,
+      "frequency": 2.8
+    },
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "box",
+      "meshSize": 0.4,
+      "rate": 28,
+      "lifetime": [
+        0.5,
+        1
+      ],
+      "velocity": {
+        "dir": [
+          -1,
+          0.3,
+          0
+        ],
+        "speed": [
+          0.5,
+          1.4
+        ],
+        "spread": 0.7
+      },
+      "acceleration": [
+        0,
+        0.5,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.9,
+        0.35
+      ],
+      "colorEnd": [
+        1,
+        0.65,
+        0.1
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  },
+  "rightWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 35
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.45,
+      "frequency": 2.8
+    },
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "box",
+      "meshSize": 0.4,
+      "rate": 28,
+      "lifetime": [
+        0.5,
+        1
+      ],
+      "velocity": {
+        "dir": [
+          1,
+          0.3,
+          0
+        ],
+        "speed": [
+          0.5,
+          1.4
+        ],
+        "spread": 0.7
+      },
+      "acceleration": [
+        0,
+        0.5,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.9,
+        0.35
+      ],
+      "colorEnd": [
+        1,
+        0.65,
+        0.1
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  },
+  "halo": {
+    "spin": {
+      "axis": "y",
+      "frequency": 2.2,
+      "direction": "cw"
+    }
+  },
+  "_name": "第0幕天使_generating",
+  "_type": "generating",
+  "_modelId": "act0_angel"
+}

@@ -35,10 +35,26 @@ export class PlacementGrid {
     this.terrainLayout = terrainLayout;
     this.records = new Map();
     this.occupancy = new Map();
+    this.clearanceOccupancy = new Map();
   }
 
   keyFor(entity) {
     return entityKey(entity);
+  }
+
+  terrainTilesToCells(tiles) {
+    return Math.max(1, Math.ceil(Number(tiles) * this.subdivision));
+  }
+
+  cellsToTerrainTiles(cells) {
+    return Number(cells) / this.subdivision;
+  }
+
+  footprintFromTerrainTiles({ width = 1, depth = 1 } = {}) {
+    return normalizeFootprint({
+      width: this.terrainTilesToCells(width),
+      depth: this.terrainTilesToCells(depth),
+    }, this.width, this.depth);
   }
 
   get(entity) {
@@ -96,10 +112,15 @@ export class PlacementGrid {
     return this.terrainLayout?.[gridZ]?.[gridX] || 'grass';
   }
 
-  canPlace(anchor, footprint, { ignoreEntity = null } = {}) {
+  canPlace(anchor, footprint, {
+    ignoreEntity = null,
+    clearanceCells = 0,
+    allowWater = false,
+  } = {}) {
     const fp = normalizeFootprint(footprint, this.width, this.depth);
     const ignoreId = typeof ignoreEntity === 'string' ? ignoreEntity : entityKey(ignoreEntity);
     const conflicts = new Set();
+    const softConflicts = new Set();
     const blockedTerrain = [];
     let inBounds = true;
 
@@ -108,35 +129,78 @@ export class PlacementGrid {
         inBounds = false;
         continue;
       }
-      if (this.terrainTypeAt(cell.x, cell.z) === 'water') blockedTerrain.push(cell);
+      if (!allowWater && this.terrainTypeAt(cell.x, cell.z) === 'water') blockedTerrain.push(cell);
       const owners = this.occupancy.get(`${cell.x},${cell.z}`);
-      if (!owners) continue;
-      for (const owner of owners) {
-        if (owner !== ignoreId) conflicts.add(owner);
+      if (owners) {
+        for (const owner of owners) {
+          if (owner !== ignoreId) conflicts.add(owner);
+        }
+      }
+      const clearanceOwners = this.clearanceOccupancy.get(`${cell.x},${cell.z}`);
+      if (clearanceOwners) {
+        for (const owner of clearanceOwners) {
+          if (owner !== ignoreId) softConflicts.add(owner);
+        }
       }
     }
 
+    const padding = Math.max(0, Math.ceil(Number(clearanceCells) || 0));
+    if (padding > 0) {
+      const expandedAnchor = { x: anchor.x - padding, z: anchor.z - padding };
+      const expandedFootprint = {
+        width: fp.width + padding * 2,
+        depth: fp.depth + padding * 2,
+      };
+      for (const cell of this.cellsFor(expandedAnchor, expandedFootprint)) {
+        const owners = this.occupancy.get(`${cell.x},${cell.z}`);
+        if (!owners) continue;
+        for (const owner of owners) {
+          if (owner !== ignoreId) softConflicts.add(owner);
+        }
+      }
+    }
+
+    for (const owner of conflicts) softConflicts.delete(owner);
     return {
       valid: inBounds && blockedTerrain.length === 0 && conflicts.size === 0,
+      comfortable: inBounds
+        && blockedTerrain.length === 0
+        && conflicts.size === 0
+        && softConflicts.size === 0,
       inBounds,
       conflicts: [...conflicts],
+      softConflicts: [...softConflicts],
       blockedTerrain,
     };
   }
 
-  findNearestAvailable(position, footprint, { ignoreEntity = null, maxRadius = 24 } = {}) {
+  findNearestAvailable(position, footprint, {
+    ignoreEntity = null,
+    maxRadius = 24,
+    clearanceCells = 0,
+    respectClearance = false,
+  } = {}) {
     const start = this.anchorForPosition(position, footprint);
     for (let radius = 0; radius <= maxRadius; radius += 1) {
       for (let dz = -radius; dz <= radius; dz += 1) {
         for (let dx = -radius; dx <= radius; dx += 1) {
           if (radius > 0 && Math.abs(dx) !== radius && Math.abs(dz) !== radius) continue;
           const anchor = { x: start.x + dx, z: start.z + dz };
-          const result = this.canPlace(anchor, footprint, { ignoreEntity });
-          if (result.valid) return { anchor, position: this.positionFor(anchor, footprint), result };
+          const result = this.canPlace(anchor, footprint, { ignoreEntity, clearanceCells });
+          if (result.valid && (!respectClearance || result.comfortable)) {
+            return { anchor, position: this.positionFor(anchor, footprint), result };
+          }
         }
       }
     }
     return null;
+  }
+
+  isWorldPositionAvailable(position, { ignoreEntity = null, respectClearance = true } = {}) {
+    const footprint = { width: 1, depth: 1 };
+    const anchor = this.anchorForPosition(position, footprint);
+    const result = this.canPlace(anchor, footprint, { ignoreEntity });
+    return respectClearance ? result.comfortable : result.valid;
   }
 
   register(entity, metadata = {}) {
@@ -158,6 +222,10 @@ export class PlacementGrid {
       source: placement.source || 'curated',
       normalizationScale: placement.normalizationScale ?? entity._content?.scale.x ?? 1,
       userScale: placement.userScale ?? 1,
+      sizeProfile: placement.sizeProfile || null,
+      sizeIdentity: placement.sizeIdentity || null,
+      clearanceCells: Math.max(0, Math.ceil(Number(placement.clearanceCells) || 0)),
+      allowWater: placement.allowWater === true,
       metadata,
     };
     this.records.set(id, record);
@@ -165,7 +233,16 @@ export class PlacementGrid {
     return record;
   }
 
-  commit(entity, { anchor, footprint, normalizationScale, userScale } = {}) {
+  commit(entity, {
+    anchor,
+    footprint,
+    normalizationScale,
+    userScale,
+    sizeProfile,
+    sizeIdentity,
+    clearanceCells,
+    allowWater,
+  } = {}) {
     const record = this.get(entity);
     if (!record) return null;
     this._release(record);
@@ -173,6 +250,10 @@ export class PlacementGrid {
     if (footprint) record.footprint = normalizeFootprint(footprint, this.width, this.depth);
     if (normalizationScale !== undefined) record.normalizationScale = normalizationScale;
     if (userScale !== undefined) record.userScale = userScale;
+    if (sizeProfile !== undefined) record.sizeProfile = sizeProfile;
+    if (sizeIdentity !== undefined) record.sizeIdentity = sizeIdentity;
+    if (clearanceCells !== undefined) record.clearanceCells = Math.max(0, Math.ceil(Number(clearanceCells) || 0));
+    if (allowWater !== undefined) record.allowWater = allowWater === true;
     this._reserve(record);
     return record;
   }
@@ -192,16 +273,29 @@ export class PlacementGrid {
       if (owners.size > 1) overlaps.push({ cell, entities: [...owners] });
     }
     const invalidTerrain = [];
+    const softPairs = new Set();
     for (const record of this.records.values()) {
-      const result = this.canPlace(record.anchor, record.footprint, { ignoreEntity: record.id });
+      const result = this.canPlace(record.anchor, record.footprint, {
+        ignoreEntity: record.id,
+        allowWater: record.allowWater,
+      });
       if (!result.inBounds || result.blockedTerrain.length) {
         invalidTerrain.push({ id: record.id, inBounds: result.inBounds, blockedTerrain: result.blockedTerrain });
+      }
+      const clearanceResult = this.canPlace(record.anchor, record.footprint, {
+        ignoreEntity: record.id,
+        clearanceCells: record.clearanceCells,
+        allowWater: record.allowWater,
+      });
+      for (const other of clearanceResult.softConflicts) {
+        softPairs.add([record.id, other].sort().join('|'));
       }
     }
     return {
       entities: this.records.size,
       occupiedCells: this.occupancy.size,
       overlaps,
+      softOverlaps: [...softPairs].map(pair => pair.split('|')),
       invalidTerrain,
     };
   }
@@ -216,6 +310,23 @@ export class PlacementGrid {
       }
       owners.add(record.id);
     }
+    const padding = record.clearanceCells || 0;
+    if (padding <= 0) return;
+    const anchor = { x: record.anchor.x - padding, z: record.anchor.z - padding };
+    const footprint = {
+      width: record.footprint.width + padding * 2,
+      depth: record.footprint.depth + padding * 2,
+    };
+    for (const cell of this.cellsFor(anchor, footprint)) {
+      if (cell.x < 0 || cell.z < 0 || cell.x >= this.width || cell.z >= this.depth) continue;
+      const key = `${cell.x},${cell.z}`;
+      let owners = this.clearanceOccupancy.get(key);
+      if (!owners) {
+        owners = new Set();
+        this.clearanceOccupancy.set(key, owners);
+      }
+      owners.add(record.id);
+    }
   }
 
   _release(record) {
@@ -225,6 +336,20 @@ export class PlacementGrid {
       if (!owners) continue;
       owners.delete(record.id);
       if (owners.size === 0) this.occupancy.delete(key);
+    }
+    const padding = record.clearanceCells || 0;
+    if (padding <= 0) return;
+    const anchor = { x: record.anchor.x - padding, z: record.anchor.z - padding };
+    const footprint = {
+      width: record.footprint.width + padding * 2,
+      depth: record.footprint.depth + padding * 2,
+    };
+    for (const cell of this.cellsFor(anchor, footprint)) {
+      const key = `${cell.x},${cell.z}`;
+      const owners = this.clearanceOccupancy.get(key);
+      if (!owners) continue;
+      owners.delete(record.id);
+      if (owners.size === 0) this.clearanceOccupancy.delete(key);
     }
   }
 }

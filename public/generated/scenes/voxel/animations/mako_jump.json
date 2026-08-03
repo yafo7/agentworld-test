@@ -1,0 +1,85 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.48,
+      "frequency": 0.7
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    }
+  },
+  "frontLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 24
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 1.4
+    }
+  },
+  "frontRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 24
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 1.4,
+      "phase": 0.25
+    }
+  },
+  "rearLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -28
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.75,
+      "frequency": 1.4
+    }
+  },
+  "rearRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -28
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": -0.75,
+      "frequency": 1.4,
+      "phase": 0.25
+    }
+  },
+  "tail": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.3,
+      "frequency": 1.6
+    }
+  },
+  "_name": "mako-jump",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mako",
+    "quality": "voxel",
+    "prompt": "四蹄用力跳跃"
+  }
+}

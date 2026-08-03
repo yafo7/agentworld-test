@@ -1,0 +1,38 @@
+{
+  "_duration": 0.9,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "bounce": {
+      "amplitude": 0.18,
+      "frequency": 2.5
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.3,
+      "frequency": 2.5,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.3,
+      "frequency": 2.5,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 D · GPT Pro 精细版_run",
+  "_type": "run",
+  "_modelId": "phrolova_d",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿快速向前奔跑",
+    "emitParticles": false
+  }
+}

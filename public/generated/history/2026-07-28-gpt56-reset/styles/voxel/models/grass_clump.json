@@ -1,0 +1,276 @@
+{
+  "name": "鲜绿方块草丛",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "grass",
+      "name": "草丛",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0.32,
+          0.71,
+          0
+        ],
+        "quat": [
+          0.58,
+          0.4,
+          0.58,
+          -0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.08,
+          "depth": 1.38
+        },
+        "color": 5627186
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0.28,
+          0.56,
+          0.27
+        ],
+        "quat": [
+          0.34,
+          0.45,
+          0.81,
+          -0.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.08,
+          "depth": 1.17
+        },
+        "color": 4639021
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0,
+          0.64,
+          0.33
+        ],
+        "quat": [
+          0,
+          0.55,
+          0.84,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.08,
+          "depth": 1.26
+        },
+        "color": 6678588
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          -0.29,
+          0.49,
+          0.29
+        ],
+        "quat": [
+          -0.34,
+          0.41,
+          0.83,
+          0.17
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.08,
+          "depth": 1.08
+        },
+        "color": 3782953
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          -0.36,
+          0.62,
+          0
+        ],
+        "quat": [
+          -0.6,
+          0.37,
+          0.6,
+          0.37
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.08,
+          "depth": 1.25
+        },
+        "color": 5822772
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          -0.28,
+          0.53,
+          -0.28
+        ],
+        "quat": [
+          0.81,
+          -0.18,
+          -0.34,
+          -0.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.08,
+          "depth": 1.13
+        },
+        "color": 4441644
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0,
+          0.67,
+          -0.31
+        ],
+        "quat": [
+          -0.82,
+          0,
+          0,
+          0.57
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.22,
+          "height": 0.08,
+          "depth": 1.3
+        },
+        "color": 7072320
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0.3,
+          0.51,
+          -0.3
+        ],
+        "quat": [
+          0.83,
+          0.17,
+          0.34,
+          -0.41
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.08,
+          "depth": 1.13
+        },
+        "color": 4968752
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0,
+          0.42,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 0.18
+        },
+        "color": 6942271
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "grass",
+      "transform": {
+        "pos": [
+          0,
+          0.46,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.82,
+          "depth": 0.36
+        },
+        "color": 5429298
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016843045,
+      "provider": "gpt",
+      "data": "V/eiukNaTWyhkUVQ//w9uuVsr7yuN8DgDH31tCf6g4vNY3MK/GRcyZuFDBi42SucZwGjTiYHpbS97n2ow7ptf/Jtc7Fbsa7McQs1ik3UA8OYJ+rN9zhs3QvkIA6vY+zp8OngaZFD7u2ATwFbcqCG+IDbm/t+nS0no57nCLvowt/gla2hJfSkqIT3SJuy46byDUkLpw/GIZ9cAfl4XILhOR6GbzgXRJeXkwVCPva0kIRuqbbJ+IZ8I1njrxIID0pAYefnHOdlndUr+33JR2ZDoDPbEsPtX7z+AS3rchwgMDhKn8NceL0fgL6PRPKtcqCg0fNdn8FUFJQH5l7BMKTw1zECtDsQC25CRZXgNfdZk+Xi/eN2doqHbZliZGCdPF+wl8SmMxOtaB7G9GxA4K8orHsK5zTosugOynQCsOI+eW9semaNzYhKsZ/CAS36uZOa9miU/tKJ37+KEOThKOzSMYDaIyX7wpDeXq+U7KXet8KBQ6T70PJO6VmL+YsolZ9zdJKw03gwqAMaFe9PsC8lrMWsie+mXIbEnSf2JP73LZ1XrWFl6rCxQ+3M1epToa5Ag4pGibYH0eNwZdplNyUqRxcbUAnQKP+tNLezMbSu4uaRTaDg4yeAWNLMN5TWYjE3niRQkKkVjVDNw0wNNGrbPZ4HCdC9fyyOUYkd/6TR3rTffduCeA/FPZmqHi5N99DEe9Md22J5CFrIbTjlJyLJJMks199qmu29ZOcBk3p+llTixqdwSVTrEZ5Xe31tVChwnGbl2F2xMgK8xGrmhfFEnD9wSUx5jj1HIJpnbTsUCA41WcSKEzZBVA3u6Q7cAltKVFpwgSdpaoLeju2SA/A0NJVxO09tPieoTc85FNG59mOt03SW82aEVgKjUVt+G+CC4yOdTB3/gUULMSSS+uHI",
+      "edits": ""
+    }
+  }
+}

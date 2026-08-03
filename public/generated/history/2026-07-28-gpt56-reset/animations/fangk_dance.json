@@ -1,0 +1,308 @@
+{
+  "_duration": 3,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.16,
+      "frequency": 2.4
+    },
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 1.2
+    }
+  },
+  "chest": {
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.14,
+        "frequency": 1.2
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.08,
+        "frequency": 2.4
+      }
+    ]
+  },
+  "head": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.08,
+        "frequency": 2.4,
+        "phase": 0.1
+      },
+      {
+        "axis": "y",
+        "amplitude": 0.12,
+        "frequency": 1.2,
+        "phase": 0.2
+      }
+    ]
+  },
+  "rightArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 45
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.28,
+        "frequency": 2.2
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.18,
+        "frequency": 2.4,
+        "phase": 0.15
+      }
+    ]
+  },
+  "rightArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -25
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 0.42,
+        "frequency": 3.4,
+        "phase": 0.1
+      },
+      {
+        "axis": "y",
+        "amplitude": 0.18,
+        "frequency": 3.4,
+        "phase": 0.35
+      }
+    ]
+  },
+  "rightArm_wrist": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.55,
+      "frequency": 4.2,
+      "phase": 0.2
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.35,
+      "rate": 22,
+      "lifetime": [
+        0.45,
+        0.85
+      ],
+      "velocity": {
+        "dir": [
+          0.6,
+          1,
+          0.2
+        ],
+        "speed": [
+          1.2,
+          2.2
+        ],
+        "spread": 0.7
+      },
+      "acceleration": [
+        0,
+        -2.2,
+        0
+      ],
+      "offset": [
+        0,
+        -0.2,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.9,
+        0.25
+      ],
+      "colorEnd": [
+        0.2,
+        0.55,
+        1
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -18
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": -0.16,
+        "frequency": 1.2,
+        "phase": 0.5
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.12,
+        "frequency": 2.4,
+        "phase": 0.5
+      }
+    ]
+  },
+  "leftArm_forearm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 2.4,
+      "phase": 0.55
+    }
+  },
+  "blueprintTube": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.12,
+      "frequency": 2.4,
+      "phase": 0.6
+    }
+  },
+  "leftLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.36,
+      "frequency": 2.4
+    }
+  },
+  "rightLeg_thigh": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.36,
+      "frequency": 2.4,
+      "phase": 0.25
+    }
+  },
+  "leftLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 2.4,
+      "phase": 0.12
+    }
+  },
+  "rightLeg_shin": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 2.4,
+      "phase": 0.37
+    }
+  },
+  "leftLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 2.4,
+      "phase": 0.18
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.32,
+      "rate": 16,
+      "lifetime": [
+        0.35,
+        0.7
+      ],
+      "velocity": {
+        "dir": [
+          -0.25,
+          0.6,
+          -0.15
+        ],
+        "speed": [
+          0.7,
+          1.5
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        -2.8,
+        0
+      ],
+      "offset": [
+        0,
+        -0.35,
+        0.2
+      ],
+      "colorStart": [
+        0.85,
+        0.85,
+        0.75
+      ],
+      "colorEnd": [
+        0.35,
+        0.35,
+        0.35
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 0.4
+    }
+  },
+  "rightLeg_foot": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 2.4,
+      "phase": 0.43
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.32,
+      "rate": 16,
+      "lifetime": [
+        0.35,
+        0.7
+      ],
+      "velocity": {
+        "dir": [
+          0.25,
+          0.6,
+          -0.15
+        ],
+        "speed": [
+          0.7,
+          1.5
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        -2.8,
+        0
+      ],
+      "offset": [
+        0,
+        -0.35,
+        0.2
+      ],
+      "colorStart": [
+        0.85,
+        0.85,
+        0.75
+      ],
+      "colorEnd": [
+        0.35,
+        0.35,
+        0.35
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 0.4
+    }
+  }
+}

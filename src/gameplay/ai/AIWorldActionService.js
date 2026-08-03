@@ -38,7 +38,10 @@ export class AIWorldActionService {
       part,
       placement,
     });
-    const description = `把${part}加在${placement}`;
+    const partLabel = typeof part === 'string' ? part : (name || '配件');
+    const description = typeof part === 'string'
+      ? `把${partLabel}加在${placement}`
+      : `${partLabel}：${placement}`;
     const saved = await this.assetRepository.saveModel({
       name,
       description,

@@ -1,0 +1,4392 @@
+{
+  "name": "奇异岛古石桥",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "bridgeDeck",
+      "description": "贯穿两端的连续实体桥面，中段随拱顶缓升、两端平缓落地，桥面-灰褐石色[756b5b]，两侧低石栏与短栏柱均归入本组，栏高约为桥宽的1/5",
+      "transform": {
+        "pos": [
+          0,
+          2.16,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "cobblestone"
+        }
+      ]
+    },
+    {
+      "id": "archBody",
+      "description": "承托桥面的厚重桥身，中央开一个宽阔通水拱洞，拱洞约占桥长一半，拱顶紧邻桥面下方，两端桥台宽厚稳固-深灰褐[514b43]，拱缘一圈略浅石色[918675]",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0,
+          -0.535,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "cobblestone"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.3,
+          0,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.88,
+          0.06,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.06,
+          0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.42,
+          0.15,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.92,
+          0.28,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.4,
+          0.43,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.86,
+          0.59,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.32,
+          0.75,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.77,
+          0.9,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.24,
+          1.03,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 6905682
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.72,
+          1.12,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.23,
+          1.18,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.23,
+          1.18,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.72,
+          1.12,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.05,
+          -0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.24,
+          1.03,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.77,
+          0.9,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.32,
+          0.75,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.86,
+          0.59,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.4,
+          0.43,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.92,
+          0.28,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.42,
+          0.15,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.88,
+          0.06,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.3,
+          0,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 2.82,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.32,
+          0.24,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.92,
+          0.29,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.06,
+          0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.47,
+          0.38,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.99,
+          0.51,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.47,
+          0.65,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.93,
+          0.82,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.38,
+          0.98,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.83,
+          1.13,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.29,
+          1.26,
+          0
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.76,
+          1.36,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.25,
+          1.41,
+          0
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.25,
+          1.41,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.76,
+          1.36,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.05,
+          -0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.29,
+          1.26,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.83,
+          1.13,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.38,
+          0.98,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m38",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.93,
+          0.82,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m39",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.47,
+          0.65,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m40",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.99,
+          0.51,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m41",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.47,
+          0.38,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m42",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.92,
+          0.29,
+          0
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m43",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.32,
+          0.24,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 2.42,
+          "depth": 0.09
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m44",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.33,
+          0.39,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m45",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.95,
+          0.44,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.06,
+          0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m46",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.51,
+          0.53,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m47",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.03,
+          0.66,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m48",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.51,
+          0.8,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m49",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.97,
+          0.96,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m50",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.42,
+          1.13,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m51",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.87,
+          1.28,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m52",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.32,
+          1.41,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m53",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.78,
+          1.51,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m54",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.26,
+          1.57,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m55",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.26,
+          1.57,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m56",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.78,
+          1.51,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          0.05,
+          -0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m57",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.32,
+          1.41,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m58",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.87,
+          1.28,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m59",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.42,
+          1.13,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m60",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.97,
+          0.96,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m61",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.51,
+          0.8,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m62",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.03,
+          0.66,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m63",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.51,
+          0.53,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m64",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.95,
+          0.44,
+          1.39
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m65",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.33,
+          0.39,
+          1.39
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m66",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.5,
+          0.54,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m67",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.5,
+          0.945,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m68",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.568,
+          0.5948,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m69",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.568,
+          0.9298,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m70",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.456,
+          0.8924,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m71",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.456,
+          1.2274,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m72",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.26,
+          1.2476,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m73",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.26,
+          1.5826,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m74",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.076,
+          1.5452,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m75",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.076,
+          1.8802,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m76",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0,
+          1.74,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m77",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0,
+          2.145,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m78",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.076,
+          1.5452,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m79",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.076,
+          1.8802,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m80",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.26,
+          1.2476,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m81",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.26,
+          1.5826,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m82",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.456,
+          0.8924,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m83",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.456,
+          1.2274,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m84",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.568,
+          0.5948,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m85",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.568,
+          0.9298,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m86",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.5,
+          0.54,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m87",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.5,
+          0.945,
+          1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m88",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.33,
+          0.39,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m89",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.95,
+          0.44,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.06,
+          0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m90",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.51,
+          0.53,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m91",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.03,
+          0.66,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m92",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.51,
+          0.8,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m93",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.97,
+          0.96,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m94",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.42,
+          1.13,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.1,
+          0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m95",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.87,
+          1.28,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.09,
+          0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m96",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.32,
+          1.41,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          -0.08,
+          0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m97",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.78,
+          1.51,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.05,
+          0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m98",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -0.26,
+          1.57,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          -0.02,
+          0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m99",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.26,
+          1.57,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m100",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0.78,
+          1.51,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          0.05,
+          -0.05,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.51,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m101",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.32,
+          1.41,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.54,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m102",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.87,
+          1.28,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.09,
+          -0.09,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m103",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.42,
+          1.13,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m104",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.97,
+          0.96,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.57,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m105",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.51,
+          0.8,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m106",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.03,
+          0.66,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.1,
+          -0.1,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.53,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m107",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.51,
+          0.53,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.08,
+          -0.08,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m108",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.95,
+          0.44,
+          -1.39
+        ],
+        "quat": [
+          -0.7,
+          0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m109",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.33,
+          0.39,
+          -1.39
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.24,
+          "depth": 0.4
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m110",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.5,
+          0.54,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m111",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -5.5,
+          0.945,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m112",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.568,
+          0.5948,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m113",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -4.568,
+          0.9298,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m114",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.456,
+          0.8924,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m115",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -3.456,
+          1.2274,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m116",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.26,
+          1.2476,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m117",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -2.26,
+          1.5826,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m118",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.076,
+          1.5452,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m119",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          -1.076,
+          1.8802,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m120",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0,
+          1.74,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m121",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          0,
+          2.145,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m122",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.076,
+          1.5452,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m123",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          1.076,
+          1.8802,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m124",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.26,
+          1.2476,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m125",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          2.26,
+          1.5826,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m126",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.456,
+          0.8924,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m127",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          3.456,
+          1.2274,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m128",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.568,
+          0.5948,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.58,
+          "depth": 0.38
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m129",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          4.568,
+          0.9298,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m130",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.5,
+          0.54,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 0.38
+        },
+        "color": 7695195
+      }
+    },
+    {
+      "id": "m131",
+      "parent": "bridgeDeck",
+      "transform": {
+        "pos": [
+          5.5,
+          0.945,
+          -1.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.13,
+          "depth": 0.46
+        },
+        "color": 8549989
+      }
+    },
+    {
+      "id": "m132",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -5.25,
+          -0.6164,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.017212622088655,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m133",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -4.75,
+          -0.5896,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.0708564988730283,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m134",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -4.25,
+          -0.5411,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.1677761081893308,
+          "depth": 3
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m135",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -3.75,
+          -0.4764,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.2971525169045828,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m136",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -3.25,
+          -0.4009,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.4481667918857997,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m137",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.75,
+          -0.32,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.61,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m138",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.75,
+          -0.32,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.61,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m139",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          3.25,
+          -0.4009,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.4481667918858,
+          "depth": 3
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m140",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          3.75,
+          -0.4764,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.2971525169045828,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m141",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          4.25,
+          -0.5411,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.167776108189331,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m142",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          4.75,
+          -0.5896,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.070856498873028,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m143",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          5.25,
+          -0.6164,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 2.017212622088655,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m144",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -4.85,
+          -1.455,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.15,
+          "height": 0.34,
+          "depth": 3.28
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m145",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          4.85,
+          -1.455,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.15,
+          "height": 0.34,
+          "depth": 3.28
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m146",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.67,
+          -0.895,
+          0
+        ],
+        "quat": [
+          0.47,
+          0.53,
+          0.53,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m147",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.55,
+          -0.345,
+          0
+        ],
+        "quat": [
+          0.42,
+          0.57,
+          0.57,
+          0.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m148",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.32,
+          0.165,
+          0
+        ],
+        "quat": [
+          0.35,
+          0.61,
+          0.61,
+          0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m149",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1.99,
+          0.615,
+          0
+        ],
+        "quat": [
+          0.29,
+          0.65,
+          0.65,
+          0.29
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m150",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1.58,
+          0.995,
+          0
+        ],
+        "quat": [
+          0.22,
+          0.67,
+          0.67,
+          0.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m151",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1.09,
+          1.275,
+          0
+        ],
+        "quat": [
+          0.15,
+          0.69,
+          0.69,
+          0.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m152",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          0.56,
+          1.445,
+          0
+        ],
+        "quat": [
+          0.07,
+          0.7,
+          0.7,
+          0.07
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m153",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          0,
+          1.505,
+          0
+        ],
+        "quat": [
+          0,
+          0.71,
+          0.71,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m154",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -0.56,
+          1.445,
+          0
+        ],
+        "quat": [
+          -0.07,
+          0.7,
+          0.7,
+          -0.07
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m155",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1.09,
+          1.275,
+          0
+        ],
+        "quat": [
+          -0.15,
+          0.69,
+          0.69,
+          -0.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m156",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1.58,
+          0.995,
+          0
+        ],
+        "quat": [
+          -0.22,
+          0.67,
+          0.67,
+          -0.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m157",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1.99,
+          0.615,
+          0
+        ],
+        "quat": [
+          -0.29,
+          0.65,
+          0.65,
+          -0.29
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m158",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.32,
+          0.165,
+          0
+        ],
+        "quat": [
+          -0.35,
+          0.61,
+          0.61,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m159",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.55,
+          -0.345,
+          0
+        ],
+        "quat": [
+          -0.42,
+          0.57,
+          0.57,
+          -0.42
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m160",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.67,
+          -0.895,
+          0
+        ],
+        "quat": [
+          -0.47,
+          0.53,
+          0.53,
+          -0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 3.16,
+          "depth": 0.58
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m161",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.2,
+          0.5534,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 1.1784336953374555,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m162",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1.8,
+          0.928,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.6710904605438146,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m163",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1.4,
+          1.1628,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.4169678027136392,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m164",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -1,
+          1.3236,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.27367455678735686,
+          "depth": 3
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m165",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -0.6,
+          1.427,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.19648286981123686,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m166",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -0.2,
+          1.4785,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.16370292275462583,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m167",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          0.2,
+          1.4785,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.16370292275462583,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m168",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          0.6,
+          1.427,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.19648286981123686,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m169",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1,
+          1.3236,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.27367455678735686,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m170",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1.4,
+          1.1628,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.4169678027136392,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m171",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          1.8,
+          0.928,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 0.6710904605438142,
+          "depth": 3
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m172",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.2,
+          0.5534,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44499999999999995,
+          "height": 1.1784336953374555,
+          "depth": 3
+        },
+        "color": 5327683
+      }
+    },
+    {
+      "id": "m173",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.55,
+          -1.265,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 3.08
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m174",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          2.55,
+          -1.505,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 3.18
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m175",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.55,
+          -1.265,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.72,
+          "depth": 3.08
+        },
+        "color": 9537141
+      }
+    },
+    {
+      "id": "m176",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -2.55,
+          -1.505,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.56,
+          "height": 0.24,
+          "depth": 3.18
+        },
+        "color": 10524034
+      }
+    },
+    {
+      "id": "m177",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -4.7,
+          -1.005,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m178",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -3.15,
+          -1.005,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m179",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          3.05,
+          -1.005,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m180",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          4.6,
+          -1.005,
+          1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m181",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -4.7,
+          -1.005,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 6182733
+      }
+    },
+    {
+      "id": "m182",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          -3.15,
+          -1.005,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m183",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          3.05,
+          -1.005,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 4604219
+      }
+    },
+    {
+      "id": "m184",
+      "parent": "archBody",
+      "transform": {
+        "pos": [
+          4.6,
+          -1.005,
+          -1.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.3,
+          "depth": 0.1
+        },
+        "color": 6182733
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785203081807,
+      "provider": "gpt",
+      "data": "9ofWWows1XXq/UIKDfnhRmi42g6auhuA+OoiRMUUTOs+XX3l8kw1D03rAMpu3r4+WROz/ktJAmcS47nXVtcDxGbGe4DIA1FWupIk+ArAGhxY94YwzHzqlVcqQXczUbUqdAHPkf8PyEE1Ub9iNw8fM65az9izu4r3IvMk7OwOEarmcxKlqNSKStunDVz6pI0sDa4Ergyh/bK6drGjeZ7r0RmCTi2Ap3HpyPOCsqu6//hFcYp0e7S1Nw9WDVgortgUtYU5qgy8FbTojtt21V/sZ9bHF+cUn/yCS/yEUs2Jyk2US3MO1xg4KwgNzOwQ4ORiOis0i7yITH1LUcnxC9QpPOjW9o/kKhYhJKp7+OJXUDC85MK/WpHskd8i0ex251MVcp8bwUkgQnVmkLQBXSCk006C9wGyRibhbeK71RhggY5eMIRDt9xywg5J0qs6LMklfSTJVutxDUiMLDgeoJzo0tEah4jDombZ0vVceG1qJVtjnRXh7lRExchshFJQ+jLdWk+yOsiCcWkq+jfEBt9XvwhaooVwaMZP6i/bdltQCmCJQntibzMAMm9hyNhA0ymewzsdIPj9N5mUojilwpAfbt+Ru/xA7dpb9AK9YYd4suOTlEIToB28eP721ntAQXmDBYrIaoB97zEbT+zBQg8zLeGpmOoDlWIuRZshHD02hF/3BpiDKn6+Q+X3EJAARfxsYHg+eAvxhMRz62L6WYIeJZRs+/l93T2fXFB+vGN86FtQCZrWNQ39rdSBAdrg9+IxDVWVayGwthQ2wdLQbyjoI14DndU0sPE/YF+sZx6NJONypk7z1cwkGnb2XFVndlN3f71gXdRnoD61ps2UHK+LmMDOfgM+7YMnVYQ+jwwyuUolIT8ImsMF8k+nLKxWK4oATOAtHN0nkvIORmK5NK4byfRuRHl7n1+gNvlH2L+t/hCRZAqY+0Si36R5nCTA32FXEuOyOiuVLx+9kGgi7UZg+iqmXRRCgtKUMvhO9GZU5lVgYzYJBe7QkOg//T1FFmwbhtI9gzrgd294q1axizQmUq/f/CIuTCW7PBZZJKpU5cRB4seD9U28/fADSP7cwPsPln8ioKgCIPXVYBKUw8F5Cx1f5cYtyAi7uphOc4ydWNVFhqpeF4cZRjigtQNrdObN7Wpdr5GGnSR0IhIwlbZuvLV4/fBEA2BXP22RguqzZRK+dKjTd4fS8Cg8sMei9CIWHbwMZL1KMBeqnOFki42o2oTXWI5+pEKycMC36DbsbhMjz8E3sYS4tGMf9iuOtFS9scp+QSU2c8uckWjCpepwq6gSd0iJsYxluZQxamZ6faRmCRBCXySrz2l1v7QU0X2gmoUDvHR/M8Td6DJqkYxque7Bj+9gDQMH4ZakOHlLAn982CqWXrvr8vs6ZRX/ssaWdf/85SQEtnCT3sRifmqTycXXGqloXmt7Cwgl4U+jef6m0yKbyPHBE43WSRr3n0iengQ2jLvdntSsK9HegH9MWjsE8g4zGir3mdPM+MWGPU2n5AnPIhgrdx5/rNKMMcda2207XUauEKNbL08WQaOCVnYMBnMrL6zYy7TiPU3AT2bMbWtmKHo0Ip7Gqnsata1M1zDUXvAp9LoJLnH7/3tGqUmXcgkh+AdGmQ2DPLiF8IdzFT8NwRifsg4hlBtxwXOvsH7EC2bpJbESjnTTXK+kBk4GviUJnD0beAEYrG2+CBpaNIPj95Wc14lOcI9nAqQK7ZbIc6oh7x+c6iDP5i6ubLtvoyHEflEDTfqCrn1hTEQsYObgN7oi2WgYvWQ/LpbD4PAIrQK5VBKbU3IRzHc8RxYJqJCCOwEdXImJRY8oIvrg4Erae3Zsbj1MFtRaOd020CZ9rTbiyLapIgoc03X134pnrQrXyiovJ9L6fk4bRt2alzcICJM6oxViMxAjDd/fIX/N7lmE5t5TWvuMSyHCKPXVKqfKrEiZJxQBSbIBk++84yZYbbQ7T47DfTXug5S2anf35gEF4XYFz0GepcIOhGVz/29EL+4QLJK56VlzcYqexGaGZ9jriuG2ypGWGsFVJ1I7AqybeAm/fiPLWGSfVRNkZpvoZE7PdAkgGTPmcEkagX/diPSMOaY1fu0cBmG+cA01UQaBm9E6+1teD7VQkgIy3MoSM3Ch4c2tVq5ob71yrONjAndjJI1Pq0S8xvRTVwCUUd8QtvrfAXK2JgtSiW8vNOos0x8HYbspZz7jkVTAjQ+fnOn40tTBrOIIkhcOmYq3LtHAbj9v1LQ4zh2Fqc5V4djKRbWPznDwx2fuflb3vhxBw47SxdrxlkWshaeP91utqS/BRgChdFWaWd3RByBA8nxXvn0ONYfZ4f7+pUIU/tav4ftTOigEZnOzQxoWEvcMjZmbZgJvxv/vIzNbGTweWDQgG3y9pwzTJFbO2kQWJqOkFISthCZbQVbOSdxe9AKVkewtQ8eIAPK1kSYSjfBccHH4TpmPBEU5KIkn6fUbELG5+/o23AzqiaB3+Q753qAxNIJ0BO7Z8adm6mr6PF5cm8mBkrPgZQnvWHM5uqhjMY8FvWMXIeoAdnmkeC3XH70VXokb+KTgzeCdWREjU457T0CsLv+pM6JcbREyzm9jDnIjcGeRSbURX65uFajCjhD87pdtV87lBIm6pgwREKRYv65WsNxav/IVgLxaz67P6CcNck2SsczpbW//8bAxSz3Kdaeq1LuGNl1H9ilYpzJ6yiukRxSvuzReWvcFBbYHK63DP/xGD119FpaoJp/RWx6f3V/tmrXPOyJkkfNxQWLImIQz/R/gyz5Grc71gGJlKgjdKFJv/2utmdtaVlZfqOsCtHDH6Zo1vgn2Sq/CUDWhUnhEm/CCw8HZIbQogxRE+lC0/ehhXoFoMJaTqjTri224RZ34DsG8CrjNZ5I1qZhFNhdrLBRXkQiupx/GE82Bikj2Fv3qdwi8Ox9kovgkrsk3KKrewnuEZ6NuqU4WHlcSisqoqnLgdWu5pg2WZdnkhpPm2jMcQdoQktDpIGgUmT/O4Bf9BESlQbwNrpjkZfqSq2g7T7MojgWPsLSOS7Hh80cdh2sbWW0UcNAUM+inTcyGX/eT0kioMmnp8osF/Y4=",
+      "edits": ""
+    },
+    "chiiAssetRole": "town_bridge",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "pro",
+    "chiiBridgeDeck": {
+      "groupId": "bridgeDeck",
+      "partCount": 132,
+      "totalDeckLength": 63.84000000000006
+    },
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "standard",
+      "timing": null
+    },
+    "chiiSourceReference": "https://zeldawiki.wiki/wiki/Proxim_Bridge",
+    "chiiWorldFootprint": {
+      "width": 11,
+      "depth": 3,
+      "unit": "terrain_tile"
+    }
+  }
+}

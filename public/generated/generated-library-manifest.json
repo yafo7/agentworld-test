@@ -1,5 +1,137 @@
 [
   {
+    "assetId": "gen_ms5uoin0_98mx",
+    "name": "红色7号球衣棕色小马",
+    "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：一顶彩色生日礼帽带金色小星星；上衣：蓝色生日短披风，彩色星星滚边，金色领结；裤子：深蓝生日短裤，彩色星点，金色腰带；鞋子：金色派对短靴，红色鞋带，星星鞋扣。双手空置，四肢关节清楚，不改变动作。",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms5uoin0_98mx.json",
+    "createdAt": 1785315378792
+  },
+  {
+    "assetId": "gen_ms5uofe4_iyge",
+    "name": "红色7号球衣棕色小马",
+    "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：一顶彩色生日礼帽带金色小星星；上衣：蓝色生日短披风，彩色星星滚边，金色领结；裤子：深蓝生日短裤，彩色星点，金色腰带；鞋子：金色派对短靴，红色鞋带，星星鞋扣。双手空置，四肢关节清楚，不改变动作。",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms5uofe4_iyge.json",
+    "createdAt": 1785315374884
+  },
+  {
+    "assetId": "gen_ms5uo4gp_63f0",
+    "name": "红色7号球衣棕色小马",
+    "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：一顶彩色生日礼帽带金色小星星；上衣：蓝色生日短披风，彩色星星滚边，金色领结；裤子：深蓝生日短裤，彩色星点，金色腰带；鞋子：金色派对短靴，红色鞋带，星星鞋扣。双手空置，四肢关节清楚，不改变动作。",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms5uo4gp_63f0.json",
+    "createdAt": 1785315360724
+  },
+  {
+    "assetId": "gen_ms5uninw_8h3c",
+    "name": "红色7号球衣棕色小马",
+    "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：一顶彩色生日礼帽带金色小星星；上衣：蓝色生日短披风，彩色星星滚边，金色领结；裤子：深蓝生日短裤，彩色星点，金色腰带；鞋子：金色派对短靴，红色鞋带，星星鞋扣。双手空置，四肢关节清楚，不改变动作。",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms5uninw_8h3c.json",
+    "createdAt": 1785315332471
+  },
+  {
+    "assetId": "gen_ms5uloui_e7ti",
+    "name": "和蔼的方块人工程师",
+    "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：红色新春瓜皮帽，金色帽结，短红流苏；上衣：红色新春小棉袄，金色盘扣，白色绒领；裤子：深红新春长裤，金色侧纹，宽松裤脚；鞋子：黑色新春布鞋，红色鞋面，金色云纹。双手空置，四肢关节清楚，不改变动作。",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms5uloui_e7ti.json",
+    "createdAt": 1785315247174
+  },
+  {
+    "assetId": "gen_ms2vp4o8_kscm",
+    "name": "木桌上的生日蛋糕",
+    "description": "木桌上放着彩色生日蛋糕和点亮蜡烛",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms2vp4o8_kscm.json",
+    "createdAt": 1785135688750
+  },
+  {
+    "assetId": "gen_ms2vog54_aina",
+    "name": "棕色7号球衣马 + 彩色生日礼帽带金色小星星",
+    "description": "把一顶彩色生日礼帽带金色小星星加在头顶",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms2vog54_aina.json",
+    "createdAt": 1785135656948
+  },
+  {
+    "assetId": "gen_ms2vj7mt_z089",
+    "name": "黑魔法堡垒",
+    "description": "一座黑魔法堡垒，底部长宽比3比4，门高约一只宠物，主体按占地完整展开",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms2vj7mt_z089.json",
+    "createdAt": 1785135412657
+  },
+  {
+    "assetId": "gen_ms2vfszn_1e9c",
+    "name": "巨大风车 + 红灯笼",
+    "description": "把一个红灯笼加在门前上方",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms2vfszn_1e9c.json",
+    "createdAt": 1785135253716
+  },
+  {
+    "assetId": "gen_ms1pql4c_1t0g",
+    "name": "方案 A · 彼岸花指挥家 + 苹果",
+    "description": "phrolova-a-leftHand-苹果：将它固定在左手掌心，果梗朝上，叶片朝外，避开手臂和身体",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms1pql4c_1t0g.json",
+    "createdAt": 1785065212533
+  },
+  {
+    "assetId": "gen_ms1ppvpj_8d9m",
+    "name": "方案 E · AI Q版电子女儿 + 苹果",
+    "description": "phrolova-e-leftHand-苹果：将它固定在左手掌心，果梗朝上，叶片朝外，避开手臂和身体",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms1ppvpj_8d9m.json",
+    "createdAt": 1785065179603
+  },
+  {
+    "assetId": "gen_ms1oktx0_mjze",
+    "name": "方案 B · 奇异岛短身版 + 罐装可乐",
+    "description": "phrolova-b-rightHand-罐装可乐：将它固定在右手掌心，罐身竖直，标签朝前，避开手臂和身体",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_ms1oktx0_mjze.json",
+    "createdAt": 1785063264384
+  },
+  {
     "assetId": "gen_mrq6fxgp_a39u",
     "name": "红色方块苹果",
     "description": "一个红色方块苹果带绿色小叶子",

@@ -1,0 +1,54 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "bounce": {
+      "amplitude": 0.12,
+      "frequency": 0.45
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -6
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 0.45
+    }
+  },
+  "arm_l": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -55
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.4,
+      "frequency": 0.45
+    }
+  },
+  "arm_r": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -55
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.4,
+      "frequency": 0.45
+    }
+  },
+  "_name": "momo-smash",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "momo",
+    "quality": "voxel",
+    "prompt": "双手向下重击"
+  }
+}

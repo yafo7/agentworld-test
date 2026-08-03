@@ -1,0 +1,489 @@
+{
+  "name": "橘子糖果花生果盘",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "oranges",
+      "name": "整齐排列的橘子",
+      "transform": {
+        "pos": [
+          0,
+          1.05,
+          -1.05
+        ]
+      }
+    },
+    {
+      "id": "plate",
+      "name": "红果盘",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          0,
+          -0.575,
+          1.05
+        ]
+      }
+    },
+    {
+      "id": "candies",
+      "name": "彩色糖果",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          0,
+          -0.13,
+          1.35
+        ]
+      }
+    },
+    {
+      "id": "peanuts",
+      "name": "花生",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          0,
+          -0.23,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "plate",
+      "transform": {
+        "pos": [
+          0,
+          -0.175,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6,
+          "height": 0.35,
+          "depth": 4.4
+        },
+        "color": 13183026
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "plate",
+      "transform": {
+        "pos": [
+          0,
+          0.175,
+          -2.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 0.55,
+          "depth": 0.35
+        },
+        "color": 10426146
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "plate",
+      "transform": {
+        "pos": [
+          0,
+          0.175,
+          2.15
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6.2,
+          "height": 0.55,
+          "depth": 0.35
+        },
+        "color": 10426146
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "plate",
+      "transform": {
+        "pos": [
+          -2.95,
+          0.175,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.55,
+          "depth": 4
+        },
+        "color": 10426146
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "plate",
+      "transform": {
+        "pos": [
+          2.95,
+          0.175,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.35,
+          "height": 0.55,
+          "depth": 4
+        },
+        "color": 10426146
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          -1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 1.05,
+          "depth": 1.05
+        },
+        "color": 15895576
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          -1.25,
+          0.615,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.18,
+          "depth": 0.2
+        },
+        "color": 3766834
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 1.05,
+          "depth": 1.05
+        },
+        "color": 15895576
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          0,
+          0.615,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.18,
+          "depth": 0.2
+        },
+        "color": 3766834
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 1.05,
+          "depth": 1.05
+        },
+        "color": 15895576
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "oranges",
+      "transform": {
+        "pos": [
+          1.25,
+          0.615,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.2,
+          "height": 0.18,
+          "depth": 0.2
+        },
+        "color": 3766834
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          -1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.55,
+          "depth": 0.65
+        },
+        "color": 4571112
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          -1.8,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.38,
+          "depth": 0.48
+        },
+        "color": 4571112
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          -0.7,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.38,
+          "depth": 0.48
+        },
+        "color": 4571112
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          1.25,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.55,
+          "depth": 0.65
+        },
+        "color": 15752603
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          0.7,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.38,
+          "depth": 0.48
+        },
+        "color": 15752603
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "candies",
+      "transform": {
+        "pos": [
+          1.8,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.38,
+          "depth": 0.48
+        },
+        "color": 15752603
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "peanuts",
+      "transform": {
+        "pos": [
+          -1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 0.55
+        },
+        "color": 14132318
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "peanuts",
+      "transform": {
+        "pos": [
+          -0.65,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 0.55
+        },
+        "color": 13209932
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "peanuts",
+      "transform": {
+        "pos": [
+          0.65,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 0.55
+        },
+        "color": 14132318
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "peanuts",
+      "transform": {
+        "pos": [
+          1.05,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.38,
+          "depth": 0.55
+        },
+        "color": 13209932
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785403576052,
+      "provider": "gpt",
+      "data": "ADhLe82keR5OeDsu8eS06Qfc43C4ddGUMXLA8bdDLVa8U4z2trPeJ7fIITiQGfRVJDh9GGPfsqvxE6dixTFO1M8SWSB5XoQ66bJ/D8sBi/MuRXszcddgHYNdEP9KrXJMWGT0IhHTU0d1o4cFjP7Y7+MGwY1HjJ4Ad3lg0huitwaDVoIRL5RsSoaihKW7CoGie+21TPoN3vYrT6SmdnVgRUCzmoZ5Ib9QpixgaPVYdaL3GKn2cGOqT7nAqat3k6RQvz+4WVV6lRwJpL8yfRkpkF8lrrIB/X9C0PloTDFyQr55e7vywYcepj1LLbRiASyXGrIMMU3s5CFVlQrFSxmaoBngx/j3hkYUHDVnJpFXddF+smxSC6c2GO6Vi//8uc60QBVHSwvWksCunkVUNNJrfvAwVahIfrr1MWsuxLsXNa8CbKiAsRIpr19JxcBvQhEqBEbbRGQWHLCvmGk9zquBLFkSqVf/7uin1A4dps7khQwrQ+yx9edh3fhWB0pKJwVNd6HCilhfXiJH+gUM4Z+tlpVbRF3M3Kg+3l+gd6tzqLi8FpQ9v7PTYrf5oO4SgrmzeVXBnu42yDJNxJZXpxoXW17WYjb1LaJ1rLT6hxuhatBUgCDsDR30thZZLDLpuwuKhAh8hBeUXYcOlWmNFLhTIvP10VZcfk4XGiEo7Jn4EKA7unhiT7Bf+o+nvIUo03IVhOAfXW+LprHGyh6POR+3Sklc02hraCMQ/siLx9zWmsaL/1yha7V46dz4AO+c5ccD2zJl18nvlW4IYv2v9S9wv7vNXdTVRNwMxzxM/lyTq+3w5GjfQ+eUdj9+kLupXouKzVM26WwQOO2dewSmEo4iyZUReYhscsSNfh6my4/8Pbe+wjRXotaZVg0R0BaXeqpYpzynP88n+QW6TEk8oGvAuMDcyFH9nqdzynQqFMNpd4r2kktSa4fPr552qcS/2lGngw==",
+      "edits": ""
+    },
+    "chiiActivityAssetId": "new_year_food_fruit",
+    "chiiActivityOperation": "generate",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "chiiPrompt": "红果盘装橘子糖果花生，摆放整齐"
+  }
+}

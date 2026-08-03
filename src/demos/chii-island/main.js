@@ -10,11 +10,16 @@ import { RapierDebugRenderer } from '../../engine/physics/RapierDebugRenderer.js
 import { setupRaycast } from '../../engine';
 import { envGridConfigs } from './config.js';
 import { generateSceneLayout } from './systems/sceneLayout.js';
-import { CHII_SCENE_ASSET_IDS, createChiiAssetRepository } from './data/assetCatalog.js';
-import { getChiiSceneStyle, setChiiSceneStyle } from './data/sceneStyle.js';
+import { createChiiAssetRepository, getChiiSceneAssetIds } from './data/assetCatalog.js';
+import {
+  getChiiSceneProfile,
+  getChiiSceneStyle,
+  setChiiSceneStyle,
+} from './data/sceneStyle.js';
 import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
 import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
 import { assembleChiiScene } from './world/ChiiSceneAssembler.js';
+import { assembleChiiInteriors } from './world/ChiiInteriorAssembler.js';
 import { buildStaticColliders } from '../../world/physics/buildStaticColliders.js';
 import { COLLIDER_STRATEGIES } from '../../world/physics/ColliderStrategy.js';
 import { attachPetStateMachine } from '../../gameplay/pets/PetStateMachine.js';
@@ -25,13 +30,32 @@ import { PetManager } from './systems/PetManager.js';
 import { RuntimeHUD } from './systems/RuntimeHUD.js';
 import { getPetProfile } from './data/petProfiles.js';
 import { DialogueCameraDirector } from './presentation/DialogueCameraDirector.js';
+import { PlayerItemShowcaseDirector } from './presentation/PlayerItemShowcaseDirector.js';
 import { TreeChopSequence } from './presentation/TreeChopSequence.js';
 import { createChiiRegionGameplay } from './gameplay/createChiiRegionGameplay.js';
 import { ChiiInteractionController } from './systems/ChiiInteractionController.js';
+import { BuildingInteriorSystem } from './systems/BuildingInteriorSystem.js';
 import { PlacementGrid } from '../../world/placement/PlacementGrid.js';
+import { TerrainPathfinder } from '../../world/navigation/TerrainPathfinder.js';
 import { ObjectPlacementService } from '../../world/placement/ObjectPlacementService.js';
+import { ObjectScalePolicy } from '../../world/placement/ObjectScalePolicy.js';
 import { ObjectEditorController } from './systems/ObjectEditorController.js';
 import { createAssetSemanticAudit } from './systems/AssetSemanticAudit.js';
+import { WorldTuningAudit } from './systems/WorldTuningAudit.js';
+import { InventorySystem } from './systems/InventorySystem.js';
+import { CharacterEquipmentService } from '../../gameplay/equipment/CharacterEquipmentService.js';
+import { CharacterAppearanceStore } from '../../storage/CharacterAppearanceStore.js';
+import { ChiiSceneSaveStore } from '../../storage/ChiiSceneSaveStore.js';
+import { ChiiScenePersistenceSystem } from './systems/ChiiScenePersistenceSystem.js';
+import { CHII_PLAYER_CHARACTER } from './data/playerCharacter.js';
+import { getChiiCharacterVariant } from './data/characterVariants.js';
+import {
+  CHII_SIZE_PROFILES,
+  CHII_PET_HEIGHTS,
+  CHII_PERFORMANCE_BUDGETS,
+  CHII_WORLD_METRICS,
+  resolveChiiSizeProfile,
+} from './data/worldTuningProfile.js';
 import { WorldClimatePresenter } from './presentation/WorldClimatePresenter.js';
 import { WorldClimateSystem } from './systems/WorldClimateSystem.js';
 import { BrowserClockAdapter } from '../../integrations/climate/BrowserClockAdapter.js';
@@ -40,13 +64,29 @@ import { OpenMeteoWeatherAdapter } from '../../integrations/climate/OpenMeteoWea
 import { BigDataCloudPlaceNameAdapter } from '../../integrations/climate/BigDataCloudPlaceNameAdapter.js';
 import { ClimateCache } from '../../storage/ClimateCache.js';
 import { VoxelStudioModelVisualAdapter } from '../../integrations/rendering/VoxelStudioModelVisualAdapter.js';
+import { VoxelStudioWorldWaterAdapter } from '../../integrations/rendering/VoxelStudioWorldWaterAdapter.js';
 import { WorldModelVisualLifecycle } from '../../world/model/WorldModelVisualLifecycle.js';
 import { ChiiSkyVisualAdapter } from '../../integrations/rendering/ChiiSkyVisualAdapter.js';
 import { VoxelStudioRenderPresentationAdapter } from '../../integrations/rendering/VoxelStudioRenderPresentationAdapter.js';
+import { ActZeroStoryState } from './story/ActZeroStoryState.js';
+import { IslandStoryState } from '../../gameplay/story/IslandStoryState.js';
+import { ActZeroCrashDirector } from './presentation/ActZeroCrashDirector.js';
+import {
+  CHII_LOADING_PRESETS,
+  createChiiPageLoadingScreen,
+} from './presentation/ChiiPageLoadingScreen.js';
+import { SceneSavePanel } from './presentation/SceneSavePanel.js';
+
+const pageLoading = createChiiPageLoadingScreen({ preset: 'island' });
 
 // ---- bootstrap ----
 async function init() {
   window.THREE = THREE;
+  const islandStoryState = new IslandStoryState();
+  const actZeroStoryState = new ActZeroStoryState({ storyState: islandStoryState });
+  if (actZeroStoryState.shouldPlay()) {
+    pageLoading.show(CHII_LOADING_PRESETS.prologue);
+  }
 
   // Wait for voxel runtime before building terrain (needed for geometry)
   await initRuntime(THREE).then(() => console.log('[Init] Voxel runtime ready')).catch((e) => console.warn('[Init] Voxel runtime unavailable:', e.message));
@@ -92,8 +132,10 @@ async function init() {
 
   // ---- terrain grid (50×50, procedural forest biome) ----
   const GRID_SIZE = 50;
+  const sceneStyle = getChiiSceneStyle();
+  const sceneProfile = getChiiSceneProfile(sceneStyle);
   preloadBlocks({});
-  const layout = generateTerrainLayout(GRID_SIZE, 42);
+  const layout = generateTerrainLayout(GRID_SIZE, sceneProfile.terrainSeed);
   const centerCfg = envGridConfigs[0];
 
   function countBlockTypes(l) {
@@ -102,11 +144,11 @@ async function init() {
 
   // Runtime gameplay only reads the locally synced asset catalog. Studio edit
   // and publish operations happen outside the running game.
-  const sceneStyle = getChiiSceneStyle();
   const assetRepository = createChiiAssetRepository({ sceneStyle });
   window.__chiiSceneStyle = sceneStyle;
-  console.log(`[Init] Loading local runtime assets (${sceneStyle})...`);
-  const modelJsons = await assetRepository.getModels(CHII_SCENE_ASSET_IDS);
+  window.__chiiSceneProfile = sceneProfile;
+  console.log(`[Init] Loading local runtime assets (${sceneProfile.label})...`);
+  const modelJsons = await assetRepository.getModels(getChiiSceneAssetIds(sceneStyle));
   console.log('[Init] Runtime assets loaded:', Object.keys(modelJsons).join(', '));
   const assetAudit = createAssetSemanticAudit({
     models: modelJsons,
@@ -115,12 +157,30 @@ async function init() {
   });
   window.__chiiAssetAudit = assetAudit;
 
-  const scenePlan = generateSceneLayout(layout, GRID_SIZE, 99);
+  const scenePlan = generateSceneLayout(layout, GRID_SIZE, sceneProfile.layoutSeed, {
+    features: sceneProfile.features,
+  });
+  const petNavigation = new TerrainPathfinder({
+    terrainLayout: scenePlan.modifiedLayout,
+    center: [centerCfg.center[0], centerCfg.center[1]],
+    tileSize: CHII_WORLD_METRICS.terrainTile,
+    traversalCells: scenePlan.town?.bridge?.traversalCells || [],
+  });
   console.log('[SceneLayout]', `${scenePlan.buildings.length} buildings, ${scenePlan.trees.length} trees, ${scenePlan.grasses.length} grasses`);
 
   const unitEnv = createUnitEnvironment(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout);
   console.log('[Terrain] 50×50 terrain:', countBlockTypes(scenePlan.modifiedLayout));
   scene.add(unitEnv);
+  const worldWaterVisuals = sceneProfile.features.worldWater
+    ? new VoxelStudioWorldWaterAdapter({ scene })
+    : null;
+  worldWaterVisuals?.attachRiver({
+      riverData: scenePlan.riverData,
+      center: [centerCfg.center[0], centerCfg.center[1]],
+      gridSize: GRID_SIZE,
+      tileSize: CHII_WORLD_METRICS.terrainTile,
+    });
+  window.__chiiWaterVisuals = worldWaterVisuals;
 
   function gridSpawn(name, fallback) {
     const spawn = scenePlan.pastoral?.petSpawns?.[name];
@@ -162,6 +222,23 @@ async function init() {
     pastoralWorkScaffoldModel,
     pastoralWorkScaffoldPlan,
   } = assembledScene;
+  const characterEquipment = new CharacterEquipmentService();
+  const characterAppearances = new CharacterAppearanceStore({ scope: sceneStyle });
+  const sceneSaveStore = new ChiiSceneSaveStore();
+  const scenePersistence = new ChiiScenePersistenceSystem({
+    sceneStyle,
+    store: sceneSaveStore,
+    worldObjects,
+    staticEntities,
+    scene,
+    generatedAssetRepository: generatedAssets,
+    appearanceStore: characterAppearances,
+  });
+  const sceneRestoreSummary = await scenePersistence.restoreAuto();
+  window.__chiiSceneSave = scenePersistence;
+  if (sceneRestoreSummary.restored) {
+    console.log('[SceneSave] Restored local scene:', sceneRestoreSummary);
+  }
   const modelVisualLifecycle = new WorldModelVisualLifecycle({ worldObjects });
   window.__chiiModelVisualLifecycle = modelVisualLifecycle;
   assetAudit.recordAnimations('forestTrophy', { wait: forestTrophyWaitPlan });
@@ -179,14 +256,63 @@ async function init() {
   debugRenderer.enabled = false;
   scene.add(debugRenderer.mesh);
 
-  // ---- player (nailong model from voxel studio) ----
+  async function applySavedCharacterAppearance(character, characterId, {
+    baseModelJson = character?._originalModelJson,
+    variantId = 'default',
+  } = {}) {
+    const appearance = characterAppearances.get(characterId)
+      || (characterId === 'crab' ? characterAppearances.get('builder_crab') : null);
+    if (!character || !baseModelJson || !appearance) return false;
+    const variant = getChiiCharacterVariant(characterId, appearance.variantId);
+    const appearanceVariantId = variant?.id || variantId;
+    if (variant) {
+      baseModelJson = await characterEquipment.loadJson(variant.model);
+      character.replaceModelFromJson?.(baseModelJson, {
+        targetHeight: character._targetHeight || CHII_PET_HEIGHTS[variant.assetId] || CHII_PET_HEIGHTS.generated,
+        preserveCurrentTransform: true,
+        preserveCurrentScale: true,
+      });
+      const animations = await Promise.all(Object.entries(variant.animations || {}).map(async ([name, path]) => (
+        [name, await characterEquipment.loadJson(path)]
+      )));
+      for (const [name, plan] of animations) character.loadAnimation?.(name, plan);
+    }
+    const hasEquipment = Object.values(appearance.loadout || {}).some(Boolean);
+    character._baseModelJson = baseModelJson;
+    if (!hasEquipment) return true;
+    try {
+      const result = await characterEquipment.resolveLoadout({
+        characterId,
+        variantId: appearanceVariantId,
+        baseModelJson,
+        loadout: appearance.loadout,
+      });
+      character.replaceModelFromJson?.(result.modelJson, {
+        targetHeight: character._targetHeight,
+        preserveCurrentScale: true,
+      });
+      character._appearanceLoadout = result.loadout;
+      character._appearanceOutfitId = appearance.outfitId || null;
+      character._appearanceAssetId = result.assetId || null;
+      return true;
+    } catch (error) {
+      console.warn(`[Appearance] ${characterId} outfit skipped:`, error.message);
+      return false;
+    }
+  }
+
+  // ---- player (same classic Phrolova used in Act Zero) ----
   const player = new Player();
-  player.setTerrainLayout(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, layout);
+  player.setTerrainLayout(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout);
+  player.setWaterTraversalCells(scenePlan.town?.bridge?.traversalCells || []);
   const townDemoEnabled = new URLSearchParams(window.location.search).has('church-town');
   const forestDemoEnabled = new URLSearchParams(window.location.search).has('forest-temple');
   const townDemoCell = scenePlan.town?.petSpawns?.fangk;
   const forestDemoCell = scenePlan.forestTemple?.trophy;
-  let demoSpawn = { x: 0, z: 0 };
+  const beachSpawnCell = scenePlan.beach?.spawn;
+  let demoSpawn = beachSpawnCell
+    ? getGridWorldPosition(beachSpawnCell.gridX, beachSpawnCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE)
+    : { x: 0, z: 0 };
   if (forestDemoEnabled && forestDemoCell) {
     demoSpawn = getGridWorldPosition(forestDemoCell.gridX, forestDemoCell.gridZ - 1, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
   } else if (townDemoEnabled && townDemoCell) {
@@ -197,17 +323,37 @@ async function init() {
   window.__player = player;
   player._scene = scene; // for particle emitters
   scene.add(player.mesh);
-  player.loadModel('generated/models/nailong.json');
-  // Base locomotion animations
-  player.loadAnimations({
-    idle: 'generated/animations/nailong_idle.json',    // 呼吸摇摆
-    walk: 'generated/animations/nailong_walk.json',    // 行走
-    run:  'generated/animations/nailong_run.json',     // 奔跑
-    jump: 'generated/animations/nailong_jump.json',    // 跳跃
+  const playerBaseModelJson = await characterEquipment.loadJson(CHII_PLAYER_CHARACTER.model);
+  player.replaceModelFromJson(playerBaseModelJson, {
+    targetHeight: CHII_PLAYER_CHARACTER.targetHeight,
+    preserveCurrentTransform: false,
   });
-  // Special one-shot animations
-  player.loadAnimation('wave_left', 'generated/animations/nailong_wave_left.json');   // H: 挥舞左手
-  player.loadAnimation('fan_spark', 'generated/animations/nailong_fan_spark.json');   // J: 挥舞扇子+特效
+  // Base locomotion animations
+  await Promise.all([
+    player.loadAnimations({
+      idle: CHII_PLAYER_CHARACTER.animations.idle,
+      walk: CHII_PLAYER_CHARACTER.animations.walk,
+      run: CHII_PLAYER_CHARACTER.animations.run,
+      jump: CHII_PLAYER_CHARACTER.animations.jump,
+    }),
+    player.loadAnimation('special', CHII_PLAYER_CHARACTER.animations.special),
+  ]);
+  const itemShowcase = new PlayerItemShowcaseDirector({
+    player,
+    thirdPersonCamera,
+    input,
+  });
+  const inventorySystem = new InventorySystem({
+    input,
+    player,
+    baseModelJson: playerBaseModelJson,
+    characterId: CHII_PLAYER_CHARACTER.id,
+    variantId: CHII_PLAYER_CHARACTER.variantId,
+    equipmentService: characterEquipment,
+    onEquipped: payload => itemShowcase.play(payload),
+  });
+  window.__chiiInventory = inventorySystem;
+  window.__chiiItemShowcase = itemShowcase;
   const skyVisual = new ChiiSkyVisualAdapter({ scene, followTarget: player.mesh });
   const climatePresenter = new WorldClimatePresenter({
     scene,
@@ -238,6 +384,7 @@ async function init() {
   architect.setPosition(...architectSpawn);
   architect.setOrigin(...architectSpawn);
   architect.initPhysics(physics);
+  architect.setNavigation(petNavigation);
   scene.add(architect.mesh);
 
   async function loadCharacterRuntime(character, assetId) {
@@ -247,7 +394,9 @@ async function init() {
         assetRepository.getAnimations(assetId),
       ]);
       assetAudit.recordAnimations(assetId, animations);
-      character.loadModelFromJson(modelJson);
+      character.loadModelFromJson(modelJson, {
+        targetHeight: CHII_PET_HEIGHTS[assetId] || CHII_PET_HEIGHTS.generated,
+      });
       if (character._modelGroup) {
         character._modelGroup.userData._baseScale = character._modelGroup.scale.x;
         character._modelGroup.userData._baseY = character._modelGroup.position.y;
@@ -260,6 +409,7 @@ async function init() {
   }
 
   await loadCharacterRuntime(architect, 'fangk');
+  await applySavedCharacterAppearance(architect, 'fangk');
 
   // ---- bear NPC (wanders near windmill river side) ----
   const bear = new ArchitectNPC();
@@ -270,12 +420,14 @@ async function init() {
   attachPetStateMachine(bear, 'idle');
   bear._initialInteractionDone = false;
   bear.initPhysics(physics);
+  bear.setNavigation(petNavigation);
   const [bearSpawnX, , bearSpawnZ] = gridSpawn('momo', [-60, 0, 15]);
   bear.setPosition(bearSpawnX, 0, bearSpawnZ);
   bear.setOrigin(bearSpawnX, 0, bearSpawnZ);
   scene.add(bear.mesh);
 
   await loadCharacterRuntime(bear, 'momo');
+  await applySavedCharacterAppearance(bear, 'momo');
   if (!bear._animPlans.walk && bear._animPlans.run) bear._animPlans.walk = bear._animPlans.run;
   if (!bear._animPlans.chop && bear._animPlans.smash) bear._animPlans.chop = bear._animPlans.smash;
   if (!bear._animPlans.chop && bear._animPlans.run) bear._animPlans.chop = bear._animPlans.run;
@@ -286,6 +438,7 @@ async function init() {
     scene,
     physics,
     assetRepository,
+    navigation: petNavigation,
     petSpawns: {
       yafo: gridSpawn('yafo', [-30, 0, 30]),
       mok: gridSpawn('mok', [38, 0, 18]),
@@ -300,6 +453,10 @@ async function init() {
     },
   });
   await petManager.load();
+  await Promise.all(petManager.pets.map(pet => applySavedCharacterAppearance(
+    pet,
+    pet._profile?.id || pet._petName,
+  )));
   for (const pet of petManager.pets) {
     assetAudit.recordAnimations(pet._petId || pet._petName || pet.mesh.name, pet._animPlans);
   }
@@ -327,6 +484,7 @@ async function init() {
 
   // ---- ESC management panel ----
   const mgmtPanel = document.getElementById('mgmt-panel');
+  const btnCloseMgmt = document.getElementById('btn-close-mgmt');
   const chkCollision = document.getElementById('chk-collision');
   const chkPerformance = document.getElementById('chk-performance');
   const colliderStrategyButtons = [...document.querySelectorAll('[data-collider-strategy]')];
@@ -334,11 +492,20 @@ async function init() {
   const renderStyleButtons = [...document.querySelectorAll('[data-render-style]')];
   const renderQualityButtons = [...document.querySelectorAll('[data-render-quality]')];
   const chkPostProcessing = document.getElementById('chk-post-processing');
+  const btnWorldTuningAudit = document.getElementById('btn-world-tuning-audit');
+  const worldTuningAuditStatus = document.getElementById('world-tuning-audit-status');
+  const btnReplayActZero = document.getElementById('btn-replay-act-zero');
   const runtimeHUD = new RuntimeHUD({ renderer, physics });
+  const sceneSavePanel = new SceneSavePanel({
+    persistence: scenePersistence,
+    pageLoading,
+  });
+  window.__chiiSceneSavePanel = sceneSavePanel;
   assetAudit.print();
   let panelOpen = false;
 
   function setPanelOpen(open) {
+    if (open && inventorySystem.isOpen()) inventorySystem.close();
     panelOpen = open;
     if (open) {
       mgmtPanel.classList.add('visible');
@@ -378,7 +545,10 @@ async function init() {
     button.setAttribute('aria-pressed', String(active));
     button.addEventListener('click', () => {
       const nextStyle = setChiiSceneStyle(button.dataset.sceneStyle);
-      if (nextStyle !== sceneStyle) window.location.reload();
+      if (nextStyle !== sceneStyle) {
+        scenePersistence.flush();
+        pageLoading.reload(CHII_LOADING_PRESETS.sceneStyle);
+      }
     });
   }
   function syncRenderPresentationControls() {
@@ -412,18 +582,20 @@ async function init() {
     renderPresentation.setPostProcessing(chkPostProcessing.checked);
     syncRenderPresentationControls();
   });
+  btnWorldTuningAudit?.addEventListener('click', () => {
+    const snapshot = worldTuningAudit.print();
+    const abnormal = snapshot.counts.out_of_profile || 0;
+    const soft = snapshot.placement.softOverlaps.length;
+    worldTuningAuditStatus.textContent = abnormal || snapshot.warnings.length
+      ? `需留意 ${abnormal} 个比例，${soft} 组活动间距`
+      : `比例正常，共 ${snapshot.objects.length} 个场景物件`;
+  });
 
   // Click outside card to close
   mgmtPanel.addEventListener('click', (e) => {
     if (e.target === mgmtPanel) setPanelOpen(false);
   });
-
-  // The legacy editor remains available to Ghost Home, but is not mounted or
-  // updated by the Chii runtime.
-  const editorWrap = document.getElementById('editor-wrap');
-  const resizer = document.getElementById('resizer');
-  if (editorWrap) editorWrap.style.display = 'none';
-  if (resizer) resizer.style.display = 'none';
+  btnCloseMgmt?.addEventListener('click', () => setPanelOpen(false));
 
   // ---- dialogue system ----
   const dialogueSystem = createDialogueSystem();
@@ -433,12 +605,20 @@ async function init() {
     terrainSize: GRID_SIZE,
     terrainLayout: scenePlan.modifiedLayout,
   });
+  const objectScalePolicy = new ObjectScalePolicy({
+    profiles: CHII_SIZE_PROFILES,
+    resolveProfile: resolveChiiSizeProfile,
+    cellSize: placementGrid.cellSize,
+  });
   const objectPlacement = new ObjectPlacementService({
     grid: placementGrid,
     worldObjects,
     scene,
     colliderRegistry,
+    scalePolicy: objectScalePolicy,
   });
+  scenePersistence.start();
+  petManager.setPlacementGrid(placementGrid);
   const objectEditor = new ObjectEditorController({
     placement: objectPlacement,
     scene,
@@ -448,7 +628,15 @@ async function init() {
     input,
   });
   const placementAudit = objectPlacement.audit();
+  const worldTuningAudit = new WorldTuningAudit({
+    worldObjects,
+    objectPlacement,
+    metrics: CHII_WORLD_METRICS,
+    profiles: CHII_SIZE_PROFILES,
+    budgets: CHII_PERFORMANCE_BUDGETS,
+  });
   window.__chiiPlacement = objectPlacement;
+  window.__chiiWorldTuning = worldTuningAudit;
   console.log('[Placement] Initial audit:', JSON.stringify({
     entities: placementAudit.entities,
     occupiedCells: placementAudit.occupiedCells,
@@ -471,11 +659,32 @@ async function init() {
     }));
     console.warn('[Placement] Existing overlap cells:', JSON.stringify(overlapDetails));
   }
+  const assembledInteriors = await assembleChiiInteriors({
+    scene,
+    physics,
+    registry: worldObjects,
+    modelJsons,
+  });
+  const buildingInteriorSystem = new BuildingInteriorSystem({
+    player,
+    cameraController: thirdPersonCamera,
+    pageLoading,
+    rooms: assembledInteriors.rooms,
+    worldObjects,
+    buildings: scenePlan.buildings,
+    center: [centerCfg.center[0], centerCfg.center[1]],
+    gridSize: GRID_SIZE,
+    onInteriorChanged: inside => climatePresenter.setWeatherEffectsVisible(!inside),
+  });
+  window.__chiiInteriors = buildingInteriorSystem;
+  console.log(`[Interiors] Ready: church + empty room, ${assembledInteriors.furniture.length} furniture entities`);
+
   const regionGameplay = await createChiiRegionGameplay({
     scene,
     physics,
     player,
     camera,
+    cameraController: thirdPersonCamera,
     petManager,
     architect,
     bear,
@@ -501,6 +710,8 @@ async function init() {
     colliderRegistry,
     objectPlacement,
     objectEditor,
+    equipmentService: characterEquipment,
+    sceneStyle,
     onGeneratedObject: entity => objectEditor.openGenerated(entity),
   });
   const { pastoralSlice, townSocialSystem, townBuilderSystem, forestTempleSystem } = regionGameplay;
@@ -508,6 +719,13 @@ async function init() {
   window.__townBuilderSystem = townBuilderSystem;
   window.__petPartyEvent = townSocialSystem;
   window.__forestTempleSystem = forestTempleSystem;
+  const restoredGeneratedPets = await forestTempleSystem.restoreSavedPets();
+  for (const pet of restoredGeneratedPets) {
+    if (!dynamicTargets.includes(pet)) dynamicTargets.push(pet);
+  }
+  if (restoredGeneratedPets.length > 0) {
+    console.log(`[SceneSave] Restored ${restoredGeneratedPets.length} generated pets`);
+  }
   if (forestDemoEnabled) {
     const demoPet = petManager.pets.find(pet => pet._petName === 'yafo');
     if (demoPet) {
@@ -723,10 +941,16 @@ async function init() {
     townBuilderSystem,
     pastoralSlice,
     forestTempleSystem,
+    buildingInteriorSystem,
     objectPlacement,
     bearHome: { x: bearSpawnX, z: bearSpawnZ },
     handlers: {
       onForest: beginForestInteraction,
+      onInterior: hit => {
+        buildingInteriorSystem.interact(hit).catch(error => {
+          console.warn('[Interiors] Transition failed:', error.message);
+        });
+      },
       onTownPet: beginTownPetDialogue,
       onArchitect: beginArchitectDialogue,
       onObject: entity => objectEditor.open(entity),
@@ -743,15 +967,69 @@ async function init() {
     },
   });
 
+  // ---- story prologue: Act 0 crash performance ----
+  const actZeroDirector = new ActZeroCrashDirector({
+    scene,
+    camera,
+    cameraController: thirdPersonCamera,
+    input,
+    player,
+    storyState: actZeroStoryState,
+    onComplete: () => {
+      if (!beachSpawnCell) return;
+      const position = getGridWorldPosition(
+        beachSpawnCell.gridX,
+        beachSpawnCell.gridZ,
+        centerCfg.center[0],
+        centerCfg.center[1],
+        GRID_SIZE,
+      );
+      player.teleport(position, { orientation: beachSpawnCell.facing, groundY: 0 });
+    },
+  });
+  window.__chiiActZero = actZeroDirector;
+  window.__chiiStory = islandStoryState;
+  window.__chiiActZeroStory = actZeroStoryState;
+  await actZeroDirector.start();
+  pageLoading.hide();
+  const interiorPreviewId = new URLSearchParams(window.location.search).get('interior-preview');
+  const interiorPreviewEntry = buildingInteriorSystem.entries.find(
+    entry => entry.buildingId === interiorPreviewId,
+  );
+  if (interiorPreviewEntry) {
+    await buildingInteriorSystem.enter(interiorPreviewEntry);
+  }
+  btnReplayActZero?.addEventListener('click', () => {
+    setPanelOpen(false);
+    actZeroDirector.replay().catch(error => {
+      console.warn('[ActZero] Replay failed:', error.message);
+    });
+  });
+
   // ---- animation loop ----
   const clock = new THREE.Clock();
 
   function animate() {
     requestAnimationFrame(animate);
     const dt = Math.min(clock.getDelta(), 0.1);
+    actZeroDirector.update(dt);
+    const actZeroActive = actZeroDirector.isActive();
+    inventorySystem.update({
+      canOpen: !actZeroActive
+        && !buildingInteriorSystem.isTransitioning()
+        && !dialogueActive
+        && !dialogueCamera.locked
+        && !dialogueSystem.isActive()
+        && !panelOpen
+        && !itemShowcase.isActive()
+        && !constructionActive
+        && !objectEditor.isActive(),
+    });
+    const inventoryOpen = inventorySystem.isOpen();
+    const itemShowcaseActive = itemShowcase.isActive();
 
     // Pointer-lock camera (skip when dialogue or panel are active)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive()) {
+    if (!actZeroActive && !buildingInteriorSystem.isTransitioning() && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !inventoryOpen && !itemShowcaseActive && !objectEditor.isActive()) {
       const { dx, dy } = input.consumeMouseDelta();
       if (dx !== 0 || dy !== 0) {
         thirdPersonCamera.applyMouseDelta(dx, dy);
@@ -759,8 +1037,12 @@ async function init() {
     }
 
     // ESC: close dialogue first, then toggle management panel
-    if (input.justPressed('Escape')) {
-      if (objectEditor.isActive()) {
+    if (!actZeroActive && !buildingInteriorSystem.isTransitioning() && input.justPressed('Escape')) {
+      if (itemShowcaseActive) {
+        itemShowcase.stop();
+      } else if (inventoryOpen) {
+        inventorySystem.close();
+      } else if (objectEditor.isActive()) {
         objectEditor.cancel();
       } else if (dialogueSystem.isActive()) {
         dialogueSystem.hide();
@@ -772,55 +1054,62 @@ async function init() {
     }
 
     interactionController.update(
-      !dialogueActive
+      !actZeroActive
+      && !buildingInteriorSystem.isTransitioning()
+      && !dialogueActive
       && !dialogueCamera.locked
       && !dialogueSystem.isActive()
       && !panelOpen
+      && !inventoryOpen
+      && !itemShowcaseActive
       && !constructionActive
       && !objectEditor.isActive(),
     );
 
-    // H key: 挥舞左手 (one-shot)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive() && input.justPressed('KeyH')) {
-      player.playOneShot('wave_left', 2.0);
-    }
-    // J key: 挥舞扇子+特效 (one-shot)
-    if (!dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !objectEditor.isActive() && input.justPressed('KeyJ')) {
-      player.playOneShot('fan_spark', 2.0);
+    // J: Phrolova's character-specific action. H/Space are locomotion controls in Player.
+    if (!actZeroActive && !buildingInteriorSystem.isTransitioning() && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !panelOpen && !inventoryOpen && !itemShowcaseActive && !objectEditor.isActive() && input.justPressed('KeyJ')) {
+      player.playOneShot('special', 2.0);
     }
 
     // Entity animation updates
-    for (const e of staticEntities) {
-      e.updateAnimation?.(dt);
-      e.updateBreathing?.(dt);
+    if (!actZeroActive) {
+      for (const e of staticEntities) {
+        e.updateAnimation?.(dt);
+        e.updateBreathing?.(dt);
+      }
     }
 
     // Player update: fully freeze movement while any dialogue/input UI is active.
-    if (!panelOpen && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !objectEditor.isActive()) {
+    if (!actZeroActive && !buildingInteriorSystem.isTransitioning() && !panelOpen && !inventoryOpen && !dialogueActive && !dialogueCamera.locked && !dialogueSystem.isActive() && !objectEditor.isActive()) {
       player.update(dt, input, thirdPersonCamera);
     }
 
-    // Architect update (always runs)
-    architect.update(dt);
-
-    // Bear update (always runs)
-    bear.update(dt);
-    petManager.update(dt);
-    regionGameplay.update(dt);
-    worldClimate.update(dt);
+    if (!actZeroActive) {
+      architect.update(dt);
+      bear.update(dt);
+      petManager.update(dt);
+      regionGameplay.update(dt);
+      worldClimate.update(dt);
+    }
     modelVisuals.update(dt);
+    worldWaterVisuals?.update(dt);
 
-    const nearestRegionName = regionGameplay.getNearestRegionName(player.mesh.position);
-    const followingPet = [bear, ...petManager.pets].find(pet => pet.petState?.is('following') || pet._followEnabled);
-    runtimeHUD.setWorldStatus(nearestRegionName, followingPet?._petName || null);
-    runtimeHUD.update(dt, { entities: staticEntities.length, pets: petManager.pets.length + 1 });
+    if (!actZeroActive) {
+      const nearestRegionName = buildingInteriorSystem.getLocationName()
+        || regionGameplay.getNearestRegionName(player.mesh.position);
+      const followingPet = [bear, ...petManager.pets].find(pet => pet.petState?.is('following') || pet._followEnabled);
+      runtimeHUD.setWorldStatus(nearestRegionName, followingPet?._petName || null);
+      runtimeHUD.update(dt, { entities: staticEntities.length, pets: petManager.pets.length + 1 });
+    }
 
     // Particle systems + reveal animations
-    treeChopSequence.update(dt);
-    if (campfireParticles) campfireParticles.update(dt, null);
+    if (!actZeroActive) {
+      treeChopSequence.update(dt);
+      if (campfireParticles) campfireParticles.update(dt, null);
+    }
 
     // Construction effect update
-    if (constructionActive) {
+    if (!actZeroActive && constructionActive) {
       constructionEffect.update(dt);
     }
 
@@ -830,10 +1119,14 @@ async function init() {
     }
 
     // Camera update
-    thirdPersonCamera.update(player.mesh.position);
+    if (actZeroActive) {
+      actZeroDirector.applyCamera();
+    } else {
+      thirdPersonCamera.update(player.mesh.position);
+    }
 
     // Physics step
-    physics.step();
+    if (!actZeroActive) physics.step();
     debugRenderer.update();
 
     input.endFrame();
@@ -856,20 +1149,21 @@ async function init() {
     ro.observe(gameWrap);
   }
 
-  // ---- resizer hidden (editor panel disabled) ----
-
   console.log(
-    '🐉 Chii Island 奇异岛 — 奶龙主角\n' +
+    'Chii Island 奇异岛 — 弗洛洛主角\n' +
     '  点击画面锁定鼠标，移动鼠标 = 旋转视角 | Esc 释放鼠标 | 滚轮 = 缩放\n' +
     '  WASD = 移动（A/D 转向）| Shift = 加速\n' +
-    '  空格 = 切换飞行模式 | Q/E = 上升/下降\n' +
-    '  H = 挥舞左手 | J = 挥舞扇子+闪光特效\n' +
-    '  停止不动 = 呼吸摇摆 | 移动 = 奔跑动画 | 飞行 = 跳跃动画\n' +
-    '  右侧 = 模型编辑器'
+    '  空格 = 跳跃 | H = 切换飞行模式 | Q/E = 上升/下降\n' +
+    '  B = 打开或关闭背包\n' +
+    '  J = 弗洛洛特殊动作\n' +
+    '  停止不动 = 呼吸摇摆 | 移动 = 奔跑动画 | 飞行 = 跳跃动画'
   );
 }
 
 init().catch((err) => {
   console.error('[Init] Fatal:', err);
-  document.body.innerHTML = '<div style="color:white;padding:20px;font-family:sans-serif">Failed to start:<br>' + err.message + '</div>';
+  pageLoading.fail({
+    title: '奇异岛还没准备好',
+    detail: `有个行李箱卡在门口：${err.message}`,
+  });
 });

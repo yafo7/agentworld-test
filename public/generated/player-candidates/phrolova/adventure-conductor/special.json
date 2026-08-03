@@ -1,0 +1,103 @@
+{
+  "_duration": 2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 1
+    },
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 1,
+      "phase": 0.15
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 85,
+      "lockWorldRot": false
+    },
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.38,
+        "frequency": 2,
+        "phase": 0
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.3,
+        "frequency": 1,
+        "phase": 0.25
+      }
+    ]
+  },
+  "baton": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.15,
+      "frequency": 2,
+      "phase": 0.1
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "box",
+      "meshSize": 0.4,
+      "rate": 22,
+      "lifetime": [
+        0.8,
+        1.4
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0.25
+        ],
+        "speed": [
+          0.8,
+          1.8
+        ],
+        "spread": 0.65
+      },
+      "acceleration": [
+        0,
+        0.3,
+        0
+      ],
+      "offset": [
+        0.65,
+        0.15,
+        0
+      ],
+      "colorStart": [
+        1,
+        0.08,
+        0.12
+      ],
+      "colorEnd": [
+        0.45,
+        0,
+        0.05
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  },
+  "_name": "方案 C · 轻装冒险版_special",
+  "_type": "special",
+  "_modelId": "phrolova_c",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "挥杖指挥红色音符",
+    "emitParticles": true
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.18,
+      "frequency": 2.2
+    }
+  },
+  "frontLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.15,
+      "frequency": 2.2,
+      "phase": 0
+    }
+  },
+  "frontRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.15,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "rearLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.25,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "rearRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.25,
+      "frequency": 2.2,
+      "phase": 0
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 2.2,
+      "phase": 0.25
+    }
+  },
+  "_name": "mako-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mako",
+    "quality": "voxel",
+    "prompt": "四蹄快速奔跑"
+  }
+}

@@ -173,6 +173,77 @@ test('original bounds strategy keeps the configured single building footprint co
   assert.equal(boxEvent[7], 4);
 });
 
+test('bridge keeps a walkable deck and two rail colliders in both strategies', async () => {
+  const modelJson = await placeholderModel();
+  const physics = fakePhysics();
+  const registry = new ColliderRegistry(physics);
+  const bridge = entity('town-bridge', modelJson, 'building');
+  bridge.mesh.position.set(10, 0, -6);
+  bridge.mesh.userData.collider = {
+    type: 'bridge',
+    length: 44,
+    width: 12,
+    deckY: 0,
+    deckThickness: 0.2,
+    railHeight: 1.4,
+    railThickness: 0.4,
+  };
+
+  const voxelRecord = registry.registerEntity(bridge);
+  assert.equal(voxelRecord.profileKey.startsWith('bridge:'), true);
+  assert.equal(voxelRecord.colliders.length, 3);
+  const deckEvent = physics.events.find(event => event[0] === 'box');
+  assert.equal(deckEvent[2], 22);
+  assert.equal(deckEvent[3], 0.1);
+  assert.equal(deckEvent[4], 6);
+
+  registry.setStrategy(COLLIDER_STRATEGIES.LEGACY_BOUNDS);
+  const legacyRecord = registry.get(bridge);
+  assert.equal(legacyRecord.profileKey.startsWith('bridge:'), true);
+  assert.equal(legacyRecord.colliders.length, 3);
+});
+
+test('bridge uses fitted visual deck and rail segments when the scene supplies them', async () => {
+  const modelJson = await placeholderModel();
+  const physics = fakePhysics();
+  const registry = new ColliderRegistry(physics);
+  const bridge = entity('segmented-bridge', modelJson, 'building');
+  bridge.mesh.position.set(10, 0, -6);
+  bridge.mesh.userData.collider = {
+    type: 'bridge',
+    length: 44,
+    width: 12,
+    deckSegments: [
+      {
+        center: [-2, 0.2, 0],
+        halfExtents: [2.1, 0.15, 4.5],
+        rotation: [0, 0, 0.08, 0.9968],
+      },
+      {
+        center: [2, 0.2, 0],
+        halfExtents: [2.1, 0.15, 4.5],
+        rotation: [0, 0, -0.08, 0.9968],
+      },
+    ],
+    railSegments: [
+      {
+        center: [0, 0.8, -5.5],
+        halfExtents: [4, 0.7, 0.2],
+        rotation: [0, 0, 0, 1],
+      },
+    ],
+  };
+
+  const record = registry.registerEntity(bridge);
+  const boxEvents = physics.events.filter(event => event[0] === 'box');
+
+  assert.equal(record.colliders.length, 3);
+  assert.equal(boxEvents.length, 3);
+  assert.deepEqual(boxEvents[0].slice(2, 8), [2.1, 0.15, 4.5, 8, 0.2, -6]);
+  assert.equal(boxEvents[0][8].z, 0.08);
+  assert.equal(boxEvents[0][8].w, 0.9968);
+});
+
 test('refine prepares a new model revision before atomically replacing the old collider instance', async () => {
   const originalJson = await placeholderModel();
   const refinedJson = structuredClone(originalJson);

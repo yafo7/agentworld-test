@@ -1,54 +1,78 @@
 {
-  "name": "粉色方块花",
+  "name": "粉红花",
   "type": "lowpoly",
   "format": 2,
   "nodes": [
     {
       "id": "stem",
-      "name": "绿色短茎",
+      "name": "绿色细茎",
       "transform": {
         "pos": [
           0,
           0,
           0
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
-      "id": "leftLeaf",
-      "name": "左叶",
+      "id": "leafLeft",
+      "name": "左圆叶",
       "parent": "stem",
       "transform": {
         "pos": [
           0,
-          0.86,
+          0.95,
           0
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
-      "id": "rightLeaf",
-      "name": "右叶",
+      "id": "leafRight",
+      "name": "右圆叶",
       "parent": "stem",
       "transform": {
         "pos": [
           0,
-          0.65,
+          1.28,
           0
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "flower",
-      "name": "粉色花朵",
+      "name": "五瓣花冠",
       "parent": "stem",
       "transform": {
         "pos": [
           0,
-          1.48,
+          2.05,
           0
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "m0",
@@ -56,110 +80,122 @@
       "transform": {
         "pos": [
           0,
-          0.775,
+          1.05,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.24,
-          "height": 1.55,
-          "depth": 0.24
+          "width": 0.12,
+          "height": 2.1,
+          "depth": 0.12
         },
-        "color": 4165445
+        "color": 4168527
       }
     },
     {
       "id": "m1",
-      "parent": "leftLeaf",
+      "parent": "leafLeft",
       "transform": {
         "pos": [
-          -0.42,
-          0.05,
-          0
+          -0.12,
+          0.09,
+          0.02
         ],
         "quat": [
-          -0.17,
-          -0.69,
-          0.69,
-          0.17
+          0.21,
+          0.68,
+          0.68,
+          0.21
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.72,
-          "height": 0.12,
-          "depth": 0.29
+          "width": 0.3,
+          "height": 0.08,
+          "depth": 0.09
         },
-        "color": 5613647
+        "color": 3903816
       }
     },
     {
       "id": "m2",
-      "parent": "rightLeaf",
+      "parent": "leafLeft",
       "transform": {
         "pos": [
-          0.37,
-          0.07,
-          0
+          -0.46,
+          0.19,
+          0.03
         ],
         "quat": [
-          -0.69,
-          -0.14,
-          0.14,
-          0.69
+          0.27,
+          -0.65,
+          0.65,
+          -0.27
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.65,
+          "width": 0.45,
           "height": 0.12,
-          "depth": 0.33
+          "depth": 0.45
         },
-        "color": 5021000
+        "color": 5614942
       }
     },
     {
       "id": "m3",
-      "parent": "flower",
+      "parent": "leafRight",
       "transform": {
         "pos": [
-          0,
-          0.62,
-          0
+          0.12,
+          0.08,
+          0.03
+        ],
+        "quat": [
+          0.68,
+          0.2,
+          0.2,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.58,
-          "depth": 0.3
+          "width": 0.27,
+          "height": 0.08,
+          "depth": 0.09
         },
-        "color": 15891884
+        "color": 3903816
       }
     },
     {
       "id": "m4",
-      "parent": "flower",
+      "parent": "leafRight",
       "transform": {
         "pos": [
-          0,
-          -0.18,
-          0
+          0.44,
+          0.16,
+          0.04
+        ],
+        "quat": [
+          0.65,
+          -0.27,
+          -0.27,
+          0.65
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.58,
-          "depth": 0.3
+          "width": 0.44,
+          "height": 0.12,
+          "depth": 0.44
         },
-        "color": 15297438
+        "color": 5813603
       }
     },
     {
@@ -167,19 +203,25 @@
       "parent": "flower",
       "transform": {
         "pos": [
-          -0.4,
-          0.22,
-          0
+          0,
+          0.28,
+          0.08
+        ],
+        "quat": [
+          -0.5,
+          -0.5,
+          0.5,
+          0.5
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.58,
-          "depth": 0.3
+          "width": 0.5,
+          "height": 0.15,
+          "depth": 0.34
         },
-        "color": 16091829
+        "color": 15757215
       }
     },
     {
@@ -187,19 +229,25 @@
       "parent": "flower",
       "transform": {
         "pos": [
-          0.4,
-          0.22,
-          0
+          -0.24,
+          0.11,
+          0.08
+        ],
+        "quat": [
+          -0.11,
+          -0.7,
+          0.7,
+          0.11
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.58,
-          "height": 0.58,
-          "depth": 0.3
+          "width": 0.5,
+          "height": 0.15,
+          "depth": 0.34
         },
-        "color": 16091829
+        "color": 15757215
       }
     },
     {
@@ -207,19 +255,97 @@
       "parent": "flower",
       "transform": {
         "pos": [
-          0,
-          0.22,
+          -0.15,
+          -0.17,
           0.08
+        ],
+        "quat": [
+          0.32,
+          -0.63,
+          0.63,
+          -0.32
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.48,
-          "height": 0.48,
-          "depth": 0.4
+          "width": 0.5,
+          "height": 0.15,
+          "depth": 0.34
         },
-        "color": 16762954
+        "color": 15757215
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0.15,
+          -0.17,
+          0.08
+        ],
+        "quat": [
+          -0.63,
+          0.32,
+          -0.32,
+          0.63
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.15,
+          "depth": 0.34
+        },
+        "color": 15757215
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0.24,
+          0.11,
+          0.08
+        ],
+        "quat": [
+          -0.7,
+          -0.11,
+          0.11,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.15,
+          "depth": 0.34
+        },
+        "color": 15757215
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0.16
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.3,
+          "depth": 0.22
+        },
+        "color": 16041282
       }
     }
   ],
@@ -227,10 +353,23 @@
     "skipAutoCenter": true,
     "ai": {
       "v": 1,
-      "ts": 1784016671380,
+      "ts": 1785217562916,
       "provider": "gpt",
-      "data": "HMuEDbZhQYFpxTYw5NXcFALY412do5GmDY0mlOVyWbB6IRYt0ohB7SdXhNmFIq38Hq853Bqm7CoSj/FX9K19BH+w0AvAeBLD4ObrW7K9uL5QPXzTY4pHM0dG2IlhRk4OmUwNDt7Ge7000ur28vo09K+kbNyAeW8zUwl/aTdlfkBbVNIeM7hFz2JksDn6nbs9wBSxRbsaHTE3dg3IBpF936zDdo85GzbWkvcbqJ0HVzrodRSauHVJljFM5FacfuXJBGm1qU/mKMZsvbED6pNXFvrMij8VwdXm9uX8NdXKIYa+HG6CT5/twDcH8V9T5oY5QpJgszOOk02HGb5bK65nH7NluVjTk41TjRe86UGe+DWYfV2ZPsyexmlSvJapa4e2/2mk72JUlXQJOxeLXsZR9oGGqcKQ20ZlV9mYYVveUospPyo4YNiOqYel2ZlPEBFABpwRO6xkMod/RGt+xMuSKy2Jwb1ELjsUmgkLpVcWG9QdrrFSVKFOnecCT0Zq/O5a8IDs4/c5yYSHkImPncidNZgHBZeN9OWcWXpntB8Ndy+KP4a3Y2sGe8Al+vllN6hruqGitgVwB5ZrB0ua6h4+s+5jDm6NbbtnQPya3Ss2Fjg6h2d8W0mEvQPdemFN7QgX9ikn5b2x9rqKud0s5r+nwPgBYghcuPbLrwrenizBmJ2MhY/rNHtJl20g5W3P0PibeoYmfz2SIsclM+HaXlD+Q1vapBFQz+VMHxbZfjA=",
+      "data": "MMY2oVMynNhm5HXupD41BKQRKSfpdHLkEmZU0ioFPVpIqzRULyAbSxYAhEgFY+/gZ10Fw1VLDK3x6alS+ImYtxDutETUPkx0Wps/ETQk7d9CDi9S1LEhuIA7MteMbICqvbWpH3KPJO1GHQExoFZb8WE3krpI6DRiFxv6ptHFWryMWIpsVfSVmnb15uGXBnLnl+9UB8ttWxzNqohDtJcGZHk5RlghkTm/jsxC8JxjIGb8yHUKAl4M0ht687yOBg8Z7XLLqNSotwv+knhGsXZCVZj2kmxgTm9EzeRmLgBvQp7CpDXqSXCUrdsC9ya1PpTrH7ErBIZEyyI/itLNN+YMnSQ2VjYPmR+YDXgR+oFjtezrdmaxKdS6fmgngEOfXcy2EiMadnAtXaePfZ+12vd1K67pgJJL6TWU8wKe0RyhOPiSUoUqr8EHq3QfX0ByLudXyzFYiUaNV51w9liPPoRZoCEFynZk3YAOuQYRxl7d82qZO0EQiWfRn2tP9dCn55PmGBAZbKabGvAKoNeqmdUfL5ygwCbY1I7LwHVp60fCqwHdgLSrpfh8YpjihBI0PGxKWBfgWkxd3WKcSrp+yfF06ZLOxCYY87ag7ZviWDpL5bF0IKyCAo0PbHY5x/JFRZilFsdWbyAAHSuR1eSmIsOze9ZB6UzEqI4yEtSHV8bPwoiGHKl/UreNAX2q0VDpqj49eAjjZu2MH7c/iBYcWhtSsSPY/zQQ3S0AG+PqKu6BQWyJ/RWAjOCDbxntG0/zwELO7J2b3G0rbqt78+dfSknoWNyU2WaKjiqELLf4S82B2MXHR+E7YlMbaMme8hBuW6YALbOB4+opvG1CrmAeGNfg+/varuPMZJj4qaycTYUr0x2Pd83ZZnHLz1oegiY0s/McS9ofVAWvN5CGzFxKScQVApq8/uogAy+Pfg21VzNfHyqOAai9H2OmXvXtGWsrkRZr54BgwVyh31ws7g+dUajnG0auELGFV8KU9t8GU4PNBEm27fomMVT67efwEfyOZHXhxptbDKtiKCrMaff+xjhMWU6bLgRHMToDgjFJCTi1TTu04XoVPWrxjBBPofLLQP7lVUqDKLfayKxbiMr4SZeEOqGgqwK7KaBE42R6W4PNvAcFPzfnaXVTR1o3+pzpHrCx2wErzwyBksXodJaZlu3wsxA5pQ6zYjKaPE3IUFCpOa5y5Gdy/JdP+OlDvEg01e6nKIa/4ZkGH/taeeOXSYKZYoazKerySSBFV9ZphNK9AXQKxr0hwZc0pS3b5pvlZ/oJzcDiuyT9LFVXSfHPFDjwnPRiO1YfFMbhO8FPC9BAES97dvz0LIDeYG4u",
       "edits": ""
-    }
+    },
+    "chiiAssetRole": "plant",
+    "chiiAssetId": "pink_flower",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "一株粉红色五瓣小花，绿色细茎，两片圆叶",
+    "chiiAssetCategory": "plant"
   }
 }

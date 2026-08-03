@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
+import { CHII_PRESENTATION_TUNING } from '../data/worldTuningProfile.js';
 
 const PRESETS = Object.freeze({
   idea: Object.freeze({
@@ -53,6 +54,33 @@ export function getTemporaryVfxPreset(name) {
   return PRESETS[name] || null;
 }
 
+function targetScale(target) {
+  if (!target) return 1;
+  const box = new THREE.Box3().setFromObject(target);
+  if (box.isEmpty()) return 1;
+  const height = box.getSize(new THREE.Vector3()).y;
+  const tuning = CHII_PRESENTATION_TUNING.vfx;
+  return THREE.MathUtils.clamp(
+    height / tuning.referenceHeight,
+    tuning.minimumScale,
+    tuning.maximumScale,
+  );
+}
+
+function scaledEmit(emit, scale) {
+  return {
+    ...emit,
+    meshSize: (emit.meshSize || 0.1) * scale,
+    offset: (emit.offset || [0, 0, 0]).map(value => value * scale),
+    velocity: emit.velocity ? {
+      ...emit.velocity,
+      speed: Array.isArray(emit.velocity.speed)
+        ? emit.velocity.speed.map(value => value * Math.sqrt(scale))
+        : emit.velocity.speed,
+    } : emit.velocity,
+  };
+}
+
 export class TemporaryVfxService {
   constructor({ scene }) {
     this.scene = scene;
@@ -76,10 +104,13 @@ export class TemporaryVfxService {
     else this.scene.add(root);
 
     const lifetime = duration ?? preset.duration;
+    const visualScale = targetScale(target);
     const plan = {
       _duration: Number.isFinite(lifetime) ? lifetime : 60,
       _loop: true,
-      [emitter.name]: { emit: { emitMode: 'point', ...preset.emit } },
+      [emitter.name]: {
+        emit: { emitMode: 'point', ...scaledEmit(preset.emit, visualScale) },
+      },
     };
     const system = new ParticleSystem(this.scene);
     system.setup(plan, root);
@@ -90,6 +121,7 @@ export class TemporaryVfxService {
       ownedRoot: true,
       system,
       remaining: lifetime,
+      visualScale,
     });
     return effectKey;
   }

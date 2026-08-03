@@ -1,0 +1,3919 @@
+{
+  "name": "奶龙手持苹果",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "transform": {
+        "pos": [
+          0,
+          -0.0872,
+          0
+        ]
+      }
+    },
+    {
+      "id": "chest",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          4,
+          0
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0.65,
+          0.12
+        ]
+      }
+    },
+    {
+      "id": "leftArm",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          -1.02,
+          0.15,
+          0.05
+        ]
+      }
+    },
+    {
+      "id": "leftArm_upperArm",
+      "name": "wp0",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          0,
+          -0.03,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm_forearm",
+      "name": "wp1",
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          -0.285,
+          -0.6713,
+          0.2675
+        ]
+      }
+    },
+    {
+      "id": "leftArm_hand",
+      "name": "wp2",
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0.285,
+          -0.4987,
+          0.4325
+        ]
+      }
+    },
+    {
+      "id": "rightArm",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          1.02,
+          0.15,
+          0.05
+        ]
+      }
+    },
+    {
+      "id": "rightArm_upperArm",
+      "name": "wp0",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0,
+          -0.03,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightArm_forearm",
+      "name": "wp1",
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0.4325,
+          -0.5575,
+          0.6637
+        ]
+      }
+    },
+    {
+      "id": "rightArm_hand",
+      "name": "wp2",
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          -0.2725,
+          -0.4825,
+          0.5063
+        ]
+      }
+    },
+    {
+      "id": "foldingFan",
+      "name": "red folding fan",
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "wings",
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          -0.9
+        ]
+      }
+    },
+    {
+      "id": "rightWing_root",
+      "name": "wp0",
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          0.72,
+          0.15,
+          -0.02
+        ]
+      }
+    },
+    {
+      "id": "rightWing_mid",
+      "name": "wp1",
+      "parent": "rightWing_root",
+      "transform": {
+        "pos": [
+          0.5,
+          -0.53,
+          -0.16
+        ]
+      }
+    },
+    {
+      "id": "rightWing_tip",
+      "name": "wp2",
+      "parent": "rightWing_mid",
+      "transform": {
+        "pos": [
+          0.56,
+          0.26,
+          0.03
+        ]
+      }
+    },
+    {
+      "id": "leftWing_root",
+      "name": "wp0",
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -0.72,
+          0.15,
+          -0.02
+        ]
+      }
+    },
+    {
+      "id": "leftWing_mid",
+      "name": "wp1",
+      "parent": "leftWing_root",
+      "transform": {
+        "pos": [
+          -0.5,
+          -0.53,
+          -0.16
+        ]
+      }
+    },
+    {
+      "id": "leftWing_tip",
+      "name": "wp2",
+      "parent": "leftWing_mid",
+      "transform": {
+        "pos": [
+          -0.56,
+          0.26,
+          0.03
+        ]
+      }
+    },
+    {
+      "id": "abdomen",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          2.52,
+          0
+        ]
+      }
+    },
+    {
+      "id": "pelvis",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.92,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeg",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          -0.58,
+          -0.1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_thigh",
+      "name": "wp0",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          0,
+          -0.04,
+          0.04
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_shin",
+      "name": "wp1",
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          -0.1138,
+          -0.7762,
+          0.0662
+        ]
+      }
+    },
+    {
+      "id": "leftLeg_foot",
+      "name": "wp2",
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          0.0438,
+          -0.6638,
+          0.3137
+        ]
+      }
+    },
+    {
+      "id": "rightLeg",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0.58,
+          -0.1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_thigh",
+      "name": "wp0",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0,
+          -0.04,
+          0.04
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_shin",
+      "name": "wp1",
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0.1138,
+          -0.7762,
+          0.0662
+        ]
+      }
+    },
+    {
+      "id": "rightLeg_foot",
+      "name": "wp2",
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          -0.0438,
+          -0.6638,
+          0.3137
+        ]
+      }
+    },
+    {
+      "id": "tail",
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0,
+          -0.07,
+          -0.95
+        ]
+      }
+    },
+    {
+      "id": "tail_root",
+      "name": "wp0",
+      "parent": "tail",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "tail_mid1",
+      "name": "wp1",
+      "parent": "tail_root",
+      "transform": {
+        "pos": [
+          0.0356,
+          -0.3107,
+          -0.477
+        ]
+      }
+    },
+    {
+      "id": "tail_mid2",
+      "name": "wp2",
+      "parent": "tail_mid1",
+      "transform": {
+        "pos": [
+          -0.0444,
+          -0.2819,
+          -0.4326
+        ]
+      }
+    },
+    {
+      "id": "tail_tip",
+      "name": "wp3",
+      "parent": "tail_mid2",
+      "transform": {
+        "pos": [
+          0.0089,
+          -0.1774,
+          -0.3904
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.95,
+          "radiusBottom": 1.08,
+          "height": 1.45,
+          "radialSegments": 12
+        },
+        "color": 16374412
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.8,
+          -0.04
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m1",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.82,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16374412
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          1,
+          -0.04
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m2",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.52,
+          "depth": 0.95
+        },
+        "color": 16175738
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.7,
+          0.73
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m3",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.22,
+          "depth": 0.72
+        },
+        "color": 16119260
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.47,
+          0.8
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m4",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.06,
+          "depth": 0.12
+        },
+        "color": 8010282
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.48,
+          1.2
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m5",
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.18,
+          "detail": 0
+        },
+        "color": 1118481
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.38,
+          1.07,
+          0.81
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m6",
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.055,
+          "detail": 0
+        },
+        "color": 16777215
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.43,
+          1.13,
+          0.92
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m7",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.22,
+          "height": 0.72,
+          "radialSegments": 8
+        },
+        "color": 16119260
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.42,
+          1.69,
+          -0.24
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m8",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.42,
+          1.37,
+          -0.24
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m9",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.12,
+          "height": 0.22,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.28,
+          0.43,
+          1.22
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m10",
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.18,
+          "detail": 0
+        },
+        "color": 1118481
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.38,
+          1.07,
+          0.81
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m11",
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.055,
+          "detail": 0
+        },
+        "color": 16777215
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.43,
+          1.13,
+          0.92
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m12",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.22,
+          "height": 0.72,
+          "radialSegments": 8
+        },
+        "color": 16119260
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.42,
+          1.69,
+          -0.24
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m13",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.16,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.42,
+          1.37,
+          -0.24
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m14",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.12,
+          "height": 0.22,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.28,
+          0.43,
+          1.22
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m15",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.88,
+          "radiusBottom": 1.18,
+          "height": 1.18,
+          "radialSegments": 12
+        },
+        "color": 16175738
+      },
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m16",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.34,
+          "radiusBottom": 0.34,
+          "height": 0.5,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0.58,
+          0.08
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m17",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2,
+          "height": 0.22,
+          "depth": 0.45
+        },
+        "color": 16374412
+      },
+      "parent": "chest",
+      "transform": {
+        "pos": [
+          0,
+          0.32,
+          -0.28
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m18",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.18,
+          "radiusBottom": 1.48,
+          "height": 1.65,
+          "radialSegments": 14
+        },
+        "color": 16374412
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m19",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.82,
+          "radiusBottom": 0.82,
+          "height": 0.08,
+          "radialSegments": 18
+        },
+        "color": 16119260
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0.3,
+          1.34
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m20",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.55,
+          "radiusBottom": 0.55,
+          "height": 0.075,
+          "radialSegments": 18
+        },
+        "color": 16119260
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0.66,
+          1.39
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m21",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.16,
+          "height": 0.35,
+          "radialSegments": 5
+        },
+        "color": 16763904
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0.96,
+          -1.25
+        ],
+        "quat": [
+          -0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m22",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.14500000000000002,
+          "height": 0.35,
+          "radialSegments": 5
+        },
+        "color": 16763904
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0.48,
+          -1.25
+        ],
+        "quat": [
+          -0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m23",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.13,
+          "height": 0.35,
+          "radialSegments": 5
+        },
+        "color": 16763904
+      },
+      "parent": "abdomen",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -1.25
+        ],
+        "quat": [
+          -0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m24",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 1.36,
+          "radiusBottom": 1,
+          "height": 0.95,
+          "radialSegments": 12
+        },
+        "color": 16175738
+      },
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m25",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.58,
+          "radiusBottom": 0.58,
+          "height": 0.07,
+          "radialSegments": 16
+        },
+        "color": 16119260
+      },
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          1.02
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m26",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.14,
+          "height": 0.3,
+          "radialSegments": 5
+        },
+        "color": 16763904
+      },
+      "parent": "pelvis",
+      "transform": {
+        "pos": [
+          0,
+          0.08,
+          -1.05
+        ],
+        "quat": [
+          -0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m27",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m28",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.61,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "leftArm_upperArm",
+      "transform": {
+        "pos": [
+          -0.15,
+          -0.35,
+          0.14
+        ],
+        "quat": [
+          0.66,
+          0,
+          0.7,
+          0.26
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m29",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m30",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.59,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "leftArm_forearm",
+      "transform": {
+        "pos": [
+          0.14,
+          -0.25,
+          0.22
+        ],
+        "quat": [
+          0.77,
+          0,
+          -0.51,
+          0.39
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m31",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.18,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m32",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16374412
+      },
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m33",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.22,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          -0.12,
+          -0.02,
+          0.19
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m34",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.22,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          -0.02,
+          0.19
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m35",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.22,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "leftArm_hand",
+      "transform": {
+        "pos": [
+          0.12,
+          -0.02,
+          0.19
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m36",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m37",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.8,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "rightArm_upperArm",
+      "transform": {
+        "pos": [
+          0.22,
+          -0.29,
+          0.34
+        ],
+        "quat": [
+          0.74,
+          0,
+          -0.48,
+          0.46
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m38",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.21,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m39",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.21,
+          "radiusBottom": 0.21,
+          "height": 0.62,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "rightArm_forearm",
+      "transform": {
+        "pos": [
+          -0.14,
+          -0.24,
+          0.26
+        ],
+        "quat": [
+          0.8,
+          0,
+          0.43,
+          0.42
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m40",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.18,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m41",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16374412
+      },
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m42",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.2,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          -0.1,
+          0,
+          0.18
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m43",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.2,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.18
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m44",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.055,
+          "height": 0.2,
+          "radialSegments": 4
+        },
+        "color": 16763904
+      },
+      "parent": "rightArm_hand",
+      "transform": {
+        "pos": [
+          0.1,
+          0,
+          0.18
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m45",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.4892470343687767,
+            -0.3335629800673936,
+            -0.026666666666666616
+          ],
+          "b": [
+            0.32642997396420825,
+            0.04679345549923575,
+            0.01333333333333342
+          ],
+          "c": [
+            0.1628170604045689,
+            0.28676952456815874,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 13382451
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.4892,
+          0.3336,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m46",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.35753528673970036,
+            -0.4720121195965672,
+            -0.026666666666666616
+          ],
+          "b": [
+            0.29452880803364523,
+            0.14832038503898515,
+            0.01333333333333342
+          ],
+          "c": [
+            0.06300647870605536,
+            0.3236917345575816,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 14964053
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.3575,
+          0.472,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m47",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            -0.18858791667176056,
+            -0.5613034117083995,
+            -0.026666666666666616
+          ],
+          "b": [
+            0.23195384877399516,
+            0.2344004424457493,
+            0.01333333333333342
+          ],
+          "c": [
+            -0.04336593210223483,
+            0.3269029692626497,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 13382451
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.1886,
+          0.5613,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m48",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            2.220446049250313e-16,
+            -0.5921375873140327,
+            -0.026666666666666616
+          ],
+          "b": [
+            0.14522198456952595,
+            0.29606879365701655,
+            0.01333333333333342
+          ],
+          "c": [
+            -0.14522198456952595,
+            0.29606879365701655,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 14964053
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0,
+          0.5921,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m49",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.18858791667176067,
+            -0.5613034117083995,
+            -0.026666666666666616
+          ],
+          "b": [
+            0.043365932102234495,
+            0.3269029692626497,
+            0.01333333333333342
+          ],
+          "c": [
+            -0.23195384877399516,
+            0.2344004424457493,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 13382451
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.1886,
+          0.5613,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m50",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.3575352867397005,
+            -0.4720121195965672,
+            -0.026666666666666616
+          ],
+          "b": [
+            -0.06300647870605536,
+            0.3236917345575816,
+            0.01333333333333342
+          ],
+          "c": [
+            -0.2945288080336449,
+            0.14832038503898515,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 14964053
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.3575,
+          0.472,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m51",
+      "mesh": {
+        "type": "tri",
+        "params": {
+          "a": [
+            0.4892470343687768,
+            -0.3335629800673945,
+            -0.026666666666666616
+          ],
+          "b": [
+            -0.16281706040456856,
+            0.28676952456815785,
+            0.01333333333333342
+          ],
+          "c": [
+            -0.32642997396420814,
+            0.046793455499235304,
+            0.01333333333333342
+          ],
+          "d": 0.045
+        },
+        "color": 13382451
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.4892,
+          0.3336,
+          0.1367
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m52",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.41,
+          0.19,
+          0.13
+        ],
+        "quat": [
+          0.03,
+          0,
+          -0.54,
+          0.84
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m53",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.33,
+          0.31,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.39,
+          0.92
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m54",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.21,
+          0.4,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.24,
+          0.97
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m55",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.07,
+          0.44,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          -0.08,
+          1
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m56",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.07,
+          0.44,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          0.08,
+          1
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m57",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.21,
+          0.4,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          0.24,
+          0.97
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m58",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.33,
+          0.31,
+          0.13
+        ],
+        "quat": [
+          0.02,
+          0,
+          0.39,
+          0.92
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m59",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.025,
+          "radiusBottom": 0.025,
+          "height": 0.9,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.41,
+          0.19,
+          0.13
+        ],
+        "quat": [
+          0.03,
+          0,
+          0.54,
+          0.84
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m60",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.73,
+          0.5,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.29,
+          0.96
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m61",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.53,
+          0.71,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.45,
+          0.9
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m62",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0.28,
+          0.84,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.58,
+          0.81
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m63",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0,
+          0.89,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.71,
+          0.71
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m64",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.29,
+          0.84,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.81,
+          0.58
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m65",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.54,
+          0.71,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.9,
+          0.45
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m66",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.29,
+          "radialSegments": 10
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          -0.74,
+          0.5,
+          0.15
+        ],
+        "quat": [
+          0,
+          0,
+          0.96,
+          0.29
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m67",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.055,
+          "radiusBottom": 0.055,
+          "height": 0.48,
+          "radialSegments": 6
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0,
+          -0.18,
+          0.09
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m68",
+      "mesh": {
+        "type": "icosahedron",
+        "params": {
+          "radius": 0.085,
+          "detail": 0
+        },
+        "color": 16041282
+      },
+      "parent": "foldingFan",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.11
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m69",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.38,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m70",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.36,
+          "radiusBottom": 0.36,
+          "height": 0.55,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "leftLeg_thigh",
+      "transform": {
+        "pos": [
+          -0.06,
+          -0.39,
+          0.03
+        ],
+        "quat": [
+          0.5,
+          0,
+          0.86,
+          0.08
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m71",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m72",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.31,
+          "radiusBottom": 0.31,
+          "height": 0.53,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "leftLeg_shin",
+      "transform": {
+        "pos": [
+          0.02,
+          -0.33,
+          0.16
+        ],
+        "quat": [
+          0.97,
+          0,
+          -0.13,
+          0.22
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m73",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m74",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.28,
+          "depth": 0.88
+        },
+        "color": 16763904
+      },
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          -0.16,
+          0.18
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m75",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          -0.2,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m76",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m77",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "leftLeg_foot",
+      "transform": {
+        "pos": [
+          0.2,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m78",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.38,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m79",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.36,
+          "radiusBottom": 0.36,
+          "height": 0.55,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "rightLeg_thigh",
+      "transform": {
+        "pos": [
+          0.06,
+          -0.39,
+          0.03
+        ],
+        "quat": [
+          0.5,
+          0,
+          -0.86,
+          0.08
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m80",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.3,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m81",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.31,
+          "radiusBottom": 0.31,
+          "height": 0.53,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "rightLeg_shin",
+      "transform": {
+        "pos": [
+          -0.02,
+          -0.33,
+          0.16
+        ],
+        "quat": [
+          0.97,
+          0,
+          0.13,
+          0.22
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m82",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m83",
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.28,
+          "depth": 0.88
+        },
+        "color": 16763904
+      },
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          -0.16,
+          0.18
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m84",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          -0.2,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m85",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          0,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m86",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.06,
+          "height": 0.18,
+          "radialSegments": 4
+        },
+        "color": 16119260
+      },
+      "parent": "rightLeg_foot",
+      "transform": {
+        "pos": [
+          0.2,
+          -0.1,
+          0.66
+        ],
+        "quat": [
+          0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m87",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.42,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "tail_root",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m88",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.39,
+          "radiusBottom": 0.39,
+          "height": 0.31,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "tail_root",
+      "transform": {
+        "pos": [
+          0.02,
+          -0.17,
+          -0.26
+        ],
+        "quat": [
+          -0.88,
+          0,
+          -0.07,
+          0.48
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m89",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.32,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "tail_mid1",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m90",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.32,
+          "radiusBottom": 0.32,
+          "height": 0.32,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "tail_mid1",
+      "transform": {
+        "pos": [
+          -0.02,
+          -0.15,
+          -0.23
+        ],
+        "quat": [
+          -0.87,
+          0,
+          0.09,
+          0.48
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m91",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.26,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "tail_mid2",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m92",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.26,
+          "radiusBottom": 0.26,
+          "height": 0.26,
+          "radialSegments": 10
+        },
+        "color": 16175738
+      },
+      "parent": "tail_mid2",
+      "transform": {
+        "pos": [
+          0,
+          -0.09,
+          -0.2
+        ],
+        "quat": [
+          -0.84,
+          0,
+          -0.02,
+          0.54
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m93",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.22,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16175738
+      },
+      "parent": "tail_tip",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m94",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.28,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "tail_tip",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m95",
+      "mesh": {
+        "type": "cone",
+        "params": {
+          "radius": 0.18,
+          "height": 0.32,
+          "radialSegments": 6
+        },
+        "color": 16119260
+      },
+      "parent": "tail_tip",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.18
+        ],
+        "quat": [
+          -0.7071,
+          0,
+          0,
+          0.7071
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m96",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.09,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "rightWing_root",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m97",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.08,
+          "radiusBottom": 0.08,
+          "height": 0.7,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "rightWing_root",
+      "transform": {
+        "pos": [
+          0.25,
+          -0.27,
+          -0.08
+        ],
+        "quat": [
+          -0.28,
+          0,
+          -0.88,
+          0.38
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m98",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "rightWing_mid",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m99",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.07,
+          "radiusBottom": 0.07,
+          "height": 0.58,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "rightWing_mid",
+      "transform": {
+        "pos": [
+          0.28,
+          0.13,
+          0.02
+        ],
+        "quat": [
+          0.03,
+          0,
+          -0.54,
+          0.84
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m100",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "rightWing_tip",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m101",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.0495,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.78,
+          -0.12,
+          -0.15
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m102",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.18,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.32,
+          -0.48,
+          -0.16
+        ],
+        "quat": [
+          -0.03,
+          0,
+          0.9,
+          0.44
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m103",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.98,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.63,
+          -0.59,
+          -0.18
+        ],
+        "quat": [
+          -0.16,
+          0,
+          0.97,
+          0.16
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m104",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.77,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.98,
+          -0.45,
+          -0.17
+        ],
+        "quat": [
+          -0.07,
+          0,
+          -0.96,
+          0.27
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m105",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.2899999999999998,
+            0.4740000000000002,
+            0.11199999999999999,
+            0.2100000000000002,
+            -0.055999999999999606,
+            -0.04800000000000004,
+            0,
+            0,
+            0,
+            0.2100000000000002,
+            -0.055999999999999606,
+            -0.04800000000000004,
+            0.7700000000000002,
+            0.20400000000000018,
+            -0.018000000000000016,
+            0,
+            0,
+            0,
+            0.7700000000000002,
+            0.20400000000000018,
+            -0.018000000000000016,
+            -0.1599999999999998,
+            -0.5259999999999998,
+            -0.04800000000000004,
+            0,
+            0,
+            0,
+            -0.1599999999999998,
+            -0.5259999999999998,
+            -0.04800000000000004,
+            -0.5299999999999998,
+            -0.09599999999999964,
+            0.0020000000000000018,
+            0,
+            0,
+            0,
+            -0.5299999999999998,
+            -0.09599999999999964,
+            0.0020000000000000018,
+            -0.2899999999999998,
+            0.4740000000000002,
+            0.11199999999999999,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.01,
+          -0.324,
+          -0.132
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m106",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0.41000000000000014,
+            0.5533333333333332,
+            0.026666666666666616,
+            -0.5199999999999999,
+            -0.17666666666666675,
+            -0.0033333333333334103,
+            0,
+            0,
+            0,
+            -0.5199999999999999,
+            -0.17666666666666675,
+            -0.0033333333333334103,
+            0.1100000000000001,
+            -0.3766666666666665,
+            -0.023333333333333428,
+            0,
+            0,
+            0,
+            0.1100000000000001,
+            -0.3766666666666665,
+            -0.023333333333333428,
+            0.41000000000000014,
+            0.5533333333333332,
+            0.026666666666666616,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.37,
+          -0.6733,
+          -0.1767
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m107",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.033333333333333215,
+            0.5299999999999998,
+            0.02666666666666684,
+            -0.33333333333333326,
+            -0.3999999999999999,
+            -0.023333333333333206,
+            0,
+            0,
+            0,
+            -0.33333333333333326,
+            -0.3999999999999999,
+            -0.023333333333333206,
+            0.3666666666666669,
+            -0.1299999999999999,
+            -0.0033333333333331883,
+            0,
+            0,
+            0,
+            0.3666666666666669,
+            -0.1299999999999999,
+            -0.0033333333333331883,
+            -0.033333333333333215,
+            0.5299999999999998,
+            0.02666666666666684,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          1.8133,
+          -0.65,
+          -0.1767
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m108",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.57,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          0.66,
+          -0.63,
+          -0.15
+        ],
+        "quat": [
+          -0.13,
+          0,
+          -0.93,
+          0.35
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m109",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.09,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "leftWing_root",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m110",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.08,
+          "radiusBottom": 0.08,
+          "height": 0.7,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "leftWing_root",
+      "transform": {
+        "pos": [
+          -0.25,
+          -0.27,
+          -0.08
+        ],
+        "quat": [
+          -0.28,
+          0,
+          0.88,
+          0.38
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m111",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "leftWing_mid",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m112",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.07,
+          "radiusBottom": 0.07,
+          "height": 0.58,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "leftWing_mid",
+      "transform": {
+        "pos": [
+          -0.28,
+          0.13,
+          0.02
+        ],
+        "quat": [
+          0.03,
+          0,
+          0.54,
+          0.84
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m113",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.06,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "leftWing_tip",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m114",
+      "mesh": {
+        "type": "sphere",
+        "params": {
+          "radius": 0.0495,
+          "widthSegments": 10,
+          "heightSegments": 7
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.78,
+          -0.12,
+          -0.15
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m115",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 1.18,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.32,
+          -0.48,
+          -0.16
+        ],
+        "quat": [
+          -0.03,
+          0,
+          -0.9,
+          0.44
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m116",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.98,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.63,
+          -0.59,
+          -0.18
+        ],
+        "quat": [
+          -0.16,
+          0,
+          -0.97,
+          0.16
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m117",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.045,
+          "radiusBottom": 0.045,
+          "height": 0.77,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.98,
+          -0.45,
+          -0.17
+        ],
+        "quat": [
+          -0.07,
+          0,
+          0.96,
+          0.27
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m118",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0.2899999999999998,
+            0.4740000000000002,
+            0.11199999999999999,
+            -0.2100000000000002,
+            -0.055999999999999606,
+            -0.04800000000000004,
+            0,
+            0,
+            0,
+            -0.2100000000000002,
+            -0.055999999999999606,
+            -0.04800000000000004,
+            -0.7700000000000002,
+            0.20400000000000018,
+            -0.018000000000000016,
+            0,
+            0,
+            0,
+            -0.7700000000000002,
+            0.20400000000000018,
+            -0.018000000000000016,
+            0.1599999999999998,
+            -0.5259999999999998,
+            -0.04800000000000004,
+            0,
+            0,
+            0,
+            0.1599999999999998,
+            -0.5259999999999998,
+            -0.04800000000000004,
+            0.5299999999999998,
+            -0.09599999999999964,
+            0.0020000000000000018,
+            0,
+            0,
+            0,
+            0.5299999999999998,
+            -0.09599999999999964,
+            0.0020000000000000018,
+            0.2899999999999998,
+            0.4740000000000002,
+            0.11199999999999999,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.01,
+          -0.324,
+          -0.132
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m119",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            -0.41000000000000014,
+            0.5533333333333332,
+            0.026666666666666616,
+            0.5199999999999999,
+            -0.17666666666666675,
+            -0.0033333333333334103,
+            0,
+            0,
+            0,
+            0.5199999999999999,
+            -0.17666666666666675,
+            -0.0033333333333334103,
+            -0.1100000000000001,
+            -0.3766666666666665,
+            -0.023333333333333428,
+            0,
+            0,
+            0,
+            -0.1100000000000001,
+            -0.3766666666666665,
+            -0.023333333333333428,
+            -0.41000000000000014,
+            0.5533333333333332,
+            0.026666666666666616,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.37,
+          -0.6733,
+          -0.1767
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m120",
+      "mesh": {
+        "type": "patch",
+        "params": {
+          "vertices": [
+            0.033333333333333215,
+            0.5299999999999998,
+            0.02666666666666684,
+            0.33333333333333326,
+            -0.3999999999999999,
+            -0.023333333333333206,
+            0,
+            0,
+            0,
+            0.33333333333333326,
+            -0.3999999999999999,
+            -0.023333333333333206,
+            -0.3666666666666669,
+            -0.1299999999999999,
+            -0.0033333333333331883,
+            0,
+            0,
+            0,
+            -0.3666666666666669,
+            -0.1299999999999999,
+            -0.0033333333333331883,
+            0.033333333333333215,
+            0.5299999999999998,
+            0.02666666666666684,
+            0,
+            0,
+            0
+          ],
+          "d": 0.055
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -1.8133,
+          -0.65,
+          -0.1767
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "m121",
+      "mesh": {
+        "type": "cylinder",
+        "params": {
+          "radiusTop": 0.035,
+          "radiusBottom": 0.035,
+          "height": 0.57,
+          "radialSegments": 10
+        },
+        "color": 16119260
+      },
+      "parent": "wings",
+      "transform": {
+        "pos": [
+          -0.66,
+          -0.63,
+          -0.15
+        ],
+        "quat": [
+          -0.13,
+          0,
+          0.93,
+          0.35
+        ]
+      },
+      "locked": true
+    },
+    {
+      "id": "mount01",
+      "name": "苹果",
+      "parent": "rightArm_hand",
+      "mounted": true,
+      "transform": {
+        "pos": [
+          0.0137,
+          0.0822,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "mount01__apple",
+      "name": "苹果主体",
+      "transform": {
+        "pos": [
+          -0.0137,
+          -0.37,
+          0
+        ]
+      },
+      "parent": "mount01"
+    },
+    {
+      "id": "mount01__stem",
+      "name": "短果梗",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.546,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "mount01__leaf",
+      "name": "绿叶",
+      "parent": "mount01__stem",
+      "transform": {
+        "pos": [
+          0.015,
+          0.09,
+          0
+        ]
+      }
+    },
+    {
+      "id": "mount01__m0",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.285,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.405,
+          "depth": 0.39
+        },
+        "color": 14233391
+      }
+    },
+    {
+      "id": "mount01__m1",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.504,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 0.126,
+          "depth": 0.315
+        },
+        "color": 14957109
+      }
+    },
+    {
+      "id": "mount01__m2",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.06,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.345,
+          "height": 0.12,
+          "depth": 0.3
+        },
+        "color": 12132135
+      }
+    },
+    {
+      "id": "mount01__m3",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          -0.231,
+          0.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.27,
+          "depth": 0.3
+        },
+        "color": 13182251
+      }
+    },
+    {
+      "id": "mount01__m4",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0.231,
+          0.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.09,
+          "height": 0.27,
+          "depth": 0.3
+        },
+        "color": 14035758
+      }
+    },
+    {
+      "id": "mount01__m5",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.309,
+          0.198
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.315,
+          "height": 0.255,
+          "depth": 0.078
+        },
+        "color": 15613240
+      }
+    },
+    {
+      "id": "mount01__m6",
+      "parent": "mount01__apple",
+      "transform": {
+        "pos": [
+          0,
+          0.309,
+          -0.198
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.315,
+          "height": 0.255,
+          "depth": 0.078
+        },
+        "color": 12132135
+      }
+    },
+    {
+      "id": "mount01__m7",
+      "parent": "mount01__stem",
+      "transform": {
+        "pos": [
+          0,
+          0.063,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.048,
+          "height": 0.126,
+          "depth": 0.048
+        },
+        "color": 7356965
+      }
+    },
+    {
+      "id": "mount01__m8",
+      "parent": "mount01__leaf",
+      "transform": {
+        "pos": [
+          0.108,
+          0.018,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.08,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.219,
+          "height": 0.024,
+          "depth": 0.108
+        },
+        "color": 4168511
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1782895447683,
+      "provider": "gpt",
+      "data": "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",
+      "edits": ""
+    },
+    "chiiAssetRole": "equipped_character",
+    "chiiCharacterId": "nailong",
+    "chiiEquipmentLoadout": {
+      "rightHand": "apple"
+    },
+    "chiiPromptProfile": "chii-v1"
+  }
+}

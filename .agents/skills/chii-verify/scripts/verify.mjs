@@ -72,7 +72,22 @@ if (full) {
       };
     });
 
-    await page.waitForSelector('#interact-prompt.visible', { timeout: 5000 });
+    const interactionPet = await page.evaluate(() => {
+      const pet = window.__townSocialSystem?.organizer || window.__petManager.pets[0];
+      if (!pet?.mesh) return null;
+      pet.stopWalking?.();
+      window.__player.teleport({
+        x: pet.mesh.position.x + 2,
+        y: 0,
+        z: pet.mesh.position.z,
+      });
+      return pet._petName || null;
+    });
+    await page.waitForFunction(
+      () => document.querySelector('#interact-prompt')?.classList.contains('visible'),
+      null,
+      { timeout: 5000 },
+    );
     await page.keyboard.press('KeyE');
     await page.waitForTimeout(400);
     const dialogueOpened = await page.locator('#dialogue-root').evaluate(element => element.classList.contains('active'));
@@ -113,7 +128,7 @@ if (full) {
       && dialogueOpened
       && errors.length === 0
       && assetWarnings.length === 0;
-    console.log(JSON.stringify({ passed, render, panelOpened, moved, dialogueOpened, errors, assetWarnings, screenshot }, null, 2));
+    console.log(JSON.stringify({ passed, render, interactionPet, panelOpened, moved, dialogueOpened, errors, assetWarnings, screenshot }, null, 2));
     if (!passed) process.exitCode = 1;
   } finally {
     await browser.close();

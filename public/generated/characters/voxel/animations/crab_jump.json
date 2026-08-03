@@ -1,0 +1,66 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.5,
+      "frequency": 0.75
+    }
+  },
+  "leg0": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -48
+    }
+  },
+  "leg1": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -52
+    }
+  },
+  "leg2": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -52
+    }
+  },
+  "leg3": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -46
+    }
+  },
+  "leg4": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 48
+    }
+  },
+  "leg5": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 52
+    }
+  },
+  "leg6": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 52
+    }
+  },
+  "leg7": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 46
+    }
+  },
+  "_name": "螃蟹-jump",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "crab",
+    "quality": "voxel",
+    "prompt": "收腿向上跳跃"
+  }
+}

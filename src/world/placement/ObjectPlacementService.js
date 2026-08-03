@@ -16,11 +16,12 @@ function footprintCenter(anchor, footprint) {
 }
 
 export class ObjectPlacementService {
-  constructor({ grid, worldObjects, scene, colliderRegistry }) {
+  constructor({ grid, worldObjects, scene, colliderRegistry, scalePolicy = null }) {
     this.grid = grid;
     this.worldObjects = worldObjects;
     this.scene = scene;
     this.colliderRegistry = colliderRegistry;
+    this.scalePolicy = scalePolicy;
     this.active = null;
     this.lastRemoved = null;
 
@@ -80,6 +81,10 @@ export class ObjectPlacementService {
       baseFootprint: { ...record.footprint },
       normalizationScale: record.normalizationScale,
       userScale: record.userScale,
+      sizeProfile: record.sizeProfile,
+      sizeIdentity: record.sizeIdentity,
+      clearanceCells: record.clearanceCells,
+      allowWater: record.allowWater,
       quarterTurns: 0,
       centerCells: footprintCenter(record.anchor, record.footprint),
       valid: true,
@@ -92,6 +97,10 @@ export class ObjectPlacementService {
         footprint: { ...record.footprint },
         normalizationScale: record.normalizationScale,
         userScale: record.userScale,
+        sizeProfile: record.sizeProfile,
+        sizeIdentity: record.sizeIdentity,
+        clearanceCells: record.clearanceCells,
+        allowWater: record.allowWater,
       },
     };
     this._validate();
@@ -173,6 +182,10 @@ export class ObjectPlacementService {
       footprint: state.footprint,
       normalizationScale: state.normalizationScale,
       userScale: state.userScale,
+      sizeProfile: state.sizeProfile,
+      sizeIdentity: state.sizeIdentity,
+      clearanceCells: state.clearanceCells,
+      allowWater: state.allowWater,
     });
     const oldMetadata = this.worldObjects.getMetadata(state.entity);
     this.worldObjects.updateMetadata(state.entity, {
@@ -182,6 +195,10 @@ export class ObjectPlacementService {
         footprint: { ...record.footprint },
         normalizationScale: record.normalizationScale,
         userScale: record.userScale,
+        sizeProfile: record.sizeProfile,
+        sizeIdentity: record.sizeIdentity,
+        clearanceCells: record.clearanceCells,
+        allowWater: record.allowWater,
       },
     });
     this._refreshCollider(state.entity);
@@ -249,10 +266,26 @@ export class ObjectPlacementService {
     return snapshot.entity;
   }
 
-  prepareGeneratedEntity(entity, desiredPosition, { footprint = { width: 2, depth: 2 } } = {}) {
-    const fp = { width: footprint.width, depth: footprint.depth };
-    const normalizationScale = this._fitScale(entity, fp, { enlarge: true });
-    const free = this.grid.findNearestAvailable(desiredPosition, fp);
+  prepareGeneratedEntity(entity, desiredPosition, {
+    footprint = { width: 2, depth: 2 },
+    semantic = null,
+  } = {}) {
+    let fp = { width: footprint.width, depth: footprint.depth };
+    const sizeIdentity = this.scalePolicy?.normalize(entity, {
+      ...semantic,
+      footprint: fp,
+      enlarge: true,
+    }) || null;
+    const normalizationScale = sizeIdentity?.semanticScale
+      || this._fitScale(entity, fp, { enlarge: true });
+    if (sizeIdentity?.naturalFootprint) {
+      fp = this.grid.inferFootprint(entity);
+    }
+    const clearanceCells = sizeIdentity?.clearanceCells || 0;
+    const free = this.grid.findNearestAvailable(desiredPosition, fp, {
+      clearanceCells,
+      respectClearance: true,
+    }) || this.grid.findNearestAvailable(desiredPosition, fp);
     if (!free) throw new Error('附近没有可放置新物件的空地');
     const placement = free;
     entity.mesh.position.x = placement.position.x;
@@ -264,20 +297,39 @@ export class ObjectPlacementService {
       anchor: placement.anchor,
       normalizationScale,
       userScale: 1,
+      sizeProfile: sizeIdentity?.profileId || semantic?.profileId || null,
+      sizeIdentity,
+      clearanceCells,
     };
   }
 
-  reconcileModel(entity) {
+  reconcileModel(entity, { operation = 'refine' } = {}) {
     const record = this.grid.get(entity);
     if (!record) return null;
-    const nextScale = this._fitScale(entity, record.footprint, { enlarge: false });
-    record.normalizationScale = nextScale / Math.max(record.userScale, 0.001);
+    const sizeIdentity = operation === 'mount'
+      ? record.sizeIdentity
+      : this.scalePolicy?.normalize(entity, {
+        profileId: record.sizeProfile,
+        footprint: record.footprint,
+        userScale: record.userScale,
+        variation: record.sizeIdentity?.variation || 1,
+        enlarge: true,
+      });
+    const nextScale = sizeIdentity
+      ? entity._content.scale.x
+      : this._fitScale(entity, record.footprint, { enlarge: false });
+    record.sizeIdentity = sizeIdentity || record.sizeIdentity;
+    record.normalizationScale = sizeIdentity?.semanticScale
+      || nextScale / Math.max(record.userScale, 0.001);
     const metadata = this.worldObjects.getMetadata(entity);
     this.worldObjects.updateMetadata(entity, {
       placement: {
         ...(metadata.placement || {}),
         normalizationScale: record.normalizationScale,
         userScale: record.userScale,
+        sizeProfile: record.sizeProfile,
+        sizeIdentity: record.sizeIdentity,
+        clearanceCells: record.clearanceCells,
       },
     });
     this._refreshCollider(entity);
@@ -345,7 +397,10 @@ export class ObjectPlacementService {
   _validate() {
     const state = this.active;
     if (!state) return;
-    state.validation = this.grid.canPlace(state.anchor, state.footprint, { ignoreEntity: state.entity });
+    state.validation = this.grid.canPlace(state.anchor, state.footprint, {
+      ignoreEntity: state.entity,
+      allowWater: state.allowWater,
+    });
     state.valid = state.validation.valid;
   }
 

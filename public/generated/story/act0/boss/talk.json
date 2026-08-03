@@ -1,0 +1,62 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "shift": {
+      "axis": "y",
+      "distance": -1.1
+    },
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.8
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -75
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -75
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -130
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.25,
+      "frequency": 1.8,
+      "phase": 0
+    }
+  },
+  "head": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.06,
+        "frequency": 1.6,
+        "phase": 0
+      },
+      {
+        "axis": "y",
+        "amplitude": 0.04,
+        "frequency": 0.8,
+        "phase": 0.25
+      }
+    ]
+  },
+  "_name": "老大_talk",
+  "_type": "talk",
+  "_modelId": "act0_boss",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "坐着挥左手说话",
+    "emitParticles": false
+  }
+}

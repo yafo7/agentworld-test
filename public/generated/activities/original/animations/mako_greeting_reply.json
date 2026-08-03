@@ -1,0 +1,56 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.04,
+      "frequency": 0.5
+    }
+  },
+  "neck": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.3,
+      "frequency": 0.5
+    }
+  },
+  "frontRightLeg": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -40
+      },
+      {
+        "axis": "z",
+        "angle": 12
+      }
+    ],
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.18,
+      "frequency": 0.75,
+      "phase": 0
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "mako_greeting_reply",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "点头抬蹄回应问好"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "_duration": 3,
+  "_loop": false,
+  "body": {
+    "spin": {
+      "axis": "y",
+      "frequency": 1,
+      "direction": "ccw"
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1.3
+    }
+  },
+  "frontLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 1.3,
+      "phase": 0
+    }
+  },
+  "frontRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 1.3,
+      "phase": 0.5
+    }
+  },
+  "hindLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.3,
+      "phase": 0.5
+    }
+  },
+  "hindRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.3,
+      "phase": 0
+    }
+  },
+  "neck": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.06,
+      "frequency": 0.65,
+      "phase": 0.1
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 0.65,
+      "phase": 0.1
+    }
+  },
+  "tail_root": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.12,
+      "frequency": 0.8,
+      "phase": 0.25
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "mako_outfit_turn",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "原地转身展示新衣"
+  }
+}

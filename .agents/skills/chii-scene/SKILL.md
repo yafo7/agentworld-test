@@ -15,7 +15,9 @@ Workflow:
 6. Keep random variation seeded and bounded.
 7. Run `$chii-verify --full` and inspect the screenshot.
 
-Pro/Voxel scene switching is asset-driven through `data/assetCatalog.js` and `data/sceneStyle.js`. Keep one layout and one gameplay graph; never duplicate the scene to add a visual style.
+Pro/Voxel/Original switching is profile-driven through `data/assetCatalog.js` and `data/sceneStyle.js`. Each scene owns independent frozen assets, manifests, environment feature flags, and scene-specific content configuration. Original specifically comes from `public/generated/history/2026-07-28-gpt56-reset/`, the automatic backup made before the large 2026-07-28 iteration; do not substitute an older Git commit for that boundary. Change only the requested profile. Keep engine, gameplay graph, registries, and reusable layout algorithms shared instead of copying implementation code.
+
+Scene snapshots live under `public/generated/scenes/{pro,voxel,original}/`. Studio sync or autonomous generation must not silently overwrite a snapshot. Publishing a changed asset to one scene requires an explicit update to that scene directory and manifest.
 
 Do not place trees inside buildings, overlap interactive objects, or bypass terrain painting helpers. Flowers/grass normally have no collider; buildings and trees normally do.
 

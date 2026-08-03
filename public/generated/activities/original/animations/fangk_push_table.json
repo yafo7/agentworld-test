@@ -1,0 +1,82 @@
+{
+  "_duration": 3,
+  "_loop": false,
+  "chest": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "slide": {
+      "axis": "z",
+      "distance": 0.18,
+      "frequency": 0.65,
+      "phase": 0
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -70
+      },
+      {
+        "axis": "z",
+        "angle": -10
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 0.65,
+      "phase": 0
+    }
+  },
+  "rightArm_upperArm": {
+    "pointTo": [
+      {
+        "axis": "x",
+        "angle": -70
+      },
+      {
+        "axis": "z",
+        "angle": 10
+      }
+    ],
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 0.65,
+      "phase": 0
+    }
+  },
+  "leftArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.14,
+      "frequency": 0.65,
+      "phase": 0
+    }
+  },
+  "rightArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.14,
+      "frequency": 0.65,
+      "phase": 0
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "fangk_push_table",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "双手向前推桌子"
+  }
+}

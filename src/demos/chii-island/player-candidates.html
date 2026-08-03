@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chii Island · 角色展柜</title>
+    <link rel="stylesheet" href="./player-candidates.css" />
+    <link rel="stylesheet" href="./presentation/chii-page-loading.css" />
+  </head>
+  <body>
+    <div id="chii-page-loader" class="chii-page-loader" role="status" aria-live="polite" aria-busy="true">
+      <div class="chii-loader-scenery" aria-hidden="true">
+        <span class="chii-loader-sun"></span>
+        <span class="chii-loader-cloud chii-loader-cloud-a"></span>
+        <span class="chii-loader-cloud chii-loader-cloud-b"></span>
+        <span class="chii-loader-ground"></span>
+        <span class="chii-loader-tile chii-loader-tile-a"></span>
+        <span class="chii-loader-tile chii-loader-tile-b"></span>
+        <span class="chii-loader-tile chii-loader-tile-c"></span>
+      </div>
+      <section class="chii-loader-bubble">
+        <div class="chii-loader-heading">
+          <span class="chii-loader-face" aria-hidden="true"><i></i><i></i></span>
+          <div>
+            <span class="chii-loader-badge">CHII ISLAND</span>
+            <strong data-chii-loader-title>角色们正在入场</strong>
+          </div>
+        </div>
+        <p data-chii-loader-detail>大家正在认真排队，孔雀除外。</p>
+        <div class="chii-loader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <button class="chii-loader-retry" type="button" hidden>再试一次</button>
+      </section>
+    </div>
+    <main class="showcase-shell">
+      <header class="showcase-header">
+        <p class="eyebrow">CHII ISLAND CAST</p>
+        <h1>角色展柜</h1>
+        <p id="preview-status" class="showcase-status" aria-live="polite">正在整理角色档案...</p>
+      </header>
+
+      <nav id="category-tabs" class="category-tabs" aria-label="角色分类"></nav>
+      <a
+        class="island-return"
+        href="./"
+        data-chii-navigation
+        data-loading-title="正在返回奇异岛"
+        data-loading-detail="路很近，宠物们已经看见你了。"
+      >返回奇异岛</a>
+
+      <canvas id="preview-canvas" aria-label="奇异岛角色三维展柜"></canvas>
+
+      <button id="overview-button" class="overview-button" type="button" hidden>全体合影</button>
+
+      <aside id="character-panel" class="character-panel" aria-live="polite" hidden>
+        <div class="character-panel-heading">
+          <span id="character-group" class="character-group"></span>
+          <span id="character-role" class="character-role"></span>
+        </div>
+        <h2 id="character-name">角色档案</h2>
+        <p id="character-description"></p>
+        <div id="character-tags" class="character-tags" aria-label="角色标签"></div>
+        <div class="animation-heading">动作演示</div>
+        <nav id="motion-switcher" class="motion-switcher" aria-label="动作选择"></nav>
+        <section id="variant-section" class="showcase-customize-section" hidden>
+          <div class="customize-heading">切换模型</div>
+          <nav id="variant-switcher" class="variant-switcher" aria-label="角色模型版本"></nav>
+        </section>
+        <section class="showcase-customize-section">
+          <div class="customize-heading">衣服与套装</div>
+          <div id="showcase-outfit-switcher" class="showcase-outfit-switcher" aria-label="角色套装"></div>
+          <div id="showcase-clothing-slots" class="showcase-slot-grid" aria-label="衣服槽位"></div>
+          <p id="showcase-clothing-empty" class="showcase-empty-note">衣橱还空着，四个位置已经留好啦。</p>
+        </section>
+        <section class="showcase-customize-section">
+          <div class="customize-heading">其他道具</div>
+          <div id="showcase-prop-switcher" class="showcase-prop-switcher" aria-label="道具选择"></div>
+          <div class="showcase-mount-row">
+            <span>装在哪里</span>
+            <div id="showcase-hand-switcher" class="showcase-hand-switcher" role="group" aria-label="装配手位">
+              <button type="button" data-hand-slot="leftHand">左手</button>
+              <button type="button" data-hand-slot="rightHand">右手</button>
+            </div>
+          </div>
+          <div id="showcase-hand-slots" class="showcase-hand-slots" aria-label="当前手持道具"></div>
+          <div class="showcase-equipment-actions">
+            <button id="showcase-equip-button" type="button">装到角色手里</button>
+            <button id="showcase-clear-button" class="secondary" type="button">取下这只手的道具</button>
+          </div>
+          <p id="showcase-equipment-status" class="showcase-equipment-status" data-state="ready">先挑道具，再选左手或右手。</p>
+        </section>
+      </aside>
+
+      <nav id="character-strip" class="character-strip" aria-label="角色列表"></nav>
+
+    </main>
+    <script type="module" src="./player-candidates.js"></script>
+  </body>
+</html>

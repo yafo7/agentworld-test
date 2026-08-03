@@ -1,0 +1,85 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.48,
+      "frequency": 0.7
+    },
+    "squash": {
+      "axis": "y",
+      "amount": 1.08
+    }
+  },
+  "leftWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.28,
+      "frequency": 1.4
+    }
+  },
+  "rightWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 55
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.28,
+      "frequency": 1.4
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -22
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.2
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -22
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 1.2,
+      "phase": 0.25
+    }
+  },
+  "neck": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    }
+  },
+  "tail": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.1,
+      "phase": 0.25
+    }
+  },
+  "_name": "lingq-jump",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "lingq",
+    "quality": "voxel",
+    "prompt": "张开翅膀向上跳跃"
+  }
+}

@@ -1,13 +1,14 @@
 import { PET_STATES, getPetStateMachine } from '../pets/PetStateMachine.js';
 
 export class SocialEventCoordinator {
-  constructor({ petManager, gatherTimeout = 12 }) {
+  constructor({ petManager, gatherTimeout = 12, arrivalTolerance = 0.45 }) {
     this.petManager = petManager;
     this.gatherTimeout = gatherTimeout;
+    this.arrivalTolerance = arrivalTolerance;
     this.active = null;
   }
 
-  start({ plan, participants, slots, onPerform = null, onFinish = null }) {
+  start({ plan, participants, slots, onPerform = null, onFinish = null, onBlocked = null }) {
     if (this.active) throw new Error('Another social activity is already active');
     if (!plan || participants.length === 0) throw new TypeError('Social activity requires participants');
 
@@ -31,11 +32,14 @@ export class SocialEventCoordinator {
       elapsed: 0,
       onPerform,
       onFinish,
+      onBlocked,
     };
 
     participants.forEach((pet, index) => {
       const machine = getPetStateMachine(pet);
       machine.enterTemporary(PET_STATES.PERFORMING, snapshots[index].state);
+      pet.stopFollow?.();
+      pet.disableWander?.();
       pet.stopWalking?.();
       pet.unlockFacing?.();
       const slot = slots[index] || slots[slots.length - 1];
@@ -48,15 +52,18 @@ export class SocialEventCoordinator {
     const activity = this.active;
     if (!activity || activity.phase !== 'gathering') return;
     activity.elapsed += dt;
-    const arrived = activity.participants.every(pet => !pet._targetPosition);
-    if (!arrived && activity.elapsed < this.gatherTimeout) return;
-
+    const arrived = activity.participants.every((pet, index) => {
+      const slot = activity.slots[index] || activity.slots[activity.slots.length - 1];
+      const position = pet.getPosition?.() || pet.mesh?.position || pet.position;
+      if (!slot || !position) return false;
+      return Math.hypot(slot.x - position.x, slot.z - position.z) <= this.arrivalTolerance;
+    });
     if (!arrived) {
-      activity.participants.forEach((pet, index) => {
-        const slot = activity.slots[index] || activity.slots[activity.slots.length - 1];
-        if (slot) pet.setPosition?.(slot.x, 0, slot.z);
-        pet.stopWalking?.();
-      });
+      if (activity.elapsed < this.gatherTimeout) return;
+      activity.phase = 'blocked';
+      activity.onBlocked?.(activity);
+      if (this.active === activity) this.finish('gather-timeout');
+      return;
     }
     activity.phase = 'performing';
     activity.elapsed = 0;

@@ -157,6 +157,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         'chii-island': resolve(__dirname, 'src/demos/chii-island/index.html'),
+        'chii-player-candidates': resolve(__dirname, 'src/demos/chii-island/player-candidates.html'),
+        'agentland-friends': resolve(__dirname, 'src/demos/agentland-friends/index.html'),
         'ghost-home': resolve(__dirname, 'src/demos/ghost-home/index.html'),
       },
     },

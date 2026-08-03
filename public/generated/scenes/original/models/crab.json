@@ -1,0 +1,693 @@
+{
+  "name": "橙色螃蟹",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "蟹壳",
+      "transform": {
+        "pos": [
+          0,
+          0.75,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leg_0_0",
+      "name": "左步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.07,
+          -0.62
+        ]
+      }
+    },
+    {
+      "id": "leg_0_1",
+      "name": "左步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.07,
+          -0.22
+        ]
+      }
+    },
+    {
+      "id": "leg_0_2",
+      "name": "左步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.07,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "leg_0_3",
+      "name": "左步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -1.05,
+          -0.07,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "leg_1_0",
+      "name": "右步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.07,
+          -0.62
+        ]
+      }
+    },
+    {
+      "id": "leg_1_1",
+      "name": "右步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.07,
+          -0.22
+        ]
+      }
+    },
+    {
+      "id": "leg_1_2",
+      "name": "右步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.07,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "leg_1_3",
+      "name": "右步足",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          1.05,
+          -0.07,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "claw_0",
+      "name": "左螯",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.92,
+          0.03,
+          0.56
+        ]
+      }
+    },
+    {
+      "id": "claw_1",
+      "name": "右螯",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.92,
+          0.03,
+          0.56
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 0.75,
+          "depth": 1.65
+        },
+        "color": 15232792
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.47,
+          -0.05
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.85,
+          "height": 0.28,
+          "depth": 1.25
+        },
+        "color": 16091684
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.52,
+          0.73,
+          0.48
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.48,
+          "depth": 0.16
+        },
+        "color": 15300636
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.52,
+          0.97,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.3,
+          "depth": 0.3
+        },
+        "color": 2105376
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.52,
+          0.73,
+          0.48
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.48,
+          "depth": 0.16
+        },
+        "color": 15300636
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.52,
+          0.97,
+          0.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.3,
+          "depth": 0.3
+        },
+        "color": 2105376
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          -0.03,
+          0.86
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.1,
+          "depth": 0.08
+        },
+        "color": 8202261
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leg_0_0",
+      "transform": {
+        "pos": [
+          -0.5,
+          -0.3,
+          -0.21
+        ],
+        "quat": [
+          -0.2,
+          0,
+          0.98,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.08,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 15627288
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "leg_0_1",
+      "transform": {
+        "pos": [
+          -0.55,
+          -0.3,
+          -0.07
+        ],
+        "quat": [
+          -0.06,
+          0,
+          1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.11,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 14179346
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "leg_0_2",
+      "transform": {
+        "pos": [
+          -0.6,
+          -0.3,
+          0.07
+        ],
+        "quat": [
+          0.06,
+          0,
+          1,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.21,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 15627288
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "leg_0_3",
+      "transform": {
+        "pos": [
+          -0.65,
+          -0.3,
+          0.21
+        ],
+        "quat": [
+          0.16,
+          0,
+          0.99,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.37,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 14179346
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "leg_1_0",
+      "transform": {
+        "pos": [
+          0.5,
+          -0.3,
+          -0.21
+        ],
+        "quat": [
+          0.98,
+          0,
+          -0.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.08,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 15627288
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "leg_1_1",
+      "transform": {
+        "pos": [
+          0.55,
+          -0.3,
+          -0.07
+        ],
+        "quat": [
+          1,
+          0,
+          -0.06,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.11,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 14179346
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "leg_1_2",
+      "transform": {
+        "pos": [
+          0.6,
+          -0.3,
+          0.07
+        ],
+        "quat": [
+          1,
+          0,
+          0.06,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.21,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 15627288
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "leg_1_3",
+      "transform": {
+        "pos": [
+          0.65,
+          -0.3,
+          0.21
+        ],
+        "quat": [
+          0.99,
+          0,
+          0.16,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.37,
+          "height": 0.2,
+          "depth": 0.25
+        },
+        "color": 14179346
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "claw_0",
+      "transform": {
+        "pos": [
+          -0.4,
+          -0.02,
+          0.32
+        ],
+        "quat": [
+          0.33,
+          0,
+          0.94,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.02,
+          "height": 0.28,
+          "depth": 0.34
+        },
+        "color": 15296534
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "claw_0",
+      "transform": {
+        "pos": [
+          -0.8,
+          0,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.5,
+          "depth": 0.68
+        },
+        "color": 15760156
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "claw_0",
+      "transform": {
+        "pos": [
+          -1.14,
+          0.02,
+          1.13
+        ],
+        "quat": [
+          0.51,
+          0,
+          0.86,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.66,
+          "height": 0.24,
+          "depth": 0.23
+        },
+        "color": 16747298
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "claw_0",
+      "transform": {
+        "pos": [
+          -0.73,
+          0.02,
+          1.13
+        ],
+        "quat": [
+          0.73,
+          0,
+          0.69,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.22,
+          "depth": 0.2
+        },
+        "color": 15295508
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "claw_1",
+      "transform": {
+        "pos": [
+          0.4,
+          -0.02,
+          0.32
+        ],
+        "quat": [
+          0.94,
+          0,
+          0.33,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.02,
+          "height": 0.28,
+          "depth": 0.34
+        },
+        "color": 15296534
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "claw_1",
+      "transform": {
+        "pos": [
+          0.8,
+          0,
+          0.64
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.5,
+          "depth": 0.68
+        },
+        "color": 15760156
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "claw_1",
+      "transform": {
+        "pos": [
+          1.14,
+          0.02,
+          1.13
+        ],
+        "quat": [
+          0.86,
+          0,
+          0.51,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.66,
+          "height": 0.24,
+          "depth": 0.23
+        },
+        "color": 16747298
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "claw_1",
+      "transform": {
+        "pos": [
+          0.73,
+          0.02,
+          1.13
+        ],
+        "quat": [
+          0.69,
+          0,
+          0.73,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.22,
+          "depth": 0.2
+        },
+        "color": 15295508
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784020656544,
+      "provider": "gpt",
+      "data": "Mj032psYenaFw1NQiusHZ34oKYQQatKv6Lvt1w7L30MKogM6Gr1Bb9KhAk1ckPFUFErNZzGrL+5TdXFgZw2NqbtLl3+svB6uGlrbScELFxiUUgSVURJ9JoFAM7uWWyWvaanwZB8YJL6n297GrKbadJmbzCElkxON7DJqHteLE+1UA7C2qxxcNx4fXoO9zCyo+Hp8E2bQZDUs5RsasChKQxwacKTcBcznyYfaMPJr6vJ4zf62L2rEbrZvgu86txCpTbzK5AnDTFHFNcowQFcLjR49kjlk5Bj6aghyKK6PL0TCe/OsGFGoY9AJ44Q1LCJq7Dat6MDy0wcPLZkfR3GINU42/CvwOwQFwvalmA4e7IPn8Fh9VUBGilmL96S29LnjmbNoPRIfiFUa5U+vIdOt9riYl8g7cf/mAOhBQcq7cq4bVc1rMjnsa/5wxF44CghIh6T9yCWS4ZFNQpK2hfZLAU9DXm+5kRKy1gILqZUP2stEcahriYNPe+pjJeiYseay1+hNRdxkIqVIgo+xYSxwasUKcwNgZau51hgb4lPKxm9dxlJ/oc0Cz2FhDCr6uND5EQfjP5zr9OY0iwqNK/ig1xCSXo2y6i1zrL6W2PmoG+eg1+754Lb3ie9PCnuy39U/AwtxG5jJcrA8lKK5jgzM5q9TGg3frZuHp+OrK8RdYbD+BM+LeA2AWQ8eLD+F9xvhTHTQnL1M/La9AQnagK5747ds3dkdnGV3i+ettO4kJrVoI/RjPx5DVm7mEBuIKcDxf/ElMv4Nt+pWmyiDU2+icUwBm7O2QxGIQPEZsFBO13BPTOFITFI7nK6JpB60yRYMR1CjcMiwxpUfigt5Are3Uq1p5ZPKLijxyAKupaMr1ilWqwQeKEtbuhkp6EE9eBbq1t3VOIIMSXNNEOCEJpIta7OfaGKodt/v772rjRuB8+lSc5Pmk7v0VwIATIJYsNwPsBqBlCDFjV3HSZ1AHzvBFZTNj5Wvn7cbaCqZA86bEJ+2pPZRPB90UP5GlEwdZ/5lNqYxeCV/nX7TXeDbLdRplTKJHppmkrMkG5J1Wv3JlBWm56K2FxdjTs+/sUSGHcUq3XeyfqB1z9UpB53mzEmVnE3V6LieHBitN4dl8uPs2xIImmH/UiH+PutpMsfObvy4N7lOdRWn1HlCSkP3O44qhrvB2Kw5VfYNRXNOdhyKdZ1UlKHJnexKozDP5dwonaeJwiPluWZae70D9GxW/X83H4peJ0yuh2UpScvbiwYs5k/2I3Nv4d8FZDapsiYcMwwysaBoUgN23chXKhM8RnNF4RFOLaBHWB4UkaDSHt1A0IX7SxezVAxX/GA6JI0=",
+      "edits": ""
+    }
+  },
+  "_modelId": "m_1784020657837_93vxun"
+}

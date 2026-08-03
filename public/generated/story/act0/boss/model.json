@@ -1,0 +1,533 @@
+{
+  "name": "老大",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "躯干",
+      "transform": {
+        "pos": [
+          0,
+          2.15,
+          0
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "name": "头",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.47,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.72,
+          1.2,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightUpperArm",
+      "name": "右上臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.72,
+          1.15,
+          0.18
+        ]
+      }
+    },
+    {
+      "id": "rightForearm",
+      "name": "右前臂",
+      "parent": "rightUpperArm",
+      "transform": {
+        "pos": [
+          0.31,
+          -0.58,
+          0.24
+        ]
+      }
+    },
+    {
+      "id": "basketball",
+      "name": "篮球",
+      "parent": "rightForearm",
+      "transform": {
+        "pos": [
+          -0.35,
+          -0.38,
+          0.13
+        ]
+      }
+    },
+    {
+      "id": "leftLeg",
+      "name": "左腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.36,
+          0.03,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeg",
+      "name": "右腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.36,
+          0.03,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.75,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.35,
+          "height": 1.45,
+          "depth": 0.68
+        },
+        "color": 15910144
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.41,
+          0.36
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.42,
+          "height": 0.12,
+          "depth": 0.04
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.01,
+          0.36
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.1,
+          "depth": 0.04
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.13,
+          0.82,
+          0.36
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.48,
+          "depth": 0.04
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.46,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.98,
+          "height": 0.98,
+          "depth": 0.9
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.22,
+          0.53,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.1,
+          "depth": 0.04
+        },
+        "color": 16052688
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.22,
+          0.53,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.1,
+          "depth": 0.04
+        },
+        "color": 16052688
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.17,
+          -0.6,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 1.38,
+          "depth": 0.42
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "rightUpperArm",
+      "transform": {
+        "pos": [
+          0.16,
+          -0.29,
+          0
+        ],
+        "quat": [
+          0.69,
+          0.17,
+          0.17,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 0.42,
+          "depth": 0.66
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "rightForearm",
+      "transform": {
+        "pos": [
+          -0.15,
+          -0.18,
+          0
+        ],
+        "quat": [
+          0.66,
+          -0.24,
+          -0.24,
+          0.66
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.4,
+          "depth": 0.48
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "rightForearm",
+      "transform": {
+        "pos": [
+          -0.35,
+          -0.38,
+          0.13
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 0.34,
+          "depth": 0.38
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "basketball",
+      "transform": {
+        "pos": [
+          -0.25,
+          -0.12,
+          0.33
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.78,
+          "height": 0.78,
+          "depth": 0.78
+        },
+        "color": 15300630
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "basketball",
+      "transform": {
+        "pos": [
+          -0.25,
+          -0.12,
+          0.733
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.8,
+          "depth": 0.025
+        },
+        "color": 4268301
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "basketball",
+      "transform": {
+        "pos": [
+          -0.25,
+          -0.12,
+          0.734
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.07,
+          "depth": 0.025
+        },
+        "color": 4268301
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.01,
+          -0.28,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.62,
+          "depth": 0.64
+        },
+        "color": 15910144
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.01,
+          -1.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.46,
+          "height": 1.25,
+          "depth": 0.5
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.01,
+          -1.98,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.28,
+          "depth": 0.72
+        },
+        "color": 1052688
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0.01,
+          -0.28,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.62,
+          "depth": 0.64
+        },
+        "color": 15910144
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0.01,
+          -1.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.46,
+          "height": 1.25,
+          "depth": 0.5
+        },
+        "color": 1513239
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0.01,
+          -1.98,
+          0.1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.28,
+          "depth": 0.72
+        },
+        "color": 1052688
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785048344341,
+      "provider": "gpt",
+      "data": "9U57fUQ7Q6zTWmB0/MdZJxvad1I6p94xTiESGRsOzdwUNjGDfHeKEN6wYWURfsgEbLY2xT7chSWYdOLQT4DXaywlgL7tFAEWYWvog/Ji6oZy6NOkjAj4COf6ML7QF2Ss6BI6Oj8Sj6zufnImSpuo6qqP4TNmXyhI05PG0fv0fkcQATWw8KS3SY6BUtOMKp1BE+femA7KeRHu97DPgt63WbHE14fghDrBPWUpoeYZnPjkDbo1Fptbc3qy3MGz9MIPD3VihxhUpvmJhoQ/4oAA6o0Azupn2yNSiWTi5rlalQQFxv6rO4KLBkL3f0qHZbcL2kr41fy9lGg4HymL5WjlP4XVAzQc1n2GyjePPb+HuPLcASLMvuS4NNPJW3q4/OsKxVuNfPaSceh8XWatwYCvvHXmjGPwgXQzKrQ5lP72QnDFGbdZcPnTTzHDttkRFemF6pswFTpohKJnJwVHK5WPIwaOyrD/XuciXZrsSlS2DksTSG3VrWCuL0u4ngf0d8DFD+2UcTsFrurwq2+mKFx49O6OYSmabGYFP9lsyc5Xo1B3qG0rfSNgBwcdL301DUQXBc7oyHsNbVezBl/Doeg0bxencLnfEsvdsPOeYZc7sPm28HV1ax6qtSMUaO3BNg3iP7pKGvnUoopTB1pEYxWvzEcI1B7ZknTiwEInZsr733Vns4vLtqH2gy7CVAtbl2cfbV9g/obLbqC1FC0QkikSMSYAN9Jk6vA1ksCrsegIkAxiDjCV2VSuGO/kkYgHGRwahPv1MwopxNzVL+N7AiuVT7u4Ix84ToAimEGMs8S8CaHbr2OevVUj2ieKh7/dfUjA9Kwz5TWIxF0lLx7I1vRjAv9epE/AulkzbbrRcCDEScXf5lbUsT2D1XMBXKswLN3fABcvLlEGojU9tu4t8f04+mN7XG73EAgQtHQJHQIuu8RIUa5Zx9iBDvLRerP0Y0Y4QC8d8BGU9qEHOurrjX2gRcuZyRSwQQAPmRitRk+vZRmcdekwwSnoGt2shSeVq78hDFJlGD3Knk4Ev5ym3J6JHBqAFHCGOR3YzLeozNTKrI4fh5I2BcY0h/bx/DQnhIIo6YTE0lKu",
+      "edits": ""
+    },
+    "chiiStoryAsset": "act0_boss",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

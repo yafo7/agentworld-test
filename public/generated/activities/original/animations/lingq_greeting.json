@@ -1,0 +1,71 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.75
+    }
+  },
+  "tail": {
+    "squash": [
+      {
+        "axis": "x",
+        "amount": 1.35
+      },
+      {
+        "axis": "y",
+        "amount": 1.08
+      }
+    ],
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 0.5,
+      "phase": 0.25
+    }
+  },
+  "leftWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 20
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.85,
+      "frequency": 1.25
+    }
+  },
+  "rightWing": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.85,
+      "frequency": 1.25
+    }
+  },
+  "head": {
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.1,
+        "frequency": 0.75
+      },
+      {
+        "axis": "y",
+        "amplitude": 0.08,
+        "frequency": 0.5,
+        "phase": 0.25
+      }
+    ]
+  },
+  "_meta": {
+    "chiiActivityAssetId": "lingq_greeting",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "展开尾羽挥翅问好"
+  }
+}

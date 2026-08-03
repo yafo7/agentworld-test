@@ -1,0 +1,358 @@
+{
+  "name": "巨大方块胡萝卜",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "carrot",
+      "name": "胡萝卜主体",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leaf_center",
+      "name": "胡萝卜叶",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          4.95,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leaf_left",
+      "name": "胡萝卜叶",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          -0.25,
+          4.95,
+          0.1
+        ]
+      }
+    },
+    {
+      "id": "leaf_right",
+      "name": "胡萝卜叶",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0.25,
+          4.95,
+          -0.08
+        ]
+      }
+    },
+    {
+      "id": "leaf_front",
+      "name": "胡萝卜叶",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          -0.12,
+          4.95,
+          0.2
+        ]
+      }
+    },
+    {
+      "id": "leaf_back",
+      "name": "胡萝卜叶",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0.15,
+          4.95,
+          -0.15
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.5,
+          "height": 0.8,
+          "depth": 0.5
+        },
+        "color": 14247947
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 1,
+          "depth": 0.9
+        },
+        "color": 15234317
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          2.2,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.4,
+          "height": 1,
+          "depth": 1.4
+        },
+        "color": 15564048
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          3.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.9,
+          "height": 1,
+          "depth": 1.9
+        },
+        "color": 15827986
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0,
+          4.3,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.5,
+          "height": 1.4,
+          "depth": 2.5
+        },
+        "color": 15895576
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          0.45,
+          3.85,
+          1.29
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.75,
+          "height": 0.16,
+          "depth": 0.1
+        },
+        "color": 13196296
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "carrot",
+      "transform": {
+        "pos": [
+          -0.25,
+          2.35,
+          0.74
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.14,
+          "depth": 0.1
+        },
+        "color": 13196296
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leaf_center",
+      "transform": {
+        "pos": [
+          0.08,
+          1.6,
+          0
+        ],
+        "quat": [
+          -0.71,
+          0.02,
+          -0.02,
+          0.71
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.65,
+          "height": 0.34,
+          "depth": 3.2
+        },
+        "color": 4168498
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "leaf_left",
+      "transform": {
+        "pos": [
+          -0.62,
+          1.28,
+          0
+        ],
+        "quat": [
+          -0.69,
+          -0.16,
+          0.16,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 2.84
+        },
+        "color": 3112745
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "leaf_right",
+      "transform": {
+        "pos": [
+          0.68,
+          1.18,
+          0
+        ],
+        "quat": [
+          -0.68,
+          0.18,
+          -0.18,
+          0.68
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 2.71
+        },
+        "color": 5549375
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "leaf_front",
+      "transform": {
+        "pos": [
+          0,
+          1.23,
+          0.57
+        ],
+        "quat": [
+          -0.38,
+          -0.38,
+          -0.6,
+          0.6
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 2.71
+        },
+        "color": 3443501
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "leaf_back",
+      "transform": {
+        "pos": [
+          0,
+          1.33,
+          -0.52
+        ],
+        "quat": [
+          0.58,
+          0.58,
+          0.4,
+          -0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.55,
+          "height": 0.28,
+          "depth": 2.85
+        },
+        "color": 4759350
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784017301110,
+      "provider": "gpt",
+      "data": "TR+txEy+xQe3PveLdUNGhpFbArFVl9D513Ipj/aOkj3irGBRsSW/iySnk9LZzecDVL1ygULn/WzyKuxT+DRiL+CE74BIBUYpsKi+W/palUdob1TYgnYROPwKuEbKi26qgFANwulIg5s/PiRknSZyq6Nj2MvkixWVAMMoHQFd4cnOZdJImYcWYFKoSeU8Hg+7u7wtyTgKhGdLu4O12gUnyTPXrzdmSVFQm9whNsayO1OXJRd+ROGOn/7jxC51M0or3yBkB73Eg7NQ2cKVtaHfP/39r/xLB8ejqcA7Zulnk9zW24Fi1c1XQ67HmnGc4e1p+h8wiOep6wf4zeUw8v0fExqs5yuhWdXbPjnce/ar7TK6cp5Txp6DFziCg2ch6ptLcsYpv/W0cjGNeuXlF44Q/QSxwZ5fIc4PXq0YxDZclY528i3UJpakP32gAOLdfUqn0WK3yAwAr9GopCnktRtjQBNbBmPq8zHtr/qsSPrx4YW3GCZK4sWd/Iw6E141XdqFcL9z/6TfwQS46lwZ9x0k3H9LxwyG5h/X/QBGfwTw5/X0RW3LoZ0F9weLTcJfSQgoXCd+gCgENtYU8+VHMfxUmo02aO+pU8Pk2Ahl52v5Vj2bk2tDB1kbBQ5JWTHC+/y+C+p6QqUmBbtflmMGaigkNZB/hLMAldjz2TRebMETrqKeSWSKjnCqu3RswhCEHEBjIydAzcB4slRG3uzJG6ZRDUVJ7w9fu5zSMLcPkEsIMK+8yzUByIuui/7mWd2hFg8dZa9XjS1x0R/o9OLsCsOZ/ROU9Z9uCYRunTDnJr3+cJZ592/zzohhpnVVHB0w+Zdk+0c8Ah3PZXOZ9COhSvPJeEonYRthZZi+p0YyXsvmhcjGP6p4+J4RsArPeJTBKk8Piv7OyV3UvUPW+bmNRurvm0yUveQ8xFR9L8+vNTpK3Ckl+JjR3J0Kpgvo5KiRqyXQSNpxKsuc2yOJx1g1vuqCAn1rq0ffAfHb0GzuuZSodafjjQbmnf/DhS59eFCBhBwUWy7KjxJr3CvcF4goowUIZN905DULvPEcIE6pQ9E1cG5Scpg7E43eTG/Vk68mwNzZPAOPbZcwoLUQBTw=",
+      "edits": ""
+    }
+  }
+}

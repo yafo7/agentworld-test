@@ -1,0 +1,32 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "neck": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.22,
+      "frequency": 0.25
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -15
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.48,
+      "frequency": 0.25
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "mako_pick_apple",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "抬头咬下红苹果"
+  }
+}

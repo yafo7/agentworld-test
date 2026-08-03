@@ -1,0 +1,40 @@
+{
+  "id": "act0_boss",
+  "source": "autonomous_backend",
+  "promptPacket": {
+    "operation": "model_generate",
+    "prompt_profile": "chii-v1",
+    "endpoint": "/api/generate/model",
+    "prompt": "一个黑色方块人，方头方肢，穿黄色篮球服，右手抱橙色篮球",
+    "request_hints": {
+      "quality": "voxel",
+      "emitParticles": false
+    }
+  },
+  "animationPackets": {
+    "idle": {
+      "description": "坐着轻轻呼吸",
+      "duration": 2.4,
+      "emitParticles": false,
+      "loop": true
+    },
+    "talk": {
+      "description": "坐着挥左手说话",
+      "duration": 2,
+      "emitParticles": false,
+      "loop": true
+    },
+    "panic": {
+      "description": "惊慌挥动四肢",
+      "duration": 1.8,
+      "emitParticles": false,
+      "loop": true
+    }
+  },
+  "model": "generated/story/act0/boss/model.json",
+  "animations": {
+    "idle": "generated/story/act0/boss/idle.json",
+    "talk": "generated/story/act0/boss/talk.json",
+    "panic": "generated/story/act0/boss/panic.json"
+  }
+}

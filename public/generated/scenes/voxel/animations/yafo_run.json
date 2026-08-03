@@ -1,0 +1,64 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 14
+    },
+    "bounce": {
+      "amplitude": 0.1,
+      "frequency": 2.8
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -14
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 2.8
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -6
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 2.8,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -6
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 2.8,
+      "phase": 0.5
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 2.8,
+      "phase": 0.5
+    }
+  },
+  "_name": "yafo-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "yafo",
+    "quality": "voxel",
+    "prompt": "小步快速奔跑"
+  }
+}

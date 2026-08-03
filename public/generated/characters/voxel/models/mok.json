@@ -1,0 +1,628 @@
+{
+  "name": "mok",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "躯干",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "name": "鳄鱼头",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.85,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.8,
+          1.65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftAxe",
+      "name": "左手大斧",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.48,
+          -1.17,
+          0.08
+        ]
+      }
+    },
+    {
+      "id": "rightArm",
+      "name": "右臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.8,
+          1.65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightAxe",
+      "name": "右手大斧",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.54,
+          -0.97,
+          -0.04
+        ]
+      }
+    },
+    {
+      "id": "leftLeg",
+      "name": "前迈左腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.46,
+          0.05,
+          0.12
+        ]
+      }
+    },
+    {
+      "id": "rightLeg",
+      "name": "后撑右腿",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.46,
+          0.05,
+          -0.1
+        ]
+      }
+    },
+    {
+      "id": "tailBase",
+      "name": "粗尾根",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.65,
+          -0.44
+        ]
+      }
+    },
+    {
+      "id": "tailTip",
+      "name": "尾梢",
+      "parent": "tailBase",
+      "transform": {
+        "pos": [
+          0,
+          -0.93,
+          -1.24
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.95,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.6,
+          "height": 1.85,
+          "depth": 0.9
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.68,
+          "height": 1.25,
+          "depth": 0.96
+        },
+        "color": 12071474
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.41,
+          0.12
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.28,
+          "height": 0.72,
+          "depth": 0.92
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.27,
+          0.92
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.16,
+          "height": 0.42,
+          "depth": 1.05
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.4,
+          0.83,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.16
+        },
+        "color": 16766011
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.4,
+          0.83,
+          0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.18,
+          "depth": 0.16
+        },
+        "color": 16766011
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.16,
+          1.18
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.02,
+          "height": 0.08,
+          "depth": 0.62
+        },
+        "color": 3283736
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.24,
+          -0.56,
+          0.08
+        ],
+        "quat": [
+          -0.39,
+          0.59,
+          0.59,
+          -0.39
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.23,
+          "height": 0.44,
+          "depth": 0.4
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.48,
+          -1.17,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 0.44,
+          "depth": 0.46
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "leftAxe",
+      "transform": {
+        "pos": [
+          0,
+          0.04,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 2.3,
+          "depth": 0.14
+        },
+        "color": 9132587
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "parent": "leftAxe",
+      "transform": {
+        "pos": [
+          0,
+          1.14,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.5,
+          "depth": 0.25
+        },
+        "color": 11450042
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.27,
+          -0.46,
+          -0.04
+        ],
+        "quat": [
+          0.61,
+          -0.35,
+          -0.35,
+          0.61
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.08,
+          "height": 0.44,
+          "depth": 0.4
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.54,
+          -0.97,
+          -0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.44,
+          "height": 0.44,
+          "depth": 0.46
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "rightAxe",
+      "transform": {
+        "pos": [
+          0,
+          -0.06,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 2.3,
+          "depth": 0.14
+        },
+        "color": 9132587
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "parent": "rightAxe",
+      "transform": {
+        "pos": [
+          0,
+          1.04,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.5,
+          "depth": 0.25
+        },
+        "color": 11450042
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.08,
+          -0.56,
+          0.08
+        ],
+        "quat": [
+          -0.46,
+          0.53,
+          0.53,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.14,
+          "height": 0.62,
+          "depth": 0.54
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          -0.18,
+          -1.38,
+          0.43
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.7,
+          "height": 0.34,
+          "depth": 1.02
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0.09,
+          -0.56,
+          -0.08
+        ],
+        "quat": [
+          0.54,
+          -0.46,
+          -0.46,
+          0.54
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.14,
+          "height": 0.62,
+          "depth": 0.54
+        },
+        "color": 4161330
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0.2,
+          -1.38,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.7,
+          "height": 0.34,
+          "depth": 0.92
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "tailBase",
+      "transform": {
+        "pos": [
+          0,
+          -0.48,
+          -0.62
+        ],
+        "quat": [
+          0.32,
+          0.32,
+          -0.63,
+          0.63
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.53,
+          "height": 0.88,
+          "depth": 0.78
+        },
+        "color": 3105833
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "tailTip",
+      "transform": {
+        "pos": [
+          0,
+          -0.23,
+          -0.52
+        ],
+        "quat": [
+          0.39,
+          0.39,
+          -0.59,
+          0.59
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.14,
+          "height": 0.52,
+          "depth": 0.46
+        },
+        "color": 3105833
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785206571470,
+      "provider": "gpt",
+      "data": "OHciVeuMdgDhVnfErbe6asP68ae7Y/w/YBewsPwqdnLBmow/mB8DTgyo7EnBmZvxBBcmUWfibKDZ6XQzHjmtkPn7IL6tiL1gQagppETDQRr87v2P8i3b6o8d7o3ib5+iU86nK2qeciVjxHLbTeWbuejqmE801KTVqk+YJ+aT2zOvIEUtzEWcOB2eGNJb5XJ0gCEfoXmeAj3jJNCJkhX/LaznmKuqYzHPlQCKLqoFetSmFUoCWRh6doBwbBqcudez+yf+zVOy9M0ew2+9etyYex8mtHWJBnX2TI8YjRJ0vLP66qbBKpBMg31pPxnfEf1OpsQSYpIgPSx4/XQm+kc7YsTStqEKQsHu1dB+2khQiA/CF9Mrov5ZbqrSo5q1I2BACfbtTLa3YMgkcDGockzvqC0nNyggfcOV7vFVulv9CFHpm2YJQe9OL/BkFjYCa1zOdktRuSReTypcyW5mbv3RRJMbi3ofMih45tmjs6hrEd5fEY4cCQ2PFYqtH0iRZqVUG5njf/ZL2HVXjW0z2X2vgfBd1xkVSbhP5N8nGYuGvL1g7e9R02v00m8r48eFBYWLfnK+rVaoACVWGhpsXUYAw0qFyySy1f9q29SFol/bU8B+cumKWs7GJ2+vcRiuL4n6dFjn5GwadIT7ZjhRiu9ptKssciBrSCzo2WFdhCGA3kraNC93PjkRbHcuanT2FlFQGggLd7H5wTvOy/lc5y4XYWaonfO70R/DBdXT5/dvUWMECFYkR3G88jNspnXCHn0jeZ8LxlWCVXFAFFphAWVr26nhupbQbM8wd+3e/hhVF0VJZ+BQquRz+u0qEkomNr2FGkgrsrHnXa5doX2uHQvdiiKgNFqNUxbuj2G90OoTMP72PZwIwbqvcSvk/zOyrNfy0Cil2UIFrkGlvdEFBSofofB3GSZym503J5lIiBJpTw+M2racVXqHkHgz1gUBZyZXpMTjQcgS0moaYSf9knGC2X3IDtWJ1S5xW7On3cArNlyqe6B6YfR9VD23c0RY9k82X7lpsy/96IYmU3AQeCxfGBZuCDEi1eVJntYbn3SIFqwX+9a2yTCC4JWNqkc6ZVmHTZqPBMBbdPmIijgx1PF8h64aiBGr1BL1/CH1xTNNsHiUk7SrF+2TsTn8jr714aMkXD1U3y5PeGnWmTJbiA+zK7Zq9F9Jr+WooZztAPZJZHeKn2I7XmoJzlWgtLREwI/YeTaVSI8mt/Sfy6Y9LfCaRYFRLrBTzYGHSPgoj2jgPWDVg4fQdMAFjUz9l+7YAxqlVtHkJ2/tVCG63IT83BYZmSRbxEM9c/9yjHalH2rYZhxdf55zKdTzrVqomzxcuOJFF3TJYgQ7IAUDoRtvJOyRXRjQejjkWSblXuClM24Wb36qJvM3FQBMpt3ybGQrgyjqkJDiRyqr74P3fL8L3CDAPIJWeR6Ts7JQgDyUZtzcYWGs6eBbC054fAIgwguBcag8vC5oFnuStTMM5m/j6Zrw/IUdCPVhXERvBU+FAeyaaGSUHWSKn2UWovPJWYPBuicHUrafLupo7uspglCb45DrTxzBLIKdKWUvcg13pC5NvW5IrsOwodLvsTD35UNRyi7+Vh41I0+4Yp4lXkvHvZG862xAMPzT7RQvb4PTJ3bQFeA=",
+      "edits": ""
+    },
+    "chiiAssetRole": "pet",
+    "chiiAssetId": "mok",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "站立行走绿色鳄鱼，红色背心，双手各拿木柄大斧，粗壮尾巴"
+  }
+}

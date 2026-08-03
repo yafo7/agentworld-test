@@ -1,0 +1,29 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.4,
+      "frequency": 3.2,
+      "phase": 0
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.4,
+      "frequency": 3.2,
+      "phase": 0
+    }
+  },
+  "body": {
+    "bounce": {
+      "amplitude": 0.12,
+      "frequency": 3.2
+    }
+  },
+  "_name": "第0幕天使_panic",
+  "_type": "panic",
+  "_modelId": "act0_angel"
+}

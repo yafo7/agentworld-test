@@ -1,196 +1,239 @@
 {
-  "name": "红陶彩花盆",
+  "name": "花盆",
   "type": "lowpoly",
   "format": 2,
   "nodes": [
     {
-      "id": "pot",
-      "name": "红陶花盆",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0
-        ]
-      }
-    },
-    {
-      "id": "flower_0",
-      "name": "花茎与绿叶",
-      "parent": "pot",
-      "transform": {
-        "pos": [
-          -0.48,
-          1.5,
-          0.02
-        ]
-      }
-    },
-    {
-      "id": "flower_head_0",
-      "name": "盛开花朵",
-      "parent": "flower_0",
-      "transform": {
-        "pos": [
-          0,
-          1.42,
-          0
-        ]
-      }
-    },
-    {
-      "id": "flower_1",
-      "name": "花茎与绿叶",
-      "parent": "pot",
-      "transform": {
-        "pos": [
-          0,
-          1.5,
-          -0.12
-        ]
-      }
-    },
-    {
-      "id": "flower_head_1",
-      "name": "盛开花朵",
-      "parent": "flower_1",
-      "transform": {
-        "pos": [
-          0,
-          1.78,
-          0
-        ]
-      }
-    },
-    {
-      "id": "flower_2",
-      "name": "花茎与绿叶",
-      "parent": "pot",
-      "transform": {
-        "pos": [
-          0.5,
-          1.5,
-          0.08
-        ]
-      }
-    },
-    {
-      "id": "flower_head_2",
-      "name": "盛开花朵",
-      "parent": "flower_2",
-      "transform": {
-        "pos": [
-          0,
-          1.28,
-          0
-        ]
-      }
-    },
-    {
       "id": "m0",
-      "parent": "pot",
       "transform": {
         "pos": [
           0,
-          0.15,
+          0.19,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 1.15,
-          "height": 0.24,
-          "depth": 0.95
+          "width": 0.76,
+          "height": 0.38,
+          "depth": 0.52
         },
-        "color": 9384998
+        "color": 10440501
       }
     },
     {
       "id": "m1",
-      "parent": "pot",
       "transform": {
         "pos": [
           0,
-          0.7,
-          0
+          0.19,
+          0.32
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 1.5,
-          "height": 1,
-          "depth": 1.22
+          "width": 0.52,
+          "height": 0.38,
+          "depth": 0.12
         },
-        "color": 12078389
+        "color": 10440501
       }
     },
     {
       "id": "m2",
-      "parent": "pot",
       "transform": {
         "pos": [
           0,
-          0.73,
-          0.64
+          0.19,
+          -0.32
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 1.16,
-          "height": 0.54,
-          "depth": 0.06
+          "width": 0.52,
+          "height": 0.38,
+          "depth": 0.12
         },
-        "color": 13591109
+        "color": 10440501
       }
     },
     {
       "id": "m3",
-      "parent": "pot",
       "transform": {
         "pos": [
           0,
-          1.3,
+          0.6,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 1.85,
-          "height": 0.3,
-          "depth": 1.5
+          "width": 0.94,
+          "height": 0.44,
+          "depth": 0.6599999999999999
         },
-        "color": 10436140
+        "color": 12017472
       }
     },
     {
       "id": "m4",
-      "parent": "pot",
       "transform": {
         "pos": [
           0,
-          1.48,
+          0.6,
+          0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.6599999999999999,
+          "height": 0.44,
+          "depth": 0.14
+        },
+        "color": 12017472
+      }
+    },
+    {
+      "id": "m5",
+      "transform": {
+        "pos": [
+          0,
+          0.6,
+          -0.4
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.6599999999999999,
+          "height": 0.44,
+          "depth": 0.14
+        },
+        "color": 12017472
+      }
+    },
+    {
+      "id": "m6",
+      "transform": {
+        "pos": [
+          0,
+          1,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 1.55,
-          "height": 0.08,
-          "depth": 1.2
+          "width": 1.12,
+          "height": 0.36,
+          "depth": 0.8
         },
-        "color": 4861213
+        "color": 13134665
       }
     },
     {
-      "id": "m5",
-      "parent": "flower_0",
+      "id": "m7",
       "transform": {
         "pos": [
+          0,
+          1,
+          0.48
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.36,
+          "depth": 0.16
+        },
+        "color": 13134665
+      }
+    },
+    {
+      "id": "m8",
+      "transform": {
+        "pos": [
+          0,
+          1,
+          -0.48
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.8,
+          "height": 0.36,
+          "depth": 0.16
+        },
+        "color": 13134665
+      }
+    },
+    {
+      "id": "m9",
+      "transform": {
+        "pos": [
+          0,
+          1.28,
+          0.62
+        ],
+        "quat": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1,
+          "height": 0.2,
+          "depth": 0.22
+        },
+        "color": 14252373
+      }
+    },
+    {
+      "id": "m10",
+      "transform": {
+        "pos": [
+          0.56,
+          1.28,
+          0.56
+        ],
+        "quat": [
+          0.92,
+          0,
+          -0.38,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.17,
+          "height": 0.2,
+          "depth": 0.22
+        },
+        "color": 14252373
+      }
+    },
+    {
+      "id": "m11",
+      "transform": {
+        "pos": [
+          0.62,
+          1.28,
+          0
+        ],
+        "quat": [
+          -0.71,
           0,
           0.71,
           0
@@ -199,387 +242,193 @@
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.11,
-          "height": 1.42,
-          "depth": 0.11
+          "width": 1,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 4164165
-      }
-    },
-    {
-      "id": "m6",
-      "parent": "flower_0",
-      "transform": {
-        "pos": [
-          -0.26,
-          0.53,
-          0
-        ],
-        "quat": [
-          -0.16,
-          -0.69,
-          0.69,
-          0.16
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.47,
-          "height": 0.09,
-          "depth": 0.23
-        },
-        "color": 5219923
-      }
-    },
-    {
-      "id": "m7",
-      "parent": "flower_0",
-      "transform": {
-        "pos": [
-          0.13,
-          1.06,
-          0
-        ],
-        "quat": [
-          -0.69,
-          -0.17,
-          0.17,
-          0.69
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.39,
-          "height": 0.09,
-          "depth": 0.2
-        },
-        "color": 4101193
-      }
-    },
-    {
-      "id": "m8",
-      "parent": "flower_head_0",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.08
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.76,
-          "height": 0.23,
-          "depth": 0.2
-        },
-        "color": 15911244
-      }
-    },
-    {
-      "id": "m9",
-      "parent": "flower_head_0",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.08
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.23,
-          "height": 0.76,
-          "depth": 0.2
-        },
-        "color": 15911244
-      }
-    },
-    {
-      "id": "m10",
-      "parent": "flower_head_0",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.2
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.25,
-          "height": 0.25,
-          "depth": 0.25
-        },
-        "color": 9131301
-      }
-    },
-    {
-      "id": "m11",
-      "parent": "flower_1",
-      "transform": {
-        "pos": [
-          0,
-          0.89,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.11,
-          "height": 1.78,
-          "depth": 0.11
-        },
-        "color": 4164165
+        "color": 14252373
       }
     },
     {
       "id": "m12",
-      "parent": "flower_1",
       "transform": {
         "pos": [
-          0.16,
-          0.88,
-          0
+          0.56,
+          1.28,
+          -0.56
         ],
         "quat": [
-          -0.69,
-          -0.16,
-          0.16,
-          0.69
+          -0.38,
+          0,
+          0.92,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.47,
-          "height": 0.09,
-          "depth": 0.23
+          "width": 0.17,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 5219923
+        "color": 14252373
       }
     },
     {
       "id": "m13",
-      "parent": "flower_1",
       "transform": {
         "pos": [
-          -0.22,
-          1.11,
-          0
+          0,
+          1.28,
+          -0.62
         ],
         "quat": [
-          -0.17,
-          -0.69,
-          0.69,
-          0.17
+          0,
+          0,
+          1,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.39,
-          "height": 0.09,
-          "depth": 0.2
+          "width": 1,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 4101193
+        "color": 14252373
       }
     },
     {
       "id": "m14",
-      "parent": "flower_head_1",
       "transform": {
         "pos": [
+          -0.56,
+          1.28,
+          -0.56
+        ],
+        "quat": [
+          0.38,
           0,
-          0,
-          0.08
+          0.92,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.76,
-          "height": 0.23,
-          "depth": 0.2
+          "width": 0.17,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 15689359
+        "color": 14252373
       }
     },
     {
       "id": "m15",
-      "parent": "flower_head_1",
       "transform": {
         "pos": [
+          -0.62,
+          1.28,
+          0
+        ],
+        "quat": [
+          0.71,
           0,
-          0,
-          0.08
+          0.71,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.23,
-          "height": 0.76,
-          "depth": 0.2
+          "width": 1,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 15689359
+        "color": 14252373
       }
     },
     {
       "id": "m16",
-      "parent": "flower_head_1",
       "transform": {
         "pos": [
+          -0.56,
+          1.28,
+          0.56
+        ],
+        "quat": [
+          0.92,
           0,
-          0,
-          0.2
+          0.38,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.25,
-          "height": 0.25,
-          "depth": 0.25
+          "width": 0.17,
+          "height": 0.2,
+          "depth": 0.22
         },
-        "color": 16762941
+        "color": 14252373
       }
     },
     {
       "id": "m17",
-      "parent": "flower_2",
       "transform": {
         "pos": [
           0,
-          0.64,
+          1.225,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.11,
-          "height": 1.28,
-          "depth": 0.11
+          "width": 0.94,
+          "height": 0.07,
+          "depth": 0.66
         },
-        "color": 4164165
+        "color": 14204305
       }
     },
     {
       "id": "m18",
-      "parent": "flower_2",
       "transform": {
         "pos": [
-          0.16,
-          0.69,
-          0
-        ],
-        "quat": [
-          -0.69,
-          -0.16,
-          0.16,
-          0.69
+          0,
+          1.225,
+          0.4
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.47,
-          "height": 0.09,
-          "depth": 0.23
+          "width": 0.66,
+          "height": 0.07,
+          "depth": 0.14
         },
-        "color": 5219923
+        "color": 14204305
       }
     },
     {
       "id": "m19",
-      "parent": "flower_2",
       "transform": {
         "pos": [
-          -0.22,
-          0.8,
-          0
-        ],
-        "quat": [
-          -0.17,
-          -0.69,
-          0.69,
-          0.17
+          0,
+          1.225,
+          -0.4
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.39,
-          "height": 0.09,
-          "depth": 0.2
+          "width": 0.66,
+          "height": 0.07,
+          "depth": 0.14
         },
-        "color": 4101193
-      }
-    },
-    {
-      "id": "m20",
-      "parent": "flower_head_2",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.08
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.76,
-          "height": 0.23,
-          "depth": 0.2
-        },
-        "color": 9399272
-      }
-    },
-    {
-      "id": "m21",
-      "parent": "flower_head_2",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.08
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.23,
-          "height": 0.76,
-          "depth": 0.2
-        },
-        "color": 9399272
-      }
-    },
-    {
-      "id": "m22",
-      "parent": "flower_head_2",
-      "transform": {
-        "pos": [
-          0,
-          0,
-          0.2
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.25,
-          "height": 0.25,
-          "depth": 0.25
-        },
-        "color": 16038210
+        "color": 14204305
       }
     }
   ],
@@ -587,10 +436,23 @@
     "skipAutoCenter": true,
     "ai": {
       "v": 1,
-      "ts": 1784017084114,
+      "ts": 1785218006950,
       "provider": "gpt",
-      "data": "IstV3YULAKKcThD3cAB71/LjK58HpJJCjOi5UB19Guu8WGSIlNDyPx+55jtOyMeP2hwe5YhZbA6+2qFrLRKV/wTF2L0KEAM/shdwhdSII6InX4Q633SDQCRf6sTOxUAmve/qojFFwFQ4KcEltnAJJqeOJQAl7Z4pMjQDXVXq7P0HbNmodvZFZfaJ219wlAqf16LsZTRKiP15xJW133hyq2uC0DkPgi2XS6FeuBwVyVLepcOmeLgWWyln54M+TglwqENEtXoGVyE4J5J2tWeEugZP2DBl9V2qveUapjIpQD8vGkC4svf88jYYcBJmzAs+wgSj7gtT8BlRb+bpc06Wb8f5EBL0hgPKHaedsKpxHrSvojywN+NnagPmSY8Brzrd0LU12Z0msEMSAoqLl6bNhREW4EQerZohBcuzsSbeVamTZpxQVFZdiiyL+PDrYM6cnQnBbEBL2VOIrWDXipYJ3yf4phACAUzkuXNh6AqfYwfKzIjiujQW49UTIlC1oxwUqV7bh1VKXUTmWeyhamzWappIKSFz/jLT1My4+kE3sAzdRIVSPMZD7zXselyMCIHFVahoLMLgFwLOOdhAnTQbytasxh6UScrNmp5k0Hdrsgktz73z6YTflN0UcUUOuVPjXGIF3sUu7slwx8t21Vctq1ryzeH9+lgYV0lHsnM1oOOEvhy3rvJKvwiMEEXyDBHJQl74oG71aUWjldHTvTZ03e9c/Zz9tbgRDm5kIRf0v/oaSlJHOYxRv+HB2OOoWXrZ4Q7Kq33dmg51OxXGg0Lmw91R7ZCFscWG2839twX4oje3lm2EmtWfDqwen4Vqm4Rxz0+TSkdlvT13RKyxh3lpFziBgUzIq2iU9zbx16CEGUwfz8Leuej0dPl0MFscNCuXSQyMYNwtfXrAg14DaK0M6wI87UlKzOAm9gusnxEfkNPwAc4NrHTMc7kZ7GMNhOaaRBDmewxgHqzILNnECPskVelJG0u2Y2T1znCJtK9pLhqGb2++phZzaRq3MSUH+eSPEaI2QV2r8icEXbfd7kIA1jx/6eE3FoXZUnRWZAPoQu36q3pIvoGckEf6304oii+MwqXkTPKhcYTB6in61kunazCBpVSMNeHQ0bzVosbH3TxLAvTVNfsbf8pO8XmiQ+GKbC1I4cPuGuiqdOmNnpRzS89hUGxoQQoFxSfD5XPzdSYohXr1XjKKdlo0bpAR6KxpYMsK8qPIi1nmrTdTd2VURKY=",
+      "data": "akgPMO4CueEmHUAO0JR/erz+Hg+qrkA0FvHJbe9au7de9zFOZzDKOZ55RBvklRZrT1vRWFd0MzYB2MBndv6Rks6VEdX0BK+UdbfefCE6M7skoPrOUNtpeNkr996QG8g82m3/+/j/P3BRM2CCEKW0nNd84TDsYzP4WGlr5jKT9/hNsC13mR351ZquSIpVpUDpKfzC/exdq10uUrVhiD8ctkm4k/zyLSvbq2z3kRSRF985fUR3Bm9F1WHEwiCYMuve2sB56XtREoNiwj7O+3MM4h4ORW63lZHWxfBDp8wDXsQP5DXeMG9hOgfE/peMcNZwG6q5b/1tXYEO2ldkuYB+wvlbxfuG5lhotmpexk/KrbdA1RerDUbG4jVF+Up9R3mwEPFFosPbyjB07Z8qMmOL2kd2kNZFSW5lQqiNh42vkmXfWTpjiqg0Ygi9UX0J9vkJIWa6SFtlDefsbfH0jpXLpqkZnXy7CNx/fUkz6soIKd1Jw0HuC/nSpNVRT3hKCCASl4huq+mLJDagZWK2E0BWizjKJbVaPzQKcUYYqGGR/3FI62BcSdA0do++aQgn2BKutvyX5gbaBKUTeNwdyXg4WF67+ygguCy7YFt/AICuWgUZw6BdEt4cMgOFT/Rf65boTb9x8T5euEPqqHN5gQ33/z8SpyD1Jdl/EXMnANVO9v6oIyojhMwZmFFURvyqGyfNM6UJKmfZDooRvEfbMGR45vfxtcZpLTijYmpBwXNrNB7vU+UrAF5QqNnkBx1ImBvYHhah5Gu3OXhuvGC3wWE7zFkYCJmMH7vCSzZzqqXH03ENk+trT3O0ypUqZDjVAMp05+DzLWdi78HnJrXg6rvFBt8UbndqxweZgkF82sEqnZF6ALMCv99d4EE=",
       "edits": ""
-    }
+    },
+    "chiiAssetRole": "decor",
+    "chiiAssetId": "flower_pot",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "圆口赤陶小花盆，浅色土壤，盆沿清楚，底部平整",
+    "chiiAssetCategory": "decor"
   }
 }

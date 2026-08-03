@@ -1,0 +1,35 @@
+{
+  "_duration": 3,
+  "_loop": false,
+  "body": {
+    "spin": {
+      "axis": "y",
+      "frequency": 0.333,
+      "direction": "ccw"
+    }
+  },
+  "leftArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -15
+    }
+  },
+  "rightArm_upperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 15
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.5
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "fangk_outfit_turn",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "原地转身展示新衣"
+  }
+}

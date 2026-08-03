@@ -1,0 +1,23 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "arm_l": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -130
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.3,
+      "frequency": 1.5,
+      "phase": 0
+    }
+  },
+  "_name": "momo-wave",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "momo",
+    "quality": "voxel",
+    "prompt": "抬起左手挥手"
+  }
+}

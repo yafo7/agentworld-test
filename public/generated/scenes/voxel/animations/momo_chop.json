@@ -1,0 +1,57 @@
+{
+  "_duration": 2.2,
+  "_loop": false,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    }
+  },
+  "arm_l": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -115
+    },
+    "slash": {
+      "axis": "x",
+      "amplitude": 1.6,
+      "speed": 5.5
+    }
+  },
+  "arm_r": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -115
+    },
+    "slash": {
+      "axis": "x",
+      "amplitude": 1.6,
+      "speed": 5.5
+    }
+  },
+  "leg_l": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    }
+  },
+  "leg_r": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    }
+  },
+  "_name": "momo-chop",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "momo",
+    "quality": "voxel",
+    "prompt": "双手向前砍树"
+  }
+}

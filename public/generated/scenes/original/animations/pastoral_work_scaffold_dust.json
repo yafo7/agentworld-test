@@ -1,0 +1,96 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "north": {
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "sphere",
+      "meshSize": 0.45,
+      "rate": 20,
+      "lifetime": [
+        0.8,
+        1.5
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0
+        ],
+        "speed": [
+          0.3,
+          0.8
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        0.3,
+        0
+      ],
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "colorStart": [
+        0.65,
+        0.62,
+        0.56
+      ],
+      "colorEnd": [
+        0.35,
+        0.34,
+        0.32
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 0.5
+    }
+  },
+  "south": {
+    "emit": {
+      "emitMode": "volume",
+      "mesh": "sphere",
+      "meshSize": 0.45,
+      "rate": 20,
+      "lifetime": [
+        0.8,
+        1.5
+      ],
+      "velocity": {
+        "dir": [
+          0,
+          1,
+          0
+        ],
+        "speed": [
+          0.3,
+          0.8
+        ],
+        "spread": 0.8
+      },
+      "acceleration": [
+        0,
+        0.3,
+        0
+      ],
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "colorStart": [
+        0.65,
+        0.62,
+        0.56
+      ],
+      "colorEnd": [
+        0.35,
+        0.34,
+        0.32
+      ],
+      "scaleStart": 0.9,
+      "scaleEnd": 0.5
+    }
+  }
+}

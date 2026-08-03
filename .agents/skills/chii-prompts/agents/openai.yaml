@@ -1,0 +1,4 @@
+interface:
+  display_name: "奇异岛·提示词"
+  short_description: "Compose stable prompts for every Chii backend workflow"
+  default_prompt: "Use $chii-prompts to compose a validated Chii Island backend prompt packet."

@@ -4,6 +4,9 @@ import * as THREE from 'three';
 import { TownSocialSystem } from '../src/demos/chii-island/systems/TownSocialSystem.js';
 import { attachPetStateMachine, PET_STATES } from '../src/gameplay/pets/PetStateMachine.js';
 import { WorldObjectRegistry } from '../src/world/WorldObjectRegistry.js';
+import { ActivityRegistry } from '../src/gameplay/social/ActivityRegistry.js';
+import { ActivityAssetResolver } from '../src/gameplay/social/ActivityAssetResolver.js';
+import { createTownActivityRegistrySeed } from '../src/demos/chii-island/data/townActivityRegistry.js';
 
 function makeModel(name) {
   return { format: 2, name, nodes: [], parts: [] };
@@ -98,6 +101,24 @@ function makeContentHarness() {
   };
 }
 
+function makeEquipmentHarness() {
+  const calls = [];
+  return {
+    calls,
+    service: {
+      async resolveLoadout(request) {
+        calls.push(request);
+        return {
+          modelJson: makeModel(`${request.characterId}-${request.variantId}-outfit`),
+          assetId: `outfit:${request.characterId}`,
+          loadout: request.loadout,
+          source: 'outfit-preset',
+        };
+      },
+    },
+  };
+}
+
 async function waitFor(predicate, message = 'condition') {
   for (let attempt = 0; attempt < 50; attempt += 1) {
     if (predicate()) return;
@@ -116,7 +137,15 @@ function stubEventPropSpawning(system) {
       operation: 'generate',
       placement: { editable: false, source: 'social_event', footprint: spec.footprint },
     });
-    const prop = { entity, spec, modelJson: entity._originalModelJson, particleSystem: null };
+    entity.mesh.visible = false;
+    const prop = {
+      entity,
+      spec,
+      modelJson: entity._originalModelJson,
+      particleSystem: null,
+      displayScale: entity.mesh.scale.clone(),
+      transition: null,
+    };
     this.eventProps.push(prop);
     return prop;
   };
@@ -135,16 +164,24 @@ function stubEventPropEntityCreation(system) {
       assetId: result.assetId,
       placement: { editable: false, source: 'social_event', footprint: spec.footprint },
     });
-    const prop = { entity, spec, modelJson: result.modelJson, particleSystem: null };
+    entity.mesh.visible = false;
+    const prop = {
+      entity,
+      spec,
+      modelJson: result.modelJson,
+      particleSystem: null,
+      displayScale: entity.mesh.scale.clone(),
+      transition: null,
+    };
     this.eventProps.push(prop);
     return prop;
   };
 }
 
-function makeDialogue(choices) {
+function makeDialogue(choices, { sayResult = true } = {}) {
   return {
     async askChoice() { return { key: choices.shift() }; },
-    async say() { return true; },
+    async say() { return sayResult; },
     async askInput() { return null; },
   };
 }
@@ -162,7 +199,35 @@ function makeCueHarness() {
   };
 }
 
-test('daily town activity starts from its assigned pet and ends automatically', async () => {
+function settleAtPreparedSlots(system) {
+  const petsById = new Map(system.participants.map(pet => [pet._petName, pet]));
+  system.preparedActivity.plan.participants.forEach((id, index) => {
+    const pet = petsById.get(id);
+    const slot = system.preparedActivity.slots[index];
+    if (pet && slot) pet.setPosition(slot.x, slot.y || 0, slot.z);
+  });
+}
+
+async function completePreparationTasks(system) {
+  await waitFor(() => system.preparedActivity, 'activity assets');
+  let guard = 0;
+  while (!system.activeActivity.prepTask.complete && guard < 12) {
+    guard += 1;
+    const task = system.activeActivity.prepTask;
+    if (task.kind === 'talk_pet') {
+      const pet = system.participants.find(candidate => candidate._petName === task.petId);
+      assert.ok(pet, `missing invitation pet ${task.petId}`);
+      assert.equal(await system.interact(pet, makeDialogue([])), true);
+    } else {
+      system.player.mesh.position.copy(task.target);
+      system.update(0.1);
+    }
+  }
+  assert.equal(system.activeActivity.prepTask.complete, true);
+  await waitFor(() => system.activeActivity.status === 'gathering', 'activity gathering');
+}
+
+test('daily town activity starts after its option is accepted even when the acknowledgement is dismissed', async () => {
   const scene = new THREE.Scene();
   const fangk = makePet('fangk');
   const lingq = makePet('lingq');
@@ -194,21 +259,20 @@ test('daily town activity starts from its assigned pet and ends automatically', 
     cuePresenter: cues,
   });
 
-  assert.equal(await system.interact(lingq, makeDialogue(['greeting'])), true);
-  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(await system.interact(lingq, makeDialogue(['greeting'], { sayResult: null })), true);
+  await completePreparationTasks(system);
   assert.equal(system.activeActivity.plan.type, 'greeting');
-  assert.equal(system.canInteract(lingq), false);
-  assert.equal(system.canInteract(fangk), true);
+  assert.equal(system.canInteract(lingq), true);
+  assert.equal(system.canInteract(fangk), false);
 
-  lingq._targetPosition = null;
-  mako._targetPosition = null;
+  settleAtPreparedSlots(system);
   system.update(0.1);
   assert.equal(system.activeActivity.status, 'performing');
 
-  system.update(3.5);
-  assert.equal(system.activeActivity.status, 'wind_down');
+  system.update(10.5);
+  assert.equal(system.activeActivity.status, 'linger');
   assert.ok(cues.lines.some(line => line.pet === 'mako' && line.text.includes('很有精神')));
-  system.update(3);
+  assert.equal(await system.interact(lingq, makeDialogue(['end'])), true);
   assert.equal(system.activeActivity, null);
   assert.equal(lingq.petState.current, PET_STATES.FREE_ROAM);
   assert.equal(mako.petState.current, PET_STATES.FREE_ROAM);
@@ -239,17 +303,64 @@ test('festival activity keeps running and rotates contextual pet lines until fan
   });
 
   assert.equal(await system.interact(fangk, makeDialogue(['party'])), true);
-  await waitFor(() => system.preparedActivity, 'party preparation');
-  for (const pet of [fangk, lingq, mako]) pet._targetPosition = null;
+  await completePreparationTasks(system);
+  settleAtPreparedSlots(system);
   system.update(0.1);
   assert.equal(system.activeActivity.status, 'performing');
 
-  system.update(5);
-  assert.equal(system.activeActivity.status, 'performing');
+  system.update(10.5);
+  assert.equal(system.activeActivity.status, 'linger');
+  for (const pet of [fangk, lingq, mako]) {
+    const plan = pet._animPlans[pet.animation];
+    assert.equal(plan?._loop, true);
+    pet.animation = 'idle';
+  }
+  system.update(0.1);
+  for (const pet of [fangk, lingq, mako]) assert.notEqual(pet.animation, 'idle');
   assert.ok(cues.lines.some(line => line.text.includes('观众请看尾羽')));
 
   assert.equal(await system.interact(fangk, makeDialogue(['end'])), true);
   assert.equal(system.activeActivity, null);
+  system.dispose();
+});
+
+test('campfire party reuses resident dance animations before calling the backend', async () => {
+  const scene = new THREE.Scene();
+  const fangk = makePet('fangk');
+  const lingq = makePet('lingq', 'peacock');
+  const mako = makePet('mako', 'horse_7');
+  for (const pet of [fangk, lingq, mako]) {
+    pet._animPlans.dance = { _duration: 2.8, _loop: true, resident: pet._petName };
+  }
+  const harness = makeContentHarness();
+  const worldObjects = new WorldObjectRegistry();
+  const campfire = makeWorldEntity('reused_dance_fire', '篝火', ['篝火']);
+  worldObjects.add(campfire, { modelJson: campfire._originalModelJson });
+  const system = new TownSocialSystem({
+    scene,
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants: [fangk, lingq, mako],
+    center: new THREE.Vector3(),
+    worldObjects,
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+  });
+
+  assert.equal(await system.interact(fangk, makeDialogue(['party'])), true);
+  await completePreparationTasks(system);
+  assert.equal(harness.calls.animation.length, 0);
+  for (const pet of [fangk, lingq, mako]) {
+    const prepared = system.preparedActivity.animations.get(pet._petName);
+    assert.equal(prepared.key, 'dance');
+    assert.equal(prepared.plan, pet._animPlans.dance);
+    assert.equal(prepared.source, 'resident-animation-library');
+  }
+
+  settleAtPreparedSlots(system);
+  system.update(0.1);
+  for (const pet of [fangk, lingq, mako]) assert.equal(pet.animation, 'dance');
   system.dispose();
 });
 
@@ -288,12 +399,13 @@ test('town activities do not start from the wrong pet dialogue', async () => {
   system.dispose();
 });
 
-test('birthday prepares a temporary hat and cake, then fangk restores everything', async () => {
+test('birthday uses the Original full outfit and restores it after the cake exits', async () => {
   const scene = new THREE.Scene();
   const fangk = makePet('fangk');
   const lingq = makePet('lingq', 'peacock');
   const mako = makePet('mako', 'horse_7');
   const harness = makeContentHarness();
+  const equipment = makeEquipmentHarness();
   const worldObjects = new WorldObjectRegistry();
   const system = new TownSocialSystem({
     scene,
@@ -305,18 +417,27 @@ test('birthday prepares a temporary hat and cake, then fangk restores everything
     objectPlacement: null,
     contentPort: harness.port,
     generatedAssetRepository: harness.repository,
+    equipmentService: equipment.service,
+    sceneStyle: 'original',
   });
   stubEventPropSpawning(system);
 
   assert.equal(await system.interact(fangk, makeDialogue(['birthday'])), true);
-  await waitFor(() => system.preparedActivity, 'birthday preparation');
+  await completePreparationTasks(system);
   assert.equal(system.activeActivity.plan.entry.petId, 'fangk');
   assert.equal(system.activeActivity.plan.exit.petId, 'fangk');
   assert.equal(system.eventProps[0].spec.id, 'birthday_table');
-  assert.equal(harness.calls.mount.length, 1);
+  assert.equal(harness.calls.mount.length, 0);
+  assert.equal(equipment.calls.length, 1);
 
-  for (const pet of [fangk, lingq, mako]) pet._targetPosition = null;
+  settleAtPreparedSlots(system);
   system.update(0.1);
+  assert.equal(system.activeActivity.status, 'costume_change');
+  system.update(1);
+  assert.equal(system.temporaryPetModels.has(mako), false);
+  system.update(0.8);
+  assert.equal(system.temporaryPetModels.has(mako), true);
+  system.update(0.5);
   assert.equal(system.activeActivity.status, 'birthday_intro');
   system.update(3);
   assert.equal(system.activeActivity.status, 'performing');
@@ -325,6 +446,8 @@ test('birthday prepares a temporary hat and cake, then fangk restores everything
   assert.equal(system.canInteract(fangk), true);
 
   assert.equal(await system.interact(fangk, makeDialogue(['end'])), true);
+  assert.equal(system.activeActivity.status, 'prop_exit');
+  system.update(1.3);
   assert.equal(system.activeActivity, null);
   assert.equal(system.eventProps.length, 0);
   assert.equal(system.temporaryPetModels.size, 0);
@@ -332,7 +455,7 @@ test('birthday prepares a temporary hat and cake, then fangk restores everything
   system.dispose();
 });
 
-test('new year keeps outfits, lanterns and firecrackers temporary until fangk ends it', async () => {
+test('Spring Festival dresses residents, collects greetings and cleans temporary scenery', async () => {
   const scene = new THREE.Scene();
   const fangk = makePet('fangk');
   const lingq = makePet('lingq', 'peacock');
@@ -343,6 +466,7 @@ test('new year keeps outfits, lanterns and firecrackers temporary until fangk en
   worldObjects.add(appleTree, { modelJson: appleTree._originalModelJson });
   worldObjects.add(church, { modelJson: church._originalModelJson });
   const harness = makeContentHarness();
+  const equipment = makeEquipmentHarness();
   const system = new TownSocialSystem({
     scene,
     player: { mesh: new THREE.Group() },
@@ -353,18 +477,39 @@ test('new year keeps outfits, lanterns and firecrackers temporary until fangk en
     objectPlacement: null,
     contentPort: harness.port,
     generatedAssetRepository: harness.repository,
+    equipmentService: equipment.service,
+    sceneStyle: 'original',
   });
   stubEventPropSpawning(system);
 
   assert.equal(await system.interact(fangk, makeDialogue(['new_year'])), true);
-  await waitFor(() => system.preparedActivity, 'new year preparation');
-  assert.equal(system.temporaryPetModels.size, 3);
+  await completePreparationTasks(system);
+  assert.equal(system.temporaryPetModels.size, 0);
   assert.equal(system.temporaryWorldModels.size, 2);
   assert.equal(system.eventProps[0].spec.id, 'firecracker');
-  assert.equal(harness.calls.mount.length, 5);
+  assert.equal(system.eventProps.length, 7);
+  assert.equal(system.activeActivity.prepTask.steps.length, 3);
+  assert.ok(system.eventProps.every(prop => prop.entity.mesh.visible === false));
+  assert.equal(harness.calls.mount.length, 2);
+  assert.equal(equipment.calls.length, 3);
   const firecracker = system.eventProps[0].entity;
 
+  settleAtPreparedSlots(system);
+  system.update(0.1);
+  system.update(1);
+  system.update(1.2);
+  assert.equal(system.activeActivity.status, 'new_year_greetings');
+  assert.equal(system.temporaryPetModels.size, 3);
+  for (const pet of [fangk, lingq, mako]) {
+    assert.equal(await system.interact(pet, makeDialogue([])), true);
+  }
+  system.update(0.1);
+  assert.equal(system.activeActivity.status, 'new_year_dance_gathering');
+  assert.equal(firecracker.mesh.visible, true);
   assert.equal(await system.interact(fangk, makeDialogue(['end'])), true);
+  assert.equal(system.activeActivity.status, 'prop_exit');
+  assert.equal(system.eventProps.find(prop => prop.entity === firecracker).transition.type, 'disappear');
+  system.update(1.3);
   assert.equal(system.activeActivity, null);
   assert.equal(system.temporaryPetModels.size, 0);
   assert.equal(system.temporaryWorldModels.size, 0);
@@ -380,6 +525,7 @@ test('repeating the same town activity reuses generated models and animations', 
   const lingq = makePet('lingq', 'peacock');
   const mako = makePet('mako', 'horse_7');
   const harness = makeContentHarness();
+  const equipment = makeEquipmentHarness();
   const system = new TownSocialSystem({
     scene,
     player: { mesh: new THREE.Group() },
@@ -390,6 +536,8 @@ test('repeating the same town activity reuses generated models and animations', 
     objectPlacement: null,
     contentPort: harness.port,
     generatedAssetRepository: harness.repository,
+    equipmentService: equipment.service,
+    sceneStyle: 'original',
   });
   stubEventPropEntityCreation(system);
 
@@ -400,7 +548,7 @@ test('repeating the same town activity reuses generated models and animations', 
     mount: harness.calls.mount.length,
     animation: harness.calls.animation.length,
   };
-  assert.deepEqual(firstCounts, { model: 1, mount: 1, animation: 4 });
+  assert.deepEqual(firstCounts, { model: 1, mount: 0, animation: 5 });
   system.stopActivity('test-repeat');
 
   assert.equal(await system.interact(fangk, makeDialogue(['birthday'])), true);
@@ -454,5 +602,239 @@ test('fangk can cancel an activity while backend animation preparation is pendin
   releaseAnimation({ plan: { _duration: 3, _loop: true } });
   await new Promise(resolve => setTimeout(resolve, 0));
   assert.equal(system.activeActivity, null);
+  system.dispose();
+});
+
+test('preparation invitations and landmark task run while activity assets generate', async () => {
+  const scene = new THREE.Scene();
+  const fangk = makePet('fangk');
+  const lingq = makePet('lingq', 'peacock');
+  const mako = makePet('mako', 'horse_7');
+  const player = { mesh: new THREE.Group() };
+  const worldObjects = new WorldObjectRegistry();
+  const campfire = makeWorldEntity('prep_task_fire', '篝火', ['篝火']);
+  campfire.mesh.position.set(14, 0, 9);
+  worldObjects.add(campfire, { modelJson: campfire._originalModelJson });
+  const harness = makeContentHarness();
+  let releaseAnimation;
+  const animationGate = new Promise(resolve => { releaseAnimation = resolve; });
+  harness.port.generateAnimation = async request => {
+    harness.calls.animation.push(request);
+    return animationGate;
+  };
+  const activityStatuses = [];
+  const system = new TownSocialSystem({
+    scene,
+    player,
+    petManager: { resumePet() {} },
+    participants: [fangk, lingq, mako],
+    center: new THREE.Vector3(),
+    worldObjects,
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+    runtimeStatus: {
+      startJob() { return 'prep_task_job'; },
+      updateJob() {},
+      completeJob() {},
+      failJob() {},
+      setActivityStatus(title, stage, details) { activityStatuses.push({ title, stage, details }); },
+    },
+  });
+
+  assert.equal(await system.interact(fangk, makeDialogue(['party'])), true);
+  assert.equal(system.activeActivity.status, 'preparing');
+  assert.equal(system.activeActivity.prepTask.complete, false);
+  assert.equal(system.activeActivity.prepTask.label, '去邀请lingq参加活动');
+
+  assert.equal(await system.interact(lingq, makeDialogue([])), true);
+  assert.equal(system.activeActivity.prepTask.label, '去邀请mako参加活动');
+  assert.equal(await system.interact(mako, makeDialogue([])), true);
+  assert.equal(system.activeActivity.prepTask.label, '去篝火旁给派对留个位置');
+  player.mesh.position.copy(campfire.mesh.position);
+  system.update(0.1);
+  assert.equal(system.activeActivity.prepTask.complete, true);
+  assert.equal(activityStatuses.at(-1).details.task.complete, true);
+
+  releaseAnimation({ plan: { _duration: 3, _loop: true } });
+  await waitFor(() => system.preparedActivity, 'activity preparation after optional task');
+  assert.equal(system.activeActivity.status, 'gathering');
+  system.stopActivity('test-complete');
+  system.dispose();
+});
+
+test('town activity replaces an unreachable ring slot with a reachable nearby slot', () => {
+  const scene = new THREE.Scene();
+  const fangk = makePet('fangk');
+  const lingq = makePet('lingq');
+  const mako = makePet('mako');
+  fangk._navigation = {
+    isWalkableWorld(position) { return position.z >= -6; },
+    findPath(_from, to) { return this.isWalkableWorld(to) ? [to] : []; },
+  };
+  const system = new TownSocialSystem({
+    scene,
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants: [fangk, lingq, mako],
+    center: new THREE.Vector3(),
+    worldObjects: new WorldObjectRegistry(),
+    objectPlacement: null,
+    contentPort: {},
+    generatedAssetRepository: {},
+  });
+  const plan = system._createPresetPlan('party', fangk);
+  const slots = system._slotsFor(plan, new THREE.Vector3(), { props: [] });
+
+  assert.equal(slots.length, plan.participants.length);
+  assert.equal(fangk._navigation.isWalkableWorld(slots[0]), true);
+  assert.notDeepEqual(slots[0].toArray(), [0, 0, -7.2]);
+  system.dispose();
+});
+
+test('registered Spring Festival prepares without autonomous backend generation', async () => {
+  const scene = new THREE.Scene();
+  const participants = ['fangk', 'lingq', 'mako', 'crab'].map(makePet);
+  for (const pet of participants) pet._animPlans.dance = { _duration: 4, _loop: true };
+  const worldObjects = new WorldObjectRegistry();
+  for (const entity of [
+    makeWorldEntity('fire', 'campfire', ['绡濈伀']),
+    makeWorldEntity('tree', 'apple tree', ['apple']),
+    makeWorldEntity('church', 'church', ['church']),
+  ]) worldObjects.add(entity, { modelJson: entity._originalModelJson });
+  const harness = makeContentHarness();
+  const registry = new ActivityRegistry({ seed: createTownActivityRegistrySeed(), sceneStyle: 'original' });
+  const resolver = new ActivityAssetResolver({
+    sceneStyle: 'original',
+    repository: {
+      async getModel(binding) { return { modelJson: makeModel(binding.assetId || binding.path), assetId: binding.assetId || binding.path }; },
+      async getAnimation(binding) { return { _duration: 4, _loop: true, source: binding.path }; },
+    },
+  });
+  const system = new TownSocialSystem({
+    scene,
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants,
+    center: new THREE.Vector3(),
+    worldObjects,
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+    equipmentService: makeEquipmentHarness().service,
+    sceneStyle: 'original',
+    activityRegistry: registry,
+    activityAssetResolver: resolver,
+  });
+  stubEventPropEntityCreation(system);
+
+  const plan = system._createPresetPlan('new_year', participants[0]);
+  assert.equal(system._beginActivity(plan), true);
+  await waitFor(() => system.preparedActivity, 'registered Spring Festival');
+  assert.deepEqual(harness.calls, { model: [], mount: [], animation: [], chat: [] });
+  assert.equal(system.preparedActivity.props.length, 7);
+  assert.equal(system.preparedActivity.worldMounts.length, 2);
+  system.stopActivity('test-complete');
+  system.dispose();
+});
+
+test('an exact registered custom activity bypasses the AI planner', async () => {
+  const scene = new THREE.Scene();
+  const lingq = makePet('lingq');
+  const mako = makePet('mako');
+  const harness = makeContentHarness();
+  const concept = '和 mako 一起转圈玩';
+  const registeredPlan = {
+    id: 'custom_daily_registered',
+    type: 'custom_daily',
+    scale: 'daily',
+    title: '转圈招呼会',
+    concept,
+    hostId: 'lingq',
+    exitPetId: 'lingq',
+    initiatorId: 'lingq',
+    participants: ['lingq', 'mako'],
+    locationId: 'church_square',
+    targetObjectIds: [],
+    actionPrompts: { lingq: '展开尾羽转圈', mako: '点头踏步转圈' },
+    props: [],
+    autoEnd: false,
+    performanceDuration: 10,
+    beats: ['invite', 'gather', 'perform', 'host_exit'],
+    dialogue: { proposal: '转圈吗', accept: '走吧', ready: '站好啦', reaction: null, ambient: [], end: '转完啦' },
+  };
+  const registry = new ActivityRegistry({
+    sceneStyle: 'original',
+    seed: [{ id: 'town.daily.turn.v1', status: 'ready', sceneStyle: 'original', type: 'custom_daily', plan: registeredPlan }],
+  });
+  const choices = ['custom_daily', 'confirm'];
+  const system = new TownSocialSystem({
+    scene,
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants: [lingq, mako],
+    center: new THREE.Vector3(),
+    worldObjects: new WorldObjectRegistry(),
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+    activityRegistry: registry,
+  });
+  const dialogue = {
+    async askChoice() { return { key: choices.shift() }; },
+    async askInput() { return concept; },
+    async say() { return true; },
+  };
+
+  assert.equal(await system.interact(lingq, dialogue), true);
+  assert.equal(system.activeActivity.plan.registryId, 'town.daily.turn.v1');
+  assert.equal(harness.calls.chat.length, 0);
+  system.dispose();
+});
+
+test('a new custom activity becomes ready only after successful completion', async () => {
+  const scene = new THREE.Scene();
+  const lingq = makePet('lingq');
+  const harness = makeContentHarness();
+  const registry = new ActivityRegistry({ sceneStyle: 'original' });
+  const system = new TownSocialSystem({
+    scene,
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants: [lingq],
+    center: new THREE.Vector3(),
+    worldObjects: new WorldObjectRegistry(),
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+    activityRegistry: registry,
+  });
+  const plan = system._validatePlan({
+    id: 'new_custom_activity',
+    type: 'custom_daily',
+    scale: 'daily',
+    title: '尾羽点头练习',
+    concept: '练习点头',
+    hostId: 'lingq',
+    exitPetId: 'lingq',
+    initiatorId: 'lingq',
+    participants: ['lingq'],
+    locationId: 'church_square',
+    targetObjectIds: [],
+    actionPrompts: { lingq: '展开尾羽轻轻点头' },
+    props: [],
+    autoEnd: false,
+    performanceDuration: 10,
+    beats: ['invite', 'gather', 'perform', 'host_exit'],
+    dialogue: { proposal: '练习吗', accept: '开始吧', ready: '站好啦', reaction: null, ambient: [], end: '练完啦' },
+  });
+
+  assert.equal(system._beginActivity(plan), true);
+  const draftId = system.activeActivity.registration.id;
+  assert.equal(registry.get(draftId).status, 'draft');
+  await waitFor(() => system.preparedActivity, 'custom activity preparation');
+  system.stopActivity('host-ended');
+  assert.equal(registry.get(draftId).status, 'ready');
+  assert.equal(registry.get(draftId).stats.runs, 1);
   system.dispose();
 });

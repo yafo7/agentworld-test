@@ -1,0 +1,45 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "chest": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 22
+    },
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 0.65
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -55
+    }
+  },
+  "rightArm_forearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -105
+    },
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 0.65,
+      "phase": 0.15
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "fangk_eat",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "低头拿起食物品尝"
+  }
+}

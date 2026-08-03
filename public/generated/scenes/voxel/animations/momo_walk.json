@@ -1,0 +1,53 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 7
+    },
+    "bounce": {
+      "amplitude": 0.045,
+      "frequency": 0.5
+    }
+  },
+  "leg_l": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.45,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "leg_r": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.45,
+      "frequency": 0.5,
+      "phase": 0.5
+    }
+  },
+  "arm_l": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 0.5,
+      "phase": 0.5
+    }
+  },
+  "arm_r": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.25,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "_name": "momo-walk",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "momo",
+    "quality": "voxel",
+    "prompt": "小步向前行走"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "_duration": 1.2,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.34,
+      "frequency": 0.85
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": 6
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.7
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.28,
+      "frequency": 1.7,
+      "phase": 0.25
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -14
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 1.2
+    }
+  },
+  "rightArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1.2,
+      "phase": 0.1
+    }
+  },
+  "leftBraid": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.4,
+      "phase": 0.15
+    }
+  },
+  "rightBraid": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.12,
+      "frequency": 1.4,
+      "phase": 0.25
+    }
+  },
+  "_name": "方案 B · 奇异岛短身版_jump",
+  "_type": "jump",
+  "_modelId": "phrolova_b",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "屈膝起跳轻盈落地",
+    "emitParticles": false
+  }
+}

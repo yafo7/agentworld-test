@@ -125,6 +125,22 @@ export class ThirdPersonCamera {
     this.camera.lookAt(this._smoothedPos);
   }
 
+  snapTo(targetPos, {
+    yaw = this.yaw,
+    pitch = this.pitch,
+    distance = this.distance,
+  } = {}) {
+    if (Number.isFinite(yaw)) this.yaw = yaw;
+    if (Number.isFinite(pitch)) this.pitch = pitch;
+    if (Number.isFinite(distance)) this.distance = distance;
+    this._targetPos.copy(targetPos).add(this._lookOffset);
+    this._smoothedPos.copy(this._targetPos);
+    const desiredPosition = this._targetPos.clone().add(this._computeOffset());
+    this.camera.position.copy(this._resolveCollision(this._targetPos, desiredPosition));
+    if (this.camera.position.y < 0.5) this.camera.position.y = 0.5;
+    this.camera.lookAt(this._smoothedPos);
+  }
+
   _computeOffset() {
     // Fixed horizontal distance; pitch only controls Y.
     const yOffset = Math.tan(this.pitch) * this.distance;

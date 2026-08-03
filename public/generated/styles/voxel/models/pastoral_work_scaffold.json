@@ -1,94 +1,77 @@
 {
-  "name": "方形施工横幅围栏",
+  "name": "施工横幅",
   "type": "lowpoly",
   "format": 2,
   "nodes": [
     {
-      "id": "site",
-      "name": "施工区域",
+      "id": "warning_stripes",
+      "name": "黑色警示条纹",
       "transform": {
         "pos": [
           0,
-          0,
+          0.99,
           0
         ]
       }
     },
     {
-      "id": "north",
-      "name": "North施工横幅",
-      "parent": "site",
+      "id": "posts",
+      "name": "四角木桩",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
           0,
-          0.85,
-          -2
-        ]
-      }
-    },
-    {
-      "id": "south",
-      "name": "South施工横幅",
-      "parent": "site",
-      "transform": {
-        "pos": [
-          0,
-          0.85,
-          2
-        ]
-      }
-    },
-    {
-      "id": "east",
-      "name": "东侧施工横幅",
-      "parent": "site",
-      "transform": {
-        "pos": [
-          2,
-          0.85,
+          -0.11,
           0
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
     },
     {
-      "id": "west",
-      "name": "西侧施工横幅",
-      "parent": "site",
+      "id": "banners",
+      "name": "黄色施工横幅",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          -2,
-          0.85,
+          0,
+          0.06,
           0
         ]
       }
     },
     {
       "id": "m0",
-      "parent": "site",
+      "parent": "posts",
       "transform": {
         "pos": [
+          -2,
           0,
-          0.04,
-          0
+          -2
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 4.6,
-          "height": 0.08,
-          "depth": 4.6
+          "width": 0.22,
+          "height": 1.76,
+          "depth": 0.22
         },
-        "color": 6842472
+        "color": 9132587
       }
     },
     {
       "id": "m1",
-      "parent": "site",
+      "parent": "posts",
       "transform": {
         "pos": [
-          -2,
-          1.1,
+          2,
+          0,
           -2
         ]
       },
@@ -96,39 +79,39 @@
         "type": "box",
         "params": {
           "width": 0.22,
-          "height": 2.2,
+          "height": 1.76,
           "depth": 0.22
         },
-        "color": 3421236
+        "color": 9132587
       }
     },
     {
       "id": "m2",
-      "parent": "site",
+      "parent": "posts",
       "transform": {
         "pos": [
-          -2,
-          0.06,
-          -2
+          2,
+          0,
+          2
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.55,
-          "height": 0.12,
-          "depth": 0.55
+          "width": 0.22,
+          "height": 1.76,
+          "depth": 0.22
         },
-        "color": 15895592
+        "color": 9132587
       }
     },
     {
       "id": "m3",
-      "parent": "site",
+      "parent": "posts",
       "transform": {
         "pos": [
           -2,
-          1.1,
+          0,
           2
         ]
       },
@@ -136,510 +119,506 @@
         "type": "box",
         "params": {
           "width": 0.22,
-          "height": 2.2,
+          "height": 1.76,
           "depth": 0.22
         },
-        "color": 3421236
+        "color": 9132587
       }
     },
     {
       "id": "m4",
-      "parent": "site",
+      "parent": "banners",
       "transform": {
         "pos": [
-          -2,
-          0.06,
+          0,
+          0,
           2
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.55,
-          "height": 0.12,
-          "depth": 0.55
+          "width": 3.72,
+          "height": 0.52,
+          "depth": 0.1
         },
-        "color": 15895592
+        "color": 15909424
       }
     },
     {
       "id": "m5",
-      "parent": "site",
+      "parent": "banners",
       "transform": {
         "pos": [
-          2,
-          1.1,
+          0,
+          0,
           -2
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.22,
-          "height": 2.2,
-          "depth": 0.22
+          "width": 3.72,
+          "height": 0.52,
+          "depth": 0.1
         },
-        "color": 3421236
+        "color": 15909424
       }
     },
     {
       "id": "m6",
-      "parent": "site",
+      "parent": "banners",
       "transform": {
         "pos": [
           2,
-          0.06,
-          -2
+          0,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.55,
-          "height": 0.12,
-          "depth": 0.55
+          "width": 0.1,
+          "height": 0.52,
+          "depth": 3.72
         },
-        "color": 15895592
+        "color": 15909424
       }
     },
     {
       "id": "m7",
-      "parent": "site",
+      "parent": "banners",
       "transform": {
         "pos": [
-          2,
-          1.1,
-          2
+          -2,
+          0,
+          0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.22,
-          "height": 2.2,
-          "depth": 0.22
+          "width": 0.1,
+          "height": 0.52,
+          "depth": 3.72
         },
-        "color": 3421236
+        "color": 15909424
       }
     },
     {
       "id": "m8",
-      "parent": "site",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          2,
-          0.06,
-          2
+          -1.34,
+          0,
+          2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.55,
-          "height": 0.12,
-          "depth": 0.55
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 15895592
+        "color": 1513239
       }
     },
     {
       "id": "m9",
-      "parent": "north",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
+          -1.34,
           0,
-          0.4,
-          0
+          -2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 3.65,
-          "height": 0.78,
-          "depth": 0.12
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16022560
+        "color": 1513239
       }
     },
     {
       "id": "m10",
-      "parent": "north",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          -1.15,
-          0.4,
-          -0.08
+          -0.44,
+          0,
+          2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m11",
-      "parent": "north",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          -0.38,
-          0.4,
-          -0.08
+          -0.44,
+          0,
+          -2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m12",
-      "parent": "north",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.38,
-          0.4,
-          -0.08
+          0.46,
+          0,
+          2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m13",
-      "parent": "north",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          1.15,
-          0.4,
-          -0.08
+          0.46,
+          0,
+          -2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m14",
-      "parent": "south",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
+          1.36,
           0,
-          0.4,
-          0
+          2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 3.65,
-          "height": 0.78,
-          "depth": 0.12
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16022560
+        "color": 1513239
       }
     },
     {
       "id": "m15",
-      "parent": "south",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          -1.15,
-          0.4,
-          0.08
+          1.36,
+          0,
+          -2.06
+        ],
+        "quat": [
+          0.62,
+          0.34,
+          0.34,
+          0.62
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m16",
-      "parent": "south",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          -0.38,
-          0.4,
-          0.08
+          2.06,
+          0,
+          -1.34
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m17",
-      "parent": "south",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.38,
-          0.4,
-          0.08
+          -2.06,
+          0,
+          -1.34
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m18",
-      "parent": "south",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          1.15,
-          0.4,
-          0.08
+          2.06,
+          0,
+          -0.44
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.32,
-          "height": 0.58,
-          "depth": 0.04
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m19",
-      "parent": "east",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
+          -2.06,
           0,
-          0.4,
-          0
+          -0.44
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.12,
-          "height": 0.78,
-          "depth": 3.65
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16022560
+        "color": 1513239
       }
     },
     {
       "id": "m20",
-      "parent": "east",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.08,
-          0.4,
-          -1.15
+          2.06,
+          0,
+          0.46
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m21",
-      "parent": "east",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.08,
-          0.4,
-          -0.38
+          -2.06,
+          0,
+          0.46
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m22",
-      "parent": "east",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.08,
-          0.4,
-          0.38
+          2.06,
+          0,
+          1.36
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16052447
+        "color": 1513239
       }
     },
     {
       "id": "m23",
-      "parent": "east",
+      "parent": "warning_stripes",
       "transform": {
         "pos": [
-          0.08,
-          0.4,
-          1.15
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
-        },
-        "color": 16052447
-      }
-    },
-    {
-      "id": "m24",
-      "parent": "west",
-      "transform": {
-        "pos": [
+          -2.06,
           0,
-          0.4,
-          0
+          1.36
+        ],
+        "quat": [
+          0.19,
+          -0.19,
+          0.68,
+          0.68
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.12,
-          "height": 0.78,
-          "depth": 3.65
+          "width": 0.57,
+          "height": 0.025,
+          "depth": 0.14
         },
-        "color": 16022560
-      }
-    },
-    {
-      "id": "m25",
-      "parent": "west",
-      "transform": {
-        "pos": [
-          -0.08,
-          0.4,
-          -1.15
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
-        },
-        "color": 16052447
-      }
-    },
-    {
-      "id": "m26",
-      "parent": "west",
-      "transform": {
-        "pos": [
-          -0.08,
-          0.4,
-          -0.38
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
-        },
-        "color": 16052447
-      }
-    },
-    {
-      "id": "m27",
-      "parent": "west",
-      "transform": {
-        "pos": [
-          -0.08,
-          0.4,
-          0.38
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
-        },
-        "color": 16052447
-      }
-    },
-    {
-      "id": "m28",
-      "parent": "west",
-      "transform": {
-        "pos": [
-          -0.08,
-          0.4,
-          1.15
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.04,
-          "height": 0.58,
-          "depth": 0.32
-        },
-        "color": 16052447
+        "color": 1513239
       }
     }
   ],
@@ -647,10 +626,23 @@
     "skipAutoCenter": true,
     "ai": {
       "v": 1,
-      "ts": 1784017843553,
+      "ts": 1785218124479,
       "provider": "gpt",
-      "data": "enrDv/9HOR4esgQTPF8hDbqI9IlDLRSPGku8sj6yX/ZrfuxeFzc34mGR67Q+6LuIRU7cEHkrK6sWcFGkRuNlvZa8Sl7m0j6GhlvPBBExN1zBQU+OvMykhwJcUGyLtSUWOd1DRwMKWft9wJ+xmL+8i9iHw37K9HQiKaDZNHFyIpWL4vge3FulHuv7jdn2cpRk+ycS6g9eDmVYBx/WayC83RteidaVOwimE+pJo3mM9cT61LtIJv8RsGpIlzYnm4lSraviWphgRhwinmyeFunPiYZdeLFf3bnhi+nPiRIw98OEBZDHuODR0bq1iJcnyS4yVyPWsFbeWEDj3BV3RSwUBfMrtPsi9D+8vv0aDgkGoMvXQucV8pHwsGlo02IVZI66GEVAVd2HLxHswGawkSGRCELD/VxUfQNv6+6UJp7RxFMZsznEdmxcOorY4hcfalh2S52rV5x0J9AZTmi1foyOnEXtqRTxRRzf/g0ZfLMjYOXbI6vscUUtGec6IN7wm5ZkO954Um07M9MbY1txhBOZGe91ZX1XS4s6tS/CfMjdCFQ2wRBsitlbHasKqTi/DlUjZq0ZkqtwFcAuNIZTxbPKt84EXMxig/v4HCCjXjnizWGX6UXazbr4qSKDqkQG7FXAq09xuBlECJzyEEmL7FGbo/ts4vXnVa6WRBbpWLee5vYmfnAVEweZO2cqYWyIaquzAdDs9qFIBaJR5wUXvABeff1a4W8ytqcKPlUTq9O4ap1t3H0NAP6Zkj7aeu8vUqXVk2PSU24q4cG23r2a",
+      "data": "EjVyNt/V8CETcqGLHhqEZy7JwWOcmitFkq8otB5/1CV3IhKm7fm0gElzFVcHg15QgD2bNidoHi93S7QQ6ladBVBnsBrDvrVdi3i7Ajltp9yPnPWpKE8g66Lm96pKKmOoLB2comVXHFlYYHB8hUlNpn6GGimYbRQk8z9Qp9o08euMg+t220DRrO+ZwKG72Qto+j9TbTY1Q3lyyqxvJdIjyVRI3RV0EOa+9FTsiZeWbQTy56j8Bj6hByuUElQz9LMBSCaVtlXfXuMrVharWURQyk8zwWRvssAQ2zFMX2bY+aA5IZk4/pm3mzNqkkVHVVFk7+ATj1wsKRA/0Aqec0NIPSZdD2nAkVI3gPTdibAWr+VSFocG7Pglay/t4CVdrQjnnOCPP02K5SHwQkVaNuUM6JM7GTcBjajupfJR/G/Q9VVmu8G5Z/gER39gh0IAem3JWFKjisvRrS+fVSMXSGZuPKt6hy1EoyfR1K2pb2/oDSXs1P/qE9o2PHugsSpEEoiS7r4zXC8MFNc6hzdK8d3s3VNQGp+GY9agvL+Ou4SdpnwPQNYK5D9FhkA6/1EpR2NvXhufyvFdvOBwAF7DPQeuPnjgkuwRTsTLQ+ahG5Lujyrz+4a4SEt45Vl/zC0T55bnl7n1BIufGmQsxIPUx1M8Mt/5dDS9s0zW1n4weZ+OKocktqrLAFbu8PsPO/W+l4kKxijhDBGAfLdQcmyTF1Fr7lEC680/2aWlyng2u9MRVyieX9qx7hew3jsXCbxL8bgKL9IPfR0qd+DEnsjCZhhpuc9dvUTRh+E4y2rg6RtO5imvhSgbAqPkDuuOgZ7eJvEh6zCCHXMi9Lk6lren5kkBN6/h7SC3zuHQAfBsO9VV7M7PclH+ymo3qRKjjWqhl4VE5nXw/Q1xjs1urC26Y+1I9CtOzTKmsJn5f+RK7xZXlQ980e9yy7jP8iNr3JX4Lx+579SNQIqR",
       "edits": ""
-    }
+    },
+    "chiiAssetRole": "decor",
+    "chiiAssetId": "pastoral_work_scaffold",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "四条黄色施工横幅围成正方形区域，四角木桩，黑色警示条纹",
+    "chiiAssetCategory": "decor"
   }
 }

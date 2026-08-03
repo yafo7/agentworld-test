@@ -1,0 +1,46 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "shift": {
+      "axis": "y",
+      "distance": -0.7
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": 5
+    },
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.42
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -65
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -65
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "x",
+      "amplitude": 0.025,
+      "frequency": 0.42,
+      "phase": 0
+    }
+  },
+  "_name": "老大_idle",
+  "_type": "idle",
+  "_modelId": "act0_boss",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "坐着轻轻呼吸",
+    "emitParticles": false
+  }
+}

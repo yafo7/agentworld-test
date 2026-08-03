@@ -1,0 +1,101 @@
+{
+  "_duration": 2.6,
+  "_loop": true,
+  "body": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.5
+    },
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.08,
+      "frequency": 3
+    }
+  },
+  "claw_0": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -18
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.55,
+      "frequency": 1.5
+    }
+  },
+  "claw_1": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 18
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.5,
+      "phase": 0.5
+    }
+  },
+  "leg_0_0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.18,
+      "frequency": 3
+    }
+  },
+  "leg_0_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 3,
+      "phase": 0.5
+    }
+  },
+  "leg_0_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 3
+    }
+  },
+  "leg_0_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.18,
+      "frequency": 3,
+      "phase": 0.5
+    }
+  },
+  "leg_1_0": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.18,
+      "frequency": 3,
+      "phase": 0.25
+    }
+  },
+  "leg_1_1": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 3,
+      "phase": 0.75
+    }
+  },
+  "leg_1_2": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.16,
+      "frequency": 3,
+      "phase": 0.25
+    }
+  },
+  "leg_1_3": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.18,
+      "frequency": 3,
+      "phase": 0.75
+    }
+  }
+}

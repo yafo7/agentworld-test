@@ -1,0 +1,73 @@
+{
+  "body": {
+    "bounce": {
+      "amplitude": 0.15,
+      "frequency": 2
+    }
+  },
+  "chest": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 15
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "wings": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 2
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 2,
+      "phase": 0.5
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1,
+      "frequency": 2,
+      "phase": 0
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 2
+    }
+  },
+  "foldingFan": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 0,
+      "lockWorldRot": true
+    }
+  }
+}

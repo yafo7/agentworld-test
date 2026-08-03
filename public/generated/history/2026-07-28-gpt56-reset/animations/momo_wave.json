@@ -1,0 +1,99 @@
+{
+  "_duration": 2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1
+    }
+  },
+  "chest": {
+    "breathe": {
+      "amplitude": 0.025,
+      "frequency": 1
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 1,
+      "phase": 0.15
+    }
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -130
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.35,
+      "frequency": 2.2
+    }
+  },
+  "leftArm_forearm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -25
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.22,
+      "frequency": 2.2,
+      "phase": 0.12
+    }
+  },
+  "leftArm_hand": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.45,
+      "frequency": 3.2,
+      "phase": 0.25
+    },
+    "emit": {
+      "emitMode": "point",
+      "mesh": "sphere",
+      "meshSize": 0.35,
+      "rate": 18,
+      "lifetime": [
+        0.5,
+        0.9
+      ],
+      "velocity": {
+        "dir": [
+          -0.6,
+          0.9,
+          0.2
+        ],
+        "speed": [
+          0.8,
+          1.8
+        ],
+        "spread": 0.7
+      },
+      "acceleration": [
+        0,
+        -1.2,
+        0
+      ],
+      "offset": [
+        0,
+        0.15,
+        0.35
+      ],
+      "colorStart": [
+        1,
+        0.75,
+        0.95
+      ],
+      "colorEnd": [
+        0.8,
+        0.35,
+        0.9
+      ],
+      "scaleStart": 1.1,
+      "scaleEnd": 0.45
+    }
+  }
+}

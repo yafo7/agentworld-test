@@ -1,0 +1,21 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "leftWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 1.2,
+      "frequency": 2.8
+    }
+  },
+  "rightWing": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -1.2,
+      "frequency": 2.8
+    }
+  },
+  "_name": "第0幕天使_falling",
+  "_type": "falling",
+  "_modelId": "act0_angel"
+}

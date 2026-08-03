@@ -1,0 +1,56 @@
+{
+  "_duration": 4,
+  "_loop": true,
+  "neck": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 38
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.06,
+      "frequency": 0.75
+    }
+  },
+  "head": {
+    "shift": [
+      {
+        "axis": "y",
+        "distance": -1.15
+      },
+      {
+        "axis": "z",
+        "distance": 0.45
+      }
+    ],
+    "pointTo": {
+      "axis": "x",
+      "angle": 32
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 1.5
+    }
+  },
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.5
+    }
+  },
+  "tail": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.1,
+      "frequency": 0.55,
+      "phase": 0.2
+    }
+  },
+  "_meta": {
+    "chiiActivityAssetId": "mako_eat",
+    "chiiPromptProfile": "chii-v1",
+    "chiiSceneStyle": "original",
+    "prompt": "低头拿起食物品尝"
+  }
+}

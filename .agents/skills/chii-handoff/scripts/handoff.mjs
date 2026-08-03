@@ -35,6 +35,7 @@ console.log([
   `- Services: game ${status.services.game5173 ? 'up' : 'down'}, studio ${status.services.studio8000 ? 'up' : 'down'}`,
   `- Runtime assets: ${status.assets.count}, source ${status.assets.source || 'unknown'}`,
   `- Test files: ${status.testFiles}`,
+  `- Project skills: ${status.skills.count}`,
   `- Architecture: ${status.architecture}`,
   '',
   'Add task-specific completed work, verification result, risks, and next priorities before presenting.',

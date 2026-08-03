@@ -1,0 +1,46 @@
+{
+  "_duration": 1.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 7
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 1.1
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.55,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 0
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.55,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 D · GPT Pro 精细版_walk",
+  "_type": "walk",
+  "_modelId": "phrolova_d",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿交替向前行走",
+    "emitParticles": false
+  }
+}

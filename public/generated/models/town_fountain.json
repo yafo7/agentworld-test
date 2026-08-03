@@ -1,0 +1,610 @@
+{
+  "name": "小镇喷泉",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "fountain_root",
+      "name": "喷泉",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "white_stone",
+      "name": "白石结构",
+      "parent": "fountain_root",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "water_effects",
+      "name": "水体",
+      "parent": "fountain_root",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "lower_water",
+      "name": "下层池水",
+      "parent": "water_effects",
+      "transform": {
+        "pos": [
+          0,
+          0.54,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "pool"
+        }
+      ]
+    },
+    {
+      "id": "upper_water",
+      "name": "上层池水",
+      "parent": "water_effects",
+      "transform": {
+        "pos": [
+          0,
+          1.61,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "pool"
+        }
+      ]
+    },
+    {
+      "id": "water_jets",
+      "name": "三股水柱",
+      "parent": "water_effects",
+      "transform": {
+        "pos": [
+          0,
+          1.7,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "water",
+          "value": "fall"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 5,
+          "height": 0.22,
+          "depth": 3.6
+        },
+        "color": 15197145
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.11,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.6,
+          "height": 0.22,
+          "depth": 5
+        },
+        "color": 15197145
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.37,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.5,
+          "height": 0.3,
+          "depth": 3.2
+        },
+        "color": 15789541
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.37,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.3,
+          "depth": 4.5
+        },
+        "color": 15789541
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          2.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.34,
+          "depth": 0.34
+        },
+        "color": 16118506
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          -2.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.2,
+          "height": 0.34,
+          "depth": 0.34
+        },
+        "color": 16118506
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          2.08,
+          0.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.34,
+          "depth": 3.2
+        },
+        "color": 16118506
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          -2.08,
+          0.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.34,
+          "depth": 3.2
+        },
+        "color": 16118506
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          0.99,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.82,
+          "height": 0.85,
+          "depth": 0.82
+        },
+        "color": 14867922
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.39,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 0.18,
+          "depth": 1.05
+        },
+        "color": 15986662
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.75,
+          "height": 0.24,
+          "depth": 1.9
+        },
+        "color": 15657697
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.5,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.9,
+          "height": 0.24,
+          "depth": 2.75
+        },
+        "color": 15657697
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.68,
+          1.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.28,
+          "depth": 0.25
+        },
+        "color": 16250093
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.68,
+          -1.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.28,
+          "depth": 0.25
+        },
+        "color": 16250093
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          1.22,
+          1.68,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.28,
+          "depth": 1.65
+        },
+        "color": 16250093
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          -1.22,
+          1.68,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.28,
+          "depth": 1.65
+        },
+        "color": 16250093
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "white_stone",
+      "transform": {
+        "pos": [
+          0,
+          1.7,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.7,
+          "height": 0.18,
+          "depth": 0.7
+        },
+        "color": 15065301
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "lower_water",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.85,
+          "height": 0.06,
+          "depth": 2.7
+        },
+        "color": 6866920
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "lower_water",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.7,
+          "height": 0.06,
+          "depth": 3.85
+        },
+        "color": 6866920
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "upper_water",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.15,
+          "height": 0.055,
+          "depth": 1.45
+        },
+        "color": 7984366
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "upper_water",
+      "transform": {
+        "pos": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.45,
+          "height": 0.055,
+          "depth": 2.15
+        },
+        "color": 7984366
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "water_jets",
+      "transform": {
+        "pos": [
+          0,
+          0.78,
+          0.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.15,
+          "height": 1.55,
+          "depth": 0.15
+        },
+        "color": 11070207
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "water_jets",
+      "transform": {
+        "pos": [
+          -0.38,
+          0.59,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 1.18,
+          "depth": 0.14
+        },
+        "color": 9560311
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "water_jets",
+      "transform": {
+        "pos": [
+          0.38,
+          0.59,
+          -0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 1.18,
+          "depth": 0.14
+        },
+        "color": 9560311
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785220192159,
+      "provider": "gpt",
+      "data": "hV5Maw7s+kisXgcszAQ+viII2Pqod72Rbgu0SPmJ7pHZrFmwUR13rp09ZxUzJUiW8k+y1kUoweIPOxPO2G4XUmUP4vDu13FyLhzotJmcX+G1AIXVl0INHYScc//lmsCwNsN0aK7ZvlQB2Ppp+tyGQlMyGL/CvKjw4hE5Hjjq6X2NdgdZsNcFFxW3z20ffKU0wJazET+zWwtaOh6VwOaXPoXfPUkQooTap2hjGTyurgyG/zbBPgtUz6bsbFSV13tbW+c4XxvU3eCO2qciyu9MXiuGQEGEUXulfje+heGl4ApFnnxSIF8Q5AiRq+2XY2U1jMhA3//Z/BniJ4bw0GI58IbEzUDM6WpttbcdcXc+ci2lpkZ/42M+lCGUVAAKcGTgyUmUVVJumIthT/etpINtDbMDWEQL/PTKq9kqFSsIOjg4IFfxaIH5nXpSRQsfe/H4u8EBhlmQiz2nenMgS7HIniyVEKXs2k88UOazWVg9R09U6e/u0nWoLUokwMHdpXF91svYizH4GG7POKKuW4hlNx9gEaGd7GLiYlqcgPdUyHrOnInHsIXYe4FVjrs9XU0LUpb/j6aJ/JFw6UTAbFizRo3trctdZYx9B+4QL76ilbH/MJQCz4LY9x0zSlELdcid+sYtU7Ygs6G0Ch4hD1nMLyDy+c68YS6P9qmP7Lm4z67XmcfdGXHz2Kcxv9IzVcFkvyPZnOE5IDr0yEzsumsPF6k6fkWsCAccEca0u+WNWklmxHNPPdviWHKHEYldZdEFr+SG0sG9qDXkzXXHitKKAXruP0ILs9USzbQ/4xr1L2erpibNnpX7T65mNaO2dQtPzujUIDiZnaK2zyVdaxNME9w6HoxRt00PCh2hA3SkLIX6YI6xvxKYzi2hNloeSAXNOMUnwRTAyhosKrybFjFoEUQYhSnmkfMG62kh9HRYMIahO/4PryYUDxYZ5EfEiUYK2Q+0wZpgEA+B+0i1sNZ+HSkyTSySU3NHBnF/9/SHNohwF8SxJs8FMKwoFRC+zT/HFo0PuWJgtWs/ul6JKPgNvOBMxg0sqFZI36CNqDgqCemVlVVg+2BFkJ07CfsHJXXQ+rwTJpzt4pAP8Okkdv5pXLkvJZE=",
+      "edits": ""
+    },
+    "chiiAssetRole": "water_landmark",
+    "chiiAssetId": "town_fountain",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiResetBaseline": "1203a1e",
+    "chiiPrompt": "圆形白石小镇喷泉，中央三股水柱，双层水池，矮石底座",
+    "chiiWorldFootprint": {
+      "width": 2,
+      "depth": 2,
+      "unit": "terrain_tile"
+    },
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    }
+  }
+}

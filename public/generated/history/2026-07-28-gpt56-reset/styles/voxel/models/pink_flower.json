@@ -1,0 +1,236 @@
+{
+  "name": "粉色方块花",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "stem",
+      "name": "绿色短茎",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeaf",
+      "name": "左叶",
+      "parent": "stem",
+      "transform": {
+        "pos": [
+          0,
+          0.86,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeaf",
+      "name": "右叶",
+      "parent": "stem",
+      "transform": {
+        "pos": [
+          0,
+          0.65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "flower",
+      "name": "粉色花朵",
+      "parent": "stem",
+      "transform": {
+        "pos": [
+          0,
+          1.48,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "stem",
+      "transform": {
+        "pos": [
+          0,
+          0.775,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 1.55,
+          "depth": 0.24
+        },
+        "color": 4165445
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "leftLeaf",
+      "transform": {
+        "pos": [
+          -0.42,
+          0.05,
+          0
+        ],
+        "quat": [
+          -0.17,
+          -0.69,
+          0.69,
+          0.17
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.72,
+          "height": 0.12,
+          "depth": 0.29
+        },
+        "color": 5613647
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "rightLeaf",
+      "transform": {
+        "pos": [
+          0.37,
+          0.07,
+          0
+        ],
+        "quat": [
+          -0.69,
+          -0.14,
+          0.14,
+          0.69
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.65,
+          "height": 0.12,
+          "depth": 0.33
+        },
+        "color": 5021000
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.58,
+          "depth": 0.3
+        },
+        "color": 15891884
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0,
+          -0.18,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.58,
+          "depth": 0.3
+        },
+        "color": 15297438
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          -0.4,
+          0.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.58,
+          "depth": 0.3
+        },
+        "color": 16091829
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0.4,
+          0.22,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.58,
+          "depth": 0.3
+        },
+        "color": 16091829
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "flower",
+      "transform": {
+        "pos": [
+          0,
+          0.22,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.48,
+          "height": 0.48,
+          "depth": 0.4
+        },
+        "color": 16762954
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784016671380,
+      "provider": "gpt",
+      "data": "HMuEDbZhQYFpxTYw5NXcFALY412do5GmDY0mlOVyWbB6IRYt0ohB7SdXhNmFIq38Hq853Bqm7CoSj/FX9K19BH+w0AvAeBLD4ObrW7K9uL5QPXzTY4pHM0dG2IlhRk4OmUwNDt7Ge7000ur28vo09K+kbNyAeW8zUwl/aTdlfkBbVNIeM7hFz2JksDn6nbs9wBSxRbsaHTE3dg3IBpF936zDdo85GzbWkvcbqJ0HVzrodRSauHVJljFM5FacfuXJBGm1qU/mKMZsvbED6pNXFvrMij8VwdXm9uX8NdXKIYa+HG6CT5/twDcH8V9T5oY5QpJgszOOk02HGb5bK65nH7NluVjTk41TjRe86UGe+DWYfV2ZPsyexmlSvJapa4e2/2mk72JUlXQJOxeLXsZR9oGGqcKQ20ZlV9mYYVveUospPyo4YNiOqYel2ZlPEBFABpwRO6xkMod/RGt+xMuSKy2Jwb1ELjsUmgkLpVcWG9QdrrFSVKFOnecCT0Zq/O5a8IDs4/c5yYSHkImPncidNZgHBZeN9OWcWXpntB8Ndy+KP4a3Y2sGe8Al+vllN6hruqGitgVwB5ZrB0ua6h4+s+5jDm6NbbtnQPya3Ss2Fjg6h2d8W0mEvQPdemFN7QgX9ikn5b2x9rqKud0s5r+nwPgBYghcuPbLrwrenizBmJ2MhY/rNHtJl20g5W3P0PibeoYmfz2SIsclM+HaXlD+Q1vapBFQz+VMHxbZfjA=",
+      "edits": ""
+    }
+  }
+}

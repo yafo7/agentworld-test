@@ -1,0 +1,72 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 18
+    },
+    "bounce": {
+      "amplitude": 0.18,
+      "frequency": 2.2
+    }
+  },
+  "neck": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.1,
+      "frequency": 2.2
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.15,
+      "frequency": 2.2,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.15,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "tail": {
+    "squash": {
+      "axis": "x",
+      "amount": 0.4
+    },
+    "pointTo": {
+      "axis": "x",
+      "angle": -12
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.08,
+      "frequency": 2.2,
+      "phase": 0.5
+    }
+  },
+  "_name": "lingq-run",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "lingq",
+    "quality": "voxel",
+    "prompt": "收起尾羽快速奔跑"
+  }
+}

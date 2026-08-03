@@ -1,0 +1,295 @@
+{
+  "name": "哥特石制祭坛桌",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "altar",
+      "name": "祭坛",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "stonework",
+      "name": "白色石质主体",
+      "parent": "altar",
+      "transform": {
+        "pos": [
+          0,
+          1.53,
+          0.025
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "stone",
+          "variant": "marble"
+        }
+      ]
+    },
+    {
+      "id": "gold_cross",
+      "name": "金色十字纹",
+      "parent": "altar",
+      "transform": {
+        "pos": [
+          0,
+          0.97,
+          0.49
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m0",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          0,
+          -1.43,
+          -0.025
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.4,
+          "height": 0.2,
+          "depth": 1.15
+        },
+        "color": 15263714
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          0,
+          -0.705,
+          -0.025
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.8,
+          "height": 1.25,
+          "depth": 0.9
+        },
+        "color": 15921643
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          0,
+          0.06,
+          -0.025
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.8,
+          "height": 0.28,
+          "depth": 1.35
+        },
+        "color": 16250608
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          -1.58,
+          -0.68,
+          0.455
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 1.3,
+          "depth": 0.25
+        },
+        "color": 14605784
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          1.58,
+          -0.68,
+          0.455
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 1.3,
+          "depth": 0.25
+        },
+        "color": 14605784
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          0,
+          0.59,
+          -0.455
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.85,
+          "depth": 0.24
+        },
+        "color": 15658471
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          -0.48,
+          1.43,
+          -0.455
+        ],
+        "quat": [
+          -0.65,
+          -0.27,
+          0.27,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.17,
+          "height": 0.24,
+          "depth": 0.18
+        },
+        "color": 15921643
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "stonework",
+      "transform": {
+        "pos": [
+          0.48,
+          1.43,
+          -0.455
+        ],
+        "quat": [
+          -0.65,
+          0.27,
+          -0.27,
+          0.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.17,
+          "height": 0.24,
+          "depth": 0.18
+        },
+        "color": 15921643
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "gold_cross",
+      "transform": {
+        "pos": [
+          0,
+          -0.07,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 0.82,
+          "depth": 0.08
+        },
+        "color": 14068008
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "gold_cross",
+      "transform": {
+        "pos": [
+          0,
+          0.07,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.62,
+          "height": 0.18,
+          "depth": 0.08
+        },
+        "color": 14068008
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785218271937,
+      "provider": "gpt",
+      "data": "4dIeFPEeOqfPI3RjQ68OUaMhTQgNQOWr5/JZqn1xn+H9jwTz0vRf6+aRGSPBJ6LumQVOgK29n1C95qc0iDsCLIZAMC4+oxY3FGPFxreJa+tuwLL6aNz33KaVzVA7dej4i/lSZ7uIMYjJpWZgDJxy//0W7PjbFUuVmAcKI+/LFmo1FT9u8jZQTPK/gUt3ggutfcwu+p/q2N8BDH3irTN5SC7ptPOj2rIBoaswsaNNE9SXmye5righ4w9l8jlmKfC1Mt5Bg488eVDA0spAG3lPsvErXFK2bPSj7xX/BGRezFl8dCCsvJzycILohtfoOVUGSRRLYsMdQY7eUTmTN9va+c+7GLaIFtmciiYutVQfBo1oqCqz9uKY1iGFR2AOp8lW0iHcmiLAvVCQ+QdhaWWnrlhH7Nc3C2Qx1TzlDhgpMLEtjoQEwiP9TSO1UX6xEF9u2xZHv0aCBXr+cA+Eii+cPw2YFxzRjzjydjRa2XHiwxuZlDPHhlIWj808xMSNVrXJliz5O0o5fE/7jQTDkEHoYksp8ZD4FTi4jrGtWziH/Ixz9G5fb2X5s/W+ltGbFXHxsQau1AxKzjImG5pa/f4H3i/M15dJJMiLNpGzb2ToljYfxBV959lfZyQWfShsJ35Nnxi/1WYTfX/xXoe7SkhNMpLOmZJ760DOMQJGlqOA2LaLTI6eCzNh7qi2vsP7sWK531bfyncnDO2v73aMbcw5sxftL+PLwklxCj1X++HaQVQV6x21RoEmNPWDFeSHw78VOb3oxmDt/LItlvXthVGZ1CrcY2JMuDvaiYVOE3BdB4GSwYsbCqgxNvbnjjNrUGIJbvMV3r835XY=",
+      "edits": ""
+    },
+    "chiiAssetRole": "churchAltar",
+    "chiiAssetId": "church_altar",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "灰白石制哥特祭坛桌，厚桌面、尖拱浮雕、四根短柱",
+    "chiiAssetCategory": "furniture",
+    "chiiTargetSize": {
+      "width": 4.2,
+      "height": 1.5,
+      "depth": 1.9
+    }
+  }
+}

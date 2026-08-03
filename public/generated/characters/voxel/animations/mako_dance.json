@@ -1,0 +1,89 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "axis": "y",
+      "amplitude": 0.16,
+      "frequency": 2.4
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.2
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.15,
+      "frequency": 1.2,
+      "phase": 0.5
+    }
+  },
+  "frontLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.48,
+      "frequency": 2.4
+    }
+  },
+  "frontRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 10
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.48,
+      "frequency": 2.4,
+      "phase": 0.25
+    }
+  },
+  "rearLeftLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.42,
+      "frequency": 2.4,
+      "phase": 0.5
+    }
+  },
+  "rearRightLeg": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.42,
+      "frequency": 2.4,
+      "phase": 0.75
+    }
+  },
+  "tail": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.15,
+      "frequency": 3.6
+    }
+  },
+  "_name": "mako-dance",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "mako",
+    "quality": "voxel",
+    "prompt": "左右踏步开心跳舞"
+  }
+}

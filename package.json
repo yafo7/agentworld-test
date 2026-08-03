@@ -9,7 +9,16 @@
     "dev:all": "concurrently --names \"game,studio,voxel\" --prefix-colors \"cyan,magenta,green\" \"vite --host\" \"cd ../3d-generate && C:\\\\Users\\\\yafo777\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe server.py\" \"cd ../voxel-game && npx vite --port 5174 --host\"",
     "build": "vite build",
     "test": "node --test \"tests/**/*.test.js\"",
+    "test:story-baseline": "node scripts/verify-chii-story-baseline.mjs",
+    "prepare:town-activities": "node scripts/prepare-chii-town-activities.mjs",
+    "audit:town-activities": "node scripts/audit-chii-town-activities.mjs",
     "test:render-compat": "node scripts/verify-render-runtime-compat.mjs",
+    "generate:act0": "node scripts/generate-act-zero-angel.mjs",
+    "generate:act0-boss": "node scripts/generate-act-zero-boss.mjs",
+    "generate:player-candidates": "node scripts/generate-phrolova-player-candidates.mjs",
+    "generate:equipment": "node scripts/generate-chii-equipment.mjs",
+    "generate:outfits": "node scripts/generate-chii-outfits.mjs",
+    "generate:church-interior": "node scripts/generate-chii-church-interior.mjs",
     "preview": "vite preview",
     "sync-studio": "node scripts/sync-to-studio.mjs"
   },
@@ -20,7 +29,7 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.3",
-    "@voxel-studio/render-runtime": "file:vendor/voxel-studio-render-runtime-0.1.0-de51c7d.tgz",
+    "@voxel-studio/render-runtime": "file:vendor/voxel-studio-render-runtime-0.1.0-1203a1e.tgz",
     "three": "^0.184.0"
   }
 }

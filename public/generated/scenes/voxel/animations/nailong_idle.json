@@ -1,0 +1,28 @@
+{
+  "chest": {
+    "breathe": {
+      "amplitude": 0.03,
+      "frequency": 0.5
+    }
+  },
+  "abdomen": {
+    "breathe": {
+      "amplitude": 0.02,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.03,
+      "frequency": 0.5
+    }
+  },
+  "tail_root": {
+    "swing": {
+      "axis": "y",
+      "amplitude": 0.05,
+      "frequency": 0.5
+    }
+  }
+}

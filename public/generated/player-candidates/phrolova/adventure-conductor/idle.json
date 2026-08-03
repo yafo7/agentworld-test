@@ -1,0 +1,40 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.015,
+      "frequency": 0.42
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.025,
+      "frequency": 0.21,
+      "phase": 0.15
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.025,
+      "frequency": 0.42
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.025,
+      "frequency": 0.42
+    }
+  },
+  "_name": "方案 C · 轻装冒险版_idle",
+  "_type": "idle",
+  "_modelId": "phrolova_c",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "自然站立轻轻呼吸",
+    "emitParticles": false
+  }
+}

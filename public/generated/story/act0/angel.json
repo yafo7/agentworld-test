@@ -1,0 +1,646 @@
+{
+  "name": "第0幕天使",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "body",
+      "name": "短身躯干",
+      "transform": {
+        "pos": [
+          0,
+          0.7,
+          0
+        ]
+      }
+    },
+    {
+      "id": "head",
+      "name": "圆脸",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          1.2,
+          0
+        ]
+      }
+    },
+    {
+      "id": "halo",
+      "name": "金色光环",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.88,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftArm",
+      "name": "左臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.54,
+          1.02,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightArm",
+      "name": "右臂",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.54,
+          1.02,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftLeg",
+      "name": "左脚",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.25,
+          -0.02,
+          0
+        ]
+      }
+    },
+    {
+      "id": "rightLeg",
+      "name": "右脚",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.25,
+          -0.02,
+          0
+        ]
+      }
+    },
+    {
+      "id": "leftWing",
+      "name": "左光翼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          -0.43,
+          1.06,
+          -0.3
+        ]
+      }
+    },
+    {
+      "id": "rightWing",
+      "name": "右光翼",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0.43,
+          1.06,
+          -0.3
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.55,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.05,
+          "height": 1.25,
+          "depth": 0.58
+        },
+        "color": 16776690
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "body",
+      "transform": {
+        "pos": [
+          0,
+          0.68,
+          0.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.1,
+          "height": 0.16,
+          "depth": 0.64
+        },
+        "color": 15252816
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.44,
+          0.04
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.92,
+          "height": 0.9,
+          "depth": 0.82
+        },
+        "color": 16767413
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0,
+          0.85,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.86,
+          "height": 0.16,
+          "depth": 0.74
+        },
+        "color": 16111484
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          -0.2,
+          0.49,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.13,
+          "depth": 0.06
+        },
+        "color": 5982520
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "head",
+      "transform": {
+        "pos": [
+          0.2,
+          0.49,
+          0.47
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 0.13,
+          "depth": 0.06
+        },
+        "color": 5982520
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.13,
+          -0.4,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.82,
+          "depth": 0.32
+        },
+        "color": 16776690
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "leftArm",
+      "transform": {
+        "pos": [
+          -0.13,
+          -0.9,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.28
+        },
+        "color": 16767413
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.13,
+          -0.4,
+          0.02
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.82,
+          "depth": 0.32
+        },
+        "color": 16776690
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "rightArm",
+      "transform": {
+        "pos": [
+          0.13,
+          -0.9,
+          0.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.25,
+          "height": 0.25,
+          "depth": 0.28
+        },
+        "color": 16767413
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "leftLeg",
+      "transform": {
+        "pos": [
+          0,
+          -0.49,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.34,
+          "depth": 0.52
+        },
+        "color": 15318351
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "parent": "rightLeg",
+      "transform": {
+        "pos": [
+          0,
+          -0.49,
+          0.08
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.38,
+          "height": 0.34,
+          "depth": 0.52
+        },
+        "color": 15318351
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "parent": "leftWing",
+      "transform": {
+        "pos": [
+          -0.54,
+          0.21,
+          -0.08
+        ],
+        "quat": [
+          -0.22,
+          -0.67,
+          0.67,
+          0.22
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.09,
+          "height": 0.16,
+          "depth": 0.37
+        },
+        "color": 16775375
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m13",
+      "parent": "leftWing",
+      "transform": {
+        "pos": [
+          -0.42,
+          -0.32,
+          -0.07
+        ],
+        "quat": [
+          0.06,
+          -0.7,
+          0.7,
+          -0.06
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.89,
+          "height": 0.16,
+          "depth": 0.38
+        },
+        "color": 16771226
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "parent": "rightWing",
+      "transform": {
+        "pos": [
+          0.54,
+          0.21,
+          -0.08
+        ],
+        "quat": [
+          0.67,
+          0.22,
+          0.22,
+          0.67
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.09,
+          "height": 0.16,
+          "depth": 0.37
+        },
+        "color": 16775375
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "parent": "rightWing",
+      "transform": {
+        "pos": [
+          0.42,
+          -0.32,
+          -0.07
+        ],
+        "quat": [
+          0.7,
+          -0.06,
+          -0.06,
+          0.7
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.89,
+          "height": 0.16,
+          "depth": 0.38
+        },
+        "color": 16771226
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m16",
+      "parent": "halo",
+      "transform": {
+        "pos": [
+          0,
+          0.35,
+          0.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.22,
+          "height": 0.1,
+          "depth": 0.13
+        },
+        "color": 16765774
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m17",
+      "parent": "halo",
+      "transform": {
+        "pos": [
+          0,
+          0.35,
+          -0.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.22,
+          "height": 0.1,
+          "depth": 0.13
+        },
+        "color": 16765774
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "parent": "halo",
+      "transform": {
+        "pos": [
+          -0.545,
+          0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.1,
+          "depth": 0.55
+        },
+        "color": 16765774
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m19",
+      "parent": "halo",
+      "transform": {
+        "pos": [
+          0.545,
+          0.35,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.1,
+          "depth": 0.55
+        },
+        "color": 16765774
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1784977602202,
+      "provider": "gpt",
+      "data": "2EM2o1OscsCb0qQ9UIX7LXe9Z7JFXbF0DlItOh6hDHqkB9abDlGz0VZ8rIyl0lDZq3USf9iPTRP/NIKPp285RioUyFUgLbBjIjxEXH1qAfWc4E6KCHx6jVUI4Qg3lDcXEKAkBPNFMpWhsfjkilzkvo6OwD7sevtZsdGtbATMGCGbQz2JCJQgsjlC/a1vZRXJx3E6umCPT1G6UxXK380pbIOtgCLoQh80M5sU1ApHWDEAQbuvJqLHWp3UkROIcvkCP0AAxbRSFkyyYDCkDI+GbcUal3uIAkV32CSIkJX85YBdKf/TEzbtroT+EoFs7r9cCfi/27Bb8rdCMwa16DLX632leiGMrrv9mWierTIDMYGHUT1NL2EgiLxO1pH30QA9yr+gL3w4kVnSThu/YtwJftCwHskBiO+ii6sZK2F/iOkkBOP1Ox4wVoCenWztHtnoI0XaNDqjIfOTU1RNGjcFQ0hxGeK/aUm5pVDYD7GGkowYodj7LPzDrvUrf76zkB/COhHOKTkW5PmK4AsST/lsBit4+RrAbR7bv4gFNs8jV87ATK0VI9hwnkusQWiJfHKcGgDCOdLbSc1N0NpLP8fg8TMD8LKZf27S80jex5r0afNlS4V3tPDEU+2fjhPDdTypkADD2kxwimqZS3OPcd6vCGNpzG5MqkirB4LntO2ZNjrsB/eoQHzzuUeOjlbRkAETMdfbtQk6i8qusXyHlhIhuli+YCW255soH8vVCuntM6DpwzG7aXZKXlMVmKBRXyVVoeOiRe614ycORbg/T4DGpmBllEpSSwL7Nqhixx6IWUUlWmmANP1xMhAoXkJP9HjW22/eEiQzbnMYlwy66ieYXggBUU80mZLqODk5nhrUgiFleZYh4EYPzSg0f385U07f5g3GYX36JhyXudn7KD8luzYJUKYTadVg0Lf5HDu/34N4gmN/mpqCVYBNRePKZlzF8P8EbobyxKDArOdAg/FfHyUsyqkla6CUqKMqOy0TKQyXs90ztqj3natyRKhY5Sus32R7TmPZ3nPLiQUZwTPgCQzPBQufZCxS9ONzES0GR647XfHKOFz4tORkr8u3uNsSxlGb6rIYf0bR1Tzi6UneNzRUa0jqGPPf6bZ2xqXp7CaS4rZmImwYm7EXCknp7a1AbpXNa16+14PiowEwaHErfpMBAzfgfppUZgmlPysNT8kiQ4oCAYVaem5RJA==",
+      "edits": ""
+    },
+    "chiiStoryAsset": "act0_angel",
+    "chiiPromptProfile": "chii-v1"
+  }
+}

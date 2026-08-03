@@ -1,0 +1,38 @@
+{
+  "_duration": 1.2,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 7
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.5
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.6,
+      "frequency": 0.5,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 E · AI Q版电子女儿_walk",
+  "_type": "walk",
+  "_modelId": "phrolova_e",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿交替向前行走",
+    "emitParticles": false
+  }
+}

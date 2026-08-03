@@ -1,0 +1,48 @@
+{
+  "_duration": 2.8,
+  "_loop": false,
+  "body": {
+    "bounce": {
+      "amplitude": 0.06,
+      "frequency": 0.5
+    }
+  },
+  "head": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -8
+    }
+  },
+  "arm_l": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -170
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.05,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "arm_r": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 170
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.05,
+      "frequency": 0.5,
+      "phase": 0
+    }
+  },
+  "mount01": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 0,
+      "lockWorldRot": true
+    }
+  },
+  "_name": "NS展示动作"
+}

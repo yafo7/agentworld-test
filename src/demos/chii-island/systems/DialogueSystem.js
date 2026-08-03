@@ -44,6 +44,7 @@ export function createDialogueSystem() {
   let _customChoiceOptions = null;
   let _customInputMode = false;
   let _customMessageMode = false;
+  let _customTimer = null;
 
   // --- callbacks ---
   let _onTriggerConstruction = null;
@@ -534,6 +535,10 @@ export function createDialogueSystem() {
 
   function hide() {
     if (!_active) return;
+    if (_customTimer) {
+      clearTimeout(_customTimer);
+      _customTimer = null;
+    }
     if (_customResolve) {
       const resolve = _customResolve;
       _customResolve = null;
@@ -583,6 +588,10 @@ export function createDialogueSystem() {
   }
 
   function _closeCustom(notifyEnd = true) {
+    if (_customTimer) {
+      clearTimeout(_customTimer);
+      _customTimer = null;
+    }
     _active = false;
     _inputActive = false;
     _thinkingActive = false;
@@ -638,6 +647,21 @@ export function createDialogueSystem() {
       _customResolve = resolve;
       _customMessageMode = true;
       _hintEl.textContent = 'Enter / Space 继续 · Esc 关闭';
+    });
+  }
+
+  function sayTimed({ speakerName, text, duration = 2800 }) {
+    if (_active) return Promise.resolve(false);
+    return new Promise((resolve) => {
+      _openCustomBase(speakerName, text);
+      _customResolve = resolve;
+      _customMessageMode = true;
+      _hintEl.textContent = 'Enter / Space 继续';
+      _customTimer = setTimeout(() => {
+        if (_customResolve !== resolve) return;
+        _closeCustom(false);
+        resolve(true);
+      }, Math.max(900, Number(duration) || 2800));
     });
   }
 
@@ -701,6 +725,7 @@ export function createDialogueSystem() {
     askChoice,
     askInput,
     say,
+    sayTimed,
     hide,
     update,
     isActive,

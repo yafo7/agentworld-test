@@ -1,0 +1,217 @@
+{
+  "id": "chii_equipment_v1",
+  "generatedAt": "2026-07-28T02:02:20.604Z",
+  "source": "autonomous_backend",
+  "providerProfile": {
+    "quality": "voxel",
+    "provider": "gpt",
+    "model": "gpt-5.6-sol-high",
+    "mode": "voxel"
+  },
+  "items": [
+    {
+      "id": "canned-cola",
+      "name": "罐装可乐",
+      "category": "snack",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "红色易拉罐可乐，银色拉环，白色波浪标签",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/canned-cola.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/canned-cola.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/canned-cola.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/canned-cola.json"
+        }
+      }
+    },
+    {
+      "id": "apple",
+      "name": "苹果",
+      "category": "snack",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "圆润红苹果，短棕果梗，一片绿色叶子",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/apple.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/apple.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/apple.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/apple.json"
+        }
+      }
+    },
+    {
+      "id": "ns-handheld",
+      "name": "NS",
+      "category": "toy",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "红蓝手柄便携游戏机，黑色横屏，扁平机身",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/ns-handheld.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/ns-handheld.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/ns-handheld.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/ns-handheld.json"
+        }
+      }
+    },
+    {
+      "id": "hoe",
+      "name": "锄头",
+      "category": "tool",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "长木柄铁锄头，深灰横刃，握柄笔直",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/hoe.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/hoe.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/hoe.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/hoe.json"
+        }
+      }
+    },
+    {
+      "id": "conductor-baton",
+      "name": "指挥棒",
+      "category": "tool",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "细长黑色指挥棒，白色握柄，尖细棒身",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/conductor-baton.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/conductor-baton.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/conductor-baton.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/conductor-baton.json"
+        }
+      }
+    },
+    {
+      "id": "t-square",
+      "name": "丁字尺",
+      "category": "tool",
+      "kind": "prop",
+      "promptPacket": {
+        "operation": "model_generate",
+        "prompt_profile": "chii-v1",
+        "endpoint": "/api/generate/model",
+        "prompt": "浅黄木质丁字尺，长直尺身，横向短尺头",
+        "request_hints": {
+          "quality": "voxel",
+          "emitParticles": false
+        }
+      },
+      "model": "generated/equipment/models/t-square.json",
+      "allowedSlots": [
+        "leftHand",
+        "rightHand"
+      ],
+      "presets": {
+        "nailong": {
+          "rightHand": "generated/equipment/mounts/nailong/right-hand/t-square.json"
+        },
+        "phrolova": {
+          "rightHand": "generated/equipment/mounts/phrolova/classic-conductor/right-hand/t-square.json"
+        }
+      },
+      "showcaseAnimations": {
+        "phrolova": {
+          "rightHand": "generated/equipment/animations/phrolova/classic-conductor/right-hand/t-square.json"
+        }
+      }
+    }
+  ]
+}

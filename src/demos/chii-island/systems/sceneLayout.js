@@ -2,6 +2,7 @@
  * Scene layout generator — pure logic, no Three.js dependency.
  * Analyzes terrain river and places buildings, trees, grass, and a road.
  */
+import { CHII_SCENE_DENSITY } from '../data/worldTuningProfile.js';
 
 // ---- seeded random (mulberry32) ----
 function mulberry32(a) {
@@ -262,7 +263,7 @@ function addOrthogonalRoad(set, from, to, gridSize, width = 2) {
   }
 }
 
-function makeChurchTown(buildings, gridSize) {
+function makeChurchTown(buildings, layout, riverData, gridSize) {
   const church = buildings.find(b => b.type === 'church');
   const temple = buildings.find(b => b.type === 'temple');
   const squareCells = new Set();
@@ -287,6 +288,12 @@ function makeChurchTown(buildings, gridSize) {
     x: square.x + Math.floor(square.w / 2),
     z: square.z + Math.floor(square.d / 2),
   };
+  const fountain = {
+    gridX: Math.min(gridSize - 3, center.x + 3),
+    gridZ: Math.max(2, square.z - 2),
+    width: 2,
+    depth: 2,
+  };
   const churchDoor = {
     x: Math.round(church.gridX + church.width / 2),
     z: church.gridZ + church.depth,
@@ -298,11 +305,56 @@ function makeChurchTown(buildings, gridSize) {
   addOrthogonalRoad(roadCells, churchDoor, { x: center.x, z: square.z }, gridSize);
   addOrthogonalRoad(roadCells, { x: center.x, z: square.z + square.d - 1 }, templeDoor, gridSize);
   addOrthogonalRoad(roadCells, { x: center.x, z: center.z }, { x: square.x - 2, z: center.z }, gridSize);
+
+  // The town bridge sits in the clear band between the church and square.
+  // Its exact span is derived from all three river rows that it crosses.
+  const bridgeDepth = 3;
+  const bridgeCenterZ = Math.round((churchDoor.z + square.z) / 2);
+  const bridgeGridZ = bridgeCenterZ - Math.floor(bridgeDepth / 2);
+  const bridgeRows = Array.from({ length: bridgeDepth }, (_, index) => riverData.byRow.get(bridgeGridZ + index))
+    .filter(Boolean);
+  const bridgeWaterStart = Math.min(...bridgeRows.map(row => row.waterStart));
+  const bridgeWaterEnd = Math.max(...bridgeRows.map(row => row.waterEnd));
+  const bridgeGridX = bridgeWaterStart - 2;
+  const bridgeWidth = bridgeWaterEnd - bridgeWaterStart + 5;
+  const bridge = {
+    id: 'town_stone_bridge',
+    gridX: bridgeGridX,
+    gridZ: bridgeGridZ,
+    width: bridgeWidth,
+    depth: bridgeDepth,
+    center: {
+      gridX: bridgeGridX + Math.floor(bridgeWidth / 2),
+      gridZ: bridgeCenterZ,
+    },
+    traversalCells: new Set(),
+    footprintCells: new Set(),
+  };
+
+  for (let z = bridge.gridZ; z < bridge.gridZ + bridge.depth; z += 1) {
+    for (let x = bridge.gridX; x < bridge.gridX + bridge.width; x += 1) {
+      const key = `${x},${z}`;
+      bridge.footprintCells.add(key);
+      avoidCells.add(key);
+      if (layout[z]?.[x] === 'water') bridge.traversalCells.add(key);
+    }
+  }
+  for (let z = bridge.gridZ - 1; z <= bridge.gridZ + bridge.depth; z += 1) {
+    for (let x = bridge.gridX - 1; x <= bridge.gridX + bridge.width; x += 1) {
+      if (x >= 0 && z >= 0 && x < gridSize && z < gridSize) avoidCells.add(`${x},${z}`);
+    }
+  }
+
+  const bridgeLeft = { x: bridge.gridX, z: bridge.center.gridZ };
+  const bridgeRight = { x: bridge.gridX + bridge.width - 1, z: bridge.center.gridZ };
+  addOrthogonalRoad(roadCells, { x: bridgeLeft.x - 2, z: bridgeLeft.z }, bridgeLeft, gridSize, 1);
+  addOrthogonalRoad(roadCells, bridgeRight, { x: center.x, z: bridgeRight.z }, gridSize, 1);
   for (const key of squareCells) roadCells.delete(key);
 
   for (const set of [squareCells, roadCells]) {
     for (const key of set) avoidCells.add(key);
   }
+  addRect(avoidCells, fountain.gridX, fountain.gridZ, fountain.width, fountain.depth, gridSize);
 
   const treePoints = [
     [square.x - 1, square.z - 1],
@@ -312,6 +364,7 @@ function makeChurchTown(buildings, gridSize) {
   ];
   for (let i = 0; i < treePoints.length; i++) {
     const [gridX, gridZ] = treePoints[i];
+    if (avoidCells.has(`${gridX},${gridZ}`)) continue;
     trees.push({ gridX, gridZ, type: i % 2 === 0 ? 'normal' : 'apple' });
     avoidCells.add(`${gridX},${gridZ}`);
   }
@@ -345,6 +398,8 @@ function makeChurchTown(buildings, gridSize) {
     decorations,
     center,
     campfire: { gridX: center.x, gridZ: center.z },
+    fountain,
+    bridge,
     roamBounds: {
       minX: square.x + 1,
       maxX: square.x + square.w - 2,
@@ -357,6 +412,119 @@ function makeChurchTown(buildings, gridSize) {
       mako: { gridX: center.x, gridZ: center.z + 3 },
       crab: { gridX: center.x - 3, gridZ: center.z + 2 },
     },
+  };
+}
+
+function makeForestBeach(buildings, layout, riverData, gridSize, seed) {
+  const temple = buildings.find(building => building.type === 'temple');
+  const rand = mulberry32(seed);
+  const width = Math.min(17, gridSize - 4);
+  const templeCenterX = temple
+    ? Math.round(temple.gridX + temple.width / 2)
+    : Math.round(gridSize * 0.72);
+  const startX = Math.max(2, Math.min(gridSize - width - 2, templeCenterX - Math.floor(width / 2)));
+  const endX = startX + width - 1;
+  const transitionStartZ = gridSize - 9;
+  const sandStartZ = gridSize - 6;
+  const shoreZ = gridSize - 2;
+  const sandCells = new Set();
+  const rockCells = new Set();
+  const transitionCells = new Set();
+  const avoidCells = new Set();
+
+  for (let z = transitionStartZ; z <= shoreZ; z += 1) {
+    for (let x = startX; x <= endX; x += 1) {
+      if (layout[z]?.[x] === 'water') continue;
+      const edge = Math.min(x - startX, endX - x);
+      const core = z >= sandStartZ;
+      const sandChance = core ? 1 : 0.32 + (z - transitionStartZ) * 0.24;
+      if (edge === 0 && !core && rand() < 0.55) continue;
+      if (rand() > sandChance) continue;
+      const key = `${x},${z}`;
+      sandCells.add(key);
+      avoidCells.add(key);
+      if (!core) transitionCells.add(key);
+    }
+  }
+
+  const spawn = {
+    gridX: Math.round((startX + endX) / 2),
+    gridZ: shoreZ - 1,
+    facing: { x: 0, z: -1 },
+  };
+  for (let offset = 0; offset < width; offset += 1) {
+    const direction = offset % 2 === 0 ? 1 : -1;
+    const distance = Math.ceil(offset / 2);
+    const x = spawn.gridX + direction * distance;
+    if (sandCells.has(`${x},${spawn.gridZ}`)) {
+      spawn.gridX = x;
+      break;
+    }
+  }
+
+  const rockCandidates = [
+    [startX + 1, sandStartZ + 1],
+    [endX - 1, sandStartZ + 2],
+    [startX + 3, shoreZ],
+    [endX - 4, shoreZ - 1],
+    [startX + 6, sandStartZ],
+  ];
+  for (const [x, z] of rockCandidates) {
+    if (Math.abs(x - spawn.gridX) <= 1 && Math.abs(z - spawn.gridZ) <= 1) continue;
+    const key = `${x},${z}`;
+    if (!sandCells.has(key)) continue;
+    rockCells.add(key);
+  }
+
+  const waterfallZ = transitionStartZ;
+  const riverRow = riverData.byRow.get(waterfallZ);
+  const waterfallX = riverRow
+    ? Math.min(gridSize - 4, riverRow.waterEnd + 2)
+    : startX + 2;
+  const waterfall = {
+    gridX: waterfallX,
+    gridZ: waterfallZ,
+    width: 3,
+    depth: 2,
+    rotation: Math.PI,
+  };
+  addRect(avoidCells, waterfall.gridX, waterfall.gridZ, waterfall.width, waterfall.depth, gridSize);
+
+  const forestEdgeTrees = [
+    { gridX: startX + 1, gridZ: transitionStartZ - 1, type: 'oak' },
+    { gridX: startX + 5, gridZ: transitionStartZ - 2, type: 'normal' },
+    { gridX: endX - 5, gridZ: transitionStartZ - 1, type: 'oak' },
+    { gridX: endX - 1, gridZ: transitionStartZ - 2, type: 'normal' },
+  ];
+
+  return {
+    startX,
+    endX,
+    transitionStartZ,
+    shoreZ,
+    sandCells,
+    rockCells,
+    transitionCells,
+    avoidCells,
+    spawn,
+    waterfall,
+    forestEdgeTrees,
+  };
+}
+
+function makeEmptyForestBeach() {
+  return {
+    startX: null,
+    endX: null,
+    transitionStartZ: null,
+    shoreZ: null,
+    sandCells: new Set(),
+    rockCells: new Set(),
+    transitionCells: new Set(),
+    avoidCells: new Set(),
+    spawn: null,
+    waterfall: null,
+    forestEdgeTrees: [],
   };
 }
 
@@ -414,9 +582,6 @@ function expandClearance(footprintCells, expandBy, gridSize) {
 
 // ---- vegetation placement ----
 
-const TREE_CAP = 260;
-const GRASS_CAP = 140;
-
 export function placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed, extraAvoidCells = new Set()) {
   const rand = mulberry32(seed);
   const clearanceSet = expandClearance(buildingCells, 8, gridSize);
@@ -456,14 +621,14 @@ export function placeVegetation(layout, riverData, buildingCells, roadCells, gri
     // Tree placement
     let treeChance = 0;
     if (c.isEdge) {
-      treeChance = 0.80;
+      treeChance = CHII_SCENE_DENSITY.treeChance.edge;
     } else if (c.side === 'left') {
-      treeChance = 0.50;
+      treeChance = CHII_SCENE_DENSITY.treeChance.pastoral;
     } else {
-      treeChance = 0.22;
+      treeChance = CHII_SCENE_DENSITY.treeChance.other;
     }
 
-    if (trees.length < TREE_CAP && !occupied.has(cellKey) && rand() < treeChance) {
+    if (trees.length < CHII_SCENE_DENSITY.treeCap && !occupied.has(cellKey) && rand() < treeChance) {
       const r = rand();
       trees.push({
         gridX: c.x,
@@ -474,8 +639,10 @@ export function placeVegetation(layout, riverData, buildingCells, roadCells, gri
     }
 
     // Grass placement (only if cell is still free)
-    const grassChance = c.isEdge ? 0.14 : 0.08;
-    if (grasses.length < GRASS_CAP && !occupied.has(cellKey) && rand() < grassChance) {
+    const grassChance = c.isEdge
+      ? CHII_SCENE_DENSITY.grassChance.edge
+      : CHII_SCENE_DENSITY.grassChance.other;
+    if (grasses.length < CHII_SCENE_DENSITY.grassCap && !occupied.has(cellKey) && rand() < grassChance) {
       grasses.push({ gridX: c.x, gridZ: c.z });
       occupied.add(cellKey);
     }
@@ -556,7 +723,9 @@ function makePastoralDecorations(pastoral, gridSize, seed) {
 
 // ---- master orchestrator ----
 
-export function generateSceneLayout(layout, gridSize, seed = 42) {
+export function generateSceneLayout(layout, gridSize, seed = 42, {
+  features = {},
+} = {}) {
   const riverData = analyzeRiver(layout);
 
   if (riverData.byRow.size === 0) {
@@ -566,12 +735,30 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
   const { buildings, buildingCells } = placeBuildings(layout, riverData, gridSize);
   const roadCells = generateRoad(layout, riverData, gridSize, buildingCells);
   const pastoral = makeWindmillPastoral(buildings, layout, gridSize);
-  const town = makeChurchTown(buildings, gridSize);
+  const town = makeChurchTown(buildings, layout, riverData, gridSize);
   const forestTemple = makeForestTemple(buildings, gridSize);
+  const beach = features.forestBeach === false
+    ? makeEmptyForestBeach()
+    : makeForestBeach(buildings, layout, riverData, gridSize, seed + 17);
+  if (features.waterLandmarks === false) {
+    town.fountain = null;
+    forestTemple.waterfall = null;
+  } else {
+    forestTemple.waterfall = beach.waterfall;
+  }
+  for (const key of beach.avoidCells) forestTemple.avoidCells.add(key);
   for (const key of pastoral.roadCells) roadCells.add(key);
-  const vegetationAvoid = new Set([...pastoral.avoidCells, ...town.avoidCells, ...forestTemple.avoidCells]);
+  const vegetationAvoid = new Set([
+    ...pastoral.avoidCells,
+    ...town.avoidCells,
+    ...forestTemple.avoidCells,
+    ...beach.avoidCells,
+  ]);
   const { trees, grasses } = placeVegetation(layout, riverData, buildingCells, roadCells, gridSize, seed + 1, vegetationAvoid);
   trees.push(...town.trees);
+  for (const tree of beach.forestEdgeTrees) {
+    if (!buildingCells.has(`${tree.gridX},${tree.gridZ}`)) trees.push(tree);
+  }
   const decorations = [...makePastoralDecorations(pastoral, gridSize, seed + 9), ...town.decorations];
 
   // Modified layout: dirt under road, irregular rock scatter under buildings
@@ -607,6 +794,14 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
       modifiedLayout[gz][gx] = 'rock';
     }
   }
+  for (const key of beach.sandCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz]?.[gx] !== 'water') modifiedLayout[gz][gx] = 'sand';
+  }
+  for (const key of beach.rockCells) {
+    const [gx, gz] = key.split(',').map(Number);
+    if (modifiedLayout[gz]?.[gx] !== 'water') modifiedLayout[gz][gx] = 'rock';
+  }
   for (const key of pastoral.reserveCells) {
     const [gx, gz] = key.split(',').map(Number);
     if (modifiedLayout[gz][gx] !== 'water' && modifiedLayout[gz][gx] !== 'farmland') {
@@ -636,5 +831,17 @@ export function generateSceneLayout(layout, gridSize, seed = 42) {
     }
   }
 
-  return { buildings, trees, grasses, decorations, roadCells, modifiedLayout, pastoral, town, forestTemple };
+  return {
+    buildings,
+    trees,
+    grasses,
+    decorations,
+    roadCells,
+    modifiedLayout,
+    riverData,
+    pastoral,
+    town,
+    forestTemple,
+    beach,
+  };
 }

@@ -12,6 +12,14 @@ const ACTIVITY_TYPES = new Set([
 const ACTIVITY_SCALES = new Set(['daily', 'festival']);
 const LOCATION_IDS = new Set(['church_square', 'campfire', 'apple_tree']);
 const PROP_OPERATIONS = new Set(['generate', 'library']);
+const PROP_SIZE_PROFILES = new Set([
+  'small_decor',
+  'event_table',
+  'event_food',
+  'festival_prop',
+  'furniture',
+  'plant',
+]);
 const REQUIRED_DIALOGUE_INITIATORS = Object.freeze({
   campfire: 'fangk',
   apple_pick: 'mako',
@@ -32,15 +40,21 @@ function uniqueStrings(values) {
 }
 
 function normalizeProps(props) {
-  return (Array.isArray(props) ? props : []).slice(0, 3).map((prop, index) => ({
+  return (Array.isArray(props) ? props : []).slice(0, 8).map((prop, index) => ({
     id: shortText(prop?.id, `prop_${index + 1}`, 32),
     name: shortText(prop?.name, '活动道具', 16),
     operation: PROP_OPERATIONS.has(prop?.operation) ? prop.operation : 'generate',
+    libraryKey: prop?.libraryKey ? shortText(prop.libraryKey, '', 160) : null,
+    archetype: shortText(prop?.archetype, 'festival_prop', 24),
+    sizeProfile: PROP_SIZE_PROFILES.has(prop?.sizeProfile) ? prop.sizeProfile : 'festival_prop',
     prompt: shortText(prop?.prompt, '彩色木制节日装饰', 20),
     footprint: {
       width: Math.max(1, Math.min(6, Math.ceil(Number(prop?.footprint?.width) || 2))),
       depth: Math.max(1, Math.min(6, Math.ceil(Number(prop?.footprint?.depth) || 2))),
     },
+    revealStage: shortText(prop?.revealStage, 'performance', 24),
+    layoutSlot: Number.isFinite(Number(prop?.layoutSlot)) ? Number(prop.layoutSlot) : index,
+    heightOffset: Math.max(0, Math.min(3, Number(prop?.heightOffset) || 0)),
     lifetime: 'activity',
   }));
 }
@@ -83,10 +97,7 @@ export function validateActivityPlan(plan, {
     if (missing.length) throw new TypeError(`Unknown activity pets: ${missing.join(', ')}`);
   }
 
-  const hostId = shortText(plan.hostId, 'fangk', 32);
-  if (knownPets.size > 0 && !knownPets.has(hostId)) throw new TypeError(`Unknown activity host: ${hostId}`);
-  if (hostId !== 'fangk') throw new TypeError('Town activities must be ended through fangk dialogue');
-  const initiatorId = shortText(plan.initiatorId, hostId, 32);
+  const initiatorId = shortText(plan.initiatorId, 'fangk', 32);
   if (knownPets.size > 0 && !knownPets.has(initiatorId)) {
     throw new TypeError(`Unknown activity initiator: ${initiatorId}`);
   }
@@ -97,6 +108,17 @@ export function validateActivityPlan(plan, {
   if (plan.type === 'custom_daily' && !participants.includes(initiatorId)) {
     throw new TypeError('Custom daily activity must include its dialogue initiator');
   }
+  const expectedExitPetId = scale === 'festival' ? 'fangk' : initiatorId;
+  const exitPetId = shortText(plan.exitPetId, expectedExitPetId, 32);
+  if (knownPets.size > 0 && !knownPets.has(exitPetId)) {
+    throw new TypeError(`Unknown activity exit pet: ${exitPetId}`);
+  }
+  if (exitPetId !== expectedExitPetId) {
+    throw new TypeError(scale === 'festival'
+      ? 'Festival activities must be ended through fangk dialogue'
+      : 'Daily activities must be ended through their initiator dialogue');
+  }
+  const hostId = exitPetId;
   const locationId = LOCATION_IDS.has(plan.locationId) ? plan.locationId : 'church_square';
   const targetObjectIds = uniqueStrings(plan.targetObjectIds);
   const knownObjects = new Set(availableObjectIds);
@@ -110,10 +132,8 @@ export function validateActivityPlan(plan, {
     prompts[petId] = shortText(plan.actionPrompts?.[petId], '开心挥手互动', 12);
   }
 
-  const autoEnd = plan.autoEnd === undefined ? scale === 'daily' : !!plan.autoEnd;
-  const performanceDuration = autoEnd
-    ? Math.max(2, Math.min(30, Number(plan.performanceDuration) || 4))
-    : 0;
+  const autoEnd = false;
+  const performanceDuration = Math.max(2, Math.min(30, Number(plan.performanceDuration) || 4));
   const reaction = normalizeDialogueLine(plan.dialogue?.reaction);
   const ambient = (Array.isArray(plan.dialogue?.ambient) ? plan.dialogue.ambient : [])
     .map(normalizeDialogueLine)
@@ -126,6 +146,7 @@ export function validateActivityPlan(plan, {
     scale,
     title: shortText(plan.title, scale === 'festival' ? '城镇小庆典' : '城镇小活动', 20),
     hostId,
+    exitPetId,
     initiatorId,
     subjectId: plan.subjectId ? shortText(plan.subjectId, '', 32) : null,
     concept: plan.concept ? shortText(plan.concept, '', 80) : null,
@@ -147,12 +168,10 @@ export function validateActivityPlan(plan, {
       ambient,
       end: shortText(plan.dialogue?.end, '今天就到这里，笑声记得带回家！', 48),
     },
-    holdUntilHostExit: !autoEnd,
-    cleanup: autoEnd ? 'automatic' : 'host_dialogue',
+    holdUntilHostExit: true,
+    cleanup: 'pet_dialogue',
     entry: Object.freeze({ type: 'pet_dialogue', petId: initiatorId }),
-    exit: autoEnd
-      ? Object.freeze({ type: 'automatic' })
-      : Object.freeze({ type: 'pet_dialogue', petId: 'fangk', confirmation: true }),
+    exit: Object.freeze({ type: 'pet_dialogue', petId: exitPetId, confirmation: true }),
   };
 }
 

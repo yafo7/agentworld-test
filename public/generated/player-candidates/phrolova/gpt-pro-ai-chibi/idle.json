@@ -1,0 +1,61 @@
+{
+  "_duration": 2.4,
+  "_loop": true,
+  "body": {
+    "breathe": {
+      "amplitude": 0.018,
+      "frequency": 0.42
+    },
+    "bounce": {
+      "amplitude": 0.03,
+      "frequency": 0.42
+    }
+  },
+  "head": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.025,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "leftArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.035,
+      "frequency": 0.42,
+      "phase": 0.5
+    }
+  },
+  "rightArm": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.035,
+      "frequency": 0.42
+    }
+  },
+  "leftBraidRoot": {
+    "sway": {
+      "axis": "z",
+      "amplitude": -0.045,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "rightBraidRoot": {
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.045,
+      "frequency": 0.42,
+      "phase": 0.15
+    }
+  },
+  "_name": "方案 E · AI Q版电子女儿_idle",
+  "_type": "idle",
+  "_modelId": "phrolova_e",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "自然站立轻轻呼吸",
+    "emitParticles": false
+  }
+}

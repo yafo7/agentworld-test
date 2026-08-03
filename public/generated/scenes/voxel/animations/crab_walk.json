@@ -1,0 +1,87 @@
+{
+  "_duration": 2.2,
+  "_loop": true,
+  "body": {
+    "slide": {
+      "axis": "x",
+      "distance": 1.2,
+      "frequency": 0.45,
+      "phase": 0
+    },
+    "bounce": {
+      "amplitude": 0.05,
+      "frequency": 0.9
+    }
+  },
+  "leg0": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.55,
+      "frequency": 0.9,
+      "phase": 0
+    }
+  },
+  "leg1": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.55,
+      "frequency": 0.9,
+      "phase": 0.5
+    }
+  },
+  "leg2": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.55,
+      "frequency": 0.9,
+      "phase": 0
+    }
+  },
+  "leg3": {
+    "swing": {
+      "axis": "z",
+      "amplitude": -0.55,
+      "frequency": 0.9,
+      "phase": 0.5
+    }
+  },
+  "leg4": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.55,
+      "frequency": 0.9,
+      "phase": 0.5
+    }
+  },
+  "leg5": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.55,
+      "frequency": 0.9,
+      "phase": 0
+    }
+  },
+  "leg6": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.55,
+      "frequency": 0.9,
+      "phase": 0.5
+    }
+  },
+  "leg7": {
+    "swing": {
+      "axis": "z",
+      "amplitude": 0.55,
+      "frequency": 0.9,
+      "phase": 0
+    }
+  },
+  "_name": "螃蟹-walk",
+  "_meta": {
+    "chiiResetBaseline": "1203a1e",
+    "chiiAssetId": "crab",
+    "quality": "voxel",
+    "prompt": "八条腿横向行走"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_duration": 0.9,
+  "_loop": true,
+  "body": {
+    "pointTo": {
+      "axis": "x",
+      "angle": 22
+    },
+    "bounce": {
+      "amplitude": 0.24,
+      "frequency": 2.6
+    }
+  },
+  "leftLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.45,
+      "frequency": 2.6,
+      "phase": 0
+    }
+  },
+  "rightLeg": {
+    "swing": {
+      "axis": "x",
+      "amplitude": 1.45,
+      "frequency": 2.6,
+      "phase": 0.5
+    }
+  },
+  "_name": "方案 E · AI Q版电子女儿_run",
+  "_type": "run",
+  "_modelId": "phrolova_e",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "双腿快速向前奔跑",
+    "emitParticles": false
+  }
+}

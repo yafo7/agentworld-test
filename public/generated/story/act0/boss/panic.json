@@ -1,0 +1,132 @@
+{
+  "_duration": 1.8,
+  "_loop": true,
+  "body": {
+    "bounce": {
+      "amplitude": 0.16,
+      "frequency": 2.4
+    },
+    "sway": {
+      "axis": "z",
+      "amplitude": 0.08,
+      "frequency": 2.1,
+      "phase": 0.1
+    }
+  },
+  "head": {
+    "swing": [
+      {
+        "axis": "y",
+        "amplitude": 0.14,
+        "frequency": 2.8,
+        "phase": 0.15
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.1,
+        "frequency": 3.2,
+        "phase": 0.4
+      }
+    ]
+  },
+  "leftArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -45
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": -1.25,
+        "frequency": 2.9,
+        "phase": 0
+      },
+      {
+        "axis": "x",
+        "amplitude": 0.75,
+        "frequency": 3.4,
+        "phase": 0.2
+      }
+    ]
+  },
+  "rightUpperArm": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 45
+    },
+    "swing": [
+      {
+        "axis": "z",
+        "amplitude": 1.25,
+        "frequency": 3.1,
+        "phase": 0.35
+      },
+      {
+        "axis": "x",
+        "amplitude": -0.8,
+        "frequency": 3.5,
+        "phase": 0.55
+      }
+    ]
+  },
+  "rightForearm": {
+    "pointTo": {
+      "axis": "x",
+      "angle": -20
+    },
+    "swing": {
+      "axis": "x",
+      "amplitude": 0.65,
+      "frequency": 3.8,
+      "phase": 0.15
+    }
+  },
+  "leftLeg": {
+    "pointTo": {
+      "axis": "z",
+      "angle": -8
+    },
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.9,
+        "frequency": 2.7,
+        "phase": 0
+      },
+      {
+        "axis": "z",
+        "amplitude": -0.25,
+        "frequency": 3.2,
+        "phase": 0.15
+      }
+    ]
+  },
+  "rightLeg": {
+    "pointTo": {
+      "axis": "z",
+      "angle": 8
+    },
+    "swing": [
+      {
+        "axis": "x",
+        "amplitude": 0.9,
+        "frequency": 2.7,
+        "phase": 0.25
+      },
+      {
+        "axis": "z",
+        "amplitude": 0.25,
+        "frequency": 3.2,
+        "phase": 0.4
+      }
+    ]
+  },
+  "_name": "老大_panic",
+  "_type": "panic",
+  "_modelId": "act0_boss",
+  "_meta": {
+    "chiiPromptProfile": "chii-v1",
+    "prompt": "惊慌挥动四肢",
+    "emitParticles": false
+  }
+}

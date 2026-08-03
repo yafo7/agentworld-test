@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
 import { PET_STATES, getPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
+import { appendChiiGenerationConstraint } from '../data/worldTuningProfile.js';
 
 export const BUILDING_LOT_OPTIONS = Object.freeze([
   Object.freeze({ key: '3x4', width: 3, depth: 4, label: '3 × 4 地块（小屋）' }),
@@ -22,7 +23,10 @@ export function createBuildingPrompt(description, lot) {
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, 32);
-  return `${concrete}，底部长宽比${lot.width}比${lot.depth}`;
+  return appendChiiGenerationConstraint(
+    `${concrete}，底部长宽比${lot.width}比${lot.depth}`,
+    'building',
+  );
 }
 
 function wait(ms) {
@@ -422,7 +426,15 @@ export class TownBuilderSystem {
     const generatedPlacement = this.objectPlacement.prepareGeneratedEntity(
       entity,
       placement.position,
-      { footprint: placement.footprint },
+      {
+        footprint: placement.footprint,
+        semantic: {
+          profileId: 'building',
+          name: entity.name,
+          description: prompt,
+          category: 'house',
+        },
+      },
     );
     this.scene.add(entity.mesh);
     this.worldObjects.add(entity, {

@@ -25,6 +25,12 @@ Check semantic operation, prompt, provider profile, request payload, response mo
 
 Check DialogueSystem active/input state, camera lock, player lock, pointer lock, and Input frame state. Text input must freeze player movement.
 
+After locating the first UI-state difference, use `$chii-ui` for the presentation or lock fix. Do not move feature state into a panel to repair a display bug.
+
+## Story performance
+
+Check story phase, elapsed phase time, actor anchor/rotation, camera template and pose, screen transition, input lock, cleanup, and final gameplay handoff in that order. Use `$chii-story` after the first broken beat is proven.
+
 ## Physics
 
 Check visual transform, collider transform, body type, collision groups, terrain height, and physics step. Do not replace Rapier without evidence.
@@ -32,3 +38,5 @@ Check visual transform, collider transform, body type, collision groups, terrain
 ## Performance/rendering
 
 Measure renderer calls, triangles, geometries, frame time, and repeated model instances. Optimize only after measurement.
+
+For runtime material, sky, water, or VFX differences, compare tags and adapter input before shaders. Use `$chii-visuals` once the failing presentation boundary is identified.

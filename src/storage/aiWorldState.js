@@ -1,8 +1,10 @@
 const STORAGE_KEY = 'chii-ai-world-state';
 const VERSION = 1;
 let state = { version: VERSION, events: [] };
+const listeners = new Set();
 
-// AI-created scene state is session-only. Remove snapshots written by older builds.
+// The live event list stays in memory. ChiiScenePersistenceSystem snapshots and
+// restores it per scene style; this old standalone key is intentionally retired.
 try {
   globalThis.localStorage?.removeItem(STORAGE_KEY);
 } catch (_) {}
@@ -13,6 +15,8 @@ function readState() {
 
 function writeState(nextState) {
   state = nextState;
+  const snapshot = getAIWorldEvents();
+  for (const listener of listeners) listener(snapshot);
 }
 
 export function recordAIWorldEvent(event) {
@@ -26,7 +30,7 @@ export function recordAIWorldEvent(event) {
 }
 
 export function getAIWorldEvents(type = null) {
-  const events = readState().events;
+  const events = readState().events.map(event => ({ ...event }));
   return type ? events.filter(event => event.type === type) : events;
 }
 
@@ -38,4 +42,18 @@ export function removeAIWorldEvent(id) {
 
 export function clearAIWorldEvents() {
   state = { version: VERSION, events: [] };
+  writeState(state);
+}
+
+export function replaceAIWorldEvents(events = []) {
+  const nextEvents = Array.isArray(events)
+    ? events.filter(event => event?.id && event?.type).map(event => ({ ...event }))
+    : [];
+  writeState({ version: VERSION, events: nextEvents });
+  return getAIWorldEvents();
+}
+
+export function onAIWorldEventsChange(listener) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
 }

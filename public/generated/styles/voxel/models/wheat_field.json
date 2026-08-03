@@ -1,78 +1,132 @@
 {
-  "name": "金色成熟小麦簇",
+  "name": "小麦",
   "type": "lowpoly",
   "format": 2,
   "nodes": [
     {
-      "id": "wheat_cluster",
-      "name": "小麦簇",
+      "id": "stalk_0",
+      "name": "麦秆1",
       "transform": {
         "pos": [
           0,
           0,
           0
         ]
-      }
-    },
-    {
-      "id": "stalk_0",
-      "name": "麦秆1",
-      "parent": "wheat_cluster",
-      "transform": {
-        "pos": [
-          -0.42,
-          0,
-          0.02
-        ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "stalk_1",
       "name": "麦秆2",
-      "parent": "wheat_cluster",
+      "parent": "stalk_0",
       "transform": {
         "pos": [
+          -0.34,
           0,
-          0,
-          0
+          0.1
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "stalk_2",
       "name": "麦秆3",
-      "parent": "wheat_cluster",
+      "parent": "stalk_0",
       "transform": {
         "pos": [
-          0.42,
+          0.35,
           0,
-          0.02
+          0.12
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "stalk_3",
       "name": "麦秆4",
-      "parent": "wheat_cluster",
+      "parent": "stalk_0",
       "transform": {
         "pos": [
-          -0.22,
+          -0.18,
           0,
-          0.28
+          -0.3
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "stalk_4",
       "name": "麦秆5",
-      "parent": "wheat_cluster",
+      "parent": "stalk_0",
       "transform": {
         "pos": [
           0.22,
           0,
-          0.28
+          -0.32
         ]
-      }
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
+    },
+    {
+      "id": "stalk_5",
+      "name": "麦秆6",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          -0.48,
+          0,
+          -0.22
+        ]
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
+    },
+    {
+      "id": "stalk_6",
+      "name": "麦秆7",
+      "parent": "stalk_0",
+      "transform": {
+        "pos": [
+          0.5,
+          0,
+          -0.18
+        ]
+      },
+      "tags": [
+        {
+          "tag": "vegetation",
+          "value": "sway"
+        }
+      ]
     },
     {
       "id": "m0",
@@ -80,18 +134,18 @@
       "transform": {
         "pos": [
           0,
-          0.685,
+          1.125,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.09,
-          "height": 1.37,
-          "depth": 0.09
+          "width": 0.075,
+          "height": 2.25,
+          "depth": 0.075
         },
-        "color": 13211439
+        "color": 13212210
       }
     },
     {
@@ -100,18 +154,18 @@
       "transform": {
         "pos": [
           0,
-          1.5,
+          2.45,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.28,
-          "depth": 0.18
+          "width": 0.28,
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 14724402
+        "color": 14921010
       }
     },
     {
@@ -120,7 +174,47 @@
       "transform": {
         "pos": [
           0,
-          1.75,
+          2.83,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
+        },
+        "color": 15580483
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          1.025,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.075,
+          "height": 2.05,
+          "depth": 0.075
+        },
+        "color": 12818482
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "stalk_1",
+      "transform": {
+        "pos": [
+          0,
+          2.25,
           0
         ]
       },
@@ -128,50 +222,10 @@
         "type": "box",
         "params": {
           "width": 0.28,
-          "height": 0.25,
-          "depth": 0.2
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 15777086
-      }
-    },
-    {
-      "id": "m3",
-      "parent": "stalk_0",
-      "transform": {
-        "pos": [
-          0,
-          2,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.2,
-          "height": 0.25,
-          "depth": 0.18
-        },
-        "color": 14460205
-      }
-    },
-    {
-      "id": "m4",
-      "parent": "stalk_0",
-      "transform": {
-        "pos": [
-          0,
-          2.235,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.07,
-          "height": 0.22,
-          "depth": 0.07
-        },
-        "color": 15911244
+        "color": 14459948
       }
     },
     {
@@ -180,47 +234,47 @@
       "transform": {
         "pos": [
           0,
-          0.785,
+          2.63,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.09,
-          "height": 1.5699999999999998,
-          "depth": 0.09
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 13211439
+        "color": 15580483
       }
     },
     {
       "id": "m6",
-      "parent": "stalk_1",
+      "parent": "stalk_2",
       "transform": {
         "pos": [
           0,
-          1.7,
+          1.06,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.28,
-          "depth": 0.18
+          "width": 0.075,
+          "height": 2.12,
+          "depth": 0.075
         },
-        "color": 14724402
+        "color": 13672506
       }
     },
     {
       "id": "m7",
-      "parent": "stalk_1",
+      "parent": "stalk_2",
       "transform": {
         "pos": [
           0,
-          1.95,
+          2.32,
           0
         ]
       },
@@ -228,299 +282,239 @@
         "type": "box",
         "params": {
           "width": 0.28,
-          "height": 0.25,
-          "depth": 0.2
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 15777086
+        "color": 15251002
       }
     },
     {
       "id": "m8",
-      "parent": "stalk_1",
+      "parent": "stalk_2",
       "transform": {
         "pos": [
           0,
-          2.2,
+          2.7,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.25,
-          "depth": 0.18
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 14460205
+        "color": 15580483
       }
     },
     {
       "id": "m9",
-      "parent": "stalk_1",
+      "parent": "stalk_3",
       "transform": {
         "pos": [
           0,
-          2.435,
+          0.94,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.07,
-          "height": 0.22,
-          "depth": 0.07
+          "width": 0.075,
+          "height": 1.88,
+          "depth": 0.075
         },
-        "color": 15911244
+        "color": 12554029
       }
     },
     {
       "id": "m10",
-      "parent": "stalk_2",
+      "parent": "stalk_3",
       "transform": {
         "pos": [
           0,
-          0.7,
+          2.08,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.09,
-          "height": 1.4,
-          "depth": 0.09
+          "width": 0.28,
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 13211439
+        "color": 14261544
       }
     },
     {
       "id": "m11",
-      "parent": "stalk_2",
+      "parent": "stalk_3",
       "transform": {
         "pos": [
           0,
-          1.53,
+          2.46,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.28,
-          "depth": 0.18
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 14724402
+        "color": 15580483
       }
     },
     {
       "id": "m12",
-      "parent": "stalk_2",
+      "parent": "stalk_4",
       "transform": {
         "pos": [
           0,
-          1.78,
+          0.98,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.28,
-          "height": 0.25,
-          "depth": 0.2
+          "width": 0.075,
+          "height": 1.96,
+          "depth": 0.075
         },
-        "color": 15777086
+        "color": 13212210
       }
     },
     {
       "id": "m13",
-      "parent": "stalk_2",
+      "parent": "stalk_4",
       "transform": {
         "pos": [
           0,
-          2.03,
+          2.16,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.25,
-          "depth": 0.18
+          "width": 0.28,
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 14460205
+        "color": 14723119
       }
     },
     {
       "id": "m14",
-      "parent": "stalk_2",
+      "parent": "stalk_4",
       "transform": {
         "pos": [
           0,
-          2.265,
+          2.54,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.07,
-          "height": 0.22,
-          "depth": 0.07
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 15911244
+        "color": 15580483
       }
     },
     {
       "id": "m15",
-      "parent": "stalk_3",
+      "parent": "stalk_5",
       "transform": {
         "pos": [
           0,
-          0.62,
+          0.86,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.09,
-          "height": 1.2400000000000002,
-          "depth": 0.09
+          "width": 0.075,
+          "height": 1.72,
+          "depth": 0.075
         },
-        "color": 13211439
+        "color": 12160048
       }
     },
     {
       "id": "m16",
-      "parent": "stalk_3",
+      "parent": "stalk_5",
       "transform": {
         "pos": [
           0,
-          1.37,
+          1.92,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.28,
-          "depth": 0.18
+          "width": 0.28,
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 14724402
+        "color": 13998889
       }
     },
     {
       "id": "m17",
-      "parent": "stalk_3",
+      "parent": "stalk_5",
       "transform": {
         "pos": [
           0,
-          1.62,
+          2.3,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.28,
-          "height": 0.25,
-          "depth": 0.2
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 15777086
+        "color": 15580483
       }
     },
     {
       "id": "m18",
-      "parent": "stalk_3",
+      "parent": "stalk_6",
       "transform": {
         "pos": [
           0,
-          1.87,
+          0.89,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.25,
-          "depth": 0.18
+          "width": 0.075,
+          "height": 1.78,
+          "depth": 0.075
         },
-        "color": 14460205
+        "color": 12949297
       }
     },
     {
       "id": "m19",
-      "parent": "stalk_3",
+      "parent": "stalk_6",
       "transform": {
         "pos": [
           0,
-          2.105,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.07,
-          "height": 0.22,
-          "depth": 0.07
-        },
-        "color": 15911244
-      }
-    },
-    {
-      "id": "m20",
-      "parent": "stalk_4",
-      "transform": {
-        "pos": [
-          0,
-          0.65,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.09,
-          "height": 1.2999999999999998,
-          "depth": 0.09
-        },
-        "color": 13211439
-      }
-    },
-    {
-      "id": "m21",
-      "parent": "stalk_4",
-      "transform": {
-        "pos": [
-          0,
-          1.43,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.2,
-          "height": 0.28,
-          "depth": 0.18
-        },
-        "color": 14724402
-      }
-    },
-    {
-      "id": "m22",
-      "parent": "stalk_4",
-      "transform": {
-        "pos": [
-          0,
-          1.68,
+          1.98,
           0
         ]
       },
@@ -528,50 +522,30 @@
         "type": "box",
         "params": {
           "width": 0.28,
-          "height": 0.25,
-          "depth": 0.2
+          "height": 0.46,
+          "depth": 0.23
         },
-        "color": 15777086
+        "color": 14658098
       }
     },
     {
-      "id": "m23",
-      "parent": "stalk_4",
+      "id": "m20",
+      "parent": "stalk_6",
       "transform": {
         "pos": [
           0,
-          1.93,
+          2.36,
           0
         ]
       },
       "mesh": {
         "type": "box",
         "params": {
-          "width": 0.2,
-          "height": 0.25,
-          "depth": 0.18
+          "width": 0.19,
+          "height": 0.3,
+          "depth": 0.17
         },
-        "color": 14460205
-      }
-    },
-    {
-      "id": "m24",
-      "parent": "stalk_4",
-      "transform": {
-        "pos": [
-          0,
-          2.165,
-          0
-        ]
-      },
-      "mesh": {
-        "type": "box",
-        "params": {
-          "width": 0.07,
-          "height": 0.22,
-          "depth": 0.07
-        },
-        "color": 15911244
+        "color": 15580483
       }
     }
   ],
@@ -579,10 +553,23 @@
     "skipAutoCenter": true,
     "ai": {
       "v": 1,
-      "ts": 1784016992949,
+      "ts": 1785217851444,
       "provider": "gpt",
-      "data": "SX6a2fR2XWVrlS43r3xcgy69LZi2bZ/0jVYr++nafJAJM5+Ng9ydp7YQGfQ+NZ0QfMcd1VgLJvtmwzSDVQZpw5J8W9xCXrWDY2CSW4xYb5ggAOkB35eXDeGgIk2DMJN2yw1lSmVEkSab2+Mq5RR28Td2quvdWVhFg9auDsttsEIuziqCkefe/aibO8z++tPQ4Ut6nlt2kCyyVfoJBG8TAC0fA/QvJlgWvrviXVPkI5oAixFzgTjUiQKsMAv3KPQ6EXiRQRXyLOtBb6aC7A6QaYpja6fT9X9snOaw7VwYV6XtzAHkCllFmhw2lDV47paXUrOwpITUAbI08ijeeyuk2TOudOrGJJkMIx9gqXpGFKpCFdJrCBgmGwQMFutrl1H04m3CvwXMqDOTRVlt8l/824Ks4T08Gy4IUY321JbpMLQf5V5aY3h70sFLPVLfrv8oHAoHv7Q+YEpytNDpO7JpnAd0/UMg2OlHQCqOPn5YJ7WJT7Wx09YPjgLSok0MAd9E8vwEzYhR98Ea+buOryS+VN5ChX3OjjTu4e5CZ7OwR+FGsZOXn3D1BqzICmcyXQ8UCes/AkDp3h39emikrJL0anwkSzav6IJi2dln1su4OSNZwX4Hw1x9G6hARcKKMrqjqRaDNd7O3WK68gsJhuBRwrJAs9ocjCHdIT+x8aDgUcUzMdWTGLfYbKK6zYQzkLMM+iKfuZlKFTzKDJyfUZXZW1gech/3cqp1mx13xXPuq2FRDZv21swatv4qOXPAXQ==",
+      "data": "aUyo9mkeA2WeQqx+hZyEf2t4OYPWUC3lOi83Q8oGUnx9c63BY/cCICViXznh7d1sxREoB0caFjguRFkloUKJPDuNa/pTlXtRw75YQP6tVZxBXGrsocAkQzWs9GOhOk+AeE5tF2hlTsnANcz5pAEMeNWRSJm/4RsxsQdHG+uA4u59CnPaHvmkF9wTDCe/8Idoqo9B8rWFNC6NczoNvc55EBRPu5fqe1Tc4bAj46k3tqt3AqGuJFuevNO1ul4aZ8Ql6WRCrKoJH7c+b2QuZr73/eevgwJLCX1mW5LIVshbkomTL+aEoNE8QC/fXVaW21+ppMdOYVw1H8c0E/H4CVBYjD7Q9XJms7UvdScoVtGLahcL7Ahn13FpJnDiTWdEJQEamxix/6xsbRw9rq3Qb4N4aK/gIsTn+gQvWIW63nQWlHmkX6ivV1X6G3rReV5Eptryj0xRl3OipzQsmFpDy25BAtejyA52ZHwrd4MhOr88s5P9pvnYXiEQSo5vw5M55rjNd5McM+kM1bjb7bS7f5tzzbmgbhZtkp6acxod7LaPq/4P3wD1bwd2skfkeYfzQ4ZjZjGDipXzhpaWAgUSG85anrWmyPIxKYVQ2SYvBBQ3ZawaPQDCjvAh192yZqs5QlgzImEtspzOhtFCZTD7q0NIiM2Gb3mEt4sUmezwKzsIIec7m383mmz0/QonQpoXmCM8u1te4ebOPGXSw53jZCNpGXiXPB2naNhh6oM5SbRpp7br9Mznb4hAqaBTdsRme8ow0lPzkjO38mM157sdulc01MOO6MjrpqY5Cz5e6kvXQ7i0Mh6iqSd0YoKydUGA9uwXtNoNWGAlp2ivvH55SCtHQ6W+7A==",
       "edits": ""
-    }
+    },
+    "chiiAssetRole": "plant",
+    "chiiAssetId": "wheat_field",
+    "chiiPromptProfile": "chii-v1",
+    "chiiGenerationQuality": "voxel",
+    "chiiBackendMetadata": {
+      "provider": "gpt",
+      "model": "gpt-5.6-sol-high",
+      "mode": "voxel",
+      "timing": null
+    },
+    "chiiResetBaseline": "1203a1e",
+    "chiiResetPrompt": "一簇成熟金黄色小麦，直立细秆，饱满麦穗，底部无土块",
+    "chiiAssetCategory": "plant"
   }
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { CHII_PRESENTATION_TUNING } from '../data/worldTuningProfile.js';
 
 export class DialogueCameraDirector {
   constructor({ player, thirdPersonCamera, dialogueSystem, workHoldMs = 3600 }) {
@@ -14,6 +15,15 @@ export class DialogueCameraDirector {
     return subject?.getPosition?.()
       || subject?.mesh?.position?.clone?.()
       || new THREE.Vector3();
+  }
+
+  getBounds(subject) {
+    const direct = subject?.getWorldBBox?.();
+    if (direct && !direct.isEmpty()) return direct.clone();
+    const visual = subject?._modelGroup || subject?.mesh;
+    if (!visual) return null;
+    const bounds = new THREE.Box3().setFromObject(visual);
+    return bounds.isEmpty() ? null : bounds;
   }
 
   framePair(subject, targetPosition = null, distance = 9, height = 1.25, fov = 52) {
@@ -41,10 +51,17 @@ export class DialogueCameraDirector {
       subjectPos.distanceTo(targetPos),
       4,
     );
+    const subjectBounds = this.getBounds(subject);
+    const subjectSize = subjectBounds?.getSize(new THREE.Vector3()) || new THREE.Vector3();
+    const visualSpan = Math.max(subjectSize.x, subjectSize.y, subjectSize.z, span);
+    const framingDistance = Math.min(
+      CHII_PRESENTATION_TUNING.camera.maximumDistance,
+      distance + Math.max(0, visualSpan - 3) * 0.65,
+    );
     const cameraPosition = midPoint.clone()
-      .addScaledVector(side, distance + span * 0.45)
-      .addScaledVector(direction, distance * 0.35);
-    cameraPosition.y += height + span * 0.03;
+      .addScaledVector(side, framingDistance + span * 0.45)
+      .addScaledVector(direction, framingDistance * 0.35);
+    cameraPosition.y += height + Math.max(span, subjectSize.y) * 0.03;
     this.thirdPersonCamera.lockTo(cameraPosition, midPoint, fov);
   }
 
@@ -96,4 +113,3 @@ export class DialogueCameraDirector {
     this._clearTimer();
   }
 }
-

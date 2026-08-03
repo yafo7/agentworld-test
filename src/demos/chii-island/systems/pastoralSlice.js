@@ -16,6 +16,10 @@ import {
   collectRefineWorkRequest,
 } from './pastoralWorkDialogue.js';
 import { PetBubblePresenter } from '../presentation/PetBubblePresenter.js';
+import {
+  appendChiiGenerationConstraint,
+  resolveChiiSizeProfile,
+} from '../data/worldTuningProfile.js';
 
 function dist2(a, b) {
   const dx = a.x - b.x;
@@ -211,12 +215,14 @@ export function createPastoralSlice({
           operation,
           assetId: assetId || metadata.assetId || target.id,
         });
-        objectPlacement?.reconcileModel(target);
+        objectPlacement?.reconcileModel(target, { operation });
       }
       return replaced;
     }
     if (typeof target.replaceModelFromJson === 'function') {
-      return target.replaceModelFromJson(modelJson);
+      return target.replaceModelFromJson(modelJson, {
+        preserveCurrentScale: operation === 'mount',
+      });
     }
     return false;
   }
@@ -644,7 +650,14 @@ export function createPastoralSlice({
     entity.mesh.userData.pastoralObject = true;
     entity.mesh.userData.aiEventId = options.eventId || null;
     entity._generatedAssetId = options.assetId || null;
-    const placement = objectPlacement?.prepareGeneratedEntity(entity, position) || {
+    const placement = objectPlacement?.prepareGeneratedEntity(entity, position, {
+      semantic: {
+        profileId: options.sizeProfile,
+        name: entity.name,
+        description: name,
+        category: entity.category,
+      },
+    }) || {
       editable: true,
       source: 'generated',
     };
@@ -673,7 +686,9 @@ export function createPastoralSlice({
     const points = alreadyAtWork
       ? (options.workPoints || { targetPos, standPos: pet.mesh.position.clone(), effectPos: targetPos })
       : await beginWorkAtPosition(pet, targetPos, { focusCamera });
-    const prompt = shortConcrete(description, '木制田园装饰');
+    const concisePrompt = shortConcrete(description, '木制田园装饰');
+    const sizeProfile = resolveChiiSizeProfile({ description: concisePrompt });
+    const prompt = appendChiiGenerationConstraint(concisePrompt, sizeProfile);
     const result = await workCoordinator.run({
       pet,
       points,
@@ -694,7 +709,12 @@ export function createPastoralSlice({
       apply: async ({ modelJson, assetId }) => {
         const entityId = `pastoral_${assetId}`;
         const eventId = `pastoral:create:${entityId}`;
-        const entity = placeGeneratedObject(modelJson, targetPos, prompt, { id: entityId, assetId, eventId });
+        const entity = placeGeneratedObject(modelJson, targetPos, prompt, {
+          id: entityId,
+          assetId,
+          eventId,
+          sizeProfile,
+        });
         recordAIWorldEvent({
           id: eventId,
           type: 'pastoral_create',
