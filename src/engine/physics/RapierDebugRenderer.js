@@ -69,4 +69,10 @@ export class RapierDebugRenderer {
     this._geom.attributes.color.needsUpdate = true;
     this._geom.setDrawRange(0, vertices.length / 3);
   }
+
+  dispose() {
+    this._geom.dispose();
+    this.mesh.material.dispose();
+    this._world = null;
+  }
 }

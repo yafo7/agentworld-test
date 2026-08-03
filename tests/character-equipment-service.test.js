@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { CharacterEquipmentService } from '../src/gameplay/equipment/CharacterEquipmentService.js';
 import { EquipmentMountCache } from '../src/storage/EquipmentMountCache.js';
+import { CHII_EQUIPMENT_CATALOG } from '../src/demos/chii-island/data/equipmentCatalog.js';
 
 function memoryStorage() {
   const values = new Map();
@@ -21,6 +22,7 @@ const MAKO_BIRTHDAY_LOADOUT = Object.freeze({
 test('Nailong single right-hand item resolves its prebuilt local preset', async () => {
   const requests = [];
   const service = new CharacterEquipmentService({
+    catalog: CHII_EQUIPMENT_CATALOG,
     contentPort: {
       async mountPart() { throw new Error('backend should not be called'); },
     },
@@ -64,6 +66,7 @@ test('character equipment mounts multiple slots in stable order and reuses cache
     storage: memoryStorage(),
   });
   const service = new CharacterEquipmentService({
+    catalog: CHII_EQUIPMENT_CATALOG,
     contentPort: {
       async mountPart({ primaryModelJson, part, placement }) {
         calls.push({ primaryModelJson, part, placement });
@@ -102,6 +105,7 @@ test('character equipment mounts multiple slots in stable order and reuses cache
 test('a clothing slot uses one identity-preserving refine instead of mount', async () => {
   const calls = [];
   const service = new CharacterEquipmentService({
+    catalog: CHII_EQUIPMENT_CATALOG,
     contentPort: {
       async refineModel(request) {
         calls.push(request);
@@ -136,6 +140,7 @@ test('a clothing slot uses one identity-preserving refine instead of mount', asy
 test('a curated Original outfit preset is reused only for its matching model variant', async () => {
   const requests = [];
   const service = new CharacterEquipmentService({
+    catalog: CHII_EQUIPMENT_CATALOG,
     contentPort: {
       async refineModel() { throw new Error('matching Original preset should not call backend'); },
     },
@@ -163,6 +168,7 @@ test('a curated Original outfit preset is reused only for its matching model var
 
 test('curated clothing never substitutes another model variant', async () => {
   const service = new CharacterEquipmentService({
+    catalog: CHII_EQUIPMENT_CATALOG,
     contentPort: {
       async refineModel() { throw new Error('backend should not be called for an unsupported variant'); },
     },

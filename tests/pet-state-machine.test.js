@@ -19,6 +19,24 @@ test('legacy _petState assignments pass through one state owner', () => {
   assert.equal(pet._petState, PET_STATES.FOLLOWING);
 });
 
+test('legacy follow and wander flags are derived state-machine views', () => {
+  const pet = makePet();
+  const state = attachPetStateMachine(pet);
+
+  pet._followEnabled = true;
+  assert.equal(state.current, PET_STATES.FOLLOWING);
+  assert.equal(pet._followEnabled, true);
+  assert.equal(pet._wanderEnabled, false);
+
+  pet._wanderEnabled = true;
+  assert.equal(state.current, PET_STATES.FREE_ROAM);
+  assert.equal(pet._followEnabled, false);
+  assert.equal(pet._wanderEnabled, true);
+
+  pet._wanderEnabled = false;
+  assert.equal(state.current, PET_STATES.IDLE);
+});
+
 test('commanded work ends idle while autonomous work resumes free roam', () => {
   const commandedPet = makePet();
   const commanded = attachPetStateMachine(commandedPet, PET_STATES.FOLLOWING);
@@ -35,4 +53,3 @@ test('commanded work ends idle while autonomous work resumes free roam', () => {
   autonomous.completeWork();
   assert.equal(autonomous.current, PET_STATES.FREE_ROAM);
 });
-

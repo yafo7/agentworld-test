@@ -12,7 +12,7 @@ Long-term guidance for Codex in `agentworld-test`. Top sections are authoritativ
 - Remote services may only be used through public APIs. Never place API keys in browser code.
 - Before any autonomous backend call, use `$chii-prompts` to author or validate prompt text; use `$chii-ai` for invocation, provider policy, result handling, and persistence.
 - Browser location may only be requested after an explicit player action. Use it only through the climate weather adapter; never persist coordinates or send them to AI, Studio, model generation, or analytics.
-- Current Chii code must not import from `src/legacy/`.
+- Do not recreate or import the removed `src/legacy/` runtime.
 - For model mismatch bugs, compare exact JSON inputs before inspecting renderer code.
 - Keep Studio-authored assets and autonomous gameplay generation as separate workflows. Never silently substitute one for the other.
 - After every authorized `3d-generate` update, compare the previous and new commits and refresh the capability baseline in Section 3. Review API contracts, model/animation schema, material tags, runtime package exports, provider modes, and local asset compatibility before relying on new behavior.
@@ -105,15 +105,17 @@ src/engine/        reusable Three.js, Rapier, model, animation, input, UI
 src/world/         world registry and collider composition
 src/gameplay/      shared pet state and AI work lifecycle
 src/demos/         demo-specific composition and behavior
-src/legacy/        historical root paths; forbidden to current Chii
 public/generated/  local runtime model/animation JSON
 ```
 
 Important ownership:
 
 - `src/demos/chii-island/main.js`: dependency assembly and stable update/render order.
+- `src/engine/runtime/ApplicationLifecycle.js`: reverse-order, idempotent cleanup for page exit, failed bootstrap, and Vite HMR. Feature systems own their own cleanup and are registered here by the composition root.
+- `presentation/SceneManagementPanel.js`: ESC settings presentation and DOM listener lifecycle. Setting values remain owned by collider, render, climate, save, and audit systems.
 - `story/ActZeroStoryState.js` and `presentation/ActZeroCrashDirector.js`: prologue persistence, transient stage lifecycle, input/camera lock, and first-act handoff. Act 0 actors are not pets and its props do not enter world placement or collision registries.
 - `src/gameplay/story/IslandStoryState.js`: the single persistent story-progression owner shared by all scene styles. Directors and region systems request explicit transitions; they do not write story-shaped localStorage or duplicate chapter/day/objective flags.
+- `src/gameplay/story/IslandStoryProgression.js`: explicit successful-exit transitions from Pastoral, Forest summon, Town Social, and Town Builder into `IslandStoryState`.
 - `story/storyDevelopmentBaseline.js` and `npm run test:story-baseline`: frozen Original story-development contract plus integrity checks for its manifest, catalog residents, and 71 runtime assets.
 - `gameplay/createChiiRegionGameplay.js`: three-region gameplay composition.
 - `world/ChiiSceneAssembler.js`: Chii entity placement.
@@ -121,21 +123,26 @@ Important ownership:
 - `data/sceneStyle.js` and `data/assetCatalog.js`: independent Pro/Voxel/Original scene profiles, feature flags, frozen asset roots, and runtime catalog selection.
 - `systems/ChiiInteractionController.js`: interaction selection/routing.
 - `systems/PetManager.js`: current pet loading and free-roam behavior.
+- `data/residentCatalog.js`: canonical resident IDs, legacy aliases, asset/profile identity, loader ownership, region, spawn, and initial state.
+- `systems/ChiiCharacterRuntimeService.js`: resident model/animation loading plus base-first saved appearance restoration.
+- `systems/ChiiInteractionSession.js`: interaction route ownership, dialogue/camera/player locks, and cancellation-safe teardown.
 - `systems/ObjectEditorController.js`: object management UI, fixed overhead editing camera, and building-footprint placement sessions.
 - `systems/ChiiScenePersistenceSystem.js`, `src/storage/ChiiSceneSaveStore.js`, and `presentation/SceneSavePanel.js`: per-scene Auto persistence, three frozen Record slots, transactional Reset/reload, and ESC save UI.
 - `systems/BuildingInteriorSystem.js` and `world/ChiiInteriorAssembler.js`: building-door routing, room visibility, player/camera teleport, church architecture/furniture, shared empty-room fallback, and interior collision.
-- `systems/TownSocialSystem.js` and `TownSocialDirector.js`: town opportunities, activities, festivals, and their lifecycle.
+- `systems/TownSocialSystem.js`, `TownSocialDirector.js`, and `data/townSocialActivities.js`: town opportunities, pure activity/dialogue policy, activities, festivals, and their lifecycle.
 - `src/gameplay/social/ActivityRegistry.js`, `src/storage/TownActivityRegistryStore.js`, and `data/townActivityRegistry.js`: scene-scoped activity signatures, exact/similar lookup, draft-to-ready registration, reusable asset bindings, and the six curated Original activity packages.
 - `src/gameplay/social/ActivityAssetResolver.js` and `src/assets/repositories/ActivityAssetRepository.js`: compatibility-checked resolution of resident, generated-cache, and local-file activity assets before backend fallback.
 - `systems/RuntimeHUD.js`: runtime hints plus the non-blocking town activity phase/task card.
 - `systems/TownBuilderSystem.js`: builder-crab dialogue, lot selection, building generation, and construction lifecycle.
 - `systems/AssetSemanticAudit.js`: read-only development report for model tags, animation operators, and renderer counters; exposed as `window.__chiiAssetAudit`.
 - `presentation/TemporaryVfxService.js`: shared lifecycle and presets for temporary idea, work, dust, summon, and celebration effects.
+- `presentation/PastoralWorkEffects.js`: Pastoral work-start, dust, scaffold, reveal, animation/particle presentation, and cleanup; `pastoralSlice` owns rules only.
 - `systems/WorldClimateSystem.js`: single Chii climate state owner, manual/realtime mode, ESC binding, clock refresh, explicit weather-sync lifecycle, and fallback policy.
 - `presentation/WorldClimatePresenter.js`: environment-only weather particles, time-of-day lighting/fog, sun movement, and month tint.
 - `src/world/climate/WorldClimateState.js`: provider-neutral climate modes, weather vocabulary, normalization, and presentation projection.
 - `src/ports/WeatherPort.js`, `src/ports/PlaceNamePort.js`, `src/integrations/climate/`, and `src/storage/ClimateCache.js`: weather/place contracts, browser clock/location, Open-Meteo weather, BigDataCloud city lookup, and location-free weather cache.
 - `src/gameplay/pets/PetStateMachine.js`: single current pet-state owner.
+- `src/gameplay/control/ControlLockCoordinator.js`: one projection of all blocking surfaces into camera, interaction, special-action, inventory, and movement gates.
 - `src/gameplay/ai/`: semantic AI actions and work lifecycle.
 - `src/world/placement/`: occupancy, snapping, footprint transactions, and object editing operations.
 - `data/worldTuningProfile.js` and `ObjectScalePolicy`: the single Chii world scale, six scale categories (`building`, `pet`, `tree`, `plant`, `furniture`, `interactive_prop`), semantic size profiles, bottom-center anchoring, and presentation tuning. Gameplay passes semantic identity; it does not invent raw scale.
@@ -146,6 +153,7 @@ Important ownership:
 - `src/ports/WorldClimateVisualPort.js`, `presentation/WorldClimatePresenter.js`, and `src/integrations/rendering/ChiiSkyVisualAdapter.js`: the presenter implements the climate visual contract and owns the replaceable sky delegate.
 - `src/ports/RenderPresentationPort.js` and `src/integrations/rendering/VoxelStudioRenderPresentationAdapter.js`: current/cel styles, optional post-processing, quality tiers, and direct-render fallback.
 - `src/demos/chii-island/data/assetCatalog.js`: local runtime asset catalog.
+- `src/assets/generatedAssetManifest.js` and `src/assets/generatedLibrary.js`: generated-library schema, lifecycle, and runtime lookup; local Vite persistence is implemented by `vite/localLibraryPlugin.js`.
 
 Architecture baseline completed 2026-07-13:
 
@@ -153,7 +161,15 @@ Architecture baseline completed 2026-07-13:
 - Runtime/backend/provider decisions are behind ports and adapters.
 - Scene assembly and object lookup are outside `main.js`.
 - create/refine/mount share one work lifecycle.
-- Historical paths are isolated under `src/legacy/`.
+- Historical runtime roots are removed; architecture tests prevent their return.
+
+Architecture hardening completed 2026-08-03:
+
+- Shared layers no longer import Chii catalogs or implicit singleton adapters.
+- Resident identity, pet state, story progression, control locks, climate state, and town resident reservations each have one owner.
+- Scene snapshots reference generated assets by ID; legacy inline payloads migrate through `GeneratedAssetRepository`.
+- Region systems reject late async results after disposal and release pets, reservations, VFX, input, camera, DOM listeners, and frame resources through explicit lifecycle contracts.
+- Source import resolution, dependency direction, cycles, orphan modules, generated asset integrity, and secret scanning are automated verification gates.
 
 ### 3d-generate Capability Baseline
 
@@ -366,7 +382,7 @@ Do not implement unless explicitly requested:
 - `AGENTS.md`: short authoritative rules and routing only.
 - `api-reference.md`: latest backend API reference; read only relevant endpoint sections through `$chii-ai`.
 - `$chii-prompts`: authoritative prompt grammar and templates for pet/model generation, refine, mount, activity planning, animation, and footprint-constrained buildings.
-- `readme.md`: external overview and append-only changelog.
+- `README.md`: external overview and append-only changelog.
 - `CLAUDE.md`: historical guidance only.
 - Skill `references/`: detailed workflows loaded only when triggered.
 - `.agents/CHII_SKILLS.md`: user-facing skill selection and combination guide.

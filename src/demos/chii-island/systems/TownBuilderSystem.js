@@ -2,7 +2,27 @@ import * as THREE from 'three';
 import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
 import { PET_STATES, getPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
+import { ActivityReservationService } from '../../../gameplay/social/ActivityReservationService.js';
 import { appendChiiGenerationConstraint } from '../data/worldTuningProfile.js';
+
+const BUILDER_RESERVATION_OWNER = 'town-builder';
+const BUILDER_DISPOSED_CODE = 'TOWN_BUILDER_DISPOSED';
+
+function createDisposedError() {
+  const error = new Error('Town builder system was disposed');
+  error.code = BUILDER_DISPOSED_CODE;
+  return error;
+}
+
+function isDisposedError(error) {
+  return error?.code === BUILDER_DISPOSED_CODE;
+}
+
+function petReservationResource(pet) {
+  let id = pet?._profile?.id || pet?._residentId || pet?._petId || pet?._petName || 'builder_crab';
+  if (id === 'builder_crab') id = 'crab';
+  return `pet:${id}`;
+}
 
 export const BUILDING_LOT_OPTIONS = Object.freeze([
   Object.freeze({ key: '3x4', width: 3, depth: 4, label: '3 × 4 地块（小屋）' }),
@@ -95,6 +115,8 @@ export class TownBuilderSystem {
     scaffoldAnimationPlan = null,
     setDialogueLock = null,
     vfxService = null,
+    reservations = null,
+    onBuildingCompleted = null,
   }) {
     this.scene = scene;
     this.player = player;
@@ -108,13 +130,24 @@ export class TownBuilderSystem {
     this.scaffoldAnimationPlan = scaffoldAnimationPlan;
     this.setDialogueLock = setDialogueLock;
     this.vfxService = vfxService;
+    this.reservations = reservations || new ActivityReservationService();
+    this.reservationResource = petReservationResource(builder);
+    this.onBuildingCompleted = onBuildingCompleted;
     this.aiActions = new AIWorldActionService({
       contentPort,
       assetRepository: generatedAssetRepository,
     });
     this.activeJob = null;
+    this.dialogueActive = false;
     this.scaffold = null;
     this.reveals = [];
+    this.disposed = false;
+    this.lifecycleVersion = 0;
+    this.dialogueSnapshot = null;
+    this.activeDialogueSystem = null;
+    this.activeDraft = null;
+    this.activeWorkContext = null;
+    this.removedDrafts = new WeakSet();
   }
 
   isBuilder(pet) {
@@ -122,7 +155,11 @@ export class TownBuilderSystem {
   }
 
   canInteract(pet) {
+    if (this.disposed) return false;
     if (!this.isBuilder(pet)) return false;
+    if (this.dialogueActive) return false;
+    const owner = this.reservations.ownerOf(this.reservationResource);
+    if (owner && owner !== BUILDER_RESERVATION_OWNER) return false;
     const machine = getPetStateMachine(pet);
     return machine.is(PET_STATES.FREE_ROAM)
       || machine.is(PET_STATES.FOLLOWING)
@@ -134,17 +171,36 @@ export class TownBuilderSystem {
   }
 
   async interact(pet, dialogueSystem) {
+    if (this.disposed) return false;
     if (!this.isBuilder(pet)) return false;
+    const lifecycleVersion = this.lifecycleVersion;
     if (this.activeJob || getPetStateMachine(pet).is(PET_STATES.WORKING)) {
-      await dialogueSystem.say({
+      await this._showMessage(dialogueSystem, {
         speakerName: petName(pet),
         text: '正忙着把房子摆正呢。横着走可以，房子可不能横着长。',
-      });
+      }, lifecycleVersion);
       return false;
     }
 
+    if (this.dialogueActive) return false;
+    const reservation = this.reservations.tryReserve(
+      BUILDER_RESERVATION_OWNER,
+      [this.reservationResource],
+    );
+    if (!reservation.ok) {
+      await this._showMessage(dialogueSystem, {
+        speakerName: petName(pet),
+        text: '我正在参加别的活动，等结束后再来商量施工吧。',
+      }, lifecycleVersion);
+      return false;
+    }
+
+    this.dialogueActive = true;
     const snapshot = this._beginDialogue(pet);
+    this.dialogueSnapshot = snapshot;
+    this.activeDialogueSystem = dialogueSystem;
     let handedToWork = false;
+    let keepReservation = false;
     let draft = null;
     try {
       const wasFollowing = snapshot.state === PET_STATES.FOLLOWING;
@@ -159,6 +215,7 @@ export class TownBuilderSystem {
           { key: 'nothing', label: '没什么。' },
         ],
       });
+      if (!this._isLifecycleCurrent(lifecycleVersion)) return false;
       if (!choice || choice.key === 'nothing') return false;
       if (choice.key === 'follow') {
         this._startFollowing(pet);
@@ -179,6 +236,7 @@ export class TownBuilderSystem {
           { key: 'cancel', label: '先不修了。' },
         ],
       });
+      if (!this._isLifecycleCurrent(lifecycleVersion)) return false;
       const lot = BUILDING_LOT_OPTIONS.find(option => option.key === lotChoice?.key);
       if (!lot) return false;
 
@@ -189,9 +247,11 @@ export class TownBuilderSystem {
       );
       desired.y = 0;
       draft = this._createDraft(desired, footprint, lot);
+      this.activeDraft = draft;
 
       this.setDialogueLock?.(false, pet);
       const placement = await this.objectEditor.openPlacementDraft(draft);
+      if (!this._isLifecycleCurrent(lifecycleVersion)) return false;
       if (!placement) return false;
       this.setDialogueLock?.(true, pet);
 
@@ -202,6 +262,7 @@ export class TownBuilderSystem {
           text: `这块 ${lot.width} × ${lot.depth} 的地站稳了。想修什么建筑？`,
           placeholder: '例如：红瓦木墙的小型宠物工坊',
         });
+        if (!this._isLifecycleCurrent(lifecycleVersion)) return false;
         if (!input) return false;
         const concrete = String(input).replace(/\s+/g, ' ').trim().slice(0, 32);
         const confirmation = await dialogueSystem.askChoice({
@@ -213,6 +274,7 @@ export class TownBuilderSystem {
             { key: 'cancel', label: '先不修了。' },
           ],
         });
+        if (!this._isLifecycleCurrent(lifecycleVersion)) return false;
         if (confirmation?.key === 'confirm') description = concrete;
         if (!confirmation || confirmation.key === 'cancel') return false;
       }
@@ -226,10 +288,34 @@ export class TownBuilderSystem {
       pet.stopFollow?.();
       handedToWork = true;
       this.setDialogueLock?.(false, pet);
-      this.activeJob = this._runBuild({ pet, draft, placement, lot, description })
-        .catch(error => console.warn('[TownBuilder] Build failed:', error.message));
+      const workContext = { pet, restored: false };
+      this.activeWorkContext = workContext;
+      const activeJob = this._runBuild({
+        pet,
+        draft,
+        placement,
+        lot,
+        description,
+        lifecycleVersion,
+        workContext,
+      })
+        .catch(error => {
+          if (!isDisposedError(error)) {
+            console.warn('[TownBuilder] Build failed:', error.message);
+          }
+        })
+        .finally(() => {
+          this._releaseReservation();
+          if (this.activeJob === activeJob) this.activeJob = null;
+        });
+      this.activeJob = activeJob;
+      keepReservation = true;
       return true;
     } finally {
+      this.dialogueActive = false;
+      if (this.dialogueSnapshot === snapshot) this.dialogueSnapshot = null;
+      if (this.activeDialogueSystem === dialogueSystem) this.activeDialogueSystem = null;
+      if (!keepReservation) this._releaseReservation();
       if (!handedToWork) {
         if (draft) this._removeDraft(draft);
         this._restoreDialogue(snapshot);
@@ -239,6 +325,7 @@ export class TownBuilderSystem {
   }
 
   update(dt) {
+    if (this.disposed) return;
     this.scaffold?.updateAnimation?.(dt);
     for (let index = this.reveals.length - 1; index >= 0; index -= 1) {
       const reveal = this.reveals[index];
@@ -248,6 +335,29 @@ export class TownBuilderSystem {
       reveal.entity._content.scale.setScalar(reveal.scale * eased);
       if (t >= 1) this.reveals.splice(index, 1);
     }
+  }
+
+  _isLifecycleCurrent(version) {
+    return !this.disposed && this.lifecycleVersion === version;
+  }
+
+  _assertLifecycleCurrent(version) {
+    if (!this._isLifecycleCurrent(version)) throw createDisposedError();
+  }
+
+  async _showMessage(dialogueSystem, message, lifecycleVersion) {
+    this.activeDialogueSystem = dialogueSystem;
+    try {
+      await dialogueSystem.say(message);
+      return this._isLifecycleCurrent(lifecycleVersion);
+    } finally {
+      if (this.activeDialogueSystem === dialogueSystem) this.activeDialogueSystem = null;
+    }
+  }
+
+  _releaseReservation() {
+    if (this.reservations.ownerOf(this.reservationResource) !== BUILDER_RESERVATION_OWNER) return;
+    this.reservations.release(BUILDER_RESERVATION_OWNER);
   }
 
   _beginDialogue(pet) {
@@ -265,6 +375,8 @@ export class TownBuilderSystem {
   }
 
   _restoreDialogue(snapshot) {
+    if (!snapshot || snapshot.restored) return;
+    snapshot.restored = true;
     const machine = getPetStateMachine(snapshot.pet);
     if (machine.is(PET_STATES.INTERACTING)) machine.resume('town-builder-dialogue-ended');
     if (snapshot.state === PET_STATES.FOLLOWING && snapshot.followTarget) {
@@ -294,6 +406,7 @@ export class TownBuilderSystem {
   }
 
   _createDraft(desired, footprint, lot) {
+    if (this.disposed) throw createDisposedError();
     const free = this.objectPlacement.grid.findNearestAvailable(desired, footprint);
     if (!free) throw new Error('附近没有足够大的连续空地');
     const draft = makeDraftEntity({
@@ -314,10 +427,22 @@ export class TownBuilderSystem {
     return draft;
   }
 
-  async _runBuild({ pet, draft, placement, lot, description }) {
+  async _runBuild({
+    pet,
+    draft,
+    placement,
+    lot,
+    description,
+    lifecycleVersion = this.lifecycleVersion,
+    workContext = null,
+  }) {
+    this._assertLifecycleCurrent(lifecycleVersion);
+    const currentWork = workContext || { pet, restored: false };
+    if (!this.activeWorkContext) this.activeWorkContext = currentWork;
     const jobId = this.runtimeStatus?.startJob('螃蟹正在施工', '正在走到地块旁边');
     try {
-      await this._moveToWorkSide(pet, placement.position, lot);
+      await this._moveToWorkSide(pet, placement.position, lot, lifecycleVersion);
+      this._assertLifecycleCurrent(lifecycleVersion);
       this.scaffold = this._createScaffold(placement.position, lot);
       this.vfxService?.playPreset('dust', {
         position: placement.position,
@@ -335,6 +460,7 @@ export class TownBuilderSystem {
         quality: 'voxel',
         tags: ['church_town', 'building'],
       });
+      this._assertLifecycleCurrent(lifecycleVersion);
 
       this.runtimeStatus?.updateJob(jobId, '正在把建筑放入地块');
       const building = this._placeBuilding({
@@ -353,23 +479,41 @@ export class TownBuilderSystem {
       });
       draft = null;
       this.runtimeStatus?.completeJob(jobId, `${building.name} 已经修好`);
+      this._notifyBuildingCompleted({ building, lot });
       return building;
     } catch (error) {
-      this.runtimeStatus?.failJob(jobId, error);
+      if (!isDisposedError(error)) this.runtimeStatus?.failJob(jobId, error);
       throw error;
     } finally {
       if (draft) this._removeDraft(draft);
       this._removeScaffold();
-      pet.unlockFacing?.();
-      pet.playAnimation?.('idle');
-      const machine = getPetStateMachine(pet);
-      if (machine.is(PET_STATES.WORKING)) machine.completeWork(PET_STATES.FREE_ROAM);
-      this.petManager.resumePet(pet);
-      this.activeJob = null;
+      this._restoreWorkContext(currentWork);
+      if (this.activeWorkContext === currentWork) this.activeWorkContext = null;
     }
   }
 
-  async _moveToWorkSide(pet, center, lot) {
+  _notifyBuildingCompleted({ building, lot }) {
+    if (this.disposed) return;
+    if (typeof this.onBuildingCompleted !== 'function') return;
+    const payload = {
+      buildingId: building?._instanceId || building?.id || null,
+      buildingName: building?.name || null,
+      assetId: building?._generatedAssetId || null,
+      builderId: this.builder?._petId || this.builder?._profile?.id || 'builder_crab',
+      lot: Number.isInteger(lot?.width) && Number.isInteger(lot?.depth)
+        ? { width: lot.width, depth: lot.depth }
+        : null,
+    };
+    try {
+      Promise.resolve(this.onBuildingCompleted(payload)).catch(error => {
+        console.warn('[TownBuilder] Story progression notification failed:', error.message);
+      });
+    } catch (error) {
+      console.warn('[TownBuilder] Story progression notification failed:', error.message);
+    }
+  }
+
+  async _moveToWorkSide(pet, center, lot, lifecycleVersion = this.lifecycleVersion) {
     let direction = pet.mesh.position.clone().sub(center).setY(0);
     if (direction.lengthSq() < 0.01) direction.set(0, 0, 1);
     direction.normalize();
@@ -377,7 +521,13 @@ export class TownBuilderSystem {
     const stand = center.clone().addScaledVector(direction, radius);
     pet.walkTo?.(stand.x, stand.z, 4);
     const deadline = performance.now() + 8000;
-    while (pet._targetPosition && performance.now() < deadline) await wait(80);
+    while (
+      pet._targetPosition
+      && performance.now() < deadline
+      && this._isLifecycleCurrent(lifecycleVersion)
+    ) {
+      await wait(80);
+    }
     pet.stopWalking?.();
   }
 
@@ -406,11 +556,27 @@ export class TownBuilderSystem {
 
   _removeScaffold() {
     if (!this.scaffold) return;
-    this.scene.remove(this.scaffold.mesh);
+    const scaffold = this.scaffold;
     this.scaffold = null;
+    this.scene.remove(scaffold.mesh);
+    scaffold._constructionBubble?.dispose?.();
+    const geometries = new Set();
+    const materials = new Set();
+    scaffold.mesh?.traverse?.(object => {
+      if (object.geometry) geometries.add(object.geometry);
+      const objectMaterials = Array.isArray(object.material) ? object.material : [object.material];
+      for (const material of objectMaterials) {
+        if (material) materials.add(material);
+      }
+    });
+    if (scaffold._fallback?.geometry) geometries.add(scaffold._fallback.geometry);
+    if (scaffold._fallback?.material) materials.add(scaffold._fallback.material);
+    for (const geometry of geometries) geometry.dispose?.();
+    for (const material of materials) material.dispose?.();
   }
 
   _placeBuilding({ modelJson, assetId, description, prompt, placement, lot, draft }) {
+    if (this.disposed) throw createDisposedError();
     this._removeDraft(draft);
     const entity = new StaticEntity({
       id: `town-building-${assetId}`,
@@ -452,9 +618,74 @@ export class TownBuilderSystem {
   }
 
   _removeDraft(draft) {
-    if (!draft) return;
+    if (!draft || this.removedDrafts.has(draft)) return;
+    this.removedDrafts.add(draft);
+    if (this.activeDraft === draft) this.activeDraft = null;
     this.worldObjects.remove(draft);
     this.scene.remove(draft.mesh);
     draft.dispose?.();
+  }
+
+  _restoreWorkContext(context) {
+    if (!context || context.restored) return;
+    context.restored = true;
+    const pet = context.pet;
+    pet?.unlockFacing?.();
+    pet?.playAnimation?.('idle');
+    const machine = getPetStateMachine(pet);
+    if (machine.is(PET_STATES.WORKING)) {
+      machine.completeWork(PET_STATES.FREE_ROAM);
+    } else if (machine.is(PET_STATES.INTERACTING)) {
+      machine.resume('town-builder-disposed');
+    }
+    if (machine.is(PET_STATES.FREE_ROAM)) this.petManager.resumePet(pet);
+  }
+
+  _finishReveals() {
+    for (const reveal of this.reveals) {
+      reveal.entity?._content?.scale?.setScalar?.(reveal.scale);
+    }
+    this.reveals.length = 0;
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    this.lifecycleVersion += 1;
+    this.dialogueActive = false;
+
+    this.activeDialogueSystem?.hide?.();
+    this.activeDialogueSystem = null;
+    this.setDialogueLock?.(false, this.builder);
+
+    const draft = this.activeDraft;
+    const editorEntity = this.objectEditor?.placement?.active?.entity;
+    if (draft && (
+      editorEntity === draft
+      || (!editorEntity && this.objectEditor?.isActive?.())
+    )) {
+      this.objectEditor.cancel?.();
+    }
+
+    this._restoreDialogue(this.dialogueSnapshot);
+    this.dialogueSnapshot = null;
+    this._removeDraft(draft);
+    this._removeScaffold();
+    this._finishReveals();
+    this.vfxService?.stop?.('town-builder-dust');
+    this.vfxService?.stop?.('town-builder-reveal');
+
+    this._restoreWorkContext(this.activeWorkContext);
+    this.activeWorkContext = null;
+    const builderMachine = getPetStateMachine(this.builder);
+    if (builderMachine.is(PET_STATES.INTERACTING)) {
+      builderMachine.resume('town-builder-disposed');
+    } else if (builderMachine.is(PET_STATES.WORKING)) {
+      builderMachine.completeWork(PET_STATES.FREE_ROAM);
+      this.petManager.resumePet(this.builder);
+    }
+
+    this._releaseReservation();
+    this.activeJob = null;
   }
 }

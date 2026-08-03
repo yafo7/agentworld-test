@@ -3,7 +3,7 @@ import { createSpeechBubble } from '../ui/SpeechBubble.js';
 import { loadModel } from '../model/loader.js';
 import { buildModelFromJson, mergeMeshGroup } from '../model/builder.js';
 import { applyAnimation } from '../animation/player.js';
-import { generateInstanceId } from '../../storage/sceneSnapshot.js';
+import { generateInstanceId } from '../utils/id.js';
 import { detachMaterialTagPresentation, hasMaterialTags } from '../model/MaterialTagPresentation.js';
 
 /**

@@ -2,11 +2,11 @@
 
 基于 Three.js + Vite 的 AI-native 3D 宠物家园原型。玩家与宠物共同改造田园、森林和城镇，模型、动画、特效与局部装配由 3d-generate 后端提供。
 
-> **双工作流：** 用户在体素工作室保存后显式同步精选资产；游戏内自主创造通过 api-reference 后端调用并作为会话内容使用。两条流水线不可混用。
+> **双工作流：** 用户在体素工作室保存后显式同步精选资产；游戏内自主创造通过 api-reference 后端调用，结果进入生成资产历史与当前场景存档。两条流水线不可混用。
 
 ---
 
-## 当前完成状态（2026-07-28）
+## 当前完成状态（2026-08-03）
 
 ### 主角与序章
 - 岛上主角为弗洛洛，使用空手基础模型与 idle/walk/run/jump/special 动画。
@@ -30,7 +30,7 @@
 ### 渲染与后端
 - 使用 Three.js r184，并固定 `@voxel-studio/render-runtime` 的 `1203a1e` 审计包。
 - 已接入材质 tag、火焰/烟雾、fur、foliage、vegetation sway、VFX 词汇、Cel/Current 风格和质量档位。
-- GPT 5.6 重置策略：建筑使用 Pro；宠物同时保留 Pro/Voxel 两版；花草与普通装饰使用 Voxel；树木、背包道具和服装概念保持精选版本。
+- Original/Pro/Voxel 各自保留冻结资产目录；游戏内自主 generate/refine/mount/animation 固定走已审计的 Voxel 内容策略，不允许调用方覆盖 provider/model/mode。
 - 本地运行资产来自 `public/generated/`，不会在浏览器里直接读取体素工作室当前编辑态。
 
 ### 物理与编辑
@@ -49,21 +49,22 @@ P1 ✅ AI create/refine/mount/animation/VFX 后端边界
 P2 ✅ 占地、碰撞、物件管理、桥梁与建筑室内
 P3 ✅ 时间天气、材质 runtime、水体与海滩
 P4 ✅ 序章、角色展柜、背包和外观系统
-P5 进行中 → 以 storyline 和岛屿发展主循环串联现有系统
+P5 ✅ IslandStoryState 串联田园改造、森林召唤、城镇活动与建造里程碑
+P6 ✅ 依赖边界、生成资产完整性、统一生命周期与自动验证
 ```
 
 ---
 
-## 宠物世界设定
+## 当前居民与职责
 
-| 生态 | 宠物 | 能力 | 种类 | 性格 |
-|------|------|------|------|------|
-| 🌲 森林 | momo / yafo | 伐木 / 飞行 | 熊 / 天蓝色小鸟 | 可爱 / 调皮 |
-| 🌊 池塘 | fangk / lingq | 建造 / 引水 | 建筑师 / 孔雀 | 和蔼 / 活泼 |
-| 🌿 草原 | mako | 疾跑 | 马 | 沉稳 |
-| ⛰️ 高山 | mok | 耕地 | 鳄鱼 | 凶狠 |
-| 🌋 火山 | _(待设计)_ | | | |
-| ❄️ 雪山 | _(待设计)_ | | | |
+| 区域 | 居民 | 当前玩法职责 |
+|------|------|--------------|
+| 田园 | momo / yafo / mok | 跟随、自由活动与 create/refine/mount 协作 |
+| 城镇 | fangk / lingq / mako | 主持、邀请并参与日常与节庆活动 |
+| 城镇 | 螃蟹（`builder_crab`） | 选择地块并建造新建筑 |
+| 森林 | 玩家同行宠物 / 新召唤居民 | 奖杯召唤、初见与露营 |
+
+动物社区仍是后续层，不属于当前原型范围。
 
 ---
 
@@ -79,15 +80,20 @@ P5 进行中 → 以 storyline 和岛屿发展主循环串联现有系统
 ## 运行
 
 ```bash
-npm install
+npm ci --legacy-peer-deps
 npm run dev          # 开发模式（同时启动工作室）
 npm run build        # 生产构建
+npm run verify       # 完整测试、资产审计、渲染兼容与构建
 ```
 
 - **奇异岛：** `http://localhost:5173/src/demos/chii-island/`
 - **Agentland Friends：** `http://localhost:5173/src/demos/agentland-friends/`
 - **Ghost Home 兼容地址：** `http://localhost:5173/src/demos/ghost-home/`（自动转到 Agentland Friends）
 - **体素工作室：** `http://localhost:8000/`
+
+若 5173 被其他项目占用，可用
+`powershell -ExecutionPolicy Bypass -File .agents/skills/chii-dev/scripts/services.ps1 -Action start -Target game -GamePort 5174`
+启动本仓库并使用对应端口验收。
 
 ## 操控
 
@@ -133,3 +139,5 @@ npm run build        # 生产构建
 | 20 | 2026-07-02 | 参数调整：奶龙 1/2 大小+速度，建筑 3x 缩放，随机植被大小/朝向，底座岩石散落 |
 | 21 | 2026-07-26 | 建筑室内系统：教堂大门支持 E 键进入/退出，新增程序化哥特教堂中殿与本地 GPT Pro 长椅、祭坛、神像；风车、神殿和新建建筑暂用通用空房间。 |
 | 22 | 2026-07-28 | 综合升级：同步审计 3d-generate `1203a1e` 并固定 runtime 包；重建可通行石桥与 GPT 5.6 分类资产；修复 Mako 摘苹果寻路；落地服装 refine/道具 mount 与举高展示；新增连续河流、瀑布、喷泉、森林海滩、城镇活动阶段卡和 Agentland Friends 独立原型；Ghost Home 退役为兼容跳转。 |
+| 23 | 2026-08-03 | 架构整理：移除旧入口、legacy、游戏内 Studio 与过期生成脚本；统一居民、宠物、剧情、控制锁、气候和跨区域预约所有权；修复场景恢复重复登记并将旧内联资产存档迁移为 asset ID；补齐生成资产 manifest、系统 dispose、管理面板/田园/城镇职责拆分、依赖/循环/孤儿模块/密钥/CI 验证。 |
+| 24 | 2026-08-03 | 生命周期收口：启动 await 具备 HMR/pagehide 代际保护，旧外观存档缺失时回退基础模型，交互会话独立管理对话/相机/玩家锁；开发服务识别端口归属，浏览器验收覆盖桌面与移动 WebGL 像素、模型、WASD、E 和 ESC。 |

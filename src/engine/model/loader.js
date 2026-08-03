@@ -1,4 +1,4 @@
-import { assetCache } from '../../storage/assetCache.js';
+import { assetCache } from '../runtime/assetCache.js';
 import { buildModelFromJson } from './builder.js';
 
 /**

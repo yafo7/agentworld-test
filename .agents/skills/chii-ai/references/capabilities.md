@@ -27,7 +27,7 @@ Use `$chii-prompts` for all prompt wording, planner messages, and reusable templ
 ## Current Request Contract
 
 - Chii Voxel generation is one explicit request with `provider: gpt`, `model: gpt-5.6-sol-high`, and `mode: voxel`.
-- Voxel generate and refine requests include Chii's compact `material-tags-v1` prompt contract, pinned to audited backend commit `de51c7d`. The remote API does not expose the Studio vocabulary JSON URL, so gameplay must not fetch it from port 8000 or route generation through Studio.
+- Voxel generate and refine requests include Chii's compact `material-tags-v1` prompt contract, pinned to audited backend commit `1203a1e`. The remote API does not expose the Studio vocabulary JSON URL, so gameplay must not fetch it from port 8000 or route generation through Studio.
 - Chii runs the pinned Studio `MaterialTagRuntime` behind `ModelVisualPort`; fire and smoke use runtime companions, while pool/fall water uses Chii's lightweight presenter. Do not claim full Studio water, texture-tuning, or batching parity.
 - Refine, mount, and quick animation also use `provider: gpt` through the api-reference backend. They never use Studio save/load endpoints.
 - Do not silently fall back to another provider. Surface the structured backend code, status, detail, and timing to the owning gameplay flow.

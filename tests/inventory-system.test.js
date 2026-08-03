@@ -21,6 +21,7 @@ class FakePanel {
   setBusy() {}
   setEquipped(itemId) { this.equippedId = itemId; }
   setThumbnails() {}
+  dispose() { this.disposed = true; }
 }
 
 function fakeInput() {
@@ -98,8 +99,10 @@ test('main loop freezes player and interaction while inventory is open', () => {
     'utf8',
   );
   assert.match(main, /const inventoryOpen = inventorySystem\.isOpen\(\)/);
-  assert.match(main, /!panelOpen && !inventoryOpen && !dialogueActive/);
-  assert.match(main, /&& !inventoryOpen\s+&& !itemShowcaseActive\s+&& !constructionActive/);
+  assert.match(main, /new ControlLockCoordinator\(\)/);
+  assert.match(main, /controlLocks\.set\('inventory', inventoryOpen/);
+  assert.match(main, /!controlLocks\.isBlocked\('camera'\)/);
+  assert.match(main, /!controlLocks\.isBlocked\('movement'\)/);
   assert.match(main, /new PlayerItemShowcaseDirector/);
 });
 
@@ -111,6 +114,38 @@ test('island player and resident outfits use the shared appearance configuration
   assert.match(main, /CHII_PLAYER_CHARACTER\.model/);
   assert.match(main, /characterId: CHII_PLAYER_CHARACTER\.id/);
   assert.match(main, /new CharacterAppearanceStore\(\{ scope: sceneStyle \}\)/);
-  assert.match(main, /applySavedCharacterAppearance\(architect, 'fangk'\)/);
-  assert.match(main, /petManager\.pets\.map\(pet => applySavedCharacterAppearance/);
+  assert.match(main, /assignResidentIdentity\(architect, 'fangk'\)/);
+  assert.match(main, /characterRuntime\.applySavedAppearance\(architect, architectDefinition\.profileId\)/);
+  assert.match(main, /petManager\.pets\.map\(pet => characterRuntime\.applySavedAppearance/);
+});
+
+test('disposing inventory ignores a pending equipment result and releases its panel', async () => {
+  const input = fakeInput();
+  const panel = new FakePanel();
+  const replacements = [];
+  let resolveLoadout;
+  const system = new InventorySystem({
+    input,
+    panel,
+    player: {
+      replaceModelFromJson(modelJson) {
+        replacements.push(modelJson);
+        return true;
+      },
+    },
+    baseModelJson: { name: 'base' },
+    equipmentService: {
+      resolveLoadout: () => new Promise(resolve => { resolveLoadout = resolve; }),
+      async loadItemModel() { return {}; },
+    },
+  });
+
+  const pending = system.equip('apple');
+  system.dispose();
+  resolveLoadout({ modelJson: { name: 'late-result' } });
+
+  assert.equal(await pending, false);
+  assert.deepEqual(replacements, []);
+  assert.equal(panel.disposed, true);
+  assert.equal(input.pointerLockEnabled, true);
 });

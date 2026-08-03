@@ -6,7 +6,7 @@ import {
   replaceAIWorldEvents,
 } from '../../../storage/aiWorldState.js';
 
-const WORLD_SNAPSHOT_VERSION = 1;
+const WORLD_SNAPSHOT_VERSION = 2;
 const AUTOSAVE_DELAY_MS = 350;
 const NON_PERSISTENT_SOURCES = new Set([
   'building_draft',
@@ -110,9 +110,6 @@ function modelSourceFor(entity, metadata, {
   if (assetId && (generated || operation !== 'original' || assetId !== baselineAssetId)) {
     return { type: 'asset', assetId };
   }
-  if (generated && effective.modelJson) {
-    return { type: 'inline', modelJson: jsonClone(effective.modelJson) };
-  }
   return null;
 }
 
@@ -120,6 +117,13 @@ function snapshotEntity(entity, metadata, {
   kind,
   baselineAssetId = null,
 } = {}) {
+  const modelSource = modelSourceFor(entity, metadata, {
+    baselineAssetId,
+    generated: kind === 'generated',
+  });
+  if (kind === 'generated' && !modelSource) {
+    throw new TypeError(`Generated world object ${entity?.name || entity?.id || 'unknown'} has no persisted assetId`);
+  }
   return {
     saveId: entity._chiiSaveId,
     kind,
@@ -131,10 +135,7 @@ function snapshotEntity(entity, metadata, {
     transform: transformOf(entity, metadata),
     userData: userDataOf(entity),
     metadata: savedMetadata(metadata),
-    modelSource: modelSourceFor(entity, metadata, {
-      baselineAssetId,
-      generated: kind === 'generated',
-    }),
+    modelSource,
   };
 }
 
@@ -198,7 +199,6 @@ export class ChiiScenePersistenceSystem {
     sceneStyle,
     store,
     worldObjects,
-    staticEntities,
     scene,
     generatedAssetRepository,
     appearanceStore,
@@ -212,7 +212,6 @@ export class ChiiScenePersistenceSystem {
     this.sceneStyle = sceneStyle;
     this.store = store;
     this.worldObjects = worldObjects;
-    this.staticEntities = staticEntities;
     this.scene = scene;
     this.generatedAssetRepository = generatedAssetRepository;
     this.appearanceStore = appearanceStore;
@@ -253,8 +252,6 @@ export class ChiiScenePersistenceSystem {
         if (!baseline || !this.worldObjects.items.includes(baseline.entity)) continue;
         this.worldObjects.remove(baseline.entity);
         this.scene.remove(baseline.entity.mesh);
-        const index = this.staticEntities.indexOf(baseline.entity);
-        if (index >= 0) this.staticEntities.splice(index, 1);
         removed += 1;
       }
 
@@ -498,19 +495,39 @@ export class ChiiScenePersistenceSystem {
   async _restoreGeneratedEntity(snapshot) {
     const modelJson = await this._resolveModel(snapshot.modelSource);
     if (!modelJson) throw new Error('generated model asset is unavailable');
+    const assetId = await this._resolveRestoredAssetId(snapshot, modelJson);
     const entity = this.createEntity(snapshot, modelJson);
     entity._chiiSaveId = snapshot.saveId || generatedSaveId(entity);
     entity._chiiSaveKind = 'generated';
-    entity._generatedAssetId = snapshot.metadata?.assetId || snapshot.modelSource?.assetId || null;
+    entity._generatedAssetId = assetId;
     applyTransform(entity, snapshot.transform);
     applyUserData(entity, snapshot.userData);
     this.scene.add(entity.mesh);
     this.worldObjects.add(entity, {
       ...(snapshot.metadata || {}),
+      assetId,
       modelJson,
     });
-    this.staticEntities.push(entity);
     return entity;
+  }
+
+  async _resolveRestoredAssetId(snapshot, modelJson) {
+    const assetId = snapshot.metadata?.assetId || snapshot.modelSource?.assetId || null;
+    if (assetId) return assetId;
+    if (snapshot.modelSource?.type !== 'inline') {
+      throw new Error('generated model asset identity is unavailable');
+    }
+    if (typeof this.generatedAssetRepository.saveModel !== 'function') {
+      throw new Error('legacy inline model cannot be migrated to the asset repository');
+    }
+    const saved = await this.generatedAssetRepository.saveModel({
+      name: snapshot.name || snapshot.id || 'Migrated scene object',
+      description: 'Migrated from a legacy Chii scene save',
+      modelJson,
+      tags: [...(snapshot.tags || []), 'scene-save-migration'],
+    });
+    if (!saved?.assetId) throw new Error('legacy inline model migration returned no assetId');
+    return saved.assetId;
   }
 
   async _resolveModel(source) {
@@ -529,7 +546,6 @@ export class ChiiScenePersistenceSystem {
     if (event.type === 'added' && !event.entity._chiiSaveId) {
       event.entity._chiiSaveId = generatedSaveId(event.entity);
       event.entity._chiiSaveKind = 'generated';
-      if (!this.staticEntities.includes(event.entity)) this.staticEntities.push(event.entity);
     }
     this.scheduleSave(event.type);
   }

@@ -1,4 +1,3 @@
-import { CharacterEquipmentService } from '../../../gameplay/equipment/CharacterEquipmentService.js';
 import {
   CHII_EQUIPMENT_ITEMS,
   getEquipmentShowcaseAnimation,
@@ -13,13 +12,13 @@ export class InventorySystem {
     baseModelJson,
     characterId = 'phrolova',
     variantId = 'a',
-    equipmentService = new CharacterEquipmentService(),
+    equipmentService,
     panel = new InventoryPanel(),
     items = CHII_EQUIPMENT_ITEMS,
     onEquipped = null,
   } = {}) {
-    if (!input || !player || !baseModelJson) {
-      throw new TypeError('InventorySystem requires input, player, and baseModelJson');
+    if (!input || !player || !baseModelJson || !equipmentService) {
+      throw new TypeError('InventorySystem requires input, player, baseModelJson, and equipmentService');
     }
     this.input = input;
     this.player = player;
@@ -34,6 +33,7 @@ export class InventorySystem {
     this.busy = false;
     this.equippedId = null;
     this.requestVersion = 0;
+    this.disposed = false;
 
     panel
       .on('equip', itemId => this.equip(itemId))
@@ -45,6 +45,7 @@ export class InventorySystem {
   }
 
   update({ canOpen = true } = {}) {
+    if (this.disposed) return;
     if (!this.input.justPressed('KeyB')) return;
     if (this.open) {
       this.close();
@@ -54,7 +55,7 @@ export class InventorySystem {
   }
 
   show() {
-    if (this.open) return;
+    if (this.disposed || this.open) return;
     this.open = true;
     this.input.setPointerLockEnabled(false);
     globalThis.document?.exitPointerLock?.();
@@ -73,7 +74,7 @@ export class InventorySystem {
   }
 
   async equip(itemId) {
-    if (this.busy || itemId === this.equippedId) return false;
+    if (this.disposed || this.busy || itemId === this.equippedId) return false;
     const item = this.items.find(candidate => candidate.id === itemId);
     if (!item) return false;
 
@@ -87,7 +88,7 @@ export class InventorySystem {
         baseModelJson: this.baseModelJson,
         loadout: { rightHand: item.id },
       });
-      if (version !== this.requestVersion) return false;
+      if (this.disposed || version !== this.requestVersion) return false;
       if (!this.player.replaceModelFromJson(result.modelJson, {
         preserveCurrentTransform: true,
       })) {
@@ -103,6 +104,7 @@ export class InventorySystem {
       });
       return true;
     } catch (error) {
+      if (this.disposed) return false;
       console.warn('[Inventory] Equip failed:', error);
       this.panel.setStatus(`这次没拿稳：${error.message}`, 'error');
       return false;
@@ -115,7 +117,7 @@ export class InventorySystem {
   }
 
   clear() {
-    if (this.busy || !this.equippedId) return false;
+    if (this.disposed || this.busy || !this.equippedId) return false;
     const previous = this.items.find(item => item.id === this.equippedId);
     if (!this.player.replaceModelFromJson(this.baseModelJson, {
       preserveCurrentTransform: true,
@@ -134,8 +136,9 @@ export class InventorySystem {
       const thumbnails = await renderEquipmentThumbnails(this.items, {
         loadModelJson: itemId => this.equipmentService.loadItemModel(itemId),
       });
-      this.panel.setThumbnails(thumbnails);
+      if (!this.disposed) this.panel.setThumbnails(thumbnails);
     } catch (error) {
+      if (this.disposed) return;
       console.warn('[Inventory] Thumbnail rendering skipped:', error.message);
     }
   }
@@ -146,5 +149,16 @@ export class InventorySystem {
       busy: this.busy,
       equippedId: this.equippedId,
     };
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    this.requestVersion += 1;
+    this.busy = false;
+    this.open = false;
+    this.panel.setOpen(false);
+    this.input.setPointerLockEnabled(true);
+    this.panel.dispose?.();
   }
 }

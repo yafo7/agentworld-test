@@ -47,6 +47,8 @@ export class ThirdPersonCamera {
     this._collisionWorld = null;
     this._collisionExclude = null;
     this._collisionPadding = 0.45;
+    this._inputCanvas = null;
+    this._onWheel = null;
 
     this._setupInput();
   }
@@ -55,10 +57,12 @@ export class ThirdPersonCamera {
     const canvas = document.querySelector('canvas');
     if (!canvas) return;
 
-    canvas.addEventListener('wheel', (e) => {
+    this._inputCanvas = canvas;
+    this._onWheel = (e) => {
       this.distance += e.deltaY * 0.01;
       this.distance = Math.max(3, Math.min(20, this.distance));
-    }, { passive: true });
+    };
+    canvas.addEventListener('wheel', this._onWheel, { passive: true });
   }
 
   /**
@@ -221,5 +225,15 @@ export class ThirdPersonCamera {
   resize(aspect) {
     this.camera.aspect = aspect;
     this.camera.updateProjectionMatrix();
+  }
+
+  dispose() {
+    if (this._inputCanvas && this._onWheel) {
+      this._inputCanvas.removeEventListener('wheel', this._onWheel);
+    }
+    this._inputCanvas = null;
+    this._onWheel = null;
+    this._collisionWorld = null;
+    this._collisionExclude = null;
   }
 }

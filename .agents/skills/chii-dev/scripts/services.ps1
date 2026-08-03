@@ -2,7 +2,9 @@ param(
   [ValidateSet('status', 'start', 'stop')]
   [string]$Action = 'status',
   [ValidateSet('all', 'game', 'studio')]
-  [string]$Target = 'all'
+  [string]$Target = 'all',
+  [ValidateRange(1, 65535)]
+  [int]$GamePort = 5173
 )
 
 $ErrorActionPreference = 'Stop'
@@ -37,10 +39,14 @@ function Get-ServiceProcess([int]$Port) {
 function Test-OwnedProcess($Info, [string]$Kind) {
   if (-not $Info) { return $false }
   $command = [string]$Info.CommandLine
-  if ($command -match [regex]::Escape($RepoRoot)) { return $true }
-  if ($command -match [regex]::Escape($StudioRoot)) { return $true }
-  if ($Kind -eq 'game' -and $command -match 'vite') { return $true }
-  if ($Kind -eq 'studio' -and $Info.Name -match '^python' -and $command -match 'server\.py') { return $true }
+  if ($Kind -eq 'game') {
+    return $command -match [regex]::Escape($RepoRoot) -and $command -match 'vite'
+  }
+  if ($Kind -eq 'studio') {
+    return $command -match [regex]::Escape($StudioRoot) `
+      -and $Info.Name -match '^python' `
+      -and $command -match 'server\.py'
+  }
   return $false
 }
 
@@ -53,16 +59,17 @@ function Wait-Port([int]$Port) {
 }
 
 function Start-Game {
-  $existing = Get-ServiceProcess 5173
+  $existing = Get-ServiceProcess $GamePort
   if ($existing) {
-    if (-not (Test-OwnedProcess $existing 'game')) { throw "Port 5173 is owned by an unrelated process: $($existing.ProcessId)" }
+    if (-not (Test-OwnedProcess $existing 'game')) { throw "Port $GamePort is owned by an unrelated process: $($existing.ProcessId)" }
     return
   }
-  Start-Process -FilePath 'npm.cmd' -ArgumentList @('run', 'dev:game', '--', '--host', '0.0.0.0', '--port', '5173') `
+  $logSuffix = if ($GamePort -eq 5173) { '' } else { "-$GamePort" }
+  Start-Process -FilePath 'npm.cmd' -ArgumentList @('run', 'dev:game', '--', '--host', '0.0.0.0', '--port', "$GamePort", '--strictPort') `
     -WorkingDirectory $RepoRoot -WindowStyle Hidden `
-    -RedirectStandardOutput (Join-Path $RuntimeDir 'game.out.log') `
-    -RedirectStandardError (Join-Path $RuntimeDir 'game.err.log') | Out-Null
-  if (-not (Wait-Port 5173)) { throw 'Chii Island did not start on port 5173' }
+    -RedirectStandardOutput (Join-Path $RuntimeDir "game$logSuffix.out.log") `
+    -RedirectStandardError (Join-Path $RuntimeDir "game$logSuffix.err.log") | Out-Null
+  if (-not (Wait-Port $GamePort)) { throw "Chii Island did not start on port $GamePort" }
 }
 
 function Start-Studio {
@@ -93,11 +100,13 @@ if ($Action -eq 'start') {
   if ($Target -in @('all', 'game')) { Start-Game }
   if ($Target -in @('all', 'studio')) { Start-Studio }
 } elseif ($Action -eq 'stop') {
-  if ($Target -in @('all', 'game')) { Stop-Service 5173 'game' }
+  if ($Target -in @('all', 'game')) { Stop-Service $GamePort 'game' }
   if ($Target -in @('all', 'studio')) { Stop-Service 8000 'studio' }
 }
 
+$game = Get-ServiceProcess $GamePort
+$studio = Get-ServiceProcess 8000
 @(
-  [pscustomobject]@{ Service = 'Chii Island'; Port = 5173; Running = [bool](Get-ServiceProcess 5173); Url = 'http://localhost:5173/src/demos/chii-island/' },
-  [pscustomobject]@{ Service = 'Voxel Studio'; Port = 8000; Running = [bool](Get-ServiceProcess 8000); Url = 'http://localhost:8000/' }
+  [pscustomobject]@{ Service = 'Chii Island'; Port = $GamePort; Running = [bool]$game; Owned = Test-OwnedProcess $game 'game'; Url = "http://localhost:$GamePort/src/demos/chii-island/" },
+  [pscustomobject]@{ Service = 'Voxel Studio'; Port = 8000; Running = [bool]$studio; Owned = Test-OwnedProcess $studio 'studio'; Url = 'http://localhost:8000/' }
 ) | Format-Table -AutoSize

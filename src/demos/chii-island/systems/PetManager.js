@@ -2,42 +2,9 @@ import * as THREE from 'three';
 import { ArchitectNPC } from '../entities/ArchitectNPC.js';
 import { getPetProfile } from '../data/petProfiles.js';
 import { createChiiAssetRepository } from '../data/assetCatalog.js';
+import { assignResidentIdentity, PET_MANAGER_RESIDENTS } from '../data/residentCatalog.js';
 import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { CHII_PET_HEIGHTS } from '../data/worldTuningProfile.js';
-
-const PET_CONFIGS = [
-  {
-    id: 'horse_7',
-    name: 'mako',
-    assetId: 'mako',
-    spawn: [-38, 0, -18],
-  },
-  {
-    id: 'croc_axe',
-    name: 'mok',
-    assetId: 'mok',
-    spawn: [38, 0, 18],
-  },
-  {
-    id: 'peacock',
-    name: 'lingq',
-    assetId: 'lingq',
-    spawn: [26, 0, -24],
-  },
-  {
-    id: 'sky_bird',
-    name: 'yafo',
-    assetId: 'yafo',
-    spawn: [-30, 0, 30],
-  },
-  {
-    id: 'builder_crab',
-    name: 'crab',
-    displayName: '螃蟹',
-    assetId: 'crab',
-    spawn: [14, 0, -34],
-  },
-];
 
 function makeBounds(x, z, range = 10) {
   return { minX: x - range, maxX: x + range, minZ: z - range, maxZ: z + range };
@@ -72,15 +39,12 @@ export class PetManager {
 
   async load() {
     const assetLoads = [];
-    for (const config of PET_CONFIGS.filter(c => c.enabled !== false)) {
+    for (const config of PET_MANAGER_RESIDENTS) {
       const pet = new ArchitectNPC();
-      const spawn = this.petSpawns[config.name] || config.spawn;
-      pet.mesh.name = config.name;
-      pet._petId = config.id;
-      pet._petName = config.displayName || config.name;
-      pet._profile = getPetProfile(config.profileId || config.name);
+      const spawn = this.petSpawns[config.spawnKey] || config.defaultSpawn;
+      assignResidentIdentity(pet, config.id);
       pet._managedByPetManager = true;
-      this._configurePet(pet, config.name, spawn);
+      this._configurePet(pet, config, spawn);
       pet._initialInteractionDone = false;
 
       pet.setPosition(...spawn);
@@ -102,7 +66,7 @@ export class PetManager {
       ]);
       if (modelJson) {
         pet.loadModelFromJson(modelJson, {
-          targetHeight: CHII_PET_HEIGHTS[config.name] || CHII_PET_HEIGHTS.generated,
+          targetHeight: CHII_PET_HEIGHTS[config.assetId] || CHII_PET_HEIGHTS.generated,
         });
         if (pet._modelGroup) {
           pet._modelGroup.userData._baseScale = pet._modelGroup.scale.x;
@@ -114,16 +78,16 @@ export class PetManager {
       if (!pet._animPlans.jump && pet._animPlans.run) pet._animPlans.jump = pet._animPlans.run;
       if (!pet._animPlans.run && pet._animPlans.idle) pet._animPlans.run = pet._animPlans.idle;
 
-      console.log(`[PetManager] ${config.name} ready:`, Object.keys(pet._animPlans).join(', '));
+      console.log(`[PetManager] ${config.id} ready:`, Object.keys(pet._animPlans).join(', '));
     } catch (error) {
-      console.warn(`[PetManager] ${config.name} failed:`, error.message);
+      console.warn(`[PetManager] ${config.id} failed:`, error.message);
     }
   }
 
-  _configurePet(pet, name, spawn) {
-    const behavior = this.petBehaviors[name] || {};
-    attachPetStateMachine(pet, behavior.initialState || 'idle');
-    pet._petRegion = behavior.region || 'pastoral';
+  _configurePet(pet, config, spawn) {
+    const behavior = this.petBehaviors[config.spawnKey] || {};
+    attachPetStateMachine(pet, behavior.initialState || config.initialState);
+    pet._petRegion = behavior.region || config.region;
     pet._petBounds = behavior.bounds || makeBounds(spawn[0], spawn[2], 10);
     pet._nextPetActionAt = randomIn(1.0, 3.0);
     pet.setNavigation?.(this.navigation);
@@ -150,7 +114,6 @@ export class PetManager {
     for (const pet of this.pets) {
       if (
         pet.petState?.is('free_roam')
-        && !pet._followEnabled
         && !pet.petState.isBusy()
         && !pet._pastoralIdeaPending
       ) {
@@ -231,7 +194,7 @@ export class PetManager {
   pauseNear(position, range) {
     for (const pet of this.pets) {
       if (pet.petState?.isBusy()) continue;
-      if (pet._followEnabled) continue;
+      if (pet.petState?.is('following')) continue;
       const p = pet.getPosition();
       const dx = p.x - position.x;
       const dz = p.z - position.z;
@@ -239,14 +202,14 @@ export class PetManager {
       if (dist <= range) {
         pet.stopWalking();
         pet.lockFacing(position.x, position.z);
-      } else if (dist > range + 1 && !pet._followEnabled) {
+      } else if (dist > range + 1 && !pet.petState?.is('following')) {
         pet.unlockFacing();
       }
     }
   }
 
   resumePet(pet) {
-    if (!pet || pet._followEnabled || pet._petState !== 'free_roam') return;
+    if (!pet || pet.petState?.is('following') || !pet.petState?.is('free_roam')) return;
     pet.unlockFacing();
     pet._nextPetActionAt = randomIn(0.5, 1.5);
   }

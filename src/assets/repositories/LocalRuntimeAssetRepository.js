@@ -1,4 +1,4 @@
-import { assetCache } from '../../storage/assetCache.js';
+import { assetCache } from '../../engine/runtime/assetCache.js';
 import { RuntimeAssetRepository } from '../../ports/RuntimeAssetRepository.js';
 
 function normalizePath(path) {

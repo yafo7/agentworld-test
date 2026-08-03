@@ -33,8 +33,8 @@ function entity(id, position = [0, 0, 0]) {
 
 function createHarness({ storage, repository, originalEntities }) {
   const scene = new THREE.Scene();
-  const staticEntities = [...originalEntities];
   const worldObjects = new WorldObjectRegistry();
+  const staticEntities = worldObjects.items;
   for (const item of originalEntities) {
     scene.add(item.mesh);
     worldObjects.add(item, {
@@ -52,7 +52,6 @@ function createHarness({ storage, repository, originalEntities }) {
     sceneStyle: 'voxel',
     store,
     worldObjects,
-    staticEntities,
     scene,
     generatedAssetRepository: repository,
     createEntity(snapshot, modelJson) {
@@ -99,6 +98,13 @@ test('scene persistence restores curated edits, deletion, and generated objects'
     },
   });
   first.system.saveNow('test');
+  const stored = first.store.getAuto('voxel');
+  assert.equal(stored.worldVersion, 2);
+  assert.deepEqual(stored.world.generatedObjects[0].modelSource, {
+    type: 'asset',
+    assetId: 'generated-chair',
+  });
+  assert.equal(JSON.stringify(stored.world.generatedObjects).includes('generated chair'), false);
 
   const freshHouse = entity('house');
   const freshTree = entity('tree', [8, 0, 8]);
@@ -118,6 +124,8 @@ test('scene persistence restores curated edits, deletion, and generated objects'
   assert.equal(freshHouse._modelJson.name, 'refined house');
   assert.equal(second.worldObjects.items.includes(freshTree), false);
   const restoredChair = second.worldObjects.findById('chair');
+  assert.equal(second.staticEntities.length, second.worldObjects.items.length);
+  assert.equal(second.staticEntities.filter(item => item === restoredChair).length, 1);
   assert.equal(restoredChair._modelJson.name, 'generated chair');
   assert.deepEqual(restoredChair.mesh.position.toArray(), [3, 0, 2]);
   assert.deepEqual(
@@ -150,4 +158,66 @@ test('temporary social objects and temporary mounts are not frozen into saves', 
 
   assert.equal(snapshot.world.generatedObjects.length, 0);
   assert.equal(snapshot.world.curatedChanges.length, 0);
+});
+
+test('new snapshots reject persistent generated objects without repository identity', () => {
+  const storage = memoryStorage();
+  const repository = { async get() { return { modelJson: null, animations: [] }; } };
+  const harness = createHarness({ storage, repository, originalEntities: [] });
+  const orphan = entity('orphan');
+  harness.worldObjects.add(orphan, {
+    operation: 'generate',
+    modelJson: { name: 'must not be inlined' },
+    placement: { source: 'generated' },
+  });
+
+  assert.throws(
+    () => harness.system.captureSnapshot(),
+    /has no persisted assetId/,
+  );
+});
+
+test('legacy inline model snapshots remain readable but are never emitted again', async () => {
+  const storage = memoryStorage();
+  const migrated = [];
+  const repository = {
+    async get() { return { modelJson: null, animations: [] }; },
+    async saveModel(model) {
+      migrated.push(model);
+      return { assetId: 'migrated-legacy-object' };
+    },
+  };
+  const harness = createHarness({ storage, repository, originalEntities: [] });
+  harness.store.saveAuto('voxel', {
+    sceneStyle: 'voxel',
+    worldVersion: 1,
+    world: {
+      removedCurated: [],
+      curatedChanges: [],
+      generatedObjects: [{
+        saveId: 'generated:legacy',
+        kind: 'generated',
+        instanceId: 'legacy',
+        id: 'legacy-object',
+        name: 'legacy-object',
+        tags: ['Object'],
+        category: 'decor',
+        transform: {},
+        userData: {},
+        metadata: { operation: 'generate', assetId: null, placement: {} },
+        modelSource: { type: 'inline', modelJson: { name: 'legacy-inline' } },
+      }],
+    },
+    aiEvents: [],
+  });
+
+  const result = await harness.system.restoreAuto();
+  assert.equal(result.generated, 1);
+  assert.equal(harness.worldObjects.findById('legacy-object')._modelJson.name, 'legacy-inline');
+  assert.equal(migrated.length, 1);
+  assert.equal(migrated[0].modelJson.name, 'legacy-inline');
+  assert.deepEqual(
+    harness.system.captureSnapshot().world.generatedObjects[0].modelSource,
+    { type: 'asset', assetId: 'migrated-legacy-object' },
+  );
 });

@@ -380,10 +380,24 @@
         "animId": "anim_mqyxkios_bt5u",
         "name": "上下浮动",
         "type": "interaction",
-        "path": "generated/animations/anim_mqyxkios_bt5u.json"
+        "path": "generated/_archive/animations/anim_mqyxkios_bt5u.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqyxkios_bt5u.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqyxkcar_d0sa.json",
+    "path": "generated/_archive/models/gen_mqyxkcar_d0sa.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyxkcar_d0sa.json"
+      ]
+    },
     "createdAt": 1782720177551
   },
   {
@@ -394,7 +408,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqyw2nn3_v03m.json",
+    "path": "generated/_archive/models/gen_mqyw2nn3_v03m.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyw2nn3_v03m.json"
+      ]
+    },
     "createdAt": 1782717672879
   },
   {
@@ -405,7 +426,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqyvvdv5_mnyl.json",
+    "path": "generated/_archive/models/gen_mqyvvdv5_mnyl.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyvvdv5_mnyl.json"
+      ]
+    },
     "createdAt": 1782717333606
   },
   {
@@ -420,10 +448,24 @@
         "animId": "anim_mqyvpgbt_nm8h",
         "name": "孔雀开屏",
         "type": "interaction",
-        "path": "generated/animations/anim_mqyvpgbt_nm8h.json"
+        "path": "generated/_archive/animations/anim_mqyvpgbt_nm8h.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqyvpgbt_nm8h.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqyvothb_4us1.json",
+    "path": "generated/_archive/models/gen_mqyvothb_4us1.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyvothb_4us1.json"
+      ]
+    },
     "createdAt": 1782717027260
   },
   {
@@ -434,7 +476,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqyvfkrx_358n.json",
+    "path": "generated/_archive/models/gen_mqyvfkrx_358n.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyvfkrx_358n.json"
+      ]
+    },
     "createdAt": 1782716596063
   },
   {
@@ -449,10 +498,24 @@
         "animId": "anim_mqyvafxq_cmty",
         "name": "火球特效",
         "type": "interaction",
-        "path": "generated/animations/anim_mqyvafxq_cmty.json"
+        "path": "generated/_archive/animations/anim_mqyvafxq_cmty.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqyvafxq_cmty.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqyva3uz_8ma2.json",
+    "path": "generated/_archive/models/gen_mqyva3uz_8ma2.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyva3uz_8ma2.json"
+      ]
+    },
     "createdAt": 1782716340891
   },
   {
@@ -467,10 +530,24 @@
         "animId": "anim_mqyv9n83_b2tt",
         "name": "冲锋",
         "type": "interaction",
-        "path": "generated/animations/anim_mqyv9n83_b2tt.json"
+        "path": "generated/_archive/animations/anim_mqyv9n83_b2tt.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqyv9n83_b2tt.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqyv9g14_z6sn.json",
+    "path": "generated/_archive/models/gen_mqyv9g14_z6sn.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyv9g14_z6sn.json"
+      ]
+    },
     "createdAt": 1782716309983
   },
   {
@@ -485,10 +562,24 @@
         "animId": "anim_mqyuc3m0_en3h",
         "name": "爬行",
         "type": "interaction",
-        "path": "generated/animations/anim_mqyuc3m0_en3h.json"
+        "path": "generated/_archive/animations/anim_mqyuc3m0_en3h.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqyuc3m0_en3h.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqyubwt3_wj2j.json",
+    "path": "generated/_archive/models/gen_mqyubwt3_wj2j.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyubwt3_wj2j.json"
+      ]
+    },
     "createdAt": 1782714745472
   },
   {
@@ -499,7 +590,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqyu9bj7_ilgt.json",
+    "path": "generated/_archive/models/gen_mqyu9bj7_ilgt.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqyu9bj7_ilgt.json"
+      ]
+    },
     "createdAt": 1782714624576
   },
   {
@@ -510,7 +608,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqusfcca_rk6u.json",
+    "path": "generated/_archive/models/gen_mqusfcca_rk6u.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqusfcca_rk6u.json"
+      ]
+    },
     "createdAt": 1782469680044
   },
   {
@@ -521,7 +626,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mqurpfxp_83r6.json",
+    "path": "generated/_archive/models/gen_mqurpfxp_83r6.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqurpfxp_83r6.json"
+      ]
+    },
     "createdAt": 1782468471927
   },
   {
@@ -532,7 +644,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mquoi1aw_pniw.json",
+    "path": "generated/_archive/models/gen_mquoi1aw_pniw.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mquoi1aw_pniw.json"
+      ]
+    },
     "createdAt": 1782463087369
   },
   {
@@ -547,10 +666,24 @@
         "animId": "anim_mquoede0_pikt",
         "name": "爬行",
         "type": "interaction",
-        "path": "generated/animations/anim_mquoede0_pikt.json"
+        "path": "generated/_archive/animations/anim_mquoede0_pikt.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mquoede0_pikt.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mquoci5a_0171.json",
+    "path": "generated/_archive/models/gen_mquoci5a_0171.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mquoci5a_0171.json"
+      ]
+    },
     "createdAt": 1782462829280
   },
   {
@@ -561,7 +694,14 @@
     "tags": [],
     "hasIdleAnimation": false,
     "animations": [],
-    "path": "generated/models/gen_mquob9fb_u01v.json",
+    "path": "generated/_archive/models/gen_mquob9fb_u01v.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mquob9fb_u01v.json"
+      ]
+    },
     "createdAt": 1782462771307
   },
   {
@@ -576,10 +716,24 @@
         "animId": "anim_mquo3s7z_a76o",
         "name": "上下浮动",
         "type": "interaction",
-        "path": "generated/animations/anim_mquo3s7z_a76o.json"
+        "path": "generated/_archive/animations/anim_mquo3s7z_a76o.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mquo3s7z_a76o.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mquo3n1e_vcoc.json",
+    "path": "generated/_archive/models/gen_mquo3n1e_vcoc.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mquo3n1e_vcoc.json"
+      ]
+    },
     "createdAt": 1782462415734
   },
   {
@@ -594,22 +748,50 @@
         "animId": "anim_mqumngw8_okg8",
         "name": "轻轻摇摆",
         "type": "interaction",
-        "path": "generated/animations/anim_mqumngw8_okg8.json"
+        "path": "generated/_archive/animations/anim_mqumngw8_okg8.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqumngw8_okg8.json"
+          ]
+        }
       },
       {
         "animId": "anim_mqumm8j6_xn9u",
         "name": "奔跑",
         "type": "interaction",
-        "path": "generated/animations/anim_mqumm8j6_xn9u.json"
+        "path": "generated/_archive/animations/anim_mqumm8j6_xn9u.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqumm8j6_xn9u.json"
+          ]
+        }
       },
       {
         "animId": "anim_mquml53y_kwbm",
         "name": "奔跑",
         "type": "interaction",
-        "path": "generated/animations/anim_mquml53y_kwbm.json"
+        "path": "generated/_archive/animations/anim_mquml53y_kwbm.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mquml53y_kwbm.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqumkz6k_aco8.json",
+    "path": "generated/_archive/models/gen_mqumkz6k_aco8.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqumkz6k_aco8.json"
+      ]
+    },
     "createdAt": 1782459865713
   },
   {
@@ -624,22 +806,50 @@
         "animId": "anim_mqumn120_m1iv",
         "name": "轻轻摇摆",
         "type": "interaction",
-        "path": "generated/animations/anim_mqumn120_m1iv.json"
+        "path": "generated/_archive/animations/anim_mqumn120_m1iv.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqumn120_m1iv.json"
+          ]
+        }
       },
       {
         "animId": "anim_mqumjnzj_0rf5",
         "name": "跳跃",
         "type": "idle",
-        "path": "generated/animations/anim_mqumjnzj_0rf5.json"
+        "path": "generated/_archive/animations/anim_mqumjnzj_0rf5.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqumjnzj_0rf5.json"
+          ]
+        }
       },
       {
         "animId": "anim_mqumiuu5_ox60",
         "name": "轻轻摇摆",
         "type": "interaction",
-        "path": "generated/animations/anim_mqumiuu5_ox60.json"
+        "path": "generated/_archive/animations/anim_mqumiuu5_ox60.json",
+        "lifecycle": {
+          "schemaVersion": 1,
+          "status": "archived",
+          "previousPaths": [
+            "generated/animations/anim_mqumiuu5_ox60.json"
+          ]
+        }
       }
     ],
-    "path": "generated/models/gen_mqumiqg2_3lsy.json",
+    "path": "generated/_archive/models/gen_mqumiqg2_3lsy.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mqumiqg2_3lsy.json"
+      ]
+    },
     "createdAt": 1782459760815
   },
   {
@@ -649,7 +859,15 @@
     "category": "decor",
     "tags": [],
     "hasIdleAnimation": false,
-    "path": "generated/models/gen_mquiqc4h_u19x.json",
+    "animations": [],
+    "path": "generated/_archive/models/gen_mquiqc4h_u19x.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "archived",
+      "previousPaths": [
+        "generated/models/gen_mquiqc4h_u19x.json"
+      ]
+    },
     "createdAt": 1782453399362
   }
 ]

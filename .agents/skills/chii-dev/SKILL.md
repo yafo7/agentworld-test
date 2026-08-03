@@ -14,12 +14,16 @@ powershell -ExecutionPolicy Bypass -File .agents/skills/chii-dev/scripts/service
 ```
 
 Use `-Target game` or `-Target studio` to limit the operation. Default target is `all`.
+When 5173 is occupied by another project, pass an explicit free port such as
+`-Target game -GamePort 5174`; status reports whether the listener is owned by
+this repository.
 
 Rules:
 
 - Never kill a port blindly. Stop only a process recognized as this repository, Vite, or the sibling Studio server.
 - Start the game with `npm run dev:game`; do not run `npm run dev` and a second Studio process together.
 - Reuse a healthy existing service.
+- Treat any Vite process outside this repository as an ownership conflict.
 - Report URLs and any ownership conflict.
 
 URLs:

@@ -7,8 +7,10 @@ import { ForestTempleSystem } from '../systems/ForestTempleSystem.js';
 import { TemporaryVfxService } from '../presentation/TemporaryVfxService.js';
 import { TownActivityPresentationDirector } from '../presentation/TownActivityPresentationDirector.js';
 import { ActivityRegistry } from '../../../gameplay/social/ActivityRegistry.js';
+import { ActivityReservationService } from '../../../gameplay/social/ActivityReservationService.js';
 import { TownActivityRegistryStore } from '../../../storage/TownActivityRegistryStore.js';
 import { createTownActivityRegistrySeed } from '../data/townActivityRegistry.js';
+import { IslandStoryProgression } from '../../../gameplay/story/IslandStoryProgression.js';
 
 export async function createChiiRegionGameplay({
   scene,
@@ -36,9 +38,12 @@ export async function createChiiRegionGameplay({
   objectEditor,
   equipmentService = null,
   sceneStyle = 'original',
+  storyState = null,
   onGeneratedObject,
 }) {
   const vfxService = new TemporaryVfxService({ scene });
+  const residentReservations = new ActivityReservationService();
+  const storyProgression = storyState ? new IslandStoryProgression({ storyState }) : null;
 
   const pastoralSlice = createPastoralSlice({
     scene,
@@ -61,6 +66,7 @@ export async function createChiiRegionGameplay({
     colliderRegistry,
     objectPlacement,
     onGeneratedObject,
+    onWorldChanged: change => storyProgression?.recordPastoralWorldChange(change),
     camera,
     vfxService,
     equipmentService,
@@ -104,6 +110,8 @@ export async function createChiiRegionGameplay({
     equipmentService,
     sceneStyle,
     activityRegistry: townActivityRegistry,
+    reservations: residentReservations,
+    onActivityCompleted: activity => storyProgression?.recordTownActivityCompleted(activity),
   });
   const townBuilderSystem = new TownBuilderSystem({
     scene,
@@ -120,6 +128,8 @@ export async function createChiiRegionGameplay({
     scaffoldAnimationPlan: pastoralWork.animationPlan,
     setDialogueLock: (locked, pet) => dialogueCamera.setDialogueLock(locked, pet),
     vfxService,
+    reservations: residentReservations,
+    onBuildingCompleted: building => storyProgression?.recordTownBuildingCompleted(building),
   });
 
   const forestTempleSystem = new ForestTempleSystem({
@@ -133,6 +143,7 @@ export async function createChiiRegionGameplay({
     trophyWaitPlan: forest.trophyWaitPlan,
     getPets: () => [bear, ...petManager.pets],
     onPetSpawned: pet => townSocialSystem.addParticipant(pet),
+    onResidentSummoned: resident => storyProgression?.recordForestResidentSummoned(resident),
     runtimeStatus,
     contentPort,
     generatedAssetRepository,
@@ -144,15 +155,18 @@ export async function createChiiRegionGameplay({
     ['教堂城镇', worldObjects.findByName('哥特教堂')?.mesh.position],
     ['森林神殿', worldObjects.findByName('古老神殿')?.mesh.position],
   ].filter(([, position]) => position);
+  let disposed = false;
 
   return {
     pastoralSlice,
     townSocialSystem,
     townBuilderSystem,
-    petPartyEvent: townSocialSystem,
     forestTempleSystem,
     vfxService,
+    storyProgression,
+    residentReservations,
     update(dt) {
+      if (disposed) return;
       pastoralSlice.update(dt);
       townSocialSystem.update(dt);
       townPresentation.update(dt);
@@ -161,6 +175,7 @@ export async function createChiiRegionGameplay({
       vfxService.update(dt);
     },
     interactTownPet(pet, dialogue) {
+      if (disposed) return Promise.resolve(false);
       return townBuilderSystem.isBuilder(pet) && !townSocialSystem.isHandlingActivePet(pet)
         ? townBuilderSystem.interact(pet, dialogue)
         : townSocialSystem.interact(pet, dialogue);
@@ -178,7 +193,15 @@ export async function createChiiRegionGameplay({
       return nearest?.[0] || '奇异岛';
     },
     dispose() {
+      if (disposed) return;
+      disposed = true;
+      forestTempleSystem.dispose?.();
+      townBuilderSystem.dispose?.();
+      townSocialSystem.dispose?.();
+      pastoralSlice.dispose?.();
       townPresentation.dispose();
+      vfxService.dispose();
+      residentReservations.dispose();
     },
   };
 }

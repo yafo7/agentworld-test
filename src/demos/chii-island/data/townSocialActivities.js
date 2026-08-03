@@ -25,6 +25,145 @@ export const TOWN_SOCIAL_DIALOGUE = Object.freeze({
   },
 });
 
+const FESTIVAL_ACTIVITY_TYPES = new Set(['party', 'birthday', 'new_year', 'custom_festival']);
+const DANCE_ACTIVITY_TYPES = new Set(['campfire', ...FESTIVAL_ACTIVITY_TYPES]);
+
+export const TOWN_ACTIVITY_MIN_PERFORMANCE_DURATION = 10;
+
+const TOWN_ACTIVITY_PHASES = Object.freeze({
+  preparing: { index: 1, label: '准备' },
+  gathering: { index: 2, label: '集合' },
+  costume_change: { index: 2, label: '变装' },
+  new_year_greetings: { index: 3, label: '拜年' },
+  new_year_dance_gathering: { index: 4, label: '围火' },
+  new_year_dancing: { index: 5, label: '跳舞' },
+  new_year_feast_setup: { index: 6, label: '开饭' },
+  new_year_feast_gathering: { index: 6, label: '入席' },
+  new_year_feast: { index: 7, label: '团圆饭' },
+  performing: { index: 3, label: '活动' },
+  linger: { index: 4, label: '一起玩' },
+  prop_exit: { index: 8, label: '收尾' },
+  wind_down: { index: 4, label: '收尾' },
+});
+
+const NEW_YEAR_GREETING_LINES = Object.freeze({
+  fangk: Object.freeze({ pet: '新年好！计划本祝你今年每一页都顺顺利利。', player: '新年好！也祝你的计划少一点加班。' }),
+  lingq: Object.freeze({ pet: '新年好！祝你每天都能找到最好看的那一面。', player: '新年好！你的尾羽已经赢在第一天了。' }),
+  mako: Object.freeze({ pet: '新年好。祝你想去的地方，都能稳稳跑到。', player: '新年好！今天先跑向年夜饭吧。' }),
+  crab: Object.freeze({ pet: '新年好！祝你今年盖什么都不歪，除了想歪的点子。', player: '新年好！钳子也要记得放个假。' }),
+});
+
+const DEFAULT_NEW_YEAR_GREETING = Object.freeze({
+  pet: '新年好！祝你今年遇见的每件小事都刚刚好。',
+  player: '新年好！也祝你每天都有新点子。',
+});
+
+const ACTIVITY_INVITE_LINES = Object.freeze({
+  fangk: '收到，我把计划本和自己一起带过去。',
+  lingq: '好呀，我先找一个最上镜的位置。',
+  mako: '没问题。我会准时到，顺便多跑两步。',
+  crab: '收到！我带钳子，但保证今天不乱施工。',
+});
+
+const ACTIVITY_ACTION_LINES = Object.freeze({
+  campfire: Object.freeze({
+    fangk: '很好，篝火负责暖和，我们负责别坐得太整齐。',
+    lingq: '这个火光很懂我的尾羽。',
+    mako: '蹄子暖了，再跑一圈也不迟。',
+  }),
+  apple_pick: Object.freeze({ mako: '就是这颗。它晃得像在主动报名。' }),
+  greeting: Object.freeze({
+    lingq: '看好啦，这个招呼连尾羽角度都算过。',
+    mako: '收到。我会站稳一点，免得抢了镜头。',
+  }),
+  party: Object.freeze({
+    fangk: '很好，今天仍然没有谁跳进篝火。',
+    lingq: '这边的观众请看尾羽！',
+    mako: '这个节拍很适合踏步。',
+  }),
+  birthday: Object.freeze({
+    fangk: '惊喜正在按计划靠近，寿星先别回头。',
+    mako: '原来你们刚才认真地偷偷摸摸，是为了这个。',
+    lingq: '礼帽很合适，我的审美也签字了。',
+  }),
+  new_year: Object.freeze({
+    fangk: '新年流程第一条：开心；第二条：别漏掉吃饭。',
+    lingq: '红色很衬尾羽，也很衬今天的好心情。',
+    mako: '我会慢慢吃。至少第一盘会。',
+    crab: '钳子今天只夹菜，不夹施工单。',
+  }),
+});
+
+export function isTownFestivalActivity(type) {
+  return FESTIVAL_ACTIVITY_TYPES.has(type);
+}
+
+export function isTownDanceActivity(type) {
+  return DANCE_ACTIVITY_TYPES.has(type);
+}
+
+export function getTownActivityPhase(status) {
+  const phaseKey = status === 'birthday_intro' ? 'performing' : status;
+  return {
+    key: phaseKey,
+    ...(TOWN_ACTIVITY_PHASES[phaseKey] || TOWN_ACTIVITY_PHASES.preparing),
+  };
+}
+
+export function getTownSocialDialogueProfile(petId) {
+  return TOWN_SOCIAL_DIALOGUE[petId] || TOWN_SOCIAL_DIALOGUE.generic;
+}
+
+export function getTownNewYearGreeting(petId) {
+  return NEW_YEAR_GREETING_LINES[petId] || DEFAULT_NEW_YEAR_GREETING;
+}
+
+export function getTownActivityInviteLine(petId) {
+  return ACTIVITY_INVITE_LINES[petId] || '好呀，我收拾一下就过去！';
+}
+
+export function getTownActivityActionLine(type, petId, displayName = petId) {
+  return ACTIVITY_ACTION_LINES[type]?.[petId]
+    || `${displayName}：“这个动作我准备好啦！”`;
+}
+
+export function getTownActivityIdleOptions({ petId, wasFollowing, opportunity = null }) {
+  const stateOption = wasFollowing
+    ? { key: 'free_roam', label: '先在广场自由活动吧！' }
+    : { key: 'follow', label: '和我一起逛逛吧！' };
+  if (petId === 'fangk') {
+    return [
+      opportunity
+        ? { key: opportunity.type, label: opportunity.acceptLabel }
+        : { key: 'chat', label: '聊聊今天的广场' },
+      { key: 'custom_festival', label: '我想策划一个新节日！' },
+      stateOption,
+    ];
+  }
+  return [
+    opportunity
+      ? { key: opportunity.type, label: opportunity.acceptLabel }
+      : { key: 'chat', label: '聊聊刚才在做什么' },
+    { key: 'custom_daily', label: '我有个小活动点子！' },
+    stateOption,
+  ];
+}
+
+export function getTownActivityContinueLine(type, petId) {
+  if (type === 'apple_pick') return '好，再看看下一颗。它们今天都挺积极。';
+  if (type === 'greeting') return '好，我再练一次。这次争取看起来像没练过。';
+  if (type === 'campfire') return '那就再暖一会儿，篝火还没有下班。';
+  return petId === 'fangk' ? TOWN_SOCIAL_DIALOGUE.fangk.continue : '好呀，那就再玩一会儿！';
+}
+
+export function getTownActivityStartLine(type, petId) {
+  if (type === 'custom_festival') return TOWN_SOCIAL_DIALOGUE.fangk.custom;
+  const definition = getTownActivityDefinition(type);
+  if (definition) return definition.dialogue.accept;
+  const profile = getTownSocialDialogueProfile(petId);
+  return profile.custom || TOWN_SOCIAL_DIALOGUE.generic.custom;
+}
+
 export const TOWN_ACTIVITY_DEFINITIONS = Object.freeze({
   campfire: {
     type: 'campfire',

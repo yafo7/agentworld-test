@@ -1,19 +1,10 @@
 import { AIWorldActionService } from '../ai/AIWorldActionService.js';
-import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
-import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
-import { EquipmentMountCache } from '../../storage/EquipmentMountCache.js';
-import {
-  CHII_EQUIPMENT_SLOTS,
-  createEmptyEquipmentLoadout,
-  getCharacterOutfits,
-  getChiiEquipmentItem,
-  getChiiEquipmentSlot,
-  getEquipmentLoadoutPreset,
-  getEquipmentPlacement,
-  getEquipmentPreset,
-} from '../../demos/chii-island/data/equipmentCatalog.js';
 
-const SLOT_ORDER = Object.freeze(CHII_EQUIPMENT_SLOTS.map(slot => slot.id));
+const PASS_THROUGH_CACHE = Object.freeze({
+  getOrCreate(_key, create) {
+    return Promise.resolve().then(create);
+  },
+});
 
 function modelRevision(modelJson) {
   const text = JSON.stringify(modelJson || {});
@@ -25,12 +16,12 @@ function modelRevision(modelJson) {
   return (hash >>> 0).toString(36);
 }
 
-function normalizedLoadout(loadout = {}) {
-  const normalized = createEmptyEquipmentLoadout();
-  for (const slotId of SLOT_ORDER) {
+function normalizedLoadout(catalog, slotOrder, loadout = {}) {
+  const normalized = catalog.createEmptyLoadout();
+  for (const slotId of slotOrder) {
     const itemId = loadout[slotId] || null;
     if (!itemId) continue;
-    const item = getChiiEquipmentItem(itemId);
+    const item = catalog.getItem(itemId);
     if (!item) throw new TypeError(`Unknown equipment item: ${itemId}`);
     if (!item.allowedSlots.includes(slotId)) {
       throw new TypeError(`Equipment ${itemId} cannot use slot ${slotId}`);
@@ -40,23 +31,23 @@ function normalizedLoadout(loadout = {}) {
   return normalized;
 }
 
-function activeEntries(loadout) {
-  return SLOT_ORDER
+function activeEntries(slotOrder, loadout) {
+  return slotOrder
     .filter(slotId => loadout[slotId])
     .map(slotId => ({ slotId, itemId: loadout[slotId] }));
 }
 
-function buildClothingRefinePrompt(entries = []) {
+function buildClothingRefinePrompt(catalog, entries = []) {
   const clothing = entries
     .map(({ slotId, itemId }) => ({
-      slot: getChiiEquipmentSlot(slotId),
-      item: getChiiEquipmentItem(itemId),
+      slot: catalog.getSlot(slotId),
+      item: catalog.getItem(itemId),
     }))
     .filter(({ slot, item }) => slot?.kind === 'clothing' && item);
   if (clothing.length === 0) return '';
   const worn = clothing.map(({ slot, item }) => `${slot.label}：${item.secondary}`).join('；');
   const wornSlots = new Set(clothing.map(({ slot }) => slot.id));
-  const empty = CHII_EQUIPMENT_SLOTS
+  const empty = catalog.slots
     .filter(slot => slot.kind === 'clothing' && !wornSlots.has(slot.id))
     .map(slot => slot.label)
     .join('、');
@@ -70,14 +61,20 @@ function buildClothingRefinePrompt(entries = []) {
 
 export class CharacterEquipmentService {
   constructor({
-    contentPort = defaultContentGeneration,
-    assetRepository = generatedAssets,
+    catalog,
+    contentPort,
+    assetRepository,
     cache = null,
     fetchImpl = globalThis.fetch,
   } = {}) {
+    if (!catalog || !contentPort || !assetRepository) {
+      throw new TypeError('CharacterEquipmentService requires catalog, contentPort, and assetRepository');
+    }
+    this.catalog = catalog;
+    this.slotOrder = Object.freeze(catalog.slots.map(slot => slot.id));
     this.assetRepository = assetRepository;
     this.aiActions = new AIWorldActionService({ contentPort, assetRepository });
-    this.cache = cache || new EquipmentMountCache({ assetRepository });
+    this.cache = cache || PASS_THROUGH_CACHE;
     this.fetchImpl = fetchImpl;
     this.jsonCache = new Map();
   }
@@ -91,8 +88,8 @@ export class CharacterEquipmentService {
     if (!characterId) throw new TypeError('Equipment characterId is required');
     if (!baseModelJson) throw new TypeError('Equipment baseModelJson is required');
 
-    const normalized = normalizedLoadout(loadout);
-    const entries = activeEntries(normalized);
+    const normalized = normalizedLoadout(this.catalog, this.slotOrder, loadout);
+    const entries = activeEntries(this.slotOrder, normalized);
     if (entries.length === 0) {
       return {
         modelJson: baseModelJson,
@@ -103,8 +100,8 @@ export class CharacterEquipmentService {
     }
 
     const baseRevision = modelRevision(baseModelJson);
-    const clothingEntries = entries.filter(({ slotId }) => getChiiEquipmentSlot(slotId)?.kind === 'clothing');
-    const propEntries = entries.filter(({ slotId }) => getChiiEquipmentSlot(slotId)?.kind === 'prop');
+    const clothingEntries = entries.filter(({ slotId }) => this.catalog.getSlot(slotId)?.kind === 'clothing');
+    const propEntries = entries.filter(({ slotId }) => this.catalog.getSlot(slotId)?.kind === 'prop');
     let current = {
       modelJson: baseModelJson,
       assetId: null,
@@ -113,7 +110,7 @@ export class CharacterEquipmentService {
     const prefix = clothingEntries.map(entry => `${entry.slotId}:${entry.itemId}`);
 
     if (clothingEntries.length > 0) {
-      const loadoutPreset = getEquipmentLoadoutPreset(characterId, normalized, variantId);
+      const loadoutPreset = this.catalog.getLoadoutPreset(characterId, normalized, variantId);
       if (loadoutPreset) {
         current = {
           modelJson: await this.loadJson(loadoutPreset),
@@ -121,7 +118,7 @@ export class CharacterEquipmentService {
           source: 'outfit-preset',
         };
       } else {
-        const curatedOutfits = getCharacterOutfits(characterId);
+        const curatedOutfits = this.catalog.getCharacterOutfits(characterId);
         if (curatedOutfits.length > 0 && variantId !== 'original') {
           throw new Error(`${characterId} 的服装目前只制作 Original 版本`);
         }
@@ -134,7 +131,7 @@ export class CharacterEquipmentService {
         ].join(':');
         current = await this.cache.getOrCreate(clothingKey, () => this.aiActions.refineObject({
           modelJson: baseModelJson,
-          description: buildClothingRefinePrompt(clothingEntries),
+          description: buildClothingRefinePrompt(this.catalog, clothingEntries),
           name: `${characterId}-${variantId}-clothing`,
           tags: ['equipment', 'clothing', characterId, variantId],
         }));
@@ -152,7 +149,7 @@ export class CharacterEquipmentService {
     }
 
     for (const entry of propEntries) {
-      const item = getChiiEquipmentItem(entry.itemId);
+      const item = this.catalog.getItem(entry.itemId);
       prefix.push(`${entry.slotId}:${entry.itemId}`);
       const cacheKey = [
         'equipment-v1',
@@ -167,7 +164,7 @@ export class CharacterEquipmentService {
         return this.aiActions.mountPart({
           modelJson: current.modelJson,
           part,
-          placement: getEquipmentPlacement(item, entry.slotId),
+          placement: this.catalog.getPlacement(item, entry.slotId),
           name: `${characterId}-${variantId}-${entry.slotId}-${item.name}`,
           tags: ['equipment', characterId, variantId, entry.slotId, item.id],
         });
@@ -181,7 +178,7 @@ export class CharacterEquipmentService {
   }
 
   async loadItemModel(itemId) {
-    const item = getChiiEquipmentItem(itemId);
+    const item = this.catalog.getItem(itemId);
     if (!item) throw new TypeError(`Unknown equipment item: ${itemId}`);
     if (!item.model) throw new TypeError(`Equipment ${itemId} is generated during mount`);
     return this.loadJson(item.model);
@@ -202,13 +199,6 @@ export class CharacterEquipmentService {
   _resolveExactPreset(characterId, variantId, entries) {
     if (entries.length !== 1) return null;
     const [{ slotId, itemId }] = entries;
-    return getEquipmentPreset(itemId, characterId, slotId, variantId);
+    return this.catalog.getPreset(itemId, characterId, slotId, variantId);
   }
 }
-
-export {
-  SLOT_ORDER as CHII_EQUIPMENT_SLOT_ORDER,
-  buildClothingRefinePrompt,
-  modelRevision as getEquipmentModelRevision,
-  normalizedLoadout as normalizeEquipmentLoadout,
-};

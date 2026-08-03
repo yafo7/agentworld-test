@@ -1,11 +1,8 @@
-import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
-import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
-
 export class AIWorldActionService {
-  constructor({
-    contentPort = defaultContentGeneration,
-    assetRepository = generatedAssets,
-  } = {}) {
+  constructor({ contentPort, assetRepository } = {}) {
+    if (!contentPort || !assetRepository) {
+      throw new TypeError('AIWorldActionService requires contentPort and assetRepository');
+    }
     this.contentPort = contentPort;
     this.assetRepository = assetRepository;
   }

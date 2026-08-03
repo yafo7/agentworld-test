@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { AIWorldActionService } from '../src/gameplay/ai/AIWorldActionService.js';
-import { PetWorkCoordinator } from '../src/gameplay/ai/PetWorkCoordinator.js';
+import {
+  PetWorkCoordinator,
+  PetWorkAbortedError,
+} from '../src/gameplay/ai/PetWorkCoordinator.js';
 
 test('AI world action service applies semantic operations and persists their results', async () => {
   const calls = [];
@@ -46,5 +49,39 @@ test('pet work coordinator always removes presentation and finishes pet', async 
     apply: async () => {},
   }), /backend failed/);
 
+  assert.deepEqual(lifecycle, ['start', 'intro', 'stop:scaffold', 'finish:idle']);
+});
+
+test('pet work coordinator rejects late backend results before apply', async () => {
+  let releaseBackend;
+  let markBackendStarted;
+  const backendStarted = new Promise(resolve => { markBackendStarted = resolve; });
+  const backendResult = new Promise(resolve => { releaseBackend = resolve; });
+  const lifecycle = [];
+  const coordinator = new PetWorkCoordinator({
+    startPresentation: () => { lifecycle.push('start'); return 'scaffold'; },
+    stopPresentation: value => lifecycle.push(`stop:${value}`),
+    playIntro: async () => lifecycle.push('intro'),
+    finishPet: (_pet, nextState) => lifecycle.push(`finish:${nextState}`),
+  });
+
+  const work = coordinator.run({
+    pet: {},
+    points: {},
+    nextState: 'idle',
+    focusCamera: false,
+    status: { title: 'work', preparing: 'prepare', requesting: 'request', complete: 'done' },
+    execute: async () => {
+      markBackendStarted();
+      return backendResult;
+    },
+    apply: async () => lifecycle.push('apply'),
+  });
+
+  await backendStarted;
+  coordinator.abortPending(new PetWorkAbortedError('owner disposed'));
+  releaseBackend({ modelJson: {} });
+
+  await assert.rejects(work, error => error?.code === 'PET_WORK_ABORTED');
   assert.deepEqual(lifecycle, ['start', 'intro', 'stop:scaffold', 'finish:idle']);
 });

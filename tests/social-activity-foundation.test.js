@@ -83,6 +83,9 @@ test('activity reservations reject conflicting pets and release atomically', () 
   assert.equal(blocked.conflicts[0].owner, 'a');
   reservations.release('a');
   assert.equal(reservations.tryReserve('b', ['pet:mako']).ok, true);
+  reservations.dispose();
+  assert.equal(reservations.ownerOf('pet:mako'), null);
+  assert.equal(reservations.tryReserve('c', ['pet:mako']).ok, true);
 });
 
 test('every preset activity waits for explicit dialogue with its designated exit pet', () => {

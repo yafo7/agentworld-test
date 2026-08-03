@@ -46,10 +46,12 @@ export class PetStateMachine {
     this.previous = from;
     this.current = nextState;
 
-    if (nextState !== PET_STATES.FOLLOWING && this.pet._followEnabled) {
+    if (from === PET_STATES.FOLLOWING && nextState !== PET_STATES.FOLLOWING) {
       this.pet.stopFollow?.();
     }
-    if (nextState !== PET_STATES.FREE_ROAM) this.pet.disableWander?.();
+    if (from === PET_STATES.FREE_ROAM && nextState !== PET_STATES.FREE_ROAM) {
+      this.pet.disableWander?.();
+    }
 
     for (const listener of this.listeners) listener({ pet: this.pet, from, to: nextState, reason });
     return this.current;
@@ -93,6 +95,28 @@ export function attachPetStateMachine(pet, initialState = pet?._petState || PET_
     get: () => machine.current,
     set: (state) => machine.transition(state, { reason: 'legacy-assignment' }),
   });
+  Object.defineProperty(pet, '_followEnabled', {
+    configurable: true,
+    enumerable: true,
+    get: () => machine.is(PET_STATES.FOLLOWING),
+    set: enabled => {
+      if (enabled) machine.transition(PET_STATES.FOLLOWING, { reason: 'legacy-follow-assignment' });
+      else if (machine.is(PET_STATES.FOLLOWING)) {
+        machine.transition(PET_STATES.IDLE, { reason: 'legacy-follow-assignment' });
+      }
+    },
+  });
+  Object.defineProperty(pet, '_wanderEnabled', {
+    configurable: true,
+    enumerable: true,
+    get: () => machine.is(PET_STATES.FREE_ROAM),
+    set: enabled => {
+      if (enabled) machine.transition(PET_STATES.FREE_ROAM, { reason: 'legacy-wander-assignment' });
+      else if (machine.is(PET_STATES.FREE_ROAM)) {
+        machine.transition(PET_STATES.IDLE, { reason: 'legacy-wander-assignment' });
+      }
+    },
+  });
   pet.petState = machine;
   return machine;
 }
@@ -100,4 +124,3 @@ export function attachPetStateMachine(pet, initialState = pet?._petState || PET_
 export function getPetStateMachine(pet) {
   return pet?.petState || attachPetStateMachine(pet);
 }
-

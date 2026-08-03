@@ -16,73 +16,20 @@ import { TownSocialDirector } from './TownSocialDirector.js';
 import { TownSocialCuePresenter } from '../presentation/TownSocialCuePresenter.js';
 import {
   createPresetTownActivity,
+  getTownActivityActionLine,
+  getTownActivityContinueLine,
   getTownActivityDefinition,
-  TOWN_SOCIAL_DIALOGUE,
+  getTownActivityIdleOptions,
+  getTownActivityInviteLine,
+  getTownActivityPhase,
+  getTownActivityStartLine,
+  getTownNewYearGreeting,
+  getTownSocialDialogueProfile,
+  isTownDanceActivity,
+  isTownFestivalActivity,
+  TOWN_ACTIVITY_MIN_PERFORMANCE_DURATION,
 } from '../data/townSocialActivities.js';
 import { getCharacterOutfits } from '../data/equipmentCatalog.js';
-
-const FESTIVAL_TYPES = new Set(['party', 'birthday', 'new_year', 'custom_festival']);
-const DANCE_ACTIVITY_TYPES = new Set(['campfire', ...FESTIVAL_TYPES]);
-const MIN_ACTIVITY_PERFORMANCE_DURATION = 10;
-
-const ACTIVITY_PHASES = Object.freeze({
-  preparing: { index: 1, label: '准备' },
-  gathering: { index: 2, label: '集合' },
-  costume_change: { index: 2, label: '变装' },
-  new_year_greetings: { index: 3, label: '拜年' },
-  new_year_dance_gathering: { index: 4, label: '围火' },
-  new_year_dancing: { index: 5, label: '跳舞' },
-  new_year_feast_setup: { index: 6, label: '开饭' },
-  new_year_feast_gathering: { index: 6, label: '入席' },
-  new_year_feast: { index: 7, label: '团圆饭' },
-  performing: { index: 3, label: '活动' },
-  linger: { index: 4, label: '一起玩' },
-  prop_exit: { index: 8, label: '收尾' },
-  wind_down: { index: 4, label: '收尾' },
-});
-
-const NEW_YEAR_GREETING_LINES = Object.freeze({
-  fangk: Object.freeze({ pet: '新年好！计划本祝你今年每一页都顺顺利利。', player: '新年好！也祝你的计划少一点加班。' }),
-  lingq: Object.freeze({ pet: '新年好！祝你每天都能找到最好看的那一面。', player: '新年好！你的尾羽已经赢在第一天了。' }),
-  mako: Object.freeze({ pet: '新年好。祝你想去的地方，都能稳稳跑到。', player: '新年好！今天先跑向年夜饭吧。' }),
-  crab: Object.freeze({ pet: '新年好！祝你今年盖什么都不歪，除了想歪的点子。', player: '新年好！钳子也要记得放个假。' }),
-});
-
-const ACTIVITY_INVITE_LINES = Object.freeze({
-  fangk: '收到，我把计划本和自己一起带过去。',
-  lingq: '好呀，我先找一个最上镜的位置。',
-  mako: '没问题。我会准时到，顺便多跑两步。',
-  crab: '收到！我带钳子，但保证今天不乱施工。',
-});
-
-const ACTIVITY_ACTION_LINES = Object.freeze({
-  campfire: Object.freeze({
-    fangk: '很好，篝火负责暖和，我们负责别坐得太整齐。',
-    lingq: '这个火光很懂我的尾羽。',
-    mako: '蹄子暖了，再跑一圈也不迟。',
-  }),
-  apple_pick: Object.freeze({ mako: '就是这颗。它晃得像在主动报名。' }),
-  greeting: Object.freeze({
-    lingq: '看好啦，这个招呼连尾羽角度都算过。',
-    mako: '收到。我会站稳一点，免得抢了镜头。',
-  }),
-  party: Object.freeze({
-    fangk: '很好，今天仍然没有谁跳进篝火。',
-    lingq: '这边的观众请看尾羽！',
-    mako: '这个节拍很适合踏步。',
-  }),
-  birthday: Object.freeze({
-    fangk: '惊喜正在按计划靠近，寿星先别回头。',
-    mako: '原来你们刚才认真地偷偷摸摸，是为了这个。',
-    lingq: '礼帽很合适，我的审美也签字了。',
-  }),
-  new_year: Object.freeze({
-    fangk: '新年流程第一条：开心；第二条：别漏掉吃饭。',
-    lingq: '红色很衬尾羽，也很衬今天的好心情。',
-    mako: '我会慢慢吃。至少第一盘会。',
-    crab: '钳子今天只夹菜，不夹施工单。',
-  }),
-});
 
 const CURATED_PET_IDS = new Set(['momo', 'mako', 'yafo', 'lingq', 'fangk', 'mok', 'crab']);
 
@@ -158,6 +105,8 @@ export class TownSocialSystem {
     presentationDirector = null,
     activityRegistry = null,
     activityAssetResolver = null,
+    reservations = null,
+    onActivityCompleted = null,
   }) {
     this.scene = scene;
     this.player = player;
@@ -175,7 +124,7 @@ export class TownSocialSystem {
     this.presentation = presentationDirector;
     this.organizer = this.participants.find(pet => petId(pet) === 'fangk') || this.participants[0];
 
-    this.reservations = new ActivityReservationService();
+    this.reservations = reservations || new ActivityReservationService();
     this.coordinator = new SocialEventCoordinator({ petManager });
     this.aiActions = new AIWorldActionService({ contentPort, assetRepository: generatedAssetRepository });
     this.activityAssetCache = activityAssetCache || new TownActivityAssetCache({
@@ -187,6 +136,7 @@ export class TownSocialSystem {
       cache: this.activityAssetCache,
       sceneStyle,
     }) : null);
+    this.onActivityCompleted = onActivityCompleted;
     this.planner = new SocialActivityPlanner({
       contentPort,
       assetLibrary: this.activityAssetCache,
@@ -283,7 +233,7 @@ export class TownSocialSystem {
     const dialogueSnapshot = this._beginPetDialogue(pet);
     let restored = false;
     try {
-      const profile = this._dialogueProfile(pet);
+      const profile = getTownSocialDialogueProfile(petId(pet));
       const options = this._idleOptions(
         pet,
         dialogueSnapshot.state === PET_STATES.FOLLOWING,
@@ -316,7 +266,7 @@ export class TownSocialSystem {
       if (choice.key === 'chat') {
         await dialogueSystem.say({
           speakerName: petName(pet),
-          text: profile.smallTalk || TOWN_SOCIAL_DIALOGUE.generic.smallTalk,
+          text: profile.smallTalk || getTownSocialDialogueProfile('generic').smallTalk,
         });
         return false;
       }
@@ -331,7 +281,7 @@ export class TownSocialSystem {
       }
       if (!plan) return false;
 
-      const startLine = this._startLineFor(choice.key, pet);
+      const startLine = getTownActivityStartLine(choice.key, petId(pet));
       await dialogueSystem.say({ speakerName: petName(pet), text: startLine });
 
       this._restorePetDialogue(dialogueSnapshot);
@@ -380,7 +330,7 @@ export class TownSocialSystem {
       if (choice?.key !== 'end') {
         await dialogueSystem.say({
           speakerName: petName(exitPet),
-          text: this._continueLineFor(activity.plan.type, exitPet),
+          text: getTownActivityContinueLine(activity.plan.type, petId(exitPet)),
         });
         restoreDialogue();
         this._resumeActivityPet(exitPet);
@@ -389,7 +339,7 @@ export class TownSocialSystem {
 
       await dialogueSystem.say({
         speakerName: petName(exitPet),
-        text: activity.plan.dialogue?.end || TOWN_SOCIAL_DIALOGUE.fangk.end,
+        text: activity.plan.dialogue?.end || getTownSocialDialogueProfile('fangk').end,
       });
       restoreDialogue();
       this._beginPropExit('host-ended');
@@ -405,10 +355,7 @@ export class TownSocialSystem {
     const snapshot = this._beginPetDialogue(pet);
     this.presentation?.focusInteractive(pet);
     try {
-      const line = NEW_YEAR_GREETING_LINES[petId(pet)] || {
-        pet: '新年好！祝你今年遇见的每件小事都刚刚好。',
-        player: '新年好！也祝你每天都有新点子。',
-      };
+      const line = getTownNewYearGreeting(petId(pet));
       await dialogueSystem.say({ speakerName: petName(pet), text: line.pet });
       await dialogueSystem.say({ speakerName: '你', text: line.player });
       activity.greetedPetIds.add(petId(pet));
@@ -440,7 +387,7 @@ export class TownSocialSystem {
     try {
       await dialogueSystem.say({
         speakerName: petName(pet),
-        text: ACTIVITY_INVITE_LINES[petId(pet)] || '好呀，我收拾一下就过去！',
+        text: getTownActivityInviteLine(petId(pet)),
       });
       this._completePreparationTaskStep(activity);
       return true;
@@ -450,42 +397,11 @@ export class TownSocialSystem {
   }
 
   _idleOptions(pet, wasFollowing, opportunity = this.socialDirector.getOpportunity(pet)) {
-    return this._idleOptionsForOpportunity(pet, wasFollowing, opportunity);
-  }
-
-  _idleOptionsForOpportunity(pet, wasFollowing, opportunity) {
-    const stateOption = wasFollowing
-      ? { key: 'free_roam', label: '先在广场自由活动吧！' }
-      : { key: 'follow', label: '和我一起逛逛吧！' };
-    const id = petId(pet);
-    if (id === 'fangk') {
-      return [
-        opportunity
-          ? { key: opportunity.type, label: opportunity.acceptLabel }
-          : { key: 'chat', label: '聊聊今天的广场' },
-        { key: 'custom_festival', label: '我想策划一个新节日！' },
-        stateOption,
-      ];
-    }
-    return [
-      opportunity
-        ? { key: opportunity.type, label: opportunity.acceptLabel }
-        : { key: 'chat', label: '聊聊刚才在做什么' },
-      { key: 'custom_daily', label: '我有个小活动点子！' },
-      stateOption,
-    ];
-  }
-
-  _dialogueProfile(pet) {
-    const id = petId(pet);
-    return TOWN_SOCIAL_DIALOGUE[id] || TOWN_SOCIAL_DIALOGUE.generic;
-  }
-
-  _continueLineFor(type, pet) {
-    if (type === 'apple_pick') return '好，再看看下一颗。它们今天都挺积极。';
-    if (type === 'greeting') return '好，我再练一次。这次争取看起来像没练过。';
-    if (type === 'campfire') return '那就再暖一会儿，篝火还没有下班。';
-    return petId(pet) === 'fangk' ? TOWN_SOCIAL_DIALOGUE.fangk.continue : '好呀，那就再玩一会儿！';
+    return getTownActivityIdleOptions({
+      petId: petId(pet),
+      wasFollowing,
+      opportunity,
+    });
   }
 
   _showActivityDialogue(pet, text, options = {}) {
@@ -508,14 +424,6 @@ export class TownSocialSystem {
   _showActivityProp(prop, speaker, text, options = {}) {
     if (this.presentation) return this.presentation.showProp(prop, speaker, text, options);
     return this._showActivityDialogue(speaker, text, options);
-  }
-
-  _startLineFor(type, pet) {
-    const profile = this._dialogueProfile(pet);
-    if (type === 'custom_festival') return TOWN_SOCIAL_DIALOGUE.fangk.custom;
-    const definition = getTownActivityDefinition(type);
-    if (definition) return definition.dialogue.accept;
-    return profile.custom || TOWN_SOCIAL_DIALOGUE.generic.custom;
   }
 
   _beginPetDialogue(pet) {
@@ -756,7 +664,7 @@ export class TownSocialSystem {
       costumeAnimations: new Map(),
       feastAnimations: new Map(),
       introAnimations: new Map(),
-      maxActionDuration: MIN_ACTIVITY_PERFORMANCE_DURATION,
+      maxActionDuration: TOWN_ACTIVITY_MIN_PERFORMANCE_DURATION,
       registration: this.activeActivity?.registration || null,
     };
 
@@ -809,7 +717,7 @@ export class TownSocialSystem {
       const animation = reusable || await this._getActivityAnimation(pet, plan.actionPrompts[id], {
         duration,
         loop,
-        emitParticles: FESTIVAL_TYPES.has(plan.type),
+        emitParticles: isTownFestivalActivity(plan.type),
         modelJson: modelOverrides.get(id) || pet._originalModelJson,
         token,
       });
@@ -1199,8 +1107,7 @@ export class TownSocialSystem {
     for (const id of prepared.plan.participants.slice(0, prepared.plan.scale === 'festival' ? 3 : 2)) {
       const pet = this._petById(id);
       if (!pet) continue;
-      const line = ACTIVITY_ACTION_LINES[prepared.plan.type]?.[id]
-        || `${petName(pet)}：“这个动作我准备好啦！”`;
+      const line = getTownActivityActionLine(prepared.plan.type, id, petName(pet));
       this._showActivityFullBody(pet, line, { duration: 2400 });
     }
     const featuredProp = prepared.props.find(prop => prop.entity.mesh.visible);
@@ -1208,7 +1115,7 @@ export class TownSocialSystem {
       this._showActivityProp(featuredProp.entity, this._petById('mako'), '苹果到手。它确实是自己报名的。');
     }
 
-    if (FESTIVAL_TYPES.has(prepared.plan.type)) {
+    if (isTownFestivalActivity(prepared.plan.type)) {
       this.socialEmitter.position.copy(prepared.focus);
       this.vfxService?.playPreset(this._registeredVfxPreset(), {
         target: this.socialEmitter,
@@ -1484,8 +1391,8 @@ export class TownSocialSystem {
   _setActivityPresentation(stage) {
     const activity = this.activeActivity;
     if (!activity) return;
-    const phaseKey = activity.status === 'birthday_intro' ? 'performing' : activity.status;
-    const phase = ACTIVITY_PHASES[phaseKey] || ACTIVITY_PHASES.preparing;
+    const phase = getTownActivityPhase(activity.status);
+    const phaseKey = phase.key;
     const taskSource = activity.stageTask
       || (activity.prepTask && !activity.prepTask.skipped ? activity.prepTask : null);
     const task = taskSource
@@ -1527,6 +1434,7 @@ export class TownSocialSystem {
   stopActivity(reason = 'host-ended') {
     const activity = this.activeActivity;
     if (!activity) return false;
+    const completed = ['host-ended', 'auto-completed'].includes(reason);
     const prepared = this.preparedActivity;
     if (activity.registration && this.activityRegistry) {
       try {
@@ -1560,7 +1468,26 @@ export class TownSocialSystem {
     this.data.active = null;
     this.runtimeStatus?.setActivityStatus(null);
     this.presentation?.clear();
+    if (completed) this._notifyActivityCompleted(activity, reason);
     return true;
+  }
+
+  _notifyActivityCompleted(activity, reason) {
+    if (typeof this.onActivityCompleted !== 'function') return;
+    const payload = {
+      activityId: activity?.plan?.id || null,
+      activityType: activity?.plan?.type || null,
+      initiatorId: activity?.plan?.initiatorId || null,
+      participantIds: [...(activity?.plan?.participants || [])],
+      reason,
+    };
+    try {
+      Promise.resolve(this.onActivityCompleted(payload)).catch(error => {
+        console.warn('[TownSocial] Story progression notification failed:', error.message);
+      });
+    } catch (error) {
+      console.warn('[TownSocial] Story progression notification failed:', error.message);
+    }
   }
 
   setAutonomousEnabled(enabled) {
@@ -1663,7 +1590,7 @@ export class TownSocialSystem {
   }
 
   _fallbackAnimationName(pet, type) {
-    if (DANCE_ACTIVITY_TYPES.has(type)) {
+    if (isTownDanceActivity(type)) {
       if (pet._animPlans?.dance) return 'dance';
       if (pet._animPlans?.special) return 'special';
       if (pet._animPlans?.jump) return 'jump';
@@ -1674,7 +1601,7 @@ export class TownSocialSystem {
   }
 
   _getReusableActivityAnimation(pet, type, duration) {
-    if (!DANCE_ACTIVITY_TYPES.has(type)) return null;
+    if (!isTownDanceActivity(type)) return null;
     const plan = pet?._animPlans?.dance;
     if (!plan) return null;
     return {

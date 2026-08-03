@@ -18,6 +18,9 @@ export class InventoryPanel {
     this.equippedId = null;
     this.busy = false;
     this.handlers = {};
+    this.listeners = [];
+    this.focusFrame = null;
+    this.disposed = false;
 
     this.grid = root.querySelector('[data-inventory-grid]');
     this.name = root.querySelector('[data-inventory-name]');
@@ -30,16 +33,30 @@ export class InventoryPanel {
     this.renderGrid();
     this.renderSelection();
 
-    this.equipButton?.addEventListener('click', () => {
+    this._listen(this.equipButton, 'click', () => {
       if (!this.busy && this.selectedId) this.handlers.equip?.(this.selectedId);
     });
-    this.clearButton?.addEventListener('click', () => {
+    this._listen(this.clearButton, 'click', () => {
       if (!this.busy) this.handlers.clear?.();
     });
-    this.closeButton?.addEventListener('click', () => this.handlers.close?.());
-    root.addEventListener('click', event => {
+    this._listen(this.closeButton, 'click', () => this.handlers.close?.());
+    this._listen(root, 'click', event => {
       if (event.target === root) this.handlers.close?.();
     });
+    this._listen(this.grid, 'click', event => {
+      const button = event.target.closest?.('[data-item-id]');
+      if (this.busy || !button || !this.grid.contains(button)) return;
+      this.selectedId = button.dataset.itemId;
+      this.renderGrid();
+      this.renderSelection();
+      this.handlers.select?.(this.selectedId);
+    });
+  }
+
+  _listen(target, type, listener) {
+    if (!target) return;
+    target.addEventListener(type, listener);
+    this.listeners.push(() => target.removeEventListener(type, listener));
   }
 
   on(name, handler) {
@@ -48,11 +65,15 @@ export class InventoryPanel {
   }
 
   setOpen(open) {
+    if (this.disposed) return;
+    if (this.focusFrame) cancelAnimationFrame(this.focusFrame);
+    this.focusFrame = null;
     this.root.hidden = !open;
     this.root.classList.toggle('is-open', open);
     this.root.setAttribute('aria-hidden', String(!open));
     if (open) {
-      requestAnimationFrame(() => {
+      this.focusFrame = requestAnimationFrame(() => {
+        this.focusFrame = null;
         this.root.querySelector(`[data-item-id="${this.selectedId}"]`)?.focus();
       });
     }
@@ -118,13 +139,6 @@ export class InventoryPanel {
       equipped.textContent = '手持';
 
       button.append(image, fallback, label, equipped);
-      button.addEventListener('click', () => {
-        if (this.busy) return;
-        this.selectedId = item.id;
-        this.renderGrid();
-        this.renderSelection();
-        this.handlers.select?.(item.id);
-      });
       return button;
     });
 
@@ -146,5 +160,17 @@ export class InventoryPanel {
     this.equipButton.textContent = item.id === this.equippedId ? '已经拿着啦' : '拿在右手';
     this.equipButton.disabled = this.busy || item.id === this.equippedId;
     this.clearButton.disabled = this.busy || !this.equippedId;
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    if (this.focusFrame) cancelAnimationFrame(this.focusFrame);
+    this.focusFrame = null;
+    for (const remove of this.listeners.splice(0).reverse()) remove();
+    this.handlers = {};
+    this.root.hidden = true;
+    this.root.classList.remove('is-open', 'is-busy');
+    this.root.setAttribute('aria-hidden', 'true');
   }
 }

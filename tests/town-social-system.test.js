@@ -838,3 +838,46 @@ test('a new custom activity becomes ready only after successful completion', asy
   assert.equal(registry.get(draftId).stats.runs, 1);
   system.dispose();
 });
+
+test('town social reports story progress only for successful completion reasons', () => {
+  const harness = makeContentHarness();
+  const completions = [];
+  const system = new TownSocialSystem({
+    scene: new THREE.Scene(),
+    player: { mesh: new THREE.Group() },
+    petManager: { resumePet() {} },
+    participants: [makePet('fangk'), makePet('lingq')],
+    center: new THREE.Vector3(),
+    worldObjects: new WorldObjectRegistry(),
+    objectPlacement: null,
+    contentPort: harness.port,
+    generatedAssetRepository: harness.repository,
+    onActivityCompleted: event => completions.push(event),
+  });
+  const plan = {
+    id: 'activity-success',
+    type: 'party',
+    initiatorId: 'fangk',
+    participants: ['fangk', 'lingq'],
+  };
+
+  system.activeActivity = { plan, jobId: null };
+  system.data.active = { id: plan.id, type: plan.type, status: 'linger' };
+  assert.equal(system.stopActivity('host-ended'), true);
+  assert.deepEqual(completions, [{
+    activityId: 'activity-success',
+    activityType: 'party',
+    initiatorId: 'fangk',
+    participantIds: ['fangk', 'lingq'],
+    reason: 'host-ended',
+  }]);
+
+  system.activeActivity = {
+    plan: { ...plan, id: 'activity-timeout' },
+    jobId: null,
+  };
+  system.data.active = { id: 'activity-timeout', type: plan.type, status: 'gathering' };
+  assert.equal(system.stopActivity('gather-timeout'), true);
+  assert.equal(completions.length, 1);
+  system.dispose();
+});

@@ -46,9 +46,6 @@ function createHarness({ withInterior = true, withNearbyObject = true } = {}) {
       mesh: { position: new THREE.Vector3() },
       orientation: new THREE.Vector3(0, 0, -1),
     },
-    architect: {
-      getPosition: () => new THREE.Vector3(100, 0, 100),
-    },
     bear: {
       getPosition: () => new THREE.Vector3(100, 0, 100),
       petState: idleState,
@@ -205,7 +202,6 @@ test('town interaction prompt does not stop a busy pet gathering for an activity
         mesh: { position: new THREE.Vector3() },
         orientation: new THREE.Vector3(0, 0, -1),
       },
-      architect: { getPosition: () => new THREE.Vector3(100, 0, 100) },
       bear: {
         getPosition: () => new THREE.Vector3(100, 0, 100),
         petState: { is: () => false, isBusy: () => false },

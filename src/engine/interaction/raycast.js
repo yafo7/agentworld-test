@@ -11,12 +11,13 @@ export function setupRaycast(camera, targets) {
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   let mouseDownPos = null;
+  const feedbackTimers = new Set();
 
-  window.addEventListener('mousedown', (e) => {
+  const handleMouseDown = (e) => {
     mouseDownPos = { x: e.clientX, y: e.clientY };
-  });
+  };
 
-  window.addEventListener('mouseup', (e) => {
+  const handleMouseUp = (e) => {
     if (!mouseDownPos) return;
 
     const dx = e.clientX - mouseDownPos.x;
@@ -42,9 +43,11 @@ export function setupRaycast(camera, targets) {
       if (target.mesh.material && target.mesh.material.color) {
         const originalColor = target.mesh.material.color.getHex();
         target.mesh.material.color.set(0xffffff);
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          feedbackTimers.delete(timer);
           target.mesh.material.color.set(originalColor);
         }, 150);
+        feedbackTimers.add(timer);
       }
 
       // Log info
@@ -57,5 +60,16 @@ export function setupRaycast(camera, targets) {
         });
       }
     }
-  });
+  };
+
+  window.addEventListener('mousedown', handleMouseDown);
+  window.addEventListener('mouseup', handleMouseUp);
+
+  return () => {
+    window.removeEventListener('mousedown', handleMouseDown);
+    window.removeEventListener('mouseup', handleMouseUp);
+    for (const timer of feedbackTimers) clearTimeout(timer);
+    feedbackTimers.clear();
+    mouseDownPos = null;
+  };
 }

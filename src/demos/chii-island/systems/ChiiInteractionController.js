@@ -4,12 +4,10 @@ export class ChiiInteractionController {
   constructor({
     input,
     player,
-    architect,
     bear,
     petManager,
     townSocialSystem = null,
     townBuilderSystem = null,
-    petPartyEvent = null,
     pastoralSlice = null,
     forestTempleSystem,
     buildingInteriorSystem = null,
@@ -20,10 +18,9 @@ export class ChiiInteractionController {
   }) {
     this.input = input;
     this.player = player;
-    this.architect = architect;
     this.bear = bear;
     this.petManager = petManager;
-    this.townSocialSystem = townSocialSystem || petPartyEvent;
+    this.townSocialSystem = townSocialSystem;
     this.townBuilderSystem = townBuilderSystem;
     this.pastoralSlice = pastoralSlice;
     this.forestTempleSystem = forestTempleSystem;
@@ -38,18 +35,18 @@ export class ChiiInteractionController {
     this.promptSecondary = document.getElementById('interact-prompt-secondary');
     this.promptSecondaryKey = document.getElementById('interact-prompt-secondary-key');
     this.promptSecondaryText = document.getElementById('interact-prompt-secondary-text');
+    this.disposed = false;
   }
 
   update(enabled) {
+    if (this.disposed) return;
     if (!enabled) {
       this.hidePrompt();
       return;
     }
 
     const playerPosition = this.player.mesh.position;
-    const architectPosition = this.architect.getPosition();
     const bearPosition = this.bear.getPosition();
-    const architectOffset = this._offset(architectPosition, playerPosition);
     const bearOffset = this._offset(bearPosition, playerPosition);
     const forestHit = this.forestTempleSystem.findInteraction(
       playerPosition,
@@ -90,9 +87,6 @@ export class ChiiInteractionController {
     if (forestHit) addCandidate('forest', forestHit.distance, forestHit.position);
     if (interiorHit) addCandidate('interior', interiorHit.distance, interiorHit.position);
     if (townPetHit) addCandidate('town-pet', townPetHit.dist, townPetHit.position);
-    if (!this._isTownPet(this.architect)) {
-      addCandidate('architect', architectOffset.distance, architectPosition);
-    }
     addCandidate('bear', bearOffset.distance, bearPosition);
     if (regularPetHit) addCandidate('pet', regularPetHit.dist, regularPetHit.position);
     candidates.sort((a, b) => a.score - b.score);
@@ -145,19 +139,6 @@ export class ChiiInteractionController {
       return;
     }
 
-    if (target === 'architect') {
-      this._show('与fangk对话', 'E', managementAction);
-      if (this.input.justPressed('KeyE')) {
-        this.handlers.onArchitect({
-          architectPosition,
-          playerPosition,
-          dx: architectOffset.dx,
-          dz: architectOffset.dz,
-        });
-      }
-      return;
-    }
-
     if (target === 'bear') {
       this._show(
         this.pastoralSlice?.getInteractionLabel(this.bear) || '与momo对话',
@@ -165,7 +146,7 @@ export class ChiiInteractionController {
         managementAction,
       );
       if (!this.bear.petState.isBusy()) {
-        if (!this.bear._followEnabled && !this.bear.petState.is('free_roam')) this.bear.stopWalking();
+        if (!this.bear.petState.is('following') && !this.bear.petState.is('free_roam')) this.bear.stopWalking();
         this.bear.lockFacing(playerPosition.x, playerPosition.z);
       }
       if (this.input.justPressed('KeyE')) {
@@ -197,13 +178,13 @@ export class ChiiInteractionController {
   }
 
   _updateNearbyPetFacing(playerPosition, bearDistance) {
-    if (bearDistance <= this.interactionRange + 2 && this.bear._wanderEnabled && !this.bear.petState.isBusy()) {
+    if (bearDistance <= this.interactionRange + 2 && this.bear.petState.is('free_roam') && !this.bear.petState.isBusy()) {
       this.bear.stopWalking();
       this.bear.lockFacing(playerPosition.x, playerPosition.z);
     } else if (
       bearDistance > this.interactionRange + 3
-      && this.bear._wanderEnabled
-      && !this.bear._followEnabled
+      && this.bear.petState.is('free_roam')
+      && !this.bear.petState.is('following')
       && !this.bear.petState.is('working')
     ) {
       this.bear.unlockFacing();
@@ -214,8 +195,8 @@ export class ChiiInteractionController {
   _resumeBearWhenFar(distance) {
     if (
       distance <= this.interactionRange + 3
-      || this.bear._wanderEnabled
-      || this.bear._followEnabled
+      || this.bear.petState.is('free_roam')
+      || this.bear.petState.is('following')
       || !this.bear.petState.is('free_roam')
     ) return;
     this.bear.enableWander(2, {
@@ -252,5 +233,12 @@ export class ChiiInteractionController {
   hidePrompt() {
     this.prompt?.classList.remove('visible');
     if (this.promptSecondary) this.promptSecondary.hidden = true;
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    this.hidePrompt();
+    this.handlers = {};
   }
 }

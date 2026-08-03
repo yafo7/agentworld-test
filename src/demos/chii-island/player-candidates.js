@@ -5,13 +5,17 @@ import { ParticleSystem } from '../../engine/animation/particles.js';
 import { buildModelFromJson } from '../../engine/model/builder.js';
 import { initRuntime } from '../../engine/runtime/runtimeProvider.js';
 import { CharacterEquipmentService } from '../../gameplay/equipment/CharacterEquipmentService.js';
+import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
+import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
 import { CharacterAppearanceStore } from '../../storage/CharacterAppearanceStore.js';
+import { EquipmentMountCache } from '../../storage/EquipmentMountCache.js';
 import {
   createCharacterShowcaseCatalog,
   getShowcaseAnimationLabel,
 } from './data/characterShowcaseCatalog.js';
 import {
   CHII_EQUIPMENT_ITEMS,
+  CHII_EQUIPMENT_CATALOG,
   CHII_EQUIPMENT_SLOTS,
   createEmptyEquipmentLoadout,
   getCharacterOutfits,
@@ -50,7 +54,12 @@ const handSlots = document.querySelector('#showcase-hand-slots');
 const equipmentButton = document.querySelector('#showcase-equip-button');
 const clearEquipmentButton = document.querySelector('#showcase-clear-button');
 const equipmentStatus = document.querySelector('#showcase-equipment-status');
-const equipmentService = new CharacterEquipmentService();
+const equipmentService = new CharacterEquipmentService({
+  catalog: CHII_EQUIPMENT_CATALOG,
+  contentPort: defaultContentGeneration,
+  assetRepository: generatedAssets,
+  cache: new EquipmentMountCache({ assetRepository: generatedAssets }),
+});
 const appearanceStore = new CharacterAppearanceStore({ scope: getChiiSceneStyle() });
 
 const scene = new THREE.Scene();

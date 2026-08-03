@@ -10,11 +10,16 @@ const main = fs.readFileSync(
   new URL('../src/demos/chii-island/main.js', import.meta.url),
   'utf8',
 );
+const panel = fs.readFileSync(
+  new URL('../src/demos/chii-island/presentation/SceneManagementPanel.js', import.meta.url),
+  'utf8',
+);
 
 test('ESC management panel exposes an accessible close button using the shared close state', () => {
   assert.match(html, /id="btn-close-mgmt"/);
   assert.match(html, /aria-label="关闭管理面板"/);
-  assert.match(main, /btnCloseMgmt\?\.addEventListener\('click', \(\) => setPanelOpen\(false\)\)/);
+  assert.match(main, /new SceneManagementPanel\(/);
+  assert.match(panel, /this\._listen\(elements\.closeButton, 'click', \(\) => this\.setOpen\(false\)\)/);
 });
 
 test('ESC management panel can replay the completed Act Zero prologue', () => {
@@ -29,6 +34,10 @@ test('ESC management panel opens the character showcase through the shared page 
   assert.match(html, /data-chii-navigation/);
   assert.doesNotMatch(html, /id="btn-open-character-showcase"[\s\S]*?target="_blank"/);
   assert.match(main, /createChiiPageLoadingScreen/);
+});
+
+test('ESC management panel sits above runtime HUD overlays', () => {
+  assert.match(html, /#mgmt-panel\s*\{[\s\S]*?z-index:\s*300/);
 });
 
 test('ESC scene switcher presents Original first', () => {

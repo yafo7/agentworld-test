@@ -3,24 +3,34 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
-    "dev": "concurrently --names \"game,studio\" --prefix-colors \"cyan,magenta\" \"vite --host\" \"cd ../3d-generate && C:\\\\Users\\\\yafo777\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe server.py\"",
-    "dev:game": "vite",
-    "dev:all": "concurrently --names \"game,studio,voxel\" --prefix-colors \"cyan,magenta,green\" \"vite --host\" \"cd ../3d-generate && C:\\\\Users\\\\yafo777\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe server.py\" \"cd ../voxel-game && npx vite --port 5174 --host\"",
+    "dev": "concurrently --names \"game,studio\" --prefix-colors \"cyan,magenta\" \"npm run dev:game\" \"npm run dev:studio\"",
+    "dev:game": "vite --host 127.0.0.1",
+    "dev:game:lan": "vite --host 0.0.0.0",
+    "dev:studio": "node scripts/start-sibling-service.mjs studio",
+    "dev:voxel": "node scripts/start-sibling-service.mjs voxel",
+    "dev:all": "concurrently --names \"game,studio,voxel\" --prefix-colors \"cyan,magenta,green\" \"npm run dev:game\" \"npm run dev:studio\" \"npm run dev:voxel\"",
     "build": "vite build",
     "test": "node --test \"tests/**/*.test.js\"",
     "test:story-baseline": "node scripts/verify-chii-story-baseline.mjs",
     "prepare:town-activities": "node scripts/prepare-chii-town-activities.mjs",
     "audit:town-activities": "node scripts/audit-chii-town-activities.mjs",
     "test:render-compat": "node scripts/verify-render-runtime-compat.mjs",
+    "scan:secrets": "node scripts/scan-secrets.mjs",
+    "verify": "node scripts/verify.mjs",
     "generate:act0": "node scripts/generate-act-zero-angel.mjs",
     "generate:act0-boss": "node scripts/generate-act-zero-boss.mjs",
     "generate:player-candidates": "node scripts/generate-phrolova-player-candidates.mjs",
     "generate:equipment": "node scripts/generate-chii-equipment.mjs",
     "generate:outfits": "node scripts/generate-chii-outfits.mjs",
     "generate:church-interior": "node scripts/generate-chii-church-interior.mjs",
+    "rebuild:original-scene": "node scripts/rebuild-chii-original-scene.mjs",
     "preview": "vite preview",
-    "sync-studio": "node scripts/sync-to-studio.mjs"
+    "preview:lan": "vite preview --host 0.0.0.0"
   },
   "devDependencies": {
     "concurrently": "^10.0.3",

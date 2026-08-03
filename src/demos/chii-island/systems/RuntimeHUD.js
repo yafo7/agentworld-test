@@ -17,13 +17,16 @@ export class RuntimeHUD {
     this.activityHelperEl = document.getElementById('runtime-activity-helper');
     this.perfEl = document.getElementById('runtime-perf');
     this.jobs = new Map();
+    this.finishTimers = new Map();
     this.jobSerial = 0;
     this.perfVisible = false;
     this.perfTimer = 0;
     this.frameTime = 16.7;
+    this.disposed = false;
   }
 
   startJob(label, stage = '准备中') {
+    if (this.disposed) return null;
     const id = `job_${++this.jobSerial}`;
     this.jobs.set(id, { label, stage, state: 'working' });
     this._renderJob(id);
@@ -31,6 +34,7 @@ export class RuntimeHUD {
   }
 
   updateJob(id, stage) {
+    if (this.disposed) return;
     const job = this.jobs.get(id);
     if (!job) return;
     job.stage = stage;
@@ -52,15 +56,20 @@ export class RuntimeHUD {
     job.state = state;
     job.stage = stage;
     this._renderJob(id);
-    setTimeout(() => {
+    const existingTimer = this.finishTimers.get(id);
+    if (existingTimer) clearTimeout(existingTimer);
+    const timer = setTimeout(() => {
+      this.finishTimers.delete(id);
       this.jobs.delete(id);
       const latest = Array.from(this.jobs.keys()).pop();
       if (latest) this._renderJob(latest);
       else this.jobEl?.classList.remove('visible');
     }, delay);
+    this.finishTimers.set(id, timer);
   }
 
   _renderJob(id) {
+    if (this.disposed) return;
     const job = this.jobs.get(id);
     if (!job || !this.jobEl) return;
     this.jobTitleEl.textContent = job.label;
@@ -70,6 +79,7 @@ export class RuntimeHUD {
   }
 
   setWorldStatus(region, follower) {
+    if (this.disposed) return;
     if (this.regionEl) this.regionEl.textContent = region || '奇异岛';
     if (this.followerEl) {
       this.followerEl.textContent = follower ? `${follower} 跟随中` : '独自探索';
@@ -77,6 +87,7 @@ export class RuntimeHUD {
   }
 
   setActivityStatus(title = null, stage = '', details = {}) {
+    if (this.disposed) return;
     if (!this.activityEl) return;
     if (!title) {
       this.activityEl.classList.remove('visible');
@@ -104,11 +115,13 @@ export class RuntimeHUD {
   }
 
   setPerformanceVisible(visible) {
+    if (this.disposed) return;
     this.perfVisible = !!visible;
     this.perfEl?.classList.toggle('visible', this.perfVisible);
   }
 
   update(dt, { entities = 0, pets = 0 } = {}) {
+    if (this.disposed) return;
     this.frameTime += ((dt * 1000) - this.frameTime) * 0.08;
     if (!this.perfVisible) return;
     this.perfTimer += dt;
@@ -123,5 +136,16 @@ export class RuntimeHUD {
       `${entities} entities  ${pets} pets`,
       `${colliders} colliders  ${bodies} bodies`,
     ].join('\n');
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    for (const timer of this.finishTimers.values()) clearTimeout(timer);
+    this.finishTimers.clear();
+    this.jobs.clear();
+    this.jobEl?.classList.remove('visible');
+    this.activityEl?.classList.remove('visible');
+    this.perfEl?.classList.remove('visible');
   }
 }

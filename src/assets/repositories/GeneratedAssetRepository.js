@@ -2,7 +2,7 @@ import {
   getGeneratedAsset,
   saveAnimationForModel,
   saveGeneratedModel,
-} from '../../demos/chii-island/data/generatedLibrary.js';
+} from '../generatedLibrary.js';
 
 export class GeneratedAssetRepository {
   async get(assetId) {
@@ -29,4 +29,3 @@ export class GeneratedAssetRepository {
 }
 
 export const generatedAssets = new GeneratedAssetRepository();
-

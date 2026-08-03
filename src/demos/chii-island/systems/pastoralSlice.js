@@ -1,21 +1,21 @@
 import * as THREE from 'three';
 import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
-import { buildModelFromJson } from '../../../engine/model/builder.js';
-import { applyAnimation } from '../../../engine/animation/player.js';
-import { ParticleSystem } from '../../../engine/animation/particles.js';
-import { defaultContentGeneration } from '../../../integrations/content/VoxelContentAdapter.js';
-import { generatedAssets } from '../../../assets/repositories/GeneratedAssetRepository.js';
 import { getGridWorldPosition, worldToGridCoordinates } from '../../../engine/world/terrain.js';
 import { recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
-import { PetWorkCoordinator } from '../../../gameplay/ai/PetWorkCoordinator.js';
+import {
+  isPetWorkAbortedError,
+  PetWorkAbortedError,
+  PetWorkCoordinator,
+} from '../../../gameplay/ai/PetWorkCoordinator.js';
 import { replaceStaticEntityModel } from '../../../world/model/replaceStaticEntityModel.js';
 import {
   collectMountWorkRequest,
   collectRefineWorkRequest,
 } from './pastoralWorkDialogue.js';
 import { PetBubblePresenter } from '../presentation/PetBubblePresenter.js';
+import { PastoralWorkEffects } from '../presentation/PastoralWorkEffects.js';
 import {
   appendChiiGenerationConstraint,
   resolveChiiSizeProfile,
@@ -72,26 +72,37 @@ export function createPastoralSlice({
   workScaffoldModelJson = null,
   workScaffoldAnimationPlan = null,
   runtimeStatus = null,
-  contentPort = defaultContentGeneration,
-  generatedAssetRepository = generatedAssets,
+  contentPort,
+  generatedAssetRepository,
   colliderRegistry = null,
   objectPlacement = null,
   onGeneratedObject = null,
+  onWorldChanged = null,
   bubblePresenter = null,
   camera = null,
   vfxService = null,
 }) {
+  if (!contentPort || !generatedAssetRepository) {
+    throw new TypeError('createPastoralSlice requires content and generated asset dependencies');
+  }
   const _pets = pets.filter(Boolean);
   const _busyPets = new Set();
   const _planningPets = new Set();
   const _pendingIdeas = new Map();
   const _objects = worldObjects?.items || staticEntities;
-  const _effects = [];
-  const _reveals = [];
+  const _timers = new Set();
   const _ideaBubbles = bubblePresenter || new PetBubblePresenter({ camera, vfxService });
+  const _workEffects = new PastoralWorkEffects({
+    scene,
+    vfxService,
+    scaffoldModelJson: workScaffoldModelJson,
+    scaffoldAnimationPlan: workScaffoldAnimationPlan,
+  });
+  const _abortController = new AbortController();
+  let _disposed = false;
 
   for (const pet of _pets) {
-    attachPetStateMachine(pet, pet._petState || 'idle');
+    attachPetStateMachine(pet, pet.petState?.current || 'idle');
     pet._initialInteractionDone = !!pet._initialInteractionDone;
     pet._pastoralAutonomousTimer = 20;
   }
@@ -104,6 +115,7 @@ export function createPastoralSlice({
   }
 
   function startFollowing(pet) {
+    if (_disposed) return;
     clearPendingIdea(pet, { resume: false });
     pet._initialInteractionDone = true;
     pet.petState.transition('following', { reason: 'player-follow-command' });
@@ -113,6 +125,7 @@ export function createPastoralSlice({
   }
 
   function startFreeRoam(pet) {
+    if (_disposed) return;
     clearPendingIdea(pet, { resume: false });
     pet._initialInteractionDone = true;
     pet.stopFollow?.();
@@ -134,22 +147,50 @@ export function createPastoralSlice({
     return target?.name || target?._petName || target?.mesh?.name || '这个模型';
   }
 
+  function notifyWorldChanged(action, pet, target, completedAssetId = null) {
+    if (typeof onWorldChanged !== 'function') return;
+    const metadata = worldObjects?.getMetadata?.(target) || {};
+    const payload = {
+      action,
+      residentId: pet?._profile?.id || pet?._petId || pet?._petName || null,
+      targetId: target?._instanceId || target?.id || target?._petId || target?._petName || null,
+      assetId: completedAssetId || metadata.assetId || target?._generatedAssetId || null,
+    };
+    try {
+      Promise.resolve(onWorldChanged(payload)).catch(error => {
+        console.warn('[Pastoral] Story progression notification failed:', error.message);
+      });
+    } catch (error) {
+      console.warn('[Pastoral] Story progression notification failed:', error.message);
+    }
+  }
+
   async function askPetChoice(pet, text, options, focusTarget = null) {
+    throwIfDisposed();
     if (focusTarget && focusWorkCamera) focusWorkCamera(pet, focusTarget);
     else focusDialogueCamera?.(pet);
     setDialogueLock?.(true, pet);
-    const result = await dialogueSystem.askChoice({ speakerName: getPetName(pet), text, options });
-    setDialogueLock?.(false, pet);
-    return result;
+    try {
+      const result = await dialogueSystem.askChoice({ speakerName: getPetName(pet), text, options });
+      throwIfDisposed();
+      return result;
+    } finally {
+      setDialogueLock?.(false, pet);
+    }
   }
 
   async function askPetInput(pet, text, placeholder, focusTarget = null) {
+    throwIfDisposed();
     if (focusTarget && focusWorkCamera) focusWorkCamera(pet, focusTarget);
     else focusDialogueCamera?.(pet);
     setDialogueLock?.(true, pet);
-    const result = await dialogueSystem.askInput({ speakerName: getPetName(pet), text, placeholder });
-    setDialogueLock?.(false, pet);
-    return result;
+    try {
+      const result = await dialogueSystem.askInput({ speakerName: getPetName(pet), text, placeholder });
+      throwIfDisposed();
+      return result;
+    } finally {
+      setDialogueLock?.(false, pet);
+    }
   }
 
   function getModelJson(target) {
@@ -227,249 +268,37 @@ export function createPastoralSlice({
     return false;
   }
 
+  function throwIfDisposed() {
+    if (_disposed || _abortController.signal.aborted) {
+      throw new PetWorkAbortedError('Pastoral slice was disposed');
+    }
+  }
+
   function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  function addStarBurst(pet, duration = 2.0) {
-    if (vfxService) {
-      vfxService.playPreset('workStart', {
-        target: pet.mesh,
-        duration,
-        key: `pastoral-work-start:${pet._petId || pet._petName}`,
-      });
-      return;
-    }
-    const group = new THREE.Group();
-    group.name = 'PastoralStarBurst';
-    const geo = new THREE.OctahedronGeometry(0.2, 0);
-    const mat = new THREE.MeshBasicMaterial({ color: 0xffe66d, transparent: true, opacity: 0.95, depthWrite: false });
-    for (let i = 0; i < 16; i++) {
-      const star = new THREE.Mesh(geo, mat.clone());
-      star.frustumCulled = false;
-      const angle = (i / 16) * Math.PI * 2;
-      star.userData = {
-        angle,
-        radius: 0.9 + Math.random() * 1.2,
-        y: 1.0 + Math.random() * 1.6,
-        speed: 1.6 + Math.random() * 1.4,
+    throwIfDisposed();
+    return new Promise((resolve, reject) => {
+      const onAbort = () => {
+        clearTimeout(timer);
+        _timers.delete(timer);
+        reject(new PetWorkAbortedError('Pastoral slice was disposed'));
       };
-      group.add(star);
-    }
-    group.frustumCulled = false;
-    scene.add(group);
-    _effects.push({ type: 'stars', group, pet, timer: 0, duration });
-  }
-
-  function addDustBurst(position, duration = 1.1) {
-    if (vfxService) {
-      vfxService.playPreset('dust', {
-        position,
-        duration,
-      });
-      return;
-    }
-    const group = new THREE.Group();
-    group.name = 'PastoralDustBurst';
-    group.position.copy(position);
-    const geo = new THREE.SphereGeometry(0.16, 8, 6);
-    const mat = new THREE.MeshBasicMaterial({ color: 0x9b7b4a, transparent: true, opacity: 0.65, depthWrite: false });
-    for (let i = 0; i < 30; i++) {
-      const dust = new THREE.Mesh(geo, mat.clone());
-      dust.frustumCulled = false;
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.8 + Math.random() * 1.8;
-      dust.position.set(0, 0.35 + Math.random() * 0.8, 0);
-      dust.userData.velocity = new THREE.Vector3(Math.cos(angle) * speed, 1.0 + Math.random() * 1.0, Math.sin(angle) * speed);
-      group.add(dust);
-    }
-    group.frustumCulled = false;
-    scene.add(group);
-    _effects.push({ type: 'dust', group, timer: 0, duration });
-  }
-
-  function addWorkScaffold(points) {
-    if (!points?.targetPos) return null;
-
-    if (workScaffoldModelJson) {
-      const group = buildModelFromJson(workScaffoldModelJson);
-      if (!group) return null;
-      group.name = 'PastoralWorkScaffold';
-      group.position.copy(points.targetPos);
-      group.frustumCulled = false;
-      const size = points.size || new THREE.Vector3(3, 3, 3);
-      const footprint = Math.max(size.x, size.z, 3.5);
-      const scaffoldScale = THREE.MathUtils.clamp((footprint + 2.0) / 6.4, 0.65, 1.8);
-      group.scale.setScalar(scaffoldScale);
-      scene.add(group);
-
-      const scaffoldPlan = workScaffoldAnimationPlan?.motionPlan
-        ? { ...workScaffoldAnimationPlan.motionPlan, _duration: workScaffoldAnimationPlan.duration || 2, _loop: true }
-        : workScaffoldAnimationPlan;
-      const particles = scaffoldPlan ? new ParticleSystem(scene) : null;
-      particles?.setup(scaffoldPlan, group);
-      const effect = {
-        type: 'scaffold',
-        group,
-        particles,
-        plan: scaffoldPlan,
-        poseMap: null,
-        timer: 0,
-        duration: Infinity,
-        fading: false,
-      };
-      _effects.push(effect);
-      return effect;
-    }
-
-    const group = new THREE.Group();
-    group.name = 'PastoralWorkScaffold';
-    group.position.copy(points.targetPos);
-    group.frustumCulled = false;
-
-    const size = points.size || new THREE.Vector3(3, 3, 3);
-    const hw = Math.max(1.4, size.x * 0.5 + 0.9);
-    const hd = Math.max(1.4, size.z * 0.5 + 0.9);
-    const height = Math.max(2.4, Math.min(4.4, size.y + 1.2));
-    const baseY = 0.12;
-
-    const woodMat = new THREE.MeshStandardMaterial({
-      color: 0xc28a45,
-      roughness: 0.9,
-      metalness: 0,
-      flatShading: true,
-      transparent: true,
-      opacity: 0.9,
-      depthWrite: false,
-    });
-    const railMat = new THREE.MeshStandardMaterial({
-      color: 0x3b2f2a,
-      roughness: 0.85,
-      metalness: 0,
-      flatShading: true,
-      transparent: true,
-      opacity: 0.9,
-      depthWrite: false,
-    });
-    const postGeo = new THREE.BoxGeometry(0.18, 1, 0.18);
-    const railGeo = new THREE.BoxGeometry(1, 0.14, 0.14);
-    const plankGeo = new THREE.BoxGeometry(1, 0.12, 0.5);
-
-    const corners = [
-      [-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd],
-    ];
-    for (const [x, z] of corners) {
-      const post = new THREE.Mesh(postGeo, woodMat.clone());
-      post.position.set(x, baseY + height * 0.5, z);
-      post.scale.y = height;
-      post.frustumCulled = false;
-      group.add(post);
-    }
-
-    function addRail(x, y, z, len, rotY, mat = railMat) {
-      const rail = new THREE.Mesh(railGeo, mat.clone());
-      rail.position.set(x, y, z);
-      rail.rotation.y = rotY;
-      rail.scale.x = len;
-      rail.frustumCulled = false;
-      group.add(rail);
-    }
-
-    for (const y of [baseY + height * 0.35, baseY + height * 0.72]) {
-      addRail(0, y, -hd, hw * 2, 0);
-      addRail(0, y, hd, hw * 2, 0);
-      addRail(-hw, y, 0, hd * 2, Math.PI / 2);
-      addRail(hw, y, 0, hd * 2, Math.PI / 2);
-    }
-
-    for (const z of [-hd, hd]) {
-      const plank = new THREE.Mesh(plankGeo, woodMat.clone());
-      plank.position.set(0, baseY + 0.55, z);
-      plank.scale.x = hw * 2;
-      plank.frustumCulled = false;
-      group.add(plank);
-    }
-
-    scene.add(group);
-    const effect = { type: 'scaffold', group, timer: 0, duration: Infinity, fading: false };
-    _effects.push(effect);
-    return effect;
-  }
-
-  function removeWorkScaffold(effect) {
-    if (!effect) return;
-    effect.fading = true;
-    effect.timer = 0;
-    effect.duration = 0.85;
-  }
-
-  function disposeGroup(group) {
-    scene.remove(group);
-    group.traverse((obj) => {
-      if (obj.geometry) obj.geometry.dispose();
-      if (obj.material) obj.material.dispose();
+      const timer = setTimeout(() => {
+        _timers.delete(timer);
+        _abortController.signal.removeEventListener('abort', onAbort);
+        resolve();
+      }, ms);
+      _timers.add(timer);
+      _abortController.signal.addEventListener('abort', onAbort, { once: true });
     });
   }
 
-  function startReveal(group, duration = 1.0) {
-    if (!group) return;
-    const baseScale = group.scale.clone();
-    group.scale.copy(baseScale).multiplyScalar(0.82);
-    _reveals.push({ group, baseScale, timer: 0, duration });
-  }
-
-  function updateEffects(dt) {
-    for (let i = _effects.length - 1; i >= 0; i--) {
-      const e = _effects[i];
-      e.timer += dt;
-      const t = Math.min(e.timer / e.duration, 1);
-      if (e.type === 'stars') {
-        e.group.position.copy(e.pet.mesh.position);
-        for (const star of e.group.children) {
-          const a = star.userData.angle + e.timer * star.userData.speed;
-          star.position.set(Math.cos(a) * star.userData.radius, star.userData.y + Math.sin(e.timer * 5 + a) * 0.15, Math.sin(a) * star.userData.radius);
-          star.rotation.y += dt * 4;
-          star.material.opacity = 0.95 * (1 - t);
-        }
-      } else if (e.type === 'dust') {
-        for (const dust of e.group.children) {
-          dust.userData.velocity.y -= 2.0 * dt;
-          dust.position.addScaledVector(dust.userData.velocity, dt);
-          dust.material.opacity = 0.55 * (1 - t);
-        }
-      } else if (e.type === 'scaffold') {
-        if (e.plan) {
-          const duration = e.plan._duration || e.plan.duration || 2;
-          e.poseMap = applyAnimation(e.plan, duration, e.group, e.timer % duration, e.poseMap);
-          e.particles?.update(dt, e.group);
-        }
-        const pulse = 0.82 + Math.sin(e.timer * 5) * 0.08;
-        if (!e.plan) e.group.position.y = Math.sin(e.timer * 2.8) * 0.03;
-        e.group.traverse((obj) => {
-          if (!obj.material || !('opacity' in obj.material)) return;
-          obj.material.opacity = e.fading ? 0.9 * (1 - t) : (e.plan ? 1 : pulse);
-        });
-      }
-      if (t >= 1 && e.duration !== Infinity) {
-        e.particles?.dispose();
-        disposeGroup(e.group);
-        _effects.splice(i, 1);
-      }
-    }
-
-    for (let i = _reveals.length - 1; i >= 0; i--) {
-      const r = _reveals[i];
-      r.timer += dt;
-      const t = Math.min(r.timer / r.duration, 1);
-      const ease = 1 - Math.pow(1 - t, 3);
-      r.group.scale.copy(r.baseScale).multiplyScalar(0.82 + (1 - 0.82) * ease);
-      r.group.rotation.y = Math.sin((1 - t) * Math.PI) * 0.035;
-      if (t >= 1) {
-        r.group.scale.copy(r.baseScale);
-        r.group.rotation.y = 0;
-        _reveals.splice(i, 1);
-      }
-    }
+  function defer(callback) {
+    if (_disposed) return;
+    const timer = setTimeout(() => {
+      _timers.delete(timer);
+      if (!_disposed) callback();
+    }, 0);
+    _timers.add(timer);
   }
 
   function isObjectTarget(target, activePet) {
@@ -533,8 +362,12 @@ export function createPastoralSlice({
 
   function waitForPetArrive(pet, timeoutMs = 6500) {
     const start = performance.now();
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       function tick() {
+        if (_disposed) {
+          reject(new PetWorkAbortedError('Pastoral slice was disposed'));
+          return;
+        }
         if (!pet._targetPosition || performance.now() - start > timeoutMs) {
           resolve();
           return;
@@ -546,14 +379,13 @@ export function createPastoralSlice({
   }
 
   function forceWorkState(pet) {
+    throwIfDisposed();
     _busyPets.add(pet);
     pet.petState.enterWork({ autonomous: pet.petState.is('free_roam') });
     pet.stopFollow?.();
     pet.disableWander?.();
     pet.stopWalking?.();
-    pet._followEnabled = false;
     pet._followTarget = null;
-    pet._wanderEnabled = false;
   }
 
   async function movePetToWork(pet, standPos, lookAtPos = standPos, { focusCamera = true } = {}) {
@@ -562,6 +394,7 @@ export function createPastoralSlice({
     pet.lockFacing?.(lookAtPos.x, lookAtPos.z);
     pet.walkTo?.(standPos.x, standPos.z, 4.2);
     await waitForPetArrive(pet);
+    throwIfDisposed();
     pet.lockFacing?.(lookAtPos.x, lookAtPos.z);
     pet.playAnimation?.('idle');
     if (focusCamera) focusWorkCamera?.(pet, lookAtPos);
@@ -583,7 +416,7 @@ export function createPastoralSlice({
     const targetPos = pointsOrTargetPos?.targetPos || pointsOrTargetPos;
     const effectPos = pointsOrTargetPos?.effectPos || targetPos;
     if (focusCamera) focusWorkCamera?.(pet, targetPos);
-    addStarBurst(pet, 2.0);
+    _workEffects.playWorkStart(pet, 2.0);
     await delay(2000);
     pet.lockFacing?.(targetPos.x, targetPos.z);
     const name = getPetName(pet);
@@ -596,9 +429,9 @@ export function createPastoralSlice({
     } else {
       pet.playAnimation?.(pet._animPlans.construct ? 'construct' : (pet._animPlans.run ? 'run' : 'idle'));
     }
-    addDustBurst(effectPos, 1.1);
+    _workEffects.playDust(effectPos, 1.1);
     if (effectPos.distanceTo(pet.mesh.position) > 2.0) {
-      addDustBurst(pet.mesh.position.clone(), 0.8);
+      _workEffects.playDust(pet.mesh.position.clone(), 0.8);
     }
     await delay(700);
   }
@@ -616,9 +449,20 @@ export function createPastoralSlice({
   }
 
   function finishWork(pet, nextState = 'idle') {
+    if (_disposed) nextState = 'idle';
     _busyPets.delete(pet);
     pet.unlockFacing?.();
-    pet.petState.completeWork(nextState);
+    pet.stopWalking?.();
+    if (!_disposed || pet.petState?.is('working')) pet.petState.completeWork(nextState);
+    else if (pet.petState?.isBusy()) {
+      pet.petState.transition('idle', { reason: 'pastoral-disposed' });
+    }
+    if (_disposed) {
+      pet.stopFollow?.();
+      pet.disableWander?.();
+      pet.playAnimation?.('idle');
+      return;
+    }
     if (nextState === 'following') startFollowing(pet);
     else if (nextState === 'free_roam') startFreeRoam(pet);
     else pet.playAnimation?.('idle');
@@ -630,8 +474,8 @@ export function createPastoralSlice({
   });
   const workCoordinator = new PetWorkCoordinator({
     runtimeStatus,
-    startPresentation: addWorkScaffold,
-    stopPresentation: removeWorkScaffold,
+    startPresentation: points => _workEffects.startScaffold(points),
+    stopPresentation: effect => _workEffects.stopScaffold(effect),
     playIntro: playWorkIntro,
     finishPet: finishWork,
   });
@@ -677,7 +521,7 @@ export function createPastoralSlice({
       });
     }
     scene.add(entity.mesh);
-    startReveal(entity.mesh);
+    _workEffects.reveal(entity.mesh);
     return entity;
   }
 
@@ -727,9 +571,11 @@ export function createPastoralSlice({
         if (nextState === 'free_roam') await circleAround(pet, entity.mesh.position, 2);
         return entity;
       },
+      signal: _abortController.signal,
     });
+    if (result) notifyWorldChanged('create', pet, result);
     if (result && nextState !== 'free_roam') {
-      setTimeout(() => onGeneratedObject?.(result), 0);
+      defer(() => onGeneratedObject?.(result));
     }
     return result;
   }
@@ -742,7 +588,8 @@ export function createPastoralSlice({
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
     const prompt = shortConcrete(description, '变得更田园自然');
-    return workCoordinator.run({
+    let completedAssetId = null;
+    const result = await workCoordinator.run({
       pet,
       points,
       nextState,
@@ -765,6 +612,7 @@ export function createPastoralSlice({
         });
       },
       apply: async ({ modelJson, assetId }) => {
+        completedAssetId = assetId;
         replaceTargetModel(target, modelJson, { operation: 'refine', assetId });
         const targetId = target.id || target._petId || target._petName;
         recordAIWorldEvent({
@@ -775,11 +623,14 @@ export function createPastoralSlice({
           assetId,
           prompt,
         });
-        startReveal(target._modelGroup || target.mesh);
+        _workEffects.reveal(target._modelGroup || target.mesh);
         if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
         return target;
       },
+      signal: _abortController.signal,
     });
+    if (result) notifyWorldChanged('refine', pet, result, completedAssetId);
+    return result;
   }
 
   async function mountObject(pet, target, partDescription, positionDescription, nextState = 'following', alreadyAtWork = false, options = {}) {
@@ -791,7 +642,8 @@ export function createPastoralSlice({
     if (!points) return;
     const part = shortConcrete(partDescription, '一个小装饰');
     const where = shortConcrete(positionDescription, '顶部');
-    return workCoordinator.run({
+    let completedAssetId = null;
+    const result = await workCoordinator.run({
       pet,
       points,
       nextState,
@@ -815,6 +667,7 @@ export function createPastoralSlice({
         });
       },
       apply: async ({ modelJson, assetId, description: prompt }) => {
+        completedAssetId = assetId;
         replaceTargetModel(target, modelJson, { operation: 'mount', assetId });
         const targetId = target.id || target._petId || target._petName;
         recordAIWorldEvent({
@@ -825,15 +678,18 @@ export function createPastoralSlice({
           assetId,
           prompt,
         });
-        startReveal(target._modelGroup || target.mesh);
+        _workEffects.reveal(target._modelGroup || target.mesh);
         if (nextState === 'free_roam') await circleAround(pet, points.targetPos, 2);
         return target;
       },
+      signal: _abortController.signal,
     });
+    if (result) notifyWorldChanged('mount', pet, result, completedAssetId);
+    return result;
   }
 
   async function interact(pet) {
-    if (!pet) return;
+    if (!pet || _disposed) return;
     const name = getPetName(pet);
     if (_busyPets.has(pet) || pet.petState.is('working')) {
       await askPetChoice(pet, '我正在忙呢，等会再来聊天吧。', [{ key: 'ok', label: '好，等你忙完。' }]);
@@ -869,7 +725,7 @@ export function createPastoralSlice({
         { key: 'create', label: '可以在这里帮我做些装饰吗？' },
         { key: 'refine', label: '可以帮我调整一下这个吗？' },
         { key: 'mount', label: '可以帮我加些装饰吗？' },
-        pet._petState === 'following' || pet._followEnabled
+        pet.petState.is('following')
           ? { key: 'free_roam', label: '还是随便做点自己喜欢的吧！' }
           : { key: 'follow', label: '和我一起玩吧！' },
         { key: 'nothing', label: '没什么。' },
@@ -1033,7 +889,8 @@ export function createPastoralSlice({
 
   async function prepareAutonomousIdea(pet) {
     if (
-      !pet
+      _disposed
+      || !pet
       || !pet.petState?.is('free_roam')
       || pet.petState.isBusy()
       || _busyPets.has(pet)
@@ -1043,6 +900,7 @@ export function createPastoralSlice({
     _planningPets.add(pet);
     try {
       const plan = await planAutonomous(pet);
+      throwIfDisposed();
       if (!pet.petState?.is('free_roam') || pet.petState.isBusy()) return;
       const idea = resolveAutonomousIdea(pet, plan || {});
       _pendingIdeas.set(pet, idea);
@@ -1052,6 +910,7 @@ export function createPastoralSlice({
       pet.playAnimation?.('idle');
       _ideaBubbles.setHint(pet, '我有个想法！', { exclusive: false });
     } catch (err) {
+      if (isPetWorkAbortedError(err)) return;
       console.warn('[Pastoral] idea preparation failed:', err.message);
       pet._pastoralAutonomousTimer = 20;
     } finally {
@@ -1060,7 +919,7 @@ export function createPastoralSlice({
   }
 
   async function executeAutonomousIdea(pet, idea) {
-    if (!pet || !idea || !pet.petState?.is('free_roam') || _busyPets.has(pet)) return;
+    if (_disposed || !pet || !idea || !pet.petState?.is('free_roam') || _busyPets.has(pet)) return;
     try {
       if (idea.action === 'refine') {
         await refineObject(pet, idea.target, idea.description, 'free_roam', false, { focusCamera: false });
@@ -1087,6 +946,7 @@ export function createPastoralSlice({
         { focusCamera: false },
       );
     } catch (err) {
+      if (isPetWorkAbortedError(err)) return;
       console.warn('[Pastoral] autonomous behavior failed:', err.message);
       startFreeRoam(pet);
     }
@@ -1107,6 +967,7 @@ export function createPastoralSlice({
     }
     clearPendingIdea(pet, { resume: false });
     executeAutonomousIdea(pet, idea).catch(err => {
+      if (isPetWorkAbortedError(err)) return;
       console.warn('[Pastoral] approved idea failed:', err.message);
       startFreeRoam(pet);
     });
@@ -1114,7 +975,8 @@ export function createPastoralSlice({
   }
 
   function update(dt) {
-    updateEffects(dt);
+    if (_disposed) return;
+    _workEffects.update(dt);
     _ideaBubbles.update(dt);
     for (const pet of _pets) {
       if (_pendingIdeas.has(pet)) {
@@ -1130,6 +992,33 @@ export function createPastoralSlice({
     }
   }
 
+  function dispose() {
+    if (_disposed) return;
+    _disposed = true;
+    _abortController.abort(new PetWorkAbortedError('Pastoral slice was disposed'));
+    workCoordinator.dispose();
+    setDialogueLock?.(false);
+
+    for (const timer of _timers) clearTimeout(timer);
+    _timers.clear();
+
+    for (const pet of _pendingIdeas.keys()) {
+      pet._pastoralIdeaPending = false;
+      _ideaBubbles.clearHint(pet);
+    }
+    _pendingIdeas.clear();
+    _planningPets.clear();
+
+    for (const pet of [..._busyPets]) finishWork(pet, 'idle');
+    _busyPets.clear();
+
+    _workEffects.dispose();
+    for (const pet of _pets) {
+      vfxService?.stop?.(`pet-idea:${pet._petId || pet._petName || pet.mesh?.uuid}`);
+    }
+    _ideaBubbles.dispose();
+  }
+
   return {
     interact,
     update,
@@ -1139,6 +1028,6 @@ export function createPastoralSlice({
     getInteractionLabel: pet => _pendingIdeas.has(pet)
       ? `听听${getPetName(pet)}的想法`
       : `与${getPetName(pet)}对话`,
-    dispose: () => _ideaBubbles.dispose(),
+    dispose,
   };
 }

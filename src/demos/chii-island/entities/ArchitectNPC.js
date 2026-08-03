@@ -5,6 +5,7 @@ import { evaluateMotion, applyMotionDeltas } from '../../../engine/animation/pla
 import { normalizeAnimationPlan } from '../../../engine/animation/normalizePlan.js';
 import { getRuntime } from '../../../engine/runtime/runtimeProvider.js';
 import { detachMaterialTagPresentation } from '../../../engine/model/MaterialTagPresentation.js';
+import { getPetStateMachine, PET_STATES } from '../../../gameplay/pets/PetStateMachine.js';
 
 /**
  * Simple NPC entity — no AI, no autonomous behavior.
@@ -45,14 +46,12 @@ export class ArchitectNPC {
     this._movementTarget = null;
 
     // Wander behavior
-    this._wanderEnabled = false;
     this._wanderSpeed = 2.0;
     this._wanderTimer = 0;
     this._wanderInterval = 3.0;
     this._wanderBounds = null; // { minX, maxX, minZ, maxZ }
 
     // Follow behavior
-    this._followEnabled = false;
     this._followTarget = null; // direct reference to target mesh/group
     this._followDistance = 3.0;
     this._followSpeed = 6.0;
@@ -62,11 +61,6 @@ export class ArchitectNPC {
     this._collider = null;
     this._controller = null;
     this._physicsWorld = null;
-
-    // Chop behavior
-    this._chopTreeEntity = null;
-    this._chopAnimTimer = 0;
-    this._chopOnDone = null;
 
     // Loaded model metadata (for API refine)
     this._originalModelJson = null;
@@ -244,17 +238,19 @@ export class ArchitectNPC {
   // ── Wander behavior ──
 
   enableWander(speed = 2.0, bounds = null) {
-    this._wanderEnabled = true;
     this._wanderSpeed = speed;
     this._wanderBounds = bounds;
     this._wanderTimer = 0;
+    getPetStateMachine(this).transition(PET_STATES.FREE_ROAM, { reason: 'wander-enabled' });
     this._pickWanderTarget();
     this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
   }
 
   disableWander() {
-    this._wanderEnabled = false;
     this._targetPosition = null;
+    if (this.petState?.is(PET_STATES.FREE_ROAM)) {
+      this.petState.transition(PET_STATES.IDLE, { reason: 'wander-disabled' });
+    }
     this._setAnimState('idle');
   }
 
@@ -274,44 +270,23 @@ export class ArchitectNPC {
   // ── Follow behavior ──
 
   followTarget(targetMesh, distance = 3.0, speed = 6.0) {
-    this._followEnabled = true;
     this._followTarget = targetMesh;
     this._followDistance = distance;
     this._followSpeed = speed;
     this._targetPosition = null;
     this._followRepathTimer = 0;
     this._clearNavigationPath();
+    getPetStateMachine(this).transition(PET_STATES.FOLLOWING, { reason: 'follow-enabled' });
   }
 
   stopFollow() {
-    this._followEnabled = false;
     this._followTarget = null;
     this._targetPosition = null;
     this._clearNavigationPath();
+    if (this.petState?.is(PET_STATES.FOLLOWING)) {
+      this.petState.transition(PET_STATES.IDLE, { reason: 'follow-disabled' });
+    }
     this._setAnimState('idle');
-  }
-
-  // ── Chop tree behavior ──
-
-  chopTree(treeEntity, onDone) {
-    this._followEnabled = false;
-    this._chopTreeEntity = treeEntity;
-    this._chopOnDone = onDone || null;
-    // Walk to tree edge (not center) to avoid clipping
-    const tp = treeEntity.mesh.position;
-    const box = new THREE.Box3().setFromObject(treeEntity.mesh);
-    const size = new THREE.Vector3(); box.getSize(size);
-    const halfW = Math.max(size.x, size.z) * 0.5 + 1.2; // stand 1.2m from edge
-    const dx = this.mesh.position.x - tp.x;
-    const dz = this.mesh.position.z - tp.z;
-    const d = Math.sqrt(dx * dx + dz * dz) || 1;
-    const edgeX = tp.x + (dx / d) * halfW;
-    const edgeZ = tp.z + (dz / d) * halfW;
-    this.walkTo(edgeX, edgeZ, 4.0);
-  }
-
-  isChopping() {
-    return !!this._chopTreeEntity;
   }
 
   /** Set callback for run dust particles. Called with (position) each ~0.15s while running. */
@@ -356,31 +331,8 @@ export class ArchitectNPC {
   _updateMovement(dt) {
     this._movementTarget = null;
 
-    // Chop behavior: walk to tree, then play chop animation
-    if (this._chopTreeEntity) {
-      if (this._targetPosition) {
-        // Still walking to tree — handled by normal walk logic below
-      } else {
-        // Arrived at tree — play chop animation (only once)
-        const tp = this._chopTreeEntity.mesh.position;
-        this.lockFacing(tp.x, tp.z);
-        if (this._animState !== 'chop') this.playAnimation('chop');
-        this._chopAnimTimer += dt;
-        if (this._chopAnimTimer >= 3.0 && this._chopOnDone) {
-          const cb = this._chopOnDone;
-          this._chopTreeEntity = null;
-          this._chopAnimTimer = 0;
-          this._chopOnDone = null;
-          this.unlockFacing();
-          this._setAnimState('idle');
-          cb();
-        }
-        return;
-      }
-    }
-
     // Follow behavior uses the terrain path when one is configured.
-    if (this._followEnabled && this._followTarget) {
+    if (this.petState?.is(PET_STATES.FOLLOWING) && this._followTarget) {
       const tp = this._followTarget.position;
       const dist = Math.hypot(tp.x - this.mesh.position.x, tp.z - this.mesh.position.z);
       if (dist > this._followDistance) {
@@ -416,7 +368,7 @@ export class ArchitectNPC {
     }
 
     // Wander: re-pick target periodically
-    if (this._wanderEnabled) {
+    if (this.petState?.is(PET_STATES.FREE_ROAM)) {
       this._wanderTimer += dt;
       if (this._wanderTimer >= this._wanderInterval && !this._targetPosition) {
         this._wanderTimer = 0;
@@ -462,7 +414,7 @@ export class ArchitectNPC {
     if (this._navigation) {
       const candidate = this.mesh.position.clone().add(delta);
       if (!this._navigation.isWalkableWorld(candidate)) {
-        const destination = this._followEnabled
+        const destination = this.petState?.is(PET_STATES.FOLLOWING)
           ? this._followTarget?.position
           : this._targetPosition;
         if (destination) this._planNavigation(destination);

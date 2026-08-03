@@ -386,3 +386,14 @@ export function getEquipmentLoadoutPreset(characterId, loadout = {}, variantId =
   }
   return null;
 }
+
+export const CHII_EQUIPMENT_CATALOG = Object.freeze({
+  slots: CHII_EQUIPMENT_SLOTS,
+  createEmptyLoadout: createEmptyEquipmentLoadout,
+  getCharacterOutfits,
+  getItem: getChiiEquipmentItem,
+  getLoadoutPreset: getEquipmentLoadoutPreset,
+  getPlacement: getEquipmentPlacement,
+  getPreset: getEquipmentPreset,
+  getSlot: getChiiEquipmentSlot,
+});

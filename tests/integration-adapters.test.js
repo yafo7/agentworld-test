@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { VoxelContentAdapter } from '../src/integrations/content/VoxelContentAdapter.js';
-import { StudioAssetAdapter } from '../src/integrations/studio/StudioAssetAdapter.js';
 import { LocalRuntimeAssetRepository } from '../src/assets/repositories/LocalRuntimeAssetRepository.js';
 
 test('content adapter hides provider selection behind semantic profiles', async () => {
@@ -83,6 +82,56 @@ test('content adapter maps GPT Pro to the explicit voxel-pro backend mode', asyn
   }]);
 });
 
+test('content adapter rejects unknown semantic profiles instead of falling back', async () => {
+  const calls = [];
+  const adapter = new VoxelContentAdapter({
+    api: {
+      generateModel: async (...args) => { calls.push(args); return { modelJson: {} }; },
+    },
+    chat: async (...args) => { calls.push(args); return 'ok'; },
+  });
+
+  await assert.rejects(
+    adapter.generateModel({ description: 'toolbox', quality: 'voxle' }),
+    error => error instanceof TypeError
+      && error.name === 'ContentPolicyError'
+      && error.code === 'UNSUPPORTED_CONTENT_POLICY'
+      && error.field === 'generateModel.quality',
+  );
+  await assert.rejects(
+    adapter.chat({ messages: [{ role: 'user', content: 'plan' }], profile: 'planer' }),
+    error => error instanceof TypeError
+      && error.name === 'ContentPolicyError'
+      && error.code === 'UNSUPPORTED_CONTENT_POLICY'
+      && error.field === 'chat.profile',
+  );
+  assert.equal(calls.length, 0);
+});
+
+test('content adapter rejects transport overrides on semantic requests', async () => {
+  const calls = [];
+  const adapter = new VoxelContentAdapter({
+    api: {
+      generateModel: async (...args) => { calls.push(args); return { modelJson: {} }; },
+    },
+  });
+
+  for (const [field, value] of [
+    ['provider', 'fireworks'],
+    ['model', 'gpt-5.6-sol-low'],
+    ['mode', 'voxel-pro'],
+  ]) {
+    await assert.rejects(
+      adapter.generateModel({ description: 'toolbox', quality: 'voxel', [field]: value }),
+      error => error instanceof TypeError
+        && error.name === 'ContentPolicyError'
+        && error.code === 'UNSUPPORTED_CONTENT_POLICY'
+        && error.field === `generateModel.${field}`,
+    );
+  }
+  assert.equal(calls.length, 0);
+});
+
 test('local runtime repository resolves aliases without Studio metadata', async () => {
   const requests = [];
   const repository = new LocalRuntimeAssetRepository({
@@ -109,31 +158,4 @@ test('local runtime repository invokes browser fetch with the global receiver', 
   const repository = new LocalRuntimeAssetRepository({ catalog, fetchImpl });
   const model = await repository.getModel('receiverAsset');
   assert.equal(model.name, 'receiver-ok');
-});
-
-test('studio adapter uses the upstream edited-model and animation endpoints', async () => {
-  const calls = [];
-  const adapter = new StudioAssetAdapter({
-    baseUrl: '/studio',
-    fetchImpl: async (url, options = {}) => {
-      calls.push([url, options]);
-      return { ok: true, json: async () => ({ ok: true }) };
-    },
-  });
-
-  await adapter.loadOriginal('batch 1', 'model/a');
-  await adapter.loadEdit('batch 1', 'model/a');
-  await adapter.saveEdit('batch 1', 'model/a', { nodes: [] }, ['undo']);
-  await adapter.loadAnimations('batch 1', 'model/a');
-
-  assert.equal(calls[0][0], '/studio/api/model/batch%201/model%2Fa');
-  assert.equal(calls[1][0], '/studio/api/load-edited/batch%201/model%2Fa');
-  assert.equal(calls[2][0], '/studio/api/save-edited');
-  assert.deepEqual(JSON.parse(calls[2][1].body), {
-    commit: 'batch 1',
-    folder: 'model/a',
-    modelJson: { nodes: [] },
-    undoStack: ['undo'],
-  });
-  assert.equal(calls[3][0], '/studio/api/animations/batch%201/model%2Fa');
 });

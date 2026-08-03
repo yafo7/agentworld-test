@@ -1,4 +1,4 @@
-import { assetCache } from '../../storage/assetCache.js';
+import { assetCache } from '../runtime/assetCache.js';
 
 /**
  * Load an animation motion plan JSON from path.

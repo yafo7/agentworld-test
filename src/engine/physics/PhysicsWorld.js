@@ -84,4 +84,13 @@ export class PhysicsWorld {
   addGroundPlane(y = 0) {
     return this.addStaticBox(1000, 0.5, 1000, 0, y - 0.5, 0);
   }
+
+  dispose() {
+    if (!this._initialized) return;
+    this.eventQueue?.free?.();
+    this.world?.free?.();
+    this.eventQueue = null;
+    this.world = null;
+    this._initialized = false;
+  }
 }

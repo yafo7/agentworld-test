@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { applyAnimation } from '../../engine/animation/player.js';
 import { buildModelFromJson } from '../../engine/model/builder.js';
 import { initRuntime } from '../../engine/runtime/runtimeProvider.js';
-import { createChiiPageLoadingScreen } from '../chii-island/presentation/ChiiPageLoadingScreen.js';
+import { createPageLoadingScreen } from '../../engine/ui/PageLoadingScreen.js';
 import { AGENTLAND_FRIEND_PROFILES } from './data/friendProfiles.js';
 import { AGENTLAND_FRIEND_STORIES } from './data/storyScenarios.js';
 import { FriendActivityDirector } from './systems/FriendActivityDirector.js';
@@ -26,9 +26,13 @@ const friendDetailPersonality = document.querySelector('#friend-detail-personali
 const friendDetailReference = document.querySelector('#friend-detail-reference');
 const referenceDesk = document.querySelector('.reference-desk');
 const referenceToggle = document.querySelector('#reference-toggle');
-const pageLoading = createChiiPageLoadingScreen({ preset: 'showcase' });
-const badge = document.querySelector('.chii-loader-badge');
-if (badge) badge.textContent = 'AGENTLAND FRIENDS';
+const pageLoading = createPageLoadingScreen({
+  brand: 'AGENTLAND FRIENDS',
+  presets: {
+    default: { title: '朋友庭院正在开门', detail: '朋友们正在准备今天的见面。' },
+    navigation: { title: '正在返回奇异岛', detail: '朋友们帮你把回程路牌转正。' },
+  },
+});
 pageLoading.show({ title: '朋友庭院正在开门', detail: '样例朋友们正在决定谁先假装不紧张。' });
 
 const scene = new THREE.Scene();

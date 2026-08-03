@@ -13,19 +13,20 @@ const friendsHtml = read('src/demos/agentland-friends/index.html');
 const friendsMain = read('src/demos/agentland-friends/main.js');
 const ghostHtml = read('src/demos/ghost-home/index.html');
 
-test('Chii pages share one loading screen and navigation transition', () => {
+test('demos share the engine loading screen without importing each other', () => {
   for (const html of [islandHtml, showcaseHtml]) {
     assert.match(html, /id="chii-page-loader"/);
-    assert.match(html, /presentation\/chii-page-loading\.css/);
+    assert.match(html, /engine\/ui\/page-loading\.css/);
     assert.match(html, /data-chii-navigation/);
   }
   assert.match(islandMain, /createChiiPageLoadingScreen/);
   assert.match(islandMain, /pageLoading\.reload\(CHII_LOADING_PRESETS\.sceneStyle\)/);
   assert.match(showcaseScript, /createChiiPageLoadingScreen/);
   assert.match(showcaseScript, /pageLoading\.show/);
-  assert.match(friendsHtml, /chii-page-loading\.css/);
+  assert.match(friendsHtml, /engine\/ui\/page-loading\.css/);
   assert.match(friendsHtml, /data-chii-navigation/);
-  assert.match(friendsMain, /createChiiPageLoadingScreen/);
+  assert.match(friendsMain, /createPageLoadingScreen/);
+  assert.doesNotMatch(friendsMain, /demos\/chii-island|\.\.\/chii-island/);
   assert.match(friendsMain, /pageLoading\.show/);
   assert.doesNotMatch(showcaseHtml, /showcase-loading/);
   assert.doesNotMatch(showcaseScript, /showcase-loading|loading\.hidden/);
