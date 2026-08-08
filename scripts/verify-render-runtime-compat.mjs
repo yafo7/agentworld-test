@@ -1,11 +1,12 @@
 import { spawn } from 'node:child_process';
-import { createServer } from 'node:net';
+import { createServer as createNetServer } from 'node:net';
 import { copyFile, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { chromium } from 'playwright';
+import { createServer as createViteServer } from 'vite';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const INSTALLED_RUNTIME_PACKAGE = join(
@@ -14,7 +15,6 @@ const INSTALLED_RUNTIME_PACKAGE = join(
   '@voxel-studio',
   'render-runtime',
 );
-const VITE_BIN = join(ROOT, 'node_modules', 'vite', 'bin', 'vite.js');
 
 export function resolvePinnedRuntimeArchive(packageJson, root = ROOT) {
   const specifier = packageJson.dependencies?.['@voxel-studio/render-runtime'];
@@ -54,49 +54,15 @@ function runNpm(args, cwd) {
   return run(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', command], { cwd });
 }
 
-async function stopProcess(child) {
-  if (!child || child.exitCode != null) return;
-  const exited = new Promise(resolvePromise => child.once('exit', resolvePromise));
-  child.kill();
-  await Promise.race([
-    exited,
-    new Promise(resolvePromise => setTimeout(resolvePromise, 2_000)),
-  ]);
-  if (child.exitCode == null && process.platform === 'win32') {
-    await run('taskkill', ['/PID', String(child.pid), '/T', '/F']).catch(() => {});
-    await Promise.race([
-      exited,
-      new Promise(resolvePromise => setTimeout(resolvePromise, 2_000)),
-    ]);
-  }
-}
-
 async function freePort() {
   return new Promise((resolvePromise, reject) => {
-    const server = createServer();
+    const server = createNetServer();
     server.once('error', reject);
     server.listen(0, '127.0.0.1', () => {
       const { port } = server.address();
       server.close(error => error ? reject(error) : resolvePromise(port));
     });
   });
-}
-
-async function waitForServer(url, processHandle, timeoutMs = 30_000) {
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() < deadline) {
-    if (processHandle.exitCode != null) {
-      throw new Error(`compat Vite server exited early (${processHandle.exitCode})`);
-    }
-    try {
-      const response = await fetch(url);
-      if (response.ok) return;
-    } catch {
-      // The server is still starting.
-    }
-    await new Promise(resolvePromise => setTimeout(resolvePromise, 150));
-  }
-  throw new Error(`compat Vite server did not start within ${timeoutMs}ms`);
 }
 
 function browserFixture() {
@@ -279,7 +245,7 @@ document.querySelector('pre').textContent = JSON.stringify(result, null, 2);
 async function main() {
   const packageJson = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
   const tempRoot = await mkdtemp(join(tmpdir(), 'chii-render-compat-'));
-  let viteProcess = null;
+  let viteServer = null;
   let browser = null;
 
   try {
@@ -323,16 +289,17 @@ async function main() {
     );
 
     const port = await freePort();
-    viteProcess = spawn(process.execPath, [VITE_BIN, '--host', '127.0.0.1', '--port', String(port), '--strictPort'], {
-      cwd: tempRoot,
-      env: process.env,
-      stdio: ['ignore', 'pipe', 'pipe'],
+    viteServer = await createViteServer({
+      root: tempRoot,
+      logLevel: 'silent',
+      server: {
+        host: '127.0.0.1',
+        port,
+        strictPort: true,
+      },
     });
-    let viteOutput = '';
-    viteProcess.stdout.on('data', chunk => { viteOutput += chunk; });
-    viteProcess.stderr.on('data', chunk => { viteOutput += chunk; });
+    await viteServer.listen();
     const url = `http://127.0.0.1:${port}/`;
-    await waitForServer(url, viteProcess);
 
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage({ viewport: { width: 520, height: 380 } });
@@ -353,11 +320,11 @@ async function main() {
     };
     console.log(JSON.stringify(result, null, 2));
     if (!result.ok || browserErrors.length) {
-      throw new Error(`render runtime compatibility failed\n${JSON.stringify(result, null, 2)}\n${viteOutput}`);
+      throw new Error(`render runtime compatibility failed\n${JSON.stringify(result, null, 2)}`);
     }
   } finally {
     await browser?.close().catch(() => {});
-    await stopProcess(viteProcess);
+    await viteServer?.close().catch(() => {});
     await rm(tempRoot, { recursive: true, force: true, maxRetries: 8, retryDelay: 250 });
   }
 }
