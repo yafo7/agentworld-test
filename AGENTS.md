@@ -73,7 +73,7 @@ Current island:
 - Cross-scene story progression is owned by `IslandStoryState`: chapter, island day, development stage, known residents, unlocked regions, current authored objective, completed events, and durable story facts. Existing Act 0 saves migrate automatically; scene-style saves remain separate.
 - Unified current pet state machine.
 - Runtime assets loaded locally from `public/generated/`.
-- ESC switches between three independent scene profiles: Original, Pro, and Voxel; Original is the default and the only profile updated unless the user explicitly requests work on Pro or Voxel. Each profile owns its own frozen asset paths, resident models/animations, environment feature flags, and manifest. Original targets the boundary immediately before the large iteration began at `2026-07-28 09:24:23 +08:00` and is rebuilt from the automatic `public/generated/history/2026-07-28-gpt56-reset/` backup. It restores the former environment mix with the pre-reset shared residents and buildings, keeps tile water, and disables the later beach, continuous river, waterfall, and fountain presentations. The old bridge JSON was overwritten before that backup ran; the Original manifest records the current validated bridge as its only compatibility fallback.
+- ESC switches between Original, Pro, and Forge; Original remains the default. Voxel is an archived compatibility profile and is no longer shown in the scene switcher. Original and Pro keep their frozen Chii snapshots. Forge loads a versioned WorldForge base-scene package while reusing Original resident/building assets as Chii gameplay overlays.
 - ESC can switch collision between important-part voxel AABBs (default) and the legacy whole-bounds strategy; both are owned by `ColliderRegistry`.
 - ESC provides a bubble-style climate panel. Manual mode controls weather, hour (0-23), and month (1-12); realtime mode reads device date/time/timezone without permission and requests location only after the player clicks weather sync. Open-Meteo supplies weather and BigDataCloud supplies the city label through separate adapters. Weather uses a 30-minute browser cache and clear-weather fallback; the city label is session-only. Coordinates are rounded by the adapters and are never cached.
 - Editable non-vegetation objects use grid occupancy and support move, rotate, scale, and delete. Editing uses a fixed north-up overhead camera: screen up is world `-Z`, screen right is world `+X`.
@@ -89,7 +89,7 @@ Implemented vertical slices:
 - Building interiors: curated and generated buildings share one enter/exit system. The church has a code-built Gothic nave plus locally cached backend-generated pews, altar, and statue; windmill, temple, and generated buildings currently reuse one simple empty-room template.
 - Agentland Friends: a standalone prototype that previews user-supplied local reference images, selects generated friend characters, lets residents roam autonomously, and plays a small staged group story. It is separate from Chii gameplay and does not upload references or call the backend at runtime.
 
-Each Pro/Voxel/Original scene owns an isolated local save. AI-created objects, refine/mount results, confirmed object transforms and deletions, generated buildings, summoned residents, and character appearance changes survive refresh. ESC exposes one continuously updated Auto state plus three manually frozen Record slots; Reset restores the selected Record into Auto after explicit confirmation. Construction/VFX helpers, social-event props and outfits, dialogue/camera/input state, and frame-by-frame free-roam positions remain transient.
+Original, Pro, Forge, and the archived Voxel profile own isolated local saves. AI-created objects, refine/mount results, confirmed object transforms and deletions, generated buildings, summoned residents, and character appearance changes survive refresh. ESC exposes one continuously updated Auto state plus three manually frozen Record slots; Reset restores the selected Record into Auto after explicit confirmation. Construction/VFX helpers, social-event props and outfits, dialogue/camera/input state, and frame-by-frame free-roam positions remain transient.
 
 Use `$chii-status` instead of rereading the whole repository for current progress.
 
@@ -120,7 +120,7 @@ Important ownership:
 - `gameplay/createChiiRegionGameplay.js`: three-region gameplay composition.
 - `world/ChiiSceneAssembler.js`: Chii entity placement.
 - `systems/sceneLayout.js`: deterministic terrain and region plan.
-- `data/sceneStyle.js` and `data/assetCatalog.js`: independent Pro/Voxel/Original scene profiles, feature flags, frozen asset roots, and runtime catalog selection.
+- `data/sceneStyle.js` and `data/assetCatalog.js`: selectable Original/Pro/Forge profiles plus the archived Voxel compatibility profile, feature flags, frozen roots, and runtime catalog selection.
 - `systems/ChiiInteractionController.js`: interaction selection/routing.
 - `systems/PetManager.js`: current pet loading and free-roam behavior.
 - `data/residentCatalog.js`: canonical resident IDs, legacy aliases, asset/profile identity, loader ownership, region, spawn, and initial state.
@@ -152,6 +152,8 @@ Important ownership:
 - `src/ports/WorldWaterVisualPort.js` and `src/integrations/rendering/VoxelStudioWorldWaterAdapter.js`: replaceable continuous river presentation, isolated from terrain occupancy and navigation.
 - `src/ports/WorldClimateVisualPort.js`, `presentation/WorldClimatePresenter.js`, and `src/integrations/rendering/ChiiSkyVisualAdapter.js`: the presenter implements the climate visual contract and owns the replaceable sky delegate.
 - `src/ports/RenderPresentationPort.js` and `src/integrations/rendering/VoxelStudioRenderPresentationAdapter.js`: current/cel styles, optional post-processing, quality tiers, and direct-render fallback.
+- `src/ports/ForgeScenePort.js`, `src/assets/repositories/ForgeSceneRepository.js`, and `src/integrations/worldforge/`: immutable Forge package loading, hash/version checks, embeddable WorldForge rendering, Forge height-field physics, and navigation-grid projection.
+- `public/generated/scenes/forge/worldforge/`: published runtime-only Forge map, render scheme, gameplay bindings, optional HDRI, and integrity manifest. Chii never requires the live WorldForge editor in production.
 - `src/demos/chii-island/data/assetCatalog.js`: local runtime asset catalog.
 - `src/assets/generatedAssetManifest.js` and `src/assets/generatedLibrary.js`: generated-library schema, lifecycle, and runtime lookup; local Vite persistence is implemented by `vite/localLibraryPlugin.js`.
 
@@ -173,7 +175,7 @@ Architecture hardening completed 2026-08-03:
 
 ### 3d-generate Capability Baseline
 
-Last audited remote baseline: `411c4ad` on 2026-08-07. This is a compatibility baseline, not permission to import sibling source directly. Chii's integrated render-runtime package remains pinned to the separately audited `1203a1e` tarball until an explicit package upgrade passes compatibility validation.
+Last audited backend/runtime baseline: `1805dfc` on 2026-08-08. Chii pins that runtime as `vendor/voxel-studio-render-runtime-0.1.0-1805dfc.tgz`, pins Three to `0.160.1`, and validates the package in real WebGL2 with `npm run test:render-compat`.
 
 Current backend and Studio capabilities:
 
@@ -182,15 +184,15 @@ Current backend and Studio capabilities:
 - Material Tags v2 lets AI annotate `nodes[].tags` with semantic material intent while the runtime owns shaders and particles. The audited vocabulary includes `base` (`gold`, `silver`, `metal`, `glass`, `wood`, `stone`, `fur`), `water` (`pool`, `fall`), `foliage:leaf`, `vegetation:sway`, `emissive`, `fire` (normal/blue/green), and `smoke` (normal/steam).
 - `electric`, `poison`, `ice`, `wet`, `rust`, `mossy`, `dirty`, and `damage` are vocabulary/design entries, not completed Chii rendering features.
 - The material system includes procedural triplanar wood/stone variants, model-local pools/waterfalls/water streams, deterministic fire/smoke particles, and global tuning through `/api/material-tag-textures`.
-- `@voxel-studio/render-runtime` is a reusable Three.js package for material tags, effect packages, batching, render styles, quality tiers, and post-processing. Chii pins the audited `1203a1e` package as `vendor/voxel-studio-render-runtime-0.1.0-1203a1e.tgz` and has verified its public material, fur, foliage, VFX vocabulary, Cel, and render-pipeline paths against Three.js r184 in real WebGL2; rerun `npm run test:render-compat` before updating that package.
+- `@voxel-studio/render-runtime` is a reusable Three.js package for material tags, effect packages, batching, render styles, quality tiers, and post-processing. Chii pins `1805dfc` as `vendor/voxel-studio-render-runtime-0.1.0-1805dfc.tgz` and has verified it against Three.js r160 in real WebGL2; rerun `npm run test:render-compat` before updating that package.
 - Remote commit `411c4ad` centralizes per-material, per-patch shader program cache generations in `MaterialShaderPatchChain`. It fixes stale Three.js program reuse after Cel patch reinstall, effect-layer remove/reapply, effect-variant replacement, and CSM rebuild. It does not change public API routes, generation providers, model/animation JSON, material-tag vocabulary, package exports, package version, or the Three.js peer range. Chii receives none of these runtime changes merely by pulling the sibling repository; adopting them requires a newly pinned tarball and the full render compatibility gate.
 - `SkySystem`, atmosphere, clouds, HDRI, environment reflection, and shared render presets exist, with `GET/POST /api/shared-render-preset` and a hash endpoint. Treat this as an available module set, not as an already integrated Chii feature.
 - The backend also exposes editable model/animation persistence through `/api/load-edited`, `/api/save-edited`, `/api/animations`, and `/api/save-animation`. Chii asset sync uses these native upstream endpoints.
 
 Current Chii integration boundary:
 
-- Pulling `3d-generate` does not automatically change Chii visuals. Chii runs local JSON from `public/generated/` and does not import sibling runtime code.
-- Chii preserves `nodes[].tags`, explicit `locked`, mesh bone endpoints, `_meta.mounts`, and known extension metadata through model parse/clone/serialize. Autonomous Voxel generate/refine requests send compact read-only material/VFX contracts pinned to audited backend commit `1203a1e`.
+- Pulling `3d-generate` or WorldForge does not automatically change Chii visuals. Runtime changes require a newly pinned tarball and compatibility verification; map changes require an explicit `publish:forge-scene` operation.
+- Chii preserves `nodes[].tags`, explicit `locked`, mesh bone endpoints, `_meta.mounts`, and known extension metadata through model parse/clone/serialize. Autonomous Voxel generate/refine requests send compact read-only material/VFX contracts pinned to the current audited backend baseline.
 - Chii runs the pinned Studio `MaterialTagRuntime` behind `ModelVisualPort`; tagged models remain unmerged so part semantics survive. The adapter promotes compatible Lambert/Phong materials to Standard only at this integration boundary. Fire/smoke, fur, foliage, and vegetation sway use runtime capabilities; pool/fall model water and the continuous world river remain replaceable Chii adapters. This is not full Studio parity: upstream model-water classes, texture-tuning presets, and batching are not exported/integrated.
 - Model visual lifecycle follows world-object registration and model replacement. Create/refine/mount/remove paths must attach, detach, or reattach through the visual adapter instead of managing tag effects inside gameplay code.
 - Time and weather drive a replaceable Chii sky through `WorldClimateVisualPort`. Full Studio clouds, HDRI, environment reflections, and shared render presets remain unintegrated.
@@ -287,11 +289,11 @@ Current autonomous model generation uses `provider: 'gpt'` with `mode: 'voxel'`.
 
 Current scene-production policy: update Original only by default. Pro and Voxel remain independent comparison scenes and receive no generated assets, clothing variants, or layout changes unless the user explicitly names them. Existing GPT 5.6 assets remain frozen in their owning scenes. Preserve semantic metadata and authored size roles when replacing model JSON.
 
-Frozen scene snapshots live under `public/generated/scenes/{pro,voxel,original}/`. A scene change updates only that scene's catalog, manifest, profile flags, and scene-specific layout data. Never overwrite another scene's snapshot as a side effect. The three scenes share engine, gameplay systems, and layout algorithms, but not mutable content assets. Historical Voxel source variants under `public/generated/styles/voxel/` remain generation inputs rather than the active scene boundary.
+Frozen legacy scene snapshots live under `public/generated/scenes/{pro,voxel,original}/`; Voxel remains archived. Forge lives under `public/generated/scenes/forge/worldforge/` and is published from WorldForge through `npm run publish:forge-scene -- --map-id=<id>`. Never edit a published Forge JSON by hand; change the WorldForge map or Chii bindings and republish.
 
 Runtime save rules:
 
-- Pro, Voxel, and Original Auto/Record data must remain isolated.
+- Original, Pro, Forge, and archived Voxel Auto/Record data must remain isolated.
 - World changes auto-save after registry metadata/add/remove events and flush before scene-style reload or page exit.
 - Restore world objects before collider and placement-grid composition; restore summoned pets after region gameplay composition.
 - Record captures the current world delta, resident event data, and scoped character appearances. Reset must suspend auto-save, copy the selected Record to Auto, restore appearances/events, and reload.

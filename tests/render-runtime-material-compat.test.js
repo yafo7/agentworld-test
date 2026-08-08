@@ -23,7 +23,7 @@ test('Studio runtime adapter promotes Lambert materials without changing visible
   assert.equal(promoted.name, source.name);
   assert.equal(promoted.color.getHex(), source.color.getHex());
   assert.equal(promoted.opacity, 0.72);
-  assert.equal(promoted.userData.chiiVoxelRuntimeMaterial.runtimeCommit, '1203a1e');
+  assert.equal(promoted.userData.chiiVoxelRuntimeMaterial.runtimeCommit, '1805dfc');
   assert.equal(promoteMaterialForVoxelRuntime(promoted), promoted);
 });
 

@@ -225,7 +225,7 @@ try {
     log: program.diagnostics?.programLog || '',
   }));
   const failedPrograms = result.programs.filter(program => !program.runnable || program.log);
-  if (result.threeRevision !== '184') throw new Error('expected Three r184, got r' + result.threeRevision);
+  if (result.threeRevision !== '160') throw new Error('expected Three r160, got r' + result.threeRevision);
   if (result.apply.appliedParts < 6) throw new Error('material runtime applied too few parts');
   if (!result.vfx.valid || result.vfx.presetCount < 8) throw new Error('vfx vocabulary contract failed');
   if (result.style.mode !== 'cel' || !result.style.ramp || !result.style.patchKeys.includes('renderStyle:cel')) {

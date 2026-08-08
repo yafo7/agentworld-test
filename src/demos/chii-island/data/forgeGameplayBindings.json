@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "chii-island-forge-v1",
+  "objects": {
+    "windmill": { "owner": "chii-overlay", "worldObjectId": "windmill" },
+    "church": { "owner": "chii-overlay", "worldObjectId": "church" },
+    "temple": { "owner": "chii-overlay", "worldObjectId": "temple" },
+    "town_bridge": { "owner": "chii-overlay", "worldObjectId": "town_stone_bridge" },
+    "town_campfire": { "owner": "chii-overlay", "worldObjectId": "campfire" },
+    "forest_trophy": { "owner": "chii-overlay", "worldObjectId": "forest_temple_trophy" },
+    "forest_tent": { "owner": "chii-overlay", "worldObjectId": "forest_temple_tent" }
+  },
+  "zones": {
+    "pastoral": { "minX": -92, "maxX": -10, "minZ": -80, "maxZ": 80 },
+    "town": { "minX": 10, "maxX": 92, "minZ": -92, "maxZ": 2 },
+    "forest": { "minX": 10, "maxX": 92, "minZ": 4, "maxZ": 92 }
+  },
+  "spawns": {
+    "player": [-36, 1.5, -38],
+    "pastoral": [-60, 1.5, 0],
+    "town": [48, 1.5, -48],
+    "forest": [48, 1.5, 48]
+  }
+}

@@ -40,13 +40,31 @@ export const CHII_SCENE_PROFILES = Object.freeze({
       waterLandmarks: true,
       forestBeach: true,
     }),
+    selectable: false,
+  }),
+  forge: Object.freeze({
+    id: 'forge',
+    label: 'Forge 场景',
+    assetRoot: 'generated/scenes/original',
+    forgePackageRoot: 'generated/scenes/forge/worldforge',
+    snapshotId: 'chii-island-forge-v1',
+    terrainSeed: 42,
+    layoutSeed: 99,
+    features: Object.freeze({
+      worldWater: false,
+      waterLandmarks: false,
+      forestBeach: false,
+      worldForge: true,
+    }),
   }),
 });
 
-export const CHII_SCENE_STYLES = Object.freeze(Object.keys(CHII_SCENE_PROFILES));
+export const CHII_SCENE_STYLES = Object.freeze(
+  Object.values(CHII_SCENE_PROFILES).filter(profile => profile.selectable !== false).map(profile => profile.id),
+);
 
 export function normalizeChiiSceneStyle(value) {
-  return CHII_SCENE_STYLES.includes(value) ? value : DEFAULT_CHII_SCENE_STYLE;
+  return Object.hasOwn(CHII_SCENE_PROFILES, value) ? value : DEFAULT_CHII_SCENE_STYLE;
 }
 
 export function getChiiSceneProfile(value = DEFAULT_CHII_SCENE_STYLE) {

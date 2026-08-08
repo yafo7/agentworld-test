@@ -43,7 +43,8 @@ test('ESC management panel sits above runtime HUD overlays', () => {
 test('ESC scene switcher presents Original first', () => {
   const original = html.indexOf('data-scene-style="original">Original');
   const pro = html.indexOf('data-scene-style="pro">Pro 场景');
-  const voxel = html.indexOf('data-scene-style="voxel">Voxel 场景');
-  assert.ok(original >= 0 && original < pro && pro < voxel);
+  const forge = html.indexOf('data-scene-style="forge">Forge 场景');
+  assert.ok(original >= 0 && original < pro && pro < forge);
+  assert.doesNotMatch(html, /data-scene-style="voxel"/);
   assert.doesNotMatch(html, /初版场景/);
 });

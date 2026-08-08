@@ -98,7 +98,7 @@ export function promoteMaterialForVoxelRuntime(material) {
     ...(material.userData || {}),
     chiiVoxelRuntimeMaterial: {
       sourceType: material.type,
-      runtimeCommit: '1203a1e',
+      runtimeCommit: '1805dfc',
     },
   };
   copyTextureProperties(material, promoted);

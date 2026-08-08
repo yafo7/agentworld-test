@@ -78,6 +78,11 @@ import { ApplicationLifecycle } from '../../engine/runtime/ApplicationLifecycle.
 import { SceneManagementPanel } from './presentation/SceneManagementPanel.js';
 import { ChiiCharacterRuntimeService } from './systems/ChiiCharacterRuntimeService.js';
 import { ChiiInteractionSession } from './systems/ChiiInteractionSession.js';
+import { createMapHost } from 'worldforge-studio/host';
+import { ForgeSceneRepository } from '../../assets/repositories/ForgeSceneRepository.js';
+import { WorldForgeRenderPresentationAdapter } from '../../integrations/worldforge/WorldForgeRenderPresentationAdapter.js';
+import { ForgeMapPhysicsAdapter } from '../../integrations/worldforge/ForgeMapPhysicsAdapter.js';
+import { createTerrainLayoutFromForge } from '../../integrations/worldforge/forgeTerrainLayout.js';
 
 const pageLoading = createChiiPageLoadingScreen({ preset: 'island' });
 const applicationLifecycle = new ApplicationLifecycle();
@@ -126,6 +131,13 @@ async function init() {
   window.THREE = THREE;
   const islandStoryState = new IslandStoryState();
   const actZeroStoryState = new ActZeroStoryState({ storyState: islandStoryState });
+  const sceneStyle = getChiiSceneStyle();
+  const sceneProfile = getChiiSceneProfile(sceneStyle);
+  const forgeScene = sceneProfile.features.worldForge
+    ? await awaitApplication(() => new ForgeSceneRepository({
+        root: `/${sceneProfile.forgePackageRoot}`,
+      }).load(sceneProfile.snapshotId))
+    : null;
   if (actZeroStoryState.shouldPlay()) {
     pageLoading.show(CHII_LOADING_PRESETS.prologue);
   }
@@ -141,7 +153,7 @@ async function init() {
   await physics.init();
   applicationLifecycle.add(physics);
   applicationLifecycle.assertActive();
-  physics.addGroundPlane(0);
+  physics.addGroundPlane(forgeScene ? -8 : 0);
   console.log('[Init] Physics ready');
 
   // ---- Three.js setup ----
@@ -167,12 +179,26 @@ async function init() {
   applicationLifecycle.add(thirdPersonCamera);
   const camera = thirdPersonCamera.camera;
   const lightRig = createLights(scene);
-  const renderPresentation = new VoxelStudioRenderPresentationAdapter({
-    renderer,
-    scene,
-    camera,
-    lightRig,
-  });
+  let forgeHost = null;
+  if (forgeScene) {
+    scene.add(lightRig.sunLight.target);
+    forgeHost = await awaitApplication(() => createMapHost({
+      map: forgeScene.map,
+      scheme: forgeScene.renderScheme,
+      scene,
+      camera,
+      renderer,
+      sunLight: lightRig.sunLight,
+      hemisphereLight: lightRig.hemiLight,
+      sunTarget: lightRig.sunLight.target,
+      hdriUrl: file => forgeScene.hdriUrl
+        || `/${sceneProfile.forgePackageRoot}/hdri/${encodeURIComponent(file)}`,
+    }));
+    window.__chiiForgeHost = forgeHost;
+  }
+  const renderPresentation = forgeHost
+    ? new WorldForgeRenderPresentationAdapter({ host: forgeHost })
+    : new VoxelStudioRenderPresentationAdapter({ renderer, scene, camera, lightRig });
   applicationLifecycle.add(renderPresentation);
   const modelVisuals = new VoxelStudioModelVisualAdapter({
     scene,
@@ -187,10 +213,10 @@ async function init() {
 
   // ---- terrain grid (50×50, procedural forest biome) ----
   const GRID_SIZE = 50;
-  const sceneStyle = getChiiSceneStyle();
-  const sceneProfile = getChiiSceneProfile(sceneStyle);
   preloadBlocks({});
-  const layout = generateTerrainLayout(GRID_SIZE, sceneProfile.terrainSeed);
+  const layout = forgeScene
+    ? createTerrainLayoutFromForge(forgeScene.map, GRID_SIZE)
+    : generateTerrainLayout(GRID_SIZE, sceneProfile.terrainSeed);
   const centerCfg = { center: CHII_WORLD_CENTER };
 
   function countBlockTypes(l) {
@@ -225,9 +251,15 @@ async function init() {
   });
   console.log('[SceneLayout]', `${scenePlan.buildings.length} buildings, ${scenePlan.trees.length} trees, ${scenePlan.grasses.length} grasses`);
 
-  const unitEnv = createUnitEnvironment(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout);
+  const unitEnv = forgeScene
+    ? null
+    : createUnitEnvironment(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout);
   console.log('[Terrain] 50×50 terrain:', countBlockTypes(scenePlan.modifiedLayout));
-  scene.add(unitEnv);
+  if (unitEnv) scene.add(unitEnv);
+  const forgePhysics = forgeScene
+    ? new ForgeMapPhysicsAdapter({ physics, map: forgeScene.map }).attach()
+    : null;
+  if (forgePhysics) applicationLifecycle.add(forgePhysics);
   const worldWaterVisuals = sceneProfile.features.worldWater
     ? new VoxelStudioWorldWaterAdapter({ scene })
     : null;
@@ -341,9 +373,12 @@ async function init() {
   const townDemoCell = scenePlan.town?.petSpawns?.fangk;
   const forestDemoCell = scenePlan.forestTemple?.trophy;
   const beachSpawnCell = scenePlan.beach?.spawn;
-  let demoSpawn = beachSpawnCell
-    ? getGridWorldPosition(beachSpawnCell.gridX, beachSpawnCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE)
-    : { x: 0, z: 0 };
+  const forgePlayerSpawn = forgeScene?.bindings?.spawns?.player;
+  let demoSpawn = forgePlayerSpawn
+    ? { x: forgePlayerSpawn[0], z: forgePlayerSpawn[2] }
+    : beachSpawnCell
+      ? getGridWorldPosition(beachSpawnCell.gridX, beachSpawnCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE)
+      : { x: 0, z: 0 };
   if (forestDemoEnabled && forestDemoCell) {
     demoSpawn = getGridWorldPosition(forestDemoCell.gridX, forestDemoCell.gridZ - 1, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
   } else if (townDemoEnabled && townDemoCell) {

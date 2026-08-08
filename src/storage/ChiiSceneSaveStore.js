@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'chii_scene_saves_v2';
 const SAVE_VERSION = 2;
 const RECORD_SLOT_COUNT = 3;
-const SCENE_STYLES = Object.freeze(['pro', 'voxel', 'original']);
+const SCENE_STYLES = Object.freeze(['pro', 'voxel', 'original', 'forge']);
 
 function clone(value) {
   if (value == null) return value;
@@ -62,7 +62,7 @@ function readState(storage) {
 }
 
 function normalizeStyle(style) {
-  return SCENE_STYLES.includes(style) ? style : 'voxel';
+  return SCENE_STYLES.includes(style) ? style : 'original';
 }
 
 function wrapSnapshot(snapshot, savedAt, source = 'auto') {

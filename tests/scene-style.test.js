@@ -15,12 +15,13 @@ import {
 } from '../src/demos/chii-island/data/sceneStyle.js';
 import { generateSceneLayout } from '../src/demos/chii-island/systems/sceneLayout.js';
 
-test('scene profiles keep Pro, Voxel, and Original assets independent', () => {
+test('scene profiles expose Original, Pro, and Forge while preserving the archived Voxel catalog', () => {
   const pro = createChiiAssetCatalog('pro');
   const voxel = createChiiAssetCatalog('voxel');
   const original = createChiiAssetCatalog('original');
+  const forge = createChiiAssetCatalog('forge');
 
-  assert.deepEqual(CHII_SCENE_STYLES, ['original', 'pro', 'voxel']);
+  assert.deepEqual(CHII_SCENE_STYLES, ['original', 'pro', 'forge']);
   assert.equal(pro.oak.model, 'generated/scenes/pro/models/oak.json');
   assert.equal(voxel.oak.model, 'generated/scenes/voxel/models/oak.json');
   assert.equal(original.oak.model, 'generated/scenes/original/models/oak.json');
@@ -28,6 +29,8 @@ test('scene profiles keep Pro, Voxel, and Original assets independent', () => {
   assert.equal(pro.mako.model, 'generated/scenes/pro/models/mako.json');
   assert.equal(voxel.mako.model, 'generated/scenes/voxel/models/mako.json');
   assert.equal(original.mako.model, 'generated/scenes/original/models/mako.json');
+  assert.equal(forge.mako.model, original.mako.model);
+  assert.equal(getChiiSceneProfile('forge').features.worldForge, true);
   assert.notEqual(pro.windmill.model, voxel.windmill.model);
   assert.notEqual(voxel.windmill.model, original.windmill.model);
   assert.equal(original.islandWaterfall, undefined);
@@ -36,8 +39,8 @@ test('scene profiles keep Pro, Voxel, and Original assets independent', () => {
   assert.equal(getChiiSceneAssetIds('original').includes('townFountain'), false);
 });
 
-test('every independent scene snapshot only references files in its own directory', async () => {
-  for (const sceneId of CHII_SCENE_STYLES) {
+test('legacy static scene snapshots only reference files in their own directory', async () => {
+  for (const sceneId of ['original', 'pro']) {
     const manifestUrl = new URL(`../public/generated/scenes/${sceneId}/manifest.json`, import.meta.url);
     const manifest = JSON.parse(await fs.readFile(manifestUrl, 'utf8'));
     assert.equal(manifest.sceneId, sceneId);

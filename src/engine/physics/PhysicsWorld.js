@@ -53,6 +53,13 @@ export class PhysicsWorld {
     return this.addStaticBoxToBody(body, hx, hy, hz, x, y, z);
   }
 
+  addStaticTrimesh(vertices, indices) {
+    const body = this.createStaticBody();
+    const collider = RAPIER.ColliderDesc.trimesh(vertices, indices);
+    this.world.createCollider(collider, body);
+    return body;
+  }
+
   createStaticBody() {
     return this.world.createRigidBody(RAPIER.RigidBodyDesc.fixed());
   }

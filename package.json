@@ -29,6 +29,8 @@
     "generate:outfits": "node scripts/generate-chii-outfits.mjs",
     "generate:church-interior": "node scripts/generate-chii-church-interior.mjs",
     "rebuild:original-scene": "node scripts/rebuild-chii-original-scene.mjs",
+    "publish:forge-scene": "node scripts/publish-worldforge-scene.mjs",
+    "create:forge-base": "node scripts/create-chii-forge-base-map.mjs",
     "preview": "vite preview",
     "preview:lan": "vite preview --host 0.0.0.0"
   },
@@ -39,7 +41,8 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.3",
-    "@voxel-studio/render-runtime": "file:vendor/voxel-studio-render-runtime-0.1.0-1203a1e.tgz",
-    "three": "^0.184.0"
+    "@voxel-studio/render-runtime": "file:vendor/voxel-studio-render-runtime-0.1.0-1805dfc.tgz",
+    "three": "0.160.1",
+    "worldforge-studio": "file:vendor/worldforge-studio-0.1.0-b7187ea.tgz"
   }
 }

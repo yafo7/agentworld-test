@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "kind": "chii-forge-scene",
+  "sceneId": "chii-island-forge-v1",
+  "sourceMapId": "map-38d6e628-b6bf-4dd1",
+  "publishedAt": "2026-08-08T12:48:51.225Z",
+  "worldForge": {
+    "commit": "b7187ea",
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json"
+  },
+  "hashes": {
+    "map": "d5bf48b9e845503399cc0174696f500fb2ac3ece2b517fe4e1a399f28865ab13",
+    "renderScheme": "c66260349ede7984bcd5926da337ec9d5c9aa3f8edd6291cf30257e4ef8026d7",
+    "bindings": "1899c27aca700af41381118674fe132a98dfd3469742cdb07ff1d8a663975a24"
+  }
+}

@@ -91,7 +91,7 @@ function buildSceneCatalog(sceneStyle) {
 }
 
 const CHII_SCENE_CATALOGS = Object.freeze(Object.fromEntries(
-  ['pro', 'voxel', 'original'].map(sceneStyle => [sceneStyle, buildSceneCatalog(sceneStyle)]),
+  ['pro', 'voxel', 'original', 'forge'].map(sceneStyle => [sceneStyle, buildSceneCatalog(sceneStyle)]),
 ));
 
 export const CHII_ASSET_CATALOG = CHII_SCENE_CATALOGS.pro;
