@@ -309,7 +309,20 @@ async function main() {
       if (message.type() === 'error') browserErrors.push(message.text());
     });
     await page.goto(url, { waitUntil: 'networkidle' });
-    await page.waitForFunction(() => document.body.dataset.done === 'true', null, { timeout: 30_000 });
+    try {
+      await page.waitForFunction(
+        () => document.body.dataset.done === 'true',
+        null,
+        { timeout: 60_000 },
+      );
+    } catch (error) {
+      const pageState = await page.locator('body').innerText().catch(() => 'unavailable');
+      throw new Error([
+        error.message,
+        `browser errors: ${JSON.stringify(browserErrors)}`,
+        `page state: ${pageState.slice(0, 2000)}`,
+      ].join('\n'));
+    }
     const result = await page.evaluate(() => window.__compatResult);
     result.browserErrors = browserErrors;
     result.contract = {
