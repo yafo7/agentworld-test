@@ -11,6 +11,11 @@ import { ActivityReservationService } from '../../../gameplay/social/ActivityRes
 import { TownActivityRegistryStore } from '../../../storage/TownActivityRegistryStore.js';
 import { createTownActivityRegistrySeed } from '../data/townActivityRegistry.js';
 import { IslandStoryProgression } from '../../../gameplay/story/IslandStoryProgression.js';
+import { ObjectiveProjectionStore } from '../../../gameplay/objectives/ObjectiveProjectionStore.js';
+import { StoryObjectiveProjectionBridge } from '../../../gameplay/objectives/StoryObjectiveProjectionBridge.js';
+import { ObjectiveGuidanceSystem } from '../systems/ObjectiveGuidanceSystem.js';
+import { IslandMiniMapPresenter } from '../presentation/IslandMiniMapPresenter.js';
+import { WorldObjectiveMarkerPresenter } from '../presentation/WorldObjectiveMarkerPresenter.js';
 
 export async function createChiiRegionGameplay({
   scene,
@@ -27,6 +32,7 @@ export async function createChiiRegionGameplay({
   scenePlan,
   center,
   gridSize,
+  terrainTileSize = 4,
   dialogueCamera,
   forest,
   pastoralWork,
@@ -39,11 +45,16 @@ export async function createChiiRegionGameplay({
   equipmentService = null,
   sceneStyle = 'original',
   storyState = null,
+  navigation = null,
   onGeneratedObject,
 }) {
   const vfxService = new TemporaryVfxService({ scene });
   const residentReservations = new ActivityReservationService();
   const storyProgression = storyState ? new IslandStoryProgression({ storyState }) : null;
+  const objectiveStore = new ObjectiveProjectionStore();
+  const storyObjectiveBridge = storyState
+    ? new StoryObjectiveProjectionBridge({ storyState, projectionStore: objectiveStore })
+    : null;
 
   const pastoralSlice = createPastoralSlice({
     scene,
@@ -111,6 +122,7 @@ export async function createChiiRegionGameplay({
     sceneStyle,
     activityRegistry: townActivityRegistry,
     reservations: residentReservations,
+    objectiveStore,
     onActivityCompleted: activity => storyProgression?.recordTownActivityCompleted(activity),
   });
   const townBuilderSystem = new TownBuilderSystem({
@@ -155,6 +167,36 @@ export async function createChiiRegionGameplay({
     ['教堂城镇', worldObjects.findByName('哥特教堂')?.mesh.position],
     ['森林神殿', worldObjects.findByName('古老神殿')?.mesh.position],
   ].filter(([, position]) => position);
+  const miniMap = new IslandMiniMapPresenter({
+    canvas: document.getElementById('island-minimap'),
+    terrainLayout: scenePlan.modifiedLayout,
+    center,
+    tileSize: terrainTileSize,
+    landmarks: anchors.map(([label, position]) => ({ label, position })),
+    getPets: () => [bear, architect, ...petManager.pets],
+    worldObjects,
+  });
+  const worldMarker = new WorldObjectiveMarkerPresenter({
+    scene,
+    camera,
+    edgeElement: document.getElementById('objective-edge-marker'),
+  });
+  const objectiveGuidance = new ObjectiveGuidanceSystem({
+    projectionStore: objectiveStore,
+    player,
+    worldObjects,
+    resolvePet: id => (
+      townSocialSystem.findParticipant(id)
+      || [bear, ...petManager.pets].find(pet => (
+        pet?._petId === id || pet?._petName === id || pet?._profile?.id === id
+      ))
+      || null
+    ),
+    navigation,
+    miniMap,
+    worldMarker,
+    runtimeStatus,
+  });
   let disposed = false;
 
   return {
@@ -164,6 +206,8 @@ export async function createChiiRegionGameplay({
     forestTempleSystem,
     vfxService,
     storyProgression,
+    objectiveStore,
+    objectiveGuidance,
     residentReservations,
     update(dt) {
       if (disposed) return;
@@ -173,6 +217,7 @@ export async function createChiiRegionGameplay({
       townBuilderSystem.update(dt);
       forestTempleSystem.update(dt);
       vfxService.update(dt);
+      objectiveGuidance.update(dt);
     },
     interactTownPet(pet, dialogue) {
       if (disposed) return Promise.resolve(false);
@@ -199,6 +244,9 @@ export async function createChiiRegionGameplay({
       townBuilderSystem.dispose?.();
       townSocialSystem.dispose?.();
       pastoralSlice.dispose?.();
+      objectiveGuidance.dispose();
+      storyObjectiveBridge?.dispose();
+      objectiveStore.dispose();
       townPresentation.dispose();
       vfxService.dispose();
       residentReservations.dispose();

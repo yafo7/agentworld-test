@@ -1,4 +1,4 @@
 interface:
-  display_name: "奇异岛·开发环境"
-  short_description: "Start and inspect Chii local development services"
-  default_prompt: "Use $chii-dev to start and inspect the Chii Island development services."
+  display_name: "Chii Development Services"
+  short_description: "Run Chii, Voxel Studio, and WorldForge"
+  default_prompt: "Use $chii-dev to start and inspect Chii Island, Voxel Studio, or the WorldForge map generator."

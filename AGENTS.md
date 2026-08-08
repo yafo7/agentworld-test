@@ -173,7 +173,7 @@ Architecture hardening completed 2026-08-03:
 
 ### 3d-generate Capability Baseline
 
-Last audited remote baseline: `1203a1e` on 2026-07-28. This is a compatibility baseline, not permission to import sibling source directly.
+Last audited remote baseline: `411c4ad` on 2026-08-07. This is a compatibility baseline, not permission to import sibling source directly. Chii's integrated render-runtime package remains pinned to the separately audited `1203a1e` tarball until an explicit package upgrade passes compatibility validation.
 
 Current backend and Studio capabilities:
 
@@ -183,6 +183,7 @@ Current backend and Studio capabilities:
 - `electric`, `poison`, `ice`, `wet`, `rust`, `mossy`, `dirty`, and `damage` are vocabulary/design entries, not completed Chii rendering features.
 - The material system includes procedural triplanar wood/stone variants, model-local pools/waterfalls/water streams, deterministic fire/smoke particles, and global tuning through `/api/material-tag-textures`.
 - `@voxel-studio/render-runtime` is a reusable Three.js package for material tags, effect packages, batching, render styles, quality tiers, and post-processing. Chii pins the audited `1203a1e` package as `vendor/voxel-studio-render-runtime-0.1.0-1203a1e.tgz` and has verified its public material, fur, foliage, VFX vocabulary, Cel, and render-pipeline paths against Three.js r184 in real WebGL2; rerun `npm run test:render-compat` before updating that package.
+- Remote commit `411c4ad` centralizes per-material, per-patch shader program cache generations in `MaterialShaderPatchChain`. It fixes stale Three.js program reuse after Cel patch reinstall, effect-layer remove/reapply, effect-variant replacement, and CSM rebuild. It does not change public API routes, generation providers, model/animation JSON, material-tag vocabulary, package exports, package version, or the Three.js peer range. Chii receives none of these runtime changes merely by pulling the sibling repository; adopting them requires a newly pinned tarball and the full render compatibility gate.
 - `SkySystem`, atmosphere, clouds, HDRI, environment reflection, and shared render presets exist, with `GET/POST /api/shared-render-preset` and a hash endpoint. Treat this as an available module set, not as an already integrated Chii feature.
 - The backend also exposes editable model/animation persistence through `/api/load-edited`, `/api/save-edited`, `/api/animations`, and `/api/save-animation`. Chii asset sync uses these native upstream endpoints.
 

@@ -30,6 +30,7 @@ import {
   TOWN_ACTIVITY_MIN_PERFORMANCE_DURATION,
 } from '../data/townSocialActivities.js';
 import { getCharacterOutfits } from '../data/equipmentCatalog.js';
+import { createTownActivityObjectiveProjection } from '../data/townActivityObjectiveProjection.js';
 
 const CURATED_PET_IDS = new Set(['momo', 'mako', 'yafo', 'lingq', 'fangk', 'mok', 'crab']);
 
@@ -107,6 +108,7 @@ export class TownSocialSystem {
     activityAssetResolver = null,
     reservations = null,
     onActivityCompleted = null,
+    objectiveStore = null,
   }) {
     this.scene = scene;
     this.player = player;
@@ -137,6 +139,8 @@ export class TownSocialSystem {
       sceneStyle,
     }) : null);
     this.onActivityCompleted = onActivityCompleted;
+    this.objectiveStore = objectiveStore;
+    this.objectiveOwnerId = null;
     this.planner = new SocialActivityPlanner({
       contentPort,
       assetLibrary: this.activityAssetCache,
@@ -180,6 +184,10 @@ export class TownSocialSystem {
     this.participants.push(pet);
     this.data.participants = this.participants.map(participant => petName(participant));
     return true;
+  }
+
+  findParticipant(id) {
+    return this._petById(normalizePetId(id));
   }
 
   canInteract(pet) {
@@ -1410,6 +1418,29 @@ export class TownSocialSystem {
       task,
       helper,
     });
+    this._syncObjectiveProjection();
+  }
+
+  _syncObjectiveProjection() {
+    if (!this.objectiveStore || !this.activeActivity) return;
+    const projection = createTownActivityObjectiveProjection(this.activeActivity, {
+      findPet: id => this._petById(id),
+      playerPosition: this.player?.mesh?.position || null,
+    });
+    if (!projection) {
+      this._clearObjectiveProjection();
+      return;
+    }
+    if (this.objectiveOwnerId && this.objectiveOwnerId !== projection.ownerId) {
+      this.objectiveStore.clear(this.objectiveOwnerId);
+    }
+    this.objectiveOwnerId = projection.ownerId;
+    this.objectiveStore.publish(projection.ownerId, projection);
+  }
+
+  _clearObjectiveProjection() {
+    if (this.objectiveOwnerId) this.objectiveStore?.clear(this.objectiveOwnerId);
+    this.objectiveOwnerId = null;
   }
 
   _updateFestivalBarks(activity, prepared) {
@@ -1467,6 +1498,7 @@ export class TownSocialSystem {
     this.preparedActivity = null;
     this.data.active = null;
     this.runtimeStatus?.setActivityStatus(null);
+    this._clearObjectiveProjection();
     this.presentation?.clear();
     if (completed) this._notifyActivityCompleted(activity, reason);
     return true;
@@ -1524,6 +1556,7 @@ export class TownSocialSystem {
     this.preparedActivity = null;
     this.data.active = null;
     this.runtimeStatus?.setActivityStatus(null);
+    this._clearObjectiveProjection();
     this.presentation?.clear();
     this.lastNotice = '刚才的活动被风吹歪了一点。没关系，fangk已经把计划本扶正了！';
   }

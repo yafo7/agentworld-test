@@ -34,6 +34,7 @@ test('activity HUD projects phase progress and optional preparation task', () =>
     'runtime-activity-progress-value',
     'runtime-activity-task',
     'runtime-activity-task-text',
+    'runtime-activity-task-meta',
     'runtime-activity-helper',
     'runtime-perf',
   ];
@@ -59,6 +60,13 @@ test('activity HUD projects phase progress and optional preparation task', () =>
     assert.equal(elements.get('runtime-activity-progress-value').style.width, '25%');
     assert.equal(elements.get('runtime-activity-task').classList.contains('visible'), true);
     assert.equal(elements.get('runtime-activity-task').dataset.state, 'open');
+
+    hud.setObjectiveNavigation({
+      label: '先去篝火旁占个暖和的位置',
+      distance: 18.6,
+      progress: { current: 0, total: 2 },
+    });
+    assert.equal(elements.get('runtime-activity-task-meta').textContent, '0/2 · 19m');
 
     hud.setActivityStatus('篝火晚会', '节目开场啦', {
       phase: 'performing',

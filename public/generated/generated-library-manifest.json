@@ -1,5 +1,141 @@
 [
   {
+    "assetId": "gen_msiny6t8_wxu9",
+    "name": "三个红色果盘",
+    "description": "橘子糖果花生摆满三个红色果盘",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msiny6t8_wxu9.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786090132993,
+    "updatedAt": 1786090132993
+  },
+  {
+    "assetId": "gen_msinx4yi_p8xa",
+    "name": "金边餐盘上的汤圆春卷烧鸡",
+    "description": "汤圆春卷烧鸡摆满三个金边餐盘",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msinx4yi_p8xa.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786090084233,
+    "updatedAt": 1786090084233
+  },
+  {
+    "assetId": "gen_msinvopc_hbjc",
+    "name": "蒸鱼饺子年糕红盘宴",
+    "description": "蒸鱼饺子年糕摆满三个红色餐盘",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msinvopc_hbjc.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786090016210,
+    "updatedAt": 1786090016210
+  },
+  {
+    "assetId": "gen_msinur3w_cu0m",
+    "name": "红木金边桌布方桌",
+    "description": "红木方桌铺红色金边桌布，桌面空置",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msinur3w_cu0m.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786089972973,
+    "updatedAt": 1786089972973
+  },
+  {
+    "assetId": "gen_msinu32l_pui1",
+    "name": "红色鞭炮串挂木架",
+    "description": "红色鞭炮串挂木架，散落金色纸屑",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msinu32l_pui1.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786089941519,
+    "updatedAt": 1786089941519
+  },
+  {
+    "assetId": "gen_msint8i4_gxlz",
+    "name": "巨大哥特教堂 + 红色方形灯笼配金色流苏",
+    "description": "把红色方形灯笼配金色流苏加在正门两侧",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msint8i4_gxlz.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1786089902207,
+    "updatedAt": 1786089902207
+  },
+  {
+    "assetId": "gen_msd2hten_kfkn",
+    "name": "暖灯下的生日礼物桌",
+    "description": "木质生日礼物桌堆满彩带方盒与暖灯",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msd2hten_kfkn.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1785751766615,
+    "updatedAt": 1785751766615
+  },
+  {
+    "assetId": "gen_msd2g9fi_l1k6",
+    "name": "彩色方形奶油蛋糕与像素蜡烛",
+    "description": "彩色方形奶油蛋糕插着明亮像素蜡烛",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_msd2g9fi_l1k6.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1785751694068,
+    "updatedAt": 1785751694068
+  },
+  {
     "assetId": "gen_ms5uoin0_98mx",
     "name": "红色7号球衣棕色小马",
     "description": "保持角色身份、体型、脸部、毛色和原有配色不变。服装改为帽子：一顶彩色生日礼帽带金色小星星；上衣：蓝色生日短披风，彩色星星滚边，金色领结；裤子：深蓝生日短裤，彩色星点，金色腰带；鞋子：金色派对短靴，红色鞋带，星星鞋扣。双手空置，四肢关节清楚，不改变动作。",

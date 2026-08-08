@@ -81,6 +81,7 @@ import { ChiiInteractionSession } from './systems/ChiiInteractionSession.js';
 
 const pageLoading = createChiiPageLoadingScreen({ preset: 'island' });
 const applicationLifecycle = new ApplicationLifecycle();
+const PLAYER_INITIAL_SPAWN_HEIGHT = 1.25;
 
 async function awaitApplication(task) {
   applicationLifecycle.assertActive();
@@ -348,7 +349,7 @@ async function init() {
   } else if (townDemoEnabled && townDemoCell) {
     demoSpawn = getGridWorldPosition(townDemoCell.gridX - 1, townDemoCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
   }
-  player.initPhysics(physics, demoSpawn.x, 0, demoSpawn.z);
+  player.initPhysics(physics, demoSpawn.x, PLAYER_INITIAL_SPAWN_HEIGHT, demoSpawn.z);
   thirdPersonCamera.setCollisionWorld(physics.world, player._collider);
   window.__player = player;
   player._scene = scene; // for particle emitters
@@ -607,6 +608,7 @@ async function init() {
     scenePlan,
     center: [centerCfg.center[0], centerCfg.center[1]],
     gridSize: GRID_SIZE,
+    terrainTileSize: CHII_WORLD_METRICS.terrainTile,
     dialogueCamera,
     forest: {
       trophy: forestTrophy,
@@ -626,6 +628,7 @@ async function init() {
     equipmentService: characterEquipment,
     sceneStyle,
     storyState: islandStoryState,
+    navigation: petNavigation,
     onGeneratedObject: entity => objectEditor.openGenerated(entity),
   });
   applicationLifecycle.add(regionGameplay);

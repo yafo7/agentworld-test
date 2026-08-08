@@ -1,0 +1,883 @@
+{
+  "name": "暖灯下的生日礼物桌",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "table",
+      "name": "木质礼物桌",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
+    },
+    {
+      "id": "gift_left",
+      "name": "彩带礼盒",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -1.65,
+          2.28,
+          0.55
+        ]
+      }
+    },
+    {
+      "id": "gift_mid",
+      "name": "彩带礼盒",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -0.25,
+          2.28,
+          -0.62
+        ]
+      }
+    },
+    {
+      "id": "gift_top",
+      "name": "叠放小礼盒",
+      "parent": "gift_mid",
+      "transform": {
+        "pos": [
+          0,
+          0.78,
+          0
+        ]
+      }
+    },
+    {
+      "id": "gift_right",
+      "name": "彩带礼盒",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          1.45,
+          2.28,
+          0.42
+        ]
+      }
+    },
+    {
+      "id": "lights",
+      "name": "暖灯串",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          2.28,
+          -1.25
+        ]
+      }
+    },
+    {
+      "id": "bulb_0",
+      "name": "暖光灯泡",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          -2.15,
+          2.56,
+          0
+        ]
+      }
+    },
+    {
+      "id": "bulb_1",
+      "name": "暖光灯泡",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          -1.05,
+          2.35,
+          0
+        ]
+      }
+    },
+    {
+      "id": "bulb_2",
+      "name": "暖光灯泡",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          0,
+          2.24,
+          0
+        ]
+      }
+    },
+    {
+      "id": "bulb_3",
+      "name": "暖光灯泡",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          1.05,
+          2.35,
+          0
+        ]
+      }
+    },
+    {
+      "id": "bulb_4",
+      "name": "暖光灯泡",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          2.15,
+          2.56,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          2.14,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 6,
+          "height": 0.28,
+          "depth": 3.4
+        },
+        "color": 9132587
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.55,
+          1.05,
+          -1.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.1,
+          "depth": 0.34
+        },
+        "color": 6832159
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.55,
+          1.05,
+          -1.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.1,
+          "depth": 0.34
+        },
+        "color": 6832159
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -2.55,
+          1.05,
+          1.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.1,
+          "depth": 0.34
+        },
+        "color": 6832159
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          2.55,
+          1.05,
+          1.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.1,
+          "depth": 0.34
+        },
+        "color": 6832159
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "gift_left",
+      "transform": {
+        "pos": [
+          0,
+          0.525,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.3,
+          "height": 1.05,
+          "depth": 1.05
+        },
+        "color": 13192021
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "gift_left",
+      "transform": {
+        "pos": [
+          0,
+          0.545,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 1.09,
+          "depth": 1.09
+        },
+        "color": 16765802
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "gift_left",
+      "transform": {
+        "pos": [
+          0,
+          0.55,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.34,
+          "height": 1.1,
+          "depth": 0.16
+        },
+        "color": 16765802
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "gift_mid",
+      "transform": {
+        "pos": [
+          0,
+          0.39,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.5,
+          "height": 0.78,
+          "depth": 1.05
+        },
+        "color": 5212104
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "gift_mid",
+      "transform": {
+        "pos": [
+          0,
+          0.41,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 0.8200000000000001,
+          "depth": 1.09
+        },
+        "color": 16050117
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "gift_mid",
+      "transform": {
+        "pos": [
+          0,
+          0.415,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.54,
+          "height": 0.8300000000000001,
+          "depth": 0.16
+        },
+        "color": 16050117
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "gift_right",
+      "transform": {
+        "pos": [
+          0,
+          0.6,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.25,
+          "height": 1.2,
+          "depth": 1
+        },
+        "color": 6204022
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "gift_right",
+      "transform": {
+        "pos": [
+          0,
+          0.62,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 1.24,
+          "depth": 1.04
+        },
+        "color": 16765802
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "gift_right",
+      "transform": {
+        "pos": [
+          0,
+          0.625,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.29,
+          "height": 1.25,
+          "depth": 0.16
+        },
+        "color": 16765802
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "gift_top",
+      "transform": {
+        "pos": [
+          0,
+          0.31,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.85,
+          "height": 0.62,
+          "depth": 0.72
+        },
+        "color": 15112771
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "gift_top",
+      "transform": {
+        "pos": [
+          0,
+          0.33,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.66,
+          "depth": 0.76
+        },
+        "color": 9387125
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "gift_top",
+      "transform": {
+        "pos": [
+          0,
+          0.335,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.89,
+          "height": 0.67,
+          "depth": 0.12
+        },
+        "color": 9387125
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          -2.72,
+          1.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 2.72,
+          "depth": 0.18
+        },
+        "color": 7029540
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          2.72,
+          1.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.18,
+          "height": 2.72,
+          "depth": 0.18
+        },
+        "color": 7029540
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "oak"
+        }
+      ]
+    },
+    {
+      "id": "m19",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          -2.05,
+          2.53,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.11,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.37,
+          "height": 0.055,
+          "depth": 0.07
+        },
+        "color": 3155231
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          -0.69,
+          2.32,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          -0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.39,
+          "height": 0.055,
+          "depth": 0.07
+        },
+        "color": 3155231
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          0.69,
+          2.32,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.05,
+          1
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.39,
+          "height": 0.055,
+          "depth": 0.07
+        },
+        "color": 3155231
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "lights",
+      "transform": {
+        "pos": [
+          2.05,
+          2.53,
+          0
+        ],
+        "quat": [
+          0,
+          0,
+          0.11,
+          0.99
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.37,
+          "height": 0.055,
+          "depth": 0.07
+        },
+        "color": 3155231
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "bulb_0",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.3,
+          "depth": 0.07
+        },
+        "color": 3878954
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "bulb_0",
+      "transform": {
+        "pos": [
+          0,
+          -0.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "color": 16757575
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m25",
+      "parent": "bulb_1",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.3,
+          "depth": 0.07
+        },
+        "color": 3878954
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "bulb_1",
+      "transform": {
+        "pos": [
+          0,
+          -0.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "color": 16757575
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m27",
+      "parent": "bulb_2",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.3,
+          "depth": 0.07
+        },
+        "color": 3878954
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "bulb_2",
+      "transform": {
+        "pos": [
+          0,
+          -0.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "color": 16757575
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m29",
+      "parent": "bulb_3",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.3,
+          "depth": 0.07
+        },
+        "color": 3878954
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "bulb_3",
+      "transform": {
+        "pos": [
+          0,
+          -0.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "color": 16757575
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m31",
+      "parent": "bulb_4",
+      "transform": {
+        "pos": [
+          0,
+          -0.15,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.07,
+          "height": 0.3,
+          "depth": 0.07
+        },
+        "color": 3878954
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "bulb_4",
+      "transform": {
+        "pos": [
+          0,
+          -0.36,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.24,
+          "height": 0.28,
+          "depth": 0.24
+        },
+        "color": 16757575
+      },
+      "tags": [
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785751765025,
+      "provider": "gpt",
+      "data": "sLY6uoix3hebREweSxLLjCyNMTQlb1vcNgzqLh6Ne3TY0h0LDcvHtmQ1F3Io8YVIqwEydSthzeflQTawN1xP8ZuldL2m14bXNmsCfw/SQVjf5Erb7vhSj+FeMkaKbt+/WF3GhQxaBAXvev5eAvDoqTMwhO5MP7zpKzaWFaxqHOwoYlrEWJZgZCiz98QUgvkQHwCOz3LmsUYeMnIP7GCjO1Ly9/hHqgwLS6tMogYzRdT4o1M0SkEUQh2XYEhNtmLDb+jhKF6vp0PHNzkRMHSYaSDOn8/Uo4Ztmg+jsQVE2U0Bkc34T0WKUPmiSTm9n0+YIwUgH7V0nHxRlRjknncRHv6lFvNcwP7ccOcDnkvSB+mBlX8b12HNEUQb6HUe7e9cy9GHYa9TqduBxOCaeyu2oQYBZO/ymgf306DrI42J+1faFOzEKP6p4XZ8Os+bHli5nsyaHHYiAIlPUJSeKNakPUFl/FqFWIStDsdCcDvoiZHAS+f3712fqHmg86p6HeharoYf2HTox1MLmuKGon7CIE5USUY3ZEoiCjn5PZJgCrOjo5sGQOWMPs8C48K16xePEWrkxeh3gpYHB1OP+D/S4U/o8SXBRedLHGRlnk3O7Yi58AF7b/j+iTi3FwzA8t7bVtDh0ZMqeReqQjVn1MvA7hgluHIdvvro3dbQ1ed7lkj4Ywfj1oMD/OcH4F5SqaXml5oIpR2DVAtXM8f+zOPV5wI70SCgWzVzERWsW6T/U2Lgm+V6H0z8jEU+buCwyzpo5+axul8EKr/+PmH2VynHKoOGWTByxUofDdb9t8yAuw8K0mn8EZzUMcGChezzKpFok1d2SsvN3lD+7zTF/DYBQo/vYl42lWSghg0f2jnHBPtPNNAKa1Ta4jLgmgZFYPBaoPlj4+T3uZT+wZsz+emAE1Yxb8L3eER7Ce5cg2f4bZ4U5BMjF8cuG/2nRlVVXFn0fBDSLbk7Ky9kkXD2VEjrRJdjVvn4zICbcGUIdz/0nNog07AiIeLnpATTVbE6i4OWcEkIW8QhC5O46SYxT35ISpQs4tdIJwDhbrV3EelY2EAf20I0wHHFfQtDIMuW8UWsbi2BJ7BwbdRcriHa2OyEJ+0+YzM7l/E+k4OgahO0wt+AUDQUtGvGLzQxta5Tmh0PblxwtQQW4MXwzblOalFs+yWVHe3PvW/QBTQA3tHhO5VCGusjrfWC+WAPCHRhNzmeikrHbyL+mtz79OytpNDRYSKTRcLaMW+5Q+Ja/g+BKbAOJ8i/S8sJIjvuBuLUQ7fb5PhPcJN4UJYjDsuaUCDUi2xCfL4lBjNOHtlliEM88+TnTBKXxZim9mOmBlLhwUIVPO538ZyzeHczqJxRyuGWENieDMscUjsiab22re0mE2LEzJwXGVCtB+GioG2QeX5S5MpEmVSL+n/oLJ64gFRxWitz88DidVZfGP7spx87m99IRfzAJqXNG40u+63kI5LEmlXRUe8bhwT5uhHpaAYXvNik4iUcLllhuAJTE3k1hj1auTEE7a/cgyK7GiPn9mm4ht7xcLAEW17tnt+ZszGXDTPhYyQZc5aBeoS0HUH1MtNIkaJzD+Hb9prm7h3ErEySS1t14JJwXK7o+BglmbfV17cO",
+      "edits": ""
+    }
+  }
+}

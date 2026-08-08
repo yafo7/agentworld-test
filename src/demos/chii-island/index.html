@@ -180,8 +180,15 @@
       }
       #runtime-region { font-size: 15px; font-weight: 700; }
       #runtime-follower { margin-top: 3px; color: rgba(255,248,231,0.78); font-size: 12px; }
+      #island-minimap-shell {
+        position: fixed; top: 16px; right: 16px; z-index: 124;
+        display: none; width: 176px; height: 176px; pointer-events: none;
+      }
+      #island-minimap-shell.visible { display: block; }
+      #island-minimap { display: block; width: 176px; height: 176px; border-radius: 50%; }
       #runtime-activity {
-        position: fixed; top: 16px; right: 16px; z-index: 125; display: none;
+        position: fixed; top: 50%; right: 16px; z-index: 125; display: none;
+        transform: translateY(-50%);
         width: min(310px, calc(100vw - 32px)); padding: 12px 13px 11px;
         border: 2px solid rgba(255,255,255,0.9); border-radius: 8px;
         background: rgba(255,249,230,0.96); color: #4f4038; text-shadow: none;
@@ -210,6 +217,9 @@
         color: #66513e; font-size: 11px; line-height: 1.45;
       }
       #runtime-activity-task.visible { display: flex; }
+      .runtime-activity-task-copy { min-width: 0; flex: 1; }
+      #runtime-activity-task-text { display: block; overflow-wrap: anywhere; }
+      #runtime-activity-task-meta { display: block; margin-top: 2px; color: #b06e3f; font-size: 10px; font-weight: 800; }
       #runtime-activity-task::before {
         content: ''; flex: 0 0 9px; width: 9px; height: 9px; margin-top: 3px;
         border: 2px solid #e49a55; border-radius: 50%; background: #fff9e6;
@@ -217,6 +227,29 @@
       #runtime-activity-task[data-state="complete"] { color: #33705f; background: #e4f4df; border-color: #abd2b1; }
       #runtime-activity-task[data-state="complete"]::before { border-color: #4d9a7f; background: #4d9a7f; }
       #runtime-activity-helper { margin-top: 7px; color: #887568; font-size: 10px; }
+      #objective-edge-marker {
+        position: fixed; z-index: 132; display: flex; align-items: center; gap: 7px;
+        max-width: min(230px, calc(100vw - 32px)); padding: 6px 9px 6px 7px;
+        border: 2px solid rgba(255,255,255,0.92); border-radius: 8px;
+        background: rgba(255,244,202,0.96); color: #5f493a;
+        box-shadow: 0 4px 0 rgba(91,67,45,0.16), 0 8px 18px rgba(54,45,38,0.18);
+        font-size: 11px; font-weight: 800; pointer-events: none; opacity: 0;
+        transform: translate(-50%, -50%) scale(0.92); transition: opacity 0.15s ease, transform 0.15s ease;
+      }
+      #objective-edge-marker.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      .objective-edge-arrow {
+        width: 0; height: 0; flex: 0 0 auto;
+        border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+        border-left: 10px solid #e89446;
+      }
+      .objective-edge-copy { min-width: 0; }
+      [data-objective-edge-label] { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      [data-objective-edge-distance] { display: block; margin-top: 1px; color: #2f7968; font-size: 10px; }
+      @media (max-width: 680px) {
+        #island-minimap-shell { top: 10px; right: 10px; width: 142px; height: 142px; }
+        #island-minimap { width: 142px; height: 142px; }
+        #runtime-activity { right: 10px; width: min(286px, calc(100vw - 20px)); }
+      }
       #runtime-job {
         position: fixed; top: 16px; left: 50%; transform: translate(-50%, -10px);
         z-index: 170; min-width: 260px; max-width: min(460px, calc(100vw - 32px));
@@ -477,6 +510,9 @@
       <div id="runtime-region">奇异岛</div>
       <div id="runtime-follower">独自探索</div>
     </div>
+    <div id="island-minimap-shell" aria-label="奇异岛小地图">
+      <canvas id="island-minimap"></canvas>
+    </div>
     <div id="runtime-activity" role="status" aria-live="polite">
       <div class="runtime-activity-head">
         <span class="runtime-activity-kicker">城镇小活动</span>
@@ -485,8 +521,20 @@
       <div id="runtime-activity-title"></div>
       <div id="runtime-activity-stage"></div>
       <div id="runtime-activity-progress"><span id="runtime-activity-progress-value"></span></div>
-      <div id="runtime-activity-task" data-state="open"><span id="runtime-activity-task-text"></span></div>
+      <div id="runtime-activity-task" data-state="open">
+        <span class="runtime-activity-task-copy">
+          <span id="runtime-activity-task-text"></span>
+          <span id="runtime-activity-task-meta"></span>
+        </span>
+      </div>
       <div id="runtime-activity-helper"></div>
+    </div>
+    <div id="objective-edge-marker" aria-hidden="true">
+      <span class="objective-edge-arrow"></span>
+      <span class="objective-edge-copy">
+        <span data-objective-edge-label></span>
+        <span data-objective-edge-distance></span>
+      </span>
     </div>
     <div id="runtime-job" data-state="working">
       <div id="runtime-job-title"></div>

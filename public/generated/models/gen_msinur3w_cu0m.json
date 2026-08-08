@@ -1,0 +1,363 @@
+{
+  "name": "红木金边桌布方桌",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "table",
+      "name": "红木方桌",
+      "transform": {
+        "pos": [
+          0,
+          1.875,
+          0
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "walnut"
+        }
+      ]
+    },
+    {
+      "id": "cloth",
+      "name": "红色桌布",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          0.325,
+          0
+        ]
+      }
+    },
+    {
+      "id": "gold_trim",
+      "name": "金色桌布边",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          -0.195,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          0.675,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.8,
+          "height": 0.3,
+          "depth": 3.8
+        },
+        "color": 7021595
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -1.5,
+          -0.675,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.4,
+          "depth": 0.34
+        },
+        "color": 5644312
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          1.5,
+          -0.675,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.4,
+          "depth": 0.34
+        },
+        "color": 5644312
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          -1.5,
+          -0.675,
+          1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.4,
+          "depth": 0.34
+        },
+        "color": 5644312
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          1.5,
+          -0.675,
+          1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 2.4,
+          "depth": 0.34
+        },
+        "color": 5644312
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "cloth",
+      "transform": {
+        "pos": [
+          0,
+          0.54,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.05,
+          "height": 0.08,
+          "depth": 4.05
+        },
+        "color": 11015970
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "cloth",
+      "transform": {
+        "pos": [
+          -2,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 1.05,
+          "depth": 4.05
+        },
+        "color": 9966365
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "cloth",
+      "transform": {
+        "pos": [
+          2,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.1,
+          "height": 1.05,
+          "depth": 4.05
+        },
+        "color": 9966365
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "cloth",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.9,
+          "height": 1.05,
+          "depth": 0.1
+        },
+        "color": 11015970
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "cloth",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          2
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.9,
+          "height": 1.05,
+          "depth": 0.1
+        },
+        "color": 11015970
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "gold_trim",
+      "transform": {
+        "pos": [
+          -2.03,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.12,
+          "depth": 4.08
+        },
+        "color": 14067500
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "parent": "gold_trim",
+      "transform": {
+        "pos": [
+          2.03,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.12,
+          "height": 0.12,
+          "depth": 4.08
+        },
+        "color": 14067500
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "parent": "gold_trim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -2.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.94,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 14067500
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "m13",
+      "parent": "gold_trim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          2.03
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 3.94,
+          "height": 0.12,
+          "depth": 0.12
+        },
+        "color": 14067500
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1786089973162,
+      "provider": "gpt",
+      "data": "wXdxQcXgOgkisGWk/AqTOKwETfXWPQE8URQN+PGYdAGaxocvVTMZvvZxZ4bwkO2LT3dPMIB86SxAsYj0JxLiCfHWkNbFsxKKdI6NWKLiSl+Nl3wYf5DMxE+6omSwApsuKwz8On++dsu7JfjuRnhwBqd01qAeZIDL0PEL9L0QTEwiYFL4voDOlb2qlZt0BpHKczBRzn0x5LGEzHjxKCgLggWBTDFUdS+9pWtrzWi5uK3JZv2p8uhDXRqT+LWJH6Y4PX0G6Peiksuc2MRMojykVQf9Q7N19JdwSnjY3c7hLT2jhph3GDw6XNNVPg4L7ju1w1aRx6uDrZyFeclpw7YNaRpmo/LmMwMJu4u8DySlR/6RuJv2+HWjVN4cnRymQ9HyCxmdXxHf4eRpmdcKTzAFfgn4yiQEl8tSjE2mtRSmHujAf5d00Ot23TSu6YKBW12HkqiIWamDDRM6+OrqIju1RaSFlOyQJmiZwLZLHO8R6kT2GwG67dZGn0pghGmPAtHQoEPsUBj2ay8CXuhTOH6B811qGxQmLsj/oTphcJp4LcMHq5EZWjJyUlUt5T6ZfcbsF36Cjd4FhC8/YLMhs/p/5aGEABEYp/YDUBDAHuJO8IGHxMKLM2ABVXPIHrziwMwsK3pOqR3xCW4KXxAGBcfqiw/8WJ9kCVWCB/9hnASisAvso10yDIu1OpgKwbAR118OZoUA6fCEidxSxsW/",
+      "edits": ""
+    }
+  }
+}

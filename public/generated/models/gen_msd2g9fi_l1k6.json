@@ -1,0 +1,544 @@
+{
+  "name": "彩色方形奶油蛋糕与像素蜡烛",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "cake_root",
+      "name": "方形蛋糕",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "candles",
+      "name": "彩色像素蜡烛",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          1.82,
+          0
+        ]
+      }
+    },
+    {
+      "id": "flame_effects",
+      "name": "明亮像素火焰",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          0,
+          0.94,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          0.09,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.8,
+          "height": 0.18,
+          "depth": 4.8
+        },
+        "color": 13226716
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "silver"
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          0.455,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4,
+          "height": 0.55,
+          "depth": 4
+        },
+        "color": 16742038
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          0.85,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.12,
+          "height": 0.24,
+          "depth": 4.12
+        },
+        "color": 6543826
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          1.245,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4,
+          "height": 0.55,
+          "depth": 4
+        },
+        "color": 16765802
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          0,
+          1.67,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 4.2,
+          "height": 0.3,
+          "depth": 4.2
+        },
+        "color": 16774367
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          -1.5,
+          1.97,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 0.58
+        },
+        "color": 16742828
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          1.5,
+          1.97,
+          -1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 0.58
+        },
+        "color": 7461375
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          1.5,
+          1.97,
+          1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 0.58
+        },
+        "color": 12160255
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "cake_root",
+      "transform": {
+        "pos": [
+          -1.5,
+          1.97,
+          1.5
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.58,
+          "height": 0.3,
+          "depth": 0.58
+        },
+        "color": 9166987
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.46,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.95,
+          "depth": 0.3
+        },
+        "color": 16732004
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.4,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.16,
+          "depth": 0.34
+        },
+        "color": 16777074
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          0,
+          0.46,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.95,
+          "depth": 0.3
+        },
+        "color": 6651135
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          0,
+          0.4,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.16,
+          "depth": 0.34
+        },
+        "color": 7729407
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          0.9,
+          0.46,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.3,
+          "height": 0.95,
+          "depth": 0.3
+        },
+        "color": 10183400
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "candles",
+      "transform": {
+        "pos": [
+          0.9,
+          0.4,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.34,
+          "height": 0.16,
+          "depth": 0.34
+        },
+        "color": 16748001
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.2,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.38,
+          "depth": 0.22
+        },
+        "color": 16742946
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m16",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          -0.9,
+          0.17,
+          0.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.2,
+          "depth": 0.24
+        },
+        "color": 16777082
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.5,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m17",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          0,
+          0.2,
+          -0.35
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.38,
+          "depth": 0.22
+        },
+        "color": 16742946
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          0,
+          0.17,
+          -0.32
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.2,
+          "depth": 0.24
+        },
+        "color": 16777082
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.5,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "m19",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          0.9,
+          0.2,
+          0.25
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.28,
+          "height": 0.38,
+          "depth": 0.22
+        },
+        "color": 16742946
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.75,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 0.75
+        }
+      ]
+    },
+    {
+      "id": "m20",
+      "parent": "flame_effects",
+      "transform": {
+        "pos": [
+          0.9,
+          0.17,
+          0.28
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.14,
+          "height": 0.2,
+          "depth": 0.24
+        },
+        "color": 16777082
+      },
+      "tags": [
+        {
+          "tag": "fire",
+          "value": 0.5,
+          "variant": "normal"
+        },
+        {
+          "tag": "emissive",
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1785751692668,
+      "provider": "gpt",
+      "data": "giF3L2Ovr8s7b7MX8BpIxY8wmVzop8wlCmpE4WCae27jVOY1Ss4zA0rDbtMwsNcAN/lvdF++r8957Vf+o/JVQqoZiS5EUdVJUJ3u4347wfngUPicJeaFpzBKtVFZ1uNur7L2V3mcbTmKWq8m8YdPTa1pYqtlTV7FiAGxd9lXRPIOvrs2x6vbwHEyur2Qvx2JjMpd42eJNLrwRytA3/c1F3tYhICaqXTphRE2XCacNw/QePWuRob6NvYWvLGNvHNVb+ju5XjrxfOtMq6rz+akyEw+/AJXvCu/jrUvn1mA7KnwPGZ3MaeMYyJaVMVfSa2AeN2m+NHghjXe2FcYidkHmTaVl4yFgZaOK3GG8E9Z4TBK/0IBU/KxuAqL+5ZKf19X4LC/18MMVMdY5sy1SFONLUJ9GkfLmXV9Of5cGDEkDA9vFjhs6rMYpIcwRRbz/tgdK0/eB23L2UHhqMDGclQOcgdooze1tAxqcX6fEP3hfAigV5omljsS9Voe6wTfPGdSo58qpidczdHXpuSxIdDRncCAJ1QSqYms8DFA1GLvak9IWuwiyBBk+lgo7ZZDuraDI1xcSKQlb8UV17TLRgk/fyDzO9QjQerOdzHEEFLmKl4UzbBxIasg8UYLtSkKA9ZzXs4GqrEuqqadhE2QZxWaDSz+DAOvHXUfRUcsbnE2DEWs1kxQl9slR1x/u2J33Ja9JunvjNaoysJpl5KpW5XPcpYgIjxZhRfWIfCg9sz9/aheSDsSvuv9Gawk4jjk+8WqdmRbKfqdMyvRNnKLjm3jhb3kEQAxEMSoYoox0VIkIIoE3kQ57817IyUEL/11h0pNVMBrjoAUmzrHgzbgO5lytgLJ4dN/q02VNEp6VFp2pghR3y29c0Q6qf6CgVLY0dFXunEVy2L3kbvXg2sbhNOw9bJm4cU2KOJMyhwFCjlMZq6/tp6vECdCj8qBbPm2t/jHUR2yr/fjRZqVA5WgMA+AMbTkAjB9aySv2Vn9ANklBj+33mEX3gkimsB44LD3Vivbz8Bq9fxoINJ43BZpoYvvwK11mMkXAX25AsSv75T8BSk2NVK9pvQkLuJ9Dl8YByEREo3SJMmr1sHfXPW2MwyCbIPVEw11i2IeiJpuMxSqROhupUX58VtHRDgabQcqWjiZktICAAhrgxArrnEvKE7uv1LTvW2GBBZAL6zCuh9VTffuckya2tHdtN++Vc28bYiO2zMfTDNVsYwB4AJvDdtrRe9iIZaaA2M=",
+      "edits": ""
+    }
+  }
+}

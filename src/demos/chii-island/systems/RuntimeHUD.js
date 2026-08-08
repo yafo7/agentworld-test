@@ -14,6 +14,7 @@ export class RuntimeHUD {
     this.activityProgressEl = document.getElementById('runtime-activity-progress-value');
     this.activityTaskEl = document.getElementById('runtime-activity-task');
     this.activityTaskTextEl = document.getElementById('runtime-activity-task-text');
+    this.activityTaskMetaEl = document.getElementById('runtime-activity-task-meta');
     this.activityHelperEl = document.getElementById('runtime-activity-helper');
     this.perfEl = document.getElementById('runtime-perf');
     this.jobs = new Map();
@@ -22,6 +23,7 @@ export class RuntimeHUD {
     this.perfVisible = false;
     this.perfTimer = 0;
     this.frameTime = 16.7;
+    this.objectiveNavigation = null;
     this.disposed = false;
   }
 
@@ -108,10 +110,33 @@ export class RuntimeHUD {
       this.activityTaskEl.classList.toggle('visible', !!task);
       this.activityTaskEl.dataset.state = task?.complete ? 'complete' : 'open';
       if (this.activityTaskTextEl) this.activityTaskTextEl.textContent = task?.label || '';
+      this._renderObjectiveNavigation();
     }
     if (this.activityHelperEl) this.activityHelperEl.textContent = details.helper || '';
     this.activityEl.dataset.phase = details.phase || 'preparing';
     this.activityEl.classList.add('visible');
+  }
+
+  setObjectiveNavigation(details = null) {
+    if (this.disposed) return;
+    this.objectiveNavigation = details;
+    this._renderObjectiveNavigation();
+  }
+
+  _renderObjectiveNavigation() {
+    if (!this.activityTaskMetaEl) return;
+    const details = this.objectiveNavigation;
+    if (!details) {
+      this.activityTaskMetaEl.textContent = '';
+      return;
+    }
+    const parts = [];
+    if (details.progress?.total) {
+      const current = Math.min(details.progress.total, Number(details.progress.current) || 0);
+      parts.push(`${current}/${details.progress.total}`);
+    }
+    if (Number.isFinite(details.distance)) parts.push(`${Math.round(details.distance)}m`);
+    this.activityTaskMetaEl.textContent = parts.join(' · ');
   }
 
   setPerformanceVisible(visible) {

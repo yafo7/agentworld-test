@@ -1,0 +1,921 @@
+{
+  "name": "金边餐盘上的汤圆春卷烧鸡",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "tangyuan_food",
+      "name": "缤纷汤圆",
+      "transform": {
+        "pos": [
+          -2.5,
+          0.76,
+          0.46
+        ]
+      }
+    },
+    {
+      "id": "table",
+      "name": "木桌",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          2.5,
+          -0.61,
+          -0.46
+        ]
+      }
+    },
+    {
+      "id": "tangyuan_plate",
+      "name": "汤圆餐盘",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          2.5,
+          -0.39,
+          -0.46
+        ]
+      }
+    },
+    {
+      "id": "tangyuan_plate_gold_rim",
+      "name": "金边",
+      "parent": "tangyuan_plate",
+      "transform": {
+        "pos": [
+          -1.84,
+          0.13,
+          0.46
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "springroll_plate",
+      "name": "春卷餐盘",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          2.5,
+          -0.39,
+          -0.46
+        ]
+      }
+    },
+    {
+      "id": "springroll_plate_gold_rim",
+      "name": "金边",
+      "parent": "springroll_plate",
+      "transform": {
+        "pos": [
+          1.26,
+          0.13,
+          0.46
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "chicken_plate",
+      "name": "烧鸡餐盘",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          5.6,
+          -0.39,
+          -0.46
+        ]
+      }
+    },
+    {
+      "id": "chicken_plate_gold_rim",
+      "name": "金边",
+      "parent": "chicken_plate",
+      "transform": {
+        "pos": [
+          0,
+          0.13,
+          0.46
+        ]
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "gold"
+        }
+      ]
+    },
+    {
+      "id": "springroll_food",
+      "name": "金黄春卷",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          3.26,
+          -0.03,
+          0
+        ]
+      }
+    },
+    {
+      "id": "roast_chicken_food",
+      "name": "整只烧鸡",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          5.6,
+          0.29,
+          0
+        ]
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "table",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 9.6,
+          "height": 0.3,
+          "depth": 3.5
+        },
+        "color": 7028516
+      },
+      "tags": [
+        {
+          "tag": "base",
+          "value": "wood",
+          "variant": "walnut"
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "parent": "tangyuan_plate",
+      "transform": {
+        "pos": [
+          -3.1,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.14,
+          "depth": 2.5
+        },
+        "color": 15985365
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "tangyuan_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          -1.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "tangyuan_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          0.73
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "tangyuan_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -2.52,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "tangyuan_plate_gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "springroll_plate",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.14,
+          "depth": 2.5
+        },
+        "color": 15985365
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "springroll_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          -1.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "springroll_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          0.73
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "springroll_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -2.52,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "springroll_plate_gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "chicken_plate",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.14,
+          "depth": 2.5
+        },
+        "color": 15985365
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "chicken_plate_gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -1.65
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "chicken_plate_gold_rim",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0.73
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 2.65,
+          "height": 0.13,
+          "depth": 0.13
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "chicken_plate_gold_rim",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "chicken_plate_gold_rim",
+      "transform": {
+        "pos": [
+          1.26,
+          0,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.13,
+          "height": 0.13,
+          "depth": 2.25
+        },
+        "color": 14067503
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -1.15,
+          0,
+          -0.94
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -0.6,
+          0,
+          -0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 16242652
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -0.05,
+          0,
+          -0.88
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m19",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -1.12,
+          0,
+          -0.3
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 14477508
+      }
+    },
+    {
+      "id": "m20",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -0.55,
+          0,
+          -0.34
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m21",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.24
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 15784120
+      }
+    },
+    {
+      "id": "m22",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -0.82,
+          0,
+          0.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 16775400
+      }
+    },
+    {
+      "id": "m23",
+      "parent": "tangyuan_food",
+      "transform": {
+        "pos": [
+          -0.25,
+          0,
+          0.19
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.45,
+          "height": 0.45,
+          "depth": 0.45
+        },
+        "color": 15914463
+      }
+    },
+    {
+      "id": "m24",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          -1.48,
+          0,
+          -0.94
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 13995055
+      }
+    },
+    {
+      "id": "m25",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          -0.99,
+          0,
+          -1.01
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 14918461
+      }
+    },
+    {
+      "id": "m26",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          -0.49,
+          0,
+          -0.96
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 13203751
+      }
+    },
+    {
+      "id": "m27",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          -0.88
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 14721092
+      }
+    },
+    {
+      "id": "m28",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          -1.26,
+          0,
+          0.12
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 14191406
+      }
+    },
+    {
+      "id": "m29",
+      "parent": "springroll_food",
+      "transform": {
+        "pos": [
+          -0.26,
+          0,
+          0.09
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.4,
+          "height": 0.4,
+          "depth": 0.95
+        },
+        "color": 15051336
+      }
+    },
+    {
+      "id": "m30",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          0,
+          -0.13,
+          -0.62
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.3,
+          "height": 0.82,
+          "depth": 1.2
+        },
+        "color": 10309410
+      }
+    },
+    {
+      "id": "m31",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          0,
+          0.35,
+          -0.59
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.22,
+          "depth": 0.85
+        },
+        "color": 13202734
+      }
+    },
+    {
+      "id": "m32",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          -0.78,
+          -0.19,
+          -0.58
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.48,
+          "depth": 0.82
+        },
+        "color": 9256989
+      }
+    },
+    {
+      "id": "m33",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          0.78,
+          -0.19,
+          -0.58
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.48,
+          "depth": 0.82
+        },
+        "color": 9256989
+      }
+    },
+    {
+      "id": "m34",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          -0.38,
+          -0.35,
+          0.26
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 0.38,
+          "depth": 0.92
+        },
+        "color": 11163428
+      }
+    },
+    {
+      "id": "m35",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          0.38,
+          -0.35,
+          0.26
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.36,
+          "height": 0.38,
+          "depth": 0.92
+        },
+        "color": 11163428
+      }
+    },
+    {
+      "id": "m36",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          -0.38,
+          -0.33,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.43,
+          "depth": 0.42
+        },
+        "color": 12675625
+      }
+    },
+    {
+      "id": "m37",
+      "parent": "roast_chicken_food",
+      "transform": {
+        "pos": [
+          0.38,
+          -0.33,
+          0.62
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.47,
+          "height": 0.43,
+          "depth": 0.42
+        },
+        "color": 12675625
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1786090079095,
+      "provider": "gpt",
+      "data": "YL15C7msNLpHV9UQ9AFCRc/vOmDnjSupySiUFdPs9g43wLI3gioiewjatjedjpiodeaJaFwo/53elw8ykQ1FVRFkHVBjt/BKWwdIOiaTbK3RRcN9J33ukZ0DAL4K9uyMbUN1IkXunKFBcJtUK/suKKYA5JbMJ6RjPoRvtXdQtHIOurN04REaTTwoLXQ1oGxAdFPNeZkk16th27l8Zb3cAnrW0JelkzYIqqcPO1Jd+5RvkB+daGvl44COE6oVVX0l8Cosa0crad3Gios/2+itT5K3tpfbCjMPXF/xOxqljQ7uV1NCaV/LH2guO5a2AdjpzZcokeFhhytRCvE4YTYr6wfgAQ7iTIrSd9QLXzh/OJ0Xy96h4V30ukfQmxSA8ScitDjO2jT1xh2qPV6IoDDWBhwwlRT5yR7dfndg0PLMU5BGjW0YdQ4aClTOSPkSGpg+c/DvcIOMRbV7mXH/4E+ew8DiqgE0ZfanPAX8CwQRdryjWuIC3fT+4MDDkxfpgcXwQLMA6oX4TTq/ozkox3oFHLBMeXhubS9+B69X5u4f+vt3artGJYWaTVxQfQu6HrfsdlA9karhOo7fUO3rKtHkQMdElekm2YqWQyGrRsvx9aN89WI8VHsxnc5+ct/yozZCTcUskU66m/YJz8sTtNgfQ1aowHsU1WmeH6vUrqmPOkxiZZY8SgUdv0gcmzAX6oP6YkxsBQvjzBWZ/xPtXFzGfAJ9jmXiFGIVjvuSHBEZ0yD2z1kfQKcop2ofh9EBaomEhbg5indBtahVCWyr4FbwMGFI2Ew2zQdTdeoW21qYi5CQXqePvP5yQ01rlFdLhLgJp3qk0VTs1yiXfu/IH69SVU1r2MFc7uwnL8xg4mVoCcD5CtUfSBHHXk2ijsk2uEy2PMQFJAkKs3n6tCThTuPNR1HzB5DTPHQLRlEn4G7hH0xLWDYTJktg59zGAQK4UdQiGsMbPhDD6QTpaSyDOyntovnv51cDaUFm8pTQ3bSBs/3dxr7hEtioR8dK2iXHyVpYMSJvMznOqTqVQu9HgORYc7gjLNSggrjgoN04APJ1K4hbSEOlhdsmHyUJmA2UqUZ2dQxGPyCll31a85648xoG/kemvJJoTos8iCXCXdk2QQp418Q1fdH7tMjtQC25D5fHxSkJQ7ksZVEZ1lJXQmcEsxye90bPKbCAbcqRvWp/ISOPxoktT0F5pcF42xH8o91SXUuNJ039Da0Sny0yCHkpYRFriJaX1bikmuT3DpN0I6cpGOEWDB7awYtZvaM+bRQIT0MtQlj8doFtJi5oqN70FdndXJIS84o8dauZMnZNRzqY5VMi562IpNejXNGy5bTlIIuxXZFx9+qlhjW/IFbOpW1DYzOMUrMp65l79/VxiDoLJCAfD7HqJgfObyxxcQp9CwqxcYJuG1A7be0Wbc6di4vwboE3qmh7xE7RJF4sZbvED5LP3zniYPXVjgk=",
+      "edits": ""
+    }
+  }
+}

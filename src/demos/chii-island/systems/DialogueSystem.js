@@ -5,9 +5,11 @@ const DIALOGUE_STYLES = `
     pointer-events: none;
   }
   #dialogue-root.active { display: flex; }
+  #dialogue-root [hidden] { display: none !important; }
   .dialogue-box {
     pointer-events: auto;
     width: min(640px, 90vw); min-width: min(420px, 90vw);
+    box-sizing: border-box; max-width: calc(100vw - 24px);
     margin-bottom: 22px; padding: 16px 22px;
     border: 3px solid #2a2330; border-radius: 8px;
     background: #fdf6e3; color: #2a2330;
@@ -31,7 +33,7 @@ const DIALOGUE_STYLES = `
     background: #4a90d9; color: #fff; cursor: pointer; font: inherit; font-size: 14px;
   }
   .dialogue-hints { padding-top: 8px; border-top: 1px dashed #ccc; color: #776b7e; font-size: 11px; text-align: center; }
-  .dialogue-choices { display: flex; flex-direction: column; gap: 8px; max-height: min(42vh, 360px); overflow-y: auto; }
+  .dialogue-choices { display: flex; flex-direction: column; gap: 8px; max-height: min(42vh, 360px); overflow-x: hidden; overflow-y: auto; }
   .dialogue-choice-btn {
     padding: 10px 16px; border: 2px solid #2a2330; border-radius: 8px;
     background: #fff8e7; color: #2a2330; cursor: pointer;
