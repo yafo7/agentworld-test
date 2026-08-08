@@ -296,6 +296,9 @@ async function main() {
         host: '127.0.0.1',
         port,
         strictPort: true,
+        // GitHub Windows runners may address the temp root through its RUNNER~1
+        // short-path alias, which Vite's string-based allow list treats as external.
+        fs: { strict: false },
       },
     });
     await viteServer.listen();
