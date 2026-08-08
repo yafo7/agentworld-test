@@ -123,8 +123,9 @@ function toProjectPath(filePath) {
 }
 
 async function sha256(filePath) {
-  const bytes = await readFile(filePath);
-  return createHash('sha256').update(bytes).digest('hex');
+  const text = await readFile(filePath, 'utf8');
+  const normalized = text.replace(/\r\n?/g, '\n');
+  return createHash('sha256').update(normalized, 'utf8').digest('hex');
 }
 
 async function resolveSource(kind, name, useVoxelOverride) {

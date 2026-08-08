@@ -188,7 +188,7 @@
       "name": "forest_temple_trophy",
       "provenance": "pre-iteration-backup",
       "source": "public/generated/history/2026-07-28-gpt56-reset/models/forest_temple_trophy.json",
-      "sourceSha256": "2bebd24b9576dd1d209b14f5950a2fc92d0de87c692885d80d152c1f383cbe82",
+      "sourceSha256": "b99b77de31cca5c1e62e78120af6362a9afb2eb6ee5b1a85228602e755bb9d77",
       "target": "public/generated/scenes/original/models/forest_temple_trophy.json"
     },
     {

@@ -11,8 +11,13 @@ import { createChiiAssetCatalog } from '../src/demos/chii-island/data/assetCatal
 
 const workspace = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
+export function stableTextSha256(text) {
+  const normalized = String(text).replace(/\r\n?/g, '\n');
+  return createHash('sha256').update(normalized, 'utf8').digest('hex');
+}
+
 function sha256(path) {
-  return createHash('sha256').update(readFileSync(path)).digest('hex');
+  return stableTextSha256(readFileSync(path, 'utf8'));
 }
 
 export function verifyChiiStoryBaseline() {
