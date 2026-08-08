@@ -168,7 +168,7 @@ test('generated library manifest points to available active or archived JSON', a
   const resources = manifest.flatMap((entry) => [entry, ...(entry.animations || [])]);
   const archived = resources.filter((resource) => resource.lifecycle?.status === 'archived');
 
-  assert.equal(manifest.length, 47);
+  assert.equal(manifest.length, 55);
   assert.equal(archived.length, 31);
   for (const resource of resources) {
     assert.ok(resource.path, `Missing path for ${resource.assetId || resource.animId}`);
