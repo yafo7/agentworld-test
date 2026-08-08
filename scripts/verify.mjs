@@ -22,7 +22,14 @@ function githubCommandValue(value) {
 function reportGitHubFailure(label, output) {
   if (!isGitHubActions) return;
   const cleanOutput = String(output || '').replace(/\u001b\[[0-9;]*m/g, '');
-  const diagnostic = cleanOutput.slice(-6000) || `${label} exited without diagnostic output`;
+  const failureMarkers = ['\nnot ok ', '\n✖ failing tests:'];
+  const failureIndex = failureMarkers
+    .map(marker => cleanOutput.indexOf(marker))
+    .filter(index => index >= 0)
+    .sort((a, b) => a - b)[0];
+  const diagnostic = Number.isInteger(failureIndex)
+    ? cleanOutput.slice(failureIndex + 1, failureIndex + 3501)
+    : cleanOutput.slice(-3500) || `${label} exited without diagnostic output`;
   console.error(
     `::error title=${githubCommandValue(`verify: ${label} failed`)}::${githubCommandValue(diagnostic)}`,
   );
