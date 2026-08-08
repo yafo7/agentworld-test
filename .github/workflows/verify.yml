@@ -7,6 +7,7 @@ on:
 jobs:
   verify:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -18,4 +19,10 @@ jobs:
           cache: npm
       # The audited render-runtime package still declares an obsolete Three peer range.
       - run: npm ci --legacy-peer-deps
+      - name: Install Playwright Chromium (Linux)
+        if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium (Windows)
+        if: runner.os == 'Windows'
+        run: npx playwright install chromium
       - run: npm run verify
