@@ -1,20 +1,32 @@
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
-import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { chromium } from 'playwright';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const UPSTREAM_ROOT = resolve(
-  process.env.CHII_RENDER_RUNTIME_ROOT || join(ROOT, '..', '3d-generate'),
+const INSTALLED_RUNTIME_PACKAGE = join(
+  ROOT,
+  'node_modules',
+  '@voxel-studio',
+  'render-runtime',
 );
-const RUNTIME_PACKAGE = join(UPSTREAM_ROOT, 'packages', 'voxel-render-runtime');
-const VOCABULARY_PATH = join(RUNTIME_PACKAGE, 'model', 'material-tags-v1.json');
-const VFX_VOCABULARY_PATH = join(RUNTIME_PACKAGE, 'model', 'vfx-tags-v1.json');
 const VITE_BIN = join(ROOT, 'node_modules', 'vite', 'bin', 'vite.js');
+
+export function resolvePinnedRuntimeArchive(packageJson, root = ROOT) {
+  const specifier = packageJson.dependencies?.['@voxel-studio/render-runtime'];
+  if (!specifier?.startsWith('file:') || !specifier.endsWith('.tgz')) {
+    throw new Error('render runtime dependency must reference a pinned local tarball');
+  }
+  return resolve(root, specifier.slice('file:'.length));
+}
+
+export function pinnedRuntimeRevision(archivePath) {
+  return basename(archivePath).match(/-([0-9a-f]+)\.tgz$/i)?.[1] || 'vendored';
+}
 
 function run(command, args, options = {}) {
   return new Promise((resolvePromise, reject) => {
@@ -266,14 +278,29 @@ document.querySelector('pre').textContent = JSON.stringify(result, null, 2);
 
 async function main() {
   const packageJson = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
-  const runtimePackageJson = JSON.parse(await readFile(join(RUNTIME_PACKAGE, 'package.json'), 'utf8'));
-  const upstreamCommit = (await run('git', ['rev-parse', '--short', 'HEAD'], { cwd: UPSTREAM_ROOT })).stdout;
   const tempRoot = await mkdtemp(join(tmpdir(), 'chii-render-compat-'));
   let viteProcess = null;
   let browser = null;
 
   try {
-    await runNpm(['pack', RUNTIME_PACKAGE, '--pack-destination', tempRoot], ROOT);
+    const upstreamRoot = process.env.CHII_RENDER_RUNTIME_ROOT
+      ? resolve(process.env.CHII_RENDER_RUNTIME_ROOT)
+      : null;
+    const runtimePackage = upstreamRoot
+      ? join(upstreamRoot, 'packages', 'voxel-render-runtime')
+      : INSTALLED_RUNTIME_PACKAGE;
+    const runtimePackageJson = JSON.parse(await readFile(join(runtimePackage, 'package.json'), 'utf8'));
+    const vocabularyPath = join(runtimePackage, 'model', 'material-tags-v1.json');
+    const vfxVocabularyPath = join(runtimePackage, 'model', 'vfx-tags-v1.json');
+    let upstreamCommit;
+    if (upstreamRoot) {
+      await runNpm(['pack', runtimePackage, '--pack-destination', tempRoot], ROOT);
+      upstreamCommit = (await run('git', ['rev-parse', '--short', 'HEAD'], { cwd: upstreamRoot })).stdout;
+    } else {
+      const pinnedArchive = resolvePinnedRuntimeArchive(packageJson);
+      await copyFile(pinnedArchive, join(tempRoot, basename(pinnedArchive)));
+      upstreamCommit = pinnedRuntimeRevision(pinnedArchive);
+    }
     const archive = (await readdir(tempRoot)).find(name => name.endsWith('.tgz'));
     if (!archive) throw new Error('npm pack did not produce a runtime archive');
 
@@ -286,8 +313,8 @@ async function main() {
       },
     };
     await writeFile(join(tempRoot, 'package.json'), JSON.stringify(tempPackage, null, 2));
-    await writeFile(join(tempRoot, 'material-tags-v1.json'), await readFile(VOCABULARY_PATH));
-    await writeFile(join(tempRoot, 'vfx-tags-v1.json'), await readFile(VFX_VOCABULARY_PATH));
+    await writeFile(join(tempRoot, 'material-tags-v1.json'), await readFile(vocabularyPath));
+    await writeFile(join(tempRoot, 'vfx-tags-v1.json'), await readFile(vfxVocabularyPath));
     await writeFile(join(tempRoot, 'index.html'), '<canvas width="480" height="320"></canvas><pre></pre><script type="module" src="/compat-browser.mjs"></script>');
     await writeFile(join(tempRoot, 'compat-browser.mjs'), browserFixture());
     await runNpm(
@@ -335,7 +362,9 @@ async function main() {
   }
 }
 
-main().catch(error => {
-  console.error(error.stack || error.message || error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch(error => {
+    console.error(error.stack || error.message || error);
+    process.exitCode = 1;
+  });
+}
