@@ -1,4 +1,4 @@
-import { createChiiAssetCatalog } from './assetCatalog.js';
+import { createChiiAssetCatalog, residentVoxelAsset, RESIDENT_VOXEL_VERSION } from './assetCatalog.js';
 
 const CHARACTER_ASSET_ALIASES = Object.freeze({
   builder_crab: 'crab',
@@ -22,14 +22,20 @@ export function getChiiCharacterVariants(characterId) {
   if (!proAsset || !voxelAsset || !originalAsset || !CURATED_CHARACTER_IDS.has(assetId)) return [];
   return [
     Object.freeze({
+      id: RESIDENT_VOXEL_VERSION, slug: assetId + '-' + RESIDENT_VOXEL_VERSION, assetId,
+      name: '新版体素', group: 'GPT Voxel', role: '岛屿居民',
+      description: '新版默认外观，沿用这位居民原有的动作。', tags: ['GPT Voxel', '默认'],
+      accent: '#427565', ...residentVoxelAsset(assetId),
+    }),
+    Object.freeze({
       id: 'original',
       slug: `${assetId}-original`,
       assetId,
       group: 'Original',
       name: 'Original',
       role: '重置前岛屿居民',
-      description: '冻结自 7 月 28 日大型迭代开始前的模型和动画，也是当前默认制作版本。',
-      tags: Object.freeze(['Original', '默认']),
+      description: '冻结自 7 月 28 日大型迭代开始前的模型和动画。',
+      tags: Object.freeze(['Original', '经典']),
       accent: '#7b684d',
       model: originalAsset.model,
       animations: Object.freeze({ ...(originalAsset.animations || {}) }),
@@ -41,7 +47,7 @@ export function getChiiCharacterVariants(characterId) {
       group: 'Pro',
       name: '细节版',
       role: 'GPT 5.6 Pro 居民',
-      description: '结构和局部细节更丰富，作为岛上默认版本。',
+      description: '结构和局部细节更丰富。',
       tags: Object.freeze(['Pro', '细节版']),
       accent: '#b36d43',
       model: proAsset.model,

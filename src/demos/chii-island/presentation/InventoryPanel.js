@@ -1,4 +1,5 @@
 import { CHII_EQUIPMENT_ITEMS } from '../data/equipmentCatalog.js';
+import { ModalFocusController } from '../../../engine/ui/ModalFocusController.js';
 
 const CATEGORY_LABELS = Object.freeze({
   snack: '随身点心',
@@ -19,8 +20,9 @@ export class InventoryPanel {
     this.busy = false;
     this.handlers = {};
     this.listeners = [];
-    this.focusFrame = null;
     this.disposed = false;
+    this.slots = new Map();
+    this.focus = new ModalFocusController(root);
 
     this.grid = root.querySelector('[data-inventory-grid]');
     this.name = root.querySelector('[data-inventory-name]');
@@ -66,17 +68,11 @@ export class InventoryPanel {
 
   setOpen(open) {
     if (this.disposed) return;
-    if (this.focusFrame) cancelAnimationFrame(this.focusFrame);
-    this.focusFrame = null;
     this.root.hidden = !open;
     this.root.classList.toggle('is-open', open);
     this.root.setAttribute('aria-hidden', String(!open));
-    if (open) {
-      this.focusFrame = requestAnimationFrame(() => {
-        this.focusFrame = null;
-        this.root.querySelector(`[data-item-id="${this.selectedId}"]`)?.focus();
-      });
-    }
+    this.root.inert = !open;
+    this.focus.setOpen(open, this.slots.get(this.selectedId)?.button);
   }
 
   isOpen() {
@@ -106,7 +102,7 @@ export class InventoryPanel {
 
   setThumbnails(thumbnails) {
     for (const [itemId, dataUrl] of thumbnails) {
-      const image = this.grid.querySelector(`[data-item-id="${itemId}"] img`);
+      const image = this.slots.get(itemId)?.image;
       if (image) {
         image.src = dataUrl;
         image.hidden = false;
@@ -115,6 +111,18 @@ export class InventoryPanel {
   }
 
   renderGrid() {
+    if (this.slots.size) {
+      for (const item of this.items) {
+        const button = this.slots.get(item.id)?.button;
+        if (!button) continue;
+        button.classList.toggle('is-selected', item.id === this.selectedId);
+        button.classList.toggle('is-equipped', item.id === this.equippedId);
+        button.setAttribute('aria-pressed', String(item.id === this.selectedId));
+        button.setAttribute('aria-label', `${item.name}${item.id === this.equippedId ? '，已拿在手里' : ''}`);
+        button.disabled = this.busy;
+      }
+      return;
+    }
     const buttons = this.items.map(item => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -139,6 +147,7 @@ export class InventoryPanel {
       equipped.textContent = '手持';
 
       button.append(image, fallback, label, equipped);
+      this.slots.set(item.id, { button, image });
       return button;
     });
 
@@ -165,12 +174,13 @@ export class InventoryPanel {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
-    if (this.focusFrame) cancelAnimationFrame(this.focusFrame);
-    this.focusFrame = null;
     for (const remove of this.listeners.splice(0).reverse()) remove();
     this.handlers = {};
     this.root.hidden = true;
     this.root.classList.remove('is-open', 'is-busy');
     this.root.setAttribute('aria-hidden', 'true');
+    this.root.inert = true;
+    this.focus.dispose();
+    this.slots.clear();
   }
 }

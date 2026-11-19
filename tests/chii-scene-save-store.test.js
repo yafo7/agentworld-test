@@ -41,3 +41,13 @@ test('reset copies one frozen record into auto state without changing other reco
   assert.equal(store.getAuto('original').source, 'restored:1');
   assert.equal(store.getRecord('original', 0).world.generatedObjects[0].saveId, 'kept');
 });
+
+test('scene save store isolates arbitrary WorldForge world ids', () => {
+  const store = new ChiiSceneSaveStore({ storage: memoryStorage(), now: () => 300 });
+  store.saveAuto('wf-open-plain', { worldIdentity: { sourceMapVersion: 11 } });
+  store.saveAuto('wf-fresh-forest', { worldIdentity: { sourceMapVersion: 13 } });
+
+  assert.equal(store.getAuto('wf-open-plain').worldIdentity.sourceMapVersion, 11);
+  assert.equal(store.getAuto('wf-fresh-forest').worldIdentity.sourceMapVersion, 13);
+  assert.equal(store.getAuto('original'), null);
+});

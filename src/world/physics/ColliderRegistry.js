@@ -29,6 +29,7 @@ export class ColliderRegistry {
     this.physics = physics;
     this.strategy = normalizeColliderStrategy(strategy);
     this.records = new Map();
+    this.revision = 0;
     this._unbindWorldObjects = null;
   }
 
@@ -73,6 +74,7 @@ export class ColliderRegistry {
     else this.records.delete(key);
     if (previous?.body) this.physics.removeRigidBody(previous.body);
     if (entity.mesh?.userData) entity.mesh.userData.modelRevision = revision;
+    if (previous || nextRecord) this.revision++;
     return nextRecord;
   }
 
@@ -89,6 +91,7 @@ export class ColliderRegistry {
     const record = key ? this.records.get(key) : null;
     if (record?.body) this.physics.removeRigidBody(record.body);
     if (key) this.records.delete(key);
+    if (record) this.revision++;
     return !!record;
   }
 
@@ -135,6 +138,7 @@ export class ColliderRegistry {
       throw error;
     }
 
+    this.revision++;
     this.strategy = nextStrategy;
     for (const { key, previous, next } of replacements) {
       if (next) this.records.set(key, next);

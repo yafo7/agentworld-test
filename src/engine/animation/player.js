@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { getRuntime } from '../runtime/runtimeProvider.js';
+import { evaluateBakedMotion } from './bakedMotion.js';
 
 /**
  * Evaluate a motion plan at time t — mirrors 3d-generate MotionExpander.evaluateAt.
@@ -12,6 +13,7 @@ import { getRuntime } from '../runtime/runtimeProvider.js';
  * @returns {object} deltas per partId: { partId: { position?:[dx,dy,dz], rotation?:[drx,dry,drz], scale?:[sx,sy,sz] }, _attachMap?: {...} }
  */
 export function evaluateMotion(plan, duration, model, t) {
+  if (plan?._baked) return evaluateBakedMotion(plan, t);
   const runtime = getRuntime();
   if (!runtime || !plan) return { _attachMap: {} };
 
@@ -76,7 +78,9 @@ export function applyMotionDeltas(deltas, model, basePoseMap = null) {
       base.position.z + pos[2]
     );
 
-    if (base.quaternion) {
+    if (tracks.absoluteQuaternion) {
+      obj.quaternion.fromArray(tracks.absoluteQuaternion);
+    } else if (base.quaternion) {
       const qDelta = new THREE.Quaternion().setFromEuler(
         new THREE.Euler(rot[0], rot[1], rot[2], 'XYZ')
       );

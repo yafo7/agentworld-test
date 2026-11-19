@@ -1,3 +1,7 @@
+function setText(element, value) {
+  if (element && element.textContent !== value) element.textContent = value;
+}
+
 export class RuntimeHUD {
   constructor({ renderer, physics }) {
     this.renderer = renderer;
@@ -24,6 +28,7 @@ export class RuntimeHUD {
     this.perfTimer = 0;
     this.frameTime = 16.7;
     this.objectiveNavigation = null;
+    this.activityProjection = null;
     this.disposed = false;
   }
 
@@ -74,45 +79,50 @@ export class RuntimeHUD {
     if (this.disposed) return;
     const job = this.jobs.get(id);
     if (!job || !this.jobEl) return;
-    this.jobTitleEl.textContent = job.label;
-    this.jobStageEl.textContent = job.stage;
+    setText(this.jobTitleEl, job.label);
+    setText(this.jobStageEl, job.stage);
     this.jobEl.dataset.state = job.state;
     this.jobEl.classList.add('visible');
   }
 
   setWorldStatus(region, follower) {
     if (this.disposed) return;
-    if (this.regionEl) this.regionEl.textContent = region || '奇异岛';
+    if (this.regionEl) setText(this.regionEl, region || '奇异岛');
     if (this.followerEl) {
-      this.followerEl.textContent = follower ? `${follower} 跟随中` : '独自探索';
+      setText(this.followerEl, follower ? `${follower} 跟随中` : '独自探索');
     }
   }
 
   setActivityStatus(title = null, stage = '', details = {}) {
     if (this.disposed) return;
     if (!this.activityEl) return;
+    const projection = [title, stage, details.phase, details.phaseIndex, details.phaseCount,
+      details.phaseLabel, Boolean(details.task), details.task?.label, details.task?.complete, details.helper];
+    if (this.activityProjection?.every((value, index) => Object.is(value, projection[index]))) return;
+    this.activityProjection = projection;
     if (!title) {
       this.activityEl.classList.remove('visible');
       return;
     }
-    this.activityTitleEl.textContent = title;
-    this.activityStageEl.textContent = stage;
+    setText(this.activityTitleEl, title);
+    setText(this.activityStageEl, stage);
     const phaseIndex = Math.max(1, Number(details.phaseIndex) || 1);
     const phaseCount = Math.max(phaseIndex, Number(details.phaseCount) || 4);
     if (this.activityPhaseEl) {
-      this.activityPhaseEl.textContent = `${details.phaseLabel || '准备'} ${phaseIndex}/${phaseCount}`;
+      setText(this.activityPhaseEl, `${details.phaseLabel || '准备'} ${phaseIndex}/${phaseCount}`);
     }
     if (this.activityProgressEl) {
-      this.activityProgressEl.style.width = `${Math.min(100, (phaseIndex / phaseCount) * 100)}%`;
+      const width = `${Math.min(100, (phaseIndex / phaseCount) * 100)}%`;
+      if (this.activityProgressEl.style.width !== width) this.activityProgressEl.style.width = width;
     }
     if (this.activityTaskEl) {
       const task = details.task || null;
       this.activityTaskEl.classList.toggle('visible', !!task);
       this.activityTaskEl.dataset.state = task?.complete ? 'complete' : 'open';
-      if (this.activityTaskTextEl) this.activityTaskTextEl.textContent = task?.label || '';
+      if (this.activityTaskTextEl) setText(this.activityTaskTextEl, task?.label || '');
       this._renderObjectiveNavigation();
     }
-    if (this.activityHelperEl) this.activityHelperEl.textContent = details.helper || '';
+    if (this.activityHelperEl) setText(this.activityHelperEl, details.helper || '');
     this.activityEl.dataset.phase = details.phase || 'preparing';
     this.activityEl.classList.add('visible');
   }
@@ -127,7 +137,7 @@ export class RuntimeHUD {
     if (!this.activityTaskMetaEl) return;
     const details = this.objectiveNavigation;
     if (!details) {
-      this.activityTaskMetaEl.textContent = '';
+      setText(this.activityTaskMetaEl, '');
       return;
     }
     const parts = [];
@@ -136,7 +146,7 @@ export class RuntimeHUD {
       parts.push(`${current}/${details.progress.total}`);
     }
     if (Number.isFinite(details.distance)) parts.push(`${Math.round(details.distance)}m`);
-    this.activityTaskMetaEl.textContent = parts.join(' · ');
+    setText(this.activityTaskMetaEl, parts.join(' · '));
   }
 
   setPerformanceVisible(visible) {
@@ -155,12 +165,12 @@ export class RuntimeHUD {
     const render = this.renderer.info.render;
     const colliders = this.physics.world?.colliders?.len?.() ?? 0;
     const bodies = this.physics.world?.bodies?.len?.() ?? 0;
-    this.perfEl.textContent = [
+    setText(this.perfEl, [
       `${Math.round(1000 / Math.max(this.frameTime, 1))} FPS  ${this.frameTime.toFixed(1)} ms`,
       `${render.calls} calls  ${Math.round(render.triangles / 1000)}k tris`,
       `${entities} entities  ${pets} pets`,
       `${colliders} colliders  ${bodies} bodies`,
-    ].join('\n');
+    ].join('\n'));
   }
 
   dispose() {

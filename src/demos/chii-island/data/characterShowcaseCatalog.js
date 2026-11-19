@@ -5,6 +5,8 @@ import { getChiiCharacterVariants } from './characterVariants.js';
 export const CHARACTER_SHOWCASE_PATH = './player-candidates.html';
 
 export const SHOWCASE_ANIMATION_LABELS = Object.freeze({
+  exercise: '体操',
+  nod: '点头',
   idle: '呼吸待机',
   walk: '行走',
   run: '奔跑',

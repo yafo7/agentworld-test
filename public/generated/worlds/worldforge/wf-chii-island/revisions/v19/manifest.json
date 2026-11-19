@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "kind": "chii-worldforge-world",
+  "worldId": "wf-chii-island",
+  "mapNumber": "WF-005",
+  "sourceMapId": "map-6ea55ad2-0d07-4161",
+  "sourceMapVersion": 19,
+  "sourceMapUpdatedAt": 1786283635537,
+  "publishedAt": "2026-08-09T13:55:47.307Z",
+  "gameplayPreset": "exploration",
+  "worldForge": {
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json"
+  },
+  "hashes": {
+    "map": "4c4af06f039cc899d0d70aff8f7c0276bee33ebbd375a73b98f247f17f1f778a",
+    "renderScheme": "c66260349ede7984bcd5926da337ec9d5c9aa3f8edd6291cf30257e4ef8026d7",
+    "bindings": "d8360d60626d0a62bb22891488128d44349337f56a66114623235f5848d580f7"
+  }
+}

@@ -29,15 +29,17 @@ test('ESC management panel can replay the completed Act Zero prologue', () => {
 });
 
 test('ESC management panel opens the character showcase through the shared page transition', () => {
-  assert.match(html, /id="btn-open-character-showcase"/);
-  assert.match(html, /href="\.\/player-candidates\.html"/);
-  assert.match(html, /data-chii-navigation/);
-  assert.doesNotMatch(html, /id="btn-open-character-showcase"[\s\S]*?target="_blank"/);
+  const showcaseLink = html.match(/<a\b[^>]*\bid="btn-open-character-showcase"[^>]*>/)?.[0];
+  assert.ok(showcaseLink);
+  assert.match(showcaseLink, /href="\.\/player-candidates\.html"/);
+  assert.match(showcaseLink, /data-chii-navigation/);
+  assert.doesNotMatch(showcaseLink, /target="_blank"/);
   assert.match(main, /createChiiPageLoadingScreen/);
 });
 
 test('ESC management panel sits above runtime HUD overlays', () => {
-  assert.match(html, /#mgmt-panel\s*\{[\s\S]*?z-index:\s*300/);
+  const styles = fs.readFileSync(new URL('../src/demos/chii-island/presentation/island-shell.css', import.meta.url), 'utf8');
+  assert.match(styles, /#mgmt-panel\s*\{[\s\S]*?z-index:\s*300/);
 });
 
 test('ESC scene switcher presents Original first', () => {

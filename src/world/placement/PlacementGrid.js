@@ -129,7 +129,8 @@ export class PlacementGrid {
         inBounds = false;
         continue;
       }
-      if (!allowWater && this.terrainTypeAt(cell.x, cell.z) === 'water') blockedTerrain.push(cell);
+      const terrainType = this.terrainTypeAt(cell.x, cell.z);
+      if (terrainType === 'blocked' || (!allowWater && terrainType === 'water')) blockedTerrain.push(cell);
       const owners = this.occupancy.get(`${cell.x},${cell.z}`);
       if (owners) {
         for (const owner of owners) {

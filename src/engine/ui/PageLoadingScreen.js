@@ -73,6 +73,7 @@ export class PageLoadingScreen {
     this.shownAt = performance.now();
     this.hideTimer = null;
     this.hiddenTimer = null;
+    this.navigationTimer = null;
     this.navigationHandler = event => this._handleNavigation(event);
     this.retryHandler = () => window.location.reload();
     this.pageshowHandler = event => {
@@ -128,12 +129,14 @@ export class PageLoadingScreen {
 
   navigate(url, copy = this.navigationCopy) {
     this.show(copy);
-    setTimeout(() => window.location.assign(url), 220);
+    clearTimeout(this.navigationTimer);
+    this.navigationTimer = setTimeout(() => window.location.assign(url), 220);
   }
 
   reload(copy = this.navigationCopy) {
     this.show(copy);
-    setTimeout(() => window.location.reload(), 220);
+    clearTimeout(this.navigationTimer);
+    this.navigationTimer = setTimeout(() => window.location.reload(), 220);
   }
 
   _handleNavigation(event) {
@@ -149,6 +152,7 @@ export class PageLoadingScreen {
   }
 
   dispose() {
+    clearTimeout(this.navigationTimer);
     clearTimeout(this.hideTimer);
     clearTimeout(this.hiddenTimer);
     document.removeEventListener('click', this.navigationHandler);

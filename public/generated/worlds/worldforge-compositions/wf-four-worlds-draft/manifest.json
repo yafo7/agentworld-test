@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "kind": "chii-worldforge-composition-draft",
+  "id": "wf-four-worlds-draft",
+  "generatedAt": "2026-08-09T07:23:59.754Z",
+  "sourceWorlds": [
+    "wf-open-plain",
+    "wf-fresh-forest",
+    "wf-sakura-bamboo",
+    "wf-sunset-grassland"
+  ],
+  "hashes": {
+    "map": "a20b50a0e1214f31cef47ea8d09e11bd07ee59e7143f4717c14a451bbf7848a7",
+    "renderScheme": "534002acfc1c908d2c05eac6e3486b3e61509a8ace1be6e864031d6ca447886b"
+  }
+}

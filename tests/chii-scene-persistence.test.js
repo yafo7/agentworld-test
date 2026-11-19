@@ -221,3 +221,24 @@ test('legacy inline model snapshots remain readable but are never emitted again'
     { type: 'asset', assetId: 'migrated-legacy-object' },
   );
 });
+
+test('snapshot extensions persist and restore scene-scoped agent state', async () => {
+  const storage = memoryStorage();
+  const repository = { async get() { return { modelJson: null, animations: [] }; } };
+  const first = createHarness({ storage, repository, originalEntities: [] });
+  first.system.registerSnapshotExtension('animalAgents', {
+    capture: () => ({ schemaVersion: 1, agents: { momo: { mood: 'curious' } } }),
+    restore() {},
+  });
+  first.system.saveNow('agent-state');
+
+  const restored = [];
+  const second = createHarness({ storage, repository, originalEntities: [] });
+  second.system.registerSnapshotExtension('animalAgents', {
+    capture: () => ({}),
+    restore: snapshot => restored.push(snapshot),
+  });
+  await second.system.restoreSnapshotExtensions();
+
+  assert.deepEqual(restored, [{ schemaVersion: 1, agents: { momo: { mood: 'curious' } } }]);
+});

@@ -1,4 +1,6 @@
 import { validateActivityPlan } from './ActivityPlanValidator.js';
+import { PROMPT_OPERATIONS } from '../ai/prompts/PromptOperations.js';
+import { validateTaskPlan } from '../objectives/TaskPlanValidator.js';
 
 function parseJsonResponse(content) {
   const text = String(content || '').trim();
@@ -43,10 +45,24 @@ function cloneCachedPlan(plan) {
 }
 
 export class SocialActivityPlanner {
-  constructor({ contentPort, assetLibrary = null }) {
+  constructor({ contentPort, assetLibrary = null, generationController = null }) {
     this.contentPort = contentPort;
     this.assetLibrary = assetLibrary;
+    this.generationController = generationController;
     this.planCache = new Map();
+  }
+
+  async _compiledPlanContent({ scale, concept, initiatorId = null, pets, objects, reusableAssets = [] }) {
+    if (!this.generationController) return null;
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.EVENT_PLAN,
+      rawText: concept,
+      source: { kind: scale === 'festival' ? 'town_festival' : 'town_daily_activity' },
+      input: { scale, concept, initiatorId, pets, objects, reusableAssets },
+      context: { regionId: 'church_town' },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
   }
 
   _reusablePropAssets() {
@@ -67,7 +83,9 @@ export class SocialActivityPlanner {
     const cacheKey = planCacheKey('daily', concept, initiatorId, pets, objects);
     const cached = this.planCache.get(cacheKey);
     if (cached) return cloneCachedPlan(cached);
-    const content = await this.contentPort.chat({
+    const content = await this._compiledPlanContent({
+      scale: 'daily', concept, initiatorId, pets, objects,
+    }) || await this.contentPort.chat({
       profile: 'planner',
       temperature: 0.45,
       maxTokens: 700,
@@ -108,7 +126,9 @@ export class SocialActivityPlanner {
     const cached = this.planCache.get(cacheKey);
     if (cached) return cloneCachedPlan(cached);
     const reusableAssets = this._reusablePropAssets();
-    const content = await this.contentPort.chat({
+    const content = await this._compiledPlanContent({
+      scale: 'festival', concept, initiatorId: 'fangk', pets, objects, reusableAssets,
+    }) || await this.contentPort.chat({
       profile: 'planner',
       temperature: 0.5,
       maxTokens: 1000,
@@ -149,6 +169,29 @@ export class SocialActivityPlanner {
     const plan = validateActivityPlan(raw, { availablePetIds, availableObjectIds });
     this.planCache.set(cacheKey, plan);
     return cloneCachedPlan(plan);
+  }
+
+  async planTask({ concept, initiatorId, pets, objects, locations = [] }) {
+    if (!this.generationController) {
+      throw new Error('Task planning requires AIGenerationController');
+    }
+    const availableIds = new Set([
+      ...pets.map(pet => pet.id),
+      ...objects.map(object => object.id),
+      ...locations.map(location => location.id),
+    ]);
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.TASK_PLAN,
+      rawText: concept,
+      source: { kind: 'town_task' },
+      input: {
+        context: { concept, initiatorId, pets: petSummary(pets), objects, locations },
+      },
+      context: { regionId: 'church_town' },
+      semanticPlanning: 'disabled',
+    });
+    const content = (await this.generationController.execute(prepared)).result;
+    return validateTaskPlan(parseJsonResponse(content), { availableIds });
   }
 }
 

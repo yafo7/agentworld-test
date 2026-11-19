@@ -141,3 +141,11 @@ npm run verify       # 完整测试、资产审计、渲染兼容与构建
 | 22 | 2026-07-28 | 综合升级：同步审计 3d-generate `1203a1e` 并固定 runtime 包；重建可通行石桥与 GPT 5.6 分类资产；修复 Mako 摘苹果寻路；落地服装 refine/道具 mount 与举高展示；新增连续河流、瀑布、喷泉、森林海滩、城镇活动阶段卡和 Agentland Friends 独立原型；Ghost Home 退役为兼容跳转。 |
 | 23 | 2026-08-03 | 架构整理：移除旧入口、legacy、游戏内 Studio 与过期生成脚本；统一居民、宠物、剧情、控制锁、气候和跨区域预约所有权；修复场景恢复重复登记并将旧内联资产存档迁移为 asset ID；补齐生成资产 manifest、系统 dispose、管理面板/田园/城镇职责拆分、依赖/循环/孤儿模块/密钥/CI 验证。 |
 | 24 | 2026-08-03 | 生命周期收口：启动 await 具备 HMR/pagehide 代际保护，旧外观存档缺失时回退基础模型，交互会话独立管理对话/相机/玩家锁；开发服务识别端口归属，浏览器验收覆盖桌面与移动 WebGL 像素、模型、WASD、E 和 ESC。 |
+| 25 | 2026-11-17 | 保留玩法的工程与界面重构：提取居民系统组装，保护异步决策/世界切换生命周期，批量保存居民状态，保留背包缩略图与焦点，减少 HUD 重复更新，统一暖色界面与窄屏布局；386 项测试及 WebGL/浏览器验证通过。详见 [重构记录](docs/refactor-2026-11-17.md)。 |
+| 26 | 2026-11-18 | AI 居民行为状态机：本地岛屿摘要、环境事件与五分钟批量规划、可验证行为图、动态动作与临时模型变体缓存、过期响应与读档保护；居民展柜新增状态机查看。兼容后端采样动画；406 项测试通过，真实 chat 与动画生成实测通过。详见 [架构设计](docs/resident-behavior-architecture.md)。 |
+
+### 2026-11-18 · 居民日常和 GPT Voxel 默认外观
+
+角色展示页提供七位居民的性格日常，支持输入要求来修改动作和时长。可用 `player-candidates.html?routine=fangk` 直接进入指定居民的日常。新版默认模型位于 `public/generated/residents/voxel-20261118/`，可以在角色页切回 Original、Pro 或早期 Voxel。
+
+后端参考已同步到 `api-reference.md`。本地 `3d-generate` 从 `8fb5e7d` 更新到 `d9b3cc7`。概念图风格预设见 `js/concept-style.js` 与 `server.py`，表面绘制见 `js/core/SurfaceShading.js` 与 `SurfaceBake.js`，带动画的 GLB 导出见 `js/editor/glb-anim.js` 与 `glb-export.js`。

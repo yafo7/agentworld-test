@@ -3,8 +3,9 @@ import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { buildModelFromJson } from '../../../engine/model/builder.js';
 import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
+import { PROMPT_OPERATIONS } from '../../../gameplay/ai/prompts/PromptOperations.js';
 import { ActivityAssetRepository } from '../../../assets/repositories/ActivityAssetRepository.js';
-import { ActivityAssetResolver } from '../../../gameplay/social/ActivityAssetResolver.js';
+import { ActivityAssetResolver, activityModelRevision as modelRevision } from '../../../gameplay/social/ActivityAssetResolver.js';
 import { PET_STATES, getPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { ActivityReservationService } from '../../../gameplay/social/ActivityReservationService.js';
 import { SocialActivityPlanner } from '../../../gameplay/social/SocialActivityPlanner.js';
@@ -12,6 +13,7 @@ import { SocialEventCoordinator } from '../../../gameplay/social/SocialEventCoor
 import { validateActivityPlan } from '../../../gameplay/social/ActivityPlanValidator.js';
 import { TownActivityAssetCache } from '../../../storage/TownActivityAssetCache.js';
 import { TownSocialMemory } from '../../../gameplay/social/TownSocialMemory.js';
+import { assignActivityResident, describeActivityStep, onActivityPerimeter } from '../data/activityParticipation.js';
 import { TownSocialDirector } from './TownSocialDirector.js';
 import { TownSocialCuePresenter } from '../presentation/TownSocialCuePresenter.js';
 import {
@@ -31,6 +33,7 @@ import {
 } from '../data/townSocialActivities.js';
 import { getCharacterOutfits } from '../data/equipmentCatalog.js';
 import { createTownActivityObjectiveProjection } from '../data/townActivityObjectiveProjection.js';
+import { getChiiSizeProfile } from '../data/worldTuningProfile.js';
 
 const CURATED_PET_IDS = new Set(['momo', 'mako', 'yafo', 'lingq', 'fangk', 'mok', 'crab']);
 
@@ -59,16 +62,6 @@ function uniquePets(pets) {
     seen.add(id);
     return true;
   });
-}
-
-function modelRevision(modelJson) {
-  const text = JSON.stringify(modelJson || {});
-  let hash = 2166136261;
-  for (let i = 0; i < text.length; i += 1) {
-    hash ^= text.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
-  }
-  return (hash >>> 0).toString(36);
 }
 
 function ringSlots(center, count, radius, startAngle = -Math.PI / 2) {
@@ -109,6 +102,7 @@ export class TownSocialSystem {
     reservations = null,
     onActivityCompleted = null,
     objectiveStore = null,
+    generationController = null,
   }) {
     this.scene = scene;
     this.player = player;
@@ -140,10 +134,12 @@ export class TownSocialSystem {
     }) : null);
     this.onActivityCompleted = onActivityCompleted;
     this.objectiveStore = objectiveStore;
+    this.generationController = generationController;
     this.objectiveOwnerId = null;
     this.planner = new SocialActivityPlanner({
       contentPort,
       assetLibrary: this.activityAssetCache,
+      generationController,
     });
     this.socialMemory = socialMemory || new TownSocialMemory();
     this.socialDirector = socialDirector || new TownSocialDirector({
@@ -175,6 +171,60 @@ export class TownSocialSystem {
     };
   }
 
+  async _generateAnimation({ modelJson, description, duration, emitParticles, source = 'town_activity' }) {
+    if (!this.generationController) {
+      return this.contentPort.generateAnimation({ modelJson, description, duration, emitParticles });
+    }
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.ANIMATION_GENERATE,
+      rawText: description,
+      source: { kind: source },
+      input: { modelJson, description },
+      context: { regionId: 'church_town', activityType: this.activeActivity?.plan?.type || null },
+      constraints: { duration, emitParticles },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
+  }
+
+  async _createActivityObject({ description, name, tags, sizeProfile = 'festival_prop', footprint = null }) {
+    if (!this.generationController) {
+      return this.aiActions.createObject({ description, name, quality: 'voxel', tags });
+    }
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.MODEL_GENERATE,
+      rawText: description,
+      source: { kind: 'town_activity_prop' },
+      input: { name, tags },
+      context: { regionId: 'church_town', activityType: this.activeActivity?.plan?.type || null },
+      constraints: {
+        qualityProfile: 'voxel',
+        sizeProfile,
+        ...(footprint ? { footprint } : {}),
+        generationConstraint: getChiiSizeProfile(sizeProfile).generationConstraint,
+      },
+      approval: { required: true, confirmed: true, reason: 'town-activity-confirmed' },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
+  }
+
+  async _mountActivityPart({ modelJson, part, placement, name, tags, targetId }) {
+    if (!this.generationController) {
+      return this.aiActions.mountPart({ modelJson, part, placement, name, tags });
+    }
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.MODEL_MOUNT,
+      source: { kind: 'town_activity_mount', text: typeof part === 'string' ? part : name },
+      target: { identity: targetId || name },
+      input: { modelJson, part, placement, name, tags },
+      context: { regionId: 'church_town', activityType: this.activeActivity?.plan?.type || null },
+      approval: { required: true, confirmed: true, reason: 'town-activity-confirmed' },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
+  }
+
   isTownPet(pet) {
     return this.participants.includes(pet);
   }
@@ -199,7 +249,7 @@ export class TownSocialSystem {
         this.activeActivity.plan.type === 'new_year'
         && this.activeActivity.status === 'new_year_greetings'
       ) {
-        return !this.activeActivity.greetedPetIds?.has(petId(pet));
+        return this.activeActivity.plan.participants.includes(petId(pet)) && !this.activeActivity.greetedPetIds?.has(petId(pet));
       }
       return petId(pet) === this.activeActivity.plan.exitPetId;
     }
@@ -282,8 +332,7 @@ export class TownSocialSystem {
       let plan = null;
       if (choice.key === 'custom_daily') {
         plan = await this._requestCustomDailyPlan(pet, dialogueSystem);
-      } else if (choice.key === 'custom_festival') {
-        plan = await this._requestCustomFestivalPlan(dialogueSystem);
+
       } else {
         plan = this._createPresetPlan(choice.key, pet);
       }
@@ -462,10 +511,12 @@ export class TownSocialSystem {
     }
   }
 
-  _createPresetPlan(type, initiator) {
+  _createPresetPlan(type, initiator, { preview = false } = {}) {
     const definition = getTownActivityDefinition(type);
     if (!definition) return null;
-    const participants = uniquePets(this.socialDirector.participantsFor(definition)).slice(0, 6);
+    const participants = type === 'campfire' && this.residentTheme
+      ? (preview ? [...CURATED_PET_IDS].map(id => this._petById(id)).filter(Boolean) : this._availableResidentCast())
+      : uniquePets(this.socialDirector.participantsFor(definition)).slice(0, 6);
     const targetObjectIds = this.socialDirector
       .targetsFor(definition, initiator)
       .map(entity => this._objectId(entity));
@@ -543,61 +594,56 @@ export class TownSocialSystem {
     }
   }
 
-  async _requestCustomFestivalPlan(dialogueSystem) {
-    const concept = await dialogueSystem.askInput({
-      speakerName: petName(this.organizer),
-      text: '你想在岛上办一个什么节日？',
-      placeholder: '例如：云朵甜点节',
-    });
-    if (!concept) return null;
-    const registered = this.activityRegistry?.findReadyByConcept('custom_festival', concept);
-    if (registered?.plan) {
-      const confirmation = await dialogueSystem.askChoice({
-        speakerName: petName(this.organizer),
-        text: `这个节日计划本里有，叫“${registered.title}”。直接照成熟流程开场吗？`,
-        options: [
-          { key: 'confirm', label: '照计划开场！' },
-          { key: 'cancel', label: '先把本子合上' },
-        ],
-      });
-      if (confirmation?.key !== 'confirm') return null;
-      return {
-        ...registered.plan,
-        id: `custom_festival_${Date.now().toString(36)}`,
-        registryId: registered.id,
-        registryRevision: registered.revision,
-      };
-    }
-    await dialogueSystem.say({
-      speakerName: petName(this.organizer),
-      text: '收到！我的计划本已经兴奋得开始自己翻页了。',
-    });
 
-    const jobId = this.runtimeStatus?.startJob('策划奇异岛新节日', 'fangk正在安排节目');
-    try {
-      const plan = await this.planner.planFestival({
-        concept,
-        pets: this._plannerPets(),
-        objects: this._plannerObjects(),
-      });
-      this.runtimeStatus?.completeJob(jobId, '节日计划完成');
-      const confirmation = await dialogueSystem.askChoice({
-        speakerName: petName(this.organizer),
-        text: `计划完成！“${plan.title}”需要${plan.participants.length}位小伙伴和${plan.props.length}件道具。开场吗？`,
-        options: [
-          { key: 'confirm', label: '开场吧！' },
-          { key: 'cancel', label: '先把计划夹进本子里' },
-        ],
-      });
-      return confirmation?.key === 'confirm' ? plan : null;
-    } catch (error) {
-      this.runtimeStatus?.failJob(jobId, error);
-      await dialogueSystem.say({
-        speakerName: petName(this.organizer),
-        text: '计划本刚刚打了个喷嚏，节目顺序全飞了。我们下次再排！',
-      });
-      return null;
+  _availableResidentCast() {
+    return [...CURATED_PET_IDS].map(id => this._petById(id)).filter(pet => {
+      const machine = pet && getPetStateMachine(pet);
+      return machine && !machine.isBusy() && ['free_roam', 'idle'].includes(machine.current);
+    });
+  }
+
+  updateMorningExercise({ hour, day, date }) {
+    const dayKey = date || day;
+    if (hour < 6 || hour >= 10) {
+      if (this.activeActivity?.plan.type === 'morning_exercise') this.stopActivity('morning-ended');
+      return;
     }
+    if (this.morningDay === dayKey || this.activeActivity || !this.organizer) return;
+    const participants = this._availableResidentCast().map(petId);
+    if (!participants.includes('fangk') || participants.length < 2) return;
+    const plan = this._validatePlan({
+      type: 'morning_exercise', title: '广场晨练', scale: 'daily', locationId: 'church_square',
+      initiatorId: 'fangk', participants, autoEnd: true, performanceDuration: 24,
+      dialogue: { ready: '大家面朝广场中央，跟我一起活动活动！' },
+    });
+    if (this._beginActivity(plan)) this.morningDay = dayKey;
+  }
+
+  residentActivity() {
+    const activity = this.activeActivity;
+    if (!activity) return null;
+    const { plan, status, assignments } = activity;
+    const prepared = this.preparedActivity;
+    let phase = plan.type === 'morning_exercise' && status === 'performing' ? '晨练' : getTownActivityPhase(status).label;
+    const performing = ['performing', 'linger', 'new_year_dancing'].includes(status);
+    if (plan.festivalProgram && performing) {
+      const step = prepared && this._residentActivityAction(prepared, plan.participants[0]);
+      phase = plan.festivalProgram.events.find(event => event.id === step?.eventId)?.name || phase;
+    }
+    const cast = plan.participants.map(id => {
+      const pet = this._petById(id);
+      const assignment = assignments.get(id);
+      const current = performing && prepared ? this._residentActivityAction(prepared, id) : null;
+      const prop = prepared?.helperProps.get(id);
+      const arranging = prop && status === 'performing' && current === prepared.themeAnimations.get(id)?.[0];
+      return { id: id === 'crab' ? 'builder_crab' : id, name: petName(pet), themeId: assignment.themeId,
+        role: assignment.role, action: describeActivityStep(activity, id, current),
+        target: arranging ? prop.spec.name : undefined, animation: pet?._animState || pet?.animation };
+    });
+    let location = (prepared?.venue || this._activityVenue(plan)).name;
+    if (status.startsWith('new_year_danc')) location = this._campfire() ? '篝火旁' : '教堂广场';
+    if (status.startsWith('new_year_feast')) location = '年夜饭桌旁';
+    return { id: plan.id, type: plan.type, title: plan.title, phase, location, cast };
   }
 
   _beginActivity(plan) {
@@ -615,7 +661,8 @@ export class TownSocialSystem {
     }
 
     let registration = plan.registryId ? this.activityRegistry?.get(plan.registryId) : null;
-    if (!registration && this.activityRegistry) {
+    const morning = plan.type === 'morning_exercise';
+    if (!registration && this.activityRegistry && !morning) {
       const resolution = this.activityRegistry.resolve(plan);
       if (resolution.match === 'exact') registration = resolution.record;
       else {
@@ -643,7 +690,11 @@ export class TownSocialSystem {
       elapsed: 0,
       ambientIndex: 0,
       nextAmbientAt: 4.5,
-      prepTask: this._createPreparationTask(plan),
+      prepTask: morning || plan.festivalProgram ? null : this._createPreparationTask(plan),
+      assignments: new Map(plan.participants.map(id => {
+        const theme = this.residentTheme?.(id === 'crab' ? 'builder_crab' : id, plan.type);
+        return [id, assignActivityResident(plan, id, theme)];
+      })),
       registration,
     };
     this.socialMemory.recordStarted(plan.type, plan.initiatorId);
@@ -669,6 +720,9 @@ export class TownSocialSystem {
       petOutfits: [],
       worldMounts: [],
       animations: new Map(),
+      themeAnimations: new Map(),
+      programAnimations: new Map(),
+      helperProps: new Map(),
       costumeAnimations: new Map(),
       feastAnimations: new Map(),
       introAnimations: new Map(),
@@ -715,27 +769,36 @@ export class TownSocialSystem {
       ...prepared.petMounts.map(mount => [petId(mount.pet), mount.modelJson]),
       ...prepared.petOutfits.map(outfit => [petId(outfit.pet), outfit.modelJson]),
     ]);
-    const animationResults = await Promise.all(plan.participants.map(async id => {
+    if (!this._isCurrentToken(token)) throw new Error('Activity preparation was cancelled');
+    const assignments = this.activeActivity.assignments;
+    await Promise.all(plan.participants.map(async id => {
       const pet = this._petById(id);
-      if (!pet) return null;
-      const loop = true;
-      const duration = 4;
-      const registered = await this._getRegisteredActivityAnimation(pet, 'main', duration, modelOverrides.get(id) || pet._originalModelJson);
-      const reusable = registered || this._getReusableActivityAnimation(pet, plan.type, duration);
-      const animation = reusable || await this._getActivityAnimation(pet, plan.actionPrompts[id], {
-        duration,
-        loop,
-        emitParticles: isTownFestivalActivity(plan.type),
-        modelJson: modelOverrides.get(id) || pet._originalModelJson,
-        token,
-      });
-      return animation ? [id, animation] : null;
+      if (!pet) return;
+      const modelJson = modelOverrides.get(id) || pet._originalModelJson;
+      const timeline = await Promise.all(assignments.get(id).actions.map(async action => {
+        let animation;
+        if (action.kind === 'program') {
+          animation = await this._getRegisteredActivityAnimation(pet, 'main', 4, modelJson)
+            || (plan.type !== 'custom_festival' && this._getReusableActivityAnimation(pet, plan.type, 4))
+            || await this._getActivityAnimation(pet, action.name, {
+              duration: 4, loop: true, emitParticles: isTownFestivalActivity(plan.type), modelJson, token,
+            });
+          if (animation?.binding) prepared.programAnimations.set(id, animation);
+        } else if (action.generation) {
+          animation = await this._getActivityAnimation(pet, action.generation.prompt, {
+            duration: Math.min(action.seconds, 8), loop: true, emitParticles: false, modelJson, token,
+          });
+        } else {
+          const key = action.animation || 'idle';
+          animation = { key, plan: pet._animPlans?.[key] };
+        }
+        return { ...animation, eventId: action.eventId, key: animation?.key || 'idle', name: animation?.fallback ? '稍作休息' : action.name,
+          duration: action.seconds || animation?.duration || 4 };
+      }));
+      prepared.themeAnimations.set(id, timeline);
+      prepared.animations.set(id, timeline[0]);
+      prepared.maxActionDuration = Math.max(prepared.maxActionDuration, timeline[0].duration);
     }));
-    for (const result of animationResults.filter(Boolean)) {
-      prepared.animations.set(result[0], result[1]);
-      prepared.maxActionDuration = Math.max(prepared.maxActionDuration, result[1].duration);
-    }
-
     const costumeAnimations = await Promise.all(prepared.petOutfits.map(async outfit => {
       const animation = await this._getRegisteredActivityAnimation(outfit.pet, 'costume', 2.2, outfit.pet._originalModelJson)
         || await this._getActivityAnimation(outfit.pet, '原地转身展示新衣', {
@@ -786,7 +849,8 @@ export class TownSocialSystem {
     }
 
     if (!this._isCurrentToken(token)) throw new Error('Activity preparation was cancelled');
-    prepared.focus = this._focusFor(plan, prepared);
+    prepared.venue = this._activityVenue(plan, prepared);
+    prepared.focus = prepared.venue.position.clone();
     prepared.slots = this._slotsFor(plan, prepared.focus, prepared);
     return prepared;
   }
@@ -804,10 +868,30 @@ export class TownSocialSystem {
     for (const mount of prepared.worldMounts) this._applyWorldMount(mount);
     this.runtimeStatus?.completeJob(activity.jobId, prepared.plan.dialogue.ready);
 
-    const participants = prepared.plan.participants.map(id => this._petById(id)).filter(Boolean);
+    const islandWide = Boolean(prepared.plan.festivalProgram) || prepared.plan.type === 'morning_exercise' || prepared.plan.type === 'campfire' && this.residentTheme;
+    if (islandWide) {
+      const available = new Set(this._availableResidentCast().map(petId));
+      const confirmed = prepared.plan.participants.filter(id => available.has(id));
+      if (!confirmed.includes(prepared.plan.initiatorId) || confirmed.length < 2) {
+        this.stopActivity('cast-unavailable');
+        return;
+      }
+      prepared.slots = prepared.slots.filter((_, index) => available.has(prepared.plan.participants[index]));
+      prepared.plan.participants = confirmed;
+    }
     this.coordinator.start({
       plan: prepared.plan,
-      participants,
+      ...(islandWide ? {
+        gatherTimeout: 35, speed: 7, arrivalTolerance: 1.85,
+        selectArrivals: arrived => {
+          if (arrived.length < 2 || !arrived.some(pet => petId(pet) === prepared.plan.initiatorId)) return false;
+          const ids = arrived.map(petId);
+          prepared.slots = prepared.slots.filter((_, index) => ids.includes(prepared.plan.participants[index]));
+          prepared.plan.participants = ids;
+          return true;
+        },
+      } : {}),
+      participants: prepared.plan.participants.map(id => this._petById(id)).filter(Boolean),
       slots: prepared.slots,
       onPerform: () => this._performPreparedActivity(prepared),
       onFinish: () => this._cleanupActivityVisuals(),
@@ -918,6 +1002,7 @@ export class TownSocialSystem {
     if (!activity) return;
     activity.status = 'new_year_greetings';
     activity.elapsed = 0;
+    for (const id of prepared.plan.participants) this._petById(id)?.playAnimation?.('idle');
     activity.greetedPetIds = new Set();
     activity.pendingGreetingCompletion = false;
     activity.stageTask = {
@@ -944,7 +1029,7 @@ export class TownSocialSystem {
     };
     activity.stageSlots = this._resolveReachableSlots(
       prepared.plan,
-      ringSlots(focus, prepared.plan.participants.length, 8.2),
+      this._roleSlots(prepared.plan, focus, ringSlots(focus, prepared.plan.participants.length, 8.2)),
       focus,
     );
     this.data.active.status = activity.status;
@@ -1004,6 +1089,7 @@ export class TownSocialSystem {
       complete: false,
     };
     this.data.active.status = activity.status;
+    for (const id of prepared.plan.participants) this._petById(id)?.playAnimation?.('idle');
     this.organizer.playAnimation?.(this.organizer._animPlans?.construct ? 'construct' : 'idle');
     this._showActivityFullBody(this.organizer, '舞跳完了，肚子正式获得发言权。看我摆桌！');
     this._setActivityPresentation('fangk 正在把团圆饭端上广场');
@@ -1058,7 +1144,7 @@ export class TownSocialSystem {
       if (!pet || !slot) return;
       pet.unlockFacing?.();
       pet.stopWalking?.();
-      pet.walkTo?.(slot.x, slot.z, 4.2);
+      pet.walkTo?.(slot.x, slot.z, 4.2, 0.75);
     });
   }
 
@@ -1094,7 +1180,10 @@ export class TownSocialSystem {
     this.data.active.status = 'performing';
     this._setActivityPresentation('节目开场啦，看看大家准备了什么');
     this._disposeParticles();
-    this._revealPropsForStage('performance');
+    const assignedProps = new Set(prepared.plan.participants.map(id => prepared.helperProps.get(id)));
+    for (const prop of prepared.props) {
+      if (prop.spec.revealStage === 'performance' && !assignedProps.has(prop)) this._revealEventProp(prop);
+    }
 
     if (this._hasBeat(prepared.plan, 'opening') || this._hasBeat(prepared.plan, 'perform')) {
       const announcer = this._petById(prepared.plan.initiatorId) || this.organizer;
@@ -1107,7 +1196,16 @@ export class TownSocialSystem {
       const animation = prepared.animations.get(id);
       if (!pet) continue;
       pet.stopWalking?.();
-      pet.lockFacing?.(prepared.focus.x, prepared.focus.z);
+      if (prepared.plan.type === 'morning_exercise') {
+        const lead = this._petById('fangk');
+        const toward = id === 'fangk' ? prepared.slots.find((slot, index) => prepared.plan.participants[index] !== 'fangk') : lead?.mesh?.position;
+        if (toward) pet.lockFacing?.(toward.x, toward.z);
+      } else {
+        const prop = prepared.helperProps.get(id);
+        const focus = prop?.entity.mesh.position || prepared.focus;
+        pet.lockFacing?.(focus.x, focus.z);
+        if (prop) this._revealEventProp(prop);
+      }
       pet.playAnimation?.(animation?.key || this._fallbackAnimationName(pet, prepared.plan.type));
       if (animation?.plan && pet._modelGroup) this._addParticles(animation.plan, pet._modelGroup);
     }
@@ -1115,6 +1213,7 @@ export class TownSocialSystem {
     for (const id of prepared.plan.participants.slice(0, prepared.plan.scale === 'festival' ? 3 : 2)) {
       const pet = this._petById(id);
       if (!pet) continue;
+      if (onActivityPerimeter(activity.assignments.get(id)?.role)) continue;
       const line = getTownActivityActionLine(prepared.plan.type, id, petName(pet));
       this._showActivityFullBody(pet, line, { duration: 2400 });
     }
@@ -1139,7 +1238,8 @@ export class TownSocialSystem {
   }
 
   update(dt) {
-    this.coordinator.update(dt);
+    // Long journeys must use the same time step as resident locomotion.
+    this.coordinator.update(this.coordinator.active?.selectArrivals ? Math.min(dt, 0.05) : dt);
     this._updatePropTransitions(dt);
     for (const binding of this.particleBindings) binding.system.update(dt, binding.root);
     this.cues.update(dt);
@@ -1189,6 +1289,7 @@ export class TownSocialSystem {
     }
 
     if (activity.status === 'new_year_dancing') {
+      this._ensureActivityAnimations(prepared);
       if (activity.stageTask && !activity.stageTask.complete) {
         activity.stageTask.complete = this._playerNear(activity.stageTask);
       }
@@ -1251,8 +1352,13 @@ export class TownSocialSystem {
     if (activity.status === 'performing') {
       this._ensureActivityAnimations(prepared);
       this._updateFestivalBarks(activity, prepared);
-      const duration = Math.max(prepared.maxActionDuration, prepared.plan.performanceDuration || 0);
+      const duration = Math.max(prepared.maxActionDuration, prepared.plan.performanceDuration || 0,
+        ...[...(prepared.themeAnimations?.values() || [])].map(timeline => timeline.reduce((seconds, action) => seconds + action.duration, 0)));
       if (activity.elapsed >= duration) {
+        if (prepared.plan.type === 'morning_exercise') {
+          this._beginWindDown(activity, prepared);
+          return;
+        }
         activity.status = 'linger';
         activity.elapsed = 0;
         this.data.active.status = 'linger';
@@ -1303,15 +1409,15 @@ export class TownSocialSystem {
     });
     const otherParticipants = plan.participants.filter(id => id !== plan.initiatorId);
     const campfire = this._campfire()?.mesh?.position || this.center;
-    const tree = (this._targetObject(plan.targetObjectIds[0]) || this._appleTrees()[0])?.mesh?.position;
+    const venue = this._activityVenue(plan);
 
     if (plan.type === 'apple_pick') {
-      visit('和mako去苹果树旁看看', tree || this.center, 5.5);
+      visit('和mako去苹果树旁看看', venue.position, 5.5);
     } else if (plan.type === 'greeting') {
       addInvites(otherParticipants, 1);
       visit('回到广场看看招呼练习的位置', this.center, 5.5);
     } else if (plan.type === 'campfire') {
-      addInvites(otherParticipants, 2);
+      addInvites(otherParticipants.filter(id => this.participants.some(pet => petId(pet) === id)), 2);
       visit('去篝火旁等大家过来', campfire, 6);
     } else if (plan.type === 'party') {
       addInvites(otherParticipants, 2);
@@ -1343,7 +1449,7 @@ export class TownSocialSystem {
       );
     } else {
       addInvites(otherParticipants, plan.scale === 'festival' ? 2 : 1);
-      visit('到活动地点看看位置', plan.locationId === 'campfire' ? campfire : this.center, 6);
+      visit('到活动地点看看位置', venue.position, 6);
     }
 
     const task = { steps, stepIndex: 0, complete: steps.length === 0, skipped: false };
@@ -1471,7 +1577,7 @@ export class TownSocialSystem {
       try {
         if (['host-ended', 'auto-completed'].includes(reason) && activity.registration.status !== 'ready') {
           activity.registration = this.activityRegistry.markReady(activity.registration.id, {
-            plan: activity.plan,
+            plan: activity.registration.provenance?.bookPrepared ? activity.registration.plan : activity.plan,
             assets: this._collectActivityRegistrationAssets(prepared, activity.registration.assets),
             provenance: { completedAt: Date.now() },
           });
@@ -1568,28 +1674,13 @@ export class TownSocialSystem {
     modelJson,
     token,
   }) {
-    const fallbackName = this._fallbackAnimationName(pet, this.activeActivity?.plan.type);
+    if (!this._isCurrentToken(token)) return null;
+    const fallbackName = 'idle';
     if (!modelJson) {
-      return { key: fallbackName, plan: pet._animPlans?.[fallbackName] || null, duration };
+      return { key: fallbackName, plan: pet._animPlans?.[fallbackName] || null, duration, fallback: true };
     }
-    const cacheKey = `pet-animation:${petId(pet)}:${modelRevision(modelJson)}:${description}:${duration}:${loop}:${emitParticles}`;
-
     try {
-      const cached = await this.activityAssetCache.getOrCreateAnimation(cacheKey, async () => {
-        const result = await this.contentPort.generateAnimation({
-          modelJson,
-          description,
-          duration,
-          emitParticles,
-        });
-        return { plan: safePlan(result.plan, loop, duration) };
-      }, {
-        kind: 'pet_animation',
-        activityType: this.activeActivity?.plan.type,
-        subjectId: petId(pet),
-        name: `${petName(pet)}活动动作`,
-        prompt: description,
-      });
+      const { cached, cacheKey } = await this.cacheFestivalAnimation(pet, description, { duration, loop, emitParticles, modelJson });
       if (!this._isCurrentToken(token)) return null;
       const key = `social_${modelRevision({ cacheKey })}`;
       pet.loadAnimation?.(key, cached.plan);
@@ -1597,21 +1688,31 @@ export class TownSocialSystem {
         key,
         plan: cached.plan,
         duration,
-        binding: { kind: 'activity_cache', cacheKey, key, subjectId: petId(pet), sceneStyles: [this.sceneStyle] },
+        binding: { kind: 'activity_cache', cacheKey, key, modelRevision: modelRevision(modelJson), subjectId: petId(pet), sceneStyles: [this.sceneStyle] },
       };
     } catch (error) {
       console.warn(`[TownSocial] ${petName(pet)} animation fallback:`, error.message);
-      return { key: fallbackName, plan: pet._animPlans?.[fallbackName] || null, duration };
+      return { key: fallbackName, plan: pet._animPlans?.[fallbackName] || null, duration, fallback: true };
     }
   }
 
+  async cacheFestivalAnimation(pet, description, { duration, loop = true, emitParticles = false, modelJson }) {
+    const cacheKey = `pet-animation:${petId(pet)}:${modelRevision(modelJson)}:${description}:${duration}:${loop}:${emitParticles}`;
+    const cached = await this.activityAssetCache.getOrCreateAnimation(cacheKey, async () => {
+      const result = await this._generateAnimation({ modelJson, description, duration, emitParticles, source: 'town_pet_activity_animation' });
+      if (!result?.plan) throw new Error('动作素材尚未生成');
+      return { plan: safePlan(result.plan, loop, duration) };
+    }, { kind: 'pet_animation', subjectId: petId(pet), name: petName(pet) + '活动动作', prompt: description });
+    return { cached, cacheKey };
+  }
+
   async _getRegisteredActivityAnimation(pet, role, duration, modelJson) {
-    const registration = this.activeActivity?.registration;
-    const binding = registration?.assets?.animations?.[petId(pet)]?.[role];
+    const activity = this.activeActivity;
+    const binding = activity?.registration?.assets?.animations?.[petId(pet)]?.[role];
     if (!binding || !this.activityAssetResolver) return null;
     try {
       const resolved = await this.activityAssetResolver.resolveAnimation(binding, { pet, modelJson });
-      if (!resolved?.plan) return null;
+      if (!resolved?.plan || this.activeActivity !== activity) return null;
       const plan = safePlan(resolved.plan, resolved.plan._loop !== false, Math.max(Number(resolved.plan._duration) || 0, duration));
       const key = resolved.key || `registered_${petId(pet)}_${role}`;
       if (!pet._animPlans?.[key]) pet.loadAnimation?.(key, plan);
@@ -1649,7 +1750,7 @@ export class TownSocialSystem {
   _collectActivityRegistrationAssets(prepared, existing = {}) {
     if (!prepared) return existing || {};
     const animations = { ...(existing?.animations || {}) };
-    for (const [id, animation] of prepared.animations) {
+    for (const [id, animation] of prepared.programAnimations || []) {
       if (animation?.binding) animations[id] = { ...(animations[id] || {}), main: animation.binding };
     }
     for (const [id, animation] of prepared.costumeAnimations) {
@@ -1688,11 +1789,24 @@ export class TownSocialSystem {
     return this.activityAssetResolver?.resolveVfx(binding)?.preset || fallback;
   }
 
+  _residentActivityAction(prepared, id) {
+    const timeline = prepared.themeAnimations?.get(id);
+    if (!timeline?.length) return prepared.animations.get(id);
+    const activity = this.activeActivity;
+    if (activity?.status === 'linger') return timeline.at(-1);
+    let elapsed = activity?.elapsed || 0;
+    for (const action of timeline) {
+      elapsed -= action.duration;
+      if (elapsed < 0) return action;
+    }
+    return timeline.at(-1);
+  }
+
   _ensureActivityAnimations(prepared) {
     for (const id of prepared.plan.participants) {
       const pet = this._petById(id);
       if (!pet) continue;
-      const animation = prepared.animations.get(id);
+      const animation = this._residentActivityAction(prepared, id);
       const expected = animation?.key || this._fallbackAnimationName(pet, prepared.plan.type);
       if (!expected) continue;
       const current = pet._animState || pet.animation;
@@ -1731,12 +1845,13 @@ export class TownSocialSystem {
     try {
       const sourceModel = pet._originalModelJson;
       const cacheKey = `pet-mount:${petId(pet)}:${modelRevision(sourceModel)}:${part}:${placement}`;
-      const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this.aiActions.mountPart({
+      const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this._mountActivityPart({
         modelJson: sourceModel,
         part,
         placement,
         name: `${petName(pet)}活动装饰`,
         tags: ['church_town', 'social_event', 'temporary_mount'],
+        targetId: petId(pet),
       }), {
         kind: 'pet_costume',
         activityType: this.activeActivity?.plan.type,
@@ -1793,12 +1908,13 @@ export class TownSocialSystem {
     }
     try {
       const cacheKey = `world-mount:${modelRevision(modelJson)}:${part}:${placement}`;
-      const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this.aiActions.mountPart({
+      const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this._mountActivityPart({
         modelJson,
         part,
         placement,
         name: `${entity.name}节日灯笼`,
         tags: ['church_town', 'new_year', 'temporary_mount'],
+        targetId: entity.id || entity.name,
       }), {
         kind: 'world_mount',
         activityType: this.activeActivity?.plan.type,
@@ -1865,24 +1981,22 @@ export class TownSocialSystem {
         return this._createEventPropEntity(spec, plan, index, libraryResult);
       }
     }
-    const cacheKey = `event-prop:voxel:${spec.name}:${spec.prompt}`;
-    const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this.aiActions.createObject({
-      description: spec.prompt,
-      name: spec.name,
-      quality: 'voxel',
-      tags: ['church_town', 'social_event', plan.type],
-    }), {
-      kind: 'event_prop',
-      activityType: plan.type,
-      subjectId: spec.id,
-      name: spec.name,
-      prompt: spec.prompt,
-    });
+    const { cacheKey, result } = await this.cacheFestivalProp(spec, plan.type);
     if (!this._isCurrentToken(token)) return null;
 
     const prop = this._createEventPropEntity(spec, plan, index, result);
     prop.assetBinding = { kind: 'activity_cache', cacheKey, assetId: result.assetId };
     return prop;
+  }
+
+  async cacheFestivalProp(spec, type) {
+    const cacheKey = `event-prop:voxel:${spec.name}:${spec.prompt}`;
+    const result = await this.activityAssetCache.getOrCreateModel(cacheKey, () => this._createActivityObject({
+      description: spec.prompt, name: spec.name, tags: ['church_town', 'social_event', type],
+      sizeProfile: spec.sizeProfile, footprint: spec.footprint,
+    }), { kind: 'event_prop', activityType: type, subjectId: spec.id, name: spec.name, prompt: spec.prompt });
+    if (!result?.assetId || !result.modelJson) throw new Error('道具素材尚未生成');
+    return { cacheKey, result };
   }
 
   _createEventPropEntity(spec, plan, index, result) {
@@ -1952,7 +2066,7 @@ export class TownSocialSystem {
       const z = spec.revealStage === 'food' ? 9.2 : 10;
       return this.center.clone().add(new THREE.Vector3(slot * (Number(layout.tableSpacing) || 6), 0, z));
     }
-    return this.center.clone().add(new THREE.Vector3(
+    return this._activityVenue(plan).position.clone().add(new THREE.Vector3(
       plan.type === 'birthday' ? 8 : -7 + index * 4,
       0,
       plan.type === 'apple_pick' ? 7 : 4 + index * 3,
@@ -2028,11 +2142,12 @@ export class TownSocialSystem {
       }
       const cacheKey = `prop-animation:${modelRevision(prop.modelJson)}:${description}:2.8:true`;
       const result = await this.activityAssetCache.getOrCreateAnimation(cacheKey, async () => {
-        const generated = await this.contentPort.generateAnimation({
+        const generated = await this._generateAnimation({
           modelJson: prop.modelJson,
           description,
           duration: 2.8,
           emitParticles: true,
+          source: 'town_prop_activity_animation',
         });
         return { plan: safePlan(generated.plan, true, 2.8) };
       }, {
@@ -2050,27 +2165,30 @@ export class TownSocialSystem {
     }
   }
 
-  _focusFor(plan, prepared) {
+  _activityVenue(plan, prepared) {
     if (plan.type === 'birthday') {
-      const table = prepared.props.find(prop => prop.spec.id === 'birthday_table');
-      if (table) return table.entity.mesh.position.clone();
+      const table = prepared?.props.find(prop => prop.spec.id === 'birthday_table');
+      if (table) return { position: table.entity.mesh.position, name: '生日蛋糕桌旁' };
     }
-    if (plan.type === 'apple_pick') {
-      const target = this._targetObject(plan.targetObjectIds[0]) || this._appleTrees()[0];
-      if (target) return target.mesh.position.clone();
+    if (plan.locationId === 'apple_tree') {
+      const tree = plan.targetObjectIds.map(id => this._targetObject(id)).find(entity => entity?.tags?.includes('apple')) || this._appleTrees()[0];
+      if (tree) return { position: tree.mesh.position, name: (tree.name || '苹果树') + '旁', entity: tree };
     }
-    if (['campfire', 'party'].includes(plan.type)) {
-      const campfire = this._campfire();
-      if (campfire) return campfire.mesh.position.clone();
-    }
-    return this.center.clone();
+    const fire = plan.locationId === 'campfire' && this._campfire();
+    if (fire) return { position: fire.mesh.position, name: '篝火旁' };
+    return { position: this.center, name: '教堂广场' };
+  }
+
+  _roleSlots(plan, focus, slots) {
+    return slots.map((slot, index) => onActivityPerimeter(this.activeActivity?.assignments?.get(plan.participants[index])?.role)
+      ? focus.clone().lerp(slot, 1.5) : slot);
   }
 
   _slotsFor(plan, focus, prepared) {
     const count = plan.participants.length;
     const layout = this.activeActivity?.registration?.layout || {};
     if (plan.type === 'apple_pick') {
-      const tree = this._targetObject(plan.targetObjectIds[0]) || this._appleTrees()[0];
+      const tree = prepared.venue?.entity || this._activityVenue(plan).entity;
       if (tree) {
         const direction = this.center.clone().sub(tree.mesh.position).setY(0).normalize();
         const box = tree.getWorldBBox?.();
@@ -2088,7 +2206,7 @@ export class TownSocialSystem {
       return this._resolveReachableSlots(plan, slots, focus);
     }
     if (plan.type === 'birthday') {
-      const slots = ringSlots(focus, count, Number(layout.ringRadius) || 5.8);
+      const slots = this._roleSlots(plan, focus, ringSlots(focus, count, Number(layout.ringRadius) || 5.8));
       const table = prepared.props.find(prop => prop.spec.id === 'birthday_table');
       const organizerIndex = plan.participants.indexOf('fangk');
       if (table && organizerIndex >= 0) {
@@ -2097,8 +2215,26 @@ export class TownSocialSystem {
       }
       return this._resolveReachableSlots(plan, slots, focus);
     }
+    if (plan.type === 'morning_exercise') {
+      const slots = plan.participants.map((id, index) => id === 'fangk' ? focus.clone() : focus.clone().add(new THREE.Vector3((index % 3 - 1) * 3.2, 0, 5 + Math.floor(index / 3) * 3)));
+      return this._resolveReachableSlots(plan, slots, focus);
+    }
     const radius = Number(layout.ringRadius) || (['campfire', 'party'].includes(plan.type) ? 7.2 : 6);
-    return this._resolveReachableSlots(plan, ringSlots(focus, count, radius), focus);
+    const desired = this._roleSlots(plan, focus, ringSlots(focus, count, radius));
+    const props = prepared.props.filter(prop => prop.spec.revealStage === 'performance');
+    plan.participants.forEach((id, index) => {
+      if (this.activeActivity?.assignments?.get(id)?.role !== 'helper' || !props.length) return;
+      const prop = props.shift();
+      const side = desired[index].clone().sub(focus).normalize();
+      desired[index] = prop.entity.mesh.position.clone().addScaledVector(side, 2.5);
+      prepared.helperProps.set(id, prop);
+    });
+    const slots = this._resolveReachableSlots(plan, desired, focus);
+    plan.participants.forEach((id, index) => {
+      const prop = prepared.helperProps?.get(id);
+      if (prop && slots[index].distanceTo(prop.entity.mesh.position) > 4) prepared.helperProps.delete(id);
+    });
+    return slots;
   }
 
   _resolveReachableSlots(plan, desiredSlots, focus) {
@@ -2120,7 +2256,8 @@ export class TownSocialSystem {
       const slot = ordered.find(candidate => (
         isSeparated(candidate) && this._petCanReach(pet, candidate)
       ));
-      selected.push(slot?.clone() || pet?.mesh?.position?.clone() || desired.clone());
+      // Keep the destination at the venue so a blocked route times out through the coordinator.
+      selected.push((slot || desired).clone());
     }
     return selected;
   }
@@ -2187,17 +2324,49 @@ export class TownSocialSystem {
       return;
     }
     if (!prepared) return;
-    const animation = this.activeActivity.status === 'birthday_intro'
-      ? prepared.introAnimations.get(petId(pet))
-      : prepared.animations.get(petId(pet));
+    const { status, stageSlots } = this.activeActivity;
+    const id = petId(pet);
+    const index = prepared.plan.participants.indexOf(id);
+    if (index < 0) return;
     pet.unlockFacing?.();
-    pet.lockFacing?.(prepared.focus.x, prepared.focus.z);
-    pet.playAnimation?.(animation?.key || this._fallbackAnimationName(pet, prepared.plan.type));
+    if (status.includes('gathering')) {
+      const slot = (stageSlots || prepared.slots)[index];
+      const gathering = this.coordinator.active;
+      if (slot) pet.walkTo?.(slot.x, slot.z, gathering?.speed || 4.2,
+        status === 'gathering' ? gathering?.arrivalTolerance : 0.75);
+      return;
+    }
+    let focus = prepared.focus;
+    let animation;
+    switch (status) {
+      case 'new_year_dancing':
+        focus = this._campfire()?.mesh.position || this.center;
+        animation = this._residentActivityAction(prepared, id);
+        break;
+      case 'performing':
+      case 'linger':
+        animation = this._residentActivityAction(prepared, id);
+        if (prepared.helperProps.has(id)) focus = prepared.helperProps.get(id).entity.mesh.position;
+        if (prepared.plan.type === 'morning_exercise') {
+          focus = id === 'fangk' ? prepared.slots.find((_, i) => i !== index) || focus : this.organizer.mesh.position;
+        }
+        break;
+      case 'birthday_intro': animation = prepared.introAnimations.get(id); break;
+      case 'costume_change': animation = prepared.costumeAnimations.get(id); break;
+      case 'new_year_feast':
+        focus = this._newYearFeastCenter(prepared);
+        animation = prepared.feastAnimations.get(id);
+        break;
+      case 'new_year_feast_setup':
+        if (id === prepared.plan.hostId && pet._animPlans?.construct) animation = { key: 'construct' };
+        break;
+    }
+    pet.lockFacing?.(focus.x, focus.z);
+    pet.playAnimation?.(animation?.key || 'idle');
   }
-
   _validatePlan(plan) {
     return validateActivityPlan(plan, {
-      availablePetIds: this.participants.map(petId),
+      availablePetIds: (['campfire', 'morning_exercise', 'custom_festival'].includes(plan.type) && this.getIslandResidents ? this.getIslandResidents() : this.participants).map(petId),
       availableObjectIds: this.worldObjects.items.map(entity => this._objectId(entity)),
     });
   }
@@ -2213,7 +2382,7 @@ export class TownSocialSystem {
   }
 
   _petById(id) {
-    return this.participants.find(pet => petId(pet) === id) || null;
+    return this.participants.find(pet => petId(pet) === id) || this.getIslandResidents?.().find(pet => petId(pet) === id) || null;
   }
 
   _objectId(entity) {

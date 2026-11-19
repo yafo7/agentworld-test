@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "kind": "chii-world-catalog",
+  "generatedAt": "2026-08-09T07:23:59.377Z",
+  "worlds": [
+    {
+      "id": "wf-open-plain",
+      "mapNumber": "WF-001",
+      "name": "开阔平原",
+      "description": "阳光充足的开阔草地，适合漫步和后续布置。",
+      "order": 10,
+      "gameplayPreset": "exploration",
+      "sourceMapId": "map-7bb9ef04-6e49-4f39",
+      "sourceMapVersion": 11,
+      "sourceMapUpdatedAt": 1785750281594,
+      "packageRoot": "wf-open-plain/revisions/v11",
+      "manifestHash": "1fa8712676c6332dcd022cc1a2c9ce3bc073813f678e81ec97080c59375919af"
+    },
+    {
+      "id": "wf-fresh-forest",
+      "mapNumber": "WF-002",
+      "name": "清新树林",
+      "description": "层次分明的林地，用于验证植被与林间空间。",
+      "order": 20,
+      "gameplayPreset": "exploration",
+      "sourceMapId": "map-39a2f074-ec20-4fdf",
+      "sourceMapVersion": 13,
+      "sourceMapUpdatedAt": 1785750232683,
+      "packageRoot": "wf-fresh-forest/revisions/v13",
+      "manifestHash": "2852b602b5ff34a3ff3bb4624b8b43fb0d9e84e7a8f81e8678fad263e14fec08"
+    },
+    {
+      "id": "wf-sakura-bamboo",
+      "mapNumber": "WF-003",
+      "name": "樱花竹林",
+      "description": "樱花与竹林组合的观赏型地图。",
+      "order": 30,
+      "gameplayPreset": "exploration",
+      "sourceMapId": "map-535216ce-49a2-45b2",
+      "sourceMapVersion": 12,
+      "sourceMapUpdatedAt": 1785750212580,
+      "packageRoot": "wf-sakura-bamboo/revisions/v12",
+      "manifestHash": "fe9e3c15fb472cfe7b35f28722335ec39d95a21336b357e08f753e2d54dee785"
+    },
+    {
+      "id": "wf-sunset-grassland",
+      "mapNumber": "WF-004",
+      "name": "夕阳草原",
+      "description": "以黄昏光照为主的草原地图。",
+      "order": 40,
+      "gameplayPreset": "exploration",
+      "sourceMapId": "map-ae8c8e55-bfa2-4217",
+      "sourceMapVersion": 8,
+      "sourceMapUpdatedAt": 1785750186877,
+      "packageRoot": "wf-sunset-grassland/revisions/v8",
+      "manifestHash": "d5ddcb08c51a15175b3e963b29c44dde3d0621bac66539e1b3dd6b571f0b9cc1"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { AIWorldActionService } from '../ai/AIWorldActionService.js';
+import { PROMPT_OPERATIONS } from '../ai/prompts/PromptOperations.js';
 
 const PASS_THROUGH_CACHE = Object.freeze({
   getOrCreate(_key, create) {
@@ -66,6 +67,7 @@ export class CharacterEquipmentService {
     assetRepository,
     cache = null,
     fetchImpl = globalThis.fetch,
+    generationController = null,
   } = {}) {
     if (!catalog || !contentPort || !assetRepository) {
       throw new TypeError('CharacterEquipmentService requires catalog, contentPort, and assetRepository');
@@ -74,6 +76,7 @@ export class CharacterEquipmentService {
     this.slotOrder = Object.freeze(catalog.slots.map(slot => slot.id));
     this.assetRepository = assetRepository;
     this.aiActions = new AIWorldActionService({ contentPort, assetRepository });
+    this.generationController = generationController;
     this.cache = cache || PASS_THROUGH_CACHE;
     this.fetchImpl = fetchImpl;
     this.jsonCache = new Map();
@@ -129,11 +132,11 @@ export class CharacterEquipmentService {
           baseRevision,
           prefix.join('+'),
         ].join(':');
-        current = await this.cache.getOrCreate(clothingKey, () => this.aiActions.refineObject({
-          modelJson: baseModelJson,
+        current = await this.cache.getOrCreate(clothingKey, () => this._refineClothing({
+          characterId,
+          variantId,
+          baseModelJson,
           description: buildClothingRefinePrompt(this.catalog, clothingEntries),
-          name: `${characterId}-${variantId}-clothing`,
-          tags: ['equipment', 'clothing', characterId, variantId],
         }));
       }
     } else {
@@ -161,12 +164,14 @@ export class CharacterEquipmentService {
 
       current = await this.cache.getOrCreate(cacheKey, async () => {
         const part = item.secondary || await this.loadItemModel(item.id);
-        return this.aiActions.mountPart({
+        return this._mountProp({
+          characterId,
+          variantId,
+          slotId: entry.slotId,
+          item,
           modelJson: current.modelJson,
           part,
           placement: this.catalog.getPlacement(item, entry.slotId),
-          name: `${characterId}-${variantId}-${entry.slotId}-${item.name}`,
-          tags: ['equipment', characterId, variantId, entry.slotId, item.id],
         });
       });
     }
@@ -175,6 +180,46 @@ export class CharacterEquipmentService {
       ...current,
       loadout: normalized,
     };
+  }
+
+  async _refineClothing({ characterId, variantId, baseModelJson, description }) {
+    const request = {
+      modelJson: baseModelJson,
+      description,
+      name: `${characterId}-${variantId}-clothing`,
+      tags: ['equipment', 'clothing', characterId, variantId],
+    };
+    if (!this.generationController) return this.aiActions.refineObject(request);
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.MODEL_REFINE,
+      rawText: description,
+      source: { kind: 'equipment' },
+      target: { identity: characterId, revision: modelRevision(baseModelJson) },
+      input: request,
+      approval: { required: true, confirmed: true, reason: 'showcase-loadout-confirmed' },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
+  }
+
+  async _mountProp({ characterId, variantId, slotId, item, modelJson, part, placement }) {
+    const request = {
+      modelJson,
+      part,
+      placement,
+      name: `${characterId}-${variantId}-${slotId}-${item.name}`,
+      tags: ['equipment', characterId, variantId, slotId, item.id],
+    };
+    if (!this.generationController) return this.aiActions.mountPart(request);
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.MODEL_MOUNT,
+      source: { kind: 'equipment', text: typeof part === 'string' ? part : item.name },
+      target: { identity: characterId, revision: modelRevision(modelJson) },
+      input: request,
+      approval: { required: true, confirmed: true, reason: 'showcase-prop-confirmed' },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
   }
 
   async loadItemModel(itemId) {

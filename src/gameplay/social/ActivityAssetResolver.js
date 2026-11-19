@@ -73,6 +73,9 @@ export class ActivityAssetResolver {
       return plan ? { key: binding.name, plan, source: binding.kind } : null;
     }
     if (binding.kind === 'activity_cache' && binding.cacheKey) {
+      // Older resident clip bindings recorded the model revision only in the cache key.
+      const legacyRevision = !binding.modelRevision && /^pet-animation:[^:]+:([^:]+):/.exec(binding.cacheKey)?.[1];
+      if (legacyRevision && legacyRevision !== activityModelRevision(modelJson)) return null;
       const cached = this.cache?.getAnimation?.(binding.cacheKey);
       return cached?.plan ? { key: binding.key || 'registered_activity', plan: cached.plan, source: binding.kind } : null;
     }

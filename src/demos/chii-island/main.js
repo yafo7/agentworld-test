@@ -1,3 +1,4 @@
+import { createChiiAnimalAgents } from './gameplay/createChiiAnimalAgents.js';
 import * as THREE from 'three';
 import { getRuntimeStatus, initRuntime } from '../../engine/runtime/runtimeProvider.js';
 import { createScene, createRenderer, createLights, ThirdPersonCamera, setMaterialTagPresenter } from '../../engine';
@@ -11,12 +12,17 @@ import { CHII_WORLD_CENTER } from './data/worldConfig.js';
 import { generateSceneLayout } from './systems/sceneLayout.js';
 import { createChiiAssetRepository, getChiiSceneAssetIds } from './data/assetCatalog.js';
 import {
+  consumeChiiSceneStyle,
   getChiiSceneProfile,
-  getChiiSceneStyle,
   setChiiSceneStyle,
 } from './data/sceneStyle.js';
 import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
+import { ChatSemanticUnderstandingAdapter } from '../../integrations/content/ChatSemanticUnderstandingAdapter.js';
 import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
+import { AIWorldActionService } from '../../gameplay/ai/AIWorldActionService.js';
+import { AIGenerationController } from '../../gameplay/ai/AIGenerationController.js';
+import { PromptCompiler } from '../../gameplay/ai/prompts/PromptCompiler.js';
+import { PromptHistoryStore } from '../../storage/PromptHistoryStore.js';
 import { assembleChiiScene } from './world/ChiiSceneAssembler.js';
 import { assembleChiiInteriors } from './world/ChiiInteriorAssembler.js';
 import { buildStaticColliders } from '../../world/physics/buildStaticColliders.js';
@@ -26,13 +32,14 @@ import { ArchitectNPC } from './entities/ArchitectNPC.js';
 import { createDialogueSystem } from './systems/DialogueSystem.js';
 import { PetManager } from './systems/PetManager.js';
 import { RuntimeHUD } from './systems/RuntimeHUD.js';
-import { assignResidentIdentity, getResidentDefinition } from './data/residentCatalog.js';
+import { CHII_RESIDENTS, assignResidentIdentity, getResidentDefinition } from './data/residentCatalog.js';
 import { DialogueCameraDirector } from './presentation/DialogueCameraDirector.js';
 import { PlayerItemShowcaseDirector } from './presentation/PlayerItemShowcaseDirector.js';
 import { createChiiRegionGameplay } from './gameplay/createChiiRegionGameplay.js';
 import { ChiiInteractionController } from './systems/ChiiInteractionController.js';
 import { BuildingInteriorSystem } from './systems/BuildingInteriorSystem.js';
 import { PlacementGrid } from '../../world/placement/PlacementGrid.js';
+import { ResidentWalkSurface } from '../../world/navigation/ResidentWalkSurface.js';
 import { TerrainPathfinder } from '../../world/navigation/TerrainPathfinder.js';
 import { ObjectPlacementService } from '../../world/placement/ObjectPlacementService.js';
 import { ObjectScalePolicy } from '../../world/placement/ObjectScalePolicy.js';
@@ -81,8 +88,19 @@ import { ChiiInteractionSession } from './systems/ChiiInteractionSession.js';
 import { createMapHost } from 'worldforge-studio/host';
 import { ForgeSceneRepository } from '../../assets/repositories/ForgeSceneRepository.js';
 import { WorldForgeRenderPresentationAdapter } from '../../integrations/worldforge/WorldForgeRenderPresentationAdapter.js';
+import { WorldForgeAuthoringAdapter } from '../../integrations/worldforge/WorldForgeAuthoringAdapter.js';
 import { ForgeMapPhysicsAdapter } from '../../integrations/worldforge/ForgeMapPhysicsAdapter.js';
 import { createTerrainLayoutFromForge } from '../../integrations/worldforge/forgeTerrainLayout.js';
+import { createForgeWorldSpatialDescriptor } from '../../integrations/worldforge/forgeTerrainLayout.js';
+import { createForgeExplorationScenePlan } from './systems/createForgeExplorationScenePlan.js';
+import { createForgeResidentHabitat } from './systems/createForgeResidentHabitat.js';
+import { CHII_MAIN_WORLD_ID } from './data/worldForgeWorlds.js';
+import { consumeActiveWorldId, clearActiveWorldId } from './data/worldSelection.js';
+import { WorldSessionController } from './systems/WorldSessionController.js';
+import { FestivalBook } from './systems/FestivalBook.js';
+import { createResidentPortraits, residentPortraitUrl } from './presentation/residentPortraits.js';
+import { FestivalBookPanel } from './presentation/FestivalBookPanel.js';
+import { WorldPortalPanel } from './presentation/WorldPortalPanel.js';
 
 const pageLoading = createChiiPageLoadingScreen({ preset: 'island' });
 const applicationLifecycle = new ApplicationLifecycle();
@@ -106,10 +124,12 @@ function clearDebugGlobals() {
     '__chiiAssetAudit', '__chiiClimate', '__chiiColliderRegistry',
     '__chiiEnvironmentVisuals', '__chiiInteriors', '__chiiInventory',
     '__chiiItemShowcase', '__chiiModelVisualLifecycle', '__chiiModelVisuals',
+    '__chiiGeneration', '__chiiPromptHistory', '__chiiAgents', '__chiiAgentInspector',
     '__chiiPlacement', '__chiiRenderPresentation', '__chiiSceneProfile',
     '__chiiSceneSave', '__chiiSceneSavePanel', '__chiiSceneStyle',
     '__chiiWaterVisuals', '__chiiWorldTuning', '__forestTempleSystem',
     '__townBuilderSystem', '__townSocialSystem',
+    '__chiiForgeHost', '__chiiWorldSession',
   ];
   for (const key of keys) delete window[key];
   if (window.THREE === THREE) delete window.THREE;
@@ -131,14 +151,27 @@ async function init() {
   window.THREE = THREE;
   const islandStoryState = new IslandStoryState();
   const actZeroStoryState = new ActZeroStoryState({ storyState: islandStoryState });
-  const sceneStyle = getChiiSceneStyle();
+  const forgeSceneRepository = new ForgeSceneRepository();
+  let activeWorldId = consumeActiveWorldId();
+  let externalWorld = null;
+  if (activeWorldId !== CHII_MAIN_WORLD_ID) {
+    try {
+      externalWorld = await awaitApplication(() => forgeSceneRepository.load(activeWorldId));
+    } catch (error) {
+      console.warn(`[WorldSession] ${activeWorldId} could not be loaded, returning to Chii Island:`, error.message);
+      activeWorldId = clearActiveWorldId();
+    }
+  }
+  const isExternalWorld = Boolean(externalWorld);
+  const sceneStyle = consumeChiiSceneStyle();
+  const runtimeScope = isExternalWorld ? activeWorldId : sceneStyle;
   const sceneProfile = getChiiSceneProfile(sceneStyle);
-  const forgeScene = sceneProfile.features.worldForge
+  const forgeScene = externalWorld || (sceneProfile.features.worldForge
     ? await awaitApplication(() => new ForgeSceneRepository({
         root: `/${sceneProfile.forgePackageRoot}`,
       }).load(sceneProfile.snapshotId))
-    : null;
-  if (actZeroStoryState.shouldPlay()) {
+    : null);
+  if (!isExternalWorld && actZeroStoryState.shouldPlay()) {
     pageLoading.show(CHII_LOADING_PRESETS.prologue);
   }
 
@@ -192,7 +225,9 @@ async function init() {
       hemisphereLight: lightRig.hemiLight,
       sunTarget: lightRig.sunLight.target,
       hdriUrl: file => forgeScene.hdriUrl
-        || `/${sceneProfile.forgePackageRoot}/hdri/${encodeURIComponent(file)}`,
+        || (isExternalWorld
+          ? `/generated/worlds/worldforge/${forgeScene.descriptor.packageRoot}/hdri/${encodeURIComponent(file)}`
+          : `/${sceneProfile.forgePackageRoot}/hdri/${encodeURIComponent(file)}`),
     }));
     window.__chiiForgeHost = forgeHost;
   }
@@ -212,12 +247,21 @@ async function init() {
   window.__chiiRenderPresentation = renderPresentation;
 
   // ---- terrain grid (50×50, procedural forest biome) ----
-  const GRID_SIZE = 50;
+  const forgeSpatial = isExternalWorld ? createForgeWorldSpatialDescriptor(forgeScene.map) : null;
+  const GRID_SIZE = forgeSpatial?.gridSize || 50;
+  const terrainTileSize = forgeSpatial?.tileSize || CHII_WORLD_METRICS.terrainTile;
   preloadBlocks({});
-  const layout = forgeScene
+  const layout = forgeSpatial?.terrainLayout || (forgeScene
     ? createTerrainLayoutFromForge(forgeScene.map, GRID_SIZE)
-    : generateTerrainLayout(GRID_SIZE, sceneProfile.terrainSeed);
-  const centerCfg = { center: CHII_WORLD_CENTER };
+    : generateTerrainLayout(GRID_SIZE, sceneProfile.terrainSeed));
+  const centerCfg = { center: forgeSpatial?.center || CHII_WORLD_CENTER };
+  const forgeResidentHabitat = isExternalWorld
+    ? createForgeResidentHabitat(forgeScene.map, forgeSpatial, CHII_RESIDENTS.map(resident => resident.id))
+    : null;
+
+  function forgeResident(residentId) {
+    return forgeResidentHabitat?.residents?.[residentId] || null;
+  }
 
   function countBlockTypes(l) {
     const c = {}; l.flat().forEach(t => { c[t] = (c[t] || 0) + 1; }); return c;
@@ -226,6 +270,24 @@ async function init() {
   // Runtime gameplay only reads the locally synced asset catalog. Studio edit
   // and publish operations happen outside the running game.
   const assetRepository = createChiiAssetRepository({ sceneStyle });
+  const promptHistory = new PromptHistoryStore({
+    scope: runtimeScope,
+  });
+  const generationController = new AIGenerationController({
+    compiler: new PromptCompiler(),
+    contentPort: defaultContentGeneration,
+    actionService: new AIWorldActionService({
+      contentPort: defaultContentGeneration,
+      assetRepository: generatedAssets,
+    }),
+    semanticUnderstanding: new ChatSemanticUnderstandingAdapter({
+      contentPort: defaultContentGeneration,
+    }),
+    worldAuthoringPort: import.meta.env.DEV ? new WorldForgeAuthoringAdapter() : null,
+    history: promptHistory,
+  });
+  window.__chiiGeneration = generationController;
+  window.__chiiPromptHistory = promptHistory;
   window.__chiiSceneStyle = sceneStyle;
   window.__chiiSceneProfile = sceneProfile;
   console.log(`[Init] Loading local runtime assets (${sceneProfile.label})...`);
@@ -240,13 +302,13 @@ async function init() {
   });
   window.__chiiAssetAudit = assetAudit;
 
-  const scenePlan = generateSceneLayout(layout, GRID_SIZE, sceneProfile.layoutSeed, {
-    features: sceneProfile.features,
-  });
-  const petNavigation = new TerrainPathfinder({
+  const scenePlan = isExternalWorld
+    ? createForgeExplorationScenePlan(layout)
+    : generateSceneLayout(layout, GRID_SIZE, sceneProfile.layoutSeed, { features: sceneProfile.features });
+  const terrainNavigation = new TerrainPathfinder({
     terrainLayout: scenePlan.modifiedLayout,
     center: [centerCfg.center[0], centerCfg.center[1]],
-    tileSize: CHII_WORLD_METRICS.terrainTile,
+    tileSize: terrainTileSize,
     traversalCells: scenePlan.town?.bridge?.traversalCells || [],
   });
   console.log('[SceneLayout]', `${scenePlan.buildings.length} buildings, ${scenePlan.trees.length} trees, ${scenePlan.grasses.length} grasses`);
@@ -260,7 +322,7 @@ async function init() {
     ? new ForgeMapPhysicsAdapter({ physics, map: forgeScene.map }).attach()
     : null;
   if (forgePhysics) applicationLifecycle.add(forgePhysics);
-  const worldWaterVisuals = sceneProfile.features.worldWater
+  const worldWaterVisuals = !isExternalWorld && sceneProfile.features.worldWater
     ? new VoxelStudioWorldWaterAdapter({ scene })
     : null;
   if (worldWaterVisuals) applicationLifecycle.add(worldWaterVisuals);
@@ -268,7 +330,7 @@ async function init() {
       riverData: scenePlan.riverData,
       center: [centerCfg.center[0], centerCfg.center[1]],
       gridSize: GRID_SIZE,
-      tileSize: CHII_WORLD_METRICS.terrainTile,
+      tileSize: terrainTileSize,
     });
   window.__chiiWaterVisuals = worldWaterVisuals;
 
@@ -318,6 +380,7 @@ async function init() {
     contentPort: defaultContentGeneration,
     assetRepository: generatedAssets,
     cache: new EquipmentMountCache({ assetRepository: generatedAssets }),
+    generationController,
   });
   const characterAppearances = new CharacterAppearanceStore({ scope: sceneStyle });
   const characterRuntime = new ChiiCharacterRuntimeService({
@@ -329,6 +392,13 @@ async function init() {
   const sceneSaveStore = new ChiiSceneSaveStore();
   const scenePersistence = new ChiiScenePersistenceSystem({
     sceneStyle,
+    saveScope: runtimeScope,
+    worldIdentity: isExternalWorld ? {
+      worldId: activeWorldId,
+      sourceMapId: forgeScene.manifest.sourceMapId,
+      sourceMapVersion: forgeScene.manifest.sourceMapVersion,
+      manifestHash: forgeScene.descriptor?.manifestHash || null,
+    } : { worldId: CHII_MAIN_WORLD_ID, sceneStyle },
     store: sceneSaveStore,
     worldObjects,
     scene,
@@ -352,6 +422,7 @@ async function init() {
   const { registry: colliderRegistry, colliderCount, summary: colliderSummary } = buildStaticColliders(physics, staticEntities);
   applicationLifecycle.add(colliderRegistry);
   colliderRegistry.bindWorldObjects(worldObjects);
+  const petNavigation = new ResidentWalkSurface(terrainNavigation, colliderRegistry, forgeScene?.map);
   window.__chiiColliderRegistry = colliderRegistry;
   console.log(`[Init] Physics colliders: ${colliderCount}`, colliderSummary);
 
@@ -366,14 +437,14 @@ async function init() {
 
   // ---- player (same classic Phrolova used in Act Zero) ----
   const player = new Player();
-  player.setTerrainLayout(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout);
+  player.setTerrainLayout(centerCfg.center[0], centerCfg.center[1], GRID_SIZE, scenePlan.modifiedLayout, terrainTileSize);
   player.setWaterTraversalCells(scenePlan.town?.bridge?.traversalCells || []);
   const townDemoEnabled = new URLSearchParams(window.location.search).has('church-town');
   const forestDemoEnabled = new URLSearchParams(window.location.search).has('forest-temple');
   const townDemoCell = scenePlan.town?.petSpawns?.fangk;
   const forestDemoCell = scenePlan.forestTemple?.trophy;
   const beachSpawnCell = scenePlan.beach?.spawn;
-  const forgePlayerSpawn = forgeScene?.bindings?.spawns?.player;
+  const forgePlayerSpawn = forgeSpatial?.playerSpawn || forgeScene?.bindings?.spawns?.player;
   let demoSpawn = forgePlayerSpawn
     ? { x: forgePlayerSpawn[0], z: forgePlayerSpawn[2] }
     : beachSpawnCell
@@ -384,7 +455,16 @@ async function init() {
   } else if (townDemoEnabled && townDemoCell) {
     demoSpawn = getGridWorldPosition(townDemoCell.gridX - 1, townDemoCell.gridZ, centerCfg.center[0], centerCfg.center[1], GRID_SIZE);
   }
-  player.initPhysics(physics, demoSpawn.x, PLAYER_INITIAL_SPAWN_HEIGHT, demoSpawn.z);
+  if (forgePlayerSpawn) {
+    player.initPhysics(
+      physics,
+      demoSpawn.x,
+      Number(forgePlayerSpawn[1] || 0) + PLAYER_INITIAL_SPAWN_HEIGHT,
+      demoSpawn.z,
+    );
+  } else {
+    player.initPhysics(physics, demoSpawn.x, PLAYER_INITIAL_SPAWN_HEIGHT, demoSpawn.z);
+  }
   thirdPersonCamera.setCollisionWorld(physics.world, player._collider);
   window.__player = player;
   player._scene = scene; // for particle emitters
@@ -424,12 +504,13 @@ async function init() {
   applicationLifecycle.add(inventorySystem);
   window.__chiiInventory = inventorySystem;
   window.__chiiItemShowcase = itemShowcase;
-  const skyVisual = new ChiiSkyVisualAdapter({ scene, followTarget: player.mesh });
+  const skyVisual = forgeScene ? null : new ChiiSkyVisualAdapter({ scene, followTarget: player.mesh });
   const climatePresenter = new WorldClimatePresenter({
     scene,
     lightRig,
     followTarget: player.mesh,
     skyVisual,
+    environmentMode: forgeScene ? 'effects-only' : 'full',
   });
   const worldClimate = new WorldClimateSystem({
     presenter: climatePresenter,
@@ -446,12 +527,12 @@ async function init() {
   // ---- architect NPC ----
   const architect = new ArchitectNPC();
   const architectDefinition = assignResidentIdentity(architect, 'fangk');
-  attachPetStateMachine(architect, architectDefinition.initialState);
-  architect._petRegion = architectDefinition.region;
-  const architectSpawn = townGridSpawn(
-    architectDefinition.spawnKey,
-    architectDefinition.defaultSpawn,
-  );
+  attachPetStateMachine(architect, isExternalWorld ? 'free_roam' : architectDefinition.initialState);
+  architect._petRegion = isExternalWorld ? activeWorldId : architectDefinition.region;
+  const architectSpawn = forgeResident('fangk')?.spawn || townGridSpawn(
+      architectDefinition.spawnKey,
+      architectDefinition.defaultSpawn,
+    );
   architect.setPosition(...architectSpawn);
   architect.setOrigin(...architectSpawn);
   architect.initPhysics(physics);
@@ -465,17 +546,17 @@ async function init() {
   const bear = new ArchitectNPC();
   window.__bear = bear;
   const bearDefinition = assignResidentIdentity(bear, 'momo');
-  attachPetStateMachine(bear, bearDefinition.initialState);
-  bear._petRegion = bearDefinition.region;
+  attachPetStateMachine(bear, isExternalWorld ? 'free_roam' : bearDefinition.initialState);
+  bear._petRegion = isExternalWorld ? activeWorldId : bearDefinition.region;
   bear._initialInteractionDone = false;
   bear.initPhysics(physics);
   bear.setNavigation(petNavigation);
-  const [bearSpawnX, , bearSpawnZ] = gridSpawn(
-    bearDefinition.spawnKey,
-    bearDefinition.defaultSpawn,
-  );
-  bear.setPosition(bearSpawnX, 0, bearSpawnZ);
-  bear.setOrigin(bearSpawnX, 0, bearSpawnZ);
+  const [bearSpawnX, bearSpawnY, bearSpawnZ] = forgeResident('momo')?.spawn || gridSpawn(
+      bearDefinition.spawnKey,
+      bearDefinition.defaultSpawn,
+    );
+  bear.setPosition(bearSpawnX, bearSpawnY, bearSpawnZ);
+  bear.setOrigin(bearSpawnX, bearSpawnY, bearSpawnZ);
   scene.add(bear.mesh);
 
   await awaitApplication(() => characterRuntime.loadCharacterAsset(bear, bearDefinition.assetId));
@@ -495,13 +576,19 @@ async function init() {
     assetRepository,
     navigation: petNavigation,
     petSpawns: {
-      yafo: gridSpawn(yafoDefinition.spawnKey, yafoDefinition.defaultSpawn),
-      mok: gridSpawn(mokDefinition.spawnKey, mokDefinition.defaultSpawn),
-      mako: townGridSpawn(makoDefinition.spawnKey, makoDefinition.defaultSpawn),
-      lingq: townGridSpawn(lingqDefinition.spawnKey, lingqDefinition.defaultSpawn),
-      crab: townGridSpawn(crabDefinition.spawnKey, crabDefinition.defaultSpawn),
+      yafo: forgeResident('yafo')?.spawn || gridSpawn(yafoDefinition.spawnKey, yafoDefinition.defaultSpawn),
+      mok: forgeResident('mok')?.spawn || gridSpawn(mokDefinition.spawnKey, mokDefinition.defaultSpawn),
+      mako: forgeResident('mako')?.spawn || townGridSpawn(makoDefinition.spawnKey, makoDefinition.defaultSpawn),
+      lingq: forgeResident('lingq')?.spawn || townGridSpawn(lingqDefinition.spawnKey, lingqDefinition.defaultSpawn),
+      crab: forgeResident('builder_crab')?.spawn || townGridSpawn(crabDefinition.spawnKey, crabDefinition.defaultSpawn),
     },
-    petBehaviors: {
+    petBehaviors: isExternalWorld ? {
+      yafo: { initialState: 'free_roam', region: activeWorldId, bounds: forgeResident('yafo')?.bounds },
+      mok: { initialState: 'free_roam', region: activeWorldId, bounds: forgeResident('mok')?.bounds },
+      mako: { initialState: 'free_roam', region: activeWorldId, bounds: forgeResident('mako')?.bounds },
+      lingq: { initialState: 'free_roam', region: activeWorldId, bounds: forgeResident('lingq')?.bounds },
+      crab: { initialState: 'free_roam', region: activeWorldId, bounds: forgeResident('builder_crab')?.bounds },
+    } : {
       mako: { bounds: townPetBounds },
       lingq: { bounds: townPetBounds },
       crab: { bounds: townPetBounds },
@@ -519,8 +606,8 @@ async function init() {
     name: 'fangk',
     spawn: architectSpawn,
     initialState: 'free_roam',
-    region: 'church_town',
-    bounds: townPetBounds,
+    region: isExternalWorld ? activeWorldId : 'church_town',
+    bounds: forgeResident('fangk')?.bounds || townPetBounds,
     updateExternally: true,
   });
   window.__petManager = petManager;
@@ -550,6 +637,7 @@ async function init() {
   const placementGrid = new PlacementGrid({
     center: [centerCfg.center[0], centerCfg.center[1]],
     terrainSize: GRID_SIZE,
+    terrainUnit: terrainTileSize,
     terrainLayout: scenePlan.modifiedLayout,
   });
   const objectScalePolicy = new ObjectScalePolicy({
@@ -628,7 +716,13 @@ async function init() {
   window.__chiiInteriors = buildingInteriorSystem;
   console.log(`[Interiors] Ready: church + empty room, ${assembledInteriors.furniture.length} furniture entities`);
 
+  let animalAgents = null;
+  const residentPortraits = createResidentPortraits([bear, architect, ...petManager.pets]);
+  for (const image of document.querySelectorAll('img[data-resident-portrait]')) {
+    image.src = residentPortraitUrl(image.dataset.residentPortrait, residentPortraits);
+  }
   const regionGameplay = await createChiiRegionGameplay({
+    residentPortraits,
     scene,
     physics,
     player,
@@ -643,7 +737,7 @@ async function init() {
     scenePlan,
     center: [centerCfg.center[0], centerCfg.center[1]],
     gridSize: GRID_SIZE,
-    terrainTileSize: CHII_WORLD_METRICS.terrainTile,
+    terrainTileSize,
     dialogueCamera,
     forest: {
       trophy: forestTrophy,
@@ -657,6 +751,7 @@ async function init() {
     runtimeStatus: runtimeHUD,
     contentPort: defaultContentGeneration,
     generatedAssetRepository: generatedAssets,
+    generationController,
     colliderRegistry,
     objectPlacement,
     objectEditor,
@@ -665,6 +760,7 @@ async function init() {
     storyState: islandStoryState,
     navigation: petNavigation,
     onGeneratedObject: entity => objectEditor.openGenerated(entity),
+    onPetSpawned: pet => animalAgents?.registerPet(pet),
   });
   applicationLifecycle.add(regionGameplay);
   applicationLifecycle.assertActive();
@@ -672,6 +768,26 @@ async function init() {
   window.__townSocialSystem = townSocialSystem;
   window.__townBuilderSystem = townBuilderSystem;
   window.__forestTempleSystem = forestTempleSystem;
+
+  const agentServices = createChiiAnimalAgents({
+    lifecycle: applicationLifecycle,
+    camera, player, worldObjects, placementGrid,
+    getPets: () => [bear, ...petManager.pets],
+    worldClimate, islandStoryState, regionGameplay, generationController,
+    scenePersistence, runtimeScope,
+    explorationOnly: isExternalWorld,
+    getRegionName: position => isExternalWorld
+      ? forgeScene.descriptor?.name || activeWorldId
+      : regionGameplay.getNearestRegionName(position),
+  });
+  animalAgents = agentServices.coordinator;
+  const agentBubbles = agentServices.bubbles;
+  const animalAgentInspector = agentServices.inspector;
+  await awaitApplication(() => scenePersistence.restoreSnapshotExtensions());
+  window.__chiiAgents = animalAgents;
+  window.__chiiAgentInspector = animalAgentInspector;
+  const festivalPanel = isExternalWorld ? null : applicationLifecycle.add(new FestivalBookPanel(
+    applicationLifecycle.add(new FestivalBook(townSocialSystem, runtimeScope)), input, residentPortraits));
   const restoredGeneratedPets = await awaitApplication(() => forestTempleSystem.restoreSavedPets());
   for (const pet of restoredGeneratedPets) {
     if (!dynamicTargets.includes(pet)) dynamicTargets.push(pet);
@@ -758,6 +874,22 @@ async function init() {
   window.__chiiActZero = actZeroDirector;
   window.__chiiStory = islandStoryState;
   window.__chiiActZeroStory = actZeroStoryState;
+  const worldSession = new WorldSessionController({
+    currentWorldId: activeWorldId,
+    repository: forgeSceneRepository,
+    persistence: scenePersistence,
+    pageLoading,
+  });
+  applicationLifecycle.add(worldSession);
+  const worldPortalPanel = new WorldPortalPanel({
+    root: document.getElementById('world-portal-panel'),
+    list: document.getElementById('world-portal-list'),
+    closeButton: document.getElementById('btn-close-world-portal'),
+    returnButton: document.getElementById('btn-return-main-world'),
+    session: worldSession,
+  });
+  applicationLifecycle.add(worldPortalPanel);
+  window.__chiiWorldSession = worldSession;
   const managementPanel = new SceneManagementPanel({
     sceneStyle,
     beforeOpen: () => {
@@ -788,13 +920,16 @@ async function init() {
     onPostProcessingChange: enabled => renderPresentation.setPostProcessing(enabled),
     onAudit: () => worldTuningAudit.print(),
     onReplay: () => {
+      if (isExternalWorld) return;
       actZeroDirector.replay().catch(error => {
         console.warn('[ActZero] Replay failed:', error.message);
       });
     },
+    onOpenWorldPortal: () => worldPortalPanel.setOpen(true),
+    onOpenFestivalBook: festivalPanel ? onReturn => festivalPanel.open(onReturn) : null,
   });
   applicationLifecycle.add(managementPanel);
-  await awaitApplication(() => actZeroDirector.start());
+  if (!isExternalWorld) await awaitApplication(() => actZeroDirector.start());
   pageLoading.hide();
   const interiorPreviewId = new URLSearchParams(window.location.search).get('interior-preview');
   const interiorPreviewEntry = buildingInteriorSystem.entries.find(
@@ -826,8 +961,10 @@ async function init() {
     controlLocks.set('dialogue-camera', dialogueCamera.locked, ['inventory', 'camera', 'interaction', 'special', 'movement']);
     controlLocks.set('dialogue-ui', dialogueSystem.isActive(), ['inventory', 'camera', 'interaction', 'special', 'movement']);
     controlLocks.set('management', managementPanel.isOpen(), ['inventory', 'camera', 'interaction', 'special', 'movement']);
+    controlLocks.set('world-portal', worldPortalPanel.isOpen(), ['inventory', 'camera', 'interaction', 'special', 'movement']);
     controlLocks.set('showcase', itemShowcase.isActive(), ['inventory', 'camera', 'interaction', 'special', 'movement']);
     controlLocks.set('object-editor', objectEditor.isActive(), ['inventory', 'camera', 'interaction', 'special', 'movement']);
+    controlLocks.set('festival-book', festivalPanel?.isOpen() || false, ['inventory', 'camera', 'interaction', 'special', 'movement']);
     inventorySystem.update({
       canOpen: !controlLocks.isBlocked('inventory'),
     });
@@ -845,7 +982,9 @@ async function init() {
 
     // ESC: close dialogue first, then toggle management panel
     if (!actZeroActive && !transitioningInterior && input.justPressed('Escape')) {
-      if (itemShowcaseActive) {
+      if (festivalPanel?.isOpen()) {
+        festivalPanel.close();
+      } else if (itemShowcaseActive) {
         itemShowcase.stop();
       } else if (inventoryOpen) {
         inventorySystem.close();
@@ -855,6 +994,8 @@ async function init() {
         dialogueSystem.hide();
       } else if (interactionSession.isActive()) {
         dialogueSystem.hide(); // onDialogueEnd callback handles unlock
+      } else if (worldPortalPanel.isOpen()) {
+        worldPortalPanel.setOpen(false);
       } else if (!document.pointerLockElement) {
         managementPanel.toggle();
       }
@@ -885,6 +1026,9 @@ async function init() {
     if (!actZeroActive) {
       architect.update(dt);
       bear.update(dt);
+      animalAgents.update(dt);
+      animalAgentInspector.update(dt);
+      agentBubbles.update(dt);
       petManager.update(dt);
       regionGameplay.update(dt);
       worldClimate.update(dt);
@@ -894,7 +1038,9 @@ async function init() {
 
     if (!actZeroActive) {
       const nearestRegionName = buildingInteriorSystem.getLocationName()
-        || regionGameplay.getNearestRegionName(player.mesh.position);
+        || (isExternalWorld
+          ? forgeScene.descriptor?.name || '新世界'
+          : regionGameplay.getNearestRegionName(player.mesh.position));
       const followingPet = [bear, ...petManager.pets].find(pet => pet.petState?.is('following'));
       runtimeHUD.setWorldStatus(nearestRegionName, followingPet?._petName || null);
       runtimeHUD.update(dt, { entities: staticEntities.length, pets: petManager.pets.length + 1 });

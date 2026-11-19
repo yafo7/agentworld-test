@@ -22,6 +22,7 @@ export class PetManager {
     petBehaviors = {},
     assetRepository = createChiiAssetRepository(),
     navigation = null,
+    residentIds = null,
   }) {
     this.scene = scene;
     this.physics = physics;
@@ -29,6 +30,7 @@ export class PetManager {
     this.petBehaviors = petBehaviors;
     this.assetRepository = assetRepository;
     this.navigation = navigation;
+    this.residentIds = residentIds ? new Set(residentIds) : null;
     this.placementGrid = null;
     this.pets = [];
   }
@@ -40,6 +42,7 @@ export class PetManager {
   async load() {
     const assetLoads = [];
     for (const config of PET_MANAGER_RESIDENTS) {
+      if (this.residentIds && !this.residentIds.has(config.id)) continue;
       const pet = new ArchitectNPC();
       const spawn = this.petSpawns[config.spawnKey] || config.defaultSpawn;
       assignResidentIdentity(pet, config.id);
@@ -116,6 +119,7 @@ export class PetManager {
         pet.petState?.is('free_roam')
         && !pet.petState.isBusy()
         && !pet._pastoralIdeaPending
+        && !pet._agentControlled
       ) {
         this._updateRandomAction(pet, dt);
       }

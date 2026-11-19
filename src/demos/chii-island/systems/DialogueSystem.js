@@ -146,6 +146,7 @@ export function createDialogueSystem() {
   }
 
   function handleInputKeydown(event) {
+    if (event.isComposing || event.keyCode === 229) return;
     if (event.key === 'Escape') {
       event.preventDefault();
       hide();
@@ -227,7 +228,7 @@ export function createDialogueSystem() {
       textInput.placeholder = placeholder || '输入具体描述...';
       textInput.value = '';
       hintElement.textContent = '输入后按 Enter 发送 · Esc 关闭';
-      setTimeout(() => textInput.focus(), 100);
+      textInput.focus();
     });
   }
 

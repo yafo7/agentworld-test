@@ -67,7 +67,7 @@ const manifest = {
   kind: 'chii-forge-scene',
   sceneId,
   sourceMapId: map.id,
-  sourceMapRevision: map.revision,
+  sourceMapVersion: map.version,
   publishedAt: new Date().toISOString(),
   worldForge: { commit: 'b7187ea', packageVersion: '0.1.0' },
   runtime: { renderRuntimeCommit: '1805dfc', threeRevision: '160' },

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "worldId": "wf-sakura-bamboo",
+  "gameplayPreset": "exploration",
+  "spawns": {
+    "player": [
+      -1.0606601717798212,
+      2.042088309075668,
+      2.5606601717798214
+    ]
+  },
+  "zones": {},
+  "objects": {},
+  "portals": []
+}

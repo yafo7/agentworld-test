@@ -63,15 +63,17 @@ export function paintUnitArea(unitEnv, gridX, gridZ, areaType = 'default') {
   }
 }
 
-export function getGridWorldPosition(gridX, gridZ, centerX = 0, centerZ = 0, size = 10) {
-  const offset = ((size - 1) * SPACING) / 2;
-  return { x: centerX + gridX * SPACING - offset, z: centerZ + gridZ * SPACING - offset };
+export function getGridWorldPosition(gridX, gridZ, centerX = 0, centerZ = 0, size = 10, spacing = SPACING) {
+  const unit = Number(spacing) || SPACING;
+  const offset = ((size - 1) * unit) / 2;
+  return { x: centerX + gridX * unit - offset, z: centerZ + gridZ * unit - offset };
 }
 
-export function worldToGridCoordinates(worldX, worldZ, centerX = 0, centerZ = 0, size = 10) {
-  const offset = ((size - 1) * SPACING) / 2;
-  const gridX = Math.round((worldX - centerX + offset) / SPACING);
-  const gridZ = Math.round((worldZ - centerZ + offset) / SPACING);
+export function worldToGridCoordinates(worldX, worldZ, centerX = 0, centerZ = 0, size = 10, spacing = SPACING) {
+  const unit = Number(spacing) || SPACING;
+  const offset = ((size - 1) * unit) / 2;
+  const gridX = Math.round((worldX - centerX + offset) / unit);
+  const gridZ = Math.round((worldZ - centerZ + offset) / unit);
   return {
     gridX: Math.max(0, Math.min(size - 1, gridX)),
     gridZ: Math.max(0, Math.min(size - 1, gridZ)),

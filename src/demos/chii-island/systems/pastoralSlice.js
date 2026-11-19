@@ -4,6 +4,7 @@ import { getGridWorldPosition, worldToGridCoordinates } from '../../../engine/wo
 import { recordAIWorldEvent } from '../../../storage/aiWorldState.js';
 import { attachPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
+import { PROMPT_OPERATIONS } from '../../../gameplay/ai/prompts/PromptOperations.js';
 import {
   isPetWorkAbortedError,
   PetWorkAbortedError,
@@ -18,6 +19,7 @@ import { PetBubblePresenter } from '../presentation/PetBubblePresenter.js';
 import { PastoralWorkEffects } from '../presentation/PastoralWorkEffects.js';
 import {
   appendChiiGenerationConstraint,
+  getChiiSizeProfile,
   resolveChiiSizeProfile,
 } from '../data/worldTuningProfile.js';
 
@@ -81,6 +83,7 @@ export function createPastoralSlice({
   bubblePresenter = null,
   camera = null,
   vfxService = null,
+  generationController = null,
 }) {
   if (!contentPort || !generatedAssetRepository) {
     throw new TypeError('createPastoralSlice requires content and generated asset dependencies');
@@ -532,7 +535,7 @@ export function createPastoralSlice({
       : await beginWorkAtPosition(pet, targetPos, { focusCamera });
     const concisePrompt = shortConcrete(description, '木制田园装饰');
     const sizeProfile = resolveChiiSizeProfile({ description: concisePrompt });
-    const prompt = appendChiiGenerationConstraint(concisePrompt, sizeProfile);
+    let prompt = appendChiiGenerationConstraint(concisePrompt, sizeProfile);
     const result = await workCoordinator.run({
       pet,
       points,
@@ -545,11 +548,31 @@ export function createPastoralSlice({
         applying: '正在放置新物件',
         complete: '新物件已经放好',
       },
-      execute: () => aiActions.createObject({
-        description: prompt,
-        quality: 'voxel',
-        tags: ['pastoral', 'object'],
-      }),
+      execute: async () => {
+        if (!generationController) {
+          return aiActions.createObject({
+            description: prompt,
+            quality: 'voxel',
+            tags: ['pastoral', 'object'],
+          });
+        }
+        const prepared = await generationController.prepare({
+          operation: PROMPT_OPERATIONS.MODEL_GENERATE,
+          rawText: concisePrompt,
+          source: { kind: nextState === 'free_roam' ? 'pet_autonomous' : 'player_command' },
+          input: { name: concisePrompt, tags: ['pastoral', 'object'] },
+          context: { regionId: 'windmill_pastoral', actorId: pet._petId || pet._petName },
+          constraints: {
+            qualityProfile: 'voxel',
+            sizeProfile,
+            generationConstraint: getChiiSizeProfile(sizeProfile).generationConstraint,
+          },
+          approval: { required: true, confirmed: true, reason: 'pastoral-work-approved' },
+          semanticPlanning: 'disabled',
+        });
+        prompt = prepared.packet.payload.description;
+        return (await generationController.execute(prepared)).result;
+      },
       apply: async ({ modelJson, assetId }) => {
         const entityId = `pastoral_${assetId}`;
         const eventId = `pastoral:create:${entityId}`;
@@ -587,7 +610,7 @@ export function createPastoralSlice({
       ? (options.workPoints || getWorkPositionForTarget(pet, target))
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
-    const prompt = shortConcrete(description, '变得更田园自然');
+    let prompt = shortConcrete(description, '变得更田园自然');
     let completedAssetId = null;
     const result = await workCoordinator.run({
       pet,
@@ -601,9 +624,31 @@ export function createPastoralSlice({
         applying: '正在替换模型',
         complete: '调整完成',
       },
-      execute: () => {
+      execute: async () => {
         const modelJson = getModelJson(target);
         if (!modelJson) throw new Error('目标没有可修改模型');
+        if (generationController) {
+          const prepared = await generationController.prepare({
+            operation: PROMPT_OPERATIONS.MODEL_REFINE,
+            rawText: prompt,
+            source: { kind: nextState === 'free_roam' ? 'pet_autonomous' : 'player_command' },
+            target: {
+              identity: getTargetName(target),
+              entityId: target.id || target._petId || target._petName,
+              revision: target._generatedAssetId || null,
+            },
+            input: {
+              modelJson,
+              name: target.name || prompt,
+              tags: ['pastoral', 'refine'],
+            },
+            context: { regionId: 'windmill_pastoral', actorId: pet._petId || pet._petName },
+            approval: { required: true, confirmed: true, reason: 'pastoral-refine-approved' },
+            semanticPlanning: 'disabled',
+          });
+          prompt = prepared.packet.payload.description;
+          return (await generationController.execute(prepared)).result;
+        }
         return aiActions.refineObject({
           modelJson,
           description: prompt,
@@ -640,8 +685,8 @@ export function createPastoralSlice({
       ? (options.workPoints || getWorkPositionForTarget(pet, target))
       : await beginWorkAtTarget(pet, target, { focusCamera });
     if (!points) return;
-    const part = shortConcrete(partDescription, '一个小装饰');
-    const where = shortConcrete(positionDescription, '顶部');
+    let part = shortConcrete(partDescription, '一个小装饰');
+    let where = shortConcrete(positionDescription, '顶部');
     let completedAssetId = null;
     const result = await workCoordinator.run({
       pet,
@@ -655,9 +700,33 @@ export function createPastoralSlice({
         applying: '正在更新模型',
         complete: '装配完成',
       },
-      execute: () => {
+      execute: async () => {
         const modelJson = getModelJson(target);
         if (!modelJson) throw new Error('目标没有可装配模型');
+        if (generationController) {
+          const prepared = await generationController.prepare({
+            operation: PROMPT_OPERATIONS.MODEL_MOUNT,
+            source: { kind: nextState === 'free_roam' ? 'pet_autonomous' : 'player_command', text: part },
+            target: {
+              identity: getTargetName(target),
+              entityId: target.id || target._petId || target._petName,
+              revision: target._generatedAssetId || null,
+            },
+            input: {
+              modelJson,
+              part,
+              placement: where,
+              name: target.name || part,
+              tags: ['pastoral', 'mount'],
+            },
+            context: { regionId: 'windmill_pastoral', actorId: pet._petId || pet._petName },
+            approval: { required: true, confirmed: true, reason: 'pastoral-mount-approved' },
+            semanticPlanning: 'disabled',
+          });
+          part = prepared.packet.payload.part;
+          where = prepared.packet.payload.placement;
+          return (await generationController.execute(prepared)).result;
+        }
         return aiActions.mountPart({
           modelJson,
           part,
@@ -909,6 +978,7 @@ export function createPastoralSlice({
       pet.disableWander?.();
       pet.playAnimation?.('idle');
       _ideaBubbles.setHint(pet, '我有个想法！', { exclusive: false });
+      return idea;
     } catch (err) {
       if (isPetWorkAbortedError(err)) return;
       console.warn('[Pastoral] idea preparation failed:', err.message);
@@ -984,6 +1054,9 @@ export function createPastoralSlice({
         continue;
       }
       if (!pet.petState.is('free_roam') || pet.petState.isBusy()) continue;
+      // Living Agents explicitly request ideas through requestAutonomousIdea().
+      // Keep this timer only as the compatibility path for unmanaged pets.
+      if (pet._agentControlled) continue;
       pet._pastoralAutonomousTimer = (pet._pastoralAutonomousTimer ?? 20) - dt;
       if (pet._pastoralAutonomousTimer <= 0) {
         pet._pastoralAutonomousTimer = 20;
@@ -1024,6 +1097,7 @@ export function createPastoralSlice({
     update,
     startFollowing,
     startFreeRoam,
+    requestAutonomousIdea: pet => prepareAutonomousIdea(pet),
     hasPendingIdea: pet => _pendingIdeas.has(pet),
     getInteractionLabel: pet => _pendingIdeas.has(pet)
       ? `听听${getPetName(pet)}的想法`

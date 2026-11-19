@@ -1,4 +1,5 @@
 // Voxel backend API client. Manual Studio sync is intentionally separate.
+import { animationResultPlan } from '../ports/AnimationResult.js';
 
 const API_BASE = '/api/voxel';
 export const DEFAULT_VOXEL_TIMEOUT_MS = 300000;
@@ -119,9 +120,9 @@ export async function generateAnimation(
   { vfxTags = null, timeoutMs = DEFAULT_VOXEL_TIMEOUT_MS } = {}
 ) {
   const operation = 'generateAnimation';
-  const body = { mode: 'quick', modelJson, description, duration, provider, emitParticles };
+  const body = { modelJson, description, duration, provider, emitParticles };
   if (vfxTags) body.vfxTags = vfxTags;
-  const response = await request(`${API_BASE}/api/generate/animation`, {
+  const response = await request(`${API_BASE}/api/generate/animation-quick`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -129,8 +130,12 @@ export async function generateAnimation(
   }, operation);
   if (!response.ok) throw await responseError(response, operation, 'ANIMATION_GENERATION_FAILED');
   const data = await response.json();
-  if (!data.ok || !data.plan) throw errorFromData(data, { operation, fallback: 'ANIMATION_RESULT_MISSING' });
-  return { plan: data.plan, timing: data.timing || null };
+  if (!data.ok) throw errorFromData(data, { operation, fallback: 'ANIMATION_RESULT_MISSING' });
+  try {
+    return { plan: animationResultPlan(data, modelJson), timing: data.timing || data.perf || null };
+  } catch (error) {
+    throw new VoxelApiError(error.message, { code: 'ANIMATION_RESULT_INVALID', operation });
+  }
 }
 
 /** Batch model generation. Kept for legacy tools; gameplay uses semantic adapters. */

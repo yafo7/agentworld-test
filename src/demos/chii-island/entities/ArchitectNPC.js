@@ -13,6 +13,11 @@ import { getPetStateMachine, PET_STATES } from '../../../gameplay/pets/PetStateM
  *
  * Animation: idle (呼吸摇摆), run (奔跑), construct (上下挥舞卷轴)
  */
+const WALK_CLIP_SPEED = 3;
+const RUN_CLIP_SPEED = 5;
+const STALL_DELAY = 0.25;
+const MAX_DETOURS = 3;
+
 export class ArchitectNPC {
   constructor() {
     // Placeholder: blue capsule
@@ -35,6 +40,7 @@ export class ArchitectNPC {
 
     // Movement
     this._speed = 3.5;
+    this._arrivalTolerance = 0.2;
     this._targetPosition = null;
     this._lockedFacing = null;
     this._originPosition = new THREE.Vector3();
@@ -44,6 +50,11 @@ export class ArchitectNPC {
     this._navigationTargetCell = null;
     this._followRepathTimer = 0;
     this._movementTarget = null;
+    this._gaitTime = null;
+    this._locomotionDistance = 0;
+    this._stalledFor = 0;
+    this._detour = null;
+    this._detourAttempts = 0;
 
     // Wander behavior
     this._wanderSpeed = 2.0;
@@ -214,12 +225,17 @@ export class ArchitectNPC {
     this._clearNavigationPath();
   }
 
-  walkTo(targetX, targetZ, speed = 3.5) {
+  walkTo(targetX, targetZ, speed = 3.5, arrivalTolerance = 0.2) {
+    this._clearNavigationPath();
     this._speed = speed;
+    this._arrivalTolerance = arrivalTolerance;
     this._targetPosition = new THREE.Vector3(targetX, 0, targetZ);
     this._planNavigation(this._targetPosition);
-    this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
+    if (this._navigationBlocked) this.stopWalking();
+    return this.isWalking();
   }
+
+  isWalking() { return this._targetPosition !== null; }
 
   stopWalking() {
     this._targetPosition = null;
@@ -243,11 +259,11 @@ export class ArchitectNPC {
     this._wanderTimer = 0;
     getPetStateMachine(this).transition(PET_STATES.FREE_ROAM, { reason: 'wander-enabled' });
     this._pickWanderTarget();
-    this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
   }
 
   disableWander() {
     this._targetPosition = null;
+    this._clearNavigationPath();
     if (this.petState?.is(PET_STATES.FREE_ROAM)) {
       this.petState.transition(PET_STATES.IDLE, { reason: 'wander-disabled' });
     }
@@ -306,14 +322,19 @@ export class ArchitectNPC {
     // Movement
     this._updateMovement(dt);
 
+    // The kinematic controller handles lateral collisions but supplies no gravity.
+    // Re-anchor the body even while idle; clip-local jumps remain on the model.
+    const support = this._navigation?.groundHeightAt?.(this.mesh.position);
+    if (Number.isFinite(support)) this.mesh.position.y = support + 0.03;
+
     // Facing direction
     this._updateFacing();
 
-    // Animation
-    this._updateAnimation(dt);
+    // Locomotion advances with travel distance. Gestures and stationary exercises use time.
+    this._updateAnimation(this._gaitTime ?? dt);
 
     // Running dust particles (spawned externally via callback)
-    if ((this._animState === 'run' || this._animState === 'walk') && this._onRunDust) {
+    if (this._locomotionDistance > 0 && this._onRunDust) {
       this._dustTimer = (this._dustTimer || 0) + dt;
       if (this._dustTimer >= 0.15) {
         this._dustTimer = 0;
@@ -330,6 +351,8 @@ export class ArchitectNPC {
 
   _updateMovement(dt) {
     this._movementTarget = null;
+    this._gaitTime = null;
+    this._locomotionDistance = 0;
 
     // Follow behavior uses the terrain path when one is configured.
     if (this.petState?.is(PET_STATES.FOLLOWING) && this._followTarget) {
@@ -351,24 +374,29 @@ export class ArchitectNPC {
           }
         }
         if (this._navigationBlocked) {
-          if (this._animState !== 'idle') this._setAnimState('idle');
+          this._idleFromLocomotion();
           return;
         }
-        const movementTarget = this._nextNavigationTarget(tp);
-        this._movementTarget = movementTarget;
-        const dir = new THREE.Vector3().subVectors(movementTarget, this.mesh.position);
-        dir.y = 0;
-        this.mesh.rotation.y = Math.atan2(dir.x, dir.z);
-        this._moveBy(dir.normalize().multiplyScalar(this._followSpeed * dt));
-        if (this._animState !== 'run') this._setAnimState('run');
+        const clip = this._animPlans.run ? 'run' : 'walk';
+        if (!this._advanceLocomotion(tp, this._followSpeed, clip, dt)) {
+          this._navigationBlocked = Boolean(this._navigation);
+          this._followRepathTimer = 0.35;
+          this._navigationPath = [];
+          this._detour = null;
+          this._detourAttempts = 0;
+          this._stalledFor = 0;
+        }
       } else {
-        if (this._animState !== 'idle') this._setAnimState('idle');
+        this._detour = null;
+        this._detourAttempts = 0;
+        this._stalledFor = 0;
+        this._idleFromLocomotion();
       }
       return;
     }
 
     // Wander: re-pick target periodically
-    if (this.petState?.is(PET_STATES.FREE_ROAM)) {
+    if (this.petState?.is(PET_STATES.FREE_ROAM) && !this._agentControlled) {
       this._wanderTimer += dt;
       if (this._wanderTimer >= this._wanderInterval && !this._targetPosition) {
         this._wanderTimer = 0;
@@ -379,34 +407,75 @@ export class ArchitectNPC {
 
     if (!this._targetPosition) return;
 
-    const dir = new THREE.Vector3().subVectors(this._targetPosition, this.mesh.position);
-    dir.y = 0;
-    const dist = dir.length();
-
-    if (dist < 0.2) {
-      this.mesh.position.x = this._targetPosition.x;
-      this.mesh.position.z = this._targetPosition.z;
-      this._targetPosition = null;
-      this._clearNavigationPath();
-      this._setAnimState('idle');
-    } else {
-      if (this._navigationBlocked) {
-        this._targetPosition = null;
-        this._clearNavigationPath();
-        this._setAnimState('idle');
-        return;
-      }
-      const movementTarget = this._nextNavigationTarget(this._targetPosition);
-      this._movementTarget = movementTarget;
-      dir.subVectors(movementTarget, this.mesh.position);
-      dir.y = 0;
-      const movementDistance = dir.length();
-      const step = this._speed * dt;
-      this._moveBy(dir.normalize().multiplyScalar(Math.min(step, movementDistance)));
-      if (this._animState !== (this._animPlans.walk ? 'walk' : 'run')) {
-        this._setAnimState(this._animPlans.walk ? 'walk' : 'run');
-      }
+    const remaining = Math.hypot(this._targetPosition.x - this.mesh.position.x, this._targetPosition.z - this.mesh.position.z);
+    const clip = this._animPlans.walk ? 'walk' : 'run';
+    if (remaining <= this._arrivalTolerance || this._navigationBlocked || !this._advanceLocomotion(this._targetPosition, this._speed, clip, dt)) {
+      this.stopWalking();
     }
+  }
+
+  _idleFromLocomotion() {
+    if (this._animState === 'idle') return;
+    if (this._animPlans.idle) this._setAnimState('idle');
+    else this._gaitTime = 0;
+  }
+
+  _advanceLocomotion(destination, speed, clip, dt) {
+    const position = this.mesh.position;
+    if (this._detour && Math.hypot(this._detour.x - position.x, this._detour.z - position.z) < 0.25) {
+      this._detour = null;
+      this._planNavigation(destination);
+    }
+    const target = this._detour || this._nextNavigationTarget(destination);
+    this._movementTarget = target;
+    const direction = new THREE.Vector3(target.x - position.x, 0, target.z - position.z);
+    const distance = direction.length();
+    const step = Math.min(speed * dt, distance);
+    direction.normalize();
+
+    const beforeX = position.x, beforeZ = position.z;
+    this._moveBy(direction.clone().multiplyScalar(step));
+    const dx = position.x - beforeX, dz = position.z - beforeZ;
+    const traveled = Math.hypot(dx, dz);
+    if (traveled > 0.001) {
+      this._locomotionDistance = traveled;
+      this._gaitTime = traveled / (clip === 'walk' ? WALK_CLIP_SPEED : RUN_CLIP_SPEED);
+      if (this._animState !== clip) this._setAnimState(clip);
+    } else {
+      this._idleFromLocomotion();
+    }
+
+    const forward = dx * direction.x + dz * direction.z;
+    this._stalledFor = step > 0 && forward < step * 0.2 ? this._stalledFor + dt : 0;
+    if (this._stalledFor < STALL_DELAY) return true;
+
+    // The terrain route can cross a prop or another resident. Use the collider
+    // to check a short side step before committing to a different heading.
+    if (this._detourAttempts >= MAX_DETOURS) return false;
+    const detour = this._findLocomotionDetour(position, direction, destination);
+    if (!detour) return false;
+    this._detour = detour;
+    this._detourAttempts += 1;
+    this._stalledFor = 0;
+    return true;
+  }
+
+  _findLocomotionDetour(position, direction, destination) {
+    if (!this._controller || !this._collider) return null;
+    let best = null;
+    let bestScore = Infinity;
+    for (const offset of [Math.PI / 3, -Math.PI / 3, Math.PI / 2, -Math.PI / 2, 2 * Math.PI / 3, -2 * Math.PI / 3]) {
+      const heading = Math.atan2(direction.x, direction.z) + offset;
+      const delta = new THREE.Vector3(Math.sin(heading) * 2.4, 0, Math.cos(heading) * 2.4);
+      const point = position.clone().add(delta);
+      if (this._navigation && !this._navigation.isSegmentWalkable(position, point)) continue;
+      this._controller.computeColliderMovement(this._collider, delta);
+      const corrected = this._controller.computedMovement();
+      if (Math.hypot(corrected.x - delta.x, corrected.z - delta.z) > 0.15) continue;
+      const score = Math.hypot(destination.x - point.x, destination.z - point.z);
+      if (score < bestScore) { best = point; bestScore = score; }
+    }
+    return best;
   }
 
   _moveBy(delta) {
@@ -428,6 +497,8 @@ export class ArchitectNPC {
         z: delta.z,
       });
       const corrected = this._controller.computedMovement();
+      const nx=this.mesh.position.x+corrected.x, nz=this.mesh.position.z+corrected.z;
+      if (this._navigation?.groundHeightAt && !this._navigation.isWalkableWorld({x:nx,z:nz})) return;
       this.mesh.position.x += corrected.x;
       this.mesh.position.y += corrected.y;
       this.mesh.position.z += corrected.z;
@@ -468,7 +539,7 @@ export class ArchitectNPC {
       return;
     }
     const path = this._navigation.findPath(this.mesh.position, target);
-    this._navigationPath = path.map(point => new THREE.Vector3(point.x, 0, point.z));
+    this._navigationPath = path.map(point => new THREE.Vector3(point.x, point.y || 0, point.z));
     this._navigationBlocked = this._navigationPath.length === 0
       && Math.hypot(target.x - this.mesh.position.x, target.z - this.mesh.position.z) > 0.2;
   }
@@ -476,7 +547,10 @@ export class ArchitectNPC {
   _nextNavigationTarget(fallback) {
     while (this._navigationPath.length) {
       const next = this._navigationPath[0];
-      if (Math.hypot(next.x - this.mesh.position.x, next.z - this.mesh.position.z) > 0.3) return next;
+      // Reach a turn before taking the next segment; skipping it early can
+      // clip a riverbank even when both planned segments are clear.
+      const tolerance = this._navigationPath.length > 1 ? 0.015 : 0.3;
+      if (Math.hypot(next.x - this.mesh.position.x, next.z - this.mesh.position.z) > tolerance) return next;
       this._navigationPath.shift();
     }
     return fallback;
@@ -487,6 +561,9 @@ export class ArchitectNPC {
     this._navigationBlocked = false;
     this._navigationTargetCell = null;
     this._movementTarget = null;
+    this._detour = null;
+    this._detourAttempts = 0;
+    this._stalledFor = 0;
   }
 
   _updateAnimation(dt) {

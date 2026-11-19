@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "worldId": "wf-chii-island",
+  "gameplayPreset": "exploration",
+  "spawns": {
+    "player": [
+      -24,
+      1.4,
+      -72
+    ]
+  },
+  "zones": {},
+  "objects": {},
+  "portals": []
+}

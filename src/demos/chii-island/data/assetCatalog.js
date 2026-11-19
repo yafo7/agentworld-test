@@ -114,6 +114,20 @@ export function getChiiSceneAssetIds(sceneStyle = getChiiSceneStyle()) {
   return CHII_SCENE_ASSET_IDS.filter(id => catalog[id]);
 }
 
+export const RESIDENT_VOXEL_IDS = Object.freeze(['momo', 'yafo', 'mako', 'mok', 'lingq', 'fangk', 'crab']);
+export const RESIDENT_VOXEL_VERSION = 'voxel-20261118';
+
+export function residentVoxelAsset(id) {
+  return {
+    model: `generated/residents/${RESIDENT_VOXEL_VERSION}/${id}.json`,
+    animations: Object.fromEntries(Object.entries(animationNames[id]).map(([action, file]) => [
+      action, `generated/residents/${RESIDENT_VOXEL_VERSION}/animations/${file}.json`,
+    ])),
+  };
+}
+
 export function createChiiAssetRepository({ sceneStyle = getChiiSceneStyle(), ...options } = {}) {
-  return new LocalRuntimeAssetRepository({ catalog: createChiiAssetCatalog(sceneStyle), ...options });
+  const catalog = { ...createChiiAssetCatalog(sceneStyle) };
+  for (const id of RESIDENT_VOXEL_IDS) catalog[id] = residentVoxelAsset(id);
+  return new LocalRuntimeAssetRepository({ catalog, ...options });
 }

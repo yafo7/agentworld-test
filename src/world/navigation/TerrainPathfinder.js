@@ -1,11 +1,14 @@
 const DEFAULT_TILE_SIZE = 4;
 
+// Deterministic cardinal neighbours, favouring the direction of the goal on ties.
+const neighborOrders = Array.from({length:9}, (_,i) => {
+  const x = i%3-1, z = Math.floor(i/3)-1;
+  return [[1,0],[-1,0],[0,1],[0,-1]].sort(([ax,az],[bx,bz]) =>
+    Math.abs(ax-x)+Math.abs(az-z)-Math.abs(bx-x)-Math.abs(bz-z));
+});
+
 function keyOf(x, z) {
   return `${x},${z}`;
-}
-
-function horizontalDistance(a, b) {
-  return Math.hypot((a?.x || 0) - (b?.x || 0), (a?.z || 0) - (b?.z || 0));
 }
 
 export class TerrainPathfinder {
@@ -51,8 +54,8 @@ export class TerrainPathfinder {
       || cell.x >= this.gridSize
       || cell.z >= this.gridSize
     ) return false;
-    const key = keyOf(cell.x, cell.z);
-    return this.terrainLayout[cell.z]?.[cell.x] !== 'water' || this.traversalCells.has(key);
+    const terrain = this.terrainLayout[cell.z]?.[cell.x];
+    return (terrain !== 'water' && terrain !== 'blocked') || (this.traversalCells.size > 0 && this.traversalCells.has(keyOf(cell.x, cell.z)));
   }
 
   isWalkableWorld(position) {
@@ -60,14 +63,25 @@ export class TerrainPathfinder {
   }
 
   isSegmentWalkable(from, to) {
-    const distance = horizontalDistance(from, to);
-    const steps = Math.max(1, Math.ceil(distance / (this.tileSize * 0.1)));
-    for (let index = 0; index <= steps; index += 1) {
-      const alpha = index / steps;
-      if (!this.isWalkableWorld({
-        x: from.x + (to.x - from.x) * alpha,
-        z: from.z + (to.z - from.z) * alpha,
-      })) return false;
+    const cell = this.worldToCell(from), end = this.worldToCell(to);
+    if (!this.isWalkableCell(cell) || !this.isWalkableCell(end)) return false;
+    const dx = to.x - from.x, dz = to.z - from.z;
+    const sx = Math.sign(dx), sz = Math.sign(dz), size = this.tileSize;
+    const center = this.cellToWorld(cell);
+    let tx = dx ? (center.x + sx*size/2 - from.x) / dx : Infinity;
+    let tz = dz ? (center.z + sz*size/2 - from.z) / dz : Infinity;
+    // Visit every crossed cell. A diagonal crossing a grid corner also needs
+    // both adjacent cells: touching a bank or railing is not a valid shortcut.
+    while (cell.x !== end.x || cell.z !== end.z) {
+      const nextX = cell.x === end.x ? Infinity : tx;
+      const nextZ = cell.z === end.z ? Infinity : tz;
+      if (Math.abs(nextX - nextZ) < 1e-9) {
+        if (!this.isWalkableCell({x:cell.x+sx,z:cell.z}) || !this.isWalkableCell({x:cell.x,z:cell.z+sz})) return false;
+        cell.x += sx; cell.z += sz;
+        tx += size/Math.abs(dx); tz += size/Math.abs(dz);
+      } else if (nextX < nextZ) { cell.x += sx; tx += size/Math.abs(dx); }
+      else { cell.z += sz; tz += size/Math.abs(dz); }
+      if (!this.isWalkableCell(cell)) return false;
     }
     return true;
   }
@@ -80,58 +94,48 @@ export class TerrainPathfinder {
       return [{ x: to.x, y: to.y || 0, z: to.z }];
     }
 
-    const startKey = keyOf(start.x, start.z);
-    const targetKey = keyOf(target.x, target.z);
-    const queue = [start];
-    const visited = new Set([startKey]);
-    const previous = new Map();
-    let cursor = 0;
-
-    while (cursor < queue.length && !visited.has(targetKey)) {
-      const current = queue[cursor++];
-      const neighbors = [
-        { x: current.x + 1, z: current.z },
-        { x: current.x - 1, z: current.z },
-        { x: current.x, z: current.z + 1 },
-        { x: current.x, z: current.z - 1 },
-      ].sort((a, b) => (
-        Math.abs(a.x - target.x) + Math.abs(a.z - target.z)
-        - Math.abs(b.x - target.x) - Math.abs(b.z - target.z)
-      ));
-
-      for (const neighbor of neighbors) {
-        const key = keyOf(neighbor.x, neighbor.z);
-        if (visited.has(key) || !this.isWalkableCell(neighbor)) continue;
-        visited.add(key);
-        previous.set(key, current);
-        queue.push(neighbor);
+    // Search with integer indices. An island-wide route can visit thousands of
+    // cells; reuse the work buffers instead of allocating objects for each edge.
+    const n = this.gridSize;
+    const queue = this.queue ??= new Int32Array(n*n);
+    const parent = this.parent ??= new Int32Array(n*n);
+    parent.fill(-1);
+    const first = start.z*n+start.x, last = target.z*n+target.x;
+    parent[first] = first;
+    queue[0] = first;
+    let read = 0, write = 1;
+    while (read < write && parent[last] < 0) {
+      const current = queue[read++];
+      const x = current % n, z = Math.floor(current/n);
+      const order = neighborOrders[(Math.sign(target.z-z)+1)*3 + Math.sign(target.x-x)+1];
+      for (const [dx,dz] of order) {
+        const nx = x+dx, nz = z+dz;
+        if (nx < 0 || nx >= n || nz < 0 || nz >= n) continue;
+        const next = nz*n+nx;
+        if (parent[next] !== -1 || !this.isWalkableCell({x:nx,z:nz})) continue;
+        parent[next] = current;
+        queue[write++] = next;
       }
     }
-
-    if (!visited.has(targetKey)) return [];
-
-    const cells = [target];
-    let current = target;
-    while (keyOf(current.x, current.z) !== startKey) {
-      current = previous.get(keyOf(current.x, current.z));
-      if (!current) return [];
-      cells.push(current);
+    if (parent[last] === -1) return [];
+    const cells = [];
+    for (let i=last;;i=parent[i]) {
+      cells.push({x:i%n,z:Math.floor(i/n)});
+      if (i===first) break;
     }
     cells.reverse();
 
-    const simplified = [cells[0]];
-    for (let index = 1; index < cells.length - 1; index += 1) {
-      const previousCell = cells[index - 1];
-      const cell = cells[index];
-      const nextCell = cells[index + 1];
-      const incoming = { x: cell.x - previousCell.x, z: cell.z - previousCell.z };
-      const outgoing = { x: nextCell.x - cell.x, z: nextCell.z - cell.z };
-      if (incoming.x !== outgoing.x || incoming.z !== outgoing.z) simplified.push(cell);
+    // Only skip corners when the actual segment between world positions is clear.
+    // In particular an off-centre destination cannot replace a grid corner blindly.
+    const points = [...cells.map(cell => this.cellToWorld(cell)), { x:to.x, y:to.y || 0, z:to.z }];
+    const path = [];
+    let anchor = from;
+    for (let i=0; i<points.length; i++) {
+      if (i+1 < points.length && this.isSegmentWalkable(anchor,points[i+1])) continue;
+      if (!this.isSegmentWalkable(anchor,points[i])) return [];
+      path.push(points[i]);
+      anchor=points[i];
     }
-    simplified.push(cells[cells.length - 1]);
-
-    const path = simplified.slice(1).map(cell => this.cellToWorld(cell));
-    if (path.length) path[path.length - 1] = { x: to.x, y: to.y || 0, z: to.z };
     return path;
   }
 }

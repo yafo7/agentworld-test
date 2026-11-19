@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .agents/runtime/
+.tmp-refactor/
 
 # Editor directories and files
 .vscode/*

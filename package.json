@@ -30,6 +30,8 @@
     "generate:church-interior": "node scripts/generate-chii-church-interior.mjs",
     "rebuild:original-scene": "node scripts/rebuild-chii-original-scene.mjs",
     "publish:forge-scene": "node scripts/publish-worldforge-scene.mjs",
+    "sync:worldforge-worlds": "node scripts/sync-worldforge-worlds.mjs",
+    "compose:worldforge-world": "node scripts/compose-worldforge-world.mjs",
     "create:forge-base": "node scripts/create-chii-forge-base-map.mjs",
     "preview": "vite preview",
     "preview:lan": "vite preview --host 0.0.0.0"

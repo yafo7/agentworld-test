@@ -3,15 +3,16 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 const html = fs.readFileSync(new URL('../src/demos/chii-island/index.html', import.meta.url), 'utf8');
+const styles = fs.readFileSync(new URL('../src/demos/chii-island/presentation/island-shell.css', import.meta.url), 'utf8');
 
 test('minimap owns the upper-right corner and activity card uses the right middle', () => {
-  assert.match(html, /#island-minimap-shell\s*\{[\s\S]*?top:\s*16px;\s*right:\s*16px;/);
-  assert.match(html, /#runtime-activity\s*\{[\s\S]*?top:\s*50%;\s*right:\s*16px;/);
-  assert.match(html, /#runtime-activity\s*\{[\s\S]*?transform:\s*translateY\(-50%\)/);
+  assert.match(styles, /#island-minimap-shell\s*\{[\s\S]*?top:\s*16px;\s*right:\s*16px;/);
+  assert.match(styles, /#runtime-activity\s*\{[\s\S]*?top:\s*50%;\s*right:\s*16px;/);
+  assert.match(styles, /#runtime-activity\s*\{[\s\S]*?transform:\s*translateY\(-50%\)/);
 });
 
 test('minimap is a circular canvas without the previous framed island card', () => {
-  assert.match(html, /#island-minimap\s*\{[\s\S]*?border-radius:\s*50%/);
+  assert.match(styles, /#island-minimap\s*\{[\s\S]*?border-radius:\s*50%/);
   assert.doesNotMatch(html, /class="island-minimap-title"/);
   assert.doesNotMatch(html, /class="island-minimap-north"/);
 });

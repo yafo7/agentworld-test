@@ -136,7 +136,6 @@ export function getTownActivityIdleOptions({ petId, wasFollowing, opportunity = 
       opportunity
         ? { key: opportunity.type, label: opportunity.acceptLabel }
         : { key: 'chat', label: '聊聊今天的广场' },
-      { key: 'custom_festival', label: '我想策划一个新节日！' },
       stateOption,
     ];
   }

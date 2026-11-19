@@ -8,7 +8,7 @@ export class SocialEventCoordinator {
     this.active = null;
   }
 
-  start({ plan, participants, slots, onPerform = null, onFinish = null, onBlocked = null }) {
+  start({ plan, participants, slots, gatherTimeout = this.gatherTimeout, arrivalTolerance = this.arrivalTolerance, speed = 4.2, selectArrivals = null, onPerform = null, onFinish = null, onBlocked = null }) {
     if (this.active) throw new Error('Another social activity is already active');
     if (!plan || participants.length === 0) throw new TypeError('Social activity requires participants');
 
@@ -29,7 +29,12 @@ export class SocialEventCoordinator {
       slots,
       snapshots,
       phase: 'gathering',
+      gatherTimeout,
+      arrivalTolerance,
+      speed,
+      selectArrivals,
       elapsed: 0,
+      retryAt: 1,
       onPerform,
       onFinish,
       onBlocked,
@@ -43,7 +48,7 @@ export class SocialEventCoordinator {
       pet.stopWalking?.();
       pet.unlockFacing?.();
       const slot = slots[index] || slots[slots.length - 1];
-      if (slot) pet.walkTo?.(slot.x, slot.z, 4.2);
+      if (slot) pet.walkTo?.(slot.x, slot.z, speed, arrivalTolerance);
     });
     return this.active;
   }
@@ -52,18 +57,39 @@ export class SocialEventCoordinator {
     const activity = this.active;
     if (!activity || activity.phase !== 'gathering') return;
     activity.elapsed += dt;
-    const arrived = activity.participants.every((pet, index) => {
+    const arrived = activity.participants.filter((pet, index) => {
       const slot = activity.slots[index] || activity.slots[activity.slots.length - 1];
       const position = pet.getPosition?.() || pet.mesh?.position || pet.position;
       if (!slot || !position) return false;
-      return Math.hypot(slot.x - position.x, slot.z - position.z) <= this.arrivalTolerance;
+      return Math.hypot(slot.x - position.x, slot.z - position.z) <= activity.arrivalTolerance;
     });
-    if (!arrived) {
-      if (activity.elapsed < this.gatherTimeout) return;
-      activity.phase = 'blocked';
-      activity.onBlocked?.(activity);
-      if (this.active === activity) this.finish('gather-timeout');
-      return;
+    if (arrived.length < activity.participants.length) {
+      if (activity.elapsed < activity.gatherTimeout) {
+        // A temporary obstruction can make walkTo stop. Retry from the actual
+        // position without resetting paths for residents still making progress.
+        if (activity.selectArrivals && activity.elapsed >= activity.retryAt) {
+          activity.retryAt = activity.elapsed + 1.5;
+          activity.participants.forEach((pet, i) => {
+            const slot = activity.slots[i];
+            if (slot && !arrived.includes(pet) && pet.isWalking?.() === false) {
+              pet.walkTo?.(slot.x, slot.z, activity.speed, activity.arrivalTolerance);
+            }
+          });
+        }
+        return;
+      }
+      if (activity.selectArrivals?.(arrived)) {
+        const missed = activity.snapshots.filter(snapshot => !arrived.includes(snapshot.pet));
+        activity.snapshots = activity.snapshots.filter(snapshot => arrived.includes(snapshot.pet));
+        activity.slots = activity.slots.filter((_, index) => arrived.includes(activity.participants[index]));
+        activity.participants = arrived;
+        for (const snapshot of missed) this._restore(snapshot);
+      } else {
+        activity.phase = 'blocked';
+        activity.onBlocked?.(activity);
+        if (this.active === activity) this.finish('gather-timeout');
+        return;
+      }
     }
     activity.phase = 'performing';
     activity.elapsed = 0;

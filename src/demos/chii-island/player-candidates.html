@@ -59,6 +59,14 @@
         <h2 id="character-name">角色档案</h2>
         <p id="character-description"></p>
         <div id="character-tags" class="character-tags" aria-label="角色标签"></div>
+        <button id="agent-details-button" class="agent-details-button" type="button" hidden>
+          <span aria-hidden="true">✦</span> 深入了解
+        </button>
+        <div id="resident-view-switch" class="resident-view-switch" role="group" aria-label="居民档案视图" hidden>
+          <button type="button" id="resident-appearance-button" aria-controls="resident-appearance" aria-pressed="true">外观</button>
+          <button type="button" id="behavior-details-button" aria-controls="resident-behavior" aria-pressed="false">行为</button>
+        </div>
+        <div id="resident-appearance">
         <div class="animation-heading">动作演示</div>
         <nav id="motion-switcher" class="motion-switcher" aria-label="动作选择"></nav>
         <section id="variant-section" class="showcase-customize-section" hidden>
@@ -88,9 +96,37 @@
           </div>
           <p id="showcase-equipment-status" class="showcase-equipment-status" data-state="ready">先挑道具，再选左手或右手。</p>
         </section>
+        </div>
+        <section id="resident-behavior" aria-label="居民行为" hidden>
+          <div id="behavior-details-content"></div>
+          <form id="behavior-edit-form" class="resident-edit">
+            <label for="behavior-scope">调整范围</label>
+            <select id="behavior-scope"></select>
+            <label for="behavior-direction">你希望这位居民怎么做？</label>
+            <div class="resident-edit-input">
+              <input id="behavior-direction" type="text" maxlength="200" required placeholder="例如，让它在空闲时更爱锻炼">
+              <button type="submit">调整行为</button>
+            </div>
+            <p id="behavior-edit-status" role="status"></p>
+          </form>
+        </section>
       </aside>
 
       <nav id="character-strip" class="character-strip" aria-label="角色列表"></nav>
+
+      <dialog id="agent-details-dialog" class="agent-details-dialog" aria-labelledby="agent-details-title">
+        <div class="agent-details-shell">
+          <header class="agent-details-header">
+            <div>
+              <span class="agent-details-kicker">LIVING AGENT</span>
+              <h2 id="agent-details-title">居民的内心小档案</h2>
+              <p id="agent-details-summary"></p>
+            </div>
+            <button id="agent-details-close" class="agent-details-close" type="button" aria-label="关闭深入了解">×</button>
+          </header>
+          <div id="agent-details-content" class="agent-details-content"></div>
+        </div>
+      </dialog>
 
     </main>
     <script type="module" src="./player-candidates.js"></script>

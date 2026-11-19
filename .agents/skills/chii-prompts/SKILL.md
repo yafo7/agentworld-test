@@ -29,7 +29,7 @@ Use this shape when handing a prompt to code or `$chii-ai`:
 
 ```yaml
 operation: model_generate
-prompt_profile: chii-v1
+prompt_profile: chii-v2
 endpoint: /api/generate/model
 prompt: "一个原木工具架，三层横梁，挂着木锤和草帽"
 secondary: null
@@ -49,7 +49,7 @@ validation:
 
 Only include fields meaningful to the selected operation. `request_hints` are semantic hints for existing adapters, not raw provider overrides.
 
-`chii-v1` is the current reusable language profile. Change that identifier only when template grammar or constraints intentionally become incompatible.
+`chii-v2` is the current reusable language profile. Runtime gameplay compiles this packet through `PromptCompiler` and executes it through `AIGenerationController`; skill-authored packets must follow the same grammar. Change that identifier only when template grammar or constraints intentionally become incompatible.
 
 ## Hard Rules
 

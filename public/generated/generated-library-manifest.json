@@ -1,5 +1,39 @@
 [
   {
+    "assetId": "gen_mwn0cyv8_47ug",
+    "name": "木制乐谱架",
+    "description": "木制乐谱架展开，上面放着翻开的乐谱",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mwn0cyv8_47ug.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1795059971976,
+    "updatedAt": 1795059971976
+  },
+  {
+    "assetId": "gen_mwn0crm1_9w3t",
+    "name": "月光灯笼",
+    "description": "圆形白色灯笼散发柔和月光，挂于木杆上",
+    "category": "decor",
+    "tags": [],
+    "hasIdleAnimation": false,
+    "animations": [],
+    "path": "generated/models/gen_mwn0crm1_9w3t.json",
+    "lifecycle": {
+      "schemaVersion": 1,
+      "status": "active",
+      "previousPaths": []
+    },
+    "createdAt": 1795059962575,
+    "updatedAt": 1795059962575
+  },
+  {
     "assetId": "gen_msiny6t8_wxu9",
     "name": "三个红色果盘",
     "description": "橘子糖果花生摆满三个红色果盘",

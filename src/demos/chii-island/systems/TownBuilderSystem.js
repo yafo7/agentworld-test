@@ -3,7 +3,8 @@ import { StaticEntity } from '../../../engine/entity/StaticEntity.js';
 import { AIWorldActionService } from '../../../gameplay/ai/AIWorldActionService.js';
 import { PET_STATES, getPetStateMachine } from '../../../gameplay/pets/PetStateMachine.js';
 import { ActivityReservationService } from '../../../gameplay/social/ActivityReservationService.js';
-import { appendChiiGenerationConstraint } from '../data/worldTuningProfile.js';
+import { PROMPT_OPERATIONS } from '../../../gameplay/ai/prompts/PromptOperations.js';
+import { appendChiiGenerationConstraint, getChiiSizeProfile } from '../data/worldTuningProfile.js';
 
 const BUILDER_RESERVATION_OWNER = 'town-builder';
 const BUILDER_DISPOSED_CODE = 'TOWN_BUILDER_DISPOSED';
@@ -44,7 +45,7 @@ export function createBuildingPrompt(description, lot) {
     .trim()
     .slice(0, 32);
   return appendChiiGenerationConstraint(
-    `${concrete}，底部长宽比${lot.width}比${lot.depth}`,
+    `占地${lot.width}×${lot.depth}地块的${concrete}，底部长宽比${lot.width}:${lot.depth}`,
     'building',
   );
 }
@@ -117,6 +118,7 @@ export class TownBuilderSystem {
     vfxService = null,
     reservations = null,
     onBuildingCompleted = null,
+    generationController = null,
   }) {
     this.scene = scene;
     this.player = player;
@@ -133,6 +135,7 @@ export class TownBuilderSystem {
     this.reservations = reservations || new ActivityReservationService();
     this.reservationResource = petReservationResource(builder);
     this.onBuildingCompleted = onBuildingCompleted;
+    this.generationController = generationController;
     this.aiActions = new AIWorldActionService({
       contentPort,
       assetRepository: generatedAssetRepository,
@@ -453,13 +456,36 @@ export class TownBuilderSystem {
       pet.playAnimation?.('construct');
       this.runtimeStatus?.updateJob(jobId, 'GPT Voxel 正在生成建筑');
 
-      const prompt = createBuildingPrompt(description, lot);
-      const result = await this.aiActions.createObject({
-        description: prompt,
-        name: description,
-        quality: 'voxel',
-        tags: ['church_town', 'building'],
-      });
+      let prompt = createBuildingPrompt(description, lot);
+      let result;
+      if (this.generationController) {
+        const prepared = await this.generationController.prepare({
+          operation: PROMPT_OPERATIONS.BUILDING_GENERATE,
+          rawText: `占地${lot.width}×${lot.depth}地块的${description}，底部长宽比${lot.width}:${lot.depth}`,
+          source: { kind: 'town_builder' },
+          input: {
+            name: description,
+            tags: ['church_town', 'building'],
+          },
+          constraints: {
+            qualityProfile: 'voxel',
+            sizeProfile: 'building',
+            footprint: { width: lot.width, depth: lot.depth, unit: 'terrain_tile' },
+            generationConstraint: getChiiSizeProfile('building').generationConstraint,
+          },
+          approval: { required: true, confirmed: true, reason: 'building-dialogue-confirmed' },
+          semanticPlanning: 'disabled',
+        });
+        prompt = prepared.packet.payload.description;
+        ({ result } = await this.generationController.execute(prepared));
+      } else {
+        result = await this.aiActions.createObject({
+          description: prompt,
+          name: description,
+          quality: 'voxel',
+          tags: ['church_town', 'building'],
+        });
+      }
       this._assertLifecycleCurrent(lifecycleVersion);
 
       this.runtimeStatus?.updateJob(jobId, '正在把建筑放入地块');

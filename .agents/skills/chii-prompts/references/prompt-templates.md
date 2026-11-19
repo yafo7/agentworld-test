@@ -1,5 +1,9 @@
 # Prompt Templates
 
+## Resident Behavior Planning
+
+`resident.behavior` is a structured planning operation implemented by `src/gameplay/ai/prompts/ResidentBehaviorPrompt.js`. It receives a bounded island snapshot plus independent resident profiles/current graphs/memories, and returns `keep`, `revise`, or `capabilityGap`. Validate every graph with `ResidentBehaviorPlan.js` before preparing assets. New motion uses the existing animation template (Chinese concrete action, at most 12 characters); optional model changes use the existing identity-preserving refine template. Never forward the full behavior graph or reasoning text as a generation description. Graph planning uses chat with `stream: false`; current animation responses may be baked tracks rather than legacy motion plans.
+
 Replace brace variables, then run the style and contract checks. Do not send braces or optional notes to the backend.
 
 ## World Constraint Packet

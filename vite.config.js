@@ -21,7 +21,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/voxel': {
-        target: 'https://voxel-studio-backend.zeabur.app',
+        target: process.env.CHII_VOXEL_BACKEND || 'https://voxelstudio.site',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/voxel/, ''),
         secure: true,

@@ -1,0 +1,609 @@
+{
+  "name": "木制乐谱架",
+  "type": "lowpoly",
+  "format": 2,
+  "nodes": [
+    {
+      "id": "stand",
+      "name": "支架",
+      "transform": {
+        "pos": [
+          0,
+          0,
+          0
+        ]
+      },
+      "_obb": {
+        "size": [
+          1.485,
+          2.807,
+          1.271
+        ],
+        "center": [
+          0,
+          1.333,
+          -0.13
+        ],
+        "axes": [
+          [
+            0.9999,
+            -0.0157,
+            0.0066
+          ],
+          [
+            0.0156,
+            0.9998,
+            0.0115
+          ],
+          [
+            -0.0067,
+            -0.0114,
+            0.9999
+          ]
+        ],
+        "_mainAxis": 1
+      }
+    },
+    {
+      "id": "desk",
+      "name": "谱台",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          0,
+          2.05,
+          0
+        ]
+      },
+      "_obb": {
+        "size": [
+          1.441,
+          0.693,
+          0.347
+        ],
+        "center": [
+          0,
+          0.289,
+          -0.209
+        ],
+        "axes": [
+          [
+            1,
+            0,
+            0.0017
+          ],
+          [
+            0.0007,
+            0.915,
+            -0.4033
+          ],
+          [
+            -0.0016,
+            0.4033,
+            0.915
+          ]
+        ],
+        "_mainAxis": 0
+      }
+    },
+    {
+      "id": "mount01_score",
+      "name": "乐谱",
+      "parent": "desk",
+      "transform": {
+        "pos": [
+          0,
+          0.01,
+          -0.13
+        ]
+      },
+      "mounted": true,
+      "_obb": {
+        "size": [
+          1.32,
+          0.55,
+          0.22
+        ],
+        "center": [
+          0,
+          0.28,
+          -0.14
+        ],
+        "axes": [
+          [
+            1,
+            0.0019,
+            0.0046
+          ],
+          [
+            0,
+            0.9232,
+            -0.3843
+          ],
+          [
+            -0.0049,
+            0.3843,
+            0.9232
+          ]
+        ],
+        "_mainAxis": 0
+      }
+    },
+    {
+      "id": "m0",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          0,
+          1.02,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.16,
+          "height": 2.05,
+          "depth": 0.16
+        },
+        "color": 9067059
+      }
+    },
+    {
+      "id": "m1",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          -0.31,
+          0.81,
+          0.21
+        ],
+        "quat": [
+          -0.31,
+          0.63,
+          0.53,
+          -0.46
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.67,
+          "height": 0.14,
+          "depth": 0.18
+        },
+        "color": 7029795
+      }
+    },
+    {
+      "id": "m2",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          0.31,
+          0.81,
+          0.21
+        ],
+        "quat": [
+          0.53,
+          -0.46,
+          -0.31,
+          0.63
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.67,
+          "height": 0.14,
+          "depth": 0.18
+        },
+        "color": 7029795
+      }
+    },
+    {
+      "id": "m3",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          0,
+          0.81,
+          -0.36
+        ],
+        "quat": [
+          -0.6,
+          0.38,
+          0.6,
+          -0.38
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.65,
+          "height": 0.14,
+          "depth": 0.18
+        },
+        "color": 7029795
+      }
+    },
+    {
+      "id": "m4",
+      "parent": "stand",
+      "transform": {
+        "pos": [
+          0,
+          2.02,
+          0
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.9,
+          "height": 0.12,
+          "depth": 0.14
+        },
+        "color": 11105343
+      }
+    },
+    {
+      "id": "m5",
+      "parent": "desk",
+      "transform": {
+        "pos": [
+          0,
+          0.27,
+          -0.26
+        ],
+        "quat": [
+          -0.86,
+          0,
+          0,
+          0.51
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.44,
+          "height": 0.09,
+          "depth": 0.68
+        },
+        "color": 9067059
+      }
+    },
+    {
+      "id": "m6",
+      "parent": "desk",
+      "transform": {
+        "pos": [
+          0,
+          0.01,
+          -0.13
+        ],
+        "quat": [
+          0.89,
+          0,
+          0,
+          -0.45
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 1.44,
+          "height": 0.1,
+          "depth": 0.1
+        },
+        "color": 11105343
+      }
+    },
+    {
+      "id": "m7",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.28,
+          -0.14
+        ],
+        "quat": [
+          -0.86,
+          0,
+          0,
+          0.51
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.64,
+          "height": 0.035,
+          "depth": 0.55
+        },
+        "color": 15919830
+      }
+    },
+    {
+      "id": "m8",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0.34,
+          0.28,
+          -0.14
+        ],
+        "quat": [
+          -0.86,
+          0,
+          0,
+          0.51
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.64,
+          "height": 0.035,
+          "depth": 0.55
+        },
+        "color": 15919830
+      }
+    },
+    {
+      "id": "m9",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.1264,
+          -0.0788
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m10",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.2032,
+          -0.1204
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m11",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.28,
+          -0.162
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m12",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.3568,
+          -0.2036
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m13",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0.34,
+          0.1264,
+          -0.0788
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m14",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0.34,
+          0.2032,
+          -0.1204
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m15",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0.34,
+          0.28,
+          -0.162
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m16",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0.34,
+          0.3568,
+          -0.2036
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.52,
+          "height": 0.012,
+          "depth": 0.012
+        },
+        "color": 3815994
+      }
+    },
+    {
+      "id": "m17",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          0,
+          0.28,
+          -0.14
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.05,
+          "height": 0.5,
+          "depth": 0.03
+        },
+        "color": 7029795
+      }
+    },
+    {
+      "id": "m18",
+      "parent": "mount01_score",
+      "transform": {
+        "pos": [
+          -0.34,
+          0.24,
+          -0.17
+        ]
+      },
+      "mesh": {
+        "type": "box",
+        "params": {
+          "width": 0.05,
+          "height": 0.05,
+          "depth": 0.02
+        },
+        "color": 12597547
+      }
+    }
+  ],
+  "_meta": {
+    "skipAutoCenter": true,
+    "ai": {
+      "v": 1,
+      "ts": 1795059970792,
+      "provider": "deepseek",
+      "data": "Cat1sdVBEttVta4MgBiOo+5bDSICB8+eU9Fgz0xQABcfus6XZIFWoqdWKIg+1mtVIF448Hq2sPLbNfBhGjAJhQLKzOH9imWVzUpGMxTH8MyysJC6viYHF/IB19hNCp/BtyAOoavbpIAb76AJFgwuoof+jxc9e2AD2sINIQ6jaBHY0gLGxPm3orpeisZWsmsKc8V/1cCWf8GqkeG/nXwPgkYvtfVC6x+d8LAUPh50ZuD+N8KsCVrc2sKtEPc17Gf894E5pgrkSAJHV4Oz3bywdJ2UosgPtWn2T8pW7BGv6lhYC00Bjieu9iKna2obLSILhmXXXNvl7H46Fi1sEoJjHAfzmhD8uMniSF+CIlCcXro+JXWRkBx9v9ac3vpu2qbfSPZLJI723DQPVDjhoK1yYvA/0Vat4SJ1CotRkHPZkVxam9enXeOh6UiZ8UQnNIAZVTEPYdsgOoXbuwjWtbMv10QPOWvOTQX8qukkuxWnj8Hk1SW+z5xpKBAhGUk/nQYSvN9/5LOcJl2STP4GAjlVOUex0CJRArCiZbhRfgQX7TsKURfHGUggM9Iy7x+CEypiUq2jKzOOETTWKhQASWt9vpxKE7vehm4PMaoaTm7dZKT1q3zqWobo5J9TrrQebNJqZYGn0cdlfREOWq7oxtleGeVM0zXfDgpU16bcySESjeD3wI62M666PXJJ47i+21Y7JsO+lZYdrMmMVZfXKdEaSldx4Lx4uXyPv/nEPGSfkBF2THdlqLNT9YtUFLQ55reABOnxNp60Mq4qEcAFZ46FSTX/xdl4fiPGkVrK4xyuRzEHoakAXRFSy7LE0yAMqPtuAeekvOlilRZjPME7D4pmrOU+FXQFv3eCtBSyrn1Hte0qZaMgsyLtoJZU7ozQlJr7iW8FHorVXaeead7sFwPKTgT5TQ/DtVutD+FE8YB3mHkEk6ahEas9HWdzg9lTDtsX9EeknB5wbPG7H4paQn5QoldGUwx493o7cw7btBSrMLE0Iy+xDcoKTDT0clHRMvA+eMKUz9jDognqB6aToN5xdCROsSo8M/it+/lBDKJMuyMKGzdWhtJJCHob0DEn67nqY1nSGA8WnjgKpWcm7FuK+YK8MBT3e57vkwRIrcYzYWScCEhrzz9t7vaVsqkzOE5I6GykidNCnYpE3PEzdjN8cHmA6KycTu7pRjyf8mJQRT1vOywerqehjKZr+qzvcxTHtlr6yapGYU5evPzZ3AYrbcL/JOUKrno/k4IA2Sghc4XKSxv9ucG10izz+K2px1tsyWnlRF7Xnt4J4P6RPlz1p+C2RgadaBBSaNWSk6Fv6hQAUZU9XUfKleFjvITxIipSmM+DOSJah/bFZMnoyRT73pNcA69R3mC13bl6qJNDH5XLE+TeUyKhXpx2A51qfHeg+3k1pOAFlrzkL4cLT4GVzmBTX1OaO3zimJspyeWnall+fAXzj880yUEBIecJFxZKijY2yJwjLWLF8tFX9+2+4LbNYrvsxxbzHJlCURsR34pVg9fy8A32p2fCMbX4O+CqdWlWBWZylsme7gNU+m/3WfMhjQpxN/5yH4aKHZDX7xMUremxXE+FJk9DJ9ThWO5Uu+n2kotqDmK7EFOX7d5rgHGThnmcBSt4GSg+3LAsaiTOExNdKWD6M/yunxtJwb7ZVnjmkXPCPMaoIWTqWC0qKy3Gq5ZbmUkFjqbIqw9DRWemjdU4VtTjDNDc1V3+4ie0ItAHSvAI3rqbyYEJHmq95wGV46qaMd9/Akxzt0pdAO5DBYxWUn+ufyJSA3C1Qtqht5MId7TUfD4PdsN0QGLI61YSrWbRVOSlJxjAq8Ow1Dc=",
+      "edits": ""
+    },
+    "mounts": [
+      {
+        "id": "mount01_score",
+        "mountedGroupId": "mount01_score",
+        "name": "乐谱",
+        "source": {
+          "type": "codegen"
+        },
+        "description": "",
+        "visible": true,
+        "ts": 1795059970792
+      }
+    ],
+    "semanticSnapshot": {
+      "v": 1,
+      "auto": true,
+      "text": "木制乐谱架 · 3组/19mesh · 世界坐标(Y上Z前), 原点=模型根\n# 阅读说明: G:=group行(可动画骨骼, 动画key用G:后的id; @p=pivot世界坐标; 倾(x,y,z)°=朝向偏离世界轴的欧拉角; 缩进=父子层级; 挂:=挂载于某组; G:id→id→…=chain折叠行, 每个id都是可独立动画的group, chain×N=waypoint数)\n# M:=mesh行(label[id 几何 @(世界坐标)], label可省略; ×N=for循环批量件(锚点=代表实例); cyl (起)→(末)或 轴上(Y)等方位词=延伸方向; 薄向=板面法向(扁板); 挂载组双代表=最大件+最远有向件(刃/嘴/管所在端); 无方向标注=均匀块(三向相近,如头),默认面向前(Z); 对称×2=镜像对)\nG:stand 支架 @p(0,0,0)\n  M:[m0 box 0.16×2.1×0.16 (0,1,0) 轴上(Y)]\n  G:desk 谱台 @p(0,2.1,0)\n    M:[m5 box 1.4×0.09×0.68 (0,2.3,-0.3) 轴+X]\n    G:mount01_score 乐谱 @p(0,2.1,-0.1) 挂:desk\n      M:[m7 box 0.64×0.04×0.55 (-0.3,2.3,-0.3) 轴+X] | M:[m12 box 0.52×0.01×0.01 (-0.3,2.4,-0.3) 轴+X]",
+      "stats": {
+        "groups": 3,
+        "meshes": 19,
+        "labeledMeshes": 0,
+        "labelCoverage": 0,
+        "batchLabels": 0,
+        "autoChains": 0,
+        "snapshotChars": 643
+      }
+    }
+  },
+  "scaleReference": {
+    "min": [
+      -0.72,
+      0,
+      -0.72
+    ],
+    "max": [
+      0.72,
+      2.62,
+      0.42
+    ],
+    "meters": [
+      0.9,
+      1.3,
+      0.7
+    ]
+  }
+}

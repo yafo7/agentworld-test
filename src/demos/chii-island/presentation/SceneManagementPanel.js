@@ -1,3 +1,5 @@
+import { ModalFocusController } from '../../../engine/ui/ModalFocusController.js';
+
 function elementsFromDocument(documentRef) {
   return {
     root: documentRef?.getElementById('mgmt-panel'),
@@ -12,6 +14,8 @@ function elementsFromDocument(documentRef) {
     auditButton: documentRef?.getElementById('btn-world-tuning-audit'),
     auditStatus: documentRef?.getElementById('world-tuning-audit-status'),
     replayButton: documentRef?.getElementById('btn-replay-act-zero'),
+    worldPortalButton: documentRef?.getElementById('btn-open-world-portal'),
+    festivalButton: documentRef?.getElementById('btn-open-festival-book'),
   };
 }
 
@@ -32,6 +36,8 @@ export class SceneManagementPanel {
     onPostProcessingChange,
     onAudit,
     onReplay,
+    onOpenWorldPortal,
+    onOpenFestivalBook,
   } = {}) {
     if (!elements.root) throw new Error('Scene management panel root is required');
     this.document = documentRef;
@@ -50,10 +56,13 @@ export class SceneManagementPanel {
       onPostProcessingChange,
       onAudit,
       onReplay,
+      onOpenWorldPortal,
+      onOpenFestivalBook,
     };
     this.abortController = new AbortController();
     this.open = elements.root.classList.contains('visible');
     this.disposed = false;
+    this.focus = new ModalFocusController(elements.root, { documentRef });
     this._bind();
     this._syncSceneStyle();
     this.syncColliderStrategy();
@@ -108,16 +117,29 @@ export class SceneManagementPanel {
       this.setOpen(false);
       this.callbacks.onReplay?.();
     });
+    this._listen(elements.worldPortalButton, 'click', () => {
+      this.setOpen(false);
+      this.callbacks.onOpenWorldPortal?.();
+    });
+    if (elements.festivalButton && this.callbacks.onOpenFestivalBook) {
+      elements.festivalButton.hidden = false;
+      this._listen(elements.festivalButton, 'click', () => {
+        this.setOpen(false);
+        this.callbacks.onOpenFestivalBook(() => this.setOpen(true, elements.festivalButton));
+      });
+    }
   }
 
-  setOpen(open) {
+  setOpen(open, preferredFocus = this.elements.closeButton) {
     if (this.disposed) return false;
     const next = Boolean(open);
     if (next && this.beforeOpen?.() === false) return false;
     this.open = next;
     this.elements.root.classList.toggle('visible', next);
     this.elements.root.setAttribute('aria-hidden', String(!next));
+    this.elements.root.inert = !next;
     if (next) this.document?.exitPointerLock?.();
+    this.focus.setOpen(next, preferredFocus);
     return true;
   }
 
@@ -178,6 +200,8 @@ export class SceneManagementPanel {
     if (this.disposed) return;
     this.setOpen(false);
     this.disposed = true;
+    if (this.elements.festivalButton) this.elements.festivalButton.hidden = true;
     this.abortController.abort();
+    this.focus.dispose();
   }
 }

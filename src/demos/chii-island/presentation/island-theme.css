@@ -1,0 +1,175 @@
+@import url("./island-palette.css");
+
+body { font-family: var(--island-font); }
+button, input, select { font-family: inherit; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+:is(button, a, input, select):focus-visible {
+  outline: 3px solid var(--island-leaf);
+  outline-offset: 3px;
+}
+[hidden] { display: none !important; }
+
+/* A readable notebook: fixed header, independently scrolling sections. */
+#mgmt-panel, #world-portal-panel, #chii-inventory {
+  background: #162c2859;
+  backdrop-filter: blur(6px);
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  box-sizing: border-box;
+}
+.mgmt-card {
+  display: flex;
+  flex-direction: column;
+  width: min(820px, 100%);
+  max-height: min(840px, calc(100dvh - 48px));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--island-line);
+  border-radius: 26px;
+  background: var(--island-paper);
+  color: var(--island-ink);
+  box-shadow: var(--island-shadow);
+}
+.mgmt-card::after { display: none; }
+.mgmt-header { flex: none; padding: 28px 32px 24px; border-bottom: 4px solid #d8b66d; background: var(--island-cover); }
+.mgmt-header .island-eyebrow { color: #e8d599; }
+.island-eyebrow { color: var(--island-leaf); font-size: 10px; font-weight: 800; letter-spacing: .18em; }
+.mgmt-card h2 { margin: 6px 0 0; font: 700 36px/1.2 var(--island-display); letter-spacing: .06em; color: #fff9e2; }
+.mgmt-card h2::after { display: none; }
+.mgmt-header p { margin: 0; color: var(--island-muted); font-size: 12px; line-height: 1.6; }
+.mgmt-close { width: 38px; height: 38px; top: 24px; right: 24px; border: 1px solid var(--island-line); background: var(--island-surface); }
+.journal-nav { grid-column: 1 / -1; display: flex; gap: 10px; padding-top: 18px; }
+.journal-nav :is(button, a) {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; position: relative;
+  box-sizing: border-box; padding: 9px 30px 9px 10px; min-height: 54px; cursor: pointer;
+  background: var(--island-surface); color: var(--island-ink); border: 1px solid var(--island-line);
+  border-radius: 12px; text-decoration: none; font: 700 14px/1.4 var(--island-font);
+}
+.journal-nav :is(button, a)::after { content: '›'; position: absolute; right: 12px; color: var(--island-leaf); }
+.journal-nav :is(button, a):hover { border-color: var(--island-leaf); background: var(--island-leaf-soft); }
+.journal-nav img, .journal-compass { width: 34px; height: 34px; box-sizing: border-box; border-radius: 50%; background: #e6ecd7; }
+.journal-nav img { object-fit: contain; padding: 3px; }
+.journal-compass { display: grid; place-items: center; color: #506b62; background: #e4ece7; font: 25px/1 Georgia,serif; }
+.journal-nav #btn-open-festival-book { background: #ecf0dc; border-color: #adbd9c; }
+.journal-nav #btn-open-festival-book:hover { background: #e0e9ce; }
+.mgmt-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 32px;
+  padding: 4px 32px 24px;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #c9b896 transparent;
+}
+.mgmt-section { min-width: 0; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--island-line); }
+.journal-column { min-width: 0; }
+.mgmt-section-title { margin-bottom: 12px; color: var(--island-leaf); font-size: 13px; }
+.mgmt-card label { font-size: 13px; line-height: 1.6; color: var(--island-ink); }
+.mgmt-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--island-leaf); }
+.scene-style-toggle { gap: 4px; }
+.scene-style-toggle button,
+.scene-style-toggle button:first-child,
+.scene-style-toggle button:last-child,
+.scene-version-toggle button + button {
+  border: 1px solid var(--island-line);
+  border-radius: 8px;
+  min-height: 38px;
+  background: var(--island-surface);
+  color: var(--island-muted);
+}
+.scene-style-toggle button.active { background: var(--island-sun); border-color: #c6a75b; color: var(--island-ink); }
+.scene-style-toggle button:hover:not(.active) { background: var(--island-leaf-soft); }
+.scene-save-slot { border: 1px solid var(--island-line); border-radius: 9px; min-height: 60px; background: var(--island-surface); }
+.scene-save-slot.active { border-color: var(--island-leaf); background: var(--island-leaf-soft); }
+.scene-save-slot small { font-size: 10px; color: var(--island-muted); }
+.scene-save-actions button, .world-audit-button, #climate-sync-weather {
+  min-height: 40px; border-width: 1px; border-color: var(--island-line); border-radius: 8px;
+}
+#btn-scene-record { background: var(--island-leaf); color: #fffdf5; border-color: var(--island-leaf); }
+#scene-save-status, #climate-sync-status { font-size: 12px; background: var(--island-leaf-soft); border-left: 3px solid #8ca88a; }
+.world-portal-launch { border: 1px solid var(--island-leaf); border-radius: 10px; background: var(--island-leaf); color: #fffdf5; }
+.world-portal-launch:hover { background: #294c3d; }
+.mgmt-feature-link { min-height: 48px; border-width: 1px; border-color: var(--island-line); border-radius: 10px; }
+.mgmt-feature-link small { font-size: 11px; }
+.climate-control-row { grid-template-columns: 42px minmax(0, 1fr) 45px; }
+.climate-control-row select { min-width: 0; min-height: 38px; border-width: 1px; border-color: var(--island-line); border-radius: 8px; }
+.climate-control-row input[type="range"] { accent-color: var(--island-leaf); }
+.climate-privacy { font-size: 11px; }
+.mgmt-hint { flex-shrink: 0; margin: 0; padding: 10px 32px; border-top: 1px solid var(--island-line); color: var(--island-muted); background: #f2f0e0; }
+.mgmt-hint kbd { display: inline-block; padding: 1px 6px; margin-right: 5px; border: 1px solid var(--island-line); border-radius: 4px; background: var(--island-surface); }
+.world-portal-card { border: 1px solid var(--island-line); border-radius: 26px; background: var(--island-paper); box-shadow: var(--island-shadow); }
+.world-portal-card h2,.inventory-head h2 { font: 700 26px/1.3 var(--island-display); color: var(--island-ink); }
+.world-portal-card > p,.world-portal-entry small { color: var(--island-muted); }
+.world-portal-version { background: var(--island-sun); color: var(--island-ink); }
+.world-portal-entry { border: 1px solid var(--island-line); box-shadow: none; }
+.world-portal-entry strong { color: var(--island-leaf); }
+.world-portal-return { border-width: 1px; background: var(--island-leaf-soft); color: var(--island-leaf); }
+.world-portal-transition-error { color: var(--island-coral); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+#world-portal-panel[aria-busy="true"] .world-portal-entry { cursor: progress; opacity: .6; }
+
+/* Small, quiet HUD surfaces leave the island and its residents in view. */
+#runtime-world {
+  top: max(22px, env(safe-area-inset-top)); left: max(22px, env(safe-area-inset-left));
+  padding: 13px 18px; border: 1px solid #fffdf680; border-radius: 16px;
+  background: #fff9e9ed; color: var(--island-ink); box-shadow: 0 4px 20px #283b2920;
+}
+#runtime-region { font-size: 16px; font-weight: 750; color: var(--island-leaf); }
+#runtime-follower { margin-top: 4px; color: var(--island-muted); font-size: 11px; }
+#runtime-activity { background: var(--island-paper); border: 1px solid var(--island-line); border-radius: 18px; color: var(--island-ink); }
+#runtime-job { border: 1px solid #fffdf660; border-radius: 14px; background: #284538ed; color: #fffdf5; }
+#runtime-job-stage { color: #e4e9da; }
+#runtime-job[data-state="error"] { background: #713c32ed; }
+#interact-prompt { border: 1px solid #fffdf640; border-radius: 16px; padding: 10px 18px; background: #263e34eb; color: #fff9e9; }
+#interact-prompt .keycap { background: var(--island-paper); color: var(--island-leaf); border-color: #dccbac; }
+#object-editor { box-sizing: border-box; border-radius: 18px; background: #263e34f5; }
+#object-undo { max-width: calc(100vw - 32px); box-sizing: border-box; border-radius: 12px; }
+
+/* Shared conversation and inventory surfaces retain the established bubble language. */
+#dialogue-root .dialogue-box {
+  max-height: calc(100dvh - 32px); overflow: auto;
+  border: 1px solid var(--island-line); border-radius: 24px; padding: 22px 26px;
+  background: var(--island-paper); color: var(--island-ink); box-shadow: var(--island-shadow);
+}
+#dialogue-root .dialogue-header { color: var(--island-leaf); }
+#dialogue-root .dialogue-dot { width: 9px; height: 9px; background: #c39446; box-shadow: 0 0 0 3px #f3e8cb; }
+#dialogue-root .dialogue-body { font-size: 15px; line-height: 1.8; overflow-wrap: anywhere; }
+#dialogue-root .dialogue-choice-btn { border: 1px solid var(--island-line); border-radius: 11px; background: var(--island-surface); color: var(--island-ink); min-height: 44px; }
+#dialogue-root .dialogue-choice-btn:hover,
+#dialogue-root .dialogue-choice-btn.focused { background: var(--island-leaf-soft); color: var(--island-leaf); border-color: #8ca88a; transform: none; }
+#dialogue-root .dialogue-send { border: 1px solid var(--island-leaf); border-radius: 10px; background: var(--island-leaf); }
+#dialogue-root .dialogue-input { border: 1px solid var(--island-line); border-radius: 10px; min-height: 28px; }
+.inventory-bubble { border: 1px solid var(--island-line); background: var(--island-paper); box-shadow: var(--island-shadow); }
+.inventory-head { border-bottom: 1px solid var(--island-line); padding-bottom: 12px; }
+.inventory-head p,.inventory-detail-label { color: var(--island-muted); }
+.inventory-pocket-mark { border: 1px solid #beae7f; background: var(--island-sun); }
+.inventory-detail { border: 1px solid var(--island-line); background: var(--island-surface); border-radius: 16px; }
+.inventory-actions button { background: var(--island-leaf); border: 1px solid var(--island-leaf); border-radius: 10px; color: var(--island-surface); }
+.inventory-actions button:hover:not(:disabled) { background: #1d4938; }
+.inventory-actions button.secondary { color: var(--island-leaf); border-color: var(--island-line); background: var(--island-leaf-soft); }
+.inventory-actions button.secondary:hover:not(:disabled) { background: #d4e3cf; }
+.inventory-bubble::after { display: none; }
+.inventory-slot { border-width: 1px; }
+.inventory-slot.is-selected { outline: 2px solid var(--island-leaf); outline-offset: 2px; }
+.inventory-slot:has(img:not([hidden])) .inventory-item-fallback { display: none; }
+
+@media (max-width: 640px) {
+  .mgmt-card { max-height: calc(100dvh - 32px); border-radius: 20px; }
+  .mgmt-header { padding: 22px 22px 18px; }
+  .mgmt-card h2 { font-size: 25px; }
+  .mgmt-header p { max-width: 250px; }
+  .mgmt-close { top: 20px; right: 18px; }
+  .mgmt-content { grid-template-columns: 1fr; padding: 0 22px 22px; }
+  .journal-nav { gap: 6px; padding-top: 14px; }
+  .journal-nav :is(button, a) { flex-direction: column; gap: 5px; padding: 7px 2px; font-size: 12px; }
+  .journal-nav :is(button, a)::after { display: none; }
+  .mgmt-hint { padding: 12px 22px; }
+  #runtime-world { top: 12px; left: 12px; padding: 10px 13px; max-width: calc(100vw - 170px); }
+  #runtime-region { font-size: 14px; }
+  #dialogue-root .dialogue-box { padding: 18px; margin-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .world-portal-card { max-height: calc(100dvh - 32px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

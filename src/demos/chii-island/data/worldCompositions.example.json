@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "wf-four-worlds-draft",
+  "name": "四世界组合草案",
+  "primaryWorldId": "wf-open-plain",
+  "regions": [
+    { "worldId": "wf-open-plain", "slot": [0, 0] },
+    { "worldId": "wf-fresh-forest", "slot": [1, 0] },
+    { "worldId": "wf-sakura-bamboo", "slot": [0, 1] },
+    { "worldId": "wf-sunset-grassland", "slot": [1, 1] }
+  ]
+}

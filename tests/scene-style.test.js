@@ -7,7 +7,9 @@ import {
   getChiiSceneAssetIds,
 } from '../src/demos/chii-island/data/assetCatalog.js';
 import {
+  CHII_SCENE_STYLE_STORAGE_KEY,
   CHII_SCENE_STYLES,
+  consumeChiiSceneStyle,
   getChiiSceneProfile,
   getChiiSceneStyle,
   normalizeChiiSceneStyle,
@@ -169,4 +171,25 @@ test('scene style preference is normalized and stored', () => {
   assert.equal(setChiiSceneStyle('original', storage), 'original');
   assert.equal(getChiiSceneStyle(storage), 'original');
   assert.equal(normalizeChiiSceneStyle('unknown'), 'original');
+});
+
+test('ordinary refresh returns to Original while an explicit switch survives one reload', () => {
+  const durableValues = new Map([[CHII_SCENE_STYLE_STORAGE_KEY, 'pro']]);
+  const transitionValues = new Map();
+  const storage = {
+    getItem: key => durableValues.get(key) || null,
+    setItem: (key, value) => durableValues.set(key, value),
+  };
+  const transitions = {
+    getItem: key => transitionValues.get(key) || null,
+    setItem: (key, value) => transitionValues.set(key, value),
+    removeItem: key => transitionValues.delete(key),
+  };
+
+  assert.equal(consumeChiiSceneStyle(storage, transitions), 'original');
+  assert.equal(getChiiSceneStyle(storage), 'original');
+
+  setChiiSceneStyle('forge', storage, transitions);
+  assert.equal(consumeChiiSceneStyle(storage, transitions), 'forge');
+  assert.equal(consumeChiiSceneStyle(storage, transitions), 'original');
 });

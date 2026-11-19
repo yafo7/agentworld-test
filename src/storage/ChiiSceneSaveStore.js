@@ -1,5 +1,5 @@
 const STORAGE_KEY = 'chii_scene_saves_v2';
-const SAVE_VERSION = 2;
+const SAVE_VERSION = 3;
 const RECORD_SLOT_COUNT = 3;
 const SCENE_STYLES = Object.freeze(['pro', 'voxel', 'original', 'forge']);
 
@@ -48,12 +48,12 @@ function readState(storage) {
   if (!storage) return emptyState();
   try {
     const parsed = JSON.parse(storage.getItem(STORAGE_KEY) || 'null');
-    if (!parsed || parsed.version !== SAVE_VERSION || typeof parsed.scenes !== 'object') {
+    if (!parsed || ![2, SAVE_VERSION].includes(parsed.version) || typeof parsed.scenes !== 'object') {
       return emptyState();
     }
     const state = emptyState();
-    for (const style of SCENE_STYLES) {
-      state.scenes[style] = normalizeSceneState(parsed.scenes[style]);
+    for (const [scope, scene] of Object.entries(parsed.scenes)) {
+      state.scenes[scope] = normalizeSceneState(scene);
     }
     return state;
   } catch {
@@ -62,7 +62,8 @@ function readState(storage) {
 }
 
 function normalizeStyle(style) {
-  return SCENE_STYLES.includes(style) ? style : 'original';
+  const value = String(style || '').trim();
+  return /^[a-z0-9][a-z0-9_-]{0,79}$/i.test(value) ? value : 'original';
 }
 
 function wrapSnapshot(snapshot, savedAt, source = 'auto') {

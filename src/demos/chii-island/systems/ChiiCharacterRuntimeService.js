@@ -76,8 +76,9 @@ export class ChiiCharacterRuntimeService {
             || this.petHeights[variant.assetId]
             || this.petHeights.generated,
           preserveCurrentTransform: true,
-          preserveCurrentScale: true,
+          preserveCurrentScale: false,
         });
+        character._appearanceVariantId = variant.id;
         const animationPlans = Object.fromEntries(animations);
         this.assetAudit.recordAnimations(variant.assetId || variant.id, animationPlans);
         for (const [name, plan] of animations) character.loadAnimation?.(name, plan);

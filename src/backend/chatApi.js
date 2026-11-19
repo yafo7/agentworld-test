@@ -42,7 +42,7 @@ export async function callBackendChat(messages, provider = 'fireworks', temperat
   const resp = await fetch(BACKEND_CHAT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages, provider, temperature, maxTokens }),
+    body: JSON.stringify({ messages, provider, temperature, maxTokens, stream: false }),
   });
 
   if (!resp.ok) {

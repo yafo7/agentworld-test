@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "worldId": "wf-sunset-grassland",
+  "gameplayPreset": "exploration",
+  "spawns": {
+    "player": [
+      0,
+      0,
+      0
+    ]
+  },
+  "zones": {},
+  "objects": {},
+  "portals": []
+}

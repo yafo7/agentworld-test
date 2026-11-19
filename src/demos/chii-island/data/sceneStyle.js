@@ -1,4 +1,5 @@
 export const CHII_SCENE_STYLE_STORAGE_KEY = 'chii-scene-style-v2';
+export const CHII_NEXT_SCENE_STYLE_STORAGE_KEY = 'chii-next-scene-style-v1';
 export const DEFAULT_CHII_SCENE_STYLE = 'original';
 
 export const CHII_SCENE_PROFILES = Object.freeze({
@@ -79,10 +80,35 @@ export function getChiiSceneStyle(storage = globalThis.localStorage) {
   }
 }
 
-export function setChiiSceneStyle(style, storage = globalThis.localStorage) {
+export function consumeChiiSceneStyle(
+  storage = globalThis.localStorage,
+  transitionStorage = globalThis.sessionStorage,
+) {
+  let nextStyle = null;
+  try {
+    nextStyle = transitionStorage?.getItem(CHII_NEXT_SCENE_STYLE_STORAGE_KEY);
+    transitionStorage?.removeItem(CHII_NEXT_SCENE_STYLE_STORAGE_KEY);
+  } catch (_) {}
+  const normalized = nextStyle
+    ? normalizeChiiSceneStyle(nextStyle)
+    : DEFAULT_CHII_SCENE_STYLE;
+  try {
+    storage?.setItem(CHII_SCENE_STYLE_STORAGE_KEY, normalized);
+  } catch (_) {}
+  return normalized;
+}
+
+export function setChiiSceneStyle(
+  style,
+  storage = globalThis.localStorage,
+  transitionStorage = globalThis.sessionStorage,
+) {
   const normalized = normalizeChiiSceneStyle(style);
   try {
     storage?.setItem(CHII_SCENE_STYLE_STORAGE_KEY, normalized);
+  } catch (_) {}
+  try {
+    transitionStorage?.setItem(CHII_NEXT_SCENE_STYLE_STORAGE_KEY, normalized);
   } catch (_) {}
   return normalized;
 }

@@ -146,7 +146,7 @@ export function resolveClimateAppearance(value) {
  * weather providers, and DOM controls belong to WorldClimateSystem.
  */
 export class WorldClimatePresenter extends WorldClimateVisualPort {
-  constructor({ scene, lightRig, followTarget = null, skyVisual = null } = {}) {
+  constructor({ scene, lightRig, followTarget = null, skyVisual = null, environmentMode = 'full' } = {}) {
     super();
     if (!scene) throw new TypeError('WorldClimatePresenter scene is required');
     if (!lightRig) throw new TypeError('WorldClimatePresenter lightRig is required');
@@ -154,6 +154,7 @@ export class WorldClimatePresenter extends WorldClimateVisualPort {
     this.lightRig = lightRig;
     this.followTarget = followTarget;
     this.skyVisual = skyVisual;
+    this.environmentMode = environmentMode;
     this.state = { ...DEFAULT_MANUAL_CLIMATE };
     this.target = resolveClimateAppearance(this.state);
     this.weatherRoot = this._createWeatherRoot();
@@ -249,6 +250,7 @@ export class WorldClimatePresenter extends WorldClimateVisualPort {
   }
 
   _applyAppearance(alpha) {
+    if (this.environmentMode === 'effects-only') return;
     if (this.skyVisual?.setAppearance) {
       this.skyVisual.setAppearance(this.target, alpha);
       this.scene.background = null;

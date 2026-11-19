@@ -1,0 +1,16 @@
+/* Island presentation tokens. Gameplay and render settings remain with their owners. */
+:root {
+  --island-paper: #fbf7e9;
+  --island-surface: #fffdf4;
+  --island-ink: #273e35;
+  --island-muted: #5d6c5e;
+  --island-line: #cdd0b8;
+  --island-leaf: #245947;
+  --island-leaf-soft: #e5eddc;
+  --island-sun: #f2d493;
+  --island-coral: #a64d39;
+  --island-shadow: 0 8px 0 #51402c12, 0 24px 70px #1c2a2638;
+  --island-font: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  --island-display: Georgia, "Songti SC", "STSong", "SimSun", serif;
+  --island-cover: linear-gradient(90deg, #193f34 6%, #214b3ef5 28%, #274b3980 57%, transparent 80%), url("/ui/island-journal.webp") center 44% / cover;
+}

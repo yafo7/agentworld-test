@@ -73,7 +73,9 @@ Current island:
 - Cross-scene story progression is owned by `IslandStoryState`: chapter, island day, development stage, known residents, unlocked regions, current authored objective, completed events, and durable story facts. Existing Act 0 saves migrate automatically; scene-style saves remain separate.
 - Unified current pet state machine.
 - Runtime assets loaded locally from `public/generated/`.
-- ESC switches between Original, Pro, and Forge; Original remains the default. Voxel is an archived compatibility profile and is no longer shown in the scene switcher. Original and Pro keep their frozen Chii snapshots. Forge loads a versioned WorldForge base-scene package while reusing Original resident/building assets as Chii gameplay overlays.
+- ESC switches between Original, Pro, and Forge; Original remains the default. An explicit switch survives the one reload needed to enter that scene, while an ordinary later refresh returns to Original. Voxel is an archived compatibility profile and is no longer shown in the scene switcher. Original and Pro keep their frozen Chii snapshots. Forge loads a versioned WorldForge base-scene package while reusing Original resident/building assets as Chii gameplay overlays.
+- Each published WorldForge exploration map derives safe, reachable resident habitats from its own terrain package. All canonical residents enter in `free_roam` and receive an immediate Agent routine; exploration Agents may roam and socialize but do not propose island mutations, buildings, or hosted activities.
+- ESC also exposes a separate `进入新世界` portal. Scene style and active world are independent state: the portal currently lists five published WorldForge exploration worlds (`WF-001` through `WF-005`). Explicit scene/world transitions survive the reload that performs the transition; an ordinary later refresh returns to the Original main island.
 - ESC can switch collision between important-part voxel AABBs (default) and the legacy whole-bounds strategy; both are owned by `ColliderRegistry`.
 - ESC provides a bubble-style climate panel. Manual mode controls weather, hour (0-23), and month (1-12); realtime mode reads device date/time/timezone without permission and requests location only after the player clicks weather sync. Open-Meteo supplies weather and BigDataCloud supplies the city label through separate adapters. Weather uses a 30-minute browser cache and clear-weather fallback; the city label is session-only. Coordinates are rounded by the adapters and are never cached.
 - Editable non-vegetation objects use grid occupancy and support move, rotate, scale, and delete. Editing uses a fixed north-up overhead camera: screen up is world `-Z`, screen right is world `+X`.
@@ -142,8 +144,18 @@ Important ownership:
 - `src/world/climate/WorldClimateState.js`: provider-neutral climate modes, weather vocabulary, normalization, and presentation projection.
 - `src/ports/WeatherPort.js`, `src/ports/PlaceNamePort.js`, `src/integrations/climate/`, and `src/storage/ClimateCache.js`: weather/place contracts, browser clock/location, Open-Meteo weather, BigDataCloud city lookup, and location-free weather cache.
 - `src/gameplay/pets/PetStateMachine.js`: single current pet-state owner.
+- `src/gameplay/agents/`: Living Agent cognition above the pet body runtime. `AnimalAgentRuntime` owns drives, low-frequency deliberation, current cognitive plan, and memory; `IslandAgentCoordinator` registers residents and persists scene-scoped snapshots; neither owns physical pet state.
+- Main-island residents use `IslandWorldInformation`, `ChiiResidentThemeSystem`, and `ResidentBehaviorRuntime`. Island changes and the five-minute review can revise resident themes. Town activities bind their validated plans to current resident themes through `data/activityParticipation.js`. The event owns gathering and shared phases. Each run resolves placement, actions, and resident status from its assigned cast. See `docs/resident-behavior-architecture.md`.
+- The resident showcase displays the four island-clock periods and accepts natural-language routine edits. The main island's festival book owns the festival interview, published programs, participation graph and live cast. Festival choreography and daily routine edits have separate ownership.
+- Live backend compatibility verified 2026-11-18: chat requests explicitly set `stream: false`; `/api/generate/animation-quick` can return `baked` sampled tracks. `AnimationResult` validates them, and the small baked-motion evaluation branch preserves old Motion Plan playback. Do not treat baked payloads as legacy motion templates.
+- `src/gameplay/agents/AgentActionRegistry.js` and `systems/ChiiAnimalAgentActions.js`: typed action catalog and permission arbiter. Routine movement/social actions may run autonomously; world mutation and generation remain behind existing approval, placement, activity, and persistence systems.
+- `src/ports/AgentReasoningPort.js` and `src/integrations/content/ChatAgentReasoningAdapter.js`: optional low-frequency planning, reflection, and memory-grounded dialogue through `AIGenerationController`. Deterministic utility selection is the required offline/busy/error fallback.
+- `src/gameplay/agents/AnimalAgentInspector.js`: session diagnostics and replay snapshots, exposed as `window.__chiiAgentInspector`; `window.__chiiAgents` exposes current resident cognition for development inspection.
 - `src/gameplay/control/ControlLockCoordinator.js`: one projection of all blocking surfaces into camera, interaction, special-action, inventory, and movement gates.
 - `src/gameplay/ai/`: semantic AI actions and work lifecycle.
+- `src/gameplay/ai/AIGenerationController.js` and `src/gameplay/ai/prompts/`: the single autonomous Prompt Compiler boundary. User/pet/story intent becomes a versioned `chii-v2` packet, receives deterministic validation and optional one-pass semantic clarification, then delegates to existing content/world executors. Gameplay must not recreate inline backend prompt policy.
+- `src/storage/PromptHistoryStore.js`: scene-scoped prompt preparation, execution receipts, structured failures, and explicit user feedback. Model JSON is excluded from this local history.
+- `src/ports/WorldAuthoringPort.js` and `src/integrations/worldforge/WorldForgeAuthoringAdapter.js`: development-only WorldForge map preview/transaction authoring. This remains separate from the immutable runtime `ForgeScenePort`; production gameplay does not require the live editor.
 - `src/world/placement/`: occupancy, snapping, footprint transactions, and object editing operations.
 - `data/worldTuningProfile.js` and `ObjectScalePolicy`: the single Chii world scale, six scale categories (`building`, `pet`, `tree`, `plant`, `furniture`, `interactive_prop`), semantic size profiles, bottom-center anchoring, and presentation tuning. Gameplay passes semantic identity; it does not invent raw scale.
 - `src/world/physics/ColliderRegistry.js`: collider strategy, registration, rebuild, and debug visualization.
@@ -154,6 +166,8 @@ Important ownership:
 - `src/ports/RenderPresentationPort.js` and `src/integrations/rendering/VoxelStudioRenderPresentationAdapter.js`: current/cel styles, optional post-processing, quality tiers, and direct-render fallback.
 - `src/ports/ForgeScenePort.js`, `src/assets/repositories/ForgeSceneRepository.js`, and `src/integrations/worldforge/`: immutable Forge package loading, hash/version checks, embeddable WorldForge rendering, Forge height-field physics, and navigation-grid projection.
 - `public/generated/scenes/forge/worldforge/`: published runtime-only Forge map, render scheme, gameplay bindings, optional HDRI, and integrity manifest. Chii never requires the live WorldForge editor in production.
+- `data/worldForgeWorlds.js`, `systems/WorldSessionController.js`, and `presentation/WorldPortalPanel.js`: stable WorldForge world IDs, explicit reload transitions, and the catalog-driven world picker. External worlds use their own terrain scale, safe spawn, baked physics, navigation projection, minimap, render scheme, and world-scoped saves.
+- `public/generated/worlds/worldforge/`: catalog plus immutable per-world revision packages published through `npm run sync:worldforge-worlds`. `scripts/compose-worldforge-world.mjs` provides a constrained rectangular composition draft; a composition is not runtime-ready until it is reviewed, confirmed, and published like any other world.
 - `src/demos/chii-island/data/assetCatalog.js`: local runtime asset catalog.
 - `src/assets/generatedAssetManifest.js` and `src/assets/generatedLibrary.js`: generated-library schema, lifecycle, and runtime lookup; local Vite persistence is implemented by `vite/localLibraryPlugin.js`.
 
@@ -177,6 +191,8 @@ Architecture hardening completed 2026-08-03:
 
 Last audited backend/runtime baseline: `1805dfc` on 2026-08-08. Chii pins that runtime as `vendor/voxel-studio-render-runtime-0.1.0-1805dfc.tgz`, pins Three to `0.160.1`, and validates the package in real WebGL2 with `npm run test:render-compat`.
 
+Latest audited `3d-generate` head is `d9b3cc7` (2026-11-18). The update from `8fb5e7d` adds Studio concept-art presets, high-resolution surface painting, and export of selected animations with a GLB. Chii uses the existing model and animation JSON contracts and its pinned render runtime `1805dfc`. The seven curated residents default to the November GPT Voxel batch. Their prior variants remain available in the showcase.
+
 Current backend and Studio capabilities:
 
 - Language-driven model generation, refine, add-part/mount, animation, and particle-enabled animation generation remain the core production APIs.
@@ -191,7 +207,7 @@ Current backend and Studio capabilities:
 
 Current Chii integration boundary:
 
-- Pulling `3d-generate` or WorldForge does not automatically change Chii visuals. Runtime changes require a newly pinned tarball and compatibility verification; map changes require an explicit `publish:forge-scene` operation.
+- Pulling `3d-generate` or WorldForge does not automatically change Chii visuals. Runtime changes require a newly pinned tarball and compatibility verification; the main Forge scene requires explicit `publish:forge-scene`, while catalog worlds require explicit `sync:worldforge-worlds`.
 - Chii preserves `nodes[].tags`, explicit `locked`, mesh bone endpoints, `_meta.mounts`, and known extension metadata through model parse/clone/serialize. Autonomous Voxel generate/refine requests send compact read-only material/VFX contracts pinned to the current audited backend baseline.
 - Chii runs the pinned Studio `MaterialTagRuntime` behind `ModelVisualPort`; tagged models remain unmerged so part semantics survive. The adapter promotes compatible Lambert/Phong materials to Standard only at this integration boundary. Fire/smoke, fur, foliage, and vegetation sway use runtime capabilities; pool/fall model water and the continuous world river remain replaceable Chii adapters. This is not full Studio parity: upstream model-water classes, texture-tuning presets, and batching are not exported/integrated.
 - Model visual lifecycle follows world-object registration and model replacement. Create/refine/mount/remove paths must attach, detach, or reattach through the visual adapter instead of managing tag effects inside gameplay code.
@@ -221,11 +237,25 @@ Update procedure after each `3d-generate` pull:
 - Shared states include idle, following, free roam, working, performing, camping, and summoning participation. Busy work must suspend follow/free-roam updates.
 - A commanded job records its resume policy before work starts. Current construction resumes the crab to free roam; cancellation restores the pre-dialogue state.
 - Pet-specific personality, preferences, and capabilities belong in `data/petProfiles.js`. Do not duplicate the common interaction flow per pet.
+- Existing interaction/work tags remain in `data/petProfiles.js`; Living Agent personality, weighted preferences, schedules, drives, and capability-to-action mappings belong in `data/animalAgentProfiles.js`. Keep the two catalogs joined by canonical resident ID rather than merging their responsibilities.
 - Town social activities belong to `TownSocialSystem`/`TownSocialDirector`; building construction belongs to `TownBuilderSystem`. The crab may join social activities, but builder interaction takes routing priority.
 - Reuse generated activity models and animations after the first successful backend generation. Do not call the backend on every replay.
 - Before planning or preparing an activity, query `ActivityRegistry`. Exact ready activities replay their registered plan/assets without AI planning; similar activities create a derived draft and reuse only compatible bindings; unmatched activities create a fresh draft. Promote a draft to ready only after a successful activity completion.
 - The curated Original activity library currently registers campfire, apple picking, greeting practice, campfire party, mako birthday, and Spring Festival. Use `npm run audit:town-activities` to inspect it and `npm run prepare:town-activities` only when registered files are missing or intentionally refreshed.
 - Town preparation tasks are short, visible player guidance while cached/backend activity assets become ready. They must not gate generation, duplicate the event state machine, or become a quest/economy system.
+
+### Living Animal Agents
+
+- `PetStateMachine` owns the body state; Animal Agent runtime owns cognition. An Agent may deliberate only while its pet is `free_roam`, non-busy, and has no pending player-approved idea. Forced inspector deliberation may skip timing but never these state gates.
+- `PetManager` and the legacy Pastoral timer are compatibility paths for unmanaged pets. Once `_agentControlled` is set, only the Agent coordinator chooses free-roam actions; existing movement and approved Pastoral work functions still execute them.
+- Perception is local and bounded: nearby registered objects/residents, player distance, region, climate, story objective, and current event. Do not pass the whole world, model JSON, hidden state, or browser location to the reasoning backend.
+- Memory is scene-scoped and stores compact episodic events, semantic facts, reflections, promises, and directional relationships. Original, Pro, Forge, archived Voxel, and external WorldForge world IDs must never share Agent memory.
+- Deterministic utility scoring is authoritative and always available. AI reasoning may only choose an existing candidate action and target; it may not invent tool names, object IDs, destinations, or facts. Current per-resident budget is six planning/reflection calls per island day, with one concurrent reasoning call globally.
+- Routine idle/wander/observe, greeting, and short cooperation may execute autonomously. Social conflict is recorded as bounded directional tension and can be reconciled; it is not a combat or punishment system.
+- Pastoral world ideas still require the existing idea bubble and explicit player approval. Town activities still use `ActivityRegistry`; building proposals still route through the builder dialogue, lot selection, placement confirmation, and generation flow. WorldForge authoring is development-only and cannot run as production pet behavior.
+- Model/refine/mount/building generation requires player approval. Animation generation may reuse a compatible cached asset autonomously; a cache miss follows existing generation policy. Never let Agent code call backend/Studio endpoints directly.
+- Persist cognition through the `animalAgents` scene snapshot extension. Agent snapshots contain references and compact memories, never model JSON. Coordinator disposal must flush state and release `_agentControlled` without changing the pet's current physical state.
+- Use `window.__chiiAgentInspector.inspect()`, `.memory(residentId)`, `.traces()`, `.evaluate()`, `.capture()`, and `.exportReplay()` for evidence-first debugging. Replay is session-only diagnostic data and is not a player save.
 
 ### Character Appearance And Props
 
@@ -252,6 +282,8 @@ Update procedure after each `3d-generate` pull:
 ### Async AI Work
 
 - create/refine/mount use `AIWorldActionService` through the content port. Never route autonomous gameplay through Studio endpoints.
+- All new autonomous model, refine, mount, animation, event, task, and WorldForge authoring requests must first pass through `AIGenerationController`. The compiler owns wording and validation; adapters continue to own provider/model/mode policy.
+- Semantic understanding may run once when intent is abstract or contradictory. It outputs structured fields only. Do not create open-ended retry loops or silently switch providers after evaluation failure.
 - Guard re-entry, release dialogue/input/camera locks, and restore valid pet state in `finally`.
 - Work presentation may use scaffold, dust, VFX, and pet-specific animation, but presentation must not own gameplay state or API policy.
 
@@ -290,6 +322,22 @@ Current autonomous model generation uses `provider: 'gpt'` with `mode: 'voxel'`.
 Current scene-production policy: update Original only by default. Pro and Voxel remain independent comparison scenes and receive no generated assets, clothing variants, or layout changes unless the user explicitly names them. Existing GPT 5.6 assets remain frozen in their owning scenes. Preserve semantic metadata and authored size roles when replacing model JSON.
 
 Frozen legacy scene snapshots live under `public/generated/scenes/{pro,voxel,original}/`; Voxel remains archived. Forge lives under `public/generated/scenes/forge/worldforge/` and is published from WorldForge through `npm run publish:forge-scene -- --map-id=<id>`. Never edit a published Forge JSON by hand; change the WorldForge map or Chii bindings and republish.
+
+WorldForge catalog workflow:
+
+```text
+Edit and confirm a map in WorldForge
+→ npm run sync:worldforge-worlds -- --dry-run
+→ npm run sync:worldforge-worlds
+→ immutable world revision + catalog update
+→ Chii world portal reads the local package
+```
+
+Latest audited WorldForge source head: `5ad0095` on 2026-09-09. The range from `8f79e2c` adds seeded map variants, safer pruning and placement, scene-aware indoor rendering, texture-backed material matcaps, authored local lighting, volumetric/glass effects, SSAO and material-lighting improvements, and brick/mud road fixes. These are editor/source capabilities only until a map is reconfirmed and republished into Chii; pulling the sibling repository does not mutate an existing Chii world package.
+
+Do not copy raw files from WorldForge `data/`; the API response hydrates referenced assets and collision bake data. Use `--force` only when the Chii publisher contract changed without a source-map version change.
+
+`WF-005` is the integrated whole-island baseline. Its editable source is WorldForge map `map-6ea55ad2-0d07-4161`; the current confirmed publication is source version `19` with the `render-runtime-cel-day` scheme. It contains the forest temple, north mountain, sakura grove, waterfall basin, windmill pastoral, church town, south beach spawn, edge sea, and a continuous north-stream-to-south-river route. Continue editing that source map through WorldForge transactions, reconfirm it, and run `npm run sync:worldforge-worlds -- --only=wf-chii-island`; never hand-edit the published package.
 
 Runtime save rules:
 

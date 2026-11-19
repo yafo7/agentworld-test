@@ -1,5 +1,6 @@
 const ACTIVITY_TYPES = new Set([
   'campfire',
+  'morning_exercise',
   'apple_pick',
   'greeting',
   'custom_daily',

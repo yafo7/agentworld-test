@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "kind": "chii-worldforge-world",
+  "worldId": "wf-sakura-bamboo",
+  "mapNumber": "WF-003",
+  "sourceMapId": "map-535216ce-49a2-45b2",
+  "sourceMapVersion": 12,
+  "sourceMapUpdatedAt": 1785750212580,
+  "publishedAt": "2026-08-09T07:23:59.192Z",
+  "gameplayPreset": "exploration",
+  "worldForge": {
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json",
+    "hdri": "hdri/HDRI-52.exr"
+  },
+  "hashes": {
+    "map": "57596bac6291e5c82ea6204b565e605d7da04b331f72db84c3b7757a4e52ab2e",
+    "renderScheme": "ac93cb05093dc490ae346dfdba57904dcab1d22ece5607504d149dbdf3027086",
+    "bindings": "2233fecf71375fa1228bb6c6ed609375cd575ee243aa302e632227a1086305a7",
+    "hdri": "a1aed8895399b3dd9aa13f663df4f3b4b623392b13282b19d0f5caedac9a233d"
+  }
+}

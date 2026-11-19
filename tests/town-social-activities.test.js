@@ -58,7 +58,6 @@ test('town activity idle options are derived without retaining mutable UI state'
 
   assert.deepEqual(first, [
     { key: 'party', label: '开始派对' },
-    { key: 'custom_festival', label: '我想策划一个新节日！' },
     { key: 'free_roam', label: '先在广场自由活动吧！' },
   ]);
   assert.notEqual(first, second);

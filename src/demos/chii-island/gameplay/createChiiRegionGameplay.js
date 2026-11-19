@@ -39,14 +39,17 @@ export async function createChiiRegionGameplay({
   runtimeStatus,
   contentPort,
   generatedAssetRepository,
+  generationController = null,
   colliderRegistry,
   objectPlacement,
   objectEditor,
+  residentPortraits,
   equipmentService = null,
   sceneStyle = 'original',
   storyState = null,
   navigation = null,
   onGeneratedObject,
+  onPetSpawned = null,
 }) {
   const vfxService = new TemporaryVfxService({ scene });
   const residentReservations = new ActivityReservationService();
@@ -82,6 +85,7 @@ export async function createChiiRegionGameplay({
     vfxService,
     equipmentService,
     sceneStyle,
+    generationController,
   });
 
   const townCenterGrid = scenePlan.town?.center;
@@ -123,6 +127,7 @@ export async function createChiiRegionGameplay({
     activityRegistry: townActivityRegistry,
     reservations: residentReservations,
     objectiveStore,
+    generationController,
     onActivityCompleted: activity => storyProgression?.recordTownActivityCompleted(activity),
   });
   const townBuilderSystem = new TownBuilderSystem({
@@ -142,6 +147,7 @@ export async function createChiiRegionGameplay({
     vfxService,
     reservations: residentReservations,
     onBuildingCompleted: building => storyProgression?.recordTownBuildingCompleted(building),
+    generationController,
   });
 
   const forestTempleSystem = new ForestTempleSystem({
@@ -154,12 +160,16 @@ export async function createChiiRegionGameplay({
     tentEntity: forest.tent,
     trophyWaitPlan: forest.trophyWaitPlan,
     getPets: () => [bear, ...petManager.pets],
-    onPetSpawned: pet => townSocialSystem.addParticipant(pet),
+    onPetSpawned: pet => {
+      townSocialSystem.addParticipant(pet);
+      onPetSpawned?.(pet);
+    },
     onResidentSummoned: resident => storyProgression?.recordForestResidentSummoned(resident),
     runtimeStatus,
     contentPort,
     generatedAssetRepository,
     vfxService,
+    generationController,
   });
 
   const anchors = [
@@ -172,6 +182,7 @@ export async function createChiiRegionGameplay({
     terrainLayout: scenePlan.modifiedLayout,
     center,
     tileSize: terrainTileSize,
+    petIconUrls: residentPortraits,
     landmarks: anchors.map(([label, position]) => ({ label, position })),
     getPets: () => [bear, architect, ...petManager.pets],
     worldObjects,

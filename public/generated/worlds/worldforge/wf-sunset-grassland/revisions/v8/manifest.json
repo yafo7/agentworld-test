@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "kind": "chii-worldforge-world",
+  "worldId": "wf-sunset-grassland",
+  "mapNumber": "WF-004",
+  "sourceMapId": "map-ae8c8e55-bfa2-4217",
+  "sourceMapVersion": 8,
+  "sourceMapUpdatedAt": 1785750186877,
+  "publishedAt": "2026-08-09T07:23:59.328Z",
+  "gameplayPreset": "exploration",
+  "worldForge": {
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json",
+    "hdri": "hdri/HDRI-93.hdr"
+  },
+  "hashes": {
+    "map": "26b00264ee6f4e2c1aa259cfb34b6adbb38b9899cc854c5aae361d80df8ecb93",
+    "renderScheme": "dc1098928dbeebb9e65da1aa5c65414f9395a8c077c7f9a1308855f0ff52bc9e",
+    "bindings": "e809b072c9215f127df1cee8b21d958961e5c3587637b0f0edd6867c0484848e",
+    "hdri": "d9924bacf28d6bb183a2e1188c6a167f1a32248520a2b0a09346a1c3ff9c0da2"
+  }
+}

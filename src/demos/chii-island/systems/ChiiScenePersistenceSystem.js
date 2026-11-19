@@ -197,6 +197,8 @@ function createDefaultEntity(snapshot, modelJson) {
 export class ChiiScenePersistenceSystem {
   constructor({
     sceneStyle,
+    saveScope = sceneStyle,
+    worldIdentity = null,
     store,
     worldObjects,
     scene,
@@ -210,6 +212,8 @@ export class ChiiScenePersistenceSystem {
       throw new TypeError('ChiiScenePersistenceSystem requires store, worldObjects, scene, and asset repository');
     }
     this.sceneStyle = sceneStyle;
+    this.saveScope = saveScope;
+    this.worldIdentity = worldIdentity ? jsonClone(worldIdentity) : null;
     this.store = store;
     this.worldObjects = worldObjects;
     this.scene = scene;
@@ -229,12 +233,13 @@ export class ChiiScenePersistenceSystem {
     this._unbindWorld = null;
     this._unbindAI = null;
     this._onPageHide = () => this.flush();
+    this.snapshotExtensions = new Map();
 
     this._captureBaseline();
   }
 
   async restoreAuto() {
-    const snapshot = this.store.getAuto(this.sceneStyle);
+    const snapshot = this.store.getAuto(this.saveScope);
     if (!snapshot) {
       replaceAIWorldEvents([]);
       return { restored: false, removed: 0, changed: 0, generated: 0, warnings: [] };
@@ -287,7 +292,7 @@ export class ChiiScenePersistenceSystem {
     this._unbindWorld = this.worldObjects.onChange(event => this._handleWorldChange(event));
     this._unbindAI = onAIWorldEventsChange(() => this.scheduleSave('ai-world'));
     globalThis.addEventListener?.('pagehide', this._onPageHide);
-    if (!this.store.getAuto(this.sceneStyle)) this.scheduleSave('initial');
+    if (!this.store.getAuto(this.saveScope)) this.scheduleSave('initial');
   }
 
   dispose() {
@@ -321,7 +326,7 @@ export class ChiiScenePersistenceSystem {
   saveNow(reason = 'manual') {
     try {
       const snapshot = this.captureSnapshot();
-      const saved = this.store.saveAuto(this.sceneStyle, snapshot);
+      const saved = this.store.saveAuto(this.saveScope, snapshot);
       this.lastSavedAt = saved.savedAt;
       this.lastError = null;
       this._emitStatus({
@@ -345,21 +350,44 @@ export class ChiiScenePersistenceSystem {
 
   captureSnapshot({ includeAppearances = false } = {}) {
     const world = this._captureWorldDelta();
+    const extensions = {};
+    for (const [id, provider] of this.snapshotExtensions) {
+      extensions[id] = jsonClone(provider.capture());
+    }
     return {
       sceneStyle: this.sceneStyle,
+      saveScope: this.saveScope,
+      worldIdentity: jsonClone(this.worldIdentity),
       worldVersion: WORLD_SNAPSHOT_VERSION,
       world,
       aiEvents: getAIWorldEvents(),
+      extensions,
       ...(includeAppearances
         ? { appearances: this.appearanceStore?.getAll?.() || {} }
         : {}),
     };
   }
 
+  registerSnapshotExtension(id, provider) {
+    const key = String(id || '').trim();
+    if (!key || typeof provider?.capture !== 'function' || typeof provider?.restore !== 'function') {
+      throw new TypeError('Scene snapshot extension requires id, capture(), and restore()');
+    }
+    this.snapshotExtensions.set(key, provider);
+    return () => this.snapshotExtensions.delete(key);
+  }
+
+  async restoreSnapshotExtensions(snapshot = this.store.getAuto(this.saveScope)) {
+    const extensions = snapshot?.extensions || {};
+    for (const [id, provider] of this.snapshotExtensions) {
+      await provider.restore(jsonClone(extensions[id] || {}));
+    }
+  }
+
   record(slot) {
     const snapshot = this.captureSnapshot({ includeAppearances: true });
-    this.store.saveAuto(this.sceneStyle, snapshot);
-    const record = this.store.saveRecord(this.sceneStyle, slot, snapshot);
+    this.store.saveAuto(this.saveScope, snapshot);
+    const record = this.store.saveRecord(this.saveScope, slot, snapshot);
     this.lastSavedAt = record.savedAt;
     this._emitStatus({
       state: 'recorded',
@@ -371,14 +399,14 @@ export class ChiiScenePersistenceSystem {
   }
 
   resetToRecord(slot) {
-    const record = this.store.getRecord(this.sceneStyle, slot);
+    const record = this.store.getRecord(this.saveScope, slot);
     if (!record) return null;
     this.autosaveSuspended = true;
     clearTimeout(this.timer);
     this.timer = null;
     this.appearanceStore?.replaceAll?.(record.appearances || {}, { emit: false });
     replaceAIWorldEvents(record.aiEvents || []);
-    const restored = this.store.restoreRecord(this.sceneStyle, slot);
+    const restored = this.store.restoreRecord(this.saveScope, slot);
     this._emitStatus({
       state: 'reset',
       slot,
@@ -389,15 +417,15 @@ export class ChiiScenePersistenceSystem {
   }
 
   getRecords() {
-    return this.store.getRecords(this.sceneStyle);
+    return this.store.getRecords(this.saveScope);
   }
 
   getSelectedSlot() {
-    return this.store.getSelectedSlot(this.sceneStyle);
+    return this.store.getSelectedSlot(this.saveScope);
   }
 
   setSelectedSlot(slot) {
-    return this.store.setSelectedSlot(this.sceneStyle, slot);
+    return this.store.setSelectedSlot(this.saveScope, slot);
   }
 
   onStatus(listener) {

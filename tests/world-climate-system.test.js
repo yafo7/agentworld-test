@@ -157,7 +157,8 @@ test('ESC climate UI includes manual/realtime modes and bubble palette', () => {
   assert.match(html, /id="climate-sync-status"/);
   assert.match(html, /id="climate-realtime-location"/);
   assert.match(html, /BigDataCloud/);
-  assert.match(html, /#fff9df/);
-  assert.match(html, /#6d4b2f/);
-  assert.match(html, /#ffe36d/);
+  const styles = readFileSync(new URL('../src/demos/chii-island/presentation/island-shell.css', import.meta.url), 'utf8');
+  assert.match(styles, /#fff9df/);
+  assert.match(styles, /#6d4b2f/);
+  assert.match(styles, /#ffe36d/);
 });

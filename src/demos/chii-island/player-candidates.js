@@ -8,6 +8,10 @@ import { CharacterEquipmentService } from '../../gameplay/equipment/CharacterEqu
 import { generatedAssets } from '../../assets/repositories/GeneratedAssetRepository.js';
 import { defaultContentGeneration } from '../../integrations/content/VoxelContentAdapter.js';
 import { CharacterAppearanceStore } from '../../storage/CharacterAppearanceStore.js';
+import { AnimalAgentStore } from '../../storage/AnimalAgentStore.js';
+import { getResidentDefinition } from './data/residentCatalog.js';
+import { residentThemeAnimations } from './data/residentThemes.js';
+import { ResidentBehaviorPanel } from './presentation/ResidentBehaviorPanel.js';
 import { EquipmentMountCache } from '../../storage/EquipmentMountCache.js';
 import {
   createCharacterShowcaseCatalog,
@@ -28,6 +32,7 @@ import {
 } from './presentation/ChiiPageLoadingScreen.js';
 import { renderEquipmentThumbnails } from './presentation/EquipmentThumbnailRenderer.js';
 import { getChiiSceneStyle } from './data/sceneStyle.js';
+import { createAnimalAgentShowcaseProjection } from './data/animalAgentShowcase.js';
 
 const CANDIDATE_MANIFEST = '/generated/player-candidates/phrolova/manifest.json';
 const pageLoading = createChiiPageLoadingScreen({ preset: 'showcase' });
@@ -43,6 +48,12 @@ const characterRole = document.querySelector('#character-role');
 const characterName = document.querySelector('#character-name');
 const characterDescription = document.querySelector('#character-description');
 const characterTags = document.querySelector('#character-tags');
+const agentDetailsButton = document.querySelector('#agent-details-button');
+const agentDetailsDialog = document.querySelector('#agent-details-dialog');
+const agentDetailsClose = document.querySelector('#agent-details-close');
+const agentDetailsTitle = document.querySelector('#agent-details-title');
+const agentDetailsSummary = document.querySelector('#agent-details-summary');
+const agentDetailsContent = document.querySelector('#agent-details-content');
 const variantSection = document.querySelector('#variant-section');
 const variantSwitcher = document.querySelector('#variant-switcher');
 const outfitSwitcher = document.querySelector('#showcase-outfit-switcher');
@@ -61,6 +72,11 @@ const equipmentService = new CharacterEquipmentService({
   cache: new EquipmentMountCache({ assetRepository: generatedAssets }),
 });
 const appearanceStore = new CharacterAppearanceStore({ scope: getChiiSceneStyle() });
+const animalAgentStore = new AnimalAgentStore({ scope: getChiiSceneStyle() });
+const residentBehaviorPanel = new ResidentBehaviorPanel({ store: animalAgentStore, getSelected: () => selectedRuntime?.character,
+  getAnimations: () => Object.keys(selectedRuntime?.animations || {}),
+  preview: animation => setRuntimeAnimation(selectedRuntime, animation),
+});
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xdce6e0);
@@ -229,7 +245,7 @@ async function loadCharacterSource(source) {
   return {
     source,
     modelJson,
-    animations: Object.fromEntries(animationEntries),
+    animations: { ...Object.fromEntries(animationEntries), ...(getResidentDefinition(source.assetId) ? residentThemeAnimations(modelJson) : {}) },
   };
 }
 
@@ -425,7 +441,7 @@ async function switchSelectedVariant(variantId) {
   const version = ++runtime.equipmentRequestVersion;
   setEquipmentBusy(true);
   setEquipmentStatus(`正在换成${source.name}...`, 'working');
-  status.textContent = `弗洛洛正在更换${source.group}...`;
+  status.textContent = `${runtime.character.name}正在更换${source.group}...`;
   try {
     const bundle = await loadCharacterSource(source);
     if (version !== runtime.equipmentRequestVersion || selectedRuntime !== runtime) return false;
@@ -463,7 +479,7 @@ async function switchSelectedVariant(variantId) {
         : `${source.name}已经站好；这个版本的服装暂未制作。`,
       'complete',
     );
-    status.textContent = `弗洛洛 · ${source.group}`;
+    status.textContent = `${runtime.character.name} · ${source.group}`;
     return true;
   } catch (error) {
     console.error('[CharacterShowcase] Variant switch failed:', error);
@@ -546,6 +562,149 @@ function renderCharacterStrip() {
   }));
 }
 
+function element(tag, className, text = null) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function agentPills(items, className = '') {
+  const wrap = element('div', `agent-detail-pills ${className}`.trim());
+  for (const item of items) wrap.append(element('span', '', item.label || item));
+  return wrap;
+}
+
+function agentMeter(label, value) {
+  const row = element('div', 'agent-meter');
+  const heading = element('div', 'agent-meter-heading');
+  heading.append(element('span', '', label), element('strong', '', `${Math.round(Math.max(0, Math.min(1, value)) * 100)}%`));
+  const track = element('div', 'agent-meter-track');
+  const fill = element('i');
+  fill.style.width = `${Math.round(Math.max(0, Math.min(1, value)) * 100)}%`;
+  track.append(fill);
+  row.append(heading, track);
+  return row;
+}
+
+function agentSection(title, subtitle = '') {
+  const section = element('section', 'agent-detail-section');
+  const header = element('header', 'agent-detail-section-heading');
+  header.append(element('h3', '', title));
+  if (subtitle) header.append(element('p', '', subtitle));
+  section.append(header);
+  return section;
+}
+
+function renderAgentDetails(projection) {
+  if (!projection) return;
+  agentDetailsTitle.textContent = `${projection.name} · 居民 Agent 档案`;
+  agentDetailsSummary.textContent = projection.hasSavedLife
+    ? `这是${projection.name}最近一次在岛上生活后留下的记录。`
+    : `这是${projection.name}的初始设定，它还没有留下岛上生活记录。`;
+  const fragment = document.createDocumentFragment();
+
+  const personality = agentSection('它是什么样的居民', `${projection.species} · ${projection.personality.socialStyle}`);
+  personality.append(agentPills([
+    ...projection.personality.traits.map(item => ({ label: item.label })),
+    ...projection.personality.values.map(item => ({ label: `在意 ${item.label}` })),
+  ]));
+  personality.append(element('p', 'agent-detail-note', `说话风格：${projection.personality.voiceStyle}`));
+  fragment.append(personality);
+
+  const preference = agentSection('喜欢什么', '权重越高，越容易影响它的日常选择');
+  const preferenceGrid = element('div', 'agent-meter-grid');
+  for (const item of projection.preferences) preferenceGrid.append(agentMeter(item.label, item.weight));
+  preference.append(preferenceGrid);
+  fragment.append(preference);
+
+  const ability = agentSection('会做什么', '这里只展示允许进入候选列表的行为');
+  ability.append(agentPills(projection.actions));
+  fragment.append(ability);
+
+  const schedule = agentSection('一天怎么安排', '天气时间影响生活节奏，剧情天数负责长期进展');
+  const timeline = element('ol', 'agent-schedule');
+  const phaseLabels = { morning: '早晨', afternoon: '下午', evening: '晚上' };
+  for (const item of projection.schedule) {
+    const row = element('li');
+    row.append(element('strong', '', phaseLabels[item.phase] || item.phase), element('span', '', item.activity));
+    timeline.append(row);
+  }
+  schedule.append(timeline);
+  fragment.append(schedule);
+
+  const state = agentSection('最近一次岛上状态', projection.hasSavedLife ? `岛屿日记第 ${projection.runtime.islandDay} 天` : '尚未产生存档，以下是初始需求');
+  const stateFacts = element('div', 'agent-state-facts');
+  stateFacts.append(
+    element('span', '', `心情：${projection.runtime.mood}`),
+    element('span', '', `目标：${projection.runtime.activeGoal || '正在形成'}`),
+    element('span', '', `计划：${projection.runtime.currentPlan || '先看看周围'}`),
+    element('span', '', `AI 思考：${projection.runtime.dailyCalls}/${projection.runtime.dailyCallBudget}`),
+  );
+  const driveLabels = { energy: '精力', curiosity: '好奇', sociability: '社交', comfort: '舒适', purpose: '目标感' };
+  const driveGrid = element('div', 'agent-meter-grid');
+  for (const [id, value] of Object.entries(projection.runtime.drives)) driveGrid.append(agentMeter(driveLabels[id] || id, value));
+  state.append(stateFacts, driveGrid);
+  fragment.append(state);
+
+  const memory = agentSection('记忆与关系', '只记录真实发生的事情，不会凭空编经历');
+  const counts = element('div', 'agent-memory-counts');
+  counts.append(
+    element('span', '', `${projection.memory.episodicCount} 件经历`),
+    element('span', '', `${projection.memory.factCount} 条认识`),
+    element('span', '', `${projection.memory.reflectionCount} 次反思`),
+  );
+  memory.append(counts);
+  const recent = element('ul', 'agent-memory-list');
+  if (projection.memory.recent.length) {
+    for (const item of projection.memory.recent) recent.append(element('li', '', item.summary));
+  } else {
+    recent.append(element('li', 'is-empty', '记忆袋还是空的，等它在岛上生活一阵吧。'));
+  }
+  memory.append(recent);
+  if (projection.memory.relationships.length) {
+    memory.append(element('h4', '', '认识的居民'));
+    const relations = element('div', 'agent-relationship-list');
+    for (const relation of projection.memory.relationships) {
+      const row = element('div', 'agent-relationship-row');
+      row.append(
+        element('strong', '', relation.name),
+        element('span', '', `熟悉 ${Math.round(relation.familiarity * 100)} · 信任 ${Math.round(relation.trust * 100)} · 紧张 ${Math.round(relation.tension * 100)}`),
+      );
+      relations.append(row);
+    }
+    memory.append(relations);
+  }
+  fragment.append(memory);
+
+  const architecture = agentSection('它是怎样做决定的', 'AI 根据岛屿变化维护行为安排，本地系统负责移动与动作执行');
+  const flow = element('ol', 'agent-architecture-flow');
+  for (const step of projection.architecture) {
+    const item = element('li');
+    item.append(element('strong', '', step.label), element('span', '', step.detail));
+    flow.append(item);
+  }
+  architecture.append(flow);
+  fragment.append(architecture);
+
+  agentDetailsContent.replaceChildren(fragment);
+}
+
+function selectedAgentProjection() {
+  if (!selectedRuntime) return null;
+  return createAnimalAgentShowcaseProjection(
+    selectedRuntime.character,
+    animalAgentStore.load(selectedRuntime.character.id),
+  );
+}
+
+function openAgentDetails() {
+  const projection = selectedAgentProjection();
+  if (!projection) return;
+  renderAgentDetails(projection);
+  agentDetailsDialog.showModal();
+}
+
 function renderSelectedCharacter() {
   if (!selectedRuntime) return;
   const { character } = selectedRuntime;
@@ -559,6 +718,11 @@ function renderSelectedCharacter() {
     item.textContent = tag;
     return item;
   }));
+  const agentProjection = selectedAgentProjection();
+  residentBehaviorPanel.select(Boolean(agentProjection));
+  agentDetailsButton.hidden = !agentProjection;
+  agentDetailsButton.setAttribute('aria-label', agentProjection ? `深入了解${character.name}的居民 Agent` : '');
+  if (agentDetailsDialog.open && agentProjection) renderAgentDetails(agentProjection);
 
   motionSwitcher.replaceChildren(...Object.keys(selectedRuntime.animations).map(animationName => {
     const button = document.createElement('button');
@@ -967,6 +1131,11 @@ function render(now) {
 }
 
 overviewButton.addEventListener('click', () => focusOverview());
+agentDetailsButton.addEventListener('click', openAgentDetails);
+agentDetailsClose.addEventListener('click', () => agentDetailsDialog.close());
+agentDetailsDialog.addEventListener('click', event => {
+  if (event.target === agentDetailsDialog) agentDetailsDialog.close();
+});
 canvas.addEventListener('pointerdown', event => {
   pointerDownPosition = { x: event.clientX, y: event.clientY };
 });
@@ -990,6 +1159,7 @@ canvas.addEventListener('pointerleave', () => {
   pointerDownPosition = null;
 });
 window.addEventListener('keydown', event => {
+  if (agentDetailsDialog.open) return;
   if (event.key === 'Escape' && focusMode === 'character') focusOverview();
 });
 for (const button of handSwitcher.querySelectorAll('[data-hand-slot]')) {
@@ -1028,7 +1198,11 @@ try {
   const candidateManifest = await loadJson(CANDIDATE_MANIFEST);
   catalog = createCharacterShowcaseCatalog(candidateManifest);
   renderCategoryTabs();
-  await activateCategory(catalog.categories[0].id);
+  const routineId = new URLSearchParams(location.search).get('routine');
+  const routineCategory = catalog.categories.find(category =>
+    category.id !== 'players' && category.characters.some(character => character.id === routineId));
+  await activateCategory((routineCategory || catalog.categories[0]).id);
+  if (routineCategory && selectCharacter(routineId)) residentBehaviorPanel.open(true);
   renderEquipmentThumbnails(CHII_EQUIPMENT_ITEMS, {
     loadModelJson: itemId => equipmentService.loadItemModel(itemId),
   }).then(thumbnails => {

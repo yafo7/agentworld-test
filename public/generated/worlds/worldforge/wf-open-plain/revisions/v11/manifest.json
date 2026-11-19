@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "kind": "chii-worldforge-world",
+  "worldId": "wf-open-plain",
+  "mapNumber": "WF-001",
+  "sourceMapId": "map-7bb9ef04-6e49-4f39",
+  "sourceMapVersion": 11,
+  "sourceMapUpdatedAt": 1785750281594,
+  "publishedAt": "2026-08-09T07:23:59.045Z",
+  "gameplayPreset": "exploration",
+  "worldForge": {
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json",
+    "hdri": "hdri/HDRI-35.exr"
+  },
+  "hashes": {
+    "map": "c9db0f23402b1bc2a8940ac2aebd320cdec3b739193ff3e51ede6592074d84e4",
+    "renderScheme": "534002acfc1c908d2c05eac6e3486b3e61509a8ace1be6e864031d6ca447886b",
+    "bindings": "0d69092aec301c19ffe7774f73b2794caa4f4bf7107e4a2854403af9734986a6",
+    "hdri": "c49a895378c56f823e4ddd00e8f66a06057c47739b88ef4d1fb959463bea92f8"
+  }
+}

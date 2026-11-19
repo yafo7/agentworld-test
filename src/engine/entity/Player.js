@@ -142,11 +142,12 @@ export class Player {
    * @param {number} gridSize
    * @param {string[][]} layout
    */
-  setTerrainLayout(centerX, centerZ, gridSize, layout) {
+  setTerrainLayout(centerX, centerZ, gridSize, layout, terrainUnit = 4) {
     this._terrainCx = centerX;
     this._terrainCz = centerZ;
     this._terrainSize = gridSize;
     this._terrainLayout = layout;
+    this._terrainUnit = Number(terrainUnit) || 4;
   }
 
   setWaterTraversalCells(cells = []) {
@@ -214,7 +215,14 @@ export class Player {
    */
   _isInWater(worldX, worldZ) {
     if (!this._terrainConstraintEnabled || !this._terrainLayout) return false;
-    const g = worldToGridCoordinates(worldX, worldZ, this._terrainCx, this._terrainCz, this._terrainSize);
+    const g = worldToGridCoordinates(
+      worldX,
+      worldZ,
+      this._terrainCx,
+      this._terrainCz,
+      this._terrainSize,
+      this._terrainUnit,
+    );
     if (g.gridX < 0 || g.gridX >= this._terrainSize || g.gridZ < 0 || g.gridZ >= this._terrainSize) return true;
     if (this._waterTraversalCells?.has(`${g.gridX},${g.gridZ}`)) return false;
     return this._terrainLayout[g.gridZ]?.[g.gridX] === 'water';

@@ -7,6 +7,7 @@ import { WorldObjectRegistry } from '../src/world/WorldObjectRegistry.js';
 import { ActivityRegistry } from '../src/gameplay/social/ActivityRegistry.js';
 import { ActivityAssetResolver } from '../src/gameplay/social/ActivityAssetResolver.js';
 import { createTownActivityRegistrySeed } from '../src/demos/chii-island/data/townActivityRegistry.js';
+import { describeResidentThemes, validateThemeEdits } from '../src/demos/chii-island/data/residentThemes.js';
 
 function makeModel(name) {
   return { format: 2, name, nodes: [], parts: [] };
@@ -394,7 +395,7 @@ test('town activities do not start from the wrong pet dialogue', async () => {
   assert.ok(lingqLabels.includes('greeting'));
   assert.ok(!lingqLabels.includes('new_year'));
   assert.ok(fangkLabels.includes('campfire'));
-  assert.ok(fangkLabels.includes('custom_festival'));
+  assert.ok(!fangkLabels.includes('custom_festival'));
   assert.ok([makoLabels, lingqLabels, fangkLabels].every(options => options.length <= 3));
   system.dispose();
 });
@@ -439,6 +440,9 @@ test('birthday uses the Original full outfit and restores it after the cake exit
   assert.equal(system.temporaryPetModels.has(mako), true);
   system.update(0.5);
   assert.equal(system.activeActivity.status, 'birthday_intro');
+  const birthday = system.residentActivity();
+  assert.equal(birthday.cast.find(member => member.id === 'mako').role, 'guest');
+  assert.equal(birthday.cast.find(member => member.id === 'fangk').action, '推蛋糕桌');
   system.update(3);
   assert.equal(system.activeActivity.status, 'performing');
   assert.equal(system.temporaryPetModels.has(mako), true);
@@ -499,9 +503,11 @@ test('Spring Festival dresses residents, collects greetings and cleans temporary
   system.update(1);
   system.update(1.2);
   assert.equal(system.activeActivity.status, 'new_year_greetings');
+  assert.ok(system.residentActivity().cast.every(member => member.action === '等候与玩家拜年'));
   assert.equal(system.temporaryPetModels.size, 3);
   for (const pet of [fangk, lingq, mako]) {
     assert.equal(await system.interact(pet, makeDialogue([])), true);
+    assert.equal(system.residentActivity().cast.find(member => member.id === pet._petName).action, '已经向玩家拜年');
   }
   system.update(0.1);
   assert.equal(system.activeActivity.status, 'new_year_dance_gathering');
@@ -836,6 +842,118 @@ test('a new custom activity becomes ready only after successful completion', asy
   system.stopActivity('host-ended');
   assert.equal(registry.get(draftId).status, 'ready');
   assert.equal(registry.get(draftId).stats.runs, 1);
+  system.dispose();
+});
+
+test('the book replays a legacy festival with current roles, venue, clips and slots', async () => {
+  const [host, lingq] = ['fangk', 'lingq'].map(id => makePet(id));
+  const fire = makeWorldEntity('fire', '篝火', ['篝火']);
+  fire.mesh.position.x = 20;
+  const objects = new WorldObjectRegistry();
+  objects.add(fire, { modelJson: fire._originalModelJson });
+  const harness = makeContentHarness();
+  const registry = new ActivityRegistry({ sceneStyle: 'original' });
+  const system = new TownSocialSystem({
+    scene: new THREE.Scene(), player: { mesh: new THREE.Group() }, petManager: { resumePet() {} },
+    participants: [host, lingq], center: new THREE.Vector3(), worldObjects: objects, activityRegistry: registry,
+    contentPort: harness.port, generatedAssetRepository: harness.repository, cuePresenter: makeCueHarness(),
+  });
+  const catalog = describeResidentThemes('lingq', ['idle', 'dance']);
+  const spectator = validateThemeEdits([{ themeId: 'festival', role: 'spectator',
+    actions: [{ kind: 'wait', name: '坐在外围欣赏舞蹈', seconds: 5 }] }], catalog, ['idle', 'dance']).festival;
+  let lingqTheme = { ...spectator, edited: true };
+  system.residentTheme = id => id === 'lingq' ? lingqTheme : null;
+  const plan = system._validatePlan({ id: 'lantern-dance', type: 'custom_festival', title: '灯影舞会', concept: '灯影舞会',
+    locationId: 'campfire', initiatorId: 'fangk', participants: ['fangk', 'lingq'],
+    actionPrompts: { fangk: '挥手带领舞步', lingq: '挥动翅膀转圈' } });
+  const { FestivalBook } = await import('../src/demos/chii-island/systems/FestivalBook.js');
+  const book = new FestivalBook(system, 'test', null);
+  const start = async () => {
+    book.hold({ plan });
+    await completePreparationTasks(system);
+    settleAtPreparedSlots(system);
+    system.update(0);
+    return system.residentActivity();
+  };
+  let live = await start();
+  assert.equal(live.location, '篝火旁');
+  const watcher = live.cast.find(member => member.id === 'lingq');
+  assert.deepEqual([watcher.role, watcher.action, watcher.animation], ['spectator', '坐在外围欣赏舞蹈', lingq.animation]);
+  assert.equal(lingq.animation, 'idle');
+  const radius = lingq.mesh.position.distanceTo(fire.mesh.position);
+  assert.ok(radius > host.mesh.position.distanceTo(fire.mesh.position));
+  assert.equal(await system.interact(host, makeDialogue(['end'])), true);
+  assert.equal(system.activeActivity, null);
+  assert.equal(lingq.petState.current, 'free_roam');
+  system.planner.planFestival = () => assert.fail('ready activity must reuse its plan');
+  lingqTheme = catalog.festival;
+  live = await start();
+  assert.equal(live.cast[1].role, 'dancer');
+  assert.equal(live.cast[1].action, '挥动翅膀转圈');
+  assert.equal(live.cast[1].animation, lingq.animation);
+  assert.notEqual(lingq.animation, 'idle');
+  assert.ok(lingq.mesh.position.distanceTo(fire.mesh.position) < radius);
+  system.dispose();
+});
+
+test('a helper faces and stages an actual opening prop from its assigned position', async () => {
+  const host = makePet('fangk'), helper = makePet('mok');
+  helper.loadAnimation('construct', { _duration: 3 });
+  const content = makeContentHarness();
+  const system = new TownSocialSystem({
+    scene: new THREE.Scene(), player: { mesh: new THREE.Group() }, petManager: { resumePet() {} },
+    participants: [host, helper], center: new THREE.Vector3(20, 0, 20), worldObjects: new WorldObjectRegistry(),
+    contentPort: content.port, generatedAssetRepository: content.repository, cuePresenter: makeCueHarness(),
+  });
+  stubEventPropSpawning(system);
+  system.residentTheme = id => describeResidentThemes(id, ['idle', 'construct']).festival;
+  const plan = system._validatePlan({ type: 'custom_festival', participants: ['fangk', 'mok'],
+    props: [{ id: 'lantern', name: '灯架', prompt: '彩色灯架' }] });
+  system._beginActivity(plan);
+  await completePreparationTasks(system);
+  const prop = system.preparedActivity.props[0];
+  assert.equal(prop.entity.mesh.visible, false);
+  settleAtPreparedSlots(system);
+  system.update(0);
+  const assignment = system.residentActivity().cast.find(member => member.id === 'mok');
+  assert.deepEqual([assignment.role, assignment.target, helper.animation], ['helper', '灯架', 'construct']);
+  assert.equal(prop.entity.mesh.visible, true);
+  assert.ok(helper.mesh.position.distanceTo(prop.entity.mesh.position) < 4);
+  assert.deepEqual(helper.facing, { x: prop.entity.mesh.position.x, z: prop.entity.mesh.position.z });
+  system.dispose();
+});
+
+test('apple picking uses its actual tree and plays the resident gesture after picking', async () => {
+  const mako = makePet('mako');
+  mako.loadAnimation('jump', { _duration: 2 });
+  const tree = makeWorldEntity('apple', '北坡苹果树', ['apple']);
+  tree.mesh.position.z = 30;
+  const objects = new WorldObjectRegistry();
+  objects.add(tree, { modelJson: tree._originalModelJson });
+  const content = makeContentHarness();
+  const system = new TownSocialSystem({
+    scene: new THREE.Scene(), player: { mesh: new THREE.Group() }, petManager: { resumePet() {} },
+    participants: [mako], center: new THREE.Vector3(), worldObjects: objects,
+    contentPort: content.port, generatedAssetRepository: content.repository, cuePresenter: makeCueHarness(),
+  });
+  stubEventPropSpawning(system);
+  const themes = describeResidentThemes('mako', ['idle', 'jump']);
+  const edit = validateThemeEdits([{ themeId: 'outing', actions: [{ kind: 'perform', name: '摘完跳一下', seconds: 3, animation: 'jump' }] }], themes, ['idle', 'jump']);
+  system.residentTheme = () => ({ ...edit.outing, edited: true });
+  assert.equal(await system.interact(mako, makeDialogue(['apple_pick'])), true);
+  await completePreparationTasks(system);
+  settleAtPreparedSlots(system);
+  system.update(0);
+  const live = system.residentActivity();
+  assert.equal(live.location, '北坡苹果树旁');
+  assert.equal(live.cast[0].themeId, 'outing');
+  assert.equal(live.cast[0].action, '伸手摘下红苹果');
+  assert.ok(mako.mesh.position.distanceTo(tree.mesh.position) < 5);
+  system.update(4.1);
+  assert.equal(system.residentActivity().cast[0].action, '摘完跳一下');
+  assert.equal(mako.animation, 'jump');
+  await system.interact(mako, makeDialogue(['continue']));
+  assert.equal(mako.animation, 'jump');
   system.dispose();
 });
 

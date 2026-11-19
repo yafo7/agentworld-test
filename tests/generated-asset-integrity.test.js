@@ -168,7 +168,9 @@ test('generated library manifest points to available active or archived JSON', a
   const resources = manifest.flatMap((entry) => [entry, ...(entry.animations || [])]);
   const archived = resources.filter((resource) => resource.lifecycle?.status === 'archived');
 
-  assert.equal(manifest.length, 55);
+  // Playing can add new festival props to the same on-disk library.
+  assert.ok(manifest.length >= 55, 'the original catalog must still be present');
+  assert.equal(new Set(manifest.map(entry => entry.assetId)).size, manifest.length);
   assert.equal(archived.length, 31);
   for (const resource of resources) {
     assert.ok(resource.path, `Missing path for ${resource.assetId || resource.animId}`);

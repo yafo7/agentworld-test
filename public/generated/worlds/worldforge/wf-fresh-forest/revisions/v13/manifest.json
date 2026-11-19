@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "kind": "chii-worldforge-world",
+  "worldId": "wf-fresh-forest",
+  "mapNumber": "WF-002",
+  "sourceMapId": "map-39a2f074-ec20-4fdf",
+  "sourceMapVersion": 13,
+  "sourceMapUpdatedAt": 1785750232683,
+  "publishedAt": "2026-08-09T07:23:59.118Z",
+  "gameplayPreset": "exploration",
+  "worldForge": {
+    "packageVersion": "0.1.0"
+  },
+  "runtime": {
+    "renderRuntimeCommit": "1805dfc",
+    "threeRevision": "160"
+  },
+  "files": {
+    "map": "map.json",
+    "renderScheme": "render-scheme.json",
+    "bindings": "chii-bindings.json",
+    "hdri": "hdri/HDRI-44.exr"
+  },
+  "hashes": {
+    "map": "b3d3a46fbe4b4b302254fd50d754c9b61e4f5ce746a318b45cf133380618837d",
+    "renderScheme": "6eb2836397c5d8926e5d5f8a787c6606dcc18b93870fd7d9904c234aecc4fae2",
+    "bindings": "a4b48e9be3e32ee7cbfebc0e38296182c0cfffa8d0d0746d00531ed53d40252d",
+    "hdri": "ec953af5fa2f644777113c8e5c50cba78c4a4982423bc2b0c5cd6c09a2a883f4"
+  }
+}

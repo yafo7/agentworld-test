@@ -4,6 +4,7 @@ import { CHII_PET_HEIGHTS } from '../data/worldTuningProfile.js';
 import { ParticleSystem } from '../../../engine/animation/particles.js';
 import { applyAnimation } from '../../../engine/animation/player.js';
 import { getAIWorldEvents, recordAIWorldEvent } from '../../../storage/aiWorldState.js';
+import { PROMPT_OPERATIONS } from '../../../gameplay/ai/prompts/PromptOperations.js';
 
 const INTERACT_RANGE = 6;
 
@@ -60,6 +61,7 @@ export class ForestTempleSystem {
     contentPort,
     generatedAssetRepository,
     vfxService = null,
+    generationController = null,
   }) {
     if (!contentPort || !generatedAssetRepository) {
       throw new TypeError('ForestTempleSystem requires content and generated asset dependencies');
@@ -79,6 +81,7 @@ export class ForestTempleSystem {
     this.contentPort = contentPort;
     this.generatedAssetRepository = generatedAssetRepository;
     this.vfxService = vfxService;
+    this.generationController = generationController;
 
     this.trophyState = 'idle';
     this.tentState = 'idle';
@@ -404,20 +407,64 @@ export class ForestTempleSystem {
     }
   }
 
+  async _generateAnimation({ modelJson, description, duration, emitParticles, source = 'forest_temple' }) {
+    if (!this.generationController) {
+      return this.contentPort.generateAnimation({ modelJson, description, duration, emitParticles });
+    }
+    const prepared = await this.generationController.prepare({
+      operation: PROMPT_OPERATIONS.ANIMATION_GENERATE,
+      rawText: description,
+      source: { kind: source },
+      input: { modelJson, description },
+      constraints: { duration, emitParticles },
+      semanticPlanning: 'disabled',
+    });
+    return (await this.generationController.execute(prepared)).result;
+  }
+
   async _runSummon(context) {
     const summonToken = context.summonToken ?? this._summonToken;
     if (!this._isSummonActive(summonToken)) return;
     this.runtimeStatus?.updateJob(context.summonJobId, '提炼新宠物外形');
-    const finalModelPrompt = await this._makeFinalPrompt(context);
+    let summonPrepared = null;
+    let finalModelPrompt;
+    if (this.generationController) {
+      const profile = context.companionProfile || {};
+      summonPrepared = await this.generationController.prepare({
+        operation: PROMPT_OPERATIONS.PET_GENERATE,
+        source: {
+          kind: 'forest_summon',
+          text: [
+            `玩家想邂逅：${context.playerPetWish}`,
+            `玩家期待：${context.playerMoodWish}`,
+            `伙伴愿望：${context.companionWish}`,
+            `伙伴性格：${(profile.personalityTags || []).join('、')}`,
+            `伙伴特点：${(profile.featureTags || []).join('、')}`,
+            `伙伴能力：${(profile.abilityTags || []).join('、')}`,
+          ].join('；'),
+        },
+        input: { tags: ['pet', 'forest_summon'] },
+        context: { regionId: 'temple_forest', companionId: context.companionId || null },
+        constraints: { qualityProfile: 'voxel', sizeProfile: 'pet' },
+        approval: { required: true, confirmed: true, reason: 'forest-summon-wishes-confirmed' },
+        semanticPlanning: 'required',
+      });
+      finalModelPrompt = summonPrepared.packet.payload.description;
+    } else {
+      finalModelPrompt = await this._makeFinalPrompt(context);
+    }
     if (!this._isSummonActive(summonToken)) return;
     if (!finalModelPrompt) throw new Error('GPT 未生成有效宠物外形描述');
 
     this.runtimeStatus?.updateJob(context.summonJobId, 'AI 正在生成新宠物');
-    const [{ modelJson }, petName, specialPrompt] = await Promise.all([
-      this.contentPort.generateModel({ description: finalModelPrompt, quality: 'voxel' }),
+    const [generatedPet, petName, specialPrompt] = await Promise.all([
+      summonPrepared
+        ? this.generationController.execute(summonPrepared).then(value => value.result)
+        : this.contentPort.generateModel({ description: finalModelPrompt, quality: 'voxel' }),
       this._makePetName(finalModelPrompt),
       this._makeSpecialPrompt(finalModelPrompt),
     ]);
+    const { modelJson } = generatedPet;
     if (!this._isSummonActive(summonToken)) return;
 
     const animationRequests = [
@@ -430,11 +477,12 @@ export class ForestTempleSystem {
     this.runtimeStatus?.updateJob(context.summonJobId, '正在生成四种动作');
     for (const [name, prompt, duration, particles] of animationRequests) {
       if (!this._isSummonActive(summonToken)) return;
-      const result = await this.contentPort.generateAnimation({
+      const result = await this._generateAnimation({
         modelJson,
         description: prompt,
         duration,
         emitParticles: particles,
+        source: 'forest_summon_animation',
       });
       if (!this._isSummonActive(summonToken)) return;
       animations[name] = result.plan;
@@ -442,12 +490,12 @@ export class ForestTempleSystem {
 
     if (!this._isSummonActive(summonToken)) return;
     this.runtimeStatus?.updateJob(context.summonJobId, '正在保存宠物资产');
-    const { assetId } = await this.generatedAssetRepository.saveModel({
+    const assetId = generatedPet.assetId || (await this.generatedAssetRepository.saveModel({
       name: petName,
       description: finalModelPrompt,
       modelJson,
       tags: ['pet', 'forest_summon'],
-    });
+    })).assetId;
     if (!this._isSummonActive(summonToken)) return;
     for (const [name, plan] of Object.entries(animations)) {
       await this.generatedAssetRepository.saveAnimation({
@@ -593,11 +641,12 @@ export class ForestTempleSystem {
     const modelJson = pet._originalModelJson;
     if (!modelJson) throw new Error('宠物缺少模型数据');
     this.runtimeStatus?.updateJob(this.campingJobId, 'AI 正在准备跳舞动作');
-    const result = await this.contentPort.generateAnimation({
+    const result = await this._generateAnimation({
       modelJson,
       description: '宠物在帐篷旁开心跳舞',
       duration: 3,
       emitParticles: true,
+      source: 'forest_camping_animation',
     });
     if (this._disposed || token !== this.campingToken) return;
     pet.loadAnimation('camping', result.plan);

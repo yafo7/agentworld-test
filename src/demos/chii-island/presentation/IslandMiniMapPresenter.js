@@ -1,3 +1,5 @@
+import { DEFAULT_RESIDENT_PORTRAITS as DEFAULT_PET_ICON_URLS } from './residentPortraits.js';
+
 const TERRAIN_COLORS = {
   grass: '#83b864',
   dirt: '#b58a58',
@@ -10,17 +12,6 @@ const TERRAIN_COLORS = {
 
 const MAP_FACE = 'rgba(246, 236, 205, 0.92)';
 const DEFAULT_VIEW_RADIUS = 40;
-const DEFAULT_PET_ICON_URLS = Object.freeze({
-  momo: '/ui/minimap-pets/momo.png',
-  mako: '/ui/minimap-pets/mako.png',
-  yafo: '/ui/minimap-pets/yafo.png',
-  lingq: '/ui/minimap-pets/lingq.png',
-  fangk: '/ui/minimap-pets/fangk.png',
-  mok: '/ui/minimap-pets/mok.png',
-  builder_crab: '/ui/minimap-pets/builder-crab.png',
-  fallback: '/ui/minimap-pet-avatar.png',
-});
-
 const PET_ICON_ALIASES = Object.freeze({
   bear: 'momo',
   horse_7: 'mako',
@@ -336,7 +327,7 @@ export class IslandMiniMapPresenter {
       const icon = this.petIcons.get(resolveMiniMapPetIconId(pet))
         || this.petIcons.get('fallback');
       if (icon?.complete && icon.naturalWidth > 0) {
-        ctx.imageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = true;
         ctx.drawImage(icon, point.x - size / 2, point.y - size / 2, size, size);
       } else {
         ctx.fillStyle = '#d7833f';
